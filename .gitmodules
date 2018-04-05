@@ -1,0 +1,9 @@
+[submodule "linuxcnc"]
+	path = linuxcnc
+	url = git@github.com:LinuxCNC/linuxcnc.git
+[submodule "openSAFETY_DEMO"]
+	path = openSAFETY_DEMO
+	url = git@github.com:OpenAutomationTechnologies/openSAFETY_DEMO.git
+[submodule "openPOWERLINK_V2"]
+	path = openPOWERLINK_V2
+	url = git@github.com:OpenAutomationTechnologies/openPOWERLINK_V2.git

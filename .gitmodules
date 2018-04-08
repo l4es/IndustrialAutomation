@@ -7,3 +7,12 @@
 [submodule "openPOWERLINK_V2"]
 	path = openPOWERLINK_V2
 	url = git@github.com:OpenAutomationTechnologies/openPOWERLINK_V2.git
+[submodule "UAVCAN/libuavcan"]
+	path = UAVCAN/libuavcan
+	url = git@github.com:UAVCAN/libuavcan.git
+[submodule "UAVCAN/libcanard"]
+	path = UAVCAN/libcanard
+	url = git@github.com:UAVCAN/libcanard.git
+[submodule "UAVCAN/pyuavcan"]
+	path = UAVCAN/pyuavcan
+	url = git@github.com:UAVCAN/pyuavcan.git

@@ -1,5 +1,5 @@
 [submodule "linuxcnc"]
-	path = linuxcnc
+	path = linuxCNC
 	url = git@github.com:LinuxCNC/linuxcnc.git
 [submodule "openSAFETY_DEMO"]
 	path = openSAFETY_DEMO

@@ -31,3 +31,6 @@
 [submodule "GE-PLC"]
 	path = GE-PLC
 	url = git@github.com:mota37/GE-PLC.git
+[submodule "openXHC"]
+	path = openXHC
+	url = git@github.com:mrgsts/openxhc.git

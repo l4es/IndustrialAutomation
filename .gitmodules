@@ -16,3 +16,18 @@
 [submodule "UAVCAN/pyuavcan"]
 	path = UAVCAN/pyuavcan
 	url = git@github.com:UAVCAN/pyuavcan.git
+[submodule "openPLC"]
+	path = linuxPLC
+	url = git@github.com:thiagoralves/OpenPLC.git
+[submodule "openPLCv2"]
+	path = linuxPLCv2
+	url = git@github.com:thiagoralves/OpenPLC_v2.git
+[submodule "open-plc"]
+	path = open-plc
+	url = git@github.com:leocat3/open-plc.git
+[submodule "stellarisMODBUS"]
+	path = stellarisMODBUS
+	url = git@github.com:mota37/Modbus.git
+[submodule "GE-PLC"]
+	path = GE-PLC
+	url = git@github.com:mota37/GE-PLC.git

@@ -4,17 +4,17 @@
 [submodule "openSAFETY_DEMO"]
 	path = openSAFETY_DEMO
 	url = git@github.com:OpenAutomationTechnologies/openSAFETY_DEMO.git
-[submodule "openPOWERLINK_V2"]
+[submodule "Protocols/openPOWERLINK_V2"]
 	path = Protocols/openPOWERLINK_V2
 	url = git@github.com:OpenAutomationTechnologies/openPOWERLINK_V2.git
-[submodule "UAVCAN/libuavcan"]
-	path = UAVCAN/libuavcan
+[submodule "Protocols/UAVCAN/libuavcan"]
+	path = Protocols/UAVCAN/libuavcan
 	url = git@github.com:UAVCAN/libuavcan.git
-[submodule "UAVCAN/libcanard"]
-	path = UAVCAN/libcanard
+[submodule "Protocols/UAVCAN/libcanard"]
+	path = Protocols/UAVCAN/libcanard
 	url = git@github.com:UAVCAN/libcanard.git
-[submodule "UAVCAN/pyuavcan"]
-	path = UAVCAN/pyuavcan
+[submodule "Protocols/UAVCAN/pyuavcan"]
+	path = Protocols/UAVCAN/pyuavcan
 	url = git@github.com:UAVCAN/pyuavcan.git
 [submodule "openPLC"]
 	path = linuxPLC

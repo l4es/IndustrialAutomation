@@ -34,3 +34,39 @@
 [submodule "openXHC"]
 	path = openXHC
 	url = git@github.com:mrgsts/openxhc.git
+[submodule "Protocols/bacnet-stack"]
+	path = Protocols/bacnet-stack
+	url = https://github.com/stargieg/bacnet-stack.git
+[submodule "Protocols/libmodbus"]
+	path = Protocols/libmodbus
+	url = https://github.com/stephane/libmodbus.git
+[submodule "Protocols/can-utils"]
+	path = Protocols/can-utils
+	url = https://github.com/linux-can/can-utils.git
+[submodule "Protocols/can-tests"]
+	path = Protocols/can-tests
+	url = https://github.com/linux-can/can-tests.git
+[submodule "Protocols/cannelloni"]
+	path = Protocols/cannelloni
+	url = https://github.com/mguentner/cannelloni.git
+[submodule "Protocols/freemodbus"]
+	path = Protocols/freemodbus
+	url = https://github.com/webconn/freemodbus.git
+[submodule "Protocols/socketcand"]
+	path = Protocols/socketcand
+	url = https://github.com/dschanoeh/socketcand.git
+[submodule "Protocols/freemodbus-v1.5.0"]
+	path = Protocols/freemodbus-v1.5.0
+	url = https://github.com/nucleron/freemodbus-v1.5.0.git
+[submodule "Protocols/EtherCAT-Slave"]
+	path = Protocols/EtherCAT-Slave
+	url = https://github.com/OpenEtherCATsociety/SOES.git
+[submodule "Protocols/EtherCAT-Master"]
+	path = Protocols/EtherCAT-Master
+	url = https://github.com/OpenEtherCATsociety/SOEM.git
+[submodule "Protocols/CANOpen/CANopenNode"]
+	path = Protocols/CANOpen/CANopenNode
+	url = https://github.com/CANopenNode/CANopenNode.git
+[submodule "Protocols/CANOpen/CANopenSocket"]
+	path = Protocols/CANOpen/CANopenSocket
+	url = https://github.com/CANopenNode/CANopenSocket.git

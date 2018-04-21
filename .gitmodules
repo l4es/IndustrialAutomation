@@ -70,3 +70,24 @@
 [submodule "Protocols/CANOpen/CANopenSocket"]
 	path = Protocols/CANOpen/CANopenSocket
 	url = https://github.com/CANopenNode/CANopenSocket.git
+[submodule "Protocols/rscada-libmodbus"]
+	path = Protocols/rscada-libmodbus
+	url = https://github.com/rscada/libmodbus.git
+[submodule "Protocols/rscada-libcanopen"]
+	path = Protocols/rscada-libcanopen
+	url = https://github.com/rscada/libcanopen.git
+[submodule "CAN-Ethernet-Gateway/can_eth_gw"]
+	path = CAN-Ethernet-Gateway/can_eth_gw
+	url = git@github.com:can-eth-gw/can_eth_gw.git
+[submodule "CAN-Ethernet-Gateway/cegwsend"]
+	path = CAN-Ethernet-Gateway/cegwsend
+	url = git@github.com:can-eth-gw/cegwsend.git
+[submodule "CAN-Ethernet-Gateway/cegwctl"]
+	path = CAN-Ethernet-Gateway/cegwctl
+	url = git@github.com:can-eth-gw/cegwctl.git
+[submodule "Protocols/OpENer"]
+	path = Protocols/OpENer
+	url = git@github.com:EIPStackGroup/OpENer.git
+[submodule "Protocols/CIPster"]
+	path = Protocols/CIPster
+	url = git@github.com:liftoff-sr/CIPster.git

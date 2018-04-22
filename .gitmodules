@@ -106,3 +106,6 @@
 [submodule "SocketCAN/socketcan_gs_usb"]
 	path = SocketCAN/socketcan_gs_usb
 	url = https://github.com/HubertD/socketcan_gs_usb.git
+[submodule "SocketCAN/cangaroo"]
+	path = SocketCAN/cangaroo
+	url = https://github.com/HubertD/cangaroo.git

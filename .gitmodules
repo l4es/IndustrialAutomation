@@ -91,3 +91,9 @@
 [submodule "Protocols/CIPster"]
 	path = Protocols/CIPster
 	url = git@github.com:liftoff-sr/CIPster.git
+[submodule "SocketCAN/test-can-j1939"]
+	path = SocketCAN/test-can-j1939
+	url = https://github.com/kurt-vd/test-can-j1939.git
+[submodule "SocketCAN/libsocketcan"]
+	path = SocketCAN/libsocketcan
+	url = https://github.com/lalten/libsocketcan.git

@@ -97,3 +97,9 @@
 [submodule "SocketCAN/libsocketcan"]
 	path = SocketCAN/libsocketcan
 	url = https://github.com/lalten/libsocketcan.git
+[submodule "Protocols/CANtact/cantact-fw"]
+	path = Protocols/CANtact/cantact-fw
+	url = https://github.com/linklayer/cantact-fw.git
+[submodule "Protocols/CANtact/candleLight_fw"]
+	path = Protocols/CANtact/candleLight_fw
+	url = https://github.com/HubertD/candleLight_fw.git

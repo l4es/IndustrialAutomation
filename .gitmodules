@@ -103,3 +103,6 @@
 [submodule "Protocols/CANtact/candleLight_fw"]
 	path = Protocols/CANtact/candleLight_fw
 	url = https://github.com/HubertD/candleLight_fw.git
+[submodule "SocketCAN/socketcan_gs_usb"]
+	path = SocketCAN/socketcan_gs_usb
+	url = https://github.com/HubertD/socketcan_gs_usb.git

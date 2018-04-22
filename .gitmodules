@@ -41,19 +41,19 @@
 	path = Protocols/libmodbus
 	url = https://github.com/stephane/libmodbus.git
 [submodule "Protocols/can-utils"]
-	path = Protocols/can-utils
+	path = SocketCAN/can-utils
 	url = https://github.com/linux-can/can-utils.git
 [submodule "Protocols/can-tests"]
-	path = Protocols/can-tests
+	path = SocketCAN/can-tests
 	url = https://github.com/linux-can/can-tests.git
 [submodule "Protocols/cannelloni"]
-	path = Protocols/cannelloni
+	path = SocketCAN/cannelloni
 	url = https://github.com/mguentner/cannelloni.git
 [submodule "Protocols/freemodbus"]
 	path = Protocols/freemodbus
 	url = https://github.com/webconn/freemodbus.git
 [submodule "Protocols/socketcand"]
-	path = Protocols/socketcand
+	path = SocketCAN/socketcand
 	url = https://github.com/dschanoeh/socketcand.git
 [submodule "Protocols/freemodbus-v1.5.0"]
 	path = Protocols/freemodbus-v1.5.0

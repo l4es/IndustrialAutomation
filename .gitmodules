@@ -109,3 +109,12 @@
 [submodule "SocketCAN/cangaroo"]
 	path = SocketCAN/cangaroo
 	url = https://github.com/HubertD/cangaroo.git
+[submodule "SocketCAN/icsscand"]
+	path = SocketCAN/icsscand
+	url = https://github.com/intrepidcs/icsscand.git
+[submodule "Protocols/CANOpen/CANFestivino"]
+	path = Protocols/CANOpen/CANFestivino
+	url = https://github.com/jgeisler0303/CANFestivino.git
+[submodule "Protocols/FlexCAN/FlexCAN_Library"]
+	path = Protocols/FlexCAN/FlexCAN_Library
+	url = https://github.com/pawelsky/FlexCAN_Library.git

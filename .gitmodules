@@ -1,39 +1,39 @@
 [submodule "linuxcnc"]
 	path = linuxCNC
-	url = git@github.com:LinuxCNC/linuxcnc.git
+	url = https://github.com/LinuxCNC/linuxcnc.git
 [submodule "openSAFETY_DEMO"]
 	path = openSAFETY_DEMO
-	url = git@github.com:OpenAutomationTechnologies/openSAFETY_DEMO.git
+	url = https://github.com/OpenAutomationTechnologies/openSAFETY_DEMO.git
 [submodule "Protocols/openPOWERLINK_V2"]
 	path = Protocols/openPOWERLINK_V2
-	url = git@github.com:OpenAutomationTechnologies/openPOWERLINK_V2.git
+	url = https://github.com/OpenAutomationTechnologies/openPOWERLINK_V2.git
 [submodule "Protocols/UAVCAN/libuavcan"]
 	path = Protocols/UAVCAN/libuavcan
-	url = git@github.com:UAVCAN/libuavcan.git
+	url = https://github.com/UAVCAN/libuavcan.git
 [submodule "Protocols/UAVCAN/libcanard"]
 	path = Protocols/UAVCAN/libcanard
-	url = git@github.com:UAVCAN/libcanard.git
+	url = https://github.com/UAVCAN/libcanard.git
 [submodule "Protocols/UAVCAN/pyuavcan"]
 	path = Protocols/UAVCAN/pyuavcan
-	url = git@github.com:UAVCAN/pyuavcan.git
+	url = https://github.com/UAVCAN/pyuavcan.git
 [submodule "openPLC"]
 	path = linuxPLC
-	url = git@github.com:thiagoralves/OpenPLC.git
+	url = https://github.com/thiagoralves/OpenPLC.git
 [submodule "openPLCv2"]
 	path = linuxPLCv2
-	url = git@github.com:thiagoralves/OpenPLC_v2.git
+	url = https://github.com/thiagoralves/OpenPLC_v2.git
 [submodule "open-plc"]
 	path = open-plc
-	url = git@github.com:leocat3/open-plc.git
+	url = https://github.com/leocat3/open-plc.git
 [submodule "stellarisMODBUS"]
 	path = stellarisMODBUS
-	url = git@github.com:mota37/Modbus.git
+	url = https://github.com/mota37/Modbus.git
 [submodule "GE-PLC"]
 	path = GE-PLC
-	url = git@github.com:mota37/GE-PLC.git
+	url = https://github.com/mota37/GE-PLC.git
 [submodule "openXHC"]
 	path = openXHC
-	url = git@github.com:mrgsts/openxhc.git
+	url = https://github.com/mrgsts/openxhc.git
 [submodule "Protocols/bacnet-stack"]
 	path = Protocols/bacnet-stack
 	url = https://github.com/stargieg/bacnet-stack.git
@@ -78,19 +78,19 @@
 	url = https://github.com/rscada/libcanopen.git
 [submodule "CAN-Ethernet-Gateway/can_eth_gw"]
 	path = CAN-Ethernet-Gateway/can_eth_gw
-	url = git@github.com:can-eth-gw/can_eth_gw.git
+	url = https://github.com/can-eth-gw/can_eth_gw.git
 [submodule "CAN-Ethernet-Gateway/cegwsend"]
 	path = CAN-Ethernet-Gateway/cegwsend
-	url = git@github.com:can-eth-gw/cegwsend.git
+	url = https://github.com/can-eth-gw/cegwsend.git
 [submodule "CAN-Ethernet-Gateway/cegwctl"]
 	path = CAN-Ethernet-Gateway/cegwctl
-	url = git@github.com:can-eth-gw/cegwctl.git
+	url = https://github.com/can-eth-gw/cegwctl.git
 [submodule "Protocols/OpENer"]
 	path = Protocols/OpENer
-	url = git@github.com:EIPStackGroup/OpENer.git
+	url = https://github.com/EIPStackGroup/OpENer.git
 [submodule "Protocols/CIPster"]
 	path = Protocols/CIPster
-	url = git@github.com:liftoff-sr/CIPster.git
+	url = https://github.com/liftoff-sr/CIPster.git
 [submodule "SocketCAN/test-can-j1939"]
 	path = SocketCAN/test-can-j1939
 	url = https://github.com/kurt-vd/test-can-j1939.git

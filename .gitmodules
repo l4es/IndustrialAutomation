@@ -118,3 +118,12 @@
 [submodule "Protocols/FlexCAN/FlexCAN_Library"]
 	path = Protocols/FlexCAN/FlexCAN_Library
 	url = https://github.com/pawelsky/FlexCAN_Library.git
+[submodule "SocketCAN/intrepid-socketcan-kernel-module"]
+	path = SocketCAN/intrepid-socketcan-kernel-module
+	url = https://github.com/intrepidcs/intrepid-socketcan-kernel-module.git
+[submodule "SocketCAN/icsneo_sample_linux"]
+	path = SocketCAN/icsneo_sample_linux
+	url = https://github.com/intrepidcs/icsneo_sample_linux.git
+[submodule "SocketCAN/icsneoapi"]
+	path = SocketCAN/icsneoapi
+	url = https://github.com/intrepidcs/icsneoapi.git

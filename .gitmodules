@@ -127,3 +127,6 @@
 [submodule "SocketCAN/icsneoapi"]
 	path = SocketCAN/icsneoapi
 	url = https://github.com/intrepidcs/icsneoapi.git
+[submodule "Protocols/bacnet-demo"]
+	path = Protocols/bacnet-demo
+	url = https://github.com/embeddedarm/bacnet-demo.git

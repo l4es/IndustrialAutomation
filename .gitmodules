@@ -130,3 +130,15 @@
 [submodule "Protocols/bacnet-demo"]
 	path = Protocols/bacnet-demo
 	url = https://github.com/embeddedarm/bacnet-demo.git
+[submodule "DieBie/DieBieMS"]
+	path = DieBie/DieBieMS
+	url = https://github.com/DieBieEngineering/DieBieMS.git
+[submodule "DieBie/DieBieMS-Firmware"]
+	path = DieBie/DieBieMS-Firmware
+	url = https://github.com/DieBieEngineering/DieBieMS-Firmware.git
+[submodule "DieBie/DieBieSlave-Firmware"]
+	path = DieBie/DieBieSlave-Firmware
+	url = https://github.com/DieBieEngineering/DieBieSlave-Firmware.git
+[submodule "DieBie/DieBieMS-Bootloader"]
+	path = DieBie/DieBieMS-Bootloader
+	url = https://github.com/DieBieEngineering/DieBieMS-Bootloader.git

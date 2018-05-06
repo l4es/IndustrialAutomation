@@ -1,0 +1,965 @@
+Archive member included because of file (symbol)
+
+d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_udivsi3.o)
+                              default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o (__aeabi_uidiv)
+d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_dvmd_tls.o)
+                              d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_udivsi3.o) (__aeabi_idiv0)
+d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv6-m\libc.a(lib_a-memcpy.o)
+                              default\SOES_ARM\esc.o (memcpy)
+
+Allocating common symbols
+Common symbol       size              file
+
+ESCvar              0x4c              default\SOES_ARM\soes.o
+TXPDOsize           0x1               default\SOES_ARM\soes.o
+MBX                 0x180             default\SOES_ARM\soes.o
+SM3_sml             0x2               default\SOES_ARM\soes.o
+RXPDOsize           0x1               default\SOES_ARM\soes.o
+diginput            0x1               default\SOES_ARM\soes.o
+Wb                  0x6               default\SOES_ARM\soes.o
+digoutput           0x1               default\SOES_ARM\soes.o
+MBXcontrol          0x3               default\SOES_ARM\soes.o
+Rb                  0x18              default\SOES_ARM\soes.o
+SM2_sml             0x2               default\SOES_ARM\soes.o
+Eb                  0x4               default\SOES_ARM\soes.o
+APPstate            0x1               default\SOES_ARM\soes.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x08000000         0x00010000         xr
+RAM              0x20000000         0x00002000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+LOAD default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+LOAD default\STM32F0\startup\startup_stm32f0xx.o
+LOAD default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+LOAD default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+LOAD default\SOES_ARM\cpuinit.o
+LOAD default\SOES_ARM\esc.o
+LOAD default\SOES_ARM\esc_hw.o
+LOAD default\SOES_ARM\stm32f0xx_it.o
+LOAD default\SOES_ARM\system_stm32f0xx.o
+LOAD default\SOES_ARM\soes.o
+START GROUP
+LOAD d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a
+LOAD d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv6-m\libc.a
+END GROUP
+                0x00000400                stack_size = 0x400
+                0x00000100                heap_size = 0x100
+                0x20002000                _stack_start = (ORIGIN (RAM) + 0x2000)
+                0x20001c00                _stack_end = (_stack_start - stack_size)
+
+.isr_vector     0x08000000       0xc4
+                0x08000000                . = ALIGN (0x4)
+ *(.isr_vector)
+ .isr_vector    0x08000000       0xc4 default\STM32F0\startup\startup_stm32f0xx.o
+                0x08000000                g_pfnVectors
+                0x080000c4                . = ALIGN (0x4)
+
+.text           0x080000c4     0x3614
+                0x080000c4                . = ALIGN (0x4)
+ *(.text)
+ .text          0x080000c4      0x5a8 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+                0x080000c4                RCC_DeInit
+                0x08000124                RCC_HSEConfig
+                0x08000134                RCC_AdjustHSICalibrationValue
+                0x08000148                RCC_HSICmd
+                0x0800016c                RCC_AdjustHSI14CalibrationValue
+                0x08000180                RCC_HSI14Cmd
+                0x080001a4                RCC_HSI14ADCRequestCmd
+                0x080001c8                RCC_LSEConfig
+                0x080001e8                RCC_LSEDriveConfig
+                0x08000200                RCC_LSICmd
+                0x08000224                RCC_PLLConfig
+                0x08000244                RCC_PLLCmd
+                0x0800026c                RCC_PREDIV1Config
+                0x08000280                RCC_ClockSecuritySystemCmd
+                0x080002a8                RCC_MCOConfig
+                0x080002b4                RCC_SYSCLKConfig
+                0x080002c8                RCC_GetSYSCLKSource
+                0x080002d8                RCC_HCLKConfig
+                0x080002ec                RCC_PCLKConfig
+                0x08000304                RCC_ADCCLKConfig
+                0x08000338                RCC_CECCLKConfig
+                0x08000350                RCC_I2CCLKConfig
+                0x08000368                RCC_USARTCLKConfig
+                0x08000380                RCC_GetClocksFreq
+                0x08000494                RCC_RTCCLKConfig
+                0x080004a4                RCC_RTCCLKCmd
+                0x080004cc                RCC_BackupResetCmd
+                0x080004f4                RCC_AHBPeriphClockCmd
+                0x08000514                RCC_APB2PeriphClockCmd
+                0x08000534                RCC_APB1PeriphClockCmd
+                0x08000554                RCC_AHBPeriphResetCmd
+                0x08000574                RCC_APB2PeriphResetCmd
+                0x08000594                RCC_APB1PeriphResetCmd
+                0x080005b4                RCC_ITConfig
+                0x080005d4                RCC_GetFlagStatus
+                0x0800060c                RCC_WaitForHSEStartUp
+                0x0800063c                RCC_ClearFlag
+                0x08000650                RCC_GetITStatus
+                0x08000660                RCC_ClearITPendingBit
+ .text          0x0800066c      0x37c default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+                0x0800066c                SPI_I2S_DeInit
+                0x080006b0                SPI_StructInit
+                0x080006cc                SPI_Init
+                0x08000720                I2S_StructInit
+                0x08000734                I2S_Init
+                0x080007e8                SPI_Cmd
+                0x08000804                SPI_TIModeCmd
+                0x08000820                I2S_Cmd
+                0x08000840                SPI_DataSizeConfig
+                0x08000850                SPI_RxFIFOThresholdConfig
+                0x08000864                SPI_BiDirectionalLineConfig
+                0x08000888                SPI_NSSInternalSoftwareConfig
+                0x080008b0                SPI_SSOutputCmd
+                0x080008cc                SPI_NSSPulseModeCmd
+                0x080008e8                SPI_SendData8
+                0x080008ec                SPI_I2S_SendData16
+                0x080008f0                SPI_ReceiveData8
+                0x080008f4                SPI_I2S_ReceiveData16
+                0x080008f8                SPI_CRCLengthConfig
+                0x0800090c                SPI_CalculateCRC
+                0x0800092c                SPI_TransmitCRC
+                0x08000938                SPI_GetCRC
+                0x08000948                SPI_GetCRCPolynomial
+                0x0800094c                SPI_I2S_DMACmd
+                0x08000964                SPI_LastDMATransferCmd
+                0x08000978                SPI_I2S_ITConfig
+                0x08000998                SPI_GetTransmissionFIFOStatus
+                0x080009a4                SPI_GetReceptionFIFOStatus
+                0x080009b0                SPI_I2S_GetFlagStatus
+                0x080009bc                SPI_I2S_ClearFlag
+                0x080009c4                SPI_I2S_GetITStatus
+ .text          0x080009e8       0x14 default\STM32F0\startup\startup_stm32f0xx.o
+ .text          0x080009fc      0x164 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+                0x080009fc                DMA_DeInit
+                0x08000a8c                DMA_Init
+                0x08000ac8                DMA_StructInit
+                0x08000ae4                DMA_Cmd
+                0x08000b04                DMA_SetCurrDataCounter
+                0x08000b08                DMA_GetCurrDataCounter
+                0x08000b10                DMA_ITConfig
+                0x08000b28                DMA_GetFlagStatus
+                0x08000b38                DMA_ClearFlag
+                0x08000b44                DMA_GetITStatus
+                0x08000b54                DMA_ClearITPendingBit
+ .text          0x08000b60      0x27c default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+                0x08000b60                GPIO_DeInit
+                0x08000c00                GPIO_Init
+                0x08000d40                GPIO_StructInit
+                0x08000d58                GPIO_PinLockConfig
+                0x08000d7c                GPIO_ReadInputDataBit
+                0x08000d88                GPIO_ReadInputData
+                0x08000d8c                GPIO_ReadOutputDataBit
+                0x08000d98                GPIO_ReadOutputData
+                0x08000d9c                GPIO_SetBits
+                0x08000da0                GPIO_ResetBits
+                0x08000da4                GPIO_WriteBit
+                0x08000db4                GPIO_Write
+                0x08000db8                GPIO_PinAFConfig
+ .text          0x08000ddc      0x114 default\SOES_ARM\cpuinit.o
+                0x08000ddc                cpuinit
+ .text          0x08000ef0     0x15e4 default\SOES_ARM\esc.o
+                0x08000ef0                SDO_findobject
+                0x08000f28                sizeTXPDO
+                0x08000ff8                sizeRXPDO
+                0x08001094                ESC_ALerror
+                0x080010b4                ESC_ALstatus
+                0x080010d4                ESC_SMack
+                0x080010f8                ESC_SMstatus
+                0x0800112c                ESC_SMwritepdi
+                0x08001150                ESC_SMenable
+                0x0800116c                ESC_SMdisable
+                0x08001188                ESC_address
+                0x080011a0                ESC_WDstatus
+                0x080011c0                ESC_checkmbx
+                0x08001268                ESC_startmbx
+                0x080012c8                ESC_stopmbx
+                0x08001314                ESC_readmbx
+                0x08001388                ESC_writembx
+                0x080013e4                ESC_ackmbxread
+                0x0800140c                ESC_claimbuffer
+                0x08001478                ESC_outreqbuffer
+                0x08001498                MBX_error
+                0x080014d8                ESC_mbxprocess
+                0x080016a8                SDO_findsubindex
+                0x08001748                copy2mbx
+                0x08001758                SDO_abort
+                0x080017b4                SDO_upload
+                0x0800190c                SDO_uploadsegment
+                0x080019b8                SDO_download
+                0x08001af4                SDO_infoerror
+                0x08001b50                SDO_getodlist
+                0x08001ce0                SDO_getodlistcont
+                0x08001df4                SDO_getod
+                0x08001ed8                SDO_geted
+                0x08002000                ESC_coeprocess
+                0x08002128                ESC_xoeprocess
+                0x0800217c                ESC_checkSM23
+                0x08002220                ESC_startinput
+                0x08002268                ESC_stopinput
+                0x08002284                ESC_startoutput
+                0x080022a0                ESC_stopoutput
+                0x080022bc                ESC_ALevent
+                0x080022fc                ESC_state
+ .text          0x080024d4      0x1d4 default\SOES_ARM\esc_hw.o
+                0x080024d4                ESC_read
+                0x080025dc                ESC_write
+ .text          0x080026a8       0x14 default\SOES_ARM\stm32f0xx_it.o
+                0x080026a8                NMI_Handler
+                0x080026ac                HardFault_Handler
+                0x080026b0                SVC_Handler
+                0x080026b4                PendSV_Handler
+                0x080026b8                SysTick_Handler
+ .text          0x080026bc      0x140 default\SOES_ARM\system_stm32f0xx.o
+                0x080026bc                SystemInit
+                0x08002778                SystemCoreClockUpdate
+ .text          0x080027fc      0x20c default\SOES_ARM\soes.o
+                0x080027fc                _delay_ms
+                0x08002838                ESC_objecthandler
+                0x0800283c                TXPDO_update
+                0x0800285c                RXPDO_update
+                0x0800287c                APP_safeoutput
+                0x08002880                DIG_process
+                0x08002954                main
+ .text          0x08002a08       0x9c d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_udivsi3.o)
+                0x08002a08                __aeabi_uidiv
+                0x08002a08                __udivsi3
+                0x08002a90                __aeabi_uidivmod
+ .text          0x08002aa4        0x4 d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_dvmd_tls.o)
+                0x08002aa4                __aeabi_idiv0
+                0x08002aa4                __aeabi_ldiv0
+ .text          0x08002aa8        0x0 d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv6-m\libc.a(lib_a-memcpy.o)
+ *(.text*)
+ .text.Reset_Handler
+                0x08002aa8       0x44 default\STM32F0\startup\startup_stm32f0xx.o
+                0x08002aa8                Reset_Handler
+ .text.Default_Handler
+                0x08002aec        0x2 default\STM32F0\startup\startup_stm32f0xx.o
+                0x08002aec                TIM1_CC_IRQHandler
+                0x08002aec                ADC1_COMP_IRQHandler
+                0x08002aec                PVD_IRQHandler
+                0x08002aec                I2C1_IRQHandler
+                0x08002aec                SPI1_IRQHandler
+                0x08002aec                TIM6_DAC_IRQHandler
+                0x08002aec                EXTI2_3_IRQHandler
+                0x08002aec                I2C2_IRQHandler
+                0x08002aec                TIM17_IRQHandler
+                0x08002aec                RTC_IRQHandler
+                0x08002aec                TIM16_IRQHandler
+                0x08002aec                TIM3_IRQHandler
+                0x08002aec                EXTI4_15_IRQHandler
+                0x08002aec                RCC_IRQHandler
+                0x08002aec                DMA1_Channel1_IRQHandler
+                0x08002aec                Default_Handler
+                0x08002aec                CEC_IRQHandler
+                0x08002aec                TIM14_IRQHandler
+                0x08002aec                DMA1_Channel4_5_IRQHandler
+                0x08002aec                TIM15_IRQHandler
+                0x08002aec                EXTI0_1_IRQHandler
+                0x08002aec                SPI2_IRQHandler
+                0x08002aec                TS_IRQHandler
+                0x08002aec                WWDG_IRQHandler
+                0x08002aec                TIM2_IRQHandler
+                0x08002aec                DMA1_Channel2_3_IRQHandler
+                0x08002aec                USART2_IRQHandler
+                0x08002aec                FLASH_IRQHandler
+                0x08002aec                USART1_IRQHandler
+                0x08002aec                TIM1_BRK_UP_TRG_COM_IRQHandler
+ *fill*         0x08002aee        0x2 00
+ .text.memcpy   0x08002af0      0x144 d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv6-m\libc.a(lib_a-memcpy.o)
+                0x08002af0                memcpy
+ *(.rodata)
+ .rodata        0x08002c34      0xaa4 default\SOES_ARM\esc.o
+                0x08002e14                SDOobjects
+                0x08002f34                SDO1C13
+                0x08002f70                acName1000
+                0x08002f7c                SDO8000
+                0x08002fb8                SDO7000
+                0x08002ff4                SDO6001
+                0x080030bc                SDO6000
+                0x0800310c                SDO1C12
+                0x08003134                SDO1C11
+                0x08003148                SDO1C10
+                0x0800315c                SDO1C00
+                0x080031c0                SDO1A10
+                0x08003288                SDO1A00
+                0x080032d8                SDO1600
+                0x08003314                SDO1018
+                0x08003378                SDO100A
+                0x0800338c                SDO1009
+                0x080033a0                SDO1008
+                0x080033b4                SDO1000
+                0x080033c8                acName8000_02
+                0x080033d4                acName8000_01
+                0x080033e0                acName8000
+                0x080033f0                acName7000_02
+                0x080033fc                acName7000_01
+                0x08003404                acName7000
+                0x0800340c                acName6001_09
+                0x08003418                acName6001_08
+                0x08003424                acName6001_07
+                0x08003430                acName6001_06
+                0x0800343c                acName6001_05
+                0x08003448                acName6001_04
+                0x08003454                acName6001_03
+                0x08003460                acName6001_02
+                0x0800346c                acName6001_01
+                0x08003478                acName6001
+                0x08003488                acName6000_03
+                0x08003498                acName6000_02
+                0x080034a0                acName6000_01
+                0x080034a8                acName6000
+                0x080034b8                acNameNOE
+                0x080034cc                acName1C13
+                0x080034ec                acName1C12
+                0x0800350c                acName1C11
+                0x0800352c                acName1C10
+                0x0800354c                acName1C00_04
+                0x08003564                acName1C00_03
+                0x0800357c                acName1C00_02
+                0x08003594                acName1C00_01
+                0x080035ac                acName1C00
+                0x080035cc                acName1A10
+                0x080035ec                acName1A00
+                0x0800360c                acName1600
+                0x08003620                acNameMO
+                0x08003630                acName1018_04
+                0x08003640                acName1018_03
+                0x08003650                acName1018_02
+                0x08003660                acName1018_01
+                0x0800366c                acName1018
+                0x0800367c                acName100A
+                0x0800369c                acName1009
+                0x080036bc                acName1008
+ *(.rodata*)
+ *(.glue_7)
+ .glue_7        0x00000000        0x0 linker stubs
+ *(.glue_7t)
+ .glue_7t       0x00000000        0x0 linker stubs
+                0x080036d8                . = ALIGN (0x4)
+                0x080036d8                _etext = .
+
+.vfp11_veneer   0x080036d8        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x080036d8        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x080036d8        0x0
+ .iplt          0x00000000        0x0 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+
+.rel.dyn        0x080036d8        0x0
+ .rel.iplt      0x00000000        0x0 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+
+.ARM            0x080036d8        0x0
+                0x080036d8                __exidx_start = .
+ *(.ARM.exidx*)
+                0x080036d8                __exidx_end = .
+                0x080036d8                _sidata = .
+
+.data           0x20000000       0x58 load address 0x080036d8
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                _sdata = .
+ *(.data)
+ .data          0x20000000       0x10 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+ .data          0x20000010        0x0 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+ .data          0x20000010        0x0 default\STM32F0\startup\startup_stm32f0xx.o
+ .data          0x20000010        0x0 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+ .data          0x20000010        0x0 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+ .data          0x20000010        0x0 default\SOES_ARM\cpuinit.o
+ .data          0x20000010       0x30 default\SOES_ARM\esc.o
+                0x20000010                ac100A_00
+                0x20000018                ac1009_00
+                0x20000020                ac1008_00
+ .data          0x20000040        0x0 default\SOES_ARM\esc_hw.o
+ .data          0x20000040        0x0 default\SOES_ARM\stm32f0xx_it.o
+ .data          0x20000040       0x14 default\SOES_ARM\system_stm32f0xx.o
+                0x20000040                SystemCoreClock
+                0x20000044                AHBPrescTable
+ .data          0x20000054        0x4 default\SOES_ARM\soes.o
+                0x20000054                wd_cnt
+                0x20000056                wd_ok
+ .data          0x20000058        0x0 d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_udivsi3.o)
+ .data          0x20000058        0x0 d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_dvmd_tls.o)
+ .data          0x20000058        0x0 d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv6-m\libc.a(lib_a-memcpy.o)
+ *(.data*)
+                0x20000058                . = ALIGN (0x4)
+                0x20000058                _edata = .
+
+.igot.plt       0x20000058        0x0 load address 0x08003730
+ .igot.plt      0x00000000        0x0 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+                0x20000058                . = ALIGN (0x4)
+
+.bss            0x20000058      0x208 load address 0x08003730
+                0x20000058                _sbss = .
+                0x20000058                __bss_start__ = _sbss
+ *(.bss)
+ .bss           0x20000058        0x0 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+ .bss           0x20000058        0x0 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+ .bss           0x20000058        0x0 default\STM32F0\startup\startup_stm32f0xx.o
+ .bss           0x20000058        0x0 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+ .bss           0x20000058        0x0 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+ .bss           0x20000058        0x0 default\SOES_ARM\cpuinit.o
+ .bss           0x20000058        0x0 default\SOES_ARM\esc.o
+ .bss           0x20000058        0x0 default\SOES_ARM\esc_hw.o
+ .bss           0x20000058        0x0 default\SOES_ARM\stm32f0xx_it.o
+ .bss           0x20000058        0x0 default\SOES_ARM\system_stm32f0xx.o
+ .bss           0x20000058        0x1 default\SOES_ARM\soes.o
+                0x20000058                MBXrun
+ .bss           0x20000059        0x0 d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_udivsi3.o)
+ .bss           0x20000059        0x0 d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_dvmd_tls.o)
+ .bss           0x20000059        0x0 d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv6-m\libc.a(lib_a-memcpy.o)
+ *(.bss*)
+ *(COMMON)
+ *fill*         0x20000059        0x3 00
+ COMMON         0x2000005c      0x201 default\SOES_ARM\soes.o
+                0x2000005c                ESCvar
+                0x200000a8                TXPDOsize
+                0x200000ac                MBX
+                0x2000022c                SM3_sml
+                0x2000022e                RXPDOsize
+                0x2000022f                diginput
+                0x20000230                Wb
+                0x20000236                digoutput
+                0x20000238                MBXcontrol
+                0x2000023c                Rb
+                0x20000254                SM2_sml
+                0x20000258                Eb
+                0x2000025c                APPstate
+                0x20000260                . = ALIGN (0x4)
+ *fill*         0x2000025d        0x3 00
+                0x20000260                _ebss = .
+                0x20000260                __bss_end__ = _ebss
+                0x20000260                . = ALIGN (0x4)
+
+.heap           0x20000260      0x100 load address 0x08003938
+                0x20000260                _heap_start = .
+                0x20000360                . = (. + heap_size)
+ *fill*         0x20000260      0x100 00
+                0x20000360                . = ALIGN (0x4)
+                0x20001c00                . = _stack_end
+
+.stack          0x20000360      0x400 load address 0x08003a38
+                0x20000760                . = (. + stack_size)
+ *fill*         0x20000360      0x400 00
+
+/DISCARD/
+ libc.a(*)
+ libm.a(*)
+ libgcc.a(*)
+
+.ARM.attributes
+                0x00000000       0x2f
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x31 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+ .ARM.attributes
+                0x00000031       0x31 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+ .ARM.attributes
+                0x00000062       0x21 default\STM32F0\startup\startup_stm32f0xx.o
+ .ARM.attributes
+                0x00000083       0x31 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+ .ARM.attributes
+                0x000000b4       0x31 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+ .ARM.attributes
+                0x000000e5       0x31 default\SOES_ARM\cpuinit.o
+ .ARM.attributes
+                0x00000116       0x31 default\SOES_ARM\esc.o
+ .ARM.attributes
+                0x00000147       0x31 default\SOES_ARM\esc_hw.o
+ .ARM.attributes
+                0x00000178       0x31 default\SOES_ARM\stm32f0xx_it.o
+ .ARM.attributes
+                0x000001a9       0x31 default\SOES_ARM\system_stm32f0xx.o
+ .ARM.attributes
+                0x000001da       0x31 default\SOES_ARM\soes.o
+ .ARM.attributes
+                0x0000020b       0x1e d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_udivsi3.o)
+ .ARM.attributes
+                0x00000229       0x1e d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x00000247       0x2c d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv6-m\libc.a(lib_a-memcpy.o)
+OUTPUT(default\soes_arm.elf elf32-littlearm)
+
+.debug_info     0x00000000     0x6ac4
+ .debug_info    0x00000000      0xaa6 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+ .debug_info    0x00000aa6      0xc1c default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+ .debug_info    0x000016c2       0x63 default\STM32F0\startup\startup_stm32f0xx.o
+ .debug_info    0x00001725      0x466 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+ .debug_info    0x00001b8b      0x72d default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+ .debug_info    0x000022b8      0x710 default\SOES_ARM\cpuinit.o
+ .debug_info    0x000029c8     0x28f3 default\SOES_ARM\esc.o
+ .debug_info    0x000052bb      0x820 default\SOES_ARM\esc_hw.o
+ .debug_info    0x00005adb       0xdd default\SOES_ARM\stm32f0xx_it.o
+ .debug_info    0x00005bb8      0x310 default\SOES_ARM\system_stm32f0xx.o
+ .debug_info    0x00005ec8      0xbfc default\SOES_ARM\soes.o
+
+.debug_abbrev   0x00000000     0x12a7
+ .debug_abbrev  0x00000000      0x266 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+ .debug_abbrev  0x00000266      0x237 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+ .debug_abbrev  0x0000049d       0x12 default\STM32F0\startup\startup_stm32f0xx.o
+ .debug_abbrev  0x000004af      0x1b0 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+ .debug_abbrev  0x0000065f      0x1ec default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+ .debug_abbrev  0x0000084b      0x13b default\SOES_ARM\cpuinit.o
+ .debug_abbrev  0x00000986      0x381 default\SOES_ARM\esc.o
+ .debug_abbrev  0x00000d07      0x1b6 default\SOES_ARM\esc_hw.o
+ .debug_abbrev  0x00000ebd       0x5a default\SOES_ARM\stm32f0xx_it.o
+ .debug_abbrev  0x00000f17      0x131 default\SOES_ARM\system_stm32f0xx.o
+ .debug_abbrev  0x00001048      0x25f default\SOES_ARM\soes.o
+
+.debug_loc      0x00000000     0x3db5
+ .debug_loc     0x00000000      0xd9c default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+ .debug_loc     0x00000d9c      0xa5f default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+ .debug_loc     0x000017fb      0x2df default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+ .debug_loc     0x00001ada      0x3d4 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+ .debug_loc     0x00001eae       0x39 default\SOES_ARM\cpuinit.o
+ .debug_loc     0x00001ee7     0x1a28 default\SOES_ARM\esc.o
+ .debug_loc     0x0000390f      0x220 default\SOES_ARM\esc_hw.o
+ .debug_loc     0x00003b2f       0x20 default\SOES_ARM\stm32f0xx_it.o
+ .debug_loc     0x00003b4f      0x165 default\SOES_ARM\system_stm32f0xx.o
+ .debug_loc     0x00003cb4      0x101 default\SOES_ARM\soes.o
+
+.debug_aranges  0x00000000      0x168
+ .debug_aranges
+                0x00000000       0x20 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+ .debug_aranges
+                0x00000020       0x20 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+ .debug_aranges
+                0x00000040       0x28 default\STM32F0\startup\startup_stm32f0xx.o
+ .debug_aranges
+                0x00000068       0x20 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+ .debug_aranges
+                0x00000088       0x20 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+ .debug_aranges
+                0x000000a8       0x20 default\SOES_ARM\cpuinit.o
+ .debug_aranges
+                0x000000c8       0x20 default\SOES_ARM\esc.o
+ .debug_aranges
+                0x000000e8       0x20 default\SOES_ARM\esc_hw.o
+ .debug_aranges
+                0x00000108       0x20 default\SOES_ARM\stm32f0xx_it.o
+ .debug_aranges
+                0x00000128       0x20 default\SOES_ARM\system_stm32f0xx.o
+ .debug_aranges
+                0x00000148       0x20 default\SOES_ARM\soes.o
+
+.debug_line     0x00000000     0x1880
+ .debug_line    0x00000000      0x32b default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+ .debug_line    0x0000032b      0x305 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+ .debug_line    0x00000630       0x85 default\STM32F0\startup\startup_stm32f0xx.o
+ .debug_line    0x000006b5      0x23d default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+ .debug_line    0x000008f2      0x299 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+ .debug_line    0x00000b8b      0x1d6 default\SOES_ARM\cpuinit.o
+ .debug_line    0x00000d61      0x575 default\SOES_ARM\esc.o
+ .debug_line    0x000012d6      0x21e default\SOES_ARM\esc_hw.o
+ .debug_line    0x000014f4       0x48 default\SOES_ARM\stm32f0xx_it.o
+ .debug_line    0x0000153c      0x158 default\SOES_ARM\system_stm32f0xx.o
+ .debug_line    0x00001694      0x1ec default\SOES_ARM\soes.o
+
+.debug_str      0x00000000     0x1ad6
+ .debug_str     0x00000000      0x67b default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+                                0x6ff (size before relaxing)
+ .debug_str     0x0000067b      0x4e4 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+                                0x718 (size before relaxing)
+ .debug_str     0x00000b5f      0x232 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+                                0x385 (size before relaxing)
+ .debug_str     0x00000d91      0x31d default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+                                0x48c (size before relaxing)
+ .debug_str     0x000010ae       0x37 default\SOES_ARM\cpuinit.o
+                                0x45c (size before relaxing)
+ .debug_str     0x000010e5      0x86b default\SOES_ARM\esc.o
+                                0xa45 (size before relaxing)
+ .debug_str     0x00001950       0x2a default\SOES_ARM\esc_hw.o
+                                0x2b8 (size before relaxing)
+ .debug_str     0x0000197a       0x58 default\SOES_ARM\stm32f0xx_it.o
+                                0x146 (size before relaxing)
+ .debug_str     0x000019d2       0x74 default\SOES_ARM\system_stm32f0xx.o
+                                0x212 (size before relaxing)
+ .debug_str     0x00001a46       0x90 default\SOES_ARM\soes.o
+                                0x51f (size before relaxing)
+
+.comment        0x00000000       0x70
+ .comment       0x00000000       0x70 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+                                 0x71 (size before relaxing)
+ .comment       0x00000000       0x71 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+ .comment       0x00000000       0x71 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+ .comment       0x00000000       0x71 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+ .comment       0x00000000       0x71 default\SOES_ARM\cpuinit.o
+ .comment       0x00000000       0x71 default\SOES_ARM\esc.o
+ .comment       0x00000000       0x71 default\SOES_ARM\esc_hw.o
+ .comment       0x00000000       0x71 default\SOES_ARM\stm32f0xx_it.o
+ .comment       0x00000000       0x71 default\SOES_ARM\system_stm32f0xx.o
+ .comment       0x00000000       0x71 default\SOES_ARM\soes.o
+
+.debug_frame    0x00000000      0xe78
+ .debug_frame   0x00000000      0x320 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+ .debug_frame   0x00000320      0x284 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+ .debug_frame   0x000005a4       0xe0 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+ .debug_frame   0x00000684      0x118 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+ .debug_frame   0x0000079c       0x3c default\SOES_ARM\cpuinit.o
+ .debug_frame   0x000007d8      0x494 default\SOES_ARM\esc.o
+ .debug_frame   0x00000c6c       0x5c default\SOES_ARM\esc_hw.o
+ .debug_frame   0x00000cc8       0x68 default\SOES_ARM\stm32f0xx_it.o
+ .debug_frame   0x00000d30       0x44 default\SOES_ARM\system_stm32f0xx.o
+ .debug_frame   0x00000d74       0xb0 default\SOES_ARM\soes.o
+ .debug_frame   0x00000e24       0x20 d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_udivsi3.o)
+ .debug_frame   0x00000e44       0x34 d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv6-m\libc.a(lib_a-memcpy.o)
+
+.debug_ranges   0x00000000       0x20
+ .debug_ranges  0x00000000       0x20 default\STM32F0\startup\startup_stm32f0xx.o
+
+Cross Reference Table
+
+Symbol                                            File
+ADC1_COMP_IRQHandler                              default\STM32F0\startup\startup_stm32f0xx.o
+AHBPrescTable                                     default\SOES_ARM\system_stm32f0xx.o
+APP_safeoutput                                    default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc.o
+APPstate                                          default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc.o
+CEC_IRQHandler                                    default\STM32F0\startup\startup_stm32f0xx.o
+DIG_process                                       default\SOES_ARM\soes.o
+DMA1_Channel1_IRQHandler                          default\STM32F0\startup\startup_stm32f0xx.o
+DMA1_Channel2_3_IRQHandler                        default\STM32F0\startup\startup_stm32f0xx.o
+DMA1_Channel4_5_IRQHandler                        default\STM32F0\startup\startup_stm32f0xx.o
+DMA_ClearFlag                                     default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+DMA_ClearITPendingBit                             default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+DMA_Cmd                                           default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+DMA_DeInit                                        default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+DMA_GetCurrDataCounter                            default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+DMA_GetFlagStatus                                 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+DMA_GetITStatus                                   default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+DMA_ITConfig                                      default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+DMA_Init                                          default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+DMA_SetCurrDataCounter                            default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+DMA_StructInit                                    default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_dma.o
+Default_Handler                                   default\STM32F0\startup\startup_stm32f0xx.o
+ESC_ALerror                                       default\SOES_ARM\esc.o
+                                                  default\SOES_ARM\soes.o
+ESC_ALevent                                       default\SOES_ARM\esc.o
+                                                  default\SOES_ARM\soes.o
+ESC_ALstatus                                      default\SOES_ARM\esc.o
+                                                  default\SOES_ARM\soes.o
+ESC_SMack                                         default\SOES_ARM\esc.o
+ESC_SMdisable                                     default\SOES_ARM\esc.o
+ESC_SMenable                                      default\SOES_ARM\esc.o
+ESC_SMstatus                                      default\SOES_ARM\esc.o
+ESC_SMwritepdi                                    default\SOES_ARM\esc.o
+ESC_WDstatus                                      default\SOES_ARM\esc.o
+ESC_ackmbxread                                    default\SOES_ARM\esc.o
+ESC_address                                       default\SOES_ARM\esc.o
+ESC_checkSM23                                     default\SOES_ARM\esc.o
+ESC_checkmbx                                      default\SOES_ARM\esc.o
+ESC_claimbuffer                                   default\SOES_ARM\esc.o
+ESC_coeprocess                                    default\SOES_ARM\esc.o
+                                                  default\SOES_ARM\soes.o
+ESC_mbxprocess                                    default\SOES_ARM\esc.o
+                                                  default\SOES_ARM\soes.o
+ESC_objecthandler                                 default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc.o
+ESC_outreqbuffer                                  default\SOES_ARM\esc.o
+ESC_read                                          default\SOES_ARM\esc_hw.o
+                                                  default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc.o
+ESC_readmbx                                       default\SOES_ARM\esc.o
+ESC_startinput                                    default\SOES_ARM\esc.o
+ESC_startmbx                                      default\SOES_ARM\esc.o
+ESC_startoutput                                   default\SOES_ARM\esc.o
+ESC_state                                         default\SOES_ARM\esc.o
+                                                  default\SOES_ARM\soes.o
+ESC_stopinput                                     default\SOES_ARM\esc.o
+                                                  default\SOES_ARM\soes.o
+ESC_stopmbx                                       default\SOES_ARM\esc.o
+                                                  default\SOES_ARM\soes.o
+ESC_stopoutput                                    default\SOES_ARM\esc.o
+                                                  default\SOES_ARM\soes.o
+ESC_write                                         default\SOES_ARM\esc_hw.o
+                                                  default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc.o
+ESC_writembx                                      default\SOES_ARM\esc.o
+ESC_xoeprocess                                    default\SOES_ARM\esc.o
+                                                  default\SOES_ARM\soes.o
+ESCvar                                            default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc.o
+EXTI0_1_IRQHandler                                default\STM32F0\startup\startup_stm32f0xx.o
+EXTI2_3_IRQHandler                                default\STM32F0\startup\startup_stm32f0xx.o
+EXTI4_15_IRQHandler                               default\STM32F0\startup\startup_stm32f0xx.o
+Eb                                                default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc.o
+FLASH_IRQHandler                                  default\STM32F0\startup\startup_stm32f0xx.o
+GPIO_DeInit                                       default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+GPIO_Init                                         default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+                                                  default\SOES_ARM\cpuinit.o
+GPIO_PinAFConfig                                  default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+                                                  default\SOES_ARM\cpuinit.o
+GPIO_PinLockConfig                                default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+GPIO_ReadInputData                                default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+GPIO_ReadInputDataBit                             default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+                                                  default\SOES_ARM\esc_hw.o
+GPIO_ReadOutputData                               default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+GPIO_ReadOutputDataBit                            default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+GPIO_ResetBits                                    default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+                                                  default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc_hw.o
+GPIO_SetBits                                      default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+                                                  default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc_hw.o
+                                                  default\SOES_ARM\cpuinit.o
+GPIO_StructInit                                   default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+GPIO_Write                                        default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+GPIO_WriteBit                                     default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+HardFault_Handler                                 default\SOES_ARM\stm32f0xx_it.o
+                                                  default\STM32F0\startup\startup_stm32f0xx.o
+I2C1_IRQHandler                                   default\STM32F0\startup\startup_stm32f0xx.o
+I2C2_IRQHandler                                   default\STM32F0\startup\startup_stm32f0xx.o
+I2S_Cmd                                           default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+I2S_Init                                          default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+I2S_StructInit                                    default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+MBX                                               default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc.o
+MBX_error                                         default\SOES_ARM\esc.o
+MBXcontrol                                        default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc.o
+MBXrun                                            default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc.o
+NMI_Handler                                       default\SOES_ARM\stm32f0xx_it.o
+                                                  default\STM32F0\startup\startup_stm32f0xx.o
+PVD_IRQHandler                                    default\STM32F0\startup\startup_stm32f0xx.o
+PendSV_Handler                                    default\SOES_ARM\stm32f0xx_it.o
+                                                  default\STM32F0\startup\startup_stm32f0xx.o
+RCC_ADCCLKConfig                                  default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_AHBPeriphClockCmd                             default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+                                                  default\SOES_ARM\cpuinit.o
+RCC_AHBPeriphResetCmd                             default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+                                                  default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_gpio.o
+RCC_APB1PeriphClockCmd                            default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_APB1PeriphResetCmd                            default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+                                                  default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+RCC_APB2PeriphClockCmd                            default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+                                                  default\SOES_ARM\cpuinit.o
+RCC_APB2PeriphResetCmd                            default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+                                                  default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+RCC_AdjustHSI14CalibrationValue                   default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_AdjustHSICalibrationValue                     default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_BackupResetCmd                                default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_CECCLKConfig                                  default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_ClearFlag                                     default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_ClearITPendingBit                             default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_ClockSecuritySystemCmd                        default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_DeInit                                        default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_GetClocksFreq                                 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+                                                  default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+RCC_GetFlagStatus                                 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_GetITStatus                                   default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_GetSYSCLKSource                               default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_HCLKConfig                                    default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_HSEConfig                                     default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_HSI14ADCRequestCmd                            default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_HSI14Cmd                                      default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_HSICmd                                        default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_I2CCLKConfig                                  default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_IRQHandler                                    default\STM32F0\startup\startup_stm32f0xx.o
+RCC_ITConfig                                      default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_LSEConfig                                     default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_LSEDriveConfig                                default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_LSICmd                                        default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_MCOConfig                                     default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_PCLKConfig                                    default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_PLLCmd                                        default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_PLLConfig                                     default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_PREDIV1Config                                 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_RTCCLKCmd                                     default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_RTCCLKConfig                                  default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_SYSCLKConfig                                  default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_USARTCLKConfig                                default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RCC_WaitForHSEStartUp                             default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+RTC_IRQHandler                                    default\STM32F0\startup\startup_stm32f0xx.o
+RXPDO_update                                      default\SOES_ARM\soes.o
+RXPDOsize                                         default\SOES_ARM\soes.o
+Rb                                                default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc.o
+Reset_Handler                                     default\STM32F0\startup\startup_stm32f0xx.o
+SDO1000                                           default\SOES_ARM\esc.o
+SDO1008                                           default\SOES_ARM\esc.o
+SDO1009                                           default\SOES_ARM\esc.o
+SDO100A                                           default\SOES_ARM\esc.o
+SDO1018                                           default\SOES_ARM\esc.o
+SDO1600                                           default\SOES_ARM\esc.o
+SDO1A00                                           default\SOES_ARM\esc.o
+SDO1A10                                           default\SOES_ARM\esc.o
+SDO1C00                                           default\SOES_ARM\esc.o
+SDO1C10                                           default\SOES_ARM\esc.o
+SDO1C11                                           default\SOES_ARM\esc.o
+SDO1C12                                           default\SOES_ARM\esc.o
+SDO1C13                                           default\SOES_ARM\esc.o
+SDO6000                                           default\SOES_ARM\esc.o
+SDO6001                                           default\SOES_ARM\esc.o
+SDO7000                                           default\SOES_ARM\esc.o
+SDO8000                                           default\SOES_ARM\esc.o
+SDO_abort                                         default\SOES_ARM\esc.o
+SDO_download                                      default\SOES_ARM\esc.o
+SDO_findobject                                    default\SOES_ARM\esc.o
+SDO_findsubindex                                  default\SOES_ARM\esc.o
+SDO_geted                                         default\SOES_ARM\esc.o
+SDO_getod                                         default\SOES_ARM\esc.o
+SDO_getodlist                                     default\SOES_ARM\esc.o
+SDO_getodlistcont                                 default\SOES_ARM\esc.o
+SDO_infoerror                                     default\SOES_ARM\esc.o
+SDO_upload                                        default\SOES_ARM\esc.o
+SDO_uploadsegment                                 default\SOES_ARM\esc.o
+SDOobjects                                        default\SOES_ARM\esc.o
+SM2_sml                                           default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc.o
+SM3_sml                                           default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc.o
+SPI1_IRQHandler                                   default\STM32F0\startup\startup_stm32f0xx.o
+SPI2_IRQHandler                                   default\STM32F0\startup\startup_stm32f0xx.o
+SPI_BiDirectionalLineConfig                       default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_CRCLengthConfig                               default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_CalculateCRC                                  default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_Cmd                                           default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+                                                  default\SOES_ARM\cpuinit.o
+SPI_DataSizeConfig                                default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_GetCRC                                        default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_GetCRCPolynomial                              default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_GetReceptionFIFOStatus                        default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+                                                  default\SOES_ARM\esc_hw.o
+SPI_GetTransmissionFIFOStatus                     default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+                                                  default\SOES_ARM\esc_hw.o
+SPI_I2S_ClearFlag                                 default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_I2S_DMACmd                                    default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_I2S_DeInit                                    default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_I2S_GetFlagStatus                             default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+                                                  default\SOES_ARM\esc_hw.o
+SPI_I2S_GetITStatus                               default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_I2S_ITConfig                                  default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_I2S_ReceiveData16                             default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_I2S_SendData16                                default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_Init                                          default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+                                                  default\SOES_ARM\cpuinit.o
+SPI_LastDMATransferCmd                            default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_NSSInternalSoftwareConfig                     default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_NSSPulseModeCmd                               default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_ReceiveData8                                  default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+                                                  default\SOES_ARM\esc_hw.o
+SPI_RxFIFOThresholdConfig                         default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+                                                  default\SOES_ARM\cpuinit.o
+SPI_SSOutputCmd                                   default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_SendData8                                     default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+                                                  default\SOES_ARM\esc_hw.o
+SPI_StructInit                                    default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_TIModeCmd                                     default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SPI_TransmitCRC                                   default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+SVC_Handler                                       default\SOES_ARM\stm32f0xx_it.o
+                                                  default\STM32F0\startup\startup_stm32f0xx.o
+SysTick_Handler                                   default\SOES_ARM\stm32f0xx_it.o
+                                                  default\STM32F0\startup\startup_stm32f0xx.o
+SystemCoreClock                                   default\SOES_ARM\system_stm32f0xx.o
+SystemCoreClockUpdate                             default\SOES_ARM\system_stm32f0xx.o
+SystemInit                                        default\SOES_ARM\system_stm32f0xx.o
+                                                  default\STM32F0\startup\startup_stm32f0xx.o
+TIM14_IRQHandler                                  default\STM32F0\startup\startup_stm32f0xx.o
+TIM15_IRQHandler                                  default\STM32F0\startup\startup_stm32f0xx.o
+TIM16_IRQHandler                                  default\STM32F0\startup\startup_stm32f0xx.o
+TIM17_IRQHandler                                  default\STM32F0\startup\startup_stm32f0xx.o
+TIM1_BRK_UP_TRG_COM_IRQHandler                    default\STM32F0\startup\startup_stm32f0xx.o
+TIM1_CC_IRQHandler                                default\STM32F0\startup\startup_stm32f0xx.o
+TIM2_IRQHandler                                   default\STM32F0\startup\startup_stm32f0xx.o
+TIM3_IRQHandler                                   default\STM32F0\startup\startup_stm32f0xx.o
+TIM6_DAC_IRQHandler                               default\STM32F0\startup\startup_stm32f0xx.o
+TS_IRQHandler                                     default\STM32F0\startup\startup_stm32f0xx.o
+TXPDO_update                                      default\SOES_ARM\soes.o
+TXPDOsize                                         default\SOES_ARM\soes.o
+USART1_IRQHandler                                 default\STM32F0\startup\startup_stm32f0xx.o
+USART2_IRQHandler                                 default\STM32F0\startup\startup_stm32f0xx.o
+WWDG_IRQHandler                                   default\STM32F0\startup\startup_stm32f0xx.o
+Wb                                                default\SOES_ARM\soes.o
+                                                  default\SOES_ARM\esc.o
+__aeabi_idiv0                                     d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_dvmd_tls.o)
+                                                  d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_udivsi3.o)
+__aeabi_ldiv0                                     d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_dvmd_tls.o)
+__aeabi_uidiv                                     d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_udivsi3.o)
+                                                  default\SOES_ARM\system_stm32f0xx.o
+                                                  default\SOES_ARM\esc.o
+                                                  default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_spi.o
+                                                  default\STM32F0\STM32F0-Discovery_FW_V1.0.0\Libraries\STM32F0xx_StdPeriph_Driver\src\stm32f0xx_rcc.o
+__aeabi_uidivmod                                  d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_udivsi3.o)
+__udivsi3                                         d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/armv6-m\libgcc.a(_udivsi3.o)
+_delay_ms                                         default\SOES_ARM\soes.o
+_ebss                                             default\STM32F0\startup\startup_stm32f0xx.o
+_edata                                            default\STM32F0\startup\startup_stm32f0xx.o
+_sbss                                             default\STM32F0\startup\startup_stm32f0xx.o
+_sdata                                            default\STM32F0\startup\startup_stm32f0xx.o
+_sidata                                           default\STM32F0\startup\startup_stm32f0xx.o
+_stack_start                                      default\STM32F0\startup\startup_stm32f0xx.o
+ac1008_00                                         default\SOES_ARM\esc.o
+ac1009_00                                         default\SOES_ARM\esc.o
+ac100A_00                                         default\SOES_ARM\esc.o
+acName1000                                        default\SOES_ARM\esc.o
+acName1008                                        default\SOES_ARM\esc.o
+acName1009                                        default\SOES_ARM\esc.o
+acName100A                                        default\SOES_ARM\esc.o
+acName1018                                        default\SOES_ARM\esc.o
+acName1018_01                                     default\SOES_ARM\esc.o
+acName1018_02                                     default\SOES_ARM\esc.o
+acName1018_03                                     default\SOES_ARM\esc.o
+acName1018_04                                     default\SOES_ARM\esc.o
+acName1600                                        default\SOES_ARM\esc.o
+acName1A00                                        default\SOES_ARM\esc.o
+acName1A10                                        default\SOES_ARM\esc.o
+acName1C00                                        default\SOES_ARM\esc.o
+acName1C00_01                                     default\SOES_ARM\esc.o
+acName1C00_02                                     default\SOES_ARM\esc.o
+acName1C00_03                                     default\SOES_ARM\esc.o
+acName1C00_04                                     default\SOES_ARM\esc.o
+acName1C10                                        default\SOES_ARM\esc.o
+acName1C11                                        default\SOES_ARM\esc.o
+acName1C12                                        default\SOES_ARM\esc.o
+acName1C13                                        default\SOES_ARM\esc.o
+acName6000                                        default\SOES_ARM\esc.o
+acName6000_01                                     default\SOES_ARM\esc.o
+acName6000_02                                     default\SOES_ARM\esc.o
+acName6000_03                                     default\SOES_ARM\esc.o
+acName6001                                        default\SOES_ARM\esc.o
+acName6001_01                                     default\SOES_ARM\esc.o
+acName6001_02                                     default\SOES_ARM\esc.o
+acName6001_03                                     default\SOES_ARM\esc.o
+acName6001_04                                     default\SOES_ARM\esc.o
+acName6001_05                                     default\SOES_ARM\esc.o
+acName6001_06                                     default\SOES_ARM\esc.o
+acName6001_07                                     default\SOES_ARM\esc.o
+acName6001_08                                     default\SOES_ARM\esc.o
+acName6001_09                                     default\SOES_ARM\esc.o
+acName7000                                        default\SOES_ARM\esc.o
+acName7000_01                                     default\SOES_ARM\esc.o
+acName7000_02                                     default\SOES_ARM\esc.o
+acName8000                                        default\SOES_ARM\esc.o
+acName8000_01                                     default\SOES_ARM\esc.o
+acName8000_02                                     default\SOES_ARM\esc.o
+acNameMO                                          default\SOES_ARM\esc.o
+acNameNOE                                         default\SOES_ARM\esc.o
+copy2mbx                                          default\SOES_ARM\esc.o
+cpuinit                                           default\SOES_ARM\cpuinit.o
+                                                  default\SOES_ARM\soes.o
+diginput                                          default\SOES_ARM\soes.o
+digoutput                                         default\SOES_ARM\soes.o
+g_pfnVectors                                      default\STM32F0\startup\startup_stm32f0xx.o
+main                                              default\SOES_ARM\soes.o
+                                                  default\STM32F0\startup\startup_stm32f0xx.o
+memcpy                                            d:/program files (x86)/gnu tools arm embedded/4.7 2012q4/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv6-m\libc.a(lib_a-memcpy.o)
+                                                  default\SOES_ARM\esc.o
+sizeRXPDO                                         default\SOES_ARM\esc.o
+                                                  default\SOES_ARM\soes.o
+sizeTXPDO                                         default\SOES_ARM\esc.o
+                                                  default\SOES_ARM\soes.o
+wd_cnt                                            default\SOES_ARM\soes.o
+wd_ok                                             default\SOES_ARM\soes.o

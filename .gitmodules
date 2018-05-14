@@ -142,3 +142,6 @@
 [submodule "DieBie/DieBieMS-Bootloader"]
 	path = DieBie/DieBieMS-Bootloader
 	url = https://github.com/DieBieEngineering/DieBieMS-Bootloader.git
+[submodule "grbl"]
+	path = grbl
+	url = https://github.com/grbl/grbl.git

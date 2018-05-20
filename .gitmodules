@@ -145,3 +145,6 @@
 [submodule "grbl"]
 	path = grbl
 	url = https://github.com/grbl/grbl.git
+[submodule "Protocols/FNET"]
+	path = Protocols/FNET
+	url = https://github.com/butok/FNET.git

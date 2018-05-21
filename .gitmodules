@@ -154,3 +154,6 @@
 [submodule "Protocols/libpcan"]
 	path = Protocols/libpcan
 	url = https://github.com/kralf/libpcan.git
+[submodule "Protocols/libcan"]
+	path = Protocols/libcan
+	url = https://github.com/kralf/libcan.git

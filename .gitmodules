@@ -148,3 +148,6 @@
 [submodule "Protocols/FNET"]
 	path = Protocols/FNET
 	url = https://github.com/butok/FNET.git
+[submodule "ethercat-demo"]
+	path = ethercat-demo
+	url = https://github.com/tmtsoftware/ethercat-demo.git

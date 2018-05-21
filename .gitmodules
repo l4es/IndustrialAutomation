@@ -151,3 +151,6 @@
 [submodule "ethercat-demo"]
 	path = ethercat-demo
 	url = https://github.com/tmtsoftware/ethercat-demo.git
+[submodule "Protocols/libpcan"]
+	path = Protocols/libpcan
+	url = https://github.com/kralf/libpcan.git

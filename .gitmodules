@@ -160,3 +160,6 @@
 [submodule "Protocols/libcpc"]
 	path = Protocols/libcpc
 	url = https://github.com/kralf/libcpc.git
+[submodule "Protocols/libcanplusplus"]
+	path = Protocols/libcanplusplus
+	url = https://github.com/ethz-asl/libcanplusplus.git

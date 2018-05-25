@@ -163,3 +163,24 @@
 [submodule "Protocols/libcanplusplus"]
 	path = Protocols/libcanplusplus
 	url = https://github.com/ethz-asl/libcanplusplus.git
+[submodule "EPICS/mrfioc2"]
+	path = EPICS/mrfioc2
+	url = https://github.com/epics-modules/mrfioc2.git
+[submodule "EPICS/dxp"]
+	path = EPICS/dxp
+	url = https://github.com/epics-modules/dxp.git
+[submodule "EPICS/motor"]
+	path = EPICS/motor
+	url = https://github.com/epics-modules/motor.git
+[submodule "EPICS/modbus"]
+	path = EPICS/modbus
+	url = https://github.com/epics-modules/modbus.git
+[submodule "EPICS/ipac"]
+	path = EPICS/ipac
+	url = https://github.com/epics-modules/ipac.git
+[submodule "EPICS/hpi6016"]
+	path = EPICS/hpi6016
+	url = https://github.com/mdavidsaver/hpi6016.git
+[submodule "EPICS/ethercat"]
+	path = EPICS/ethercat
+	url = https://github.com/dls-controls/ethercat.git

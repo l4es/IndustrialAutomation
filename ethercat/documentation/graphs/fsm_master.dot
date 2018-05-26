@@ -1,0 +1,74 @@
+
+/* $Id$ */
+
+digraph master {
+    size="7,9"
+    center=1
+    ratio=fill
+    node [fontname="Helvetica"]
+
+    start -> broadcast [weight=10]
+
+    broadcast -> start
+    broadcast -> clear_addresses
+    broadcast -> read_state
+    broadcast -> write_system_times
+
+    action_process_sii [shape=point,label=""]
+    action_process_sii -> write_sii
+
+    action_process_sdo [shape=point,label=""]
+    action_process_sdo -> sdo_request
+
+    action_process_register [shape=point,label=""]
+    action_process_register -> reg_request
+
+    action_idle [shape=point,label=""]
+    action_idle -> action_process_sdo
+    action_idle -> sdo_dictionary
+    action_idle -> action_process_sii
+    action_idle -> action_process_register
+    action_idle -> start
+
+    action_next_slave_state [shape=point,label=""]
+    action_next_slave_state -> read_state
+    action_next_slave_state -> action_idle [weight=10]
+
+    action_configure [shape=point,label=""]
+    action_configure -> configure_slave [weight=10]
+    action_configure -> action_next_slave_state
+    action_configure -> write_system_times
+
+    read_state -> acknowledge [weight=10]
+    read_state -> action_configure
+    read_state -> action_next_slave_state
+
+    acknowledge -> action_configure [weight=10]
+
+    clear_addresses -> dc_measure_delays [weight=10]
+
+    dc_measure_delays -> scan_slave [weight=10]
+
+    scan_slave -> write_system_times
+
+    write_system_times -> start
+    write_system_times -> dc_read_offset
+
+    dc_read_offset -> write_system_times
+    dc_read_offset -> dc_write_offset
+
+    dc_write_offset -> write_system_times
+
+    configure_slave -> action_next_slave_state
+
+    write_sii -> action_process_sii
+    write_sii -> start
+
+    sdo_dictionary -> start
+
+    sdo_request -> action_process_sdo
+    sdo_request -> start
+
+    reg_request -> action_process_register
+    reg_request -> start
+}

@@ -1,0 +1,36 @@
+
+/* $Id$ */
+
+digraph change {
+    node [fontname="Helvetica"]
+    edge [fontname="Helvetica", fontsize="12"]
+
+    start
+    start -> check [weight=5]
+
+    check
+    check -> status [weight=5]
+    check -> error [label="Response\ntimeout"]
+
+    status
+    status -> end [label="Success", weight=5]
+    status -> code [label="Refuse", weight=5]
+    status -> error [label="Change\ntimeout"]
+
+    code
+    code -> ack [weight=2]
+
+    start_ack
+    start_ack -> ack [label="Ack only"]
+
+    ack
+    ack -> check_ack [weight=2]
+
+    check_ack
+    check_ack -> end [label="Ack only"]
+    check_ack -> error [weight=2]
+
+    end
+
+    error
+}

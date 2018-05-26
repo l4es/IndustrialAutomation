@@ -1,0 +1,35 @@
+
+/* $Id$ */
+
+digraph sii {
+    node [fontname="Helvetica"]
+    edge [fontname="Helvetica", fontsize="12"]
+
+    start_reading
+    start_reading -> read_check [weight=5]
+
+    read_check
+    read_check -> error
+    read_check -> read_fetch [weight=5]
+
+    read_fetch
+    read_fetch -> error
+    read_fetch -> end [weight=5]
+    read_fetch -> read_fetch
+
+    start_writing
+    start_writing -> write_check [weight=5]
+
+    write_check
+    write_check -> error
+    write_check -> write_check2 [weight=5]
+
+    write_check2
+    write_check2 -> error
+    write_check2 -> end [weight=5]
+    write_check2 -> write_check2
+
+    end
+
+    error
+}

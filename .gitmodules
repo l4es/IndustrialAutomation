@@ -187,3 +187,6 @@
 [submodule "EPICS/asyn"]
 	path = EPICS/asyn
 	url = https://github.com/epics-modules/asyn.git
+[submodule "EPICS/pscdrv"]
+	path = EPICS/pscdrv
+	url = https://github.com/mdavidsaver/pscdrv.git

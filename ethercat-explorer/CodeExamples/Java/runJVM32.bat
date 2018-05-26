@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Java\jre7\bin\java"  -Djava.library.path=..\..\SoemWrapper\Release -jar SimpleMasterJ.jar

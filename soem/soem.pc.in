@@ -1,0 +1,10 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}  # defining another variable in terms of the first
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Soem                          # human-readable name
+Description: Simple Open EtherCAT Master Library # human-readable description
+Version: @SOEM_VERSION@
+Libs: -L${libdir} -lsoem @CMAKE_SHARED_EXTRA_LIBS@
+Cflags: -I${includedir}  -I${includedir}/soem 

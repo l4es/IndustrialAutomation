@@ -1,0 +1,1 @@
+java -d64 -Djava.library.path=..\..\SoemWrapper\x64\Release -jar SimpleMasterJ.jar

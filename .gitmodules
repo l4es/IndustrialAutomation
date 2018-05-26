@@ -184,3 +184,6 @@
 [submodule "EPICS/ethercat"]
 	path = EPICS/ethercat
 	url = https://github.com/dls-controls/ethercat.git
+[submodule "EPICS/asyn"]
+	path = EPICS/asyn
+	url = https://github.com/epics-modules/asyn.git

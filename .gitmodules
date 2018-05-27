@@ -1,5 +1,5 @@
 [submodule "linuxcnc"]
-	path = linuxCNC
+	path = linuxCNC/linuxcnc
 	url = https://github.com/LinuxCNC/linuxcnc.git
 [submodule "openSAFETY_DEMO"]
 	path = openSAFETY_DEMO
@@ -191,13 +191,13 @@
 	path = EPICS/pscdrv
 	url = https://github.com/mdavidsaver/pscdrv.git
 [submodule "linuxcnc-ethercat"]
-	path = linuxcnc-ethercat
+	path = linuxCNC/linuxcnc-ethercat
 	url = https://github.com/sittner/linuxcnc-ethercat.git
 [submodule "linuxcnc-mbslave"]
-	path = linuxcnc-mbslave
+	path = linuxCNC/linuxcnc-mbslave
 	url = https://github.com/sittner/linuxcnc-mbslave.git
 [submodule "linuxcnc-fgfdm"]
-	path = linuxcnc-fgfdm
+	path = linuxCNC/linuxcnc-fgfdm
 	url = https://github.com/sittner/linuxcnc-fgfdm.git
 [submodule "ethercat-drivers"]
 	path = Protocols/EtherCAT/EtherCAT-drivers

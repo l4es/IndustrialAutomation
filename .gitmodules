@@ -65,10 +65,10 @@
 	path = Protocols/EtherCAT/OpenEtherCATSociety/EtherCAT-Master
 	url = https://github.com/OpenEtherCATsociety/SOEM.git
 [submodule "Protocols/CANOpen/CANopenNode"]
-	path = Protocols/CANOpen/CANopenNode
+	path = Protocols/CAN/CANOpen/CANopenNode
 	url = https://github.com/CANopenNode/CANopenNode.git
 [submodule "Protocols/CANOpen/CANopenSocket"]
-	path = Protocols/CANOpen/CANopenSocket
+	path = Protocols/CAN/CANOpen/CANopenSocket
 	url = https://github.com/CANopenNode/CANopenSocket.git
 [submodule "Protocols/rscada-libmodbus"]
 	path = Protocols/rscada-libmodbus
@@ -98,10 +98,10 @@
 	path = SocketCAN/libsocketcan
 	url = https://github.com/lalten/libsocketcan.git
 [submodule "Protocols/CANtact/cantact-fw"]
-	path = Protocols/CANtact/cantact-fw
+	path = Protocols/CAN/CANtact/cantact-fw
 	url = https://github.com/linklayer/cantact-fw.git
 [submodule "Protocols/CANtact/candleLight_fw"]
-	path = Protocols/CANtact/candleLight_fw
+	path = Protocols/CAN/CANtact/candleLight_fw
 	url = https://github.com/HubertD/candleLight_fw.git
 [submodule "SocketCAN/socketcan_gs_usb"]
 	path = SocketCAN/socketcan_gs_usb
@@ -113,7 +113,7 @@
 	path = SocketCAN/icsscand
 	url = https://github.com/intrepidcs/icsscand.git
 [submodule "Protocols/CANOpen/CANFestivino"]
-	path = Protocols/CANOpen/CANFestivino
+	path = Protocols/CAN/CANOpen/CANFestivino
 	url = https://github.com/jgeisler0303/CANFestivino.git
 [submodule "Protocols/FlexCAN/FlexCAN_Library"]
 	path = Protocols/FlexCAN/FlexCAN_Library
@@ -152,16 +152,16 @@
 	path = Protocols/EtherCAT/EtherCAT-Demo
 	url = https://github.com/tmtsoftware/ethercat-demo.git
 [submodule "Protocols/libpcan"]
-	path = Protocols/libpcan
+	path = Protocols/CAN/libpcan
 	url = https://github.com/kralf/libpcan.git
 [submodule "Protocols/libcan"]
-	path = Protocols/libcan
+	path = Protocols/CAN/libcan
 	url = https://github.com/kralf/libcan.git
 [submodule "Protocols/libcpc"]
-	path = Protocols/libcpc
+	path = Protocols/CAN/libcpc
 	url = https://github.com/kralf/libcpc.git
 [submodule "Protocols/libcanplusplus"]
-	path = Protocols/libcanplusplus
+	path = Protocols/CAN/libcanplusplus
 	url = https://github.com/ethz-asl/libcanplusplus.git
 [submodule "EPICS/mrfioc2"]
 	path = EPICS/mrfioc2

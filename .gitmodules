@@ -41,19 +41,19 @@
 	path = Protocols/Modbus/libmodbus
 	url = https://github.com/stephane/libmodbus.git
 [submodule "Protocols/can-utils"]
-	path = SocketCAN/can-utils
+	path = Protocols/CAN/SocketCAN/can-utils
 	url = https://github.com/linux-can/can-utils.git
 [submodule "Protocols/can-tests"]
-	path = SocketCAN/can-tests
+	path = Protocols/CAN/SocketCAN/can-tests
 	url = https://github.com/linux-can/can-tests.git
 [submodule "Protocols/cannelloni"]
-	path = SocketCAN/cannelloni
+	path = Protocols/CAN/SocketCAN/cannelloni
 	url = https://github.com/mguentner/cannelloni.git
 [submodule "Protocols/freemodbus"]
 	path = Protocols/Modbus/freemodbus
 	url = https://github.com/webconn/freemodbus.git
 [submodule "Protocols/socketcand"]
-	path = SocketCAN/socketcand
+	path = Protocols/CAN/SocketCAN/socketcand
 	url = https://github.com/dschanoeh/socketcand.git
 [submodule "Protocols/freemodbus-v1.5.0"]
 	path = Protocols/Modbus/freemodbus-v1.5.0
@@ -92,10 +92,10 @@
 	path = Protocols/CIPster
 	url = https://github.com/liftoff-sr/CIPster.git
 [submodule "SocketCAN/test-can-j1939"]
-	path = SocketCAN/test-can-j1939
+	path = Protocols/CAN/SocketCAN/test-can-j1939
 	url = https://github.com/kurt-vd/test-can-j1939.git
 [submodule "SocketCAN/libsocketcan"]
-	path = SocketCAN/libsocketcan
+	path = Protocols/CAN/SocketCAN/libsocketcan
 	url = https://github.com/lalten/libsocketcan.git
 [submodule "Protocols/CANtact/cantact-fw"]
 	path = Protocols/CAN/CANtact/cantact-fw
@@ -104,13 +104,13 @@
 	path = Protocols/CAN/CANtact/candleLight_fw
 	url = https://github.com/HubertD/candleLight_fw.git
 [submodule "SocketCAN/socketcan_gs_usb"]
-	path = SocketCAN/socketcan_gs_usb
+	path = Protocols/CAN/SocketCAN/socketcan_gs_usb
 	url = https://github.com/HubertD/socketcan_gs_usb.git
 [submodule "SocketCAN/cangaroo"]
-	path = SocketCAN/cangaroo
+	path = Protocols/CAN/SocketCAN/cangaroo
 	url = https://github.com/HubertD/cangaroo.git
 [submodule "SocketCAN/icsscand"]
-	path = SocketCAN/icsscand
+	path = Protocols/CAN/SocketCAN/icsscand
 	url = https://github.com/intrepidcs/icsscand.git
 [submodule "Protocols/CANOpen/CANFestivino"]
 	path = Protocols/CAN/CANOpen/CANFestivino
@@ -119,13 +119,13 @@
 	path = Protocols/CAN/FlexCAN/FlexCAN_Library
 	url = https://github.com/pawelsky/FlexCAN_Library.git
 [submodule "SocketCAN/intrepid-socketcan-kernel-module"]
-	path = SocketCAN/intrepid-socketcan-kernel-module
+	path = Protocols/CAN/SocketCAN/intrepid-socketcan-kernel-module
 	url = https://github.com/intrepidcs/intrepid-socketcan-kernel-module.git
 [submodule "SocketCAN/icsneo_sample_linux"]
-	path = SocketCAN/icsneo_sample_linux
+	path = Protocols/CAN/SocketCAN/icsneo_sample_linux
 	url = https://github.com/intrepidcs/icsneo_sample_linux.git
 [submodule "SocketCAN/icsneoapi"]
-	path = SocketCAN/icsneoapi
+	path = Protocols/CAN/SocketCAN/icsneoapi
 	url = https://github.com/intrepidcs/icsneoapi.git
 [submodule "Protocols/bacnet-demo"]
 	path = Protocols/bacnet-demo

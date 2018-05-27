@@ -59,10 +59,10 @@
 	path = Protocols/freemodbus-v1.5.0
 	url = https://github.com/nucleron/freemodbus-v1.5.0.git
 [submodule "Protocols/EtherCAT-Slave"]
-	path = Protocols/EtherCAT-Slave
+	path = Protocols/EtherCAT/OpenEtherCATSociety/EtherCAT-Slave
 	url = https://github.com/OpenEtherCATsociety/SOES.git
 [submodule "Protocols/EtherCAT-Master"]
-	path = Protocols/EtherCAT-Master
+	path = Protocols/EtherCAT/OpenEtherCATSociety/EtherCAT-Master
 	url = https://github.com/OpenEtherCATsociety/SOEM.git
 [submodule "Protocols/CANOpen/CANopenNode"]
 	path = Protocols/CANOpen/CANopenNode
@@ -149,7 +149,7 @@
 	path = Protocols/FNET
 	url = https://github.com/butok/FNET.git
 [submodule "ethercat-demo"]
-	path = ethercat-demo
+	path = Protocols/EtherCAT/EtherCAT-Demo
 	url = https://github.com/tmtsoftware/ethercat-demo.git
 [submodule "Protocols/libpcan"]
 	path = Protocols/libpcan
@@ -200,5 +200,5 @@
 	path = linuxcnc-fgfdm
 	url = https://github.com/sittner/linuxcnc-fgfdm.git
 [submodule "ethercat-drivers"]
-	path = ethercat-drivers
+	path = Protocols/EtherCAT/EtherCAT-drivers
 	url = https://github.com/ahoarau/ethercat-drivers.git

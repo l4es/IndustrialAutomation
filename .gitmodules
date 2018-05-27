@@ -38,7 +38,7 @@
 	path = Protocols/bacnet-stack
 	url = https://github.com/stargieg/bacnet-stack.git
 [submodule "Protocols/libmodbus"]
-	path = Protocols/libmodbus
+	path = Protocols/Modbus/libmodbus
 	url = https://github.com/stephane/libmodbus.git
 [submodule "Protocols/can-utils"]
 	path = SocketCAN/can-utils
@@ -50,13 +50,13 @@
 	path = SocketCAN/cannelloni
 	url = https://github.com/mguentner/cannelloni.git
 [submodule "Protocols/freemodbus"]
-	path = Protocols/freemodbus
+	path = Protocols/Modbus/freemodbus
 	url = https://github.com/webconn/freemodbus.git
 [submodule "Protocols/socketcand"]
 	path = SocketCAN/socketcand
 	url = https://github.com/dschanoeh/socketcand.git
 [submodule "Protocols/freemodbus-v1.5.0"]
-	path = Protocols/freemodbus-v1.5.0
+	path = Protocols/Modbus/freemodbus-v1.5.0
 	url = https://github.com/nucleron/freemodbus-v1.5.0.git
 [submodule "Protocols/EtherCAT-Slave"]
 	path = Protocols/EtherCAT/OpenEtherCATSociety/EtherCAT-Slave

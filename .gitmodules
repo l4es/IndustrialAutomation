@@ -65,10 +65,10 @@
 	path = Protocols/EtherCAT/OpenEtherCATSociety/EtherCAT-Master
 	url = https://github.com/OpenEtherCATsociety/SOEM.git
 [submodule "Protocols/CANOpen/CANopenNode"]
-	path = Protocols/CAN/CANOpen/CANopenNode
+	path = Protocols/CAN/CANopen/CANopenNode
 	url = https://github.com/CANopenNode/CANopenNode.git
 [submodule "Protocols/CANOpen/CANopenSocket"]
-	path = Protocols/CAN/CANOpen/CANopenSocket
+	path = Protocols/CAN/CANopen/CANopenSocket
 	url = https://github.com/CANopenNode/CANopenSocket.git
 [submodule "Protocols/rscada-libmodbus"]
 	path = Protocols/rscada-libmodbus
@@ -113,7 +113,7 @@
 	path = Protocols/CAN/SocketCAN/icsscand
 	url = https://github.com/intrepidcs/icsscand.git
 [submodule "Protocols/CANOpen/CANFestivino"]
-	path = Protocols/CAN/CANOpen/CANFestivino
+	path = Protocols/CAN/CANopen/CANFestivino
 	url = https://github.com/jgeisler0303/CANFestivino.git
 [submodule "Protocols/FlexCAN/FlexCAN_Library"]
 	path = Protocols/CAN/FlexCAN/FlexCAN_Library

@@ -116,7 +116,7 @@
 	path = Protocols/CAN/CANOpen/CANFestivino
 	url = https://github.com/jgeisler0303/CANFestivino.git
 [submodule "Protocols/FlexCAN/FlexCAN_Library"]
-	path = Protocols/FlexCAN/FlexCAN_Library
+	path = Protocols/CAN/FlexCAN/FlexCAN_Library
 	url = https://github.com/pawelsky/FlexCAN_Library.git
 [submodule "SocketCAN/intrepid-socketcan-kernel-module"]
 	path = SocketCAN/intrepid-socketcan-kernel-module

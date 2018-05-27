@@ -223,3 +223,9 @@
 [submodule "Protocols/CAN/CANopen/CANopenPIC"]
 	path = Protocols/CAN/CANopen/CANopenPIC
 	url = https://github.com/CANopenNode/CANopenPIC.git
+[submodule "Protocols/EtherCAT/arducat"]
+	path = Protocols/EtherCAT/arducat
+	url = https://github.com/ethercat-diy/arducat.git
+[submodule "Protocols/EtherCAT/stm32f4_ethercat"]
+	path = Protocols/EtherCAT/stm32f4_ethercat
+	url = https://github.com/ethercat-diy/stm32f4_ethercat.git

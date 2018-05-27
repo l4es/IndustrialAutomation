@@ -220,3 +220,6 @@
 [submodule "EPOS/EPOSControl"]
 	path = EPOS/EPOSControl
 	url = https://github.com/abroun/EPOSControl.git
+[submodule "Protocols/CAN/CANopen/CANopenPIC"]
+	path = Protocols/CAN/CANopen/CANopenPIC
+	url = https://github.com/CANopenNode/CANopenPIC.git

@@ -190,3 +190,12 @@
 [submodule "EPICS/pscdrv"]
 	path = EPICS/pscdrv
 	url = https://github.com/mdavidsaver/pscdrv.git
+[submodule "linuxcnc-ethercat"]
+	path = linuxcnc-ethercat
+	url = https://github.com/sittner/linuxcnc-ethercat.git
+[submodule "linuxcnc-mbslave"]
+	path = linuxcnc-mbslave
+	url = https://github.com/sittner/linuxcnc-mbslave.git
+[submodule "linuxcnc-fgfdm"]
+	path = linuxcnc-fgfdm
+	url = https://github.com/sittner/linuxcnc-fgfdm.git

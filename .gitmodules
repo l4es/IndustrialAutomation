@@ -202,3 +202,21 @@
 [submodule "ethercat-drivers"]
 	path = Protocols/EtherCAT/EtherCAT-drivers
 	url = https://github.com/ahoarau/ethercat-drivers.git
+[submodule "EPOS/libepos"]
+	path = EPOS/libepos
+	url = https://github.com/kralf/libepos.git
+[submodule "EPOS/epos"]
+	path = EPOS/epos
+	url = https://github.com/dimasad/epos.git
+[submodule "EPOS/epos2"]
+	path = EPOS/epos2
+	url = https://github.com/sperre/epos2.git
+[submodule "EPOS/ipa_epos_hardware"]
+	path = EPOS/ipa_epos_hardware
+	url = https://github.com/ipa320/ipa_epos_hardware.git
+[submodule "EPOS/epos2_motor_controller"]
+	path = EPOS/epos2_motor_controller
+	url = https://github.com/uos/epos2_motor_controller.git
+[submodule "EPOS/EPOSControl"]
+	path = EPOS/EPOSControl
+	url = https://github.com/abroun/EPOSControl.git

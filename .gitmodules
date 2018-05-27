@@ -199,3 +199,6 @@
 [submodule "linuxcnc-fgfdm"]
 	path = linuxcnc-fgfdm
 	url = https://github.com/sittner/linuxcnc-fgfdm.git
+[submodule "ethercat-drivers"]
+	path = ethercat-drivers
+	url = https://github.com/ahoarau/ethercat-drivers.git

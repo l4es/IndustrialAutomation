@@ -232,3 +232,9 @@
 [submodule "Protocols/EtherCAT/ihmc-ethercat-master"]
 	path = Protocols/EtherCAT/ihmc-ethercat-master
 	url = https://github.com/ihmcrobotics/ihmc-ethercat-master.git
+[submodule "Protocols/Modbus/modbuspp"]
+	path = Protocols/Modbus/modbuspp
+	url = https://github.com/fanzhe98/modbuspp.git
+[submodule "Protocols/Modbus/modbus"]
+	path = Protocols/Modbus/modbus
+	url = https://github.com/andresarmento/modbus.git

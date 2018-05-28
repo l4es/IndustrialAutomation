@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!--
+vim:tw=78
+-->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>EtherLab :: EL3356</title>
+        <link rel="stylesheet" href="docstyle.css" type="text/css">
+        <meta name="generator" content="DocBook XSL Stylesheets V1.52.2">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+        <meta name="toctype" content="ug">
+        <script language="JavaScript" src="docscripts.js"></script>
+    </head>
+    <body>
+        <h1>Beckhoff EL3255 Precise load cell input terminal (RMB)</h1>
+
+        The EL3356 is a 16-bit and the EL3356-0010 a 24-bit with Distributed
+        clocks input terminal which enables direct connection to a 4- or
+        6-wire strain guage. It is a highly accurate factory calibrated
+        measurement device.
+
+        <p/>This input terminal has a vast configuration scope and it is
+        imperitive to consult the documentation.
+
+        <p/>The slave can also be used as a dual ADC instead of the RMB mode
+        (resistance measurement bridge) with input range of ca. 13V and
+        27mV. This mode is not calibrated by the manufacturor. (Only the
+        bridge measurement mode RMB is calibrated).
+
+        <p/>Block inputs are the binary control inputs.
+        <ol>
+            <li>Start calibration</li>
+            <li>Disable calibration</li>
+            <li>Input freeze</li>
+            <li>Sample Mode (EL3356-0010 only)</li>
+            <li>Tara</li>
+        </ol>
+
+        <p/>Block outputs:
+        <ul>
+            <li>The first output port is RMB value or ADC Value</li>
+            <li>1 status port for RMB; 2 ports for ADC</li>
+        with input range of ca. 13V and
+        27mV. This mode is not calibrated by the manufacturor. (Only the
+        bridge measurement mode RMB is calibrated).
+            <li>Time signal (EL3356-0010 using DC)</li>
+        </ul>
+
+        <p/>Status port in RMB Mode:
+        <ol>
+            <li>Overrange</li>
+            <li>Data invalid</li>
+            <li>Error</li>
+            <li>Calibration in progress</li>
+            <li>Steady state</li>
+        </ol>
+
+        <p/>Status port in ADC Mode:
+        <ol>
+            <li>Underrange</li>
+            <li>Overrange</li>
+            <li>Error</li>
+        </ol>
+
+        <p/>Apart from the <a href="general.html">common slave options</a>, the
+        following options can configure the slave.
+
+        <h3>2 ch ADC only</h3>
+        The terminal is used as a dual ADC, instead of default RMB mode.
+
+        <h3>Distributed clock</h3>
+        Only available for EL3356-0010
+
+        <h3>CoE Configuration</h3>
+        Here the slave is configured according to the documentation.
+
+        <p/><b>Note</b>: Configuring Dynamic filter delta <tt>#x8000:14</tt>
+        This is a real32 value, while the mask input can only accept integer
+        values. To convert, use matlab's num2hex() function:
+        <br/>e.g. <tt>hex2dec(num2hex(single(20.0)))</tt>
+    </body>
+</html>

@@ -1,0 +1,162 @@
+vim: syntax=sh
+
+#-----------------------------------------------------------------------------
+# HOWTO build the DLS GUI for Windoze
+#-----------------------------------------------------------------------------
+
+# modify this to your needs
+export BASE=/vol/opt/etherlab/src/dls-windows
+
+export VERSION=1.4.0-rc2
+
+export ARCH=win32
+export CONFIGURE=mingw32-configure
+#export CONFIGURE=mingw64-configure
+export MINGWBASE=/usr/i686-w64-mingw32
+#export MINGWBASE=/usr/x86_64-w64-mingw32
+
+export ROOT=${BASE}/root-${ARCH}-${VERSION}
+export MINGWROOT=${MINGWBASE}/sys-root/mingw
+export DISTBASE=dlsgui-${VERSION}-${ARCH}
+export DISTDIR=${BASE}/${DISTBASE}
+export QMAKE=${MINGWBASE}/bin/qt5/qmake
+export LRELEASE=${MINGWBASE}/bin/qt5/lrelease
+
+#-----------------------------------------------------------------------------
+# MinGW packages
+#-----------------------------------------------------------------------------
+
+# OpenSUSE Leap 42.1 / MinGW 32 bit
+
+sudo zypper in mingw32-libexpat-devel mingw32-filesystem mingw32-gcc-c++ mingw32-gcc mingw32-cross-cpp mingw32-cpp mingw32-cross-gcc mingw32-cross-gcc-c++ mingw32-fftw3 mingw32-fftw3-devel mingw32-zlib-devel mingw32-libxml2-devel mingw32-pcre-devel mingw32-cross-libqt5-qmake mingw32-libqt5-qtsvg mingw32-libqt5-qtsvg-devel mingw32-angleproject-devel mingw32-libpcre1 mingw32-libxml2-2
+
+#-----------------------------------------------------------------------------
+# URIParser
+#-----------------------------------------------------------------------------
+
+cd ${BASE}
+wget https://excellmedia.dl.sourceforge.net/project/uriparser/Sources/0.8.1/uriparser-0.8.1.tar.bz2
+
+tar xjf uriparser-0.8.1.tar.bz2
+mv uriparser-0.8.1 uriparser-0.8.1-${ARCH}
+cd uriparser-0.8.1-${ARCH}
+# comment-out binary in Makefile.am
+autoreconf -i
+${CONFIGURE} \
+    --disable-test \
+    --disable-doc \
+    --includedir=${ROOT}/include \
+    --libdir=${ROOT}/lib
+make -j8
+make install
+cd ..
+
+#-----------------------------------------------------------------------------
+# Protocol buffers
+#-----------------------------------------------------------------------------
+
+# git clone https://github.com/google/protobuf.git protobuf
+# cd protobuf
+# git archive --format tar.gz --prefix=protobuf-2.6.1/ -o protobuf-2.6.1.tar.gz v2.6.1
+# cp protobuf-2.6.1.tar.gz ..
+# cd ..
+
+tar xzf protobuf-2.6.1.tar.gz
+mv protobuf-2.6.1 protobuf-2.6.1-${ARCH}
+cd protobuf-2.6.1-${ARCH}
+autoreconf -f -i -Wall,no-obsolete
+${CONFIGURE} \
+    --bindir=${ROOT}/bin \
+    --libdir=${ROOT}/lib \
+    --includedir=${ROOT}/include \
+    --with-protoc=/usr/bin/protoc
+make -j8
+make install
+cd ..
+
+#-----------------------------------------------------------------------------
+# DLS
+#-----------------------------------------------------------------------------
+
+hg clone ssh://zuse/p/dls/hg dls-hg-${ARCH}
+cd dls-hg-${ARCH}
+./bootstrap.sh
+${CONFIGURE} \
+    --prefix=${ROOT} \
+    --includedir=${ROOT}/include \
+    --libdir=${ROOT}/lib \
+    --sysconfdir=${ROOT}/etc \
+    --bindir=${ROOT}/bin \
+    --disable-daemon \
+    --disable-fltk \
+    --disable-tool \
+    LDFLAGS="-L${ROOT}/lib" \
+    CPPFLAGS="-I${ROOT}/include" \
+    --with-zlib-dir=${MINGWROOT} \
+    --with-fftw3-dir=${MINGWROOT} \
+    --with-xml-prefix=${MINGWROOT}
+make -j8
+make install
+
+cd widgets
+${QMAKE} DLS_DESIGNER=0 QMAKE_LIBDIR=${ROOT}/lib PREFIX=${ROOT}
+${LRELEASE} DlsWidgets_de.ts -qm .qm/locale/DlsWidgets_de.qm
+make -j8
+make install
+cd ..
+
+cd gui
+${QMAKE} DLS_DESIGNER=0 PREFIX=${ROOT}
+${LRELEASE} dlsgui_de.ts -qm .qm/locale/dlsgui_de.qm
+make -j8
+make install
+cd ..
+
+cd ..
+
+#-----------------------------------------------------------------------------
+# Distribution
+#-----------------------------------------------------------------------------
+
+mkdir -p ${DISTDIR}
+
+cp ${ROOT}/bin/dlsgui.exe ${DISTDIR}
+
+# TODO libraries for 64 bit
+
+cp ${MINGWROOT}/bin/Qt5Core.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/Qt5Gui.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/Qt5PrintSupport.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/Qt5Svg.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/Qt5Widgets.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/Qt5Xml.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/icudata56.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/icui18n56.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/icuuc56.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/libEGL.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/libGLESv2.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/libfftw3-3.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/libfreetype-6.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/libgcc_s_sjlj-1.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/libglib-2.0-0.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/libharfbuzz-0.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/libintl-8.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/libpcre-1.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/libpcre16-0.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/libpng16-16.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/libstdc++-6.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/libwinpthread-1.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/libxml2-2.dll ${DISTDIR}
+cp ${MINGWROOT}/bin/zlib1.dll ${DISTDIR}
+
+cp -r ${MINGWROOT}/lib/qt5/plugins/platforms ${DISTDIR}
+cp -r ${MINGWROOT}/lib/qt5/plugins/imageformats ${DISTDIR}
+
+cp ${ROOT}/bin/DlsWidgets0.dll ${DISTDIR}
+cp ${ROOT}/bin/libprotobuf-9.dll ${DISTDIR}
+cp ${ROOT}/bin/liburiparser-1.dll ${DISTDIR}
+
+cd ${BASE}
+zip -r ${DISTBASE}.zip ${DISTBASE}
+md5sum ${DISTBASE}.zip > ${DISTBASE}.zip.md5
+gpg -b ${DISTBASE}.zip

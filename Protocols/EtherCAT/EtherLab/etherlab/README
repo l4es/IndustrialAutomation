@@ -1,0 +1,173 @@
+=============================================================================
+
+$Id$
+
+EtherLab is a Simulink Coder Target used to create user space
+binaries that use the PdServ library.
+
+MATLAB, Simulink and Stateflow are registered trademarks, and Simulink Coder
+is a trademark of The MathWorks, Inc.
+References to these terms in this package are used in context of these terms
+to explain concepts.
+
+Copyright 2012 Richard Hacker (lerichi at gmx dot net)
+
+This file is part of EtherLab.
+
+EtherLab is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version.
+
+EtherLab is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+more details.
+
+You should have received a copy of the GNU General Public License along
+with EtherLab See COPYING. If not, see <http://www.gnu.org/licenses/>.
+
+vim: tw=78 spelllang=en spell
+
+=============================================================================
+
+If you are impatient, already know what EtherLab does, and are really
+keen on getting going with this package, jump straight to the end and read the
+installation instructions.
+
+Motivation
+
+    ----- Extract from MathWorks' Website on Simulink Coder: ----
+    Simulink Coder (formerly Real-Time Workshop) generates and executes C and
+    C++ code from Simulink diagrams, Stateflow charts, and MATLAB functions.
+    The generated source code can be used for real-time and non real time
+    applications, including simulation acceleration, rapid prototyping, and
+    hardware-in-the-loop testing. You can tune and monitor the generated code
+    using Simulink or run and interact with the code outside MATLAB and
+    Simulink.
+    (http://www.mathworks.com/products/simulink-coder/index.html)
+    -------------------------------------------------------------
+ 
+    First and foremost, Simulink Coder generates C/C++ code from Simulink
+    diagrams. This generated code is generic in the sense that a support
+    framework is required to make it run.  Typically this framework is
+    provided for the targets on which the executable will run. The framework
+    ensures execution (maybe in real time), possible interaction with signals
+    and parameters, and real world input and output with sensors and
+    actuators.
+ 
+    Simulink Coder comes with a generic real time target (grt). This target
+    creates an executable that runs on Linux for example. However, neither
+    Simulink nor Simulink Coder blockset supply sources or sinks to interact
+    with real world sensors. The generated executable does not run in real
+    time and interaction with signals and parameters are limited to External
+    Mode Communication within the Simulink diagram.
+ 
+    PdServ is a library that facilitates interaction with another process
+    using shared memory only. No system calls are used between the library and
+    its process. System calls are a major stumbling block real time
+    applications have to deal with.
+ 
+    EtherLab is a target for Simulink Coder to generate an executable that
+    works with PdServ. Thus the executable has all the possibilities PdServ
+    has.
+    
+    EtherLab also supplies an extensive blockset to interact with the real
+    world from within the Simulink diagram. Most importantly, it works very
+    closely with EtherCAT. This opens a enormous range of IO devices that can
+    be used at the diagram level.
+
+Installation
+
+    From source files:
+    You need:
+        - the source tarball
+        - installed pdserv environment (not a prerequisite, but is required
+          when the executable is generated)
+        - cmake, version 2.6 or higher
+    Here it goes:
+        $ tar xfj etherlab-X.Y.Z.tgz
+        $ cd etherlab-X.Y.Z
+        $ mkdir build
+        $ cd build
+        $ cmake ..
+        $ make install
+
+    From Debian or rpm package:
+        Install the package.
+
+Configuration
+
+    Regardless whether you install using a package manager or from source
+    code, the package has to be configured to work with MATLAB.
+
+    Start MATLAB, and call setup:
+    >> run /opt/etherlab/rtw/setup_etherlab.m
+
+    This configures the package for use with Simulink. Note that the setup
+    script stores everything in /opt/etherlab and doesn't change anything in
+    your filesystem, except for adding and saving some paths
+    (/opt/etherlab/rtw/*) to your MATLAB path
+    ($(MATLAB_ROOT)/toolbox/local/pathdef.m) which is in your matlab
+    installation. If you don't have permission to change this file, the setup
+    script will complain. Somehow make sure that the required paths will be
+    found every time MATLAB is started.
+
+Using EtherLab
+
+    Now open a Simulink diagram. From the diagram, open the Configuration
+    Parameters (Menu: Simulation -> Configuration Parameters, or press Ctrl-E
+    from within the Simulink diagram). Choose Code Generation tab, and select
+    "etherlab.tlc" for System target file. Go to the Solver tab and choose a
+    Fixed-step size, such as 0.001. Select the appropriate solver and a
+    Tasking mode (SingleTasking or MultiTasking) for your application. Go back
+    to the Code Generation tab and press Build button (Pressing Ctrl-B from
+    within the diagram also works). Voilà, you have an executable! Call it and
+    be happy.
+
+Using EtherLab in a hosted environment
+
+    MATLAB, Simulink and Simulink Coder is a significant financial investment
+    that is typically installed only on a limited number of systems. These
+    licenses are definitely NOT required to run the executable.
+    
+    While it is easy to transfer the generated executable to a system with a
+    similar runtime environment as that of the host (of coarse, including
+    pdserv and possibly EtherCAT libraries), you may have the requirement to
+    generate only C/C++ code with the MATLAB installation and build the
+    executable on another machine. This is for instance when MATLAB is
+    installed on a Windows machine while your target will run on Linux.
+    
+    In this case, select "Generate code only" from the "Code Generation" tab
+    of the Configuration Parameters.
+
+    Now copy the directory <model>_etl_hrt to the target machine. Also copy
+    the following files from your MATLAB installation:
+            $(MATLAB_ROOT)/extern/include
+            $(MATLAB_ROOT)/simulink/include/
+            $(MATLAB_ROOT)/rtw/c/src/
+    to the target somewhere (such as /opt/matlab).
+
+    Dive into the directory containing <model>_etl_hrt -- not into the
+    directory <model>_etl_hrt itself. Type
+    $ make -C <model>_etl_hrt -f <model>.mk \
+                MATLAB_DIR=/opt/matlab ETHERLAB_DIR=/opt/etherlab
+    and there you go! (MATLAB_DIR and/or ETHERLAB_DIR may be omitted if that
+    is the same as on the host where the code is generated)
+
+    If the code is generated on a windows host, you will have to edit
+    <model>_etl_hrt/<model>.mk and remove references to drive letters (e.g.
+    C:\...) that Simulink Coder inserts automatically. GNU make chokes on
+    these lines, so you are required to edit the file unfortunately.
+
+Removing EtherLab
+
+    Installation using:
+        - package manager: remove EtherLab
+        - source files: rm -rf /opt/etherlab/rtw
+
+    From Matlab:
+    >> pathtool
+    remove references to /opt/etherlab/rtw. Save path.
+
+    Finished

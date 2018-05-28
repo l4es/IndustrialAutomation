@@ -1,0 +1,32 @@
+$Id$
+
+vim: spelllang=en spell
+
+Version 1.0.2
+
+- Fixed username propagation to PdCom.
+- Improved behaviour on connection reset.
+- Improved error logging.
+- Added possibility to override host, port and database via command line.
+- Added keepalive and timeout options.
+
+Version 1.0.1
+
+- Add service file to distribution.
+- Set SO_KEEPALIVE option on socket.
+- Startup log.
+
+Version 1.0.0
+
+- Implemented older SQLite3 3.4.1 interface.
+- Sample systemd service file.
+- Implemented restore variable to store state in process.
+- Better log output on XML parser error.
+- Added proper database indices.
+- Several bug fixes.
+- Ported to YAML.
+- Better vector support.
+
+Version 0.99.0
+
+- First release.

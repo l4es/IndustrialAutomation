@@ -1,0 +1,154 @@
+/*****************************************************************************
+ * vim:tw=78
+ * $Id$
+ *
+ * Copyright (C) 2015-2016  Richard Hacker (lerichi at gmx dot net)
+ *                          Florian Pose <fp@igh.de>
+ *
+ * This file is part of the PdCom library.
+ *
+ * The PdCom library is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version.
+ *
+ * The PdCom library is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with the PdCom library. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *****************************************************************************/
+
+/** @file */
+
+#ifndef PDCOM_H
+#define PDCOM_H
+
+#include "@PROJECT_NAME@/Process.h"
+#include "@PROJECT_NAME@/Variable.h"
+#include "@PROJECT_NAME@/Subscriber.h"
+
+/// Repository Version
+#define PKGID @Package_HG_ID@
+
+/// Set for development code; in this case, the variables PDCOM_*
+// do not evaluate correctly
+#define PDCOM_DEVEL @DEVEL@
+
+
+/// PdCom major version
+#define PDCOM_MAJOR @MAJOR_VERSION@
+/// PdCom minor version
+#define PDCOM_MINOR @MINOR_VERSION@
+/// Patch level of release
+#define PDCOM_RELEASE @PATCH_LEVEL@
+
+/// Macro to generate a version code for comparison
+#define PDCOM_VERSION(A, B, C) (((A) << 16) + ((B) << 8) + (C))
+
+/// Current PdCom version
+#define PDCOM_VERSION_CODE \
+        PDCOM_VERSION(PDCOM_MAJOR, PDCOM_MINOR, PDCOM_RELEASE)
+
+/** \mainpage
+ *
+ * \section intro Introduction.
+ *
+ * The <a href="http://etherlab.org/en/pdcom">PdCom library</a> provides a
+ * flexible C++ API for non-realtime exchange of process data and is part of
+ * the <a href="http://etherlab.org/en">EtherLab project</a>.
+ * 
+ * The library relies heavily on C++'s subclassing where virtual methods are
+ * reimplemented to communicate with the implementation.
+ *
+ * The library absolutely free of system calls, most notably `read()`,
+ * `write()` and `flush()`. These are pure virtual methods that must be
+ * implemented to send and receive data from the server process.
+ *
+ * The library does not provide TLS itself, but provides methods to support
+ * its implementation. If required, it must be implemented between the
+ * communication channel (the network socket) and the \ref
+ * PdCom::Process::read "read()" and \ref PdCom::Process::write "write()"
+ * methods. TLS is implemented within the protocol analogous to STARTTLS in
+ * SMTP.
+ *
+ * The library does not provide authentication itself, but provides methods to
+ * support its implementation. The server performs authentication negotiation
+ * using to the SASL standard.
+ *
+ * Other than libexpat, the library has no other dependencies.
+ *
+ * Due to the fact that the library does not require system calls, it can
+ * easily be used on platforms other than Linux.
+ *
+ * \section license License
+ *
+ * The PdCom library is released under the terms and conditions of the <a
+ * href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public
+ * License (LGPL)</a>, version 3 or (at your option) any later version.
+ *
+ * \section protocols Implemented communication protocols
+ *
+ * The library provides an abstraction layer for process data communication
+ * protocols together with implementations for these protocols. The protocols
+ * currently implemented are:
+ *
+ * - The MSR protocol from Ingenieurgemeinschaft IgH (http://etherlab.org).
+ *
+ * Other protocols can be easily added.
+ *
+ * \section start Getting started
+ *
+ * The basic approach to using the library is to subclass PdCom::Process and
+ * reimplement at least \ref PdCom::Process::read "read()", \ref
+ * PdCom::Process::write "write()" and \ref PdCom::Process::flush "flush()".
+ * Then initiate the (network) communication channel to the server.  Whenever
+ * data arrives from the server, call \ref PdCom::Process::asyncData
+ * "asyncData()" which in turn calls \ref PdCom::Process::read "read()" to
+ * fetch the data.
+ *
+ * Whenever data needs to be transferred to the server, the library calls
+ * \ref PdCom::Process::write "write()" excessively. The communication channel
+ * buffer only needs to be send upon reception of \ref PdCom::Process::flush
+ * "flush()".
+ *
+ * \ref PdCom::Process "Process" provices methods to obtain information about
+ * the process as well as discovering the variable tree.
+ *
+ * To be able to receive variable values or change parameters, you need to
+ * subclass and instantiate an instance PdCom::Subscriber and reimplement its
+ * pure virtual methods.
+ *
+ * Have a look at the class documentation to get more information. An example
+ * is located in the example directory.
+ *
+ * \section further Further information
+ *
+ * There is a Qt-based widget library named <a
+ * href="http://etherlab.org/en/pdwidgets">QtPdWidgets</a>, providing process
+ * data visualisation and control widgets, that is based on PdCom.
+
+ * \example example.cpp
+ * Here is an extensive example. At first, it look a little intrusive, but
+ * don't dispair.
+ *
+ * It is a command line application that is called with various pdcom commands
+ * like list, find, query, subscribe, etc.
+ *
+ * At first a couple of helper functions are defined. You can skip these
+ * initially.
+ *
+ * Thereafter comes a Process implementation. This is also an extensive class
+ * definition because it contains SASL login details and network connection
+ * details which you can skip initially. Pay attention to read(), write(),
+ * flush() and connected(). 
+ *
+ * Then have a look at the command implementations.
+ */
+
+#endif // PDCOM_H
+
+/****************************************************************************/

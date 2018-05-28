@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!--
+vim:tw=78
+-->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>EtherLab :: EL3255</title>
+        <link rel="stylesheet" href="docstyle.css" type="text/css">
+        <meta name="generator" content="DocBook XSL Stylesheets V1.52.2">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+        <meta name="toctype" content="ug">
+        <script language="JavaScript" src="docscripts.js"></script>
+    </head>
+    <body>
+        <h1>Beckhoff EL3255 Potentiometer input terminal</h1>
+
+        The EL3255 is a 5-channel input slave allowing direct connection of
+        potentiometers. Using distributed clocks, highly synchronized
+        measurement of all channels are possible.
+
+        The block presents a ratiometric output port corresponding to the
+        number of channels selected.
+
+        <p/>Apart from the <a href="general.html">common slave options</a>, the
+        following options configure the slave:
+
+        <h3>Active Channels</h3>
+        Choose the number of channels. This improves the performance as well
+        as preventing a red led status from reporting a disconnected state.
+
+        <h3>Vector Output</h3>
+        Collect all outputs to a single vector.
+
+        <h3>CoE Configuration</h3>
+        Here the slave is configured according to the documentation.
+    </body>
+</html>

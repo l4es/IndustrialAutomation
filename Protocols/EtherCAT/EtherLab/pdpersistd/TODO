@@ -1,0 +1,14 @@
+$Id$
+
+- Log parameters without history (sql update)
+- Replace gethostbyname() with getaddrinfo()
+- Management tool
+    - Add new variables (using ignore list)
+    - Purge old data
+    - Forget variables
+- Rename table field data.id to data.variable
+- Move datatype to data table (dimension using blob size).
+- Socket blocking?
+- Support regexes in path names.
+- Debug SQL statements
+

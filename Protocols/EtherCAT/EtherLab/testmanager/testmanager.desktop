@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Test Manager
+Name[de]=Test-Manager
+Name[en]=Test Manager
+Categories=Education;Engineering;
+Exec=testmanager %f
+Icon=testmanager
+Type=Application
+MimeType=application/testmanager;

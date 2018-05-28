@@ -1,0 +1,24 @@
+<RCC>
+  <qresource prefix="/DlsWidgets" >
+    <file>.qm/locale/DlsWidgets_de.qm</file>
+    <file>images/Network-error.svg</file>
+    <file>images/Network-idle.svg</file>
+    <file>images/dialog-error.svg</file>
+    <file>images/dialog-information.svg</file>
+    <file>images/dialog-warning.svg</file>
+    <file>images/document-print.svg</file>
+    <file>images/document-properties.svg</file>
+    <file>images/document-save.svg</file>
+    <file>images/drive-harddisk.svg</file>
+    <file>images/edit-redo.svg</file>
+    <file>images/edit-undo.svg</file>
+    <file>images/go-next.svg</file>
+    <file>images/list-remove.svg</file>
+    <file>images/measure.svg</file>
+    <file>images/messages.svg</file>
+    <file>images/system-search.svg</file>
+    <file>images/utilities-system-monitor.svg</file>
+    <file>images/view-fullscreen.svg</file>
+    <file>images/view-refresh.svg</file>
+  </qresource>
+</RCC>

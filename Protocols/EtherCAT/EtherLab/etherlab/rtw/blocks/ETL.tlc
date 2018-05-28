@@ -1,0 +1,77 @@
+%%
+%% Generic Routines for EtherLab
+%% 
+%% Copyright (C) 2006
+%% Richard Hacker
+%% IgH Essen GmbH
+%% 
+%% License: GPL
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function InitETL() void
+%% This function checks whether the EtherLab system has been initialised
+%% before already, which is demonstrated by the existance of variable 
+%% CompiledModel.ETL.
+%% Essentially strings for error messages are prepared.
+%%
+%% CompiledModel.ETL is populated with the following fields:
+%%      ErrMsg: the global string buffer for error messages
+%%      ErrStr: a char* that can be used to report initialization errors
+%%      NumSt:  Integer Number of discrete sample times
+%%      SampleTime: Float vector, sample time of each task
+%%      tid:    Integer vector, mapping the value of
+%%              LibGetGlobalTIDFromLocalSFcnTID(0) to the task's discrete
+%%              task index.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %if EXISTS(CompiledModel.ETL)
+    %return
+  %endif
+
+  %assign model_c = LibGetModelDotCFile()
+
+  %assign NumSt = LibNumDiscreteSampleTimes()
+  %if FEVAL("verLessThan","simulinkcoder","7.3")
+    %% In releases prior to 7.3, LibNumDiscreteSampleTimes() incorrectly
+    %% reported the number of sample times.
+    %assign NumSt = NumSt - LibGetTID01EQ()
+  %endif
+
+  %assign SampleTime = []
+  %foreach i = NumSt
+    %assign SampleTime = SampleTime ...
+        + LibGetClockTickStepSize(i + LibGetTID01EQ())
+  %endforeach
+
+  %assign tid = []
+  %foreach i = NumSampleTimes
+    %assign tid = tid + (i ? i - LibGetTID01EQ() : 0)
+  %endforeach
+
+  %trace "Initializing ETL Interface"
+  %addtorecord CompiledModel ETL { ...
+              ErrMsg "etl_errbuf" ...
+              ErrStr "errstr_rc" ...
+              NumSt  NumSt ...
+              SampleTime SampleTime ...
+              tid tid ...
+              }
+
+  %with CompiledModel
+  
+    %openfile buf
+
+    /* All EtherLAB error messages go in here */
+    char %<ETL.ErrMsg>[256];
+    %closefile buf
+    %<LibSetSourceFileSection(model_c, "Declarations", buf)>
+
+    %openfile buf
+    const char __attribute__((unused)) *%<ETL.ErrStr>;
+    %closefile buf
+    %<LibMdlStartCustomCode(buf, "header")>
+  
+  %endwith
+
+%endfunction

@@ -1,0 +1,61 @@
+=============================================================================
+
+  $Id$
+
+  Copyright 2010,2016 Richard Hacker (lerichi at gmx dot net)
+
+  This file is part of the pdserv library.
+
+  The pdserv library is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Lesser General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  The pdserv library is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+  or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+  License for more details.
+
+  You should have received a copy of the GNU Lesser General Public License
+  along with the pdserv library. If not, see <http://www.gnu.org/licenses/>.
+
+  vim: spelllang=en spell
+
+=============================================================================
+
+Dependencies:
+
+- cmake
+- g++ development environment
+- CommonC++ development version
+- pkg-config (optional)
+- log4cplus
+- yaml
+- Berkeley DB
+- Cyrus SASLv2
+- GnuTLS        (optional)
+
+Installation instructions:
+
+To install this library, execute the following commands:
+cmake .         # <-- Note the dot at the end, this is not a mistake!
+make
+make install
+
+The default installation paths are:
+prefix=/usr/local
+sysconfdir=${prefix}/etc
+exec_prefix=${prefix}/bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+To change these paths, call cmake with one or more of the following options:
+
+cmake
+        -DCMAKE_INSTALL_PREFIX=${prefix}
+        -DCMAKE_INSTALL_SYSCONFDIR=${sysconfdir}
+        -DCMAKE_INSTALL_BINDIR=${exec_prefix}
+        -DCMAKE_INSTALL_LIBDIR=${libdir}
+        -DCMAKE_INSTALL_INCLUDEDIR=${includedir}
+        .
+

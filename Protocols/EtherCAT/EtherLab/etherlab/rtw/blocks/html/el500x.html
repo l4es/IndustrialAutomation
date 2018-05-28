@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!--
+vim:tw=78
+-->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>EtherLab :: EL500x</title>
+        <link rel="stylesheet" href="docstyle.css" type="text/css">
+        <meta name="generator" content="DocBook XSL Stylesheets V1.52.2">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+        <meta name="toctype" content="ug">
+        <script language="JavaScript" src="docscripts.js"></script>
+    </head>
+    <body>
+        <a name="top_of_page"></a>
+        <p style="font-size:1px;">&nbsp;</p>
+        <h1>Beckhoff EL500x SSI Interface</h1>
+
+        This block implements the Beckhoff's EtherCAT series of SSI <a
+            href="#sensor">Sensor Interface</a> (EL5001, EL5002) and <a
+            href="#monitor">Monitor Terminal</a> (EL5001-001x)
+
+        <a name="sensor"><h3>Sensor Interface</h3></a>
+        Configure the terminals EL5001 and EL5002 in the tabs
+        <ul>
+            <li><b>Main</b> Note that for DC, do not use <tt>DC Latch
+                active</tt>. This is reserved for EL5001-001x
+
+            <li><b>Chan1</b> See the Beckhoff documentation for a description
+            of the various fields
+            <li><b>Chan2</b> Only for EL5002
+
+        </ul>
+
+        The following block outputs appear:
+        <ol>
+            <li>SSI code (PDO #x6000:17)
+            <li>Data Error (PDO #x6000:1)
+            <li>Frame Error (PDO #x6000:2)
+            <li>Power Failure (PDO #x6000:3) - check option <tt>Enable Power
+                Failure bit</tt> in <b>ChanX</b> tab
+        </ol>
+
+        For EL5002, every port is a vector with 2 elements.
+
+
+        <a name="monitor"><h3>Monitor Terminal</h3></a>
+        Configure the EL5001-001x terminal in the tabs
+        <ul>
+            <li><b>Main</b> Note that for DC, only the options
+            <ul>
+                <li>FreeRun/SM-Synchron</li>
+                <li>DC Latch active</li>
+                <li>DC Customized with #x120 for AssignActivate</li>
+            </ul>
+            should be used</li>
+
+            <li><b>Chan1</b> Note that <tt>Baudrate</tt> and <tt>Min Inhibit
+                Time</tt> are ignored.</li>
+
+            <li><b>EL5001-001x</b> Note that to be able to use
+            <tt>Timestamp</tt>, choose the correct Distributed Clocks mode
+            other than <tt>FreeRun/SM-Synchron</tt> in the <tt>Main</tt> tab.</li>
+
+        </ul>
+
+        The block outputs are the same as for <b>Sensor Interface</b>, except
+        that if <tt>Timestamp</tt> is chosen, PDO #x1a02:6000:18 is inserted
+        at Port 2.
+
+        <h3>Common Slave Options</h3>
+        <ul>
+            <li><a href="general.html#address">Master</a></li>
+            <li><a href="general.html#slave">Slave Index</a></li>
+            <li><a href="general.html#model">Device Model</a></li>
+            <li><a href="general.html#dc">Distributed Clocks</a></li>
+            <li><a href="general.html#sampletime">Sample Time</a></li>
+        </ul>
+</html>

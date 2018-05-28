@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/dlsgui">
+    <comment>DLSGUI View</comment>
+    <comment xml:lang="de">DLSGUI-Ansicht</comment>
+    <comment xml:lang="en">DLSGUI View</comment>
+    <icon name="dlsgui-view"/>
+    <magic priority="50">
+      <match value="&lt;DlsView" type="string" offset="0:256"/>
+    </magic>
+    <glob pattern="*.dlsv"/>
+  </mime-type>
+</mime-info>

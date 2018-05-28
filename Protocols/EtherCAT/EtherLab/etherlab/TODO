@@ -1,0 +1,8 @@
+$Id$
+
+- Set subthread priorities.
+- Remove stack size parameter.
+- Remove module payload parameter.
+- Cleanup hrt_main.c: use libdaemon?
+- cleanup Code Generation options for EtherLab
+- Finalize Signal Slot mechanism

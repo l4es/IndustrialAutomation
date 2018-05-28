@@ -1,0 +1,11 @@
+TODO-Liste: rt_lib
+Aktuelle Version: 5.0.0
+
+- msr_reg: Binaerkodierung der Parameter auch schreibend
+
+- msr_time: Zeitregler auch fuer 2.4 Kernel
+            Zeitregler fuer alle Abtastraten 
+
+- dynamische Parameterliste, Kanalliste ??
+
+- escape von xml-sequenzen ?

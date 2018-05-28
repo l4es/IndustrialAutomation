@@ -1,0 +1,111 @@
+// ====================================================================
+// Copyright (C) 2008  Andreas Stewering
+//
+// This file is part of ETHERCos.
+//
+// ETHERCos is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// ETHERCos is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with ETHERCos; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+// ====================================================================
+warning_mode = warning('query');
+warning('off');
+mode(0);
+current_dir_main=getcwd();
+
+disp('Start EtherCos Toolbox');
+
+etc_tlbx = get_absolute_file_path('etherlab_toolbox.start');
+etc_tlbx = getshortpathname(etc_tlbx);
+
+try
+  getversion('scilab');
+  ethercos_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length('\etc\') );
+catch
+  ethercos_tlbx = part( etc_tlbx, 1:(length(etc_tlbx)-length('etc\')) );
+end
+
+if(setenv('ETLPATH',ethercos_tlbx)==%f) then
+  disp('Setting Enviroment Variable failed');
+  return;
+end
+
+
+ listSuccessful  = list(); // list of successful loads
+  listFailed      = list(); // list of failed loads
+  loadDetails  = '';     // details about every module
+
+
+chdir(ethercos_tlbx);
+if ( isdir('modules') ) then
+ disp('Loading EtherCOS toolbox');
+ chdir('modules');
+ module=dir();
+ start=1;
+ while(start<=length(module.isdir)) do
+ try
+ for i=start:length(module.isdir)
+        start=i+1;
+	disp('Try loading module: '+module.name(i));
+        if (module.isdir(i)) then
+                if (fileinfo(module.name(i)+'/loader.sce')~=[]) then
+                        disp('Loading module: '+module.name(i));
+                        exec(module.name(i)+'/loader.sce');
+                        chdir(ethercos_tlbx+'modules');
+                end
+      end
+
+end
+catch
+    chdir(ethercos_tlbx+'modules');
+    disp(module.name(start-1)+' could not be loaded!');
+    
+end
+end
+
+else
+end
+chdir(current_dir_main);
+
+    //-- Display overall report
+    nbPassed  = length(listSuccessful);
+    nbFailed  = length(listFailed);
+    nbTests   =nbPassed+nbFailed;
+   printf('\n')
+                printf('   ------------------------------------------------------------------\n')
+                printf('    Summary\n\n')
+                printf('    builds                    %4d - 100.0 %% \n', nbPassed+nbFailed)
+                printf('    passed                    %4d - %5.1f %% \n', nbPassed,  nbPassed/nbTests*100)
+                printf('    failed                    %4d - %5.1f %% \n', nbFailed,  nbFailed/nbTests*100)
+                printf('   ------------------------------------------------------------------\n')
+
+                printf('    Details\n\n')
+		printf('    loaded modules \t failed modules\n\n')
+                printf('%s\n', loadDetails)
+                printf('\n')
+                printf('   ------------------------------------------------------------------\n')
+
+
+// ====================================================================
+clear warning_mode;
+clear path_addchapter;
+clear ethercos_tlbx;
+clear etc_tlbx;
+clear pathconvert;
+clear current_dir_main;
+clear listFailed;
+clear listSuccessful;
+clear nbPassed;
+clear nbFailed;
+clear nbTests;
+clear loadDetails;
+// ====================================================================

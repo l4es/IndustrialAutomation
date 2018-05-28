@@ -1,0 +1,20 @@
+$Id$
+
+Version 2.1:
+
+- Added support for SDO read/write in source files
+- Complete redesign of most of the Beckhoff library blocks
+- Multithread support
+- Improvements and bugfixes concerning library paths
+- Completely reworked the compile process
+- Implemented overruns; added syslog() iface and some profiling macros.
+- Added oversampling slaves
+- Reworked DC completely
+- Numeric types for PORT.pdo_data_type
+- Several bugfixes and improvements
+
+Version 2.0:
+
+- New EtherLab target for PREEMPT-RT using the pdserv library.
+- Support for complex data types.
+

@@ -1,0 +1,180 @@
+#!/bin/bash
+
+#-----------------------------------------------------------------------------
+#
+# DLS init script
+#
+# $Id: init.sh,v 5ddbbb894dc7 2011/08/17 13:21:30 fp $
+#
+# This file is part of the Data Logging Service (DLS).
+#
+# DLS is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# DLS is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along
+# with DLS. If not, see <http://www.gnu.org/licenses/>.
+#
+#-----------------------------------------------------------------------------
+
+### BEGIN INIT INFO
+# Provides:          dls
+# Required-Start:    $local_fs $remote_fs $syslog $network
+# Should-Start:      $time msr etherlab
+# Required-Stop:     $local_fs $remote_fs $syslog $network
+# Should-Stop:       $time msr etherlab
+# Default-Start:     3 5
+# Default-Stop:      0 1 2 6
+# Short-Description: Data Logging Service
+# Description:
+### END INIT INFO
+
+#-----------------------------------------------------------------------------
+
+SYSCONFIG=/etc/sysconfig/dls
+
+test -r $SYSCONFIG || { echo "$SYSCONFIG not existing";
+        if [ "$1" = "stop" ]; then exit 0;
+        else exit 6; fi; }
+
+. $SYSCONFIG
+
+#-----------------------------------------------------------------------------
+
+if [ -n "$DLS_USER" ]; then
+    DLSD_OPTIONS="-u $DLS_USER $DLSD_OPTIONS"
+fi
+
+if [ -n "$DLS_DIR" ]; then
+    DLSD_OPTIONS="-d $DLS_DIR $DLSD_OPTIONS"
+fi
+
+#-----------------------------------------------------------------------------
+
+DLSD=@BINDIR@/dlsd
+PIDFILE=$DLS_DIR/dlsd.pid
+KILL_PARAM="-t600 -p$PIDFILE"
+
+#-----------------------------------------------------------------------------
+
+function exit_success()
+{
+    if [ -r /etc/rc.status ]; then
+        rc_reset
+        rc_status -v
+        rc_exit
+    else
+        echo " done"
+        exit 0
+    fi
+}
+
+#-----------------------------------------------------------------------------
+
+function exit_running()
+{
+    if [ -r /etc/rc.status ]; then
+        rc_reset
+        rc_status -v
+        rc_exit
+    else
+        echo " running"
+        exit 0
+    fi
+}
+
+#-----------------------------------------------------------------------------
+
+function exit_fail()
+{
+    if [ -r /etc/rc.status ]; then
+        rc_failed
+        rc_status -v
+        rc_exit
+    else
+        echo " failed"
+        exit 1
+    fi
+}
+
+#-----------------------------------------------------------------------------
+
+function exit_dead()
+{
+    if [ -r /etc/rc.status ]; then
+        rc_failed
+        rc_status -v
+        rc_exit
+    else
+        echo " dead"
+        exit 1
+    fi
+}
+
+#-----------------------------------------------------------------------------
+
+if [ -r /etc/rc.status ]; then
+    . /etc/rc.status
+    rc_reset
+fi
+
+case "$1" in
+    start)
+        echo -n "Starting DLS Daemon "
+
+        if ! startproc -p$PIDFILE $DLSD $DLSD_OPTIONS > /dev/null; then
+            exit_fail
+        fi
+
+        sleep 1
+
+        if checkproc -p$PIDFILE $DLSD; then
+            exit_success
+        else
+            exit_fail
+        fi
+        ;;
+
+    stop)
+        echo -n "Shutting down DLS Daemon "
+
+        if killproc $KILL_PARAM $DLSD; then
+            exit_success
+        else
+            exit_fail
+        fi
+        ;;
+
+    restart)
+        $0 stop || exit 1
+        $0 start
+        ;;
+
+    status)
+        echo -n "Checking for DLS Daemon "
+
+        if checkproc -p$PIDFILE $DLSD; then
+            exit_running
+        else
+            exit_dead
+        fi
+        ;;
+
+    *)
+        echo "USAGE: $0 {start|stop|restart|status}"
+        ;;
+esac
+
+if [ -r /etc/rc.status ]; then
+    rc_exit
+else
+    exit 1
+fi
+
+#-----------------------------------------------------------------------------

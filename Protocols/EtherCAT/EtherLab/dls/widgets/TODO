@@ -1,0 +1,42 @@
+vim700: spelllang=en spell
+
+- Data access
+    - (*) Data access via network
+    - Data caching
+    - Create update_jobs() method.
+    - Create update_channels() method.
+    - Display non-existing channels in model
+    - Sort channels in model
+    - Display channels as tree
+
+- Measuring
+    - Markers
+    - Store extrema and average values in list.
+
+- Context menu
+    - Find extrema
+    - Last hour
+    - Use value for all layers.
+
+- Export
+    - PNG
+    - (*) CSV
+    - (*) Delta-t specification
+
+- Persistence
+    - Sections
+        - Markers
+    - Preview
+
+- Widget
+    - Display combined gaps below time scale
+    - Mark gap borders with lines.
+    - Section properties with double click.
+    - Avoid crash on zooming out infinitely.
+    - Draw headers in pixmaps.
+    - Draw section data in pixmap.
+
+- GUI
+    - Load file via command-line
+    - Print resolution
+    - Proceed, if channel is not found

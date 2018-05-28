@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!--
+vim:tw=78
+-->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>EtherLab :: EKxxxx</title>
+        <link rel="stylesheet" href="docstyle.css" type="text/css">
+        <meta name="generator" content="DocBook XSL Stylesheets V1.52.2">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+        <meta name="toctype" content="ug">
+        <script language="JavaScript" src="docscripts.js"></script>
+    </head>
+    <body>
+        <h1>Beckhoff EL320x 1-, 2-, 4-Channel Input Terminal Pt100 (RTD)</h1>
+
+        The EL320x series of analog input terminals measure resistance sensors
+        and directly convert it to a temperature. A wide range of
+        characteristic sensor curves are supported. 2-, 3- and 4-wire
+        connection technologies can be used.
+
+        <p/>The temperature value is directly available as a double value on
+        the first output port, correctly scaled.
+
+        <p/>Apart from the <a href="general.html">common slave options</a>, the
+        following options can configure the slave.
+
+        <p/>Consult the slave documentation for this slave.
+
+        <h3>RTD-Element</h3>
+        The RTD-Element type is a number that is written in CoE object
+        #x80n0:19 that represents the resistance sensor.
+
+        <p/>This is either a scalar or a vector that represents the type of
+        RTD element that is connected.  A scalar will be replicated to all
+        channels. A vector must have tha same number of elements as the slave
+        has channels
+
+        <p/>Here is an extract of the Beckhoff documentation of the resistance
+        sensor type:
+
+        <table cellspacing="2" align="center" width="85%">
+
+            <tr><th width="15%">Type</th><th>Description</th></tr>
+
+            <tr><td>0: </td><td>Pt100 -200°C to 850°C</td></tr>
+            <tr><td>1: </td><td>Ni100 -60°C to 250°</td></tr>
+            <tr><td>2: </td><td>Pt1000 -200°C to 850°C</td></tr>
+            <tr><td>3: </td><td>Pt500 -200°C to 850°C</td></tr>
+            <tr><td>4: </td><td>Pt200 -200° C to 850°C</td></tr>
+            <tr><td>5: </td><td>Ni1000 -60°C to 250°C</td></tr>
+            <tr><td>6: </td><td>Ni1000 100°C: 1500 Ohm (-30 to 160°C)</td></tr>
+            <tr><td>7: </td><td>Ni120 -60°C to 320°C</td></tr>
+            <tr><td>8: </td><td>Output in Ohm Resolution 1/16 Ohm (10 .. 4095 Ohm)</td></tr>
+            <tr><td>9: </td><td>Output in Ohm Resolution 1/64 Ohm (10 .. 1047 Ohm)</td></tr>
+            <tr><td>10:</td><td>KT100/110/130/210/230 KTY10/11/13/16/19 </td></tr>
+            <tr><td>11:</td><td>KTY81/82-110,120,150 (-50...150°C)</td></tr>
+            <tr><td>12:</td><td>KTY81-121</td></tr>
+            <tr><td>13:</td><td>KTY81-122</td></tr>
+            <tr><td>14:</td><td>KTY81-151</td></tr>
+            <tr><td>15:</td><td>KTY81-152</td></tr>
+            <tr><td>16:</td><td>KTY81/82-210,220,250</td></tr>
+            <tr><td>17:</td><td>KTY81-221</td></tr>
+            <tr><td>18:</td><td>KTY81-222</td></tr>
+            <tr><td>19:</td><td>KTY81-251</td></tr>
+            <tr><td>20:</td><td>KTY81-252</td></tr>
+            <tr><td>21:</td><td>KTY83-110,120,150 (-50...175°C)</td></tr>
+            <tr><td>22:</td><td>KTY83-121</td></tr>
+            <tr><td>23:</td><td>KTY83-122</td></tr>
+            <tr><td>24:</td><td>KTY83-151</td></tr>
+            <tr><td>25:</td><td>KTY83-152</td></tr>
+            <tr><td>26:</td><td>KTY84-130,150 (-40...300°C)</td></tr>
+            <tr><td>27:</td><td>KTY84-151</td></tr>
+            <tr><td>28:</td><td>KTY21/23-6 (-50...150°C)</td></tr>
+            <tr><td>29:</td><td>KTY1x-5</td></tr>
+            <tr><td>30:</td><td>KTY1x-7</td></tr>
+            <tr><td>31:</td><td>KTY21/23-5</td></tr>
+            <tr><td>32:</td><td>KTY21/23-7</td></tr>
+        </table>
+
+        <h3>Connection Technology</h3>
+        The connection technology is a number that is written in CoE object
+        #x80n0:1A and represents how the sensor is connected.
+
+        <p/>This is either a scalar or a vector.  A scalar will be replicated
+        to all channels. A vector must have tha same number of elements as the
+        slave has channels
+
+        <p/>Here is an extract of the Beckhoff documentation of the connection
+        technology:
+
+        <table cellspacing="2" align="center" width="50%">
+
+            <tr><th width="15%">Type</th><th>Description</th></tr>
+
+            <tr><td>0: </td><td>2-wire</td></tr>
+            <tr><td>1: </td><td>3-wire</td></tr>
+            <tr><td>2: </td><td>4-wire</td></tr>
+            <tr><td>3: </td><td>not connected</td></tr>
+        </table>
+
+        <h3>Filter</h3>
+        Choose an appropriate notch filter frequency. The filter applies for
+        all channels.
+
+        <h3>Status Port</h3>
+        Available only when <b>Vector Output</b> is selected, a second port
+        indicates the channel's status.
+    </body>
+</html>

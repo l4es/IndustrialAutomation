@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!--
+vim:tw=78
+-->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>EtherLab :: EP43xx</title>
+        <link rel="stylesheet" href="docstyle.css" type="text/css">
+        <meta name="generator" content="DocBook XSL Stylesheets V1.52.2">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+        <meta name="toctype" content="ug">
+        <script language="JavaScript" src="docscripts.js"></script>
+    </head>
+    <body>
+        <a name="top_of_page"></a>
+        <p style="font-size:1px;">&nbsp;</p>
+        <h1>Beckhoff EP43xx 2Ch Analog Input/Output Slave</h1>
+
+        This block implements the Beckhoff's EtherCAT EP43xx series of Analog
+        Input and Output fieldbus module.
+
+        <p/>The module has 2 configurable analog input ports and 2 configurable
+        analog output ports. Choose the correct configuration using the
+        provided selection lists.
+
+        <p/>The analog input ports also have a <b>Status Output</b> that can
+        be activated. This presents binary PDO Entry #x60n0:7 on the lower
+        half of the block's outputs. According to the documentation, if the
+        input range of an analog input is exceeded, this value goes high.
+        Choosing the status does come at a small cost of requiring a 4-byte
+        PDO per channel instead of 2-bytes only.
+
+        <h3>Common Slave Options</h3>
+        <ul>
+            <li><a href="general.html#address">Master</a></li>
+            <li><a href="general.html#slave">Slave Index</a></li>
+            <li><a href="general.html#model">Device Model</a></li>
+            <li><a href="general.html#vector">Vector IO</a></li>
+            <li><a href="general.html#i_scale">Input Scale</a></li>
+            <li><a href="general.html#o_scale">Output Scale/Offset/Filter</a></li>
+            <li><a href="general.html#dc">Distributed Clocks</a></li>
+            <li><a href="general.html#sampletime">Sample Time</a></li>
+        </ul>
+
+    </body>
+</html>

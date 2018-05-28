@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="/QtPdWidgets" >
+    <file>images/document-save.png</file>
+    <file>images/edit-clear.png</file>
+    <file>images/go-up.png</file>
+    <file>images/go-down.png</file>
+    <file>images/go-next.png</file>
+    <file>images/go-previous.png</file>
+    <file>images/media-playback-start.png</file>
+    <file>images/media-playback-pause.png</file>
+    <file>QtPdWidgets_de.qm</file>
+    <file>QtPdWidgets_nl.qm</file>
+  </qresource>
+</RCC>

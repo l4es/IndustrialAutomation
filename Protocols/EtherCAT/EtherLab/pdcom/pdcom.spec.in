@@ -1,0 +1,163 @@
+#----------------------------------------------------------------------------
+#
+#  $Id$
+#
+#  Copyright (C) 2008-2016  Florian Pose <fp@igh.de>
+#                           Richard Hacker (lerichi at gmx dot net)
+#
+#  This file is part of the PdCom library.
+#
+#  The PdCom library is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your
+#  option) any later version.
+#
+#  The PdCom library is distributed in the hope that it will be useful, but
+#  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+#  or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+#  License for more details.
+#
+#  You should have received a copy of the GNU Lesser General Public License
+#  along with the PdCom library. If not, see <http://www.gnu.org/licenses/>.
+#
+#----------------------------------------------------------------------------
+
+Name: @PROJECT_NAME@
+Version: @VERSION@
+Release: 1
+
+License: LGPL-3.0+
+Vendor: Ingenieurgemeinschaft IgH GmbH
+URL: http://etherlab.org/en/pdcom
+
+Source: %{name}-%{version}.tar.bz2
+BuildRequires: gcc-c++ cmake doxygen fdupes
+BuildRequires: libexpat-devel boost-devel python-devel
+
+#----------------------------------------------------------------------------
+# Main Package
+#----------------------------------------------------------------------------
+Summary: Process data communication client library
+Group: Productivity/Networking/Other
+
+%description
+PdCom shall provide a flexible C++ API for non-realtime exchange of process
+data and is part of the EtherLab project (http://etherlab.org/en/pdcom). It is
+designed to be independent of any communication protocols and channels, and
+shall be usable under several operating systems and platforms. I. e. it has
+been tested successfully under Linux and Windows.
+
+#----------------------------------------------------------------------------
+# Shared library Package
+#----------------------------------------------------------------------------
+%define libname libpdcom@MAJOR_VERSION@_@MINOR_VERSION@
+%package -n %{libname}
+
+Summary: Process data communication client library
+Group: Productivity/Networking/Other
+
+%description -n %{libname}
+PdCom shall provide a flexible C++ API for non-realtime exchange of process
+data and is part of the EtherLab project (http://etherlab.org/en/pdcom). It is
+designed to be independent of any communication protocols and channels, and
+shall be usable under several operating systems and platforms. I. e. it has
+been tested successfully under Linux and Windows.
+
+%post   -n %{libname} -p %{run_ldconfig}
+%postun -n %{libname} -p %{run_ldconfig}
+
+%files  -n %{libname}
+%defattr(-,root,root)
+%doc AUTHORS ChangeLog COPYING NEWS
+%{_libdir}/libpdcom.so.*
+
+#----------------------------------------------------------------------------
+# Python library
+#----------------------------------------------------------------------------
+%define pythonlib python-%{name}
+%define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(plat_specific=1)")
+
+%package -n %{pythonlib}
+
+Summary: Process data communication python client library
+Group: Productivity/Networking/Other
+
+%description -n %{pythonlib}
+Python wrapper for PdCom
+
+%files -n %{pythonlib}
+%defattr(-,root,root)
+%doc AUTHORS ChangeLog COPYING NEWS
+%{python_sitelib}/pdcom*
+
+#----------------------------------------------------------------------------
+# Development package
+#----------------------------------------------------------------------------
+%package devel
+
+Summary: Development files for PdCom
+Group: Development/Libraries/C and C++
+Requires: %{libname} = %{version}
+
+%description devel
+PdCom shall provide a flexible C++ API for non-realtime exchange of process
+data and is part of the EtherLab project (http://etherlab.org/en/pdcom). It is
+designed to be independent of any communication protocols and channels, and
+shall be usable under several operating systems and platforms. I. e. it has
+been tested successfully under Linux and Windows.
+
+%files devel
+%defattr(-,root,root)
+%{_libdir}/libpdcom.so
+%{_includedir}/*.h
+%{_includedir}/pdcom
+
+#----------------------------------------------------------------------------
+# Development documentation
+#----------------------------------------------------------------------------
+%package doc
+
+Summary: Development files for PdCom
+Group: Documentation/Other
+BuildArch: noarch
+
+%description doc
+PdCom development documentation
+
+%files doc
+%defattr(-,root,root)
+%doc AUTHORS ChangeLog COPYING NEWS
+%doc build/doc/html
+%doc example/example.cpp
+
+#----------------------------------------------------------------------------
+
+%prep
+%setup
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} \
+    -DCMAKE_CXX_FLAGS="${CXXFLAGS:-%optflags}" \
+    -DPYTHONLIB=1 ..
+
+%build
+make -C build %{?_smp_mflags}
+make -C build doc
+
+%install
+cd build
+%fdupes -s doc/html
+%{__make} DESTDIR=%{buildroot} install/strip
+cd python
+%{__python} setup.py install --skip-build --root=%{buildroot} --prefix=%{_prefix}
+%{__strip} -s %{buildroot}/%{python_sitelib}/pdcom.so
+
+%clean
+rm -rf %{buildroot}
+
+%changelog
+* Sat Nov 19 2016 lerichi@gmx.net
+- Updated for use with OBS
+
+#----------------------------------------------------------------------------
+# vim: tw=78

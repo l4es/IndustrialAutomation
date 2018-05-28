@@ -1,0 +1,203 @@
+               EtherCos - The HIL and Realtime Toolbox for Scilab/Scicos
+                =============================================
+                                Version 0.0.2
+                                =============
+
+Andreas Stewering-Bone, IgH Essen (Andreas.Stewering-Bone@gmx.de, ab@igh-essen.com)
+
+********************************************************************************
+This document describes the complete Installation of the following components:
+	- Kernel with or without rt preempt Patch
+ 	- Ethercat Master Driver
+	- Scicoslab
+	- EtherCos
+	- MSR-Testmanager
+	- DLSD
+
+
+
+Standard Distro Kernel
+********************************************************************************
+If you want to use the standard ditro kernel you have to install following components:
+	- kernel-headers	
+	- gcc
+	- automake
+	- autoconf
+	- make
+
+Notice that the realtime behavior of a standard kernel isn't gurantied.
+It depends on the kernel configuration and your hardware which measurement frequency will be the maximum
+Example:
+	Debian Etch, 2.6.18 (Scheduler Interval 250Hz, not preemptiv, no hrttimer available) -> max 50 Hz witout overruns
+An ideal standard system would be
+	Kernel >=2.6.24 (Scheduler Interval 1000Hz, preemptiv, hrttimer available) -> 200 Hz without overruns
+
+RT-Preempt Build Kernel
+********************************************************************************
+If you want to use the rt-preeempt kernel you have to install following components:
+	- kernel-src (see rt.wiki.kernel.org)
+	- rt-preempt patch	
+	- gcc
+	- ncurses, ncurses-dev
+	- automake
+	- autoconf
+	- make
+
+Untar the Kernelsource in your favourite directory. Untar the patch into the same directory.
+Step into the linux-xxx dir.
+Call 
+	patch -p1 < ../patch-xxx
+
+If you have an config file for your kernel save it under .config and call make oldconfig
+
+Call make menuconfig and check following settings
+	Processor Type and Features->
+		Activate Tickless System
+		Activate High Resolution Timer Support
+		Activate HPET Timer Support (if the hardwaer is available)
+		Set your processor family
+		Preemption Mode -> Complete Preemption(Realtime)
+		Disable High Memory Support
+		Timer Frequency -> 1000Hz
+		 
+	Power Managment Options->
+		Disable	APM Support
+		Disable CPU idle support
+		Enable ACPI Support but Diable all Sub Features
+
+You should disable all unused features feature like USB / Sound / Internal Modem /...
+
+
+
+Save the configuration
+
+Call 
+
+	make bzImage modules
+	make install
+	make modules_install
+
+Edit your grub entries in
+	/boot/grub/menu.lst
+
+Build up an initramdisk
+	cd /boot/
+	
+Notice this call is distro depended
+	mkinitramfs -o initramfs-2.6.xxx.img 2.6.xxx
+
+
+Try to boot the kernel
+ 
+		
+	
+
+
+
+
+
+
+Ethercat Master Driver
+********************************************************************************
+Please download the tarball form www.etherlab.org.
+Untar the package in your favourite directory.
+Step into this directory and configure the source by
+	./configure
+The default interface card is the Realtek 8139too
+If you want to configure another card you have to call
+	./configure --enable-e100 #(Intel E100) or
+	./configure --enable-e1000 #(Intel E1000) or other please see ./configure --help
+	
+After the script has successfully finished call
+	make 
+	make modules
+as root
+	make install
+	make modules_install
+	depmod -a
+	cp /opt/etherlab/etc/sysconfig/ethercat /etc/sysconfig/
+	ln -s /opt/etherlab/etc/init.d/ethercat /etc/init.d/ethercat
+	ln -s /opt/etherlab/bin/ethercat /usr/local/bin/ethercat
+
+Create following UDEV Entry in the file
+	/etc/udev/rules.d/99-EtherCAT.rules
+
+
+	KERNEL=="EtherCAT[0-9]*", MODE="0664", GROUP="users"
+
+
+If you want to restrict the access to the Ethercat bus you can create a special group.
+	
+
+Edit the file
+	/etc/sysconfig/ethercat
+
+Change the entries for
+	MASTER0_DEVICE="ff:ff:ff:ff:ff:ff"
+to your interface MAC-Adress
+
+and 
+	DEVICE_MODULES="8139too"
+to your interface module
+
+After that you can test the ethercat Master by calling
+	/etc/init.d/ethercat start
+
+the call
+	dmesg
+should show something like that
+
+Jun  3 21:15:48 localhost kernel: EtherCAT: Master driver devel r1755
+Jun  3 21:15:48 localhost kernel: EtherCAT: 1 master waiting for devices.
+Jun  3 21:15:49 localhost kernel: ACPI: PCI interrupt for device 0000:03:00.0 disabled
+Jun  3 21:15:49 localhost kernel: ec_8139too EtherCAT-capable Fast Ethernet driver 0.9.28, master devel r1755
+Jun  3 21:15:49 localhost kernel: ACPI: PCI Interrupt 0000:03:00.0[A] -> Link [LNKA] -> GSI 11 (level, low) -> IRQ 11
+Jun  3 21:15:49 localhost kernel: EtherCAT: Accepting device 00:A0:B0:00:37:F3 for master 0.
+Jun  3 21:15:49 localhost kernel: ec0: RealTek RTL8139 at 0x4000, 00:a0:b0:00:37:f3, IRQ 11
+Jun  3 21:15:49 localhost kernel: ec0:  Identified 8139 chip type 'RTL-8139C'
+
+If it fails please contact the etherlab user mailinglist, see www.etherlab.org
+
+
+Scicoslab
+********************************************************************************
+
+Download the Scicoslab package for for distro
+
+Under debian call as root
+	dpkg -i scicoslab-XXX.deb
+
+Under RPM based systems call
+
+	rpm -i scicoslab-XXX.rpm
+
+Notice you may have to install following additional packages
+	- vte
+
+
+Try to start scicoslab by calling
+	scicoslab
+
+Have fun
+
+
+EtherCos
+********************************************************************************
+
+
+Download the EtherCos package from steweringbone.dyndns.org
+
+
+
+untar the package in yout favourite directory
+step into the directory
+call
+	make
+
+Final call
+	scicoslab
+	-> exec loader.sce
+
+Have fun
+
+

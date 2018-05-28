@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry version="5.0-subset Scilab" xml:id="etl_scicos_realtime" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>etl_scicos_realtime</refname>
+
+    <refpurpose>etl_scicos_realtime</refpurpose>
+  </refnamediv>
+
+ <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Do Realtime</term>
+        <listitem>
+          <para>
+	  Enables Realtime behavior. The scicos solver realtime flag should be disabled. For higher process priority, scilab has to started as root.
+         </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Cycletime</term>
+        <listitem>
+          <para>
+	  Cycletime in ms
+         </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+
+    <para> This Block changes the process priority of scilab/scicos to RT-priority. The realtime behavior is implemented by the function call clock nanosleep. </para>
+  </refsection>
+
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>Andreas Stewering, IgH Essen</member>
+    </simplelist>
+  </refsection>
+</refentry>

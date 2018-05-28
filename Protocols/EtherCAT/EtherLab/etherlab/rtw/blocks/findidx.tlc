@@ -1,0 +1,60 @@
+%%
+%% This implements the Find Index block
+%%
+%% Copyright (C) 2009
+%% Richard Hacker
+%% IgH Essen GmbH
+%% 
+%% License: GPL
+
+%implements "findidx" "C"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function Outputs( block, system ) Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %assign count_port = LibBlockOutputSignal(0,"","",0)
+  %assign index_port = LibBlockOutputSignal(1,"","",0)
+  %assign value_port = LibBlockOutputSignal(2,"","",0)
+  %switch FindType
+    %case 1
+      %assign cmp = "<"
+      %break
+    %case 2
+      %assign cmp = "<="
+      %break
+    %case 3
+      %assign cmp = ">"
+      %break
+    %case 4
+      %assign cmp = ">="
+      %break
+  %endswitch
+
+  /* %<Type> Block: %<Name>
+   */
+  %<count_port> = 0;
+  %<index_port> = 0;
+  %<value_port> = %<LibBlockInputSignal(0,"","",0)>;
+  %%
+  %assign RollVars = ["U"]
+  %roll sigIdx = RollRegions, lcv = RollThreshold, block, ...
+      "Roller", RollVars
+    %%
+    %assign input = LibBlockInputSignal(0,"",lcv,sigIdx)
+    %%
+    if (%<input> == %<value_port>)
+      %<count_port>++;
+    if (%<input> %<cmp> %<value_port>) {
+      %if FindType == 2 || FindType == 4
+        if (%<input> != %<value_port>)
+          %<count_port> = 1;
+      %else
+        %<count_port> = 1;
+      %endif
+      %<index_port> = %<lcv == "" ? sigIdx : "%<lcv>+%<sigIdx>">;
+      %<value_port> = %<input>;
+    }
+  %endroll
+  if (%<count_port> == %<LibBlockInputSignalWidth(0)>)
+    %<count_port> = 0;
+%endfunction

@@ -1,0 +1,952 @@
+%implements "ec_slave3" "C"
+
+%%
+%% Hardware Driver for Beckhoff's EtherCAT Analog Input Terminal
+%% series EL31xx
+%% 
+%% This TLC Implements the necessary IO Functions to communicate
+%% with the EtherCAT Driver enabling the usage of a analog input
+%% terminal.
+%%
+%% Copyright (C) 2012
+%% Richard Hacker
+%% IgH Essen GmbH
+%% 
+%% License: GPL
+
+%include "EtherCAT.tlc"
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function BlockTypeSetup( block, system ) void
+%% This function checks whether the EtherCAT system has been called once
+%% before already, which is demonstrated by the existance of variable 
+%% ::EtherCAT. If not, include C-header file for EtherCAT, 
+%% and declare a variable where the slave's data structure is placed 
+%% by EtherCAT when registering the slaves during mdlStart()
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %<InitEtherCAT()>
+
+  %% General assignments of array indices that form the basis for
+  %% the S-Function <-> TLC communication
+  %% DO NOT CHANGE THESE without updating the S-Function ec_test3.c
+  %% as well
+
+  %assign ::PS_PdoEntryIndex            = 0
+  %assign ::PS_PdoEntrySubIndex         = 1
+  %assign ::PS_ElementIndex             = 2
+
+  %assign ::PdoEI_Index                 = 0
+  %assign ::PdoEI_SubIndex              = 1
+  %assign ::PdoEI_BitLen                = 2
+
+  %assign ::PdoInfo_PdoIndex            = 0
+  %assign ::PdoInfo_PdoEntryCount       = 1
+
+  %assign ::SM_Index                    = 0
+  %assign ::SM_Direction                = 1
+  %assign ::SM_PdoCount                 = 2
+
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function BlockInstanceSetup( block, system ) void
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %addtorecord block EtherCATTid InitEtherCATTask(block,system)
+
+  %addtorecord block EtherCATSlaveId GetEtherCATId()
+
+  %addtorecord block BlockSampleTime LibBlockSampleTime(block)
+
+  %addtorecord block ConstantIdent WriteConstants(block)
+
+%endfunction
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function Start(block, system) Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %% Cache the C variable name that is assigned to this block defining
+  %% the PDO Map
+  %assign SdoConfiguration = GetSdoConfig()
+  %assign SoeConfiguration = GetSoeConfig()
+  %assign PdoMap = GetPdoMap(block)
+  %assign slave_config = "ec_slave_%<EtherCATSlaveId>"
+
+  %openfile buf
+
+  /* %<Type> Block: %<Name> 
+   * Registering EtherCAT block %<ProductName> with Driver
+   */
+  static struct ec_slave %<slave_config> = {
+      NULL,             /* Linked list */
+      %<EtherCATTid>, /* TID */ \
+      %<MasterId>, %<DomainId>, %<SlaveAlias>, %<SlavePosition>, \
+      /* MasterId, DomainId, SlaveAlias, SlavePosition */
+      %<VendorId>, %<SPRINTF("0x%08X", ProductCode)>, \
+      /* VendorId, ProductCode */
+      %<SdoConfiguration.count>, %<SdoConfiguration.id>, \
+      /* SdoConfigCount, SdoVar */
+      %<SoeConfiguration.count>, %<SoeConfiguration.id>, \
+      /* SoeConfigCount, SoeVar */
+      %<GetSyncManagerConfigId(block)>, \
+      /* SyncManager Configuration */
+      %<GetDcOpModeConfigId(block)>, \
+      /* Distributed Clock Configuration */
+      %<PdoMap.InputCount>, %<PdoMap.OutputCount>, %<PdoMap.id> \
+      /* RxPdo and TxPdo Pdo count and Configuration */
+  };
+  %closefile buf
+  %<LibSetSourceFileSection(CompiledModel.EtherCAT.model_c, \
+        "Definitions", buf)>
+
+  /* %<Type> Block: %<Name> 
+   * Registering EtherCAT block %<ProductName> with Driver
+   */
+  *slave_list = &%<slave_config>;
+  slave_list = &%<slave_config>.next;
+%endfunction
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function Outputs( block, system ) Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%
+  %if !LibBlockNumOutputPorts(block)
+    %return
+  %endif
+
+  /* %<Type> Block: %<Name> */
+  %%
+  %foreach idx = LibBlockNumOutputPorts(block)
+    %%
+    %assign port = SFcnParamSettings[OutputPortIdx[idx]]
+    %%
+    %if !port.DWorkIndex
+      /* Output Port %<idx+1> written directly by slave */
+      %continue
+    %endif
+    %%
+    /* Output Port %<idx+1> */
+    %assign PortWidth = LibBlockOutputSignalWidth(idx)
+    %assign rollRegions = [0:%<PortWidth-1>]
+    %%
+    %if port.Param[2] == -1
+      %% No filter
+      %%
+      %assign RollVars = ["y%<idx>", "<dwork>/DWORK%<port.DWorkIndex>"]
+      %%
+      %assign   gain = port.Param[0] != -1
+      %assign offset = port.Param[1] != -1
+      %%
+      %createrecord empty {}
+      %assign   gainParam =   gain ? SFcnParamSettings[port.Param[0]] : empty
+      %assign offsetParam = offset ? SFcnParamSettings[port.Param[1]] : empty
+      %%
+      %assign   gainTuneable =   gain &&   gainParam.Name != ""
+      %assign offsetTuneable = offset && offsetParam.Name != ""
+      %%
+      %% Add gain parameter name to RollVars if it is tuneable
+      %if gainTuneable
+        %assign RollVars = RollVars + "<param>/%<gainParam.Name>"
+      %endif
+      %%
+      %% Add offset parameter name to RollVars if it is tuneable
+      %if offsetTuneable
+        %assign RollVars = RollVars + "<param>/%<offsetParam.Name>"
+      %endif
+      %%
+      %trace RollVars=%<RollVars>
+      { real_T value;
+
+      %roll sigIdx = rollRegions, lcv = RollThreshold, block, ...
+                "Roller", RollVars
+
+        value = %<LibBlockDWork(DWork[port.DWorkIndex-1],"",lcv,sigIdx)>;
+        %if port.FullScale && port.FullScale != 1.0
+          value /= %<port.FullScale>;
+        %endif
+        %%
+        %if gainTuneable
+          %assign m = LibBlockParameter(%<gainParam.Name>,"",lcv,sigIdx)
+        %elseif gain
+          %assign m = GetBlockConstParam(lcv,sigIdx,gainParam)
+        %endif
+        %if gain
+          value *= %<m>;
+        %endif
+        %%
+        %if offsetTuneable
+          %assign c = LibBlockParameter(%<offsetParam.Name>,"",lcv,sigIdx)
+        %elseif offset
+          %assign c = GetBlockConstParam(lcv,sigIdx,offsetParam)
+        %endif
+        %if offset
+          value += %<c>;
+        %endif
+        %%
+        %<LibBlockOutputSignal(idx,"",lcv,sigIdx)> = value;
+        %%
+      %endroll
+      }
+      %%
+    %else
+      %%
+      %assign param = SFcnParamSettings[port.Param[2]]
+      %assign RollVars = BlockSampleTime ? ["Xd"] : ["Xc"]
+      %%
+      %roll sigIdx = rollRegions, lcv = RollThreshold, block, ...
+                "Roller", RollVars
+        %%
+        %assign FilterIdx = sigIdx + param.FilterIndex
+        %assign FilterLcv = ...
+              (lcv != "" && FilterIdx) ? "%<lcv>+%<FilterIdx>" : lcv
+        %assign state = BlockSampleTime ...
+                  ?  LibBlockDiscreteState("",FilterLcv,FilterIdx) ...
+                  :  LibBlockContinuousState("",FilterLcv,FilterIdx)
+        %%
+        %<LibBlockOutputSignal(idx,"",lcv,sigIdx)> = %<state>;
+        %%
+      %endroll
+    %endif
+  %endforeach
+  %return
+  %%
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function Update(block, system) Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%
+  %% %if EXISTS("DataInputPort[%<icPortIdx>].RollRegions")               
+  %%   %if LibGetRecordWidth(DataInputPort[idx]) == LibBlockOutputSignalWidth(0)
+  %%     %assign rollRegions = DataInputPort[icPortIdx].RollRegions      
+  %%   %else
+  %%     %assign rollRegions = [0:%<PortWidth-1>]     
+  %%   %endif                                                            
+  %% %else                                                               
+  %%   %assign rollRegions = RollRegions                                 
+  %% %endif                                                              
+  %%
+  %%
+  %assign NumInputs = LibBlockNumInputPorts(block)
+  %if BlockSampleTime && FilterCount || NumInputs
+    /* %<Type> Block: %<Name> 
+     */
+  %endif
+  %%
+  %if BlockSampleTime && FilterCount
+    %foreach idx = LibBlockNumOutputPorts(block)
+      %<WriteFilter(block,idx)>
+    %endforeach
+  %endif
+  %%
+  %if !NumInputs
+    %return
+  %endif
+  %%
+  %foreach idx = NumInputs
+    %%
+    %assign port = SFcnParamSettings[InputPortIdx[idx]]
+    %%
+    %if !LibBlockInputSignalConnected(idx)
+      /* Input port %<idx+1> is not connected */
+      %continue
+    %endif
+    %%
+    %if !port.DWorkIndex
+      /* Input Port %<idx+1> written directly by slave */
+      %continue
+    %endif
+    %%
+    /* Input port %<idx+1> */
+    %%
+    %assign PortWidth = LibBlockInputSignalWidth(idx)
+    %%
+    %if PortWidth == 1
+      %assign rollRegions = [0:0]
+    %elseif ISFIELD(DataInputPort[idx],"RollRegions")               
+      %assign rollRegions = DataInputPort[idx].RollRegions      
+    %elseif RollRegions != []
+      %assign rollRegions = RollRegions                                 
+    %else
+      %assign rollRegions = [0:%<PortWidth-1>]                                 
+    %endif                                                              
+    %%
+    %assign RollVars = ["u%<idx>", "<dwork>/DWORK%<port.DWorkIndex>"]
+    %%
+    %assign   gain = port.Param[0] != -1
+    %assign offset = port.Param[1] != -1
+    %%
+    %createrecord empty {}
+    %assign   gainParam =   gain ? SFcnParamSettings[port.Param[0]] : empty
+    %assign offsetParam = offset ? SFcnParamSettings[port.Param[1]] : empty
+    %%
+    %assign   gainTuneable =   gain &&   gainParam.Name != ""
+    %assign offsetTuneable = offset && offsetParam.Name != ""
+    %%
+    %% Add gain parameter name to RollVars if it is tuneable
+    %if gainTuneable
+      %assign RollVars = RollVars + "<param>/%<gainParam.Name>"
+    %endif
+    %%
+    %% Add offset parameter name to RollVars if it is tuneable
+    %if offsetTuneable
+      %assign RollVars = RollVars + "<param>/%<offsetParam.Name>"
+    %endif
+    %%
+    %trace RollVars=%<RollVars> regiouns=%<rollRegions> port=%<port>
+    %%
+    %assign dwork = DWork[port.DWorkIndex-1]
+    %assign dTypeId = LibBlockDWorkDataTypeId(dwork)
+    %%
+    %if dTypeId == tSS_BOOLEAN
+      %roll sigIdx = rollRegions, lcv = RollThreshold, block, ...
+              "Roller", RollVars
+
+        %<LibBlockDWork(dwork,"",lcv,sigIdx)> = \
+            %<LibBlockInputSignal(idx,"",lcv,sigIdx)> != 0;
+      %endroll
+    %else
+      %%
+      %assign hasMinMax = HasMinMax(port.PdoDataTypeId)
+      %if hasMinMax
+        %assign max = GetMaxValue(port.PdoDataTypeId)
+        %assign min = GetMinValue(port.PdoDataTypeId)
+      %endif
+      %%
+      { real_T value;
+      %%
+      %roll sigIdx = rollRegions, lcv = RollThreshold, block, ...
+              "Roller", RollVars
+
+        value = %<LibBlockInputSignal(idx,"",lcv,sigIdx)>;
+        %%
+        %if gainTuneable
+          %assign m = LibBlockParameter(%<gainParam.Name>,"",lcv,sigIdx)
+        %elseif gain
+          %assign m = GetBlockConstParam(lcv,sigIdx,gainParam)
+        %endif
+        %if gain
+          value *= %<m>;
+        %endif
+        %%
+        %if offsetTuneable
+          %assign c = LibBlockParameter(%<offsetParam.Name>,"",lcv,sigIdx)
+        %elseif offset
+          %assign c = GetBlockConstParam(lcv,sigIdx,offsetParam)
+        %endif
+        %if offset
+          value += %<c>;
+        %endif
+        %%
+        %if port.FullScale && port.FullScale != 1.0
+          value *= %<port.FullScale>;
+        %endif
+        %%
+        %if hasMinMax
+            %<LibBlockDWork(dwork,"",lcv,sigIdx)> = value > %<max>
+                    ? %<max>
+                    : (value < %<min> ? %<min> : value);
+        %else
+            %<LibBlockDWork(dwork,"",lcv,sigIdx)> = value;
+        %endif
+      %endroll
+      }
+    %endif
+  %endforeach
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function Derivatives(block, system) Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %if FilterCount
+    /* %<Type> Block: %<Name> 
+     * Continuous low pass filter
+     */
+    %foreach idx = LibBlockNumOutputPorts(block)
+      %<WriteFilter(block,idx)>
+    %endforeach
+  %endif
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function WriteFilter(block,idx) Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%
+  %assign port = SFcnParamSettings[OutputPortIdx[idx]]
+  %%
+  %if port.Param[2] == -1
+    %return
+  %endif
+  %assign filterParam = SFcnParamSettings[port.Param[2]]
+  %%
+  /* Filtered output port %<idx+1> */
+  %%
+  %assign PortWidth = LibBlockOutputSignalWidth(idx)
+  %assign rollRegions = [0:%<PortWidth-1>]
+  %%
+  %assign RollVars = ["<dwork>/DWORK%<port.DWorkIndex>"]
+  %%
+  %assign   gain = port.Param[0] != -1
+  %assign offset = port.Param[1] != -1
+  %%
+  %createrecord empty {}
+  %assign   gainParam =   gain ? SFcnParamSettings[port.Param[0]] : empty
+  %assign offsetParam = offset ? SFcnParamSettings[port.Param[1]] : empty
+  %%
+  %assign   gainTuneable =   gain &&   gainParam.Name != ""
+  %assign offsetTuneable = offset && offsetParam.Name != ""
+  %assign filterTuneable =           filterParam.Name != ""
+  %%
+  %% Add gain parameter name to RollVars if it is tuneable
+  %if gainTuneable
+    %assign RollVars = RollVars + "<param>/%<gainParam.Name>"
+  %endif
+  %%
+  %% Add offset parameter name to RollVars if it is tuneable
+  %if offsetTuneable
+    %assign RollVars = RollVars + "<param>/%<offsetParam.Name>"
+  %endif
+  %%
+  %% Add filter parameter name to RollVars if it is tuneable
+  %if filterTuneable
+    %assign RollVars = RollVars + "<param>/%<filterParam.Name>"
+  %endif
+  %%
+  %trace RollVars=%<RollVars>
+  %%
+  { real_T value;
+
+  %roll sigIdx = rollRegions, lcv = RollThreshold, block, ...
+            "Roller", RollVars
+
+    %assign dwork = DWork[port.DWorkIndex-1]
+    value = %<LibBlockDWork(dwork,"",lcv,sigIdx)>;
+    %%
+    %if port.FullScale && port.FullScale != 1.0
+      value /= %<port.FullScale>;
+    %endif
+    %%
+    %if gainTuneable
+      %assign m = LibBlockParameter(%<gainParam.Name>,"",lcv,sigIdx)
+    %elseif gain
+      %assign m = GetBlockConstParam(lcv,sigIdx,gainParam)
+    %endif
+    %if gain
+      value *= %<m>;
+    %endif
+    %%
+    %if offsetTuneable
+      %assign c = LibBlockParameter(%<offsetParam.Name>,"",lcv,sigIdx)
+    %elseif offset
+      %assign c = GetBlockConstParam(lcv,sigIdx,offsetParam)
+    %endif
+    %if offset
+      value += %<c>;
+    %endif
+    %%
+    %if filterTuneable
+      %assign k = LibBlockParameter(%<filterParam.Name>,"",lcv,sigIdx)
+    %else
+      %assign k = GetBlockConstParam(lcv,sigIdx,filterParam)
+    %endif
+    %%
+    %assign FilterIdx = sigIdx + filterParam.FilterIndex
+    %assign FilterLcv = (lcv != "" && FilterIdx) ? "%<lcv>+%<FilterIdx>" : lcv
+    %if BlockSampleTime
+      %assign d0 = LibBlockDiscreteState("",FilterLcv,FilterIdx)
+      %<d0> += (value - %<d0>) * %<BlockSampleTime> / %<k>;
+    %else
+      %assign y0 = LibBlockContinuousState("",FilterLcv,FilterIdx)
+      %assign d0 = LibBlockContinuousStateDerivative("",FilterLcv,FilterIdx)
+      %%
+      %% The following is equivalent to:
+      %%   <d0> = (%<u0>) + (1 - 1/%<k>) * %<d0> /  %<k>
+      %<d0>  = (value - %<y0>) / %<k>;
+    %endif
+  %endroll
+  }
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function HasMinMax(dtype)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %switch (dtype / 1000)
+    %case 1
+      %return 1
+      %break
+
+    %case 2
+      %return 1
+      %break
+
+    %case 3
+      %return 0
+      %break
+  %endswitch
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function GetMaxValue(dtype)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %assign bits = dtype % 1000
+
+  %switch (dtype / 1000)
+    %case 1
+      %return FEVAL("pow2", bits) - 1.0
+      %break
+
+    %case 2
+      %return FEVAL("pow2", bits-1) - 1.0
+      %break
+  %endswitch
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function GetMinValue(dtype)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %assign bits = dtype % 1000
+
+  %switch (dtype / 1000)
+    %case 1
+      %return 0.0
+      %break
+
+    %case 2
+      %return -FEVAL("pow2", bits-1)
+      %break
+  %endswitch
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function GetBlockConstParam(lcv,sigIdx,param)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %assign ConstIdx = sigIdx + param.ConstIndex
+
+  %if param.NumConst == 1
+    %return "%<ConstVector[param.ConstIndex]>"
+  %elseif lcv == ""
+    %return "%<ConstVector[ConstIdx]>"
+  %else
+    %if ConstIdx
+      %assign lcv = "%<lcv>+%<ConstIdx>"
+    %endif
+    %return "%<ConstantIdent>[%<lcv>]"
+  %endif
+
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function GetSoeConfig()
+%%
+%% This function expects an array SoeConfigIndex whose elements
+%% are the indices of the SoeConfig object in the EC Slave.
+%% If SoeConfigIndex does not exist or is empty, nothing happens.
+%% Otherwise, for every element of SoeConfigIndex, the function
+%% expects a vector SoeConfigData_<%idx> to exist, holding the
+%% configuration string.
+%%
+%% return value:
+%%    A record with the fiels:
+%%       - count:   The number of configuration items
+%%       - id:      The variable name of the structure
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %createrecord soe_config { count SIZE(SoeConfig,1) id "NULL" }
+  %if !soe_config.count
+    %return soe_config
+  %endif
+
+  %trace SoeConfigIndex Count %<soe_config.count>
+  %assign soe_config.id = "soe_config_%<EtherCATSlaveId>"
+
+  %openfile buf
+
+  /* SoE Configuration for Block: %<Name> */
+  static struct soe_config %<soe_config.id>[] = {
+    %foreach i = soe_config.count
+      %assign soe = SFcnParamSettings[SoeConfig[i]]
+      %%
+      %assign s = ""
+      %foreach j = SIZE(soe.OctetString,1)
+        %assign s = SPRINTF("%s\\x%02x", s, soe.OctetString[j])
+      %endforeach
+      { %<soe.Index>, "%<s>", %<SIZE(soe.OctetString, 1)> }, /* */\
+    %endforeach
+  };
+  %closefile buf
+  %<LibSetSourceFileSection(CompiledModel.EtherCAT.model_c, \
+        "Definitions", buf)>
+
+  %trace %<soe_config>
+  %return soe_config
+
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function GetSdoConfig()
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %createrecord sdo_config { count SIZE(SdoConfig,1) id "NULL" }
+  %if !sdo_config.count
+    %return sdo_config
+  %endif
+
+  %assign sdo_config.id = "sdo_config_%<EtherCATSlaveId>"
+
+  %openfile buf
+
+  /* SDO Configuration for Block: %<Name> */
+  static struct sdo_config %<sdo_config.id>[] = {
+    %foreach i = sdo_config.count
+      %%
+      %assign sdo = SFcnParamSettings[SdoConfig[i]]
+      %%
+      %if EXISTS(sdo.ByteArray)
+        %% This is a configuration byte array
+        %%
+        %assign data_array = ""
+        %assign count = SIZE(sdo.ByteArray,1)
+        %foreach j = count
+          %assign data_array = ...
+                SPRINTF("%s\\x%02x", data_array, sdo.ByteArray[j])
+        %endforeach
+        %%
+        { 1008U, %<SPRINTF("0x%04X", sdo.Index)>, -1, %<count>, 
+          "%<data_array>" }, /* */ \
+      %else
+        %% Normal SDO
+        %%
+        { %<sdo.DataTypeId>, %<SPRINTF("0x%04X", sdo.Index)>, \
+          %<sdo.SubIndex>, %<sdo.Value>, NULL }, /* */ \
+      %endif
+    %endforeach
+  };
+  %closefile buf
+  %<LibSetSourceFileSection(CompiledModel.EtherCAT.model_c, \
+        "Definitions", buf)>
+
+  %return sdo_config
+
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function GetPdoMap(block)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %assign PdoCount = [%<SIZE(InputPortIdx,1)>, %<SIZE(OutputPortIdx,1)>]
+
+  %createrecord pdo_map {...
+        InputCount 0 ...
+        OutputCount 0 ...
+        id "NULL"}
+
+  %if !PdoCount[0] && !PdoCount[1]
+    %return pdo_map
+  %endif
+
+  %assign pdo_map.id = "pdo_map_%<EtherCATSlaveId>"
+
+  %openfile buf
+
+  /* %<Type> Block: %<Name> 
+   * Mapped Pdos for block %<ProductName>
+   */
+  static struct pdo_map %<pdo_map.id>[] = {
+    %foreach i = PdoCount[0]
+      %assign port = SFcnParamSettings[InputPortIdx[i]]
+      %assign width = LibBlockInputSignalWidth(i)
+      %assign pdo_map.InputCount = pdo_map.InputCount + width
+      %foreach j = width
+        %%
+        %assign addr = port.DWorkIndex ...
+                ? LibBlockDWorkAddr(DWork[port.DWorkIndex-1], "", "", j) ...
+                : LibBlockInputSignalAddr(i, "", "", j)
+        %%
+        %<SPRINTF("{ 0x%04X, %u, %u, %i, %u, %s }, /* In%u[%u] */", ...
+                port.Pdo[PS_PdoEntryIndex][j], ...
+                port.Pdo[PS_PdoEntrySubIndex][j], ...
+                port.PdoDataTypeId, port.BigEndian, ...
+                port.Pdo[PS_ElementIndex][j], addr, i+1, j)> \
+      %endforeach
+    %endforeach
+    %foreach i = PdoCount[1]
+      %assign port = SFcnParamSettings[OutputPortIdx[i]]
+      %assign width = LibBlockOutputSignalWidth(i)
+      %assign pdo_map.OutputCount = pdo_map.OutputCount + width
+      %foreach j = width
+        %%
+        %assign addr = port.DWorkIndex ...
+                ? LibBlockDWorkAddr(DWork[port.DWorkIndex-1], "", "", j) ...
+                : LibBlockOutputSignalAddr(i, "", "", j)
+        %%
+        %<SPRINTF("{ 0x%04X, %u, %u, %i, %u, %s }, /* Out%u[%u] */", ...
+                port.Pdo[PS_PdoEntryIndex][j], ...
+                port.Pdo[PS_PdoEntrySubIndex][j], ...
+                port.PdoDataTypeId, port.BigEndian, ...
+                port.Pdo[PS_ElementIndex][j], addr, i+1, j)> \
+      %endforeach
+    %endforeach
+  };
+  %closefile buf
+  %<LibSetSourceFileSection(CompiledModel.EtherCAT.model_c, \
+        "Definitions", buf)>
+  %return pdo_map
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function GetDcOpModeConfigId(block)
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %if !EXISTS("DcOpMode")
+    %return "{0,}"
+  %endif
+  %assign DC = SFcnParamSettings[DcOpMode]
+
+  %assign SampleTime = block.BlockSampleTime ...
+        ? block.BlockSampleTime : LibGetClockTickStepSize(LibGetTID01EQ())
+  %assign SampleTime = CAST("Number", SampleTime * 1000000000.0)
+
+  %% CycleTime0    (ESC Reg 0x09A3:0x09A0)
+  %if DC.Time[0]
+    %assign CycleTime0 = DC.Time[0]
+  %else
+    %assign CycleTime0 = DC.Factor[0] >= 0 ? SampleTime *  DC.Factor[0] ...
+                                           : SampleTime / -DC.Factor[0]
+  %endif
+
+  %% CycleTime1    (ESC Reg 0x09A7:0x09A4)
+  %% See OpMode:CycleTimeSync1 in
+  %%     ETG.2001_V1i0i9_G_R_EtherCATSlaveInformationAnnotations.pdf
+  %if DC.Time[2]
+    %assign CycleTime1 = DC.Time[2]
+  %else
+    %assign CycleTime1 = DC.Factor[2] >= 0 ? CycleTime0 *  DC.Factor[2] ...
+                                           : SampleTime * -DC.Factor[2]
+  %endif
+  %assign CycleTime1 = CycleTime1 - CycleTime0 + DC.Time[3]
+
+  %% ShiftTime     (For start time ESC Reg 0x0993:0x0990)
+  %assign ShiftTime = DC.Time[1] + (DC.Factor[1] >= 0 ...
+                                    ? CycleTime0 *  DC.Factor[1] ...
+                                    : CycleTime0 / -DC.Factor[1])
+
+  %openfile buf
+  { %<SPRINTF("0x%04X", DC.AssignActivate)>, \
+    %<DC.ShiftTimeSync0Input>, %<CycleTime0>, %<CycleTime1>, %<ShiftTime> } \
+  %closefile buf
+
+  %return buf
+
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function GetSyncManagerConfigId(block)
+%% 
+%% This function is used to define variables that are required to specify
+%% the pdo mapping of an EtherCAT slave. The string that is returned
+%% is the variable name that should be used when calling 
+%% ecrt_slave_config_pdos()
+%% This function depends on the following global Parameters:
+%%   ProductName     string  Common name of the slave
+%%   VendorId        int     Vendor Identification number
+%%   ProductCode     int     Product Code of the slave
+%%   ConfigLayout    int     Layout of slave memory - SDO, PDO, etc
+%%   PdoInfo        This is a vector of integers organised in groups of 4:
+%%                   entry0:    1 = Input; 0 = Output
+%%                   entry1:    Index of PDO to map
+%%                   entry2:    Group index of PdoEntryInfo
+%%                   entry3:    Number of PdoEntryInfo groups
+%%   PdoEntryInfo  This is a vector of integers organised in groups of 3:
+%%                   entry0:    Index of the PDO
+%%                   entry1:    Subindex of the PDO
+%%                   entry2:    PDO bit length
+%%
+%% A typical value for PdoEntryInfo is:
+%%      [[ 0x3101, 1,  8 ],   <- Group 0
+%%       [ 0x3101, 2, 16 ],   <- Group 1
+%%       [ 0x3102, 1,  8 ],   <- Group 2
+%%       [ 0x3102, 2, 16 ]]   <- Group 3
+%% describing the PDO entry information for the el31xx series. Here
+%% are 4 groups of 3 values.
+%%
+%% A typical value for PdoInfo is:
+%%     [[ 1,       <- Input
+%%        0x1A00,  <- Pdo Index to map
+%%        0,       <- starting with group[0] of PdoEntryInfo
+%%        2     ], <- going on for 2 groups (i.e. group[0] and group[1])
+%%
+%%      [ 1, 0x1A01 2, 2 ]] <- Second group entry of PdoInfo, mapping 0x1A01
+%%                             to group[2] and group[3] of PdoEntryInfo
+%%                             (indices [6..11])
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %if !EXISTS(SyncManager)
+    %return "NULL"
+  %endif
+
+  %assign key = SPRINTF("%x_%08x", VendorId, ProductCode)
+  %assign vendor   = "Vendor_%<VendorId>"
+  %assign product  = SPRINTF("Product_%08x", ProductCode)
+
+  %if !EXISTS(PdoEntryInfo)
+    %assign PdoEntryInfo = []
+  %endif
+  %if !EXISTS(PdoInfo)
+    %assign PdoInfo = []
+  %endif
+
+  %with CompiledModel.EtherCAT
+    %if !ISFIELD(PDO_Map,vendor)
+      %addtorecord PDO_Map %<vendor> {}
+    %endif
+    %assign vendor = PDO_Map.%<vendor>
+
+    %if !ISFIELD(vendor,product)
+      %addtorecord vendor %<product> {MapCount 0}
+    %endif
+    %assign product = vendor.%<product>
+
+    %assign Id = product.MapCount
+    %foreach i = Id
+      %if product.Map[i].PdoEntryInfo == PdoEntryInfo \
+          && product.Map[i].PdoInfo == PdoInfo \
+          && product.Map[i].SyncManager == SyncManager
+        %return "sync_manager_%<key>_%<i>" 
+      %endif
+    %endforeach
+
+    %assign product.MapCount = product.MapCount + 1
+    %addtorecord product Map { \
+                PdoEntryInfo PdoEntryInfo; \
+                PdoInfo PdoInfo; \
+                SyncManager SyncManager\
+                }
+  %endwith
+
+  %assign suffix = "%<key>_%<Id>"
+  %assign varName = "sync_manager_%<suffix>"
+
+  %if ISEMPTY(PdoEntryInfo)
+    %assign PdoEntryInfoId = ""
+  %else
+    %assign PdoEntryInfoId = "pdo_entry_info_%<suffix>"
+
+    %openfile buf
+
+    /* PDO configuration for %<ProductName>
+     */
+    static ec_pdo_entry_info_t %<PdoEntryInfoId>[] = {
+      %%
+      %foreach idx = SIZE(PdoEntryInfo,1)
+        %<SPRINTF("{ 0x%04X, %u, %u }, /* %u */", ...
+                PdoEntryInfo[PdoEI_Index][idx], ...
+                PdoEntryInfo[PdoEI_SubIndex][idx], ...
+                PdoEntryInfo[PdoEI_BitLen][idx], ...
+                idx )> \
+      %endforeach
+    };
+    %closefile buf
+    %<LibSetSourceFileSection(CompiledModel.EtherCAT.model_c, \
+          "Definitions", buf)>
+  %endif
+
+  %if ISEMPTY(PdoInfo)
+    %assign PdoInfoId = ""
+  %else
+    %assign PdoInfoId = "pdo_info_%<suffix>"
+    
+    %openfile buf
+    static ec_pdo_info_t %<PdoInfoId>[] = {
+      %assign PdoEntryInfoIdx = 0
+      %foreach i = SIZE(PdoInfo,1)
+        %% The value 0 or 1 indicates a simulink block output or input
+        %% respectively. This in turn maps to EC_DIR_INPUT and EC_DIR_OUTPUT
+        %% as far as the EtherCAT master is concerned.
+        %% i.e. 0 -> block output -> EC_DIR_INPUT  -> Slave TxPDO
+        %%      1 -> block input  -> EC_DIR_OUTPUT -> Slave RxPDO
+        %%                                                       
+        %%              Simulink Block                         
+        %%              +-------------------------------+
+        %%              |         EtherCAT Master       |       
+        %%              |                               |       
+        %%              |          +---------+          |       
+        %% PdoInfo[0][] |   EC_DIR |Slave    | EC_DIR   | PdoInfo[0][]
+        %%          = 1 |   OUTPUT |         | INPUT    | = 0      
+        %%         ----->----------> Rx   Tx >---------->-----  
+        %%              |          |   PDO   |          |      
+        %%              |          |         |          |      
+        %%              |          +---------+          |      
+        %%              | output domain                 |      
+        %%              |                  input domain |      
+        %%              +-------------------------------+      
+        %%
+        %<SPRINTF("{ 0x%04X, %u, %s }, /* */", ...
+                PdoInfo[PdoInfo_PdoIndex][i], ...
+                PdoInfo[PdoInfo_PdoEntryCount][i], ...
+                PdoEntryInfoId == "" ...
+                        ? "NULL" ...
+                        : "&%<PdoEntryInfoId>[%<PdoEntryInfoIdx>]")> \
+        %if PdoEntryInfoId != ""
+          %assign PdoEntryInfoIdx = PdoEntryInfoIdx + PdoInfo[1][i]
+        %endif
+      %endforeach
+    };
+    %closefile buf
+    %<LibSetSourceFileSection(CompiledModel.EtherCAT.model_c, \
+          "Definitions", buf)>
+  %endif
+
+  %assign PdoInfoIdx = 0
+
+  %openfile buf
+  static ec_sync_info_t %<varName>[] = {
+  %foreach i = SIZE(SyncManager,1)
+    { %<SyncManager[SM_Index][i]>, \
+      %<SyncManager[SM_Direction][i] == 1 ...
+              ? "EC_DIR_INPUT" : "EC_DIR_OUTPUT">, \
+      %if PdoInfoId == ""
+        0, NULL \
+      %else
+        %<SyncManager[SM_PdoCount][i]>, &%<PdoInfoId>[%<PdoInfoIdx>] \
+        %assign PdoInfoIdx = PdoInfoIdx + SyncManager[SM_PdoCount][i]
+      %endif
+    }, /* */ \
+  %endforeach
+    { (uint8_T)EC_END, },
+  };
+  %closefile buf
+  %<LibSetSourceFileSection(CompiledModel.EtherCAT.model_c, \
+        "Definitions", buf)>
+
+  %return varName
+
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function WriteConstants(block)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %assign ConstantCount = SIZE(ConstVector,1)
+
+  %if !ConstantCount
+    %return "NULL"
+  %endif
+
+  %assign ident = "constant_slave_%<EtherCATSlaveId>"
+
+  %openfile buf
+    /* Constant values for %<Type> Block: %<Name>  */
+    %<LibGenConstVectWithInit(ConstVector,tSS_DOUBLE,ident)>
+  %closefile buf
+  %<LibSetSourceFileSection(CompiledModel.EtherCAT.model_c, \
+        "Definitions", buf)>
+
+  %return ident
+%endfunction

@@ -1,0 +1,170 @@
+//---------------------------------------------------------------------------
+//
+// DLS protocol definition
+//
+// vim: syntax=proto tw=78
+//
+//---------------------------------------------------------------------------
+
+package DlsProto;
+
+//---------------------------------------------------------------------------
+
+message Hello {
+    required string version = 1;
+    required string revision = 2;
+    required int32 protocol_version = 3;
+
+    // Protocol version history
+    //
+    // 1 - Initial version
+    // 2 - Added message_request to JobRequest
+    //     Prior versions will not respond to JobRequests with only
+    //     message_request set.
+}
+
+//---------------------------------------------------------------------------
+
+message Request {
+    optional DirInfoRequest dir_info = 1;
+    optional JobRequest job_request = 2;
+}
+
+message DirInfoRequest {
+    optional string path = 1;
+}
+
+message JobRequest {
+    required uint32 id = 1;
+    optional bool fetch_channels = 2;
+    optional ChannelRequest channel_request = 3;
+    optional MessageRequest message_request = 4;
+}
+
+message ChannelRequest {
+    required uint32 id = 1;
+    optional bool fetch_chunks = 2;
+    optional DataRequest data_request = 3;
+}
+
+message DataRequest {
+    required uint64 start = 1;
+    required uint64 end = 2;
+    optional uint32 min_values = 3;
+    optional uint32 decimation = 4;
+}
+
+message MessageRequest {
+    required uint64 start = 1;
+    required uint64 end = 2;
+    optional string language = 3;
+    optional string filter = 4;
+}
+
+//---------------------------------------------------------------------------
+
+message Response {
+    optional Error error = 1;
+    optional DirInfo dir_info = 2;
+    optional Data data = 3;
+    optional bool end_of_response = 4;
+    optional uint64 response_time = 5;
+}
+
+message DirInfo {
+    //optional string path = 1;
+    repeated JobInfo job = 2;
+}
+
+message JobInfo {
+    optional JobPresetInfo preset = 1;
+    repeated ChannelInfo channel = 2;
+    repeated Message message = 3;
+}
+
+message JobPresetInfo {
+    required uint32 id = 1;
+    optional string description = 2;
+    optional bool running = 3;
+    optional uint64 quota_time = 4;
+    optional uint64 quota_size = 5;
+    optional string source = 6;
+    optional uint32 port = 7; // no uint16 available
+    optional string trigger = 8;
+    // FIXME channel presets
+}
+
+message ChannelInfo {
+    required uint32 id = 1;
+    optional string name = 2;
+    optional string unit = 3;
+    optional ChannelType type = 4;
+    optional bool recording = 5;
+    repeated ChunkInfo chunk = 6;
+    repeated uint64 removed_chunks = 7;
+}
+
+message ChunkInfo {
+    required uint64 start = 4;
+    required uint64 end = 5;
+    optional bool incomplete = 6;
+}
+
+message Error {
+    optional string message = 1;
+}
+
+message Data {
+    required uint64 start_time = 1;
+    required uint64 time_per_value = 2;
+    required MetaType meta_type = 3;
+    optional uint32 meta_level = 4;
+    repeated double value = 5;
+}
+
+message Message {
+    required uint64 time = 1;
+    required MessageType type = 2;
+    required string text = 3;
+}
+
+//---------------------------------------------------------------------------
+
+enum ChannelType
+{
+    TUNKNOWN = 0;
+    TCHAR = 1;
+    TUCHAR = 2;
+    TSHORT = 3;
+    TUSHORT = 4;
+    TINT = 5;
+    TUINT = 6;
+    TLINT = 7;
+    TULINT = 8;
+    TFLT = 9;
+    TDBL = 10;
+}
+
+//---------------------------------------------------------------------------
+
+enum MetaType
+{
+    MetaGen = 0;
+    MetaMean = 1; // deprecated
+    MetaMin = 2;
+    MetaMax = 4;
+}
+
+//---------------------------------------------------------------------------
+
+enum MessageType
+{
+    MsgUnknown = -1;
+    MsgInfo = 0;
+    MsgWarning = 1;
+    MsgError = 2;
+    MsgCritical = 3;
+    MsgBroadcast = 4;
+}
+
+//---------------------------------------------------------------------------

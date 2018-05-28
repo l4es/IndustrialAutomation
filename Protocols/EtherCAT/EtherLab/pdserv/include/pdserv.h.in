@@ -1,0 +1,489 @@
+/*****************************************************************************
+ *
+ *  $Id: pdserv.h,v fa0afd9f0a9e 2015/12/21 10:02:02 lerichi $
+ *
+ *  Copyright 2010 - 2016  Richard Hacker (lerichi at gmx dot net)
+ *
+ *  This file is part of the pdserv library.
+ *
+ *  The pdserv library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published
+ *  by the Free Software Foundation, either version 3 of the License, or (at
+ *  your option) any later version.
+ *
+ *  The pdserv library is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ *  or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+ *  License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public License
+ *  along with the pdserv library. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *  vim:tw=78
+ *
+ *****************************************************************************/
+
+/** @file */
+
+#ifndef PDSERV_H
+#define PDSERV_H
+
+#include <stddef.h>
+#include <time.h>
+
+/** \def PDSERV_VERSION
+ * \brief Generate version code from major, minor and patchlevel
+ *
+ * \def PDSERV_VERSION_CODE
+ * \brief Current library version code */
+#define PDSERV_VERSION(major,minor,patchlevel) \
+    (((major) << 16) + ((minor) << 8) + (patchlevel))
+#define PDSERV_VERSION_CODE \
+    PDSERV_VERSION(@MAJOR_VERSION@,@MINOR_VERSION@,@PATCH_LEVEL@)
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/* Data type definitions. */
+/**
+ * \def pd_double_T
+ * \brief double precision floating point data type
+ *
+ * \def pd_single_T
+ * \brief single precision floating point data type
+ *
+ * \def pd_uint8_T
+ * \brief 8 bit unsigned integer data type
+ *
+ * \def pd_uint16_T
+ * \brief 16 bit unsigned integer data type
+ *
+ * \def pd_uint32_T
+ * \brief 32 bit unsigned integer data type
+ *
+ * \def pd_uint64_T
+ * \brief 64 bit unsigned integer data type
+ *
+ * \def pd_sint8_T
+ * \brief 8 bit signed integer data type
+ *
+ * \def pd_sint16_T
+ * \brief 16 bit signed integer data type
+ *
+ * \def pd_sint32_T
+ * \brief 32 bit signed integer data type
+ *
+ * \def pd_sint64_T
+ * \brief 64 bit signed integer data type
+ *
+ * \def pd_boolean_T
+ * \brief boolean data type
+ *
+ * \def pd_datatype_end
+ * \brief
+ */
+/* Let the enumeration start at 1 so that an unset data type could be 
+ * detected.*/
+#define pd_double_T     1
+#define pd_single_T     2
+#define pd_uint8_T      3
+#define pd_sint8_T      4
+#define pd_uint16_T     5
+#define pd_sint16_T     6
+#define pd_uint32_T     7
+#define pd_sint32_T     8
+#define pd_uint64_T     9
+#define pd_sint64_T     10
+#define pd_boolean_T    11
+/** \cond Doxygen must ignore pd_datatype_end */
+#define pd_datatype_end 12
+/** \endcond */
+
+/* Structure declarations.
+ */
+struct pdserv;          /**< Generic handle to global library instance */
+struct pdtask;          /**< Generic handle to a task */
+struct pdvariable;      /**< Generic handle to a variable */
+struct pdevent;         /**< Generic handle to an event */
+
+/** Callback function type to get current world time */
+typedef int (*gettime_t)(struct timespec*);
+
+/** Initialise pdserv library.
+ *
+ * This is the first call to initialize an instance of the library. It must be
+ * called before any other library calls.
+ *
+ * \return
+ *      - handle to an opaque instance of pdserv
+ *      - NULL on error
+ */
+struct pdserv* pdserv_create(
+        const char *name,       /**< Name of the process */
+        const char *version,    /**< Version string */
+        gettime_t gettime_cb    /**< Function used by the library
+                                 * when the system time is required.
+                                 * Essentially, this function should call
+                                 * clock_gettime().
+                                 * If NULL, gettimeofday() is used. */
+        );
+
+/** Set the path to a configuration file
+ *
+ * This file will loaded during pdserv_prepare() in
+ * non-real-time context.
+ *
+ * Failure to load will be reported in syslog.
+ *
+ * If a configuration file is not specified, it will attempt to load
+ *    - PDSERV_CONFIG environment variable
+ *    - @CMAKE_INSTALL_FULL_SYSCONFDIR@/pdserv.conf
+ */
+void pdserv_config_file(
+        struct pdserv* pdserv,  /**< Handle to pdserv */
+        const char *file        /**< Path to configuration file */
+        );
+
+/** Create a cyclic task
+ *
+ * An application consists of one or more tasks that are called cyclically by
+ * caller. Tasks are used to organize signals.
+ *
+ * \return
+ *      - handle to an opaque task instance
+ *      - NULL on error
+ */
+struct pdtask* pdserv_create_task(
+        struct pdserv* pdserv,  /**< Handle to pdserv */
+        double tsample,         /**< Base sample time of task */
+        const char *name        /**< Optional name; can be NULL */
+        );
+
+/** Create compound data type
+ *
+ * Use this to create an application specific data type.
+ * Use pdserv_compound_add_field() to insert fields
+ *
+ * \return
+ *      compound data type identifier
+ */
+int pdserv_create_compound(
+        const char *name,       /**< Data type name */
+        size_t size             /**< Size of compound */
+        );
+
+/** Add a field to a compound data type
+ */
+void pdserv_compound_add_field(
+        int compound,           /**< Compound data type identifier */
+        const char *name,       /**< Data type name */
+        int data_type,          /**< Field data type identifier:
+                                 * - #pd_double_T
+                                 * - #pd_single_T
+                                 * - #pd_uint8_T
+                                 * - #pd_uint16_T
+                                 * - #pd_uint32_T
+                                 * - #pd_uint64_T
+                                 * - #pd_sint8_T
+                                 * - #pd_sint16_T
+                                 * - #pd_sint32_T
+                                 * - #pd_sint64_T
+                                 * - #pd_boolean_T
+                                 * - compound identifier */
+        size_t offset,          /**< Offset of field; use offsetof() */
+        size_t ndim,            /**< Number of dimensions in \p dim */
+        const size_t *dim       /**< Dimensions */
+        );
+
+/** Callback on a signal value poll
+ *
+ * This function is responsible for copying the data from \p src to \p dst.
+ *
+ * Since a signal poll is asynchronous to the real time task calculating the
+ * signal, it is prudent to serialize access to the signal by using semaphores
+ * to guarantee consistency. Essentially the function should execute the
+ * following:
+ *      \code{.c}
+ *      lock(task);
+ *      memcpy(dst, src, len);
+ *      unlock(task);
+ *      \endcode
+ *
+ * @param signal Handle to signal
+ * @param dst Destination to copy to 
+ * @param src Source to copy from
+ * @param len Bytes to copy
+ * @param time Current time
+ * @param priv_data Private data pointer passed to pdserv_signal()
+ *
+ * \returns 0 on success
+ */
+typedef int (*read_signal_t)(
+        const struct pdvariable *signal,
+        void *dst,
+        const void *src,
+        size_t len,
+        struct timespec* time,
+        void *priv_data
+        );
+
+/** Register a signal
+ *
+ * This call registers a signal, i.e. Variables that are calculated during
+ * a task's execution.
+ *
+ * Arguments \p n and \p dim are used to specify the shape:
+ *  - For scalars:
+ *    * \p n = 1
+ *    * \p dim = NULL
+ *
+ *  - For vectors length x
+ *    * \p n = x
+ *    * \p dim = NULL
+ *
+ *  - For arrays:
+ *    \code{.c}
+ *    int ary[2][3][4]
+ *    \endcode
+ *
+ *    * \p n = 3;
+ *    * \p dim = {2,3,4}
+ *
+ * Argument \p decimation specifies calculation decimation of the signal within
+ * the task if it is not calculated every time.
+ */
+struct pdvariable *pdserv_signal(
+        struct pdtask* pdtask,    /**< Handle to pdtask */
+        unsigned int decimation,  /**< Decimation with which the signal is
+                                   * calculated */
+        const char *path,       /**< Signal path */
+        int datatype,           /**< Signal data type identifier:
+                                 * - #pd_double_T
+                                 * - #pd_single_T
+                                 * - #pd_uint8_T
+                                 * - #pd_uint16_T
+                                 * - #pd_uint32_T
+                                 * - #pd_uint64_T
+                                 * - #pd_sint8_T
+                                 * - #pd_sint16_T
+                                 * - #pd_sint32_T
+                                 * - #pd_sint64_T
+                                 * - #pd_boolean_T
+                                 * - compound identifier */
+        const void *addr,       /**< Signal address */
+        size_t n,               /**< Element count.
+                                 * If \p dim != NULL, this is the number
+                                 * elements in \p dim */
+        const size_t *dim,      /**< Dimensions. If NULL, consider the
+                                 * parameter to be a vector of length \p n */
+        read_signal_t read_signal_cb, /**< read signal callback */
+        void* priv_data         /**< private data pointer for user
+                                 * passed when calling read_signal_cb() */
+        );
+
+/**
+ * \def EMERG_EVENT
+ * \brief Emergency event
+ *
+ * \def ALERT_EVENT
+ * \brief Alert event
+ *
+ * \def CRIT_EVENT
+ * \brief Critical event
+ *
+ * \def ERROR_EVENT
+ * \brief Error event
+ *
+ * \def WARN_EVENT
+ * \brief Warning event
+ *
+ * \def NOTICE_EVENT
+ * \brief Notice event
+ *
+ * \def INFO_EVENT
+ * \brief Information event
+ *
+ * \def DEBUG_EVENT
+ * \brief Debug event
+ */
+#define EMERG_EVENT     0
+#define ALERT_EVENT     1
+#define CRIT_EVENT      2
+#define ERROR_EVENT     3
+#define WARN_EVENT      4
+#define NOTICE_EVENT    5
+#define INFO_EVENT      6
+#define DEBUG_EVENT     7
+
+/** Register an event channel
+ *
+ * Event channels are used to implement a messaging system. A clear text
+ * message corresponding to the event element is printed when the event is set
+ * using pdserv_event_set().
+ *
+ */
+struct pdevent *pdserv_event(
+        struct pdserv* pdserv,  /**< Handle to pdserv */
+        const char *path,       /**< Event path */
+        int priority,           /**< One of:
+                                 *   * #EMERG_EVENT
+                                 *   * #ALERT_EVENT
+                                 *   * #CRIT_EVENT
+                                 *   * #ERROR_EVENT
+                                 *   * #WARN_EVENT
+                                 *   * #NOTICE_EVENT
+                                 *   * #INFO_EVENT
+                                 *   * #DEBUG_EVENT
+                                 */
+        size_t n                /**< Vector size */
+        );
+
+/** Set the state of a single event.
+ *
+ * This function is used to set or reset an event. Setting the event causes
+ * the corresponding message to be printed to log and all clients.
+ */
+void pdserv_event_set(
+        struct pdevent *event,
+        size_t element,         /**< Event element */
+        char state,             /**< boolean value */
+        const struct timespec *t /**< Current time */
+        );
+
+/** Callback on a parameter update event
+ *
+ * This function is responsible for copying the data from @src to @dst.
+ *
+ * The function allows the user to synchronize his application to
+ * the external events of setting a parameter.
+ *
+ * Essentially the function should execute the following:
+ * \code{.c}
+ *      lock();
+ *      memcpy(dst, src, len);
+ *      unlock();
+ * \endcode
+ *
+ * @param param Handle to parameter
+ * @param dst   Copy destination address
+ * @param src   Copy source address
+ * @param len   Bytes to copy
+ * @param time  Current time
+ * @param priv_data Private data pointer passed during pdserv_parameter()
+
+ * \returns 0 on success
+ */
+typedef int (*write_parameter_t)(
+        const struct pdvariable *param, /**< Handle to parameter */
+        void *dst,              /**< Destination address @addr */
+        const void *src,        /**< Data source */
+        size_t len,             /**< Data length in bytes */
+        struct timespec* time,  /**< Current time */
+        void *priv_data         /**< Optional user variable */
+        );
+
+/** Register a parameter
+ *
+ * This call registers a parameter. See pdserv_signal() for the description
+ * of similar function arguments.
+ *
+ * During the registration of a parameter, the caller can supply a callback
+ * function \p write_cb of type ::write_parameter_t that is called with data
+ * source and destination addresses when a parameter is changed. \b write_cb
+ * is responsible to copy the data, usually using memcpy(). Since a parameter
+ * change is asynchronous with respoct to the real time task, it is highly
+ * prudent to prevent access to the parameter by the real time task during
+ * copying by using semaphores.
+ *
+ * By default memcpy() will be used automatically for a null \p write_cb,
+ * but this use is highly discouraged!
+ */
+struct pdvariable *pdserv_parameter(
+        struct pdserv* pdserv,    /**< Handle to pdserv */
+        const char *path,         /**< Parameter path */
+        unsigned int mode,        /**< Access mode, same as Unix file mode */
+        int datatype,             /**< Parameter data type */
+        void *addr,               /**< Parameter address */
+        size_t n,                 /**< Parameter element count.
+                                   * If \p dim != NULL, this
+                                   * is the number elements in \p dim */
+        const size_t *dim,        /**< Dimensions. If NULL, the parameter
+                                   * is a vector of length \p n */
+        write_parameter_t write_cb, /**< Callback for updating the parameter
+                                     * inside real time context */
+        void *priv_data           /**< Arbitrary pointer passed to \p write_cb
+                                   * when it is called */
+        );
+
+/** Set an optional alias for a variable
+ *
+ * Sometimes it it easier to find a variable by its alias. Use this
+ * function after calling either @pdserv_signal or @pdserv_parameter
+ * to set the alias name for a variable.
+ */
+void pdserv_set_alias(
+        struct pdvariable *variable, /**< Parameter or Signal address */
+        const char *alias       /**< Variable's alias */
+        );
+
+/** Set the optional unit of a variable */
+void pdserv_set_unit(
+        struct pdvariable *variable, /**< Parameter or Signal address */
+        const char *unit        /**< Variable's unit */
+        );
+
+/** Set the optional comment of a variable */
+void pdserv_set_comment(
+        struct pdvariable *variable, /**< Parameter or Signal address */
+        const char *comment     /**< Variable's comment */
+        );
+
+/** Finish initialisation
+ *
+ * This function is called after registering all variables and parameters,
+ * just before going into cyclic real time. This will fork off the process
+ * that communicates with the rest of the world.
+ *
+ * Since the new process lives in a separate memory space, all parameters must
+ * have been initialised beforehand. After calling @pdserv_prepare, parameters
+ * should not be changed any more. They can only be updated though a call by
+ * the library.
+ */
+int pdserv_prepare(
+        struct pdserv* pdserv     /**< Handle to pdserv */
+        );
+
+/** Update task statistics variables
+ *
+ * Call this function at the end of the calculation cycle just before
+ * @pdserv_update to update statistics
+ */
+void pdserv_update_statistics(
+        struct pdtask* pdtask,  /**< Handle to pdtask */
+        double exec_time,       /**< Execution time in [s] */
+        double cycle_time,      /**< Time since last call */
+        unsigned int overrun    /**< total overrun count */
+        );
+
+/** Update variables
+ *
+ * Call this function at the end of the calculation cycle to update
+ * variables
+ */
+void pdserv_update(
+        struct pdtask* pdtask,  /**< Handle to pdtask */
+        const struct timespec *t  /**< Current model time.
+                                  * If NULL, zero is assumed */
+        );
+
+/** Cleanup pdserv */
+void pdserv_exit(
+        struct pdserv*           /**< Handle to pdserv */
+        );
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+
+#endif /* PDSERV_H */

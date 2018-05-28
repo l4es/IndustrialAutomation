@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry version="5.0-subset Scilab" xml:id="etl_scicos_el5101" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>etl_scicos_el5101</refname>
+
+    <refpurpose>etl_scicos_el5101</refpurpose>
+  </refnamediv>
+
+ <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>Master ID</term>
+        <listitem>
+          <para>
+	  Master-ID of the Master Interface. Has to be zero or an positive integer.
+         </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Domain ID</term>
+        <listitem>
+          <para>
+          Working Domain ID for the working slave. Default zero or an positive integer.
+         </para>
+        </listitem>
+      </varlistentry>
+            <varlistentry>
+        <term>Slave Alias (optional)</term>
+        <listitem>
+          <para>
+          Alternative slave addressing possibillíty, see Slave Position. Zero or an positive 16 Bit integer.
+         </para>
+        </listitem>
+      </varlistentry>
+            <varlistentry>
+        <term>Slave Position</term>
+        <listitem>
+          <para>
+          Slave position in the ethercat bus. Zero or an positive integer
+         </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Enable Statusoutput</term>
+        <listitem>
+          <para>
+	  Enable Status Output for special types of Slaves, See Beckhoff Slave Documentation for further information.
+         </para>
+        </listitem>
+      </varlistentry>
+        <term>Other Setting</term>
+        <listitem>
+          <para>
+	  Please see Beckhoff Slave Documentation for further information.
+         </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+
+    <para> This Block represents an EL5101 Beckhoff EtherCAT Slave. You can access Fieldbus IO during Simulation and after Codegeneration in standalone running mode </para>
+  </refsection>
+
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>Andreas Stewering-Bone, IgH Essen</member>
+    </simplelist>
+  </refsection>
+</refentry>

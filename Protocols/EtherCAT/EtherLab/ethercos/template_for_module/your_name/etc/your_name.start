@@ -1,0 +1,106 @@
+// Copyright (C) 2008  Holger Nahrstaedt
+//
+// This file is part of HART, the Hardware Access in Real Time Toolbox for Scilab/Scicos.
+//
+// HART is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// HART is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public License
+// along with HART; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA//
+// ==================================================================
+
+modules_name='your_name';
+disp('Start Hart your name module');
+
+// ==================================================================
+warning_mode = warning('query');
+warning('off');
+current_dir=getcwd();
+
+etc_tlbx = get_absolute_file_path(modules_name+'.start');
+etc_tlbx = getshortpathname(etc_tlbx);
+
+try
+  getversion('scilab');
+  root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length('\etc\') );
+catch
+  root_tlbx = part( etc_tlbx, 1:(length(etc_tlbx)-length('etc\')) );
+  try
+    test=gettext('test');
+    clear test;
+  catch
+    try
+      baselib=lib(root_tlbx+"..\..\macros\");
+    catch
+      error(msprintf(('%s Toolbox not installed."),'HART'));
+    end
+  end
+end
+
+
+
+pathmacros = pathconvert( root_tlbx ) + 'macros'+ filesep();
+pathcsource = pathconvert( root_tlbx ) + "src"+filesep()+"c"+ filesep();
+
+status='';
+
+
+try
+disp('Load macros');
+//Load  functions library
+//hart_baselib = lib(pathmacros);
+load(pathmacros + "lib");
+
+scicos_pal($ + 1, 1) = "HART "+ modules_name;
+scicos_pal($, 2) = pathmacros + "macros.cosf";
+//add_palette("HART base",pathmacros + "macros.cosf");
+
+disp('Load c-lib');
+chdir(pathcsource);
+exec("loader.sce");
+chdir(current_dir);
+disp('Load help');
+ 
+ //add help chapter
+path_addchapter = root_tlbx+"/help/en_US/addchapter.sce";
+// path_addchapter = root_tlbx+"/help/"+getlanguage()+"/addchapter.sce";
+//  if ( fileinfo(path_addchapter) == [] ) then
+//    path_addchapter = root_tlbx+"/help/"+getdefaultlanguage()+"/addchapter.sce";
+//  end
+ exec(path_addchapter);
+
+
+
+listSuccessful($+1)=modules_name;
+status=sprintf(' |   %s                         ',modules_name);
+
+catch
+    status=sprintf(' !                         %s ',modules_name);
+    printf('hart %s module could not loaded!',modules_name);
+   listFailed($+1)=modules_name;
+end
+if (exists('loadDetails')==0) then
+	loadDetails='';
+end
+loadDetails=[loadDetails; status];
+
+// ====================================================================
+clear warning_mode;
+clear path_addchapter;
+clear root_tlbx;
+clear etc_tlbx;
+clear pathmacros;
+clear pathconvert;
+clear current_dir;
+clear pathcsource;
+clear status;
+clear modules_name;
+// ====================================================================

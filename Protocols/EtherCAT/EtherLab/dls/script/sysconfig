@@ -1,0 +1,53 @@
+#-----------------------------------------------------------------------------
+#
+# DLS sysconfig file
+#
+# $Id$
+#
+# This file is part of the Data Logging Service (DLS).
+#
+# DLS is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# DLS is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along
+# with DLS. If not, see <http://www.gnu.org/licenses/>.
+#
+#-----------------------------------------------------------------------------
+
+#
+#  DLS data directory
+#
+#DLS_DIR=/vol/dls_data
+
+#
+#  DLS export directory
+#
+#DLS_EXPORT=/vol/dls_data
+
+#
+#  DLS export format string
+#  This format string is passed to the strftime function (see man strftime)
+#  and therefore supports all of its format specifiers.
+#
+#DLS_EXPORT_FMT=export-%Y-%m-%d-%H-%M-%S
+
+#
+#  DLS user.
+#  The dlsd will switch to this user, so does the dls_ctl command.
+#
+#DLS_USER=dls
+
+#
+#  Additional options for dlsd.
+#  See "dlsd -h".
+#
+#DLSD_OPTIONS=
+
+#-----------------------------------------------------------------------------

@@ -1,0 +1,3341 @@
+------------------------------------------------------------------------
+r492 | ab | 2009-11-09 10:32:43 +0100 (Mo, 09. Nov 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/README_Unix
+   M /branches/branches-stable-0.0.2/etc/etherlab_toolbox.start
+
+Start changing Name from Etherlab to EtherCOS
+------------------------------------------------------------------------
+r491 | ab | 2009-11-09 10:25:11 +0100 (Mo, 09. Nov 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/builder.sce
+
+Start changing Name from Etherlab to EtherCOS
+------------------------------------------------------------------------
+r490 | ab | 2009-11-09 10:19:50 +0100 (Mo, 09. Nov 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/Changelog
+   D /branches/branches-stable-0.0.2/etc/ethercos_toolbox.quit
+   D /branches/branches-stable-0.0.2/etc/ethercos_toolbox.start
+   A /branches/branches-stable-0.0.2/etc/etherlab_toolbox.quit (von /branches/branches-stable-0.0.2/etc/ethercos_toolbox.quit:489)
+   A /branches/branches-stable-0.0.2/etc/etherlab_toolbox.start (von /branches/branches-stable-0.0.2/etc/ethercos_toolbox.start:489)
+   M /branches/branches-stable-0.0.2/src/c/builder_c.sce
+
+Start changing Name from Etherlab to EtherCOS
+------------------------------------------------------------------------
+r489 | ab | 2009-11-09 10:14:03 +0100 (Mo, 09. Nov 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/INSTALL
+   M /branches/branches-stable-0.0.2/README_Unix
+
+Start changing Name from Etherlab to EtherCOS
+------------------------------------------------------------------------
+r487 | ab | 2009-11-09 10:04:54 +0100 (Mo, 09. Nov 2009) | 1 line
+Geänderte Pfade:
+   D /branches/branches-stable-0.0.2/modules/etherlab_matlabrt
+   M /branches/branches-stable-0.0.2/src/c/builder_c.sce
+   M /branches/branches-stable-0.0.2/src/c/ecrt_scicos_support.c
+   M /branches/branches-stable-0.0.2/src/c/ecrt_support_simply.c
+   M /branches/branches-stable-0.0.2/src/c/getstr.c
+   M /branches/branches-stable-0.0.2/src/c/list.c
+
+Start changing Name from Etherlab to EtherCOS
+------------------------------------------------------------------------
+r486 | ab | 2009-11-09 10:00:23 +0100 (Mo, 09. Nov 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/3rdparty/readme.txt
+   M /branches/branches-stable-0.0.2/INSTALL
+   M /branches/branches-stable-0.0.2/Makefile
+   M /branches/branches-stable-0.0.2/README_Unix
+   M /branches/branches-stable-0.0.2/TODO
+   M /branches/branches-stable-0.0.2/builder.sce
+   D /branches/branches-stable-0.0.2/distrobution
+   A /branches/branches-stable-0.0.2/etc/ethercos_toolbox.quit (von /branches/branches-stable-0.0.2/etc/etherlab_toolbox.quit:485)
+   A /branches/branches-stable-0.0.2/etc/ethercos_toolbox.start (von /branches/branches-stable-0.0.2/etc/etherlab_toolbox.start:440)
+   D /branches/branches-stable-0.0.2/etc/etherlab_toolbox.quit
+   D /branches/branches-stable-0.0.2/etc/etherlab_toolbox.start
+   M /branches/branches-stable-0.0.2/includes/ecrt_scicos_support.h
+   M /branches/branches-stable-0.0.2/includes/ecrt_slaves.h
+   M /branches/branches-stable-0.0.2/includes/ecrt_support_simply.h
+   M /branches/branches-stable-0.0.2/includes/etl_scicos_data_info.h
+   M /branches/branches-stable-0.0.2/includes/getstr.h
+   M /branches/branches-stable-0.0.2/includes/list.h
+   M /branches/branches-stable-0.0.2/includes/scicos_block4_12.h
+   M /branches/branches-stable-0.0.2/includes/scicos_block4_3.h
+
+Start changing Name from Etherlab to EtherCOS
+------------------------------------------------------------------------
+r477 | ab | 2009-10-07 17:17:25 +0200 (Mi, 07. Okt 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el2xxx.sci
+
+Fix Mapping Index for EL2624
+------------------------------------------------------------------------
+r476 | ab | 2009-10-07 15:44:24 +0200 (Mi, 07. Okt 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/Changelog
+
+Update Changelog
+------------------------------------------------------------------------
+r475 | ab | 2009-10-07 15:43:49 +0200 (Mi, 07. Okt 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el2xxx.sci
+
+Fix Mapping Index for EL2624
+------------------------------------------------------------------------
+r474 | ab | 2009-10-07 15:35:58 +0200 (Mi, 07. Okt 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Fix PTHREAD_STACK_MIN in rtmain
+------------------------------------------------------------------------
+r472 | ab | 2009-10-05 20:51:28 +0200 (Mo, 05. Okt 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/Changelog
+
+Update Changelog
+------------------------------------------------------------------------
+r471 | ab | 2009-10-05 20:49:26 +0200 (Mo, 05. Okt 2009) | 2 lines
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el2xxx.sci
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/macros/set_etl_slave_el2xxx.sci
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/slave_descriptions/EtherCATInfo_ekxxxx_v6.mat
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/slave_descriptions/EtherCATInfo_el15xx_v6.mat
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/slave_descriptions/EtherCATInfo_el1xxx_v6.mat
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/slave_descriptions/EtherCATInfo_el2xxx.mat
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/slave_descriptions/EtherCATInfo_el2xxx_v6.mat
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/slave_descriptions/EtherCATInfo_el37xx_v6.mat
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/slave_descriptions/EtherCATInfo_el3xxx_v6.mat
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/slave_descriptions/EtherCATInfo_el47xx_v6.mat
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/slave_descriptions/EtherCATInfo_el4xxx_v6.mat
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/slave_descriptions/EtherCATInfo_el5xxx_v6.mat
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/slave_descriptions/EtherCATInfo_el6xxx_v6.mat
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/slave_descriptions/EtherCATInfo_el9xxx_v6.mat
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/slave_descriptions/EtherCATInfo_mts_v6.mat
+
+Update Slave Description for EL2xxx
+Added EL2624 in Blockset
+------------------------------------------------------------------------
+r450 | ab | 2009-08-30 21:55:13 +0200 (So, 30. Aug 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci
+
+Fix Codegeneration for cotinuous time codegeneration 
+------------------------------------------------------------------------
+r446 | ab | 2009-08-28 09:42:36 +0200 (Fr, 28. Aug 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci
+
+Remove RTAILab Parameter Handling, because of problems with msr flags
+------------------------------------------------------------------------
+r419 | ab | 2009-07-15 21:19:57 +0200 (Mi, 15. Jul 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_reg.h
+
+Change size calculation in MSR_UNIQUE_NAME, fix bufferoverflow for vector index >99
+------------------------------------------------------------------------
+r390 | ab | 2009-06-29 13:31:18 +0200 (Mo, 29. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el3xxx.sci
+
+Fix Scaling Bug for EL3152
+------------------------------------------------------------------------
+r389 | ab | 2009-06-29 13:14:37 +0200 (Mo, 29. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el3xxx.sci
+
+Fix Scaling Bug for EL3152
+------------------------------------------------------------------------
+r381 | ab | 2009-06-23 09:20:26 +0200 (Di, 23. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/Changelog
+   M /branches/branches-stable-0.0.2/README_Unix
+
+Update Readme and Changelog
+------------------------------------------------------------------------
+r375 | ab | 2009-06-22 13:55:34 +0200 (Mo, 22. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/includes/ecrt_scicos_support.h
+
+Fix byte swapping macros
+------------------------------------------------------------------------
+r374 | ab | 2009-06-22 13:48:56 +0200 (Mo, 22. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/includes/ecrt_scicos_support.h
+   M /branches/branches-stable-0.0.2/src/c/ecrt_scicos_support.c
+
+Fix byte swapping macros
+------------------------------------------------------------------------
+r373 | ab | 2009-06-22 13:42:27 +0200 (Mo, 22. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /branches/branches-stable-0.0.2/BUGS
+
+Update Bugs
+------------------------------------------------------------------------
+r356 | ab | 2009-06-10 20:52:49 +0200 (Mi, 10. Jun 2009) | 1 line
+Geänderte Pfade:
+   A /branches/branches-stable-0.0.2 (von /trunk:354)
+
+Add stable Branch 0.0.2
+------------------------------------------------------------------------
+r354 | ab | 2009-06-09 17:07:00 +0200 (Di, 09. Jun 2009) | 3 lines
+Geänderte Pfade:
+   M /trunk/Changelog
+   M /trunk/demos/test_el5001.cos
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el5001.sci
+
+Fix EL5001, Status Running
+Update Demos
+Update Changelog
+------------------------------------------------------------------------
+r353 | ab | 2009-06-09 09:11:03 +0200 (Di, 09. Jun 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/help/en_US/etl_scicos_el5101.xml
+   A /trunk/modules/etherlab_base/help/en_US/etl_scicos_mtsr.xml
+   A /trunk/modules/etherlab_base/help/en_US_scilab4/etl_scicos_el5101.xml
+   A /trunk/modules/etherlab_base/help/en_US_scilab4/etl_scicos_mtsr.xml
+
+Update Help files
+------------------------------------------------------------------------
+r352 | ab | 2009-06-08 23:55:16 +0200 (Mo, 08. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/Changelog
+   M /trunk/TODO
+   A /trunk/includes/ecrt_scicos_support.h (von /trunk/includes/ecrt_support.h:342)
+   D /trunk/includes/ecrt_support.h
+   M /trunk/includes/ecrt_support_simply.h
+   M /trunk/src/c/builder_c.sce
+   A /trunk/src/c/ecrt_scicos_support.c (von /trunk/src/c/ecrt_support.c:331)
+   D /trunk/src/c/ecrt_support.c
+
+Fix name collision with rtw code at ecrt_support
+------------------------------------------------------------------------
+r351 | ab | 2009-06-08 12:01:13 +0200 (Mo, 08. Jun 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/TODO
+   M /trunk/modules/etherlab_codegen/RT_templates/msr_reg_scicos.c
+
+Update Todo
+Fix Bug in Parameter registration 
+------------------------------------------------------------------------
+r350 | ab | 2009-06-08 09:15:03 +0200 (Mo, 08. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/INSTALL
+
+Update INSTALL
+------------------------------------------------------------------------
+r349 | ab | 2009-06-06 01:36:48 +0200 (Sa, 06. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/demos/test_pt.cos
+
+Updat Demos
+------------------------------------------------------------------------
+r348 | ab | 2009-06-06 01:36:33 +0200 (Sa, 06. Jun 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/demos/test_el4102.cos
+
+Add demo EL4102
+------------------------------------------------------------------------
+r347 | ab | 2009-06-06 01:36:11 +0200 (Sa, 06. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/BUGS
+
+Update Bugs
+------------------------------------------------------------------------
+r346 | ab | 2009-06-06 01:34:12 +0200 (Sa, 06. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Fix comment
+------------------------------------------------------------------------
+r345 | ab | 2009-06-06 01:32:58 +0200 (Sa, 06. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/build_sdostruct.sci
+
+Fix type indezes
+------------------------------------------------------------------------
+r344 | ab | 2009-06-05 22:13:33 +0200 (Fr, 05. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/TODO
+
+Update Todo
+------------------------------------------------------------------------
+r343 | ab | 2009-06-05 22:09:09 +0200 (Fr, 05. Jun 2009) | 3 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/etherlab.mak
+   M /trunk/modules/etherlab_codegen/RT_templates/msr_reg_scicos.c
+   M /trunk/modules/etherlab_codegen/RT_templates/msr_reg_scicos.h
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Remove PREDEF MSR_OLD
+UPdate etl_data_info
+Extent Parameter naming , add IPAR,OPAR and RPAR
+------------------------------------------------------------------------
+r342 | ab | 2009-06-05 21:01:49 +0200 (Fr, 05. Jun 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/includes/ecrt_support.h
+   M /trunk/includes/ecrt_support_simply.h
+   D /trunk/includes/etl_data_info.h
+   A /trunk/includes/etl_scicos_data_info.h (von /trunk/includes/etl_data_info.h:331)
+
+Update etl_data_info
+Resolv Header conflict with rtw code
+------------------------------------------------------------------------
+r341 | ab | 2009-06-05 09:53:47 +0200 (Fr, 05. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/Changelog
+
+Update Changelog
+------------------------------------------------------------------------
+r340 | ab | 2009-06-05 09:50:56 +0200 (Fr, 05. Jun 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/INSTALL
+   M /trunk/TODO
+
+Update Todo
+Startet INSTALL File
+------------------------------------------------------------------------
+r339 | ab | 2009-06-05 09:50:25 +0200 (Fr, 05. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el3xxx.sci
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el4xxx.sci
+
+Fix Scaling Problem
+------------------------------------------------------------------------
+r338 | ab | 2009-06-05 09:49:51 +0200 (Fr, 05. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/build_mapstruct.sci
+
+fix Data Type Handling
+------------------------------------------------------------------------
+r337 | ab | 2009-06-05 09:49:28 +0200 (Fr, 05. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+fix Data Type Handling
+------------------------------------------------------------------------
+r336 | ab | 2009-06-04 09:22:45 +0200 (Do, 04. Jun 2009) | 3 lines
+Geänderte Pfade:
+   M /trunk/BUGS
+   A /trunk/INSTALL
+   M /trunk/TODO
+
+Update Bugs,
+Update Todo
+Add Install Description
+------------------------------------------------------------------------
+r335 | ab | 2009-06-04 09:20:47 +0200 (Do, 04. Jun 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Comment out Locking
+Set default CPUSET to all available cpus
+------------------------------------------------------------------------
+r334 | ab | 2009-06-03 23:25:00 +0200 (Mi, 03. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/BUGS
+   M /trunk/TODO
+
+Update TODO, Bugs
+------------------------------------------------------------------------
+r333 | ab | 2009-06-03 23:21:19 +0200 (Mi, 03. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Fix rtmain
+------------------------------------------------------------------------
+r332 | ab | 2009-06-03 23:02:57 +0200 (Mi, 03. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Reduce Systemcalls clock_gettime
+------------------------------------------------------------------------
+r331 | ab | 2009-06-03 22:03:07 +0200 (Mi, 03. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el3xxx.sci
+
+Fix Scaling Bug in bipolar EL3xxx
+------------------------------------------------------------------------
+r330 | ab | 2009-06-03 21:20:08 +0200 (Mi, 03. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/build_mapstruct.sci
+
+Fix Bug Map Scale
+------------------------------------------------------------------------
+r329 | ab | 2009-06-03 20:26:05 +0200 (Mi, 03. Jun 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Fix Process kill by SIGPIPE, to be tested 
+TODO: Cleanup MSR-Code
+------------------------------------------------------------------------
+r328 | kt | 2009-06-02 17:26:14 +0200 (Di, 02. Jun 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/Changelog
+
+Test Moritz
+------------------------------------------------------------------------
+r327 | ab | 2009-05-31 12:50:36 +0200 (So, 31. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/BUGS
+
+Update Buglist
+------------------------------------------------------------------------
+r326 | ab | 2009-05-31 12:48:07 +0200 (So, 31. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/TODO
+
+Update Todo
+------------------------------------------------------------------------
+r325 | ab | 2009-05-31 12:46:22 +0200 (So, 31. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/TODO
+
+Update Todo
+------------------------------------------------------------------------
+r324 | ab | 2009-05-31 12:04:36 +0200 (So, 31. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/BUGS
+
+Update Buglist
+------------------------------------------------------------------------
+r323 | ab | 2009-05-31 11:50:59 +0200 (So, 31. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/BUGS
+
+Update Buglist
+------------------------------------------------------------------------
+r322 | ab | 2009-05-31 11:39:46 +0200 (So, 31. Mai 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/BUGS
+   M /trunk/TODO
+
+Create Buglist, remove Bug information from TODO list
+------------------------------------------------------------------------
+r321 | ab | 2009-05-30 21:52:53 +0200 (Sa, 30. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/TODO
+
+Update Todo
+------------------------------------------------------------------------
+r320 | ab | 2009-05-29 21:41:33 +0200 (Fr, 29. Mai 2009) | 3 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Fix printf failure at Mapping Scale Debug Message
+TODO test telative sleeping
+TODO find scale bug
+------------------------------------------------------------------------
+r319 | ab | 2009-05-29 16:48:36 +0200 (Fr, 29. Mai 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/distrobution
+   A /trunk/distrobution/Makefile.in.patch
+   A /trunk/distrobution/openSuSE
+   A /trunk/distrobution/openSuSE/scicoslab.spec
+
+Add distrobution dir for building openSuSE scicoslab rpms
+------------------------------------------------------------------------
+r318 | ab | 2009-05-29 15:38:18 +0200 (Fr, 29. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Preworking relativeslepp, to be tested
+------------------------------------------------------------------------
+r317 | ab | 2009-05-29 11:07:05 +0200 (Fr, 29. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Preworking relativeslepp, to be tested
+------------------------------------------------------------------------
+r316 | ab | 2009-05-28 11:32:16 +0200 (Do, 28. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Prestate of relative sleeping, On Going
+------------------------------------------------------------------------
+r315 | ab | 2009-05-28 09:23:10 +0200 (Do, 28. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/Changelog
+
+Update Changelog
+------------------------------------------------------------------------
+r314 | ab | 2009-05-28 09:21:28 +0200 (Do, 28. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/TODO
+
+Update TODO
+------------------------------------------------------------------------
+r313 | ab | 2009-05-28 09:21:02 +0200 (Do, 28. Mai 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Reduce Memory for MSR Handling,
+Start rebuild for relativ sleeping
+------------------------------------------------------------------------
+r312 | ab | 2009-05-28 00:34:47 +0200 (Do, 28. Mai 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/demos
+   A /trunk/demos/test-2.cos
+   A /trunk/demos/test.cos
+   A /trunk/demos/test412.cos
+   A /trunk/demos/test412_2.cos
+   A /trunk/demos/test_2.cos
+   A /trunk/demos/test_2_412.cos
+   A /trunk/demos/test_act.cos
+   A /trunk/demos/test_const.cos
+   A /trunk/demos/test_el5001.cos
+   A /trunk/demos/test_gui.cos
+   A /trunk/demos/test_mts.cos
+   A /trunk/demos/test_new.cos
+   A /trunk/demos/test_pt.cos
+   A /trunk/demos/test_speed.cos
+
+Added DEMO dir
+------------------------------------------------------------------------
+r311 | ab | 2009-05-28 00:34:18 +0200 (Do, 28. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/TODO
+
+Update TODO
+------------------------------------------------------------------------
+r310 | ab | 2009-05-28 00:34:05 +0200 (Do, 28. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/README_Unix
+
+Update README
+------------------------------------------------------------------------
+r309 | ab | 2009-05-28 00:27:33 +0200 (Do, 28. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-core/msr_reg.c
+
+Replace PAGE_SIZE Macro by getpagesize for compatibiity with modern OS
+------------------------------------------------------------------------
+r308 | ab | 2009-05-27 14:10:40 +0200 (Mi, 27. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_lists.h
+
+Change Send Buff Size form 1024 to 100 to prefend DLS Time tolerance error
+------------------------------------------------------------------------
+r307 | ab | 2009-05-27 13:49:43 +0200 (Mi, 27. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Fix Bug in MSR Send , Send until Sendbuffer emty
+------------------------------------------------------------------------
+r306 | ab | 2009-05-27 10:45:55 +0200 (Mi, 27. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_mtsr.sci
+
+Added PreVersion of MTS-R-Series Block, Bugfix in scale mapping needed
+------------------------------------------------------------------------
+r305 | ab | 2009-05-26 23:02:45 +0200 (Di, 26. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/TODO
+
+Update Todo
+------------------------------------------------------------------------
+r304 | ab | 2009-05-26 23:00:19 +0200 (Di, 26. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/TODO
+
+Update Todo
+------------------------------------------------------------------------
+r303 | ab | 2009-05-26 22:59:58 +0200 (Di, 26. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_mtsr.sci
+
+Added PreVersion of MTS-R-Series Block
+------------------------------------------------------------------------
+r302 | ab | 2009-05-18 21:25:47 +0200 (Mo, 18. Mai 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_mtsr.sci
+
+Added PreVersion of MTS-R-Series Block
+------------------------------------------------------------------------
+r301 | ab | 2009-05-18 21:25:01 +0200 (Mo, 18. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el5101.sci
+
+Working EL5101 Block, to be tested with real hardware
+------------------------------------------------------------------------
+r300 | ab | 2009-05-15 22:08:58 +0200 (Fr, 15. Mai 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el5101.sci (von /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_scicos_el5101.sci:298)
+   D /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_build_tcl_interface.sci
+   D /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_scicos_el5101.sci
+   D /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param.sci
+   D /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param_check.sci
+   D /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param_edit.sci
+   D /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param_get.sci
+   D /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param_radio.sci
+   A /trunk/modules/etherlab_base/macros/etl_build_tcl_interface.sci (von /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_build_tcl_interface.sci:298)
+   A /trunk/modules/etherlab_base/macros/etl_slave_param.sci (von /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param.sci:298)
+   A /trunk/modules/etherlab_base/macros/etl_slave_param_check.sci (von /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param_check.sci:298)
+   A /trunk/modules/etherlab_base/macros/etl_slave_param_edit.sci (von /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param_edit.sci:298)
+   A /trunk/modules/etherlab_base/macros/etl_slave_param_get.sci (von /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param_get.sci:299)
+   A /trunk/modules/etherlab_base/macros/etl_slave_param_radio.sci (von /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param_radio.sci:298)
+
+Move GUI Builder to target directory
+------------------------------------------------------------------------
+r299 | ab | 2009-05-15 22:04:10 +0200 (Fr, 15. Mai 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param_get.sci
+
+Add GUI get value function
+------------------------------------------------------------------------
+r298 | ab | 2009-05-15 22:00:47 +0200 (Fr, 15. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_build_tcl_interface.sci
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_scicos_el5101.sci
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param.sci
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param_check.sci
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param_edit.sci
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param_radio.sci
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/test_interface.sce
+
+Gui Builder finished, to be tested
+------------------------------------------------------------------------
+r297 | ab | 2009-05-15 22:00:14 +0200 (Fr, 15. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Fix Locking Error
+------------------------------------------------------------------------
+r296 | ab | 2009-05-15 08:54:35 +0200 (Fr, 15. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Remove locking wait measurement
+------------------------------------------------------------------------
+r295 | ab | 2009-05-14 20:21:01 +0200 (Do, 14. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Integrate Warning for Timer Resolution 
+------------------------------------------------------------------------
+r294 | ab | 2009-05-14 20:19:26 +0200 (Do, 14. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/builder_c.sce
+   M /trunk/modules/etherlab_codegen/RT_templates/etherlab.mak
+   M /trunk/modules/etherlab_scicosrt/src/c/builder_c.sce
+
+Set Compiler Flag -O2
+------------------------------------------------------------------------
+r293 | ab | 2009-05-14 20:18:48 +0200 (Do, 14. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/src/c/builder_c.sce
+
+Set Compiler Flag -O2
+------------------------------------------------------------------------
+r292 | ab | 2009-05-14 08:46:52 +0200 (Do, 14. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param.sci
+   A /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param_check.sci
+   A /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param_edit.sci
+   A /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param_radio.sci
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/test_interface.sce
+
+Preworking GUI-Builder
+------------------------------------------------------------------------
+r291 | ab | 2009-05-13 23:24:11 +0200 (Mi, 13. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_build_tcl_interface.sci
+   A /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_slave_param.sci
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/test_interface.sce
+
+Preworking GUI-Builder
+------------------------------------------------------------------------
+r290 | ab | 2009-05-13 09:32:56 +0200 (Mi, 13. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_build_tcl_interface.sci
+   M /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/test_interface.sce
+
+Preworking GUI-Builder
+------------------------------------------------------------------------
+r289 | ab | 2009-05-08 23:41:14 +0200 (Fr, 08. Mai 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_build_tcl_interface.sci
+   A /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/test_interface.sce
+   M /trunk/modules/etherlab_base/src/tcl/etl_scicos_el5101.tcl
+
+Build up interface builder, to be finished
+------------------------------------------------------------------------
+r288 | ab | 2009-05-06 20:55:17 +0200 (Mi, 06. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/Changelog
+   M /trunk/TODO
+
+update Todo
+------------------------------------------------------------------------
+r287 | ab | 2009-05-06 20:54:47 +0200 (Mi, 06. Mai 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/src/tcl/etl_scicos_el5101.tcl
+
+Pre State of EL5101
+------------------------------------------------------------------------
+r286 | ab | 2009-05-06 20:54:19 +0200 (Mi, 06. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/etc/etherlab_base.start
+
+Adapt for new Scicos Names
+------------------------------------------------------------------------
+r285 | ab | 2009-05-06 20:53:17 +0200 (Mi, 06. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/buildmacros.sce
+
+Adapt for new Scicos Names
+------------------------------------------------------------------------
+r284 | ab | 2009-05-06 20:52:51 +0200 (Mi, 06. Mai 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev
+   A /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/etl_scicos_el5101.sci
+   A /trunk/modules/etherlab_base/macros/etherlab_base_scicos_dev/set_etl_slave_el5101.sci
+
+Create Macro Dev Tree for experimental blocks
+------------------------------------------------------------------------
+r283 | ab | 2009-05-06 20:52:14 +0200 (Mi, 06. Mai 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/etherlab_base_scicos (von /trunk/modules/etherlab_base/macros/scicos:170)
+   R /trunk/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el1xxx.sci (von /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el1xxx.sci:282)
+   R /trunk/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el2xxx.sci (von /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el2xxx.sci:282)
+   A /trunk/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el32xx.sci (von /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el32xx.sci:282)
+   R /trunk/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el3xxx.sci (von /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el3xxx.sci:282)
+   R /trunk/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el4xxx.sci (von /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el4xxx.sci:282)
+   A /trunk/modules/etherlab_base/macros/etherlab_base_scicos/etl_scicos_el5001.sci (von /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el5001.sci:282)
+   D /trunk/modules/etherlab_base/macros/scicos
+
+Rename Scicos Macros
+------------------------------------------------------------------------
+r282 | ab | 2009-05-04 23:25:09 +0200 (Mo, 04. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el32xx.sci
+
+Bugfix for EL32xx, Vectorlength was wrong, remove debugging info
+------------------------------------------------------------------------
+r281 | ab | 2009-05-03 00:22:48 +0200 (So, 03. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/README_Unix
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Prepare for Release 0.0.2-rc1
+------------------------------------------------------------------------
+r280 | ab | 2009-05-03 00:15:46 +0200 (So, 03. Mai 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/TODO
+
+Update TODO,
+
+------------------------------------------------------------------------
+r279 | ab | 2009-05-03 00:07:53 +0200 (So, 03. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/Changelog
+
+Update Changelog
+------------------------------------------------------------------------
+r278 | ab | 2009-05-02 23:37:38 +0200 (Sa, 02. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci
+
+Fix Codegeneration
+------------------------------------------------------------------------
+r277 | ab | 2009-05-02 23:08:18 +0200 (Sa, 02. Mai 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci
+
+Removed scicossim call, removed with_work call in call_block42 function, to be tested
+------------------------------------------------------------------------
+r276 | ab | 2009-04-29 21:26:07 +0200 (Mi, 29. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/Changelog
+
+Changelog updates
+------------------------------------------------------------------------
+r275 | ab | 2009-04-29 21:17:01 +0200 (Mi, 29. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/TODO
+
+Updata TODO
+------------------------------------------------------------------------
+r274 | ab | 2009-04-29 21:13:53 +0200 (Mi, 29. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Add CPU-Set Handling and pi-mutex function, to be tested on modern dual core systems
+------------------------------------------------------------------------
+r273 | ab | 2009-04-29 21:12:23 +0200 (Mi, 29. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci
+
+Fix MSR-Registration, include Blacklist Handling
+------------------------------------------------------------------------
+r272 | ab | 2009-04-29 21:11:32 +0200 (Mi, 29. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/etc/etherlab_codegen.start
+
+Startscript updated for new Codegeneration
+------------------------------------------------------------------------
+r271 | ab | 2009-04-28 23:21:30 +0200 (Di, 28. Apr 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_codegen/macros/SetTarget_.sci
+   D /trunk/modules/etherlab_codegen/macros/SetTarget_.sci_412
+
+Add new SetTarget Macro
+------------------------------------------------------------------------
+r270 | ab | 2009-04-28 23:17:29 +0200 (Di, 28. Apr 2009) | 1 line
+Geänderte Pfade:
+   D /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_412
+   D /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_new
+
+Remove old Codegen Macros
+------------------------------------------------------------------------
+r269 | ab | 2009-04-28 23:13:19 +0200 (Di, 28. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Add PI-Mutex Support, TODO Test on modern OS with PI-Mutex GLIBC Support
+------------------------------------------------------------------------
+r268 | ab | 2009-04-25 20:52:38 +0200 (Sa, 25. Apr 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/TODO
+
+added TODO file
+------------------------------------------------------------------------
+r267 | ab | 2009-04-25 20:51:26 +0200 (Sa, 25. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/etherlab.mak
+   M /trunk/modules/etherlab_codegen/RT_templates/standalone.cmd
+   M /trunk/modules/etherlab_codegen/builder.sce
+   A /trunk/modules/etherlab_codegen/libs/4.1.2
+   A /trunk/modules/etherlab_codegen/libs/4.1.2/blas.a (von /trunk/modules/etherlab_codegen/libs/blas.a:229)
+   A /trunk/modules/etherlab_codegen/libs/4.1.2/calelm.a (von /trunk/modules/etherlab_codegen/libs/calelm.a:229)
+   A /trunk/modules/etherlab_codegen/libs/4.1.2/lapack.a (von /trunk/modules/etherlab_codegen/libs/lapack.a:229)
+   A /trunk/modules/etherlab_codegen/libs/4.1.2/os_specific.a (von /trunk/modules/etherlab_codegen/libs/os_specific.a:229)
+   A /trunk/modules/etherlab_codegen/libs/4.1.2/poly.a (von /trunk/modules/etherlab_codegen/libs/poly.a:229)
+   A /trunk/modules/etherlab_codegen/libs/4.1.2/scicos.a (von /trunk/modules/etherlab_codegen/libs/scicos.a:229)
+   A /trunk/modules/etherlab_codegen/libs/4.3
+   A /trunk/modules/etherlab_codegen/libs/4.3/blas.a
+   A /trunk/modules/etherlab_codegen/libs/4.3/calelm.a
+   A /trunk/modules/etherlab_codegen/libs/4.3/lapack.a
+   A /trunk/modules/etherlab_codegen/libs/4.3/os_specific.a
+   A /trunk/modules/etherlab_codegen/libs/4.3/poly.a
+   A /trunk/modules/etherlab_codegen/libs/4.3/scicos.a
+   D /trunk/modules/etherlab_codegen/libs/blas.a
+   D /trunk/modules/etherlab_codegen/libs/calelm.a
+   D /trunk/modules/etherlab_codegen/libs/lapack.a
+   D /trunk/modules/etherlab_codegen/libs/os_specific.a
+   D /trunk/modules/etherlab_codegen/libs/poly.a
+   D /trunk/modules/etherlab_codegen/libs/scicos.a
+   A /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci
+   D /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_43
+   M /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_new
+
+Implement new Codegeneration, support for scicoslab added
+------------------------------------------------------------------------
+r266 | ab | 2009-04-25 20:50:01 +0200 (Sa, 25. Apr 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Added mutex locking, to be tested.
+Changed for new Codegeneration
+------------------------------------------------------------------------
+r265 | ab | 2009-04-22 22:31:31 +0200 (Mi, 22. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/etc/etherlab_codegen.start
+
+Fix Startup Code (Help Files)
+------------------------------------------------------------------------
+r264 | ab | 2009-04-22 21:50:18 +0200 (Mi, 22. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/builder.sce
+   A /trunk/modules/etherlab_codegen/help/builder_help.sce
+
+Fix Build Help files
+------------------------------------------------------------------------
+r263 | ab | 2009-04-22 21:45:04 +0200 (Mi, 22. Apr 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_codegen/help/dtd
+   A /trunk/modules/etherlab_codegen/help/dtd/help.dtd
+   A /trunk/modules/etherlab_codegen/help/en_US
+   A /trunk/modules/etherlab_codegen/help/en_US/EtherLAB_Codegeneration.xml
+   A /trunk/modules/etherlab_codegen/help/en_US/build_help.sce
+   A /trunk/modules/etherlab_codegen/help/en_US_scilab4
+   A /trunk/modules/etherlab_codegen/help/en_US_scilab4/EtherLAB_Codegeneration.xml
+   A /trunk/modules/etherlab_codegen/help/en_US_scilab4/addchapter.sce
+   A /trunk/modules/etherlab_codegen/help/en_US_scilab4/build_help.sce
+
+Add Documentaion. To be extended.
+------------------------------------------------------------------------
+r262 | ab | 2009-04-22 21:22:01 +0200 (Mi, 22. Apr 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_new
+
+Add future Codegeneration, to be adapted
+------------------------------------------------------------------------
+r261 | ab | 2009-04-22 21:21:25 +0200 (Mi, 22. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/README_Unix
+
+Fix Readme
+------------------------------------------------------------------------
+r260 | ab | 2009-04-22 21:20:36 +0200 (Mi, 22. Apr 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_scicosrt/help/en_US/etl_CONST_m.xml
+   M /trunk/modules/etherlab_scicosrt/help/en_US/etl_scicos_realtime.xml
+   A /trunk/modules/etherlab_scicosrt/help/en_US_scilab4/etl_CONST_m.xml
+   M /trunk/modules/etherlab_scicosrt/help/en_US_scilab4/etl_scicos_realtime.xml
+
+Fix Documentation
+------------------------------------------------------------------------
+r259 | ab | 2009-04-22 21:10:23 +0200 (Mi, 22. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/help/en_US_scilab4/etl_scicos_el32xx.xml
+   M /trunk/modules/etherlab_base/help/en_US_scilab4/etl_scicos_el5001.xml
+
+Fix Documentation
+------------------------------------------------------------------------
+r258 | ab | 2009-04-22 21:03:02 +0200 (Mi, 22. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/Changelog
+   M /trunk/README_Unix
+   M /trunk/builder.sce
+   M /trunk/includes/ecrt_slaves.h
+   M /trunk/includes/ecrt_support.h
+   M /trunk/includes/ecrt_support_simply.h
+   M /trunk/includes/getstr.h
+   M /trunk/includes/list.h
+   M /trunk/includes/scicos_block4_12.h
+   M /trunk/includes/scicos_block4_3.h
+   M /trunk/modules/etherlab_base/macros/build_mapstruct.sci
+   M /trunk/modules/etherlab_base/macros/build_sdostruct.sci
+   M /trunk/modules/etherlab_base/macros/check_pos_integer.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_SmCByte.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_SmPdoEntry.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_SmPdoInfo.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_SmPdonEntry.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_buildopar.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_checkslave.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_getconfig.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_getsmtype.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_numPdo.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_numSm.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_numtypes.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_productcode.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_revision.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_smtype.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_typename.sci
+   M /trunk/modules/etherlab_base/macros/getslavedesc_vendor.sci
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el1xxx.sci
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el2xxx.sci
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el32xx.sci
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el3xxx.sci
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el4xxx.sci
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el5001.sci
+   M /trunk/modules/etherlab_base/macros/set_etl_slave_el1xxx.sci
+   M /trunk/modules/etherlab_base/macros/set_etl_slave_el2xxx.sci
+   M /trunk/modules/etherlab_base/macros/set_etl_slave_el32xx.sci
+   M /trunk/modules/etherlab_base/macros/set_etl_slave_el3xxx.sci
+   M /trunk/modules/etherlab_base/macros/set_etl_slave_el4xxx.sci
+   M /trunk/modules/etherlab_base/macros/set_etl_slave_el5001.sci
+   M /trunk/modules/etherlab_base/slave_descriptions/convert_SD_v6.m
+   M /trunk/modules/etherlab_base/slave_descriptions/convert_sd_mat2dat.sce
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+   M /trunk/modules/etherlab_base/src/perl/convert_slavedesc.pl
+   M /trunk/modules/etherlab_base/src/tcl/etl_scicos_el1xxx.tcl
+   M /trunk/modules/etherlab_base/src/tcl/etl_scicos_el2xxx.tcl
+   M /trunk/modules/etherlab_base/src/tcl/etl_scicos_el32xx.tcl
+   M /trunk/modules/etherlab_base/src/tcl/etl_scicos_el5001.tcl
+   M /trunk/modules/etherlab_codegen/RT_templates/etherlab.mak
+   M /trunk/modules/etherlab_codegen/RT_templates/msr_reg_scicos.c
+   M /trunk/modules/etherlab_codegen/RT_templates/msr_reg_scicos.h
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+   M /trunk/modules/etherlab_scicosrt/macros/etl_scicos_realtime.sci
+   M /trunk/modules/etherlab_scicosrt/src/c/etl_scicos_realtime.c
+   M /trunk/src/c/builder_c.sce
+   M /trunk/src/c/ecrt_support.c
+   M /trunk/src/c/ecrt_support_simply.c
+   M /trunk/src/c/getstr.c
+   M /trunk/src/c/list.c
+
+Add GNU GPL Info
+------------------------------------------------------------------------
+r257 | ab | 2009-04-22 21:02:26 +0200 (Mi, 22. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/help/en_US/etl_scicos_el1xxx.xml
+   A /trunk/modules/etherlab_base/help/en_US/etl_scicos_el2xxx.xml
+   A /trunk/modules/etherlab_base/help/en_US/etl_scicos_el32xx.xml
+   A /trunk/modules/etherlab_base/help/en_US/etl_scicos_el3xxx.xml
+   A /trunk/modules/etherlab_base/help/en_US/etl_scicos_el4xxx.xml
+   A /trunk/modules/etherlab_base/help/en_US/etl_scicos_el5001.xml
+   M /trunk/modules/etherlab_base/help/en_US_scilab4/etl_scicos_el1xxx.xml
+   A /trunk/modules/etherlab_base/help/en_US_scilab4/etl_scicos_el2xxx.xml
+   A /trunk/modules/etherlab_base/help/en_US_scilab4/etl_scicos_el32xx.xml
+   A /trunk/modules/etherlab_base/help/en_US_scilab4/etl_scicos_el3xxx.xml
+   A /trunk/modules/etherlab_base/help/en_US_scilab4/etl_scicos_el4xxx.xml
+   A /trunk/modules/etherlab_base/help/en_US_scilab4/etl_scicos_el5001.xml
+
+Add Block Documentation
+------------------------------------------------------------------------
+r256 | ab | 2009-04-22 09:00:12 +0200 (Mi, 22. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_412
+
+Working Actor / Sensor Handling
+------------------------------------------------------------------------
+r255 | ab | 2009-04-19 00:14:33 +0200 (So, 19. Apr 2009) | 2 lines
+Geänderte Pfade:
+   A /trunk/Changelog
+   A /trunk/create_Changelog.sh
+
+Add Changelog
+
+------------------------------------------------------------------------
+r254 | ab | 2009-04-18 23:41:42 +0200 (Sa, 18. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+Fix Analog Out at max min value
+------------------------------------------------------------------------
+r253 | ab | 2009-04-18 21:41:13 +0200 (Sa, 18. Apr 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_412
+
+Finish Blacklist Block Functionality
+TODO add Source Blocks
+------------------------------------------------------------------------
+r252 | ab | 2009-04-14 22:18:13 +0200 (Di, 14. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_412
+
+Fix Codegeneration
+------------------------------------------------------------------------
+r251 | ab | 2009-04-14 22:09:56 +0200 (Di, 14. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/msr_reg_scicos.c
+
+Reduce Debug Level
+------------------------------------------------------------------------
+r250 | ab | 2009-04-14 22:05:25 +0200 (Di, 14. Apr 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_scicosrt/macros/etl_CONST_m.sci
+
+Modified Constant Block for Codegeneration
+------------------------------------------------------------------------
+r249 | ab | 2009-04-14 21:17:05 +0200 (Di, 14. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_412
+
+Start Blocklist handling
+------------------------------------------------------------------------
+r248 | ab | 2009-04-14 21:06:59 +0200 (Di, 14. Apr 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/msr_reg_scicos.c
+
+Reduce Debug Level
+------------------------------------------------------------------------
+r247 | ab | 2009-03-31 09:59:30 +0200 (Di, 31. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el5001.sci
+   M /trunk/modules/etherlab_base/src/tcl/etl_scicos_el5001.tcl
+
+fix EL5001, to be tested
+------------------------------------------------------------------------
+r246 | ab | 2009-03-30 09:34:07 +0200 (Mo, 30. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el5001.sci
+   A /trunk/modules/etherlab_base/macros/set_etl_slave_el5001.sci
+   A /trunk/modules/etherlab_base/src/tcl/etl_scicos_el5001.tcl
+
+Add Pre El5001
+------------------------------------------------------------------------
+r245 | ab | 2009-03-27 09:41:42 +0100 (Fr, 27. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+Add Rawscale input handling, to be tested
+------------------------------------------------------------------------
+r244 | ab | 2009-03-27 09:41:02 +0100 (Fr, 27. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el5001.sci
+
+Add Pre El5001
+------------------------------------------------------------------------
+r243 | ab | 2009-03-27 09:40:40 +0100 (Fr, 27. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el32xx.sci
+
+fix scaling EL320X
+------------------------------------------------------------------------
+r242 | ab | 2009-03-26 12:06:05 +0100 (Do, 26. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+Fix SDO Configuration order
+------------------------------------------------------------------------
+r241 | ab | 2009-03-26 12:04:47 +0100 (Do, 26. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el32xx.sci
+
+Wroking GUI Function EL32xx
+------------------------------------------------------------------------
+r240 | ab | 2009-03-25 22:07:31 +0100 (Mi, 25. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/build_sdostruct.sci
+
+Add SDO Handling Funtion
+------------------------------------------------------------------------
+r239 | ab | 2009-03-25 09:19:02 +0100 (Mi, 25. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el32xx.sci
+
+Preworking Interface Function EL320X
+------------------------------------------------------------------------
+r238 | ab | 2009-03-25 09:10:01 +0100 (Mi, 25. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/getslavedesc_getconfig.sci
+
+Fix for GAP PDO-Entrys
+------------------------------------------------------------------------
+r237 | ab | 2009-03-24 22:46:08 +0100 (Di, 24. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/tcl/etl_scicos_el32xx.tcl
+
+Working Interface Function
+------------------------------------------------------------------------
+r236 | ab | 2009-03-24 22:45:40 +0100 (Di, 24. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/buildmacros.sce
+
+
+------------------------------------------------------------------------
+r235 | ab | 2009-03-24 22:45:16 +0100 (Di, 24. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/set_etl_slave_el32xx.sci
+
+Working Interface Function
+------------------------------------------------------------------------
+r234 | ab | 2009-03-24 22:29:28 +0100 (Di, 24. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/msr_reg_scicos.c
+
+Control Debug Output
+------------------------------------------------------------------------
+r233 | ab | 2009-03-24 22:12:16 +0100 (Di, 24. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Set Cycletime to 2*Timerresolution if Cycletime < Timerres
+------------------------------------------------------------------------
+r232 | ab | 2009-03-19 14:28:23 +0100 (Do, 19. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/README_Unix
+
+Fix for first release
+------------------------------------------------------------------------
+r231 | ab | 2009-03-19 14:08:09 +0100 (Do, 19. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/README_Unix
+
+Fix for first release
+------------------------------------------------------------------------
+r230 | ab | 2009-03-19 14:05:29 +0100 (Do, 19. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/Makefile
+   M /trunk/README_Unix
+
+Fix for first release
+------------------------------------------------------------------------
+r229 | ab | 2009-03-19 10:36:46 +0100 (Do, 19. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/etherlab.mak
+   A /trunk/modules/etherlab_codegen/libs
+   A /trunk/modules/etherlab_codegen/libs/blas.a
+   A /trunk/modules/etherlab_codegen/libs/calelm.a
+   A /trunk/modules/etherlab_codegen/libs/lapack.a
+   A /trunk/modules/etherlab_codegen/libs/os_specific.a
+   A /trunk/modules/etherlab_codegen/libs/poly.a
+   A /trunk/modules/etherlab_codegen/libs/scicos.a
+
+Added libs for binary distrobutions
+------------------------------------------------------------------------
+r228 | ab | 2009-03-18 23:06:03 +0100 (Mi, 18. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_412
+
+Rebuild Codegeneration für binäre Distribution
+------------------------------------------------------------------------
+r227 | ab | 2009-03-18 22:56:21 +0100 (Mi, 18. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_412
+
+Set absolut path to relativ, working with getenv('ETLPATH')
+------------------------------------------------------------------------
+r226 | ab | 2009-03-18 22:28:19 +0100 (Mi, 18. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/etherlab.mak
+   M /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_412
+
+Set absolut path to relativ, working with getenv('ETLPATH')
+------------------------------------------------------------------------
+r225 | ab | 2009-03-18 22:06:53 +0100 (Mi, 18. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/etc/etherlab_codegen.start
+
+Set absolut path to relativ, working with getenv('ETLPATH')
+------------------------------------------------------------------------
+r224 | ab | 2009-03-18 21:46:04 +0100 (Mi, 18. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/builder.sce
+   M /trunk/etc/etherlab_toolbox.start
+   M /trunk/modules/etherlab_base/macros/getslavedesc.sci
+   M /trunk/modules/etherlab_base/macros/set_etl_slave_el1xxx.sci
+   M /trunk/modules/etherlab_base/macros/set_etl_slave_el2xxx.sci
+   M /trunk/modules/etherlab_base/macros/set_etl_slave_el32xx.sci
+   M /trunk/modules/etherlab_base/macros/set_etl_slave_el3xxx.sci
+   M /trunk/modules/etherlab_base/macros/set_etl_slave_el4xxx.sci
+   M /trunk/modules/etherlab_base/slave_descriptions/convert_sd_mat2dat.sce
+   M /trunk/modules/etherlab_codegen/builder.sce
+   M /trunk/modules/etherlab_codegen/etc/etherlab_codegen.start
+   M /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_412
+
+Set absolut path to relativ, working with getenv('ETLPATH')
+------------------------------------------------------------------------
+r223 | ab | 2009-03-18 16:52:05 +0100 (Mi, 18. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_412
+
+Correct the internal diplayformat for numbers
+------------------------------------------------------------------------
+r222 | ab | 2009-03-18 09:11:02 +0100 (Mi, 18. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/tcl/etl_scicos_el32xx.tcl
+
+Presteps for EL32xx added
+------------------------------------------------------------------------
+r221 | ab | 2009-03-18 09:05:11 +0100 (Mi, 18. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el32xx.sci
+   A /trunk/modules/etherlab_base/macros/set_etl_slave_el32xx.sci
+   A /trunk/modules/etherlab_base/src/tcl/etl_scicos_el32xx.tcl
+
+Presteps for EL32xx added
+------------------------------------------------------------------------
+r220 | ab | 2009-03-17 08:55:01 +0100 (Di, 17. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el32xx.sci
+
+Prestetate EL32xx, to be finished
+------------------------------------------------------------------------
+r219 | ab | 2009-03-17 08:54:30 +0100 (Di, 17. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/set_etl_slave_el2xxx.sci
+
+Added El26x2, to be tested
+------------------------------------------------------------------------
+r218 | ab | 2009-03-17 08:54:04 +0100 (Di, 17. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el2xxx.sci
+
+Added El26x2, to be tested
+------------------------------------------------------------------------
+r217 | ab | 2009-03-17 08:52:44 +0100 (Di, 17. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_scicosrt/help/en_US/etl_scicos_realtime.xml (von /trunk/modules/etherlab_scicosrt/help/en_US/scicos_realtime.xml:216)
+   D /trunk/modules/etherlab_scicosrt/help/en_US/scicos_realtime.xml
+   A /trunk/modules/etherlab_scicosrt/help/en_US_scilab4/etl_scicos_realtime.xml (von /trunk/modules/etherlab_scicosrt/help/en_US_scilab4/scicos_realtime.xml:216)
+   D /trunk/modules/etherlab_scicosrt/help/en_US_scilab4/scicos_realtime.xml
+   M /trunk/modules/etherlab_scicosrt/macros/buildmacros.sce
+   A /trunk/modules/etherlab_scicosrt/macros/etl_scicos_realtime.sci (von /trunk/modules/etherlab_scicosrt/macros/scicos_realtime.sci:215)
+   D /trunk/modules/etherlab_scicosrt/macros/scicos_realtime.sci
+   M /trunk/modules/etherlab_scicosrt/src/c/builder_c.sce
+   A /trunk/modules/etherlab_scicosrt/src/c/etl_scicos_realtime.c (von /trunk/modules/etherlab_scicosrt/src/c/scicos_realtime.c:214)
+   M /trunk/modules/etherlab_scicosrt/src/c/loader_src.sce
+   D /trunk/modules/etherlab_scicosrt/src/c/scicos_realtime.c
+
+Running etl_scicos_realtime,TODO extended testing
+------------------------------------------------------------------------
+r216 | ab | 2009-03-16 09:12:47 +0100 (Mo, 16. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_scicosrt/help/builder_help.sce
+   A /trunk/modules/etherlab_scicosrt/help/dtd
+   A /trunk/modules/etherlab_scicosrt/help/dtd/help.dtd
+   A /trunk/modules/etherlab_scicosrt/help/en_US
+   A /trunk/modules/etherlab_scicosrt/help/en_US/build_help.sce
+   A /trunk/modules/etherlab_scicosrt/help/en_US/scicos_realtime.xml
+   A /trunk/modules/etherlab_scicosrt/help/en_US_scilab4
+   A /trunk/modules/etherlab_scicosrt/help/en_US_scilab4/addchapter.sce
+   A /trunk/modules/etherlab_scicosrt/help/en_US_scilab4/build_help.sce
+   A /trunk/modules/etherlab_scicosrt/help/en_US_scilab4/scicos_realtime.xml
+
+Added Scicos RT segment
+------------------------------------------------------------------------
+r215 | ab | 2009-03-16 09:10:27 +0100 (Mo, 16. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_scicosrt/macros/scicos_realtime.sci
+
+Added Scicos RT segment
+------------------------------------------------------------------------
+r214 | ab | 2009-03-16 09:09:56 +0100 (Mo, 16. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_scicosrt/builder.sce
+   A /trunk/modules/etherlab_scicosrt/etc/etherlab_scicosrt.quit
+   A /trunk/modules/etherlab_scicosrt/etc/etherlab_scicosrt.start
+   A /trunk/modules/etherlab_scicosrt/macros/buildmacros.sce
+   A /trunk/modules/etherlab_scicosrt/src/builder_src.sce
+   A /trunk/modules/etherlab_scicosrt/src/c/builder_c.sce
+   A /trunk/modules/etherlab_scicosrt/src/c/loader_src.sce
+   M /trunk/modules/etherlab_scicosrt/src/c/scicos_realtime.c
+
+Added Scicos RT segment
+------------------------------------------------------------------------
+r213 | ab | 2009-03-13 23:18:47 +0100 (Fr, 13. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+Implement Analog Output, Working for EL4102
+------------------------------------------------------------------------
+r212 | ab | 2009-03-13 20:40:05 +0100 (Fr, 13. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/builder.sce
+
+
+------------------------------------------------------------------------
+r211 | ab | 2009-03-13 20:39:43 +0100 (Fr, 13. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_43
+
+Add original Codegeneration for Scicoslab 4.3
+------------------------------------------------------------------------
+r210 | ab | 2009-03-13 20:39:10 +0100 (Fr, 13. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/etc/etherlab_codegen.start
+
+Version Control added
+------------------------------------------------------------------------
+r209 | ab | 2009-03-12 22:26:14 +0100 (Do, 12. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/builder.sce
+
+Version dependend System copy for Codegeneration
+------------------------------------------------------------------------
+r208 | ab | 2009-03-12 22:24:06 +0100 (Do, 12. Mär 2009) | 1 line
+Geänderte Pfade:
+   D /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci
+   A /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci_412
+   D /trunk/modules/etherlab_codegen/macros/SetTarget_.sci
+   A /trunk/modules/etherlab_codegen/macros/SetTarget_.sci_412
+
+Version depended Codegeneration added
+------------------------------------------------------------------------
+r207 | ab | 2009-03-12 22:15:10 +0100 (Do, 12. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/etc/etherlab_codegen.start
+
+Fix Startup File
+------------------------------------------------------------------------
+r206 | ab | 2009-03-12 21:53:14 +0100 (Do, 12. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/macros/SetTarget_.sci
+
+Fix Path for Codegeneration
+------------------------------------------------------------------------
+r205 | ab | 2009-03-12 21:46:32 +0100 (Do, 12. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/builder.sce
+
+Version depended Header Initialisation added
+------------------------------------------------------------------------
+r204 | ab | 2009-03-12 20:33:02 +0100 (Do, 12. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el3xxx.sci
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el4xxx.sci
+
+Fullscale reduced to 15
+------------------------------------------------------------------------
+r203 | ab | 2009-03-12 20:31:00 +0100 (Do, 12. Mär 2009) | 1 line
+Geänderte Pfade:
+   D /trunk/includes/scicos_block4.h
+   A /trunk/includes/scicos_block4_12.h
+   A /trunk/includes/scicos_block4_3.h
+
+Split in Scilab 4.1.2 an d 4.3 Header
+------------------------------------------------------------------------
+r202 | ab | 2009-03-12 08:56:20 +0100 (Do, 12. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el1xxx.sci
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el2xxx.sci
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el4xxx.sci
+
+Added new PDO_MAP interface for EL1xxx,El2xxx,EL3xxx,EL4xxx
+------------------------------------------------------------------------
+r201 | ab | 2009-03-12 08:56:04 +0100 (Do, 12. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/build_mapstruct.sci
+
+fix Pdo Mapping Layout
+------------------------------------------------------------------------
+r200 | ab | 2009-03-11 22:31:42 +0100 (Mi, 11. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+Added Analog Input Handling, To be tested
+------------------------------------------------------------------------
+r199 | ab | 2009-03-11 21:44:00 +0100 (Mi, 11. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+Fix Sync Manager Index, Fix Failure Handling during Activation time 
+------------------------------------------------------------------------
+r198 | ab | 2009-03-11 21:12:43 +0100 (Mi, 11. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/build_mapstruct.sci
+
+Fix Bug in OPAR_MAP Layout
+------------------------------------------------------------------------
+r197 | ab | 2009-03-11 21:12:34 +0100 (Mi, 11. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el3xxx.sci
+
+Fix Bug in OPAR_MAP Layout
+------------------------------------------------------------------------
+r196 | ab | 2009-03-10 22:38:35 +0100 (Di, 10. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/build_mapstruct.sci
+
+New Pdomapping Interface function
+------------------------------------------------------------------------
+r195 | ab | 2009-03-10 22:38:12 +0100 (Di, 10. Mär 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el3xxx.sci
+
+Preworking EL3xxx Block with new pdo mapping interface.
+to be fixed: Block not Running inside scicos
+------------------------------------------------------------------------
+r194 | ab | 2009-03-10 21:29:39 +0100 (Di, 10. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_matlabrt
+   A /trunk/modules/etherlab_matlabrt/src
+   A /trunk/modules/etherlab_matlabrt/src/c
+   A /trunk/modules/etherlab_matlabrt/src/c/etherlab_comedi.c
+   A /trunk/modules/etherlab_matlabrt/src/c/etherlab_comedi.h
+   A /trunk/modules/etherlab_matlabrt/src/c/etherlab_realtime.c
+   A /trunk/modules/etherlab_matlabrt/src/c/main_menu.m
+   A /trunk/modules/etherlab_matlabrt/src/c/sfun_comedi_data_read.c
+   A /trunk/modules/etherlab_matlabrt/src/c/sfun_comedi_data_write.c
+   A /trunk/modules/etherlab_matlabrt/src/c/sfun_comedi_dio_write.c
+   A /trunk/modules/etherlab_matlabrt/src/c/test.mdl
+   A /trunk/modules/etherlab_matlabrt/src/c/test_menu.fig
+   A /trunk/modules/etherlab_matlabrt/src/c/test_menu.m
+   A /trunk/modules/etherlab_matlabrt/src/c/test_start.m
+
+Add Matlab RT Block, to be finished
+------------------------------------------------------------------------
+r193 | ab | 2009-03-10 21:29:01 +0100 (Di, 10. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_scicosrt
+   A /trunk/modules/etherlab_scicosrt/etc
+   A /trunk/modules/etherlab_scicosrt/help
+   A /trunk/modules/etherlab_scicosrt/macros
+   A /trunk/modules/etherlab_scicosrt/src
+   A /trunk/modules/etherlab_scicosrt/src/c
+   A /trunk/modules/etherlab_scicosrt/src/c/scicos_realtime.c
+
+Add Scicos RT Block, Structure to be fixed
+------------------------------------------------------------------------
+r192 | ab | 2009-03-10 21:28:14 +0100 (Di, 10. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+Add OPAR_MAP_SCALE Section
+------------------------------------------------------------------------
+r191 | ab | 2009-03-10 21:27:08 +0100 (Di, 10. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Remove Debug Statement
+------------------------------------------------------------------------
+r190 | ab | 2009-03-06 17:22:17 +0100 (Fr, 06. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Check for non root user
+------------------------------------------------------------------------
+r189 | ab | 2009-03-06 09:36:39 +0100 (Fr, 06. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/etc/etherlab_codegen.start
+
+Fix Startup; TODO FIX Try Catch Block
+------------------------------------------------------------------------
+r188 | ab | 2009-03-06 09:36:11 +0100 (Fr, 06. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+
+Exit if pthread_create fails
+------------------------------------------------------------------------
+r187 | ab | 2009-03-06 09:35:54 +0100 (Fr, 06. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci
+
+Fix Targetdir
+------------------------------------------------------------------------
+r186 | ab | 2009-03-06 09:35:25 +0100 (Fr, 06. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el1xxx.sci
+
+Correct Default Slave
+------------------------------------------------------------------------
+r185 | ab | 2009-03-05 23:08:55 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates/etherlab.mak
+   M /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci
+
+Change Codegen Path
+------------------------------------------------------------------------
+r184 | ab | 2009-03-05 22:52:44 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_codegen/builder.sce
+   M /trunk/modules/etherlab_codegen/etc/etherlab_codegen.start
+
+
+------------------------------------------------------------------------
+r183 | ab | 2009-03-05 22:38:29 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/builder.sce
+   M /trunk/modules/etherlab_base/etc/etherlab_base.start
+
+Remove Codegeneration from builder and startup filed
+------------------------------------------------------------------------
+r182 | ab | 2009-03-05 22:35:37 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   D /trunk/modules/etherlab_base/macros_codegeneration
+
+
+------------------------------------------------------------------------
+r181 | ab | 2009-03-05 22:35:20 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   D /trunk/modules/etherlab_base/RT_templates
+
+Remove Codegeneration Files in Base structure
+------------------------------------------------------------------------
+r180 | ab | 2009-03-05 22:33:07 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_codegen/etc/etherlab_codegen.quit
+   A /trunk/modules/etherlab_codegen/etc/etherlab_codegen.start
+
+Pre buld up codeneration module, to be fixed
+------------------------------------------------------------------------
+r179 | ab | 2009-03-05 22:30:27 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_codegen/macros/ETHERLABCodeGen_.sci
+   A /trunk/modules/etherlab_codegen/macros/SetTarget_.sci
+   A /trunk/modules/etherlab_codegen/macros/buildmacros.sce
+
+
+------------------------------------------------------------------------
+r178 | ab | 2009-03-05 22:28:08 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates
+
+
+------------------------------------------------------------------------
+r177 | ab | 2009-03-05 22:27:33 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/TODO
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/addidata_type.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/apci1500.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/apci1710.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/apci1710_igh.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/apci3120.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/beckh_cx1100.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/float.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/korrelation.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_attributelist.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_base64.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_charbuf.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_control.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_controller.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_error_reg.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_float.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_functiongen.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_hex_bin.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_interpolate.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_interpolate.h_copy
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_interpreter.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_ioctl.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_korrelation.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_lists.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_main.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_mdct.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_mem.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_messages.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_proc.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_pwmgen.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_ramp.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_rcsinfo.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_reg.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_sel_kan.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_statemaschine.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_stepper.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_target.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_taskname.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_time.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_utils.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_version.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/msr_watchdog.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/include/rt_float.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-control
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-control/msr_controller.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-control/msr_functiongen.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-control/msr_pwmgen.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-control/msr_ramp.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-control/msr_statemaschine.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-control/msr_stepper.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-control/msr_watchdog.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-core
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-core/msr.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-core/msr_attributelist.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-core/msr_charbuf.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-core/msr_error_reg.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-core/msr_interpreter.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-core/msr_lists.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-core/msr_main.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-core/msr_messages.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-core/msr_proc.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-core/msr_reg.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-core/msr_usr_lists.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-hwdriver
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-hwdriver/apci1500.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-hwdriver/apci1710.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-hwdriver/apci3120.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-hwdriver/beckh_cx1100.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-include
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-math
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-math/korrelation.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-math/msr_base64.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-math/msr_hex_bin.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-math/msr_interpolate.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-math/msr_korrelation.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-math/msr_mdct.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-misc
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-userlib
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-userlib/Makefile
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-userlib/Makefile_simply
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-userlib/usr-main.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-userlib/usr_main_simply.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-utils
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-utils/msr_time.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/msr-utils/msr_utils.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/rt_template
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/rt_template/Makefile
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/rt_template/msr_control.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/rt_template/msr_io.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/rt_template/msr_io.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/rt_template/msr_load
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/rt_template/msr_module.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/rt_template/msr_param.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/rt_template/msr_unload
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/rt_template/msrserv.pl
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/rt_template/prj_globals.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/rt_template/prj_globals.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/rt_template/prj_statemaschine.c
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/rt_template/prj_statemaschine.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rt_lib/rt_template/prj_vardef.h
+
+
+------------------------------------------------------------------------
+r176 | ab | 2009-03-05 22:23:13 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_codegen/RT_templates
+   A /trunk/modules/etherlab_codegen/RT_templates/etherlab.gen
+   A /trunk/modules/etherlab_codegen/RT_templates/etherlab.mak
+   A /trunk/modules/etherlab_codegen/RT_templates/msr_reg_scicos.c
+   A /trunk/modules/etherlab_codegen/RT_templates/msr_reg_scicos.h
+   A /trunk/modules/etherlab_codegen/RT_templates/rtmain.c
+   A /trunk/modules/etherlab_codegen/RT_templates/standalone.cmd
+
+
+------------------------------------------------------------------------
+r175 | ab | 2009-03-05 22:12:12 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/builder.sce
+   M /trunk/modules/etherlab_base/etc/etherlab_base.start
+
+Finish macro structure, Bug Palette generation fixed
+------------------------------------------------------------------------
+r174 | ab | 2009-03-05 22:04:49 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   D /trunk/modules/etherlab_base/utils
+
+
+------------------------------------------------------------------------
+r173 | ab | 2009-03-05 22:04:05 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/buildmacros.sce
+   A /trunk/modules/etherlab_base/macros/check_pos_integer.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_SmCByte.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_SmPdoEntry.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_SmPdoInfo.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_SmPdonEntry.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_buildopar.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_checkslave.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_getconfig.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_getsmtype.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_numPdo.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_numSm.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_numtypes.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_productcode.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_revision.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_smtype.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_typename.sci
+   A /trunk/modules/etherlab_base/macros/getslavedesc_vendor.sci
+   A /trunk/modules/etherlab_base/macros/loadmacros.sce
+   A /trunk/modules/etherlab_base/macros/set_etl_slave_el1xxx.sci
+   A /trunk/modules/etherlab_base/macros/set_etl_slave_el2xxx.sci
+   A /trunk/modules/etherlab_base/macros/set_etl_slave_el3xxx.sci
+   A /trunk/modules/etherlab_base/macros/set_etl_slave_el4xxx.sci
+
+add util macros
+------------------------------------------------------------------------
+r172 | ab | 2009-03-05 22:03:17 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   D /trunk/modules/etherlab_base/utils/buildmacros.sce
+
+
+------------------------------------------------------------------------
+r171 | ab | 2009-03-05 22:02:57 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   D /trunk/modules/etherlab_base/utils/check_pos_integer.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_SmCByte.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_SmPdoEntry.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_SmPdoInfo.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_SmPdonEntry.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_buildopar.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_checkslave.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_getconfig.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_getsmtype.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_numPdo.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_numSm.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_numtypes.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_productcode.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_revision.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_smtype.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_typename.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_vendor.sci
+   D /trunk/modules/etherlab_base/utils/loadmacros.sce
+   D /trunk/modules/etherlab_base/utils/set_etl_slave_el1xxx.sci
+   D /trunk/modules/etherlab_base/utils/set_etl_slave_el2xxx.sci
+   D /trunk/modules/etherlab_base/utils/set_etl_slave_el3xxx.sci
+   D /trunk/modules/etherlab_base/utils/set_etl_slave_el4xxx.sci
+
+
+------------------------------------------------------------------------
+r170 | ab | 2009-03-05 21:53:01 +0100 (Do, 05. Mär 2009) | 2 lines
+Geänderte Pfade:
+   D /trunk/modules/etherlab_base/macros/etl_scicos_el1xxx.sci
+   D /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+   D /trunk/modules/etherlab_base/macros/etl_scicos_el3xxx.sci
+   D /trunk/modules/etherlab_base/macros/etl_scicos_el4xxx.sci
+   A /trunk/modules/etherlab_base/macros/scicos
+   A /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el1xxx.sci
+   A /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el2xxx.sci
+   A /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el3xxx.sci
+   A /trunk/modules/etherlab_base/macros/scicos/etl_scicos_el4xxx.sci
+
+restructure macros
+
+------------------------------------------------------------------------
+r169 | ab | 2009-03-05 21:44:03 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+
+------------------------------------------------------------------------
+r168 | ab | 2009-03-05 21:26:34 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/help/en_US/etl_scicos_el1xxx.xml
+   D /trunk/modules/etherlab_base/help/en_US/etl_scicos_el3162.xml
+   A /trunk/modules/etherlab_base/help/en_US_scilab4/etl_scicos_el1xxx.xml
+   D /trunk/modules/etherlab_base/help/en_US_scilab4/etl_scicos_el3162.xml
+
+Update Help Files
+------------------------------------------------------------------------
+r167 | ab | 2009-03-05 21:21:43 +0100 (Do, 05. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/builder_c.sce
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+   D /trunk/modules/etherlab_base/src/c/etl_scicos_el2032.c
+   D /trunk/modules/etherlab_base/src/c/etl_scicos_el3162.c
+   M /trunk/modules/etherlab_base/src/c/loader_src.sce
+
+Clean up directory
+------------------------------------------------------------------------
+r166 | ab | 2009-03-02 17:58:23 +0100 (Mo, 02. Mär 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+Starting analog raw handling functions
+------------------------------------------------------------------------
+r165 | ab | 2009-03-02 17:49:57 +0100 (Mo, 02. Mär 2009) | 2 lines
+Geänderte Pfade:
+   D /trunk/modules/etherlab_base/macros/etl_scicos_el2032.sci
+   D /trunk/modules/etherlab_base/macros/etl_scicos_el3162.sci
+
+Remove old blocks
+
+------------------------------------------------------------------------
+r164 | ab | 2009-02-26 22:16:41 +0100 (Do, 26. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/utils/getslavedesc_getconfig.sci
+
+Remove debug output
+------------------------------------------------------------------------
+r163 | ab | 2009-02-26 21:42:35 +0100 (Do, 26. Feb 2009) | 2 lines
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/etl_scicos_el3xxx.sci
+   A /trunk/modules/etherlab_base/macros/etl_scicos_el4xxx.sci
+   A /trunk/modules/etherlab_base/utils/set_etl_slave_el3xxx.sci
+   A /trunk/modules/etherlab_base/utils/set_etl_slave_el4xxx.sci
+   A /trunk/modules/etherlab_codegen
+   A /trunk/modules/etherlab_codegen/RT_templates
+   A /trunk/modules/etherlab_codegen/demos
+   A /trunk/modules/etherlab_codegen/etc
+   A /trunk/modules/etherlab_codegen/help
+   A /trunk/modules/etherlab_codegen/macros
+   A /trunk/modules/etherlab_codegen/src
+
+Added El3xxx and El4xxx, to be tested with real hardware
+TODO Comutational RAW-Value Handling
+------------------------------------------------------------------------
+r162 | ab | 2009-02-25 22:54:00 +0100 (Mi, 25. Feb 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+Bug in Dig Input Interface
+TODO: Debug Block Name Inteface
+------------------------------------------------------------------------
+r161 | ab | 2009-02-25 22:40:14 +0100 (Mi, 25. Feb 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/etl_scicos_el1xxx.sci
+   A /trunk/modules/etherlab_base/src/tcl/etl_scicos_el1xxx.tcl
+   A /trunk/modules/etherlab_base/utils/set_etl_slave_el1xxx.sci
+
+Added EL1xxx Block, to be tested with real Hardware
+------------------------------------------------------------------------
+r160 | ab | 2009-02-24 09:50:16 +0100 (Di, 24. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/README_Unix
+
+Build up for Etherlab
+------------------------------------------------------------------------
+r159 | ab | 2009-02-24 09:49:14 +0100 (Di, 24. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/perl/convert_slavedesc.pl
+
+FIXME: Index Problem in Scilab Structure
+------------------------------------------------------------------------
+r158 | ab | 2009-02-23 23:12:38 +0100 (Mo, 23. Feb 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/src/perl
+   A /trunk/modules/etherlab_base/src/perl/convert_slavedesc.pl
+
+Added XML to .sce file Parses, Indexgeneration has to be fixed
+------------------------------------------------------------------------
+r157 | ab | 2009-02-16 22:17:09 +0100 (Mo, 16. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/tcl/etl_scicos_el2xxx.tcl
+   M /trunk/modules/etherlab_base/utils/set_etl_slave_el2xxx.sci
+
+Woriking Selection ID for EL2xxx GUI
+------------------------------------------------------------------------
+r156 | ab | 2009-02-14 00:06:04 +0100 (Sa, 14. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+   M /trunk/modules/etherlab_base/src/tcl/etl_scicos_el2xxx.tcl
+   M /trunk/modules/etherlab_base/utils/set_etl_slave_el2xxx.sci
+
+Preselction of gui listboxitem added
+------------------------------------------------------------------------
+r155 | ab | 2009-02-13 21:48:50 +0100 (Fr, 13. Feb 2009) | 6 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+
+Build up EL2xxx Block with
+2004V1
+2004V2
+2008
+2032V1
+2032V2
+------------------------------------------------------------------------
+r154 | ab | 2009-02-13 20:20:31 +0100 (Fr, 13. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+Working EL2032 Block
+------------------------------------------------------------------------
+r153 | ab | 2009-02-13 17:28:58 +0100 (Fr, 13. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/utils/getslavedesc_buildopar.sci
+
+Remove Debug Information
+------------------------------------------------------------------------
+r152 | ab | 2009-02-13 14:32:23 +0100 (Fr, 13. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/utils/getslavedesc_SmPdoEntry.sci
+   M /trunk/modules/etherlab_base/utils/getslavedesc_SmPdoInfo.sci
+   M /trunk/modules/etherlab_base/utils/getslavedesc_buildopar.sci
+   M /trunk/modules/etherlab_base/utils/getslavedesc_getconfig.sci
+
+Added Comments t Direction Information
+------------------------------------------------------------------------
+r151 | ab | 2009-02-13 09:54:13 +0100 (Fr, 13. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+Added Debug Information
+------------------------------------------------------------------------
+r150 | ab | 2009-02-13 09:44:06 +0100 (Fr, 13. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+
+Failure Fix slave_genric data converted to int32
+------------------------------------------------------------------------
+r149 | ab | 2009-02-12 23:13:20 +0100 (Do, 12. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/builder.sce
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+Testing EL2xxx Block; Failure in Productcode detected, to be solved; Good night 
+------------------------------------------------------------------------
+r148 | ab | 2009-02-12 21:13:52 +0100 (Do, 12. Feb 2009) | 1 line
+Geänderte Pfade:
+   D /trunk/modules/etherlab_base/macros_codegeneration/ETHERLABCodeGen43_.sci
+
+Remocve Compilation 43
+------------------------------------------------------------------------
+r147 | ab | 2009-02-11 23:41:16 +0100 (Mi, 11. Feb 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+Prestate finished init routine for calculation function, to be tested
+TODO Failure Handling 
+------------------------------------------------------------------------
+r146 | ab | 2009-02-10 22:44:17 +0100 (Di, 10. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+Prestate if calculationfunction, to be continued
+------------------------------------------------------------------------
+r145 | ab | 2009-02-10 22:41:59 +0100 (Di, 10. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+
+Transpose Matrix layout in opar for identical layout
+------------------------------------------------------------------------
+r144 | ab | 2009-02-10 22:40:55 +0100 (Di, 10. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/utils/getslavedesc_buildopar.sci
+
+Transpose Config matrixes to build up identical layout
+------------------------------------------------------------------------
+r143 | ab | 2009-02-10 22:39:44 +0100 (Di, 10. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/includes/machine.h
+   M /trunk/includes/scicos_block4.h
+
+Update Headers to Scicos 4.3 
+------------------------------------------------------------------------
+r142 | ab | 2009-02-09 21:02:30 +0100 (Mo, 09. Feb 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros_codegeneration/ETHERLABCodeGen43_.sci
+
+Added Scicoslab 4.3 original Codegeneration
+------------------------------------------------------------------------
+r141 | ab | 2009-02-09 12:45:03 +0100 (Mo, 09. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+Working RTMAIN with high prior MSR-SERVER for SCHED_OTHER
+------------------------------------------------------------------------
+r140 | ab | 2009-02-09 10:30:36 +0100 (Mo, 09. Feb 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+
+Working Block GUI with set_io
+
+------------------------------------------------------------------------
+r139 | ab | 2009-02-06 10:26:19 +0100 (Fr, 06. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+
+Reduced Interface Function for Ramine
+------------------------------------------------------------------------
+r138 | ab | 2009-02-06 10:14:37 +0100 (Fr, 06. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/builder.sce
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+
+Temp save for build up reduced interface for ramine
+------------------------------------------------------------------------
+r137 | ab | 2009-02-04 21:22:49 +0100 (Mi, 04. Feb 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+
+Test check in from internal network
+
+------------------------------------------------------------------------
+r136 | ab | 2009-02-04 09:33:17 +0100 (Mi, 04. Feb 2009) | 1 line
+Geänderte Pfade:
+   D /trunk/test.txt
+
+Remove Test File
+------------------------------------------------------------------------
+r135 | ab | 2009-02-04 09:32:05 +0100 (Mi, 04. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_ekxxxx_v6.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el15xx_v6.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el1xxx_v6.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el2xxx_v6.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el37xx_v6.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el3xxx_v6.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el47xx_v6.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el4xxx_v6.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el5xxx_v6.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el6xxx_v6.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el9xxx_v6.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_mts_v6.mat
+   M /trunk/modules/etherlab_base/src/c/builder_c.sce
+   M /trunk/modules/etherlab_base/src/c/etl_scicos.c
+   M /trunk/modules/etherlab_base/utils/set_etl_slave_el2xxx.sci
+
+Test SVN Server
+------------------------------------------------------------------------
+r134 | ab | 2009-02-04 09:31:09 +0100 (Mi, 04. Feb 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/test.txt
+
+
+------------------------------------------------------------------------
+r133 | ab | 2009-02-02 23:05:43 +0100 (Mo, 02. Feb 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+   A /trunk/modules/etherlab_base/src/c/etl_scicos.c
+
+
+------------------------------------------------------------------------
+r132 | ab | 2009-01-29 21:46:22 +0100 (Do, 29. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/utils/getslavedesc_SmPdoEntry.sci
+   M /trunk/modules/etherlab_base/utils/getslavedesc_SmPdoInfo.sci
+   M /trunk/modules/etherlab_base/utils/getslavedesc_SmPdonEntry.sci
+   M /trunk/modules/etherlab_base/utils/getslavedesc_buildopar.sci
+   M /trunk/modules/etherlab_base/utils/getslavedesc_getconfig.sci
+   M /trunk/modules/etherlab_base/utils/getslavedesc_getsmtype.sci
+   M /trunk/modules/etherlab_base/utils/getslavedesc_numPdo.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_numRxPdo.bin
+   M /trunk/modules/etherlab_base/utils/getslavedesc_vendor.sci
+
+Working build config routines, to be tested
+------------------------------------------------------------------------
+r131 | ab | 2009-01-28 09:37:00 +0100 (Mi, 28. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+Running full models, TODO running as nonroot user
+------------------------------------------------------------------------
+r130 | ab | 2009-01-27 17:50:10 +0100 (Di, 27. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+   M /trunk/modules/etherlab_base/utils/getslavedesc_SmPdoInfo.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_buildopar.sci
+   M /trunk/modules/etherlab_base/utils/getslavedesc_getconfig.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_numPdo.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_numRxPdo.bin
+   D /trunk/modules/etherlab_base/utils/getslavedesc_numRxPdo.sci
+   D /trunk/modules/etherlab_base/utils/getslavedesc_numTxPdo.sci
+
+Working on Slave config Interface, Direction detection failure
+------------------------------------------------------------------------
+r129 | ab | 2009-01-27 08:14:37 +0100 (Di, 27. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/etherlab.mak
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+Working MSR Main, TO be tested with Codegeneration
+------------------------------------------------------------------------
+r128 | ab | 2009-01-26 07:36:32 +0100 (Mo, 26. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+Not working client handler, rebuild to msr handling into main loop
+------------------------------------------------------------------------
+r127 | ab | 2009-01-22 18:10:51 +0100 (Do, 22. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+Not working pre threading MSR-Client, switch to select Implementation
+------------------------------------------------------------------------
+r126 | ab | 2009-01-22 18:10:17 +0100 (Do, 22. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/msr_reg_scicos.c
+   M /trunk/modules/etherlab_base/RT_templates/msr_reg_scicos.h
+
+#ifdef MSR_OLD added to split old and new MSR Interface
+------------------------------------------------------------------------
+r125 | ab | 2009-01-21 23:18:52 +0100 (Mi, 21. Jan 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+Working RT-Thread,
+pthread_create during runtime is critical, workaround needed (select in msr slave task)
+------------------------------------------------------------------------
+r124 | ab | 2009-01-21 20:57:49 +0100 (Mi, 21. Jan 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+Tempkopie
+
+------------------------------------------------------------------------
+r123 | ab | 2009-01-21 18:00:49 +0100 (Mi, 21. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+Umbau auf Realtime Subthread
+------------------------------------------------------------------------
+r122 | ab | 2009-01-21 00:28:46 +0100 (Mi, 21. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+Working Preempt RT, but Overruns when creating new thread for MSR Clienthandler
+------------------------------------------------------------------------
+r121 | ab | 2009-01-20 00:13:45 +0100 (Di, 20. Jan 2009) | 4 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+Working main routine based on clock_nanosleep,
+RTC, HPET, select and nanosleep are removed.
+Test without model up to 200kHz successfull
+MSR and Modelinteface are outcommented up to now
+------------------------------------------------------------------------
+r120 | ab | 2009-01-15 18:15:02 +0100 (Do, 15. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/utils/getslavedesc_SmPdoEntry.sci
+   M /trunk/modules/etherlab_base/utils/getslavedesc_SmPdoInfo.sci
+   M /trunk/modules/etherlab_base/utils/getslavedesc_SmPdonEntry.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_getconfig.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_getsmtype.sci
+
+Preworking getconfig script added, To be tested!!
+------------------------------------------------------------------------
+r119 | ab | 2009-01-13 22:44:02 +0100 (Di, 13. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/builder.sce
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+   A /trunk/modules/etherlab_base/slave_descriptions/convert_SD_v6.m
+   A /trunk/modules/etherlab_base/slave_descriptions/convert_sd_mat2dat.sce
+   M /trunk/modules/etherlab_base/utils/getslavedesc.sci
+
+Slave Descriptions are converted into Scilab Binary Format at build time; Gui's lnow oad Sci-Files 
+------------------------------------------------------------------------
+r118 | ab | 2009-01-13 11:03:37 +0100 (Di, 13. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+   D /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.tcl
+
+Working GUI-Interfacs for EL2xxx, TODO: slave description handling
+------------------------------------------------------------------------
+r117 | ab | 2009-01-13 09:30:30 +0100 (Di, 13. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/utils/set_etl_slave_el2xxx.sci
+
+Worling Gui-Function
+------------------------------------------------------------------------
+r116 | ab | 2009-01-13 08:58:07 +0100 (Di, 13. Jan 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/src/tcl
+   A /trunk/modules/etherlab_base/src/tcl/etl_scicos_el2xxx.tcl
+
+
+------------------------------------------------------------------------
+r115 | ab | 2009-01-13 08:11:12 +0100 (Di, 13. Jan 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/utils/check_pos_integer.sci
+   D /trunk/modules/etherlab_base/utils/check_pos_interger.sci
+
+
+------------------------------------------------------------------------
+r114 | ab | 2009-01-13 08:10:04 +0100 (Di, 13. Jan 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/utils/check_pos_interger.sci
+   M /trunk/modules/etherlab_base/utils/set_etl_slave_el2xxx.sci
+
+
+------------------------------------------------------------------------
+r113 | ab | 2009-01-11 23:22:07 +0100 (So, 11. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.tcl
+   A /trunk/modules/etherlab_base/utils/set_etl_slave_el2xxx.sci
+
+Working TCL Block Gui in pre state
+------------------------------------------------------------------------
+r112 | ab | 2009-01-09 10:16:33 +0100 (Fr, 09. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+   A /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.tcl
+
+Added TCL/TK script for EL2xxx Blockdialog
+------------------------------------------------------------------------
+r111 | ab | 2009-01-07 08:44:52 +0100 (Mi, 07. Jan 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/etl_scicos_el2xxx.sci
+
+Added generic Block Interface for el2xxx
+------------------------------------------------------------------------
+r110 | ab | 2009-01-06 22:30:18 +0100 (Di, 06. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/builder.sce
+   M /trunk/modules/etherlab_base/etc/etherlab_base.start
+   A /trunk/modules/etherlab_base/utils/buildmacros.sce
+   A /trunk/modules/etherlab_base/utils/getslavedesc_checkslave.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_smtype.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_vendor.sci
+   A /trunk/modules/etherlab_base/utils/loadmacros.sce
+
+Added Utils Scripts to Startscripts
+------------------------------------------------------------------------
+r109 | ab | 2009-01-06 12:15:24 +0100 (Di, 06. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/etherlab.mak
+   M /trunk/modules/etherlab_base/RT_templates/msr_reg_scicos.c
+   M /trunk/modules/etherlab_base/RT_templates/msr_reg_scicos.h
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+Not working state of msriolib interface, waiting for reimplementation of old rt_lib-interface in msriolib
+------------------------------------------------------------------------
+r108 | ab | 2009-01-06 12:12:58 +0100 (Di, 06. Jan 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/utils/getslavedesc_SmCByte.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_SmPdoEntry.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_SmPdoInfo.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_SmPdonEntry.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_numRxPdo.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_numSm.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_numTxPdo.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_numtypes.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_productcode.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_revision.sci
+   A /trunk/modules/etherlab_base/utils/getslavedesc_typename.sci
+
+Basic Slave Discription Handling Routines added
+------------------------------------------------------------------------
+r107 | ab | 2009-01-06 08:55:27 +0100 (Di, 06. Jan 2009) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/utils
+   A /trunk/modules/etherlab_base/utils/getslavedesc.sci
+
+Added utils dir. Starting Slave Descrption handling
+------------------------------------------------------------------------
+r106 | ab | 2009-01-05 17:02:34 +0100 (Mo, 05. Jan 2009) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+fixe runtime bug for multiclient msr.
+next step proting to new msriolib
+------------------------------------------------------------------------
+r105 | ab | 2009-01-03 23:13:52 +0100 (Sa, 03. Jan 2009) | 3 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/msr_reg_scicos.c
+
+Added Objcet Parameter Registration, to be tested
+
+Vector registration works
+------------------------------------------------------------------------
+r104 | ab | 2009-01-03 22:45:45 +0100 (Sa, 03. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros_codegeneration/ETHERLABCodeGen_.sci
+
+Escaping " in Blocknames
+------------------------------------------------------------------------
+r103 | ab | 2009-01-03 22:45:00 +0100 (Sa, 03. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/etc/etherlab_toolbox.start
+
+
+------------------------------------------------------------------------
+r102 | ab | 2009-01-03 22:39:35 +0100 (Sa, 03. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/etc/etherlab_toolbox.start
+
+Fix Start Skript
+------------------------------------------------------------------------
+r101 | ab | 2009-01-03 21:21:38 +0100 (Sa, 03. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros_codegeneration/ETHERLABCodeGen_.sci
+
+Remove RtaiLab- strRPAR strIPAR Code
+------------------------------------------------------------------------
+r100 | ab | 2009-01-03 21:03:06 +0100 (Sa, 03. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/etherlab.mak
+   M /trunk/modules/etherlab_base/RT_templates/msr_reg_scicos.c
+   M /trunk/modules/etherlab_base/RT_templates/msr_reg_scicos.h
+   M /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_reg.c
+   M /trunk/modules/etherlab_base/macros_codegeneration/ETHERLABCodeGen_.sci
+
+Working registration for Channels, I- and R Param, Test will have to be done
+------------------------------------------------------------------------
+r99 | ab | 2009-01-03 11:35:22 +0100 (Sa, 03. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_reg.h
+
+Added MSR_AIC and MSR_DEP, backport from msriolib
+------------------------------------------------------------------------
+r98 | ab | 2009-01-02 21:22:30 +0100 (Fr, 02. Jan 2009) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/etherlab.mak
+   M /trunk/modules/etherlab_base/RT_templates/msr_reg_scicos.c
+   M /trunk/modules/etherlab_base/RT_templates/msr_reg_scicos.h
+   M /trunk/modules/etherlab_base/macros_codegeneration/ETHERLABCodeGen_.sci
+
+On going msr_reg
+------------------------------------------------------------------------
+r97 | ab | 2008-12-27 14:19:17 +0100 (Sa, 27. Dez 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/msr_reg_scicos.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-include
+
+
+------------------------------------------------------------------------
+r96 | ab | 2008-12-11 21:38:43 +0100 (Do, 11. Dez 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/RT_templates/msr_reg_scicos.c
+   A /trunk/modules/etherlab_base/RT_templates/msr_reg_scicos.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_attributelist.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_attributelist.c
+
+backport for exetended info msr features
+------------------------------------------------------------------------
+r95 | ab | 2008-12-11 17:08:04 +0100 (Do, 11. Dez 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros_codegeneration/ETHERLABCodeGen_.sci
+
+
+------------------------------------------------------------------------
+r94 | ab | 2008-12-11 17:07:45 +0100 (Do, 11. Dez 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/standalone.cmd
+
+
+------------------------------------------------------------------------
+r93 | ab | 2008-12-11 17:07:27 +0100 (Do, 11. Dez 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/TODO
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/addidata_type.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/apci1500.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/apci1710.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/apci1710_igh.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/apci3120.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/beckh_cx1100.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/float.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/korrelation.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_base64.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_charbuf.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_control.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_controller.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_error_reg.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_float.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_functiongen.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_hex_bin.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_interpolate.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_interpolate.h_copy
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_interpreter.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_ioctl.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_korrelation.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_lists.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_main.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_mdct.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_mem.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_messages.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_proc.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_pwmgen.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_ramp.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_rcsinfo.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_reg.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_sel_kan.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_statemaschine.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_stepper.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_target.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_taskname.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_time.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_utils.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_version.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_watchdog.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/rt_float.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control/msr_controller.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control/msr_functiongen.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control/msr_pwmgen.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control/msr_ramp.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control/msr_statemaschine.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control/msr_stepper.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control/msr_watchdog.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_charbuf.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_error_reg.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_interpreter.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_lists.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_main.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_messages.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_proc.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_reg.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_usr_lists.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-hwdriver
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-hwdriver/apci1500.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-hwdriver/apci1710.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-hwdriver/apci3120.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-hwdriver/beckh_cx1100.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-math
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-math/korrelation.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-math/msr_base64.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-math/msr_hex_bin.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-math/msr_interpolate.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-math/msr_korrelation.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-math/msr_mdct.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-misc
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib/Makefile
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib/Makefile_simply
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib/main
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib/main_simply
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib/rt_lib
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib/usr-main.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib/usr_main_simply.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-utils
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-utils/msr_time.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-utils/msr_utils.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/Makefile
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msr_control.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msr_io.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msr_io.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msr_load
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msr_module.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msr_param.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msr_unload
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msrserv.pl
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/prj_globals.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/prj_globals.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/prj_statemaschine.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/prj_statemaschine.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/prj_vardef.h
+
+
+------------------------------------------------------------------------
+r92 | ab | 2008-12-10 22:02:13 +0100 (Mi, 10. Dez 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros_codegeneration/ETHERLABCodeGen_.sci
+
+added msr_reg funtion, to be tested
+------------------------------------------------------------------------
+r91 | ab | 2008-12-10 07:57:03 +0100 (Mi, 10. Dez 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+backport rt_lib 501 finished
+------------------------------------------------------------------------
+r90 | ab | 2008-12-10 07:42:57 +0100 (Mi, 10. Dez 2008) | 1 line
+Geänderte Pfade:
+   D /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+backport to rt_lib_501
+------------------------------------------------------------------------
+r89 | ab | 2008-12-09 10:47:32 +0100 (Di, 09. Dez 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include/msr_attributelist.h
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include/msr_base64.h
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include/msr_charbuf.h
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include/msr_hex_bin.h
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include/msr_interpreter.h
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include/msr_lists.h
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include/msr_main.h
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include/msr_mem.h
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include/msr_messages.h
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include/msr_rcsinfo.h
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include/msr_reg.h
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include/msr_target.h
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include/msr_taskname.h
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include/msr_utils.h
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/include/msr_version.h
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/msr-core
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/msr-core/msr_attributelist.c
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/msr-core/msr_charbuf.c
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/msr-core/msr_interpreter.c
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/msr-core/msr_lists.c
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/msr-core/msr_main.c
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/msr-core/msr_messages.c
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/msr-core/msr_reg.c
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/msr-math
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/msr-math/msr_base64.c
+   A /trunk/modules/etherlab_base/RT_templates/msrio_lib-6.0/msr-math/msr_hex_bin.c
+
+added original RTW MSRiolib
+------------------------------------------------------------------------
+r88 | ab | 2008-12-09 10:21:57 +0100 (Di, 09. Dez 2008) | 1 line
+Geänderte Pfade:
+   D /trunk/modules/etherlab_base/RT_templates/rt_lib
+
+
+------------------------------------------------------------------------
+r87 | ab | 2008-12-09 10:15:28 +0100 (Di, 09. Dez 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_attributelist.h
+   M /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_reg.c
+   M /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib/Makefile_simply
+
+
+------------------------------------------------------------------------
+r86 | ab | 2008-12-08 06:43:46 +0100 (Mo, 08. Dez 2008) | 2 lines
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/TODO
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/addidata_type.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/apci1500.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/apci1710.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/apci1710_igh.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/apci3120.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/beckh_cx1100.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/float.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/korrelation.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_base64.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_charbuf.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_control.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_controller.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_error_reg.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_float.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_functiongen.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_hex_bin.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_interpolate.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_interpolate.h_copy
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_interpreter.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_ioctl.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_korrelation.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_lists.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_main.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_mdct.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_mem.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_messages.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_proc.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_pwmgen.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_ramp.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_rcsinfo.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_reg.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_sel_kan.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_statemaschine.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_stepper.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_target.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_taskname.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_time.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_utils.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_version.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/msr_watchdog.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/include/rt_float.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control/msr_controller.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control/msr_functiongen.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control/msr_pwmgen.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control/msr_ramp.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control/msr_statemaschine.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control/msr_stepper.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-control/msr_watchdog.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_charbuf.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_error_reg.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_interpreter.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_lists.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_main.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_messages.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_proc.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_reg.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-core/msr_usr_lists.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-hwdriver
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-hwdriver/apci1500.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-hwdriver/apci1710.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-hwdriver/apci3120.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-hwdriver/beckh_cx1100.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-include
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-math
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-math/korrelation.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-math/msr_base64.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-math/msr_hex_bin.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-math/msr_interpolate.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-math/msr_korrelation.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-math/msr_mdct.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-misc
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib/Makefile
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib/Makefile_simply
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib/RCS
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib/main
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib/usr-main.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-userlib/usr_main_simply.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-utils
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-utils/msr_time.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/msr-utils/msr_utils.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/Makefile
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msr_control.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msr_io.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msr_io.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msr_load
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msr_module.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msr_param.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msr_unload
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/msrserv.pl
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/prj_globals.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/prj_globals.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/prj_statemaschine.c
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/prj_statemaschine.h
+   A /trunk/modules/etherlab_base/RT_templates/rt_lib/rt_template/prj_vardef.h
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+added rt_lib-5.0.1
+working alpha msr-code in Codegeneration
+------------------------------------------------------------------------
+r85 | ab | 2008-12-05 15:59:00 +0100 (Fr, 05. Dez 2008) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/etherlab.mak
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+working alpha MSR-Code
+
+------------------------------------------------------------------------
+r84 | ab | 2008-12-05 07:53:41 +0100 (Fr, 05. Dez 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros_codegeneration/ETHERLABCodeGen_.sci
+
+Init Model in Codegeneration for testing removed
+------------------------------------------------------------------------
+r83 | ab | 2008-12-02 16:26:48 +0100 (Di, 02. Dez 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/slave_descriptions
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_ekxxxx.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el15xx.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el1xxx.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el2xxx.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el37xx.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el3xxx.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el47xx.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el4xxx.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el5xxx.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el6xxx.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_el9xxx.mat
+   A /trunk/modules/etherlab_base/slave_descriptions/EtherCATInfo_mts.mat
+
+Added Ethercat Info Files
+------------------------------------------------------------------------
+r82 | ab | 2008-12-01 18:17:06 +0100 (Mo, 01. Dez 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/etherlab.mak
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+
+------------------------------------------------------------------------
+r81 | ab | 2008-12-01 18:06:17 +0100 (Mo, 01. Dez 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+   M /trunk/src/c/ecrt_support.c
+
+Working Codegeneration
+------------------------------------------------------------------------
+r80 | ab | 2008-12-01 10:51:12 +0100 (Mo, 01. Dez 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/etherlab.mak
+
+Working Makefile
+------------------------------------------------------------------------
+r79 | ab | 2008-11-29 17:16:12 +0100 (Sa, 29. Nov 2008) | 3 lines
+Geänderte Pfade:
+   M /trunk/includes/ecrt_support.h
+   M /trunk/modules/etherlab_base/src/c/dummy_test.c
+   M /trunk/src/c/ecrt_support.c
+
+Working withh new list structure and no malloc problem.
+Problem in Scicos with restart of an model?
+Test run dummy over 2 days succesfully
+------------------------------------------------------------------------
+r78 | ab | 2008-11-28 16:07:02 +0100 (Fr, 28. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/includes/ecrt_support.h
+   A /trunk/includes/list.h
+   M /trunk/src/c/builder_c.sce
+   M /trunk/src/c/ecrt_support.c
+   A /trunk/src/c/list.c
+
+
+------------------------------------------------------------------------
+r77 | ab | 2008-11-27 06:55:07 +0100 (Do, 27. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros_codegeneration/ETHERLABCodeGen_.sci
+
+
+------------------------------------------------------------------------
+r76 | ab | 2008-11-27 06:54:49 +0100 (Do, 27. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/etherlab.mak
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+Working on Codegeneration
+------------------------------------------------------------------------
+r75 | ab | 2008-11-27 06:52:30 +0100 (Do, 27. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/etc/etherlab_base.start
+
+
+------------------------------------------------------------------------
+r74 | ab | 2008-11-26 20:07:47 +0100 (Mi, 26. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/macros/tbx_build_macros.sci
+   M /trunk/modules/etherlab_base/etc/etherlab_base.start
+   M /trunk/modules/etherlab_base/macros/buildmacros.sce
+   M /trunk/modules/etherlab_base/macros_codegeneration/buildmacros.sce
+
+
+------------------------------------------------------------------------
+r73 | ab | 2008-11-26 07:06:07 +0100 (Mi, 26. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/etc/etherlab_base.start
+   M /trunk/modules/etherlab_base/macros_codegeneration/buildmacros.sce
+
+
+------------------------------------------------------------------------
+r72 | ab | 2008-11-26 06:53:01 +0100 (Mi, 26. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+   M /trunk/modules/etherlab_base/builder.sce
+   M /trunk/modules/etherlab_base/etc/etherlab_base.start
+
+
+------------------------------------------------------------------------
+r71 | ab | 2008-11-26 06:52:46 +0100 (Mi, 26. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros_codegeneration/buildmacros.sce
+
+
+------------------------------------------------------------------------
+r70 | ab | 2008-11-26 06:46:20 +0100 (Mi, 26. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos_el2032.c
+
+
+------------------------------------------------------------------------
+r69 | ab | 2008-11-25 20:57:27 +0100 (Di, 25. Nov 2008) | 1 line
+Geänderte Pfade:
+   D /trunk/modules/etherlab_base/macros/ETHERLABCodeGen_.sci
+   D /trunk/modules/etherlab_base/macros/SetTarget_.sci
+
+
+------------------------------------------------------------------------
+r68 | ab | 2008-11-25 20:56:12 +0100 (Di, 25. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros_codegeneration
+   A /trunk/modules/etherlab_base/macros_codegeneration/ETHERLABCodeGen_.sci
+   A /trunk/modules/etherlab_base/macros_codegeneration/SetTarget_.sci
+
+
+------------------------------------------------------------------------
+r67 | ab | 2008-11-25 20:56:05 +0100 (Di, 25. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/ETHERLABCodeGen_.sci
+   A /trunk/modules/etherlab_base/macros/SetTarget_.sci
+
+
+------------------------------------------------------------------------
+r66 | ab | 2008-11-25 20:26:46 +0100 (Di, 25. Nov 2008) | 1 line
+Geänderte Pfade:
+   D /trunk/modules/etherlab_base/RT_templates/rt_main.c
+   D /trunk/modules/etherlab_base/RT_templates/rt_main_user.c
+
+
+------------------------------------------------------------------------
+r65 | ab | 2008-11-25 20:26:17 +0100 (Di, 25. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+INterface implemented
+------------------------------------------------------------------------
+r64 | ab | 2008-11-25 20:24:47 +0100 (Di, 25. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rt_main_user.c
+
+
+------------------------------------------------------------------------
+r63 | ab | 2008-11-25 20:24:40 +0100 (Di, 25. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/RT_templates/rt_main.c
+
+Finished Interface
+------------------------------------------------------------------------
+r62 | ab | 2008-11-25 17:24:14 +0100 (Di, 25. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/rt_main_user.c
+
+Working standalone
+------------------------------------------------------------------------
+r61 | ab | 2008-11-24 21:26:47 +0100 (Mo, 24. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/RT_templates/rt_main_user.c
+
+rt_main_user added
+------------------------------------------------------------------------
+r60 | ab | 2008-11-24 20:13:03 +0100 (Mo, 24. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/RT_templates/etherlab.gen
+   M /trunk/modules/etherlab_base/RT_templates/etherlab.mak
+   M /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+
+------------------------------------------------------------------------
+r59 | ab | 2008-11-24 17:48:31 +0100 (Mo, 24. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/RT_templates/rtmain.c
+
+Original Version from Hart 1.1
+------------------------------------------------------------------------
+r58 | ab | 2008-11-24 17:21:49 +0100 (Mo, 24. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/RT_templates
+   A /trunk/modules/etherlab_base/RT_templates/etherlab.gen
+   A /trunk/modules/etherlab_base/RT_templates/etherlab.mak
+   A /trunk/modules/etherlab_base/RT_templates/standalone.cmd
+
+Original RT_Templates form Hart 1.1
+------------------------------------------------------------------------
+r57 | ab | 2008-11-24 17:14:30 +0100 (Mo, 24. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/ETHERLABCodeGen_.sci
+
+Orig Version Hart 1.1
+------------------------------------------------------------------------
+r56 | ab | 2008-11-24 08:30:11 +0100 (Mo, 24. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/etl_scicos_el2032.sci
+
+
+------------------------------------------------------------------------
+r55 | ab | 2008-11-24 08:11:38 +0100 (Mo, 24. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/builder_c.sce
+   M /trunk/modules/etherlab_base/src/c/etl_scicos_el2032.c
+
+EL2032 compiled correctly
+------------------------------------------------------------------------
+r54 | ab | 2008-11-24 08:08:10 +0100 (Mo, 24. Nov 2008) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/dummy_test.c
+   A /trunk/modules/etherlab_base/src/c/etl_scicos_el2032.c
+
+Added EL2032
+
+------------------------------------------------------------------------
+r53 | ab | 2008-11-24 07:48:33 +0100 (Mo, 24. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/src/c/ecrt_support.c
+
+
+------------------------------------------------------------------------
+r52 | ab | 2008-11-24 07:48:00 +0100 (Mo, 24. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos_el3162.c
+
+Working Poiter Arithmetric
+------------------------------------------------------------------------
+r51 | ab | 2008-11-22 20:33:15 +0100 (Sa, 22. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/src/c/build_dumm_test.sh
+
+
+------------------------------------------------------------------------
+r50 | ab | 2008-11-22 20:31:50 +0100 (Sa, 22. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/src/c/ecrt_support.c
+
+
+------------------------------------------------------------------------
+r49 | ab | 2008-11-22 20:31:36 +0100 (Sa, 22. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/dummy_test.c
+
+
+------------------------------------------------------------------------
+r48 | ab | 2008-11-21 22:57:05 +0100 (Fr, 21. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/src/c/ecrt_support.c
+
+removed free of  input list
+------------------------------------------------------------------------
+r47 | ab | 2008-11-21 22:55:39 +0100 (Fr, 21. Nov 2008) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/dummy_test.c
+
+Optimized for  Debugging
+
+------------------------------------------------------------------------
+r46 | ab | 2008-11-21 22:08:24 +0100 (Fr, 21. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos_el3162.c
+
+block pointer arithmetic corrected
+------------------------------------------------------------------------
+r45 | ab | 2008-11-21 22:07:12 +0100 (Fr, 21. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/src/c/ecrt_support_simply.c
+
+increment workindex in send routine deleted
+------------------------------------------------------------------------
+r44 | ab | 2008-11-21 15:03:28 +0100 (Fr, 21. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/dummy_test.c
+
+Working, Failure was calling of comdev structure
+------------------------------------------------------------------------
+r43 | ab | 2008-11-21 15:02:51 +0100 (Fr, 21. Nov 2008) | 2 lines
+Geänderte Pfade:
+   M /trunk/src/c/ecrt_support.c
+
+added Debug Information
+
+------------------------------------------------------------------------
+r42 | ab | 2008-11-21 08:12:45 +0100 (Fr, 21. Nov 2008) | 2 lines
+Geänderte Pfade:
+   M /trunk/etc/etherlab_toolbox.start
+
+Change Header
+
+------------------------------------------------------------------------
+r41 | ab | 2008-11-21 08:10:32 +0100 (Fr, 21. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/src/c/ecrt_support.c
+
+changed position of master activate for user space, Running Ethercat Cycle
+------------------------------------------------------------------------
+r40 | ab | 2008-11-21 08:08:39 +0100 (Fr, 21. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/src/c/builder_c.sce
+
+remove any gcc optimation
+------------------------------------------------------------------------
+r39 | ab | 2008-11-21 08:08:03 +0100 (Fr, 21. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos_el3162.c
+
+Running ethercat Cycle, but failure at mmap access
+------------------------------------------------------------------------
+r38 | ab | 2008-11-21 08:07:28 +0100 (Fr, 21. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/dummy_test.c
+
+extend test scenario, problem with mmap-memory access, but running ethercat cycle
+------------------------------------------------------------------------
+r37 | ab | 2008-11-21 08:06:43 +0100 (Fr, 21. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/builder_c.sce
+
+remove any type oc gcc optimation
+------------------------------------------------------------------------
+r36 | ab | 2008-11-18 21:51:28 +0100 (Di, 18. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/builder_c.sce
+   M /trunk/src/c/builder_c.sce
+
+added debug symbols in the libraries
+------------------------------------------------------------------------
+r35 | ab | 2008-11-18 21:50:44 +0100 (Di, 18. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/src/c/dummy_test.c
+
+added dummy routine with main function
+------------------------------------------------------------------------
+r34 | ab | 2008-11-18 21:49:58 +0100 (Di, 18. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos_el3162.c
+
+working init function
+------------------------------------------------------------------------
+r33 | ab | 2008-11-18 21:47:58 +0100 (Di, 18. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/src/c/ecrt_support_simply.c
+
+
+------------------------------------------------------------------------
+r32 | ab | 2008-11-17 15:59:11 +0100 (Mo, 17. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el3162.sci
+   M /trunk/modules/etherlab_base/src/c/etl_scicos_el3162.c
+
+
+------------------------------------------------------------------------
+r31 | ab | 2008-11-17 09:15:03 +0100 (Mo, 17. Nov 2008) | 1 line
+Geänderte Pfade:
+   D /trunk/modules/etherlab_base/macros/etl_scicos_master.sci
+   M /trunk/modules/etherlab_base/src/c/builder_c.sce
+   M /trunk/modules/etherlab_base/src/c/etl_scicos_el3162.c
+   D /trunk/modules/etherlab_base/src/c/etl_scicos_master.c
+   M /trunk/modules/etherlab_base/src/c/loader_src.sce
+
+Master Block entfernt
+------------------------------------------------------------------------
+r30 | ab | 2008-11-17 09:12:46 +0100 (Mo, 17. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/src/c/ecrt_support_simply.c
+
+Error Ausgabe entfernt, Asugabe durch Block
+------------------------------------------------------------------------
+r29 | ab | 2008-11-16 22:17:51 +0100 (So, 16. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos_el3162.c
+
+
+------------------------------------------------------------------------
+r28 | ab | 2008-11-16 21:43:02 +0100 (So, 16. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/src/c/builder_c.sce
+   M /trunk/src/c/ecrt_support_simply.c
+
+
+------------------------------------------------------------------------
+r27 | ab | 2008-11-16 21:32:40 +0100 (So, 16. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/includes/ecrt_support_simply.h
+   A /trunk/src/c/ecrt_support_simply.c
+
+added ecrt_support_simply
+------------------------------------------------------------------------
+r26 | ab | 2008-11-15 23:16:10 +0100 (Sa, 15. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el3162.sci
+   M /trunk/modules/etherlab_base/macros/etl_scicos_master.sci
+
+
+------------------------------------------------------------------------
+r25 | ab | 2008-11-14 08:47:24 +0100 (Fr, 14. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/etc/etherlab_toolbox.start
+   M /trunk/macros/loadmacros.sce
+   M /trunk/modules/etherlab_base/macros/etl_scicos_master.sci
+
+
+------------------------------------------------------------------------
+r24 | ab | 2008-11-13 16:18:16 +0100 (Do, 13. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/etl_scicos_master.sci
+
+
+------------------------------------------------------------------------
+r23 | ab | 2008-11-13 16:18:02 +0100 (Do, 13. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos_master.c
+
+
+------------------------------------------------------------------------
+r22 | ab | 2008-11-12 21:06:00 +0100 (Mi, 12. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/macros/buildmacros.sce
+   D /trunk/modules/etherlab_base/macros/etl_scicos_master.sci
+
+
+------------------------------------------------------------------------
+r21 | ab | 2008-11-12 20:53:33 +0100 (Mi, 12. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/macros/guimaker.sci
+   A /trunk/macros/toolbox_creator.sci
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el3162.sci
+   M /trunk/modules/etherlab_base/macros/etl_scicos_master.sci
+   M /trunk/modules/etherlab_base/src/c/builder_c.sce
+   M /trunk/modules/etherlab_base/src/c/etl_scicos_el3162.c
+   M /trunk/modules/etherlab_base/src/c/etl_scicos_master.c
+   M /trunk/modules/etherlab_base/src/c/loader_src.sce
+
+
+------------------------------------------------------------------------
+r20 | ab | 2008-11-11 22:12:36 +0100 (Di, 11. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/etl_scicos_master.sci
+   A /trunk/modules/etherlab_base/src/c/etl_scicos_master.c
+
+create ETL-Master
+------------------------------------------------------------------------
+r19 | ab | 2008-11-11 20:29:38 +0100 (Di, 11. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/etl_scicos_el3162.c
+
+
+------------------------------------------------------------------------
+r18 | ab | 2008-11-11 20:26:47 +0100 (Di, 11. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/src/c/builder_c.sce
+
+
+------------------------------------------------------------------------
+r17 | ab | 2008-11-11 20:25:20 +0100 (Di, 11. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/etc/etherlab_toolbox.start
+   M /trunk/includes/ecrt_support.h
+   M /trunk/modules/etherlab_base/src/c/builder_c.sce
+   M /trunk/modules/etherlab_base/src/c/loader_src.sce
+   M /trunk/src/c/ecrt_support.c
+
+
+------------------------------------------------------------------------
+r16 | ab | 2008-11-11 08:10:07 +0100 (Di, 11. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/help/builder_help.sce
+   M /trunk/modules/etherlab_base/help/en_US/build_help.sce
+
+
+------------------------------------------------------------------------
+r15 | ab | 2008-11-11 07:58:48 +0100 (Di, 11. Nov 2008) | 2 lines
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/etc/etherlab_base.start
+   M /trunk/modules/etherlab_base/help/builder_help.sce
+   M /trunk/modules/etherlab_base/help/en_US/etl_scicos_el3162.xml
+   M /trunk/modules/etherlab_base/help/en_US_scilab4/addchapter.sce
+   M /trunk/modules/etherlab_base/help/en_US_scilab4/build_help.sce
+   A /trunk/modules/etherlab_base/help/en_US_scilab4/etl_scicos_el3162.xml
+   D /trunk/modules/etherlab_base/help/en_US_scilab4/hart_filtfilt.xml
+   D /trunk/modules/etherlab_base/help/en_US_scilab4/hart_par2ser.xml
+   D /trunk/modules/etherlab_base/help/en_US_scilab4/hart_ser2par.xml
+   D /trunk/modules/etherlab_base/help/en_US_scilab4/hart_soft_realtime.xml
+
+Help Files added
+
+------------------------------------------------------------------------
+r14 | ab | 2008-11-10 18:46:04 +0100 (Mo, 10. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/help/en_US/etl_scicos_el3162.xml
+   D /trunk/modules/etherlab_base/help/en_US/hart_filtfilt.xml
+   D /trunk/modules/etherlab_base/help/en_US/hart_par2ser.xml
+   D /trunk/modules/etherlab_base/help/en_US/hart_ser2par.xml
+   D /trunk/modules/etherlab_base/help/en_US/hart_soft_realtime.xml
+
+
+------------------------------------------------------------------------
+r13 | ab | 2008-11-10 16:35:40 +0100 (Mo, 10. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/builder.sce
+   M /trunk/etc/etherlab_toolbox.start
+   M /trunk/modules/etherlab_base/builder.sce
+   M /trunk/modules/etherlab_base/src/c/builder_c.sce
+   M /trunk/modules/etherlab_base/src/c/loader_src.sce
+
+
+------------------------------------------------------------------------
+r12 | ab | 2008-11-10 16:31:03 +0100 (Mo, 10. Nov 2008) | 1 line
+Geänderte Pfade:
+   D /trunk/modules/etherlab_base/src/c/Makefile
+
+
+------------------------------------------------------------------------
+r11 | ab | 2008-11-10 16:30:51 +0100 (Mo, 10. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/src/c/Makefile
+
+
+------------------------------------------------------------------------
+r10 | ab | 2008-11-10 16:18:56 +0100 (Mo, 10. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/src/c/builder_c.sce
+
+Buil shared obejct with rpath on /opt/etherlab/lib
+------------------------------------------------------------------------
+r9 | ab | 2008-11-09 21:24:00 +0100 (So, 09. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/modules/etherlab_base/src/c/builder_c.sce
+   M /trunk/modules/etherlab_base/src/c/loader_src.sce
+
+
+------------------------------------------------------------------------
+r8 | ab | 2008-11-08 23:26:51 +0100 (Sa, 08. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/macros/loadmacros.sce
+
+
+------------------------------------------------------------------------
+r7 | ab | 2008-11-08 23:24:41 +0100 (Sa, 08. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/macros/buildmacros.sce
+
+
+------------------------------------------------------------------------
+r6 | ab | 2008-11-08 23:21:36 +0100 (Sa, 08. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/etc/etherlab_toolbox.start
+   D /trunk/loader.sce
+   M /trunk/macros/loadmacros.sce
+   M /trunk/modules/etherlab_base/src/c/loader_src.sce
+
+
+------------------------------------------------------------------------
+r5 | ab | 2008-11-08 23:17:28 +0100 (Sa, 08. Nov 2008) | 1 line
+Geänderte Pfade:
+   M /trunk/builder.sce
+   M /trunk/modules/etherlab_base/builder.sce
+   M /trunk/modules/etherlab_base/macros/etl_scicos_el3162.sci
+   M /trunk/modules/etherlab_base/src/c/etl_scicos_el3162.c
+
+
+------------------------------------------------------------------------
+r4 | ab | 2008-11-08 22:13:18 +0100 (Sa, 08. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/modules/etherlab_base/macros/buildmacros.sce
+   A /trunk/modules/etherlab_base/macros/etl_scicos_el3162.sci
+   A /trunk/modules/etherlab_base/src/builder_src.sce
+   A /trunk/modules/etherlab_base/src/c
+   A /trunk/modules/etherlab_base/src/c/builder_c.sce
+   A /trunk/modules/etherlab_base/src/c/etl_scicos_el3162.c
+   A /trunk/modules/etherlab_base/src/c/loader_src.sce
+
+
+------------------------------------------------------------------------
+r3 | ab | 2008-11-08 22:10:07 +0100 (Sa, 08. Nov 2008) | 1 line
+Geänderte Pfade:
+   D /trunk/macros/gettext.bin
+
+
+------------------------------------------------------------------------
+r2 | ab | 2008-11-08 22:09:32 +0100 (Sa, 08. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /trunk/3rdparty
+   A /trunk/3rdparty/readme.txt
+   A /trunk/Makefile
+   A /trunk/README_Unix
+   A /trunk/builder.sce
+   A /trunk/etc
+   A /trunk/etc/etherlab_toolbox.quit
+   A /trunk/etc/etherlab_toolbox.start
+   A /trunk/includes
+   A /trunk/includes/ecrt_slaves.h
+   A /trunk/includes/ecrt_support.h
+   A /trunk/includes/etl_data_info.h
+   A /trunk/includes/getstr.h
+   A /trunk/includes/machine.h
+   A /trunk/includes/scicos_block4.h
+   A /trunk/license.txt
+   A /trunk/loader.sce
+   A /trunk/macros
+   A /trunk/macros/bench_run.sci
+   A /trunk/macros/buildmacros.sce
+   A /trunk/macros/devtools_run_builder.sci
+   A /trunk/macros/filesep.sci
+   A /trunk/macros/gettext.bin
+   A /trunk/macros/gettext.sci
+   A /trunk/macros/launchtest.sci
+   A /trunk/macros/loadmacros.sce
+   A /trunk/macros/nonreg_test_run.sci
+   A /trunk/macros/scitest.sci
+   A /trunk/macros/tbx_build_gateway.sci
+   A /trunk/macros/tbx_build_gateway_loader.sci
+   A /trunk/macros/tbx_build_help.sci
+   A /trunk/macros/tbx_build_help_loader.sci
+   A /trunk/macros/tbx_build_loader.sci
+   A /trunk/macros/tbx_build_macros.sci
+   A /trunk/macros/tbx_build_palette.sci
+   A /trunk/macros/tbx_build_src.sci
+   A /trunk/macros/tbx_builder_gateway.sci
+   A /trunk/macros/tbx_builder_gateway_lang.sci
+   A /trunk/macros/tbx_builder_help.sci
+   A /trunk/macros/tbx_builder_help_lang.sci
+   A /trunk/macros/tbx_builder_macros.sci
+   A /trunk/macros/tbx_builder_src.sci
+   A /trunk/macros/tbx_builder_src_lang.sci
+   A /trunk/macros/test_clean.sci
+   A /trunk/macros/test_run.sci
+   A /trunk/macros/testexamples.sci
+   A /trunk/macros/unit_test_run.sci
+   A /trunk/modules
+   A /trunk/modules/etherlab_base
+   A /trunk/modules/etherlab_base/Makefile
+   A /trunk/modules/etherlab_base/builder.sce
+   A /trunk/modules/etherlab_base/demos
+   A /trunk/modules/etherlab_base/etc
+   A /trunk/modules/etherlab_base/etc/etherlab_base.quit
+   A /trunk/modules/etherlab_base/etc/etherlab_base.start
+   A /trunk/modules/etherlab_base/help
+   A /trunk/modules/etherlab_base/help/builder_help.sce
+   A /trunk/modules/etherlab_base/help/dtd
+   A /trunk/modules/etherlab_base/help/dtd/help.dtd
+   A /trunk/modules/etherlab_base/help/en_US
+   A /trunk/modules/etherlab_base/help/en_US/build_help.sce
+   A /trunk/modules/etherlab_base/help/en_US/hart_filtfilt.xml
+   A /trunk/modules/etherlab_base/help/en_US/hart_par2ser.xml
+   A /trunk/modules/etherlab_base/help/en_US/hart_ser2par.xml
+   A /trunk/modules/etherlab_base/help/en_US/hart_soft_realtime.xml
+   A /trunk/modules/etherlab_base/help/en_US_scilab4
+   A /trunk/modules/etherlab_base/help/en_US_scilab4/addchapter.sce
+   A /trunk/modules/etherlab_base/help/en_US_scilab4/build_help.sce
+   A /trunk/modules/etherlab_base/help/en_US_scilab4/hart_filtfilt.xml
+   A /trunk/modules/etherlab_base/help/en_US_scilab4/hart_par2ser.xml
+   A /trunk/modules/etherlab_base/help/en_US_scilab4/hart_ser2par.xml
+   A /trunk/modules/etherlab_base/help/en_US_scilab4/hart_soft_realtime.xml
+   A /trunk/modules/etherlab_base/macros
+   A /trunk/modules/etherlab_base/src
+   A /trunk/src
+   A /trunk/src/builder_src.sce
+   A /trunk/src/c
+   A /trunk/src/c/builder_c.sce
+   A /trunk/src/c/ecrt_support.c
+   A /trunk/src/c/getstr.c
+   A /trunk/template_for_module
+   A /trunk/template_for_module/your_name
+   A /trunk/template_for_module/your_name/Makefile
+   A /trunk/template_for_module/your_name/RTAI
+   A /trunk/template_for_module/your_name/RTAI/Makefile
+   A /trunk/template_for_module/your_name/builder.sce
+   A /trunk/template_for_module/your_name/etc
+   A /trunk/template_for_module/your_name/etc/your_name.quit
+   A /trunk/template_for_module/your_name/etc/your_name.start
+   A /trunk/template_for_module/your_name/help
+   A /trunk/template_for_module/your_name/help/builder_help.sce
+   A /trunk/template_for_module/your_name/help/dtd
+   A /trunk/template_for_module/your_name/help/dtd/help.dtd
+   A /trunk/template_for_module/your_name/help/en_US
+   A /trunk/template_for_module/your_name/help/en_US/addchapter.sce
+   A /trunk/template_for_module/your_name/help/en_US/build_help.sce
+   A /trunk/template_for_module/your_name/help/en_US/help_template.xml
+   A /trunk/template_for_module/your_name/macros
+   A /trunk/template_for_module/your_name/macros/buildmacros.sce
+   A /trunk/template_for_module/your_name/macros/macro_template.sci
+   A /trunk/template_for_module/your_name/src
+   A /trunk/template_for_module/your_name/src/builder_src.sce
+   A /trunk/template_for_module/your_name/src/c
+   A /trunk/template_for_module/your_name/src/c/builder_c.sce
+   A /trunk/template_for_module/your_name/src/c/template_function.c
+
+Initial
+------------------------------------------------------------------------
+r1 | ab | 2008-11-08 18:43:46 +0100 (Sa, 08. Nov 2008) | 1 line
+Geänderte Pfade:
+   A /branches
+   A /tags
+   A /trunk
+
+Automatisch durch kdesvn erstelltes Basislayout
+------------------------------------------------------------------------

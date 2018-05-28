@@ -1,0 +1,102 @@
+%implements "message" "C"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function BlockTypeSetup( block, system) void
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %<LibAddToCommonIncludes("<time.h>")>
+  %<LibAddToCommonIncludes("<pdserv.h>")>
+
+  %<LibCacheFunctionPrototype("struct pdserv* get_pdserv_ptr(void);")>
+  %<LibCacheFunctionPrototype( ...
+        "const struct timespec *get_etl_world_time(size_t tid);")>
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function BlockInstanceSetup( block, system) void
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %openfile buf
+  {
+     %if SIZE(SFcnParamSettings.MessageList,1)
+       %assign message_list_ident = "message_list"
+       static const char* %<message_list_ident>[] = {
+         %foreach i = LibBlockInputSignalWidth(0)
+           "%<STRING(SFcnParamSettings.MessageList[i])>",
+         %endforeach
+       };
+     %else
+       %assign message_list_ident = "NULL"
+     %endif
+
+     %<LibBlockPWork(EventPtr,"","",0)> = \
+       pdserv_event(get_pdserv_ptr(), \
+         "%<FEVAL("blockpath", LibGetFormattedBlockPath(block))>", \
+         %<SFcnParamSettings.Priority>, \
+         %<LibBlockInputSignalWidth(0)>, \
+         %<message_list_ident>);
+  }
+  %closefile buf
+
+  %<LibMdlRegCustomCode(buf, "execution")>
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function Outputs( block, system) Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%
+  %assign sl_tid = LibGetGlobalTIDFromLocalSFcnTID(0)
+  %assign tid = sl_tid && LibGetTID01EQ() ? sl_tid - 1 : 0
+  %%
+  %assign invert = SFcnParamSettings.Invert ? "!" : ""
+  %%
+
+  /* %<Type> Block: %<Name>
+   */
+  %assign rollVars = ["U", "Y", "P"]
+  %if EXISTS(Confirm)
+    %assign rollVars = rollVars + "RWork"
+  %endif
+  %roll sigIdx = RollRegions, lcv = RollThreshold, block, "Roller", rollVars
+    %%
+    %assign SignalIdx = lcv != "" ? "%<lcv>+%<sigIdx>" : sigIdx
+    %%
+    %assign u = LibBlockInputSignal(0,"",lcv,sigIdx)
+    %assign y = LibBlockOutputSignal(0,"",lcv,sigIdx)
+    %assign ResetTest = LibBlockNumInputPorts(block) > 1 \
+        ? "%<LibBlockInputSignal(1,"",lcv,sigIdx)> && %<y>" : y
+    %if EXISTS(Confirm)
+      %assign delay = LibBlockRWork(ConfirmTime,"",lcv,sigIdx)
+    %endif
+    %%
+    if (%<invert>%<u> && %<LibBlockParameter(Enable,"",lcv,sigIdx)>) {
+      if (!%<y>) {
+        %if EXISTS(delay)
+          %<delay> += %<LibBlockSampleTime(block)>;
+          if (%<delay> > %<LibBlockParameter(Confirm,"",lcv,sigIdx)>) {
+        %endif
+        %%
+            const struct timespec *time = get_etl_world_time(%<tid>);
+
+            %<y> = 1.0e-9 * time->tv_nsec + time->tv_sec;
+            pdserv_event_set(%<LibBlockPWork(EventPtr,"","",0)>, \
+                    %<SignalIdx>, 1, time);
+        %%
+        %if EXISTS(delay)
+          }
+        %endif
+      }
+    }
+    else \
+      %if EXISTS(delay)
+        {
+          %<delay> = 0.0;
+      %endif
+          if (%<ResetTest>) {
+            %<y> = 0.0;
+            pdserv_event_set(%<LibBlockPWork(EventPtr,"","",0)>, \
+                    %<SignalIdx>, 0, get_etl_world_time(%<tid>));
+          }
+      %if EXISTS(delay)
+        }
+      %endif
+  %endroll
+%endfunction

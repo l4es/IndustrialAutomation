@@ -1,0 +1,40 @@
+%%
+%% This implements the event block
+%%
+%% Copyright (C) 2008
+%% Richard Hacker
+%% IgH Essen GmbH
+%% 
+%% License: GPL
+
+%implements "event" "C"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function Outputs( block, system ) Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  /* %<Type> Block: %<Name>
+   */
+  %assign RollVars = ["Y", "IWork", "P"]
+  %roll sigIdx = RollRegions, lcv = RollThreshold, block, ...
+      "Roller", RollVars
+    %%
+    %assign output = LibBlockOutputSignal(0,"",lcv,sigIdx)
+    %%
+    %if SingleShot
+      %<output> = %<LibBlockParameter(Trigger, "", lcv, sigIdx)> !=
+        %<LibBlockIWork(TriggerCounter, "", lcv, sigIdx)>;
+      %<LibBlockIWork(TriggerCounter, "", lcv, sigIdx)> = \
+        %<LibBlockParameter(Trigger, "", lcv, sigIdx)>;
+    %else
+      if (%<output>) {
+        %<output> = 0;
+      }
+      else if (%<LibBlockParameter(Trigger, "", lcv, sigIdx)> != \
+                %<LibBlockIWork(TriggerCounter, "", lcv, sigIdx)>) {
+        %<output> = 1;
+        %<LibBlockIWork(TriggerCounter, "", lcv, sigIdx)>++;
+      }
+    %endif
+  %endroll
+%endfunction

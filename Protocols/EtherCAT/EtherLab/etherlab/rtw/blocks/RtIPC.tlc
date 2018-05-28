@@ -1,0 +1,165 @@
+%%
+%% Generic Routines for RealTime IPC
+%% 
+%% Copyright (C) 2012
+%% Richard Hacker
+%% 
+%% License: GPL
+
+%include "ETL.tlc"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function InitRtIPC() void
+%% This function checks whether the RtIPC system has been initialised
+%% before already, which is demonstrated by the existance of variable 
+%% CompiledModel.RtIPC.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %<InitETL()>
+
+  %if EXISTS(CompiledModel.RtIPC)
+    %return
+  %endif
+
+  %<LibAddToCommonIncludes("<rtipc.h>")>
+
+  %assign model_c = LibGetModelDotCFile()
+
+  %trace "Initializing RtIPC Interface"
+  %addtorecord CompiledModel RtIPC { ...
+              Handle "rtipc" ...
+              GroupHandle [] ...
+              }
+
+  %foreach i = ETL.NumSt
+    %assign RtIPC.GroupHandle = RtIPC.GroupHandle + ""
+  %endforeach
+
+  %trace %<RtIPC>
+
+  %with CompiledModel
+  
+    %openfile buf
+
+    /* Handle to RealTime IPC */
+    struct rtipc *%<RtIPC.Handle>;
+    struct rtipc_group *rtipc_group[%<ETL.NumSt>];
+
+    %closefile buf
+    %<LibSetSourceFileSection(model_c, "Declarations", buf)>
+
+    %<LibMdlStartCustomCode("void *rtipc_pdo;", "declaration")>
+
+    %openfile buf
+
+    /* Open handle to RealTime IPC */
+    %<RtIPC.Handle> = rtipc_create("%<LibGetModelName()>",NULL);
+    if (!%<RtIPC.Handle>)
+        %<LibSetRTModelErrorStatus(\
+                "\"Could not initialize RealTime IPC subsystem\"")>;
+    %closefile buf
+    %<LibMdlStartCustomCode(buf, "execution")>
+  
+    %openfile buf
+
+    /* Start RealTime IPC */
+    if (rtipc_prepare(%<RtIPC.Handle>))
+        %<LibSetRTModelErrorStatus(\
+                "\"Could not start RealTime IPC subsystem\"")>;
+    %closefile buf
+    %<LibMdlStartCustomCode(buf, "trailer")>
+  
+    %openfile buf
+
+    /* Close RealTime IPC */
+    rtipc_exit(%<RtIPC.Handle>);
+    %closefile buf
+    %<LibMdlTerminateCustomCode(buf, "execution")>
+  
+  %endwith
+
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function InitRtIPCTask(tid) void
+%% This function checks whether the RtIPC task has been initialised
+%% before already, which is demonstrated by the existance of variable 
+%% CompiledModel.RtIPC.GroupHandle[tid]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %assign etid = ETL.tid[tid]
+
+  %if !SIZE(RtIPC.GroupHandle[etid],1)
+
+    %assign Ts = ETL.SampleTime[etid]
+    %assign RtIPC.GroupHandle[etid] = "rtipc_group[%<etid>]"
+
+    %trace "Added new Task for SampleTime %<Ts> @ %<tid>"
+
+    %openfile buf
+
+    /* Create RealTime IPC group for %<Ts> */
+    %<RtIPC.GroupHandle[etid]> = rtipc_create_group(%<RtIPC.Handle>, %<Ts>);
+    if (!%<RtIPC.GroupHandle[etid]>)
+      %<LibSetRTModelErrorStatus(\
+         "\"Could not create a RealTime IPC Group with sample time %<Ts>\"")>;
+    %closefile buf
+    %<LibMdlStartCustomCode(buf, "execution")>
+
+    %if etid || !LibIsContinuous(0)
+      %assign Trigger = "%<LibIsSampleHit(tid)>"
+    %else
+      %assign Trigger = "%<LibTID()> == 0 && %<LibIsMajorTimeStep()>"
+    %endif
+
+    %openfile buf
+
+    /* RtIPC receive for Sample Time [%<Ts>] */
+    if (%<Trigger>)
+      rtipc_rx(%<RtIPC.GroupHandle[etid]>);
+    %closefile buf
+    %<LibSystemOutputCustomCode(system,buf,"execution")>
+
+    %openfile buf
+
+    /* RtIPC send for Sample Time [%<Ts>] */
+    if (%<Trigger>)
+      rtipc_tx(%<RtIPC.GroupHandle[etid]>);
+    %closefile buf
+    %<LibSystemOutputCustomCode(system,buf,"trailer")>
+
+  %endif
+
+  %return RtIPC.GroupHandle[etid]
+
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function GetRtIPCDTypeName( dtype ) void
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %switch dtype
+    %case tSS_BOOLEAN
+      %return "rtipc_boolean_T"
+    %case tSS_UINT8
+      %return "rtipc_uint8_T"
+    %case tSS_INT8
+      %return "rtipc_sint8_T"
+    %case tSS_UINT16
+      %return "rtipc_uint16_T"
+    %case tSS_INT16
+      %return "rtipc_sint16_T"
+    %case tSS_UINT32
+      %return "rtipc_uint32_T"
+    %case tSS_INT32
+      %return "rtipc_sint32_T"
+    %case tSS_DOUBLE
+      %return "rtipc_double_T"
+    %case tSS_SINGLE
+      %return "rtipc_single_T"
+    %default
+      %error Unknown PDODataType: %<dtype>; Known types: ...
+                %<tSS_UINT8> %<tSS_INT8> %<tSS_UINT16> %<tSS_INT16> ...
+                %<tSS_UINT32> %<tSS_INT32> %<tSS_BOOLEAN> ...
+                %<tSS_DOUBLE> %<tSS_SINGLE>
+  %endswitch
+%endfunction

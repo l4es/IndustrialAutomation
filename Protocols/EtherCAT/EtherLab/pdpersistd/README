@@ -1,0 +1,29 @@
+$Id$
+
+vim: spelllang=en spell tw=78
+
+=== Introduction ===
+
+This is a realtime process data persistence service using the PdCom library.
+It it supports configuring persistent variables via a configuration file using
+the YAML syntax and stores persistent data in an SQLite3 database. It
+comes with a persistence daemon (pdpersistd) and a management tool
+(pdpersist). It is licensed under the GPLv3 license.
+
+=== Dependencies ===
+
+- PdCom 3.0 - http://etherlab.org/en/pdcom
+- SQLite 3 - http://sqlite.org
+- libyaml 1.1 - http://pyyaml.org/wiki/LibYAML
+
+=== Configuring, Building and Installing ===
+
+./configure
+make
+make install
+
+=== Creating a Database ===
+
+sqlite3 -batch persist.db < initdb.sql
+
+===

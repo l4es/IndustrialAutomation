@@ -1,0 +1,28 @@
+%implements "world_time" "C"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function BlockTypeSetup( block, system) void
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %<LibAddToCommonIncludes("<time.h>")>
+
+  %% get_etl_world_time() is defined in hrt_main.c
+  %<LibCacheFunctionPrototype( \
+      "const struct timespec *get_etl_world_time(size_t tid);")>
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function Outputs( block, system) Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%
+  %assign tid = LibGetGlobalTIDFromLocalSFcnTID(0)
+  %assign tid = tid && LibGetTID01EQ() ? tid - 1 : 0
+  %%
+
+  /* %<Type> Block: %<Name>
+   */
+  {
+    const struct timespec *time = get_etl_world_time(%<tid>);
+    %<LibBlockOutputSignal(0,"","",0)> = \
+                1.0e-9 * time->tv_nsec + time->tv_sec;
+  }
+%endfunction

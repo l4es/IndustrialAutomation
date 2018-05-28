@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../dtd/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>Etherlab Scicos Realtime</TITLE>
+
+  <TYPE>Scicos Block</TYPE>
+
+  <DATE>20-Jan-2008</DATE>
+
+  <SHORT_DESCRIPTION name="etl_CONST_m">ETL Constant Block</SHORT_DESCRIPTION>
+
+
+
+  <DESCRIPTION>
+
+    <P>  This Block is a modified version of the scicos constant standard block. The user need this block, if he wants to change this value after Codegeneration by the msr protocol. For further information see the standard Documentation for the CONST_m Block.</P>
+
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>Andreas Stewering, IgH Essen</AUTHORS_ITEM>
+  </AUTHORS>
+  <!-- ================================= -->
+  <SECTION label="Availability">
+	  The latest version of Etherlab can be found at
+	  <P><A href="http://www.etherlab.org">http://www.etherlab.org</A></P>
+  </SECTION>
+<!-- ================================= -->
+</MAN>

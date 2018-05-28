@@ -1,0 +1,673 @@
+Library {
+  Name			  "etherlab_lib_exp"
+  Version		  7.0
+  MdlSubVersion		  0
+  SavedCharacterEncoding  "ISO-8859-1"
+  LibraryType		  "BlockLibrary"
+  SaveDefaultBlockParams  on
+  SampleTimeColors	  off
+  LibraryLinkDisplay	  "all"
+  WideLines		  off
+  ShowLineDimensions	  off
+  ShowPortDataTypes	  off
+  ShowLoopsOnError	  on
+  IgnoreBidirectionalLines off
+  ShowStorageClass	  off
+  ShowTestPointIcons	  on
+  ShowViewerIcons	  on
+  SortedOrder		  off
+  ExecutionContextIcon	  off
+  ShowLinearizationAnnotations on
+  ScopeRefreshTime	  0.035000
+  OverrideScopeRefreshTime on
+  DisableAllScopes	  off
+  BlockNameDataTip	  off
+  BlockParametersDataTip  off
+  BlockDescriptionStringDataTip	off
+  ToolBar		  on
+  StatusBar		  on
+  BrowserShowLibraryLinks off
+  BrowserLookUnderMasks	  off
+  Created		  "Tue Dec 27 14:12:39 2005"
+  Creator		  "rich"
+  UpdateHistory		  "UpdateHistoryNever"
+  ModifiedByFormat	  "%<Auto>"
+  LastModifiedBy	  "ab"
+  ModifiedDateFormat	  "%<Auto>"
+  LastModifiedDate	  "Mon Sep  5 14:47:26 2011"
+  RTWModifiedTimeStamp	  237134836
+  ModelVersionFormat	  "1.%<AutoIncrement:675>"
+  ConfigurationManager	  "rcs"
+  SimulationMode	  "normal"
+  LinearizationMsg	  "none"
+  Profile		  off
+  ParamWorkspaceSource	  "MATLABWorkspace"
+  CovSaveName		  "covdata"
+  CovMetricSettings	  "dw"
+  CovNameIncrementing	  off
+  CovHtmlReporting	  on
+  covSaveCumulativeToWorkspaceVar on
+  CovSaveSingleToWorkspaceVar on
+  CovCumulativeReport	  off
+  CovReportOnPause	  on
+  ExtModeBatchMode	  off
+  ExtModeEnableFloating	  on
+  ExtModeTrigType	  "manual"
+  ExtModeTrigMode	  "normal"
+  ExtModeTrigPort	  "1"
+  ExtModeTrigElement	  "any"
+  ExtModeTrigDuration	  1000
+  ExtModeTrigDurationFloating "auto"
+  ExtModeTrigHoldOff	  0
+  ExtModeTrigDelay	  0
+  ExtModeTrigDirection	  "rising"
+  ExtModeTrigLevel	  0
+  ExtModeArchiveMode	  "off"
+  ExtModeAutoIncOneShot	  off
+  ExtModeIncDirWhenArm	  off
+  ExtModeAddSuffixToVar	  off
+  ExtModeWriteAllDataToWs off
+  ExtModeArmWhenConnect	  on
+  ExtModeSkipDownloadWhenConnect off
+  ExtModeLogAll		  on
+  ExtModeAutoUpdateStatusClock off
+  ShowModelReferenceBlockVersion off
+  ShowModelReferenceBlockIO off
+  BlockDefaults {
+    Orientation		    "right"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    NamePlacement	    "normal"
+    FontName		    "Bitstream Charter"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    ShowName		    on
+  }
+  BlockParameterDefaults {
+    Block {
+      BlockType		      Inport
+      Port		      "1"
+      UseBusObject	      off
+      BusObject		      "BusObject"
+      BusOutputAsStruct	      off
+      PortDimensions	      "-1"
+      SampleTime	      "-1"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      DataType		      "auto"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      SignalType	      "auto"
+      SamplingMode	      "auto"
+      LatchByDelayingOutsideSignal off
+      LatchByCopyingInsideSignal off
+      Interpolate	      on
+    }
+    Block {
+      BlockType		      "S-Function"
+      FunctionName	      "system"
+      SFunctionModules	      "''"
+      PortCounts	      "[]"
+    }
+    Block {
+      BlockType		      SubSystem
+      ShowPortLabels	      "FromPortIcon"
+      Permissions	      "ReadWrite"
+      PermitHierarchicalResolution "All"
+      TreatAsAtomicUnit	      off
+      SystemSampleTime	      "-1"
+      RTWFcnNameOpts	      "Auto"
+      RTWFileNameOpts	      "Auto"
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      SimViewingDevice	      off
+      DataTypeOverride	      "UseLocalSettings"
+      MinMaxOverflowLogging   "UseLocalSettings"
+    }
+    Block {
+      BlockType		      TriggerPort
+      TriggerType	      "rising"
+      StatesWhenEnabling      "inherit"
+      ShowOutputPort	      off
+      OutputDataType	      "auto"
+      SampleTimeType	      "triggered"
+      SampleTime	      "1"
+      ZeroCross		      on
+    }
+  }
+  AnnotationDefaults {
+    HorizontalAlignment	    "center"
+    VerticalAlignment	    "middle"
+    ForegroundColor	    "black"
+    BackgroundColor	    "white"
+    DropShadow		    off
+    FontName		    "Bitstream Charter"
+    FontSize		    10
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+    UseDisplayTextAsClickCallback off
+  }
+  LineDefaults {
+    FontName		    "Bitstream Charter"
+    FontSize		    9
+    FontWeight		    "normal"
+    FontAngle		    "normal"
+  }
+  System {
+    Name		    "etherlab_lib_exp"
+    Location		    [66, 182, 661, 452]
+    Open		    on
+    ModelBrowserVisibility  off
+    ModelBrowserWidth	    200
+    ScreenColor		    "white"
+    PaperOrientation	    "landscape"
+    PaperPositionMode	    "auto"
+    PaperType		    "usletter"
+    PaperUnits		    "inches"
+    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+    TiledPageScale	    1
+    ShowPageBoundaries	    off
+    ZoomFactor		    "100"
+    ReportName		    "simulink-default.rpt"
+    Block {
+      BlockType		      SubSystem
+      Name		      "AddiData"
+      Ports		      []
+      Position		      [290, 24, 361, 85]
+      MinAlgLoopOccurrences   off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      System {
+	Name			"AddiData"
+	Location		[1047, 745, 1395, 994]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  "S-Function"
+	  Name			  "1710_Chronos"
+	  Ports			  [0, 1]
+	  Position		  [30, 29, 100, 61]
+	  BackgroundColor	  "yellow"
+	  FunctionName		  "ad1710_chronos"
+	  Parameters		  "b_BoardHandle,b_ModuleNumber,b_ChronoMode,b_PCIInputClock,b_TimeUnit,ul_TimeOut,b_TimeoutUnit"
+	  MaskPromptString	  "Board Handle|Module Number|Chrono Mode|PCI Input Clock|Time Unit|Timeout|Timeout Unit"
+	  MaskStyleString	  "edit,popup(0|1|2|3),popup(0|1|2|3|4|5|6|7),popup(30MHz|33MHz|40MHz),popup(Nanoseconds|Microseconds|Milliseconds|Seconds|Minutes),edit,popup(Nanoseconds|Micoseconds|Milliseconds|Seconds|Minutes)"
+	  MaskTunableValueString  "off,off,off,off,off,off,off"
+	  MaskCallbackString	  "||||||"
+	  MaskEnableString	  "on,on,on,on,on,on,on"
+	  MaskVisibilityString	  "on,on,on,on,on,on,on"
+	  MaskToolTipString	  "on,on,on,on,on,on,on"
+	  MaskVarAliasString	  ",,,,,,"
+	  MaskVariables		  "b_BoardHandle=@1;b_ModuleNumber=@2;b_ChronoMode=@3;b_PCIInputClock=@4;b_TimeUnit=@5;ul_TimeOut=@6;b_TimeoutUnit=@7;"
+	  MaskDisplay		  "fprintf('1710 Chrono\\nB:%i M/d:%i',\nb_BoardHandle,b_ModuleNumber);"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "0|0|0|30MHz|Microseconds|0|Micoseconds"
+	  MaskTabNameString	  ",,,,,,"
+	}
+	Block {
+	  BlockType		  "S-Function"
+	  Name			  "1710_ETM"
+	  Ports			  [0, 3]
+	  Position		  [170, 150, 250, 190]
+	  BackgroundColor	  "yellow"
+	  FunctionName		  "xPCI1710_etm"
+	  Parameters		  "device,module,clock_src,divisor,op_type,tsample"
+	  MaskType		  "Addi Data 1710 ETM"
+	  MaskDescription	  "This block implements the Edge Triggered Timer Mode for the 1710 Addi Data timer card. \n"
+	  MaskPromptString	  "PCI Device|Module Number|Clock Source|Clock Divisor|Output Data Type |Output Full Scale|Output Offset|Sampling Time (-1 inherited)"
+	  MaskStyleString	  "edit,popup(0|1|2|3),popup(Internal 40MHz|PCI Bus 33/30Mhz),edit,popup(double|single|int8|uint8|int16|uint16|int32|uint32|boolean|Inherited via back propagation),edit,edit,edit"
+	  MaskTunableValueString  "off,off,off,off,off,on,on,off"
+	  MaskCallbackString	  "|||||||"
+	  MaskEnableString	  "on,on,on,on,on,on,on,on"
+	  MaskVisibilityString	  "on,on,on,on,on,on,on,on"
+	  MaskToolTipString	  "on,on,on,on,on,on,on,on"
+	  MaskVarAliasString	  ",,,,,,,"
+	  MaskVariables		  "device=&1;module=@2;clock_src=@3;divisor=@4;op_type=@5;scale=@6;offset=@7;tsample=@8;"
+	  MaskInitialization	  "device = test_var(device);"
+	  MaskDisplay		  "fprintf('xPCI1710 ETM\\nPCI: %s\\nModule: %i',\ndevice,module-1);"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "01:0A|0|Internal 40MHz|1|double|0|0|0"
+	  MaskTabNameString	  ",,,,,,,"
+	}
+	Block {
+	  BlockType		  "S-Function"
+	  Name			  "1710_INC"
+	  Ports			  [0, 1]
+	  Position		  [35, 160, 115, 200]
+	  BackgroundColor	  "yellow"
+	  FunctionName		  "xPCI1710_inc"
+	  Parameters		  "device,module,mode,width,op_type,preset,tsample"
+	  MaskType		  "Addi Data 1710 INC"
+	  MaskDescription	  "This block implements the Incremental Counter Mode for the 1710 Addi Data timer card. \n"
+	  MaskPromptString	  "PCI Device|Module Number|Mode |Counter Width |Output Data Type |Preset Input|Sampling Time (-1 inherited)"
+	  MaskStyleString	  "edit,popup(0|1|2|3),popup(Quadruple|Double|Simple|Direct),popup(32-Bit|16-Bit),popup(double|single|int8|uint8|int16|uint16|int32|uint32|boolean|Inherited via back propagation),checkbox,edit"
+	  MaskTunableValueString  "off,off,off,off,off,off,off"
+	  MaskCallbackString	  "||||||"
+	  MaskEnableString	  "on,on,on,on,on,on,on"
+	  MaskVisibilityString	  "on,on,on,on,on,on,on"
+	  MaskToolTipString	  "on,on,on,on,on,on,on"
+	  MaskVarAliasString	  ",,,,,,"
+	  MaskVariables		  "device=&1;module=@2;mode=@3;width=@4;op_type=@5;preset=@6;tsample=@7;"
+	  MaskInitialization	  "device = test_var(device);"
+	  MaskDisplay		  "fprintf('xPCI1710 INC\\nPCI: %s\\nModule: %i',\ndevice,module-1);"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "03:0E|0|Quadruple|32-Bit|double|off|0"
+	  MaskTabNameString	  ",,,,,,"
+	}
+	Block {
+	  BlockType		  "S-Function"
+	  Name			  "old1710_ETM"
+	  Ports			  [0, 1]
+	  Position		  [30, 99, 100, 131]
+	  BackgroundColor	  "yellow"
+	  FunctionName		  "ad1710_etm"
+	  Parameters		  "b_BoardHandle,b_ModuleNumber,b_ClockSelection,b_TimingUnit,ul_Timing"
+	  MaskType		  "Addi Data 1710 ETM"
+	  MaskDescription	  "This block implements the Edge Triggered Mode for the 1710 Addi Data timer card. \n\nBoth counters are exported as a vector."
+	  MaskPromptString	  "Board Handle|Module Number|Clock Selection|Timing Unit|Time Base"
+	  MaskStyleString	  "edit,popup(0|1|2|3),popup(PCI 30MHz|PCI 33MHz|Internal 40MHz),popup(Nanoseconds|Microseconds|Milliseconds),edit"
+	  MaskTunableValueString  "off,off,off,off,off"
+	  MaskCallbackString	  "||||"
+	  MaskEnableString	  "on,on,on,on,on"
+	  MaskVisibilityString	  "on,on,on,on,on"
+	  MaskToolTipString	  "on,on,on,on,on"
+	  MaskVarAliasString	  ",,,,"
+	  MaskVariables		  "b_BoardHandle=@1;b_ModuleNumber=@2;b_ClockSelection=@3;b_TimingUnit=@4;ul_Timing=@5;"
+	  MaskDisplay		  "fprintf('1710 ETM\\nB:%i M/d:%i',\nb_BoardHandle,b_ModuleNumber);"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "0|0|PCI 30MHz|Microseconds|0"
+	  MaskTabNameString	  ",,,,"
+	}
+      }
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Catch"
+      Ports		      [0, 1]
+      Position		      [65, 130, 125, 160]
+      BackgroundColor	      "orange"
+      InitFcn		      "catch_check(gcb,'CheckIds');"
+      FunctionName	      "catch"
+      Parameters	      "ErrId,dtype,Width,TSample"
+      MaskPromptString	      "Error Identifier|Output Data Type Mode |Sample Time (-1 inherited)|Width|Source Paths (Info only)|Source Count"
+      MaskStyleString	      "edit,popup(double|single|int8|uint8|int16|uint16|int32|uint32|boolean|Inherit via back propagation),edit,edit,edit,edit"
+      MaskTunableValueString  "off,off,off,off,off,off"
+      MaskCallbackString      "catch_check(gcb,'CheckIds');|||||"
+      MaskEnableString	      "on,on,on,on,on,on"
+      MaskVisibilityString    "on,on,on,on,on,off"
+      MaskToolTipString	      "on,on,on,on,on,on"
+      MaskVarAliasString      ",,,,,"
+      MaskVariables	      "ErrId=&1;dtype=@2;TSample=@3;Width=@4;SrcPath=&5;SrcCount=@6;"
+      MaskDisplay	      "fprintf('%s',ErrId);"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "E10|boolean|0|0|0|0"
+      MaskTabNameString	      ",,,,,"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "EtherCAT"
+      Ports		      []
+      Position		      [295, 109, 366, 170]
+      MinAlgLoopOccurrences   off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      System {
+	Name			"EtherCAT"
+	Location		[652, 265, 1000, 514]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  "S-Function"
+	  Name			  "DC_Amp_0"
+	  Ports			  [4, 4]
+	  Position		  [115, 31, 245, 79]
+	  BackgroundColor	  "yellow"
+	  FunctionName		  "ec_slave2"
+	  Parameters		  "Address,config.SlaveConfig,config.SdoConfig,config.SoeConfig,config.IO,debug,tsample"
+	  MaskType		  "EL73x2"
+	  MaskDescription	  "Beckhoff 2 Channel DC Amplifier EL73x2"
+	  MaskHelp		  "This block implements the EtherCAT 2 Channel DC Amplifier Terminal EL73x2.\n<p/>\nThe block input and output depends generally on the configured functionality. Please read the Terminal documentation.\n<p/>\nThe following Terminals are supported:\n<center>\n<table width=\"80%\">\n<tr><td>EL7332</td><td></td></tr>\n</table>\n</center>\n<p/>\n\n\n\n<h4>Inputs:</h4>\nEvery Block Input is a 2-element Vector ([Channel1 Channel2])\n<p>\nFollowing Inputs exists:\n<ul>\n<li> Enable</li>\n<li> Reset</li>\n<li> Reduce Torque</li>\n<li> Setpoint Current</li>\n<ul/>\n<h4>Outputs:</h4>\nEvery Block Output is a 2-element Vector ([Channel1 Channel2])\n<p>\nFollowing Outputs exists:\n<ul>\n<li> Ready to Enable </li>\n<li> Ready </li>\n<li> Warning</li>\n<li> Error</li>\n<li> Digital Input 1 (optional)</li>\n<li> Digital Input 2 (optional)</li>\n<li> Info Channel 1 (optional)</li>\n<li> Info Channel 2 (optional)</li>\n</ul>\nChoose and set the following options:\n<h4>Master:</h4>\nSet the EtherCAT Master of this terminal.\n\n<h4>Slave Index:</h4>\nSet the EtherCAT slave index. Following address formats are allowed:\n<ol>\n<li> Absolute addressing: a scalar number <<b><tt>n</tt></b>> representing the (zero based) absolute position in the bus.\n<li> SSId addressing: the Secondary Slave (or 'Alias') Addressing has the form <<b><tt>[alias position]</tt></b>> where <b><tt>alias</tt></b> is the Secondary Slave Id of the EtherCAT slave and <b><tt>position</tt></b> is the offset after the slave with the given <b><tt>alias</tt></b>. The SSId has to be preprogrammed into the slave with other service tools (see 'ethercat alias --help').\n</ol>\n\n<h4>Device Model:</h4>\nChoose the device at the Indexed position of the master.\n\n<h4>DC Mode:</h4>\nChoose the DC Mode for the module.\n\n<h4>DC Customer:</h4>\nDo customized DC Settings in a vector\n<<b><tt>[Index AssignActivate cycletimesync0 factor0 cycletimeshift0 input0 cycletimesync1 factor1 cylcetimeshift1]</tt></b>>\n\n<ul>\n<li><<b><tt>Index:</tt></b>> preload index from XML desctiption, to get the oversampling configuration from an existing DC-mode.\n<li><<b><tt>AssignActivate:</tt></b>> Value for DC-mode setting\n<li><<b><tt>cycletimesync0:</tt></b>> CycletimeSync0 Value \n<li><<b><tt>factor0:</tt></b>> 1 or 0. If factor0 equals one the cycletimesync0 value is internally set to the process cycletime.\n<li><<b><tt>cycletimeshift0:</tt></b>> Cycletimeshift0 Value\n<li><<b><tt>input0:</tt></b>> 1 or 0. If inpot0 equals one the Slave is synced on the input event\n<li><<b><tt>cycletimesync1:</tt></b>> CycletimeSync1 Value\n<li><<b><tt>factor1:</tt></b>> 1 or 0. If factor1 equals one the cycletimesync1 value is internally set to the process cycletime.\n<li><<b><tt>cylcetimeshift1:</tt></b>> Cycletimeshift1 Value\n</ul>\n\n<h4>Max Motor Current in mA:</h4>\nMaximal Motor Current in mA. Value has to be a 2 element vector: [0 0] ([Channel1 Channe2])\n\n<h4>Nominal Motor Current in mA:</h4>\nNominal Motor Current in mA. Value has to be a 2 element vector: [0 0] ([Channel1 Channe2])\n\n<h4>Nominal Motor Voltage in mV:</h4>\nNominal Motor Voltage in mV. Value has to be a 2 element vector: [0 0] ([Channel1 Channe2])\n\n<h4>Motor Resistance in 1/100 Ohm:</h4>\nMotor Resistance in 1/100 Ohm. Value has to be a 2 element vector: [0 0] ([Channel1 Channe2])\n\n<h4>Reduced Current (negative) in mA:</h4>\nReduced Current Value in negative Direction. Value has to be a 2 element vector: [0 0] ([Channel1 Channe2])\n\n<h4>Reduced Current (positive) in mA:</h4>\nReduced Current Value in positive Direction. Value has to be a 2 element vector: [0 0] ([Channel1 Channe2])\n\n<h4>Controller kp:</h4>\nMotor Controller Setting for kp. Value has to be a 2 element vector: [0 0] ([Channel1 Channe2])\n\n<h4>Controller ki:</h4>\nMotor Controller Setting for ki. Value has to be a 2 element vector: [0 0] ([Channel1 Channe2])\n\n<h4>Enable Voltage Adjustment Channel[1,2]:</h4>\nActivates Voltage swing compensation for Channel [1,2].\n\n<h4>Enable Current Adjustment Channel[1,2]:</h4>\nActivates RxI compensation for Channel [1,2].\n\n<h4>Operating Mode Channel[1,2]:</h4>\nSelect Operating Mode for Channel [1,2]. Actually only Velocity direct is implemeneted.\n\n<h4>Invert Motor direction Channel[1,2]:</h4>\nInvert Rotyting direction for Channel [1,2].\n\n<h4>Show Info Fields:</h4>\nEnable or Disable the Output of the configurable PDO Outputs.\n\n<h4>Info Field[X=1,2] Channel[Y=1,2]</h4>\nConfigure the output info fields. 2 Info outputs per channel exists.\nActually only the selection of State, Current and Voltage are supported.\n\n<h4>Show Digital Inputs:</h4>\nEnable or Disable the Output of the digital inputs.\n\n<h4>Invert DI[X=1,2] Channel[Y=1,2]</h4>\nInvert the digital input. 2  digital inputs per channel exists.\n\n<h4>Mode DI[X=1,2] Channel[Y=1,2]</h4>\nWorking mode of the digital input. 2  digital inputs per channel exists.\nNormal input or Hardware enable are available.\n\n<p>\nTo get further information for parameter configuration, please read the terminal documentation.\n<p>\nSet the <b>Sample Time</b> for the block. <tt>0</tt> is continuous sample time (runs at the model's base rate). Setting <tt>-1</tt> will try to set the time using back propagation.\n\n\n"
+	  MaskPromptString	  "Master|Slave Index|Device Model |DC Mode|DC Customized|Max Motor Current in mA|Nominal Motor Currnet in mA|Nominal Motor Voltage in mV|Motor Resistance in 1/100 Ohm|Reduced Current (negative) in mA|Reduced Current (positive) in mA|Controller kp|Controller ki|Enable Voltage Adjustment Channel1|Enable Voltage Adjustment Channel2|Enable Current Adjustment Channel1|Enable Current Adjustment Channel2|Operating Mode Channel1|Operating Mode Channel2|Invert Motor direction Channel1|Invert Motor direction Channel2|Show Info Fields|Info Field1 Channel 1|Info Field2 Channel 2|Info Field1 Channel 2|Info Field2 Channel 2|Show Digital Inputs|Invert DI1 Channel1|Invert DI2 Channel1|Invert DI1 Channel2|Invert DI2 Channel2|Mode DI1 Channel1|Mode DI2 Channel1|Mode DI1 Channel2|Mode DI2 Channel2|Sample Time (-1 for inherited)|Debug|UpdateFcn"
+	  MaskStyleString	  "edit,edit,popup(EL7332r00100000|EL7332r00110000),popup(FreeRun/SM-Synchron|DC-Synchron|DC-Customized),edit,edit,edit,edit,edit,edit,edit,edit,edit,checkbox,checkbox,checkbox,checkbox,popup(Automatic|Velocity direct|Velocity controller|Position controller),popup(Automatic|Velocity direct|Velocity controller|Position controller),checkbox,checkbox,checkbox,popup(Status word|Coil Voltage|Coil Current),popup(Status word|Coil Voltage|Coil Current),popup(Status word|Coil Voltage|Coil Current),popup(Status word|Coil Voltage|Coil Current),checkbox,checkbox,checkbox,checkbox,checkbox,popup(Normal Input|Hardware Enable),popup(Normal Input|Hardware Enable),popup(Normal Input|Hardware Enable),popup(Normal Input|Hardware Enable),edit,edit,edit"
+	  MaskTunableValueString  "off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off,off"
+	  MaskCallbackString	  "||beckhoff_el73x2('model');|beckhoff_el73x2('dc');||||||||||||||||||||||||||||||||||"
+	  MaskEnableString	  "on,on,on,on,off,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,off"
+	  MaskVisibilityString	  "on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,off,off"
+	  MaskToolTipString	  "on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on,on"
+	  MaskVarAliasString	  ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
+	  MaskVariables		  "master=@1;index=@2;model=&3;dcmode=@4;dccustom=@5;max_current=@6;nom_current=@7;nom_volt=@8;resistance=@9;red_current_neg=@10;red_current_pos=@11;kp=@12;ki=@13;voltage_adjust_ch1=@14;voltage_adjust_ch2=@15;current_adjust_ch1=@16;current_adjust_ch2=@17;op_mode_ch1=@18;op_mode_ch2=@19;inv_dir_ch1=@20;inv_dir_ch2=@21;show_info_channels=@22;datafield1_ch1=@23;datafield2_ch1=@24;datafield1_ch2=@25;datafield2_ch2=@26;show_digital_inputs=@27;inv_input1_ch1=@28;inv_input2_ch1=@29;inv_input1_ch2=@30;inv_input2_ch2=@31;mode_input1_ch1=@32;mode_input2_ch1=@33;mode_input1_ch2=@34;mode_input2_ch2=@35;tsample=@36;debug=@37;updatefcn=&38;"
+	  MaskInitialization	  "masterStr = '';\npositionStr = '';\n\n[Address masterStr positionStr] = getEtherCATAddress(gcb,master,index);\n\nselection = beckhoff_el73x2('getmodel',model);\nif isempty(selection)\n    return;\nend\n\nfunc = selection{3};\n\ndevice = beckhoff_el73x2('loaddescription',selection);\nif isempty(device)\n   return; \nend\n\n\n%Prepare S-Funtion structure\n\nconfig = beckhoff_el73x2('process',selection,device, ...\n        max_current,nom_current,nom_volt,resistance, ...\n        red_current_neg,red_current_pos, kp,ki,...\n        voltage_adjust_ch1,current_adjust_ch1,...\n        op_mode_ch1, inv_dir_ch1, ...\n        datafield1_ch1,datafield2_ch1, ...\n        inv_input1_ch1, inv_input2_ch1,...\n        mode_input1_ch1, mode_input2_ch1,...\n        voltage_adjust_ch2,current_adjust_ch2,...\n        op_mode_ch2, inv_dir_ch2, ...\n        datafield1_ch2,datafield2_ch2, ...\n        inv_input1_ch2, inv_input2_ch2,...\n        mode_input1_ch2, mode_input2_ch2,...\n       show_digital_inputs, show_info_channels,...\n       dcmode,dccustom ...\n    );"
+	  MaskDisplay		  "fprintf('%s\\n%s \\nM:%s Idx:%s',...\n    model,func,masterStr,positionStr)\n"
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskIconUnits		  "autoscale"
+	  MaskValueString	  "0|1|EL7332r00100000|FreeRun/SM-Synchron|[1 hex2dec('700') 0 0 0 0 0 0 0]|[0 0]|[0 0]|[0 0]|[0 0]|[0 0]|[0 0]|[200 200]|[2 2]|off|off|off|off|Velocity direct|Velocity direct|off|off|off|Coil Voltage|Coil Current|Coil Voltage|Coil Current|off|off|off|off|off|Normal Input|Normal Input|Normal Input|Normal Input|-1|0|beckhoff_el73x2"
+	  MaskTabNameString	  ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "ESD"
+	  Ports			  []
+	  Position		  [130, 137, 266, 193]
+	  ShowName		  off
+	  MinAlgLoopOccurrences	  off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  MaskDisplay		  "image(imread('ESD.png'))"
+	  MaskIconFrame		  off
+	  MaskIconOpaque	  on
+	  MaskIconRotate	  "none"
+	  MaskIconUnits		  "autoscale"
+	  System {
+	    Name		    "ESD"
+	    Location		    [153, 77, 607, 243]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      "S-Function"
+	      Name		      "ESD_CAN"
+	      Ports		      [2, 2]
+	      Position		      [115, 42, 225, 118]
+	      BackgroundColor	      "yellow"
+	      FunctionName	      "ec_slave2"
+	      Parameters	      "Address,conf.SlaveConfig,conf.SdoConfig,conf.SoeConfig,conf.IO,debug,tsample"
+	      MaskType		      "ESD EtherCAT CAN Gateway"
+	      MaskDescription	      "ESD EtherCAT \nCAN Gateway"
+	      MaskHelp		      "This block generically implements the ESD EtherCAT CAN Gateway.\n\n<p/>\nThe following Terminals are supported:\n<center>\n<table width=\"80%\">\n<tr><td>CAN</td><td> EtherCAT CAN Gateway</td></tr>\n</table>\n</center>\n<h3> Inputs / Outputs</h3>\n<h4>Inputs</h4>\nThere are two block inputs.\n<p>\nFirst port the static informations (Vector of 3x UINT16)\n<ul>\n<li> TX-Counter: Control send counter </li>\n<li> RX-Counter: Control recieve counter </li>\n<li> No Messages: Number of messages to send</li>\n</ul>\n<p>\nSecond port the message vector (Vector XxUINT8)\nThe size of the vector depends on\n<ul>\n<li> Size of the configured TX-Message Queque\n<li> Messages are extended (31 Bit ID) or normal (11 Bit ID)\n</ul>\n<p>\nThe vector size is calculated to\n<ul>\n<li>(11Bit ID) No Messages x 12 Byte\n<li>(31 Bit ID) No Messages x 16 Byte\n</ul>\n\n\n<h3> Inputs / Outputs</h3>\n<h4>Outputs</h4>\nThere are two block outputs.\n<p>\nFirst port the static informations (Vector of 4x UINT16)\n<ul>\n<li> TX-Counter: Control send counter </li>\n<li> RX-Counter: Control recieve counter </li>\n<li> No Messages: Number of messages to send</li>\n<li> Transaction No: last accessed transaction No\n</ul>\n<p>\nSecond port the message vector (Vector XxUINT8)\nThe size of the vector depends on\n<ul>\n<li> Size of the configured RX-Message Queque\n<li> Messages are extended (31 Bit ID) or normal (11 Bit ID)\n</ul>\n<p>\nThe vector size is calculated to\n<ul>\n<li>(11Bit ID) No Messages x 10 Byte\n<li>(31 Bit ID) No Messages x 14 Byte\n</ul>\n\n<p/>\nChoose and set the following options:\n<h4>Master:</h4>\nSet the EtherCAT Master of this terminal.\n\n<h4>Slave Index:</h4>\nSet the EtherCAT slave index. Following address formats are allowed:\n<ol>\n<li> Absolute addressing: a scalar number <<b><tt>n</tt></b>> representing the (zero based) absolute position in the bus.\n<li> SSId addressing: the Secondary Slave (or 'Alias') Addressing has the form <<b><tt>[alias position]</tt></b>> where <b><tt>alias</tt></b> is the Secondary Slave Id of the EtherCAT slave and <b><tt>position</tt></b> is the offset after the slave with the given <b><tt>alias</tt></b>. The SSId has to be preprogrammed into the slave with other service tools (see 'ethercat alias --help').\n</ol>\n\n\n\n<h4>Device Model:</h4>\nChoose the device at the Indexed position of the master.\n\n<h4>MailboxSize RX / TX</h4>\nConfigure the RX/TX Queque size of the Slave.\n\n\n<h4>Extended ID</h4>\nEnables Extended (31 Bit) CAN ID handling.\n\n\n<h4>Baudrate</h4>\nConfigure the CAN Baudrate.\n\n\n<h4>RX Filter IDs</h4>\nConfigure the RX Filter ID. Only the selected IDs will be accessed on the CAN Bus. If the vector is empty, all messages are prceded.\nThe vector has to be [1 2 3 4 5].\n\n<h4>Node ID</h4>\nConfigure the CAN node id.\n\n<p>\nSet the <b>Sample Time</b> for the block. <tt>0</tt> is continuous sample time (runs at the model's base rate). Setting <tt>-1</tt> will try to set the time using back propagation.\n"
+	      MaskPromptString	      "Master|Slave Index|Device Model |MailboxSize RX|MailboxSize TX|Extended ID|Baudrate in kBit/s|RX Filter IDs|Node ID|Sample Time (-1 for inherited)|Debug|UpdateFcn"
+	      MaskStyleString	      "edit,edit,popup(CANr00000000),edit,edit,checkbox,popup(1000|800|500|250|125|100|50),edit,edit,edit,edit,edit"
+	      MaskTunableValueString  "off,off,off,off,off,off,off,off,off,off,off,off"
+	      MaskCallbackString      "|||||||||||"
+	      MaskEnableString	      "on,on,on,on,on,off,on,on,on,on,on,off"
+	      MaskVisibilityString    "on,on,on,on,on,on,on,on,on,on,off,off"
+	      MaskToolTipString	      "on,on,on,on,on,on,on,on,on,on,on,on"
+	      MaskVarAliasString      ",,,,,,,,,,,"
+	      MaskVariables	      "master=@1;index=@2;model=&3;numberrx=@4;numbertx=@5;isext=@6;baudrate=@7;rxfilter=@8;nodeadr=@9;tsample=@10;debug=@11;updatefcn=&12;"
+	      MaskInitialization      "masterStr = '';\npositionStr = '';\n[Address masterStr positionStr] = getEtherCATAddress(gcb,master,index);\n\nselection = esd_cangateway('getmodel',model);\nif isempty(selection)\n    return;\nend\n\nfunc = selection{3};\n\ndevice = esd_cangateway('loaddescription',selection);\nif isempty(device)\n   return; \nend\n\n\n%Prepare S-Funtion structure\n\nconf = esd_cangateway('process',selection,device,numberrx,numbertx,isext,baudrate,rxfilter,nodeadr);\n   \n\n\n"
+	      MaskDisplay	      "fprintf('ESD EtherCAT\\n%s\\n%s\\nM:%s Idx:%s',...\n    model,func,masterStr,positionStr)\n"
+	      MaskIconFrame	      on
+	      MaskIconOpaque	      on
+	      MaskIconRotate	      "none"
+	      MaskIconUnits	      "autoscale"
+	      MaskValueString	      "0|1|CANr00000000|1|1|off|500|[]|1|-1|0|esd_cangateway"
+	      MaskTabNameString	      ",,,,,,,,,,,"
+	    }
+	  }
+	}
+      }
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "Printf"
+      Ports		      [2]
+      Position		      [110, 44, 210, 86]
+      MinAlgLoopOccurrences   off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      MaskPromptString	      "Format String"
+      MaskStyleString	      "edit"
+      MaskTunableValueString  "off"
+      MaskEnableString	      "on"
+      MaskVisibilityString    "on"
+      MaskToolTipString	      "on"
+      MaskVariables	      "format=&1;"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "0"
+      System {
+	Name			"Printf"
+	Location		[761, 352, 1259, 652]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"usletter"
+	PaperUnits		"inches"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+	Block {
+	  BlockType		  Inport
+	  Name			  "Trigger"
+	  Position		  [75, 58, 105, 72]
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "Data"
+	  Position		  [75, 128, 105, 142]
+	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "sfix(16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "Triggered\nSubsystem"
+	  Ports			  [1, 0, 0, 1]
+	  Position		  [185, 114, 285, 156]
+	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  System {
+	    Name		    "Triggered\nSubsystem"
+	    Location		    [409, 398, 907, 698]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "usletter"
+	    PaperUnits		    "inches"
+	    TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "In1"
+	      Position		      [110, 103, 140, 117]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      TriggerPort
+	      Name		      "Trigger"
+	      Ports		      []
+	      Position		      [225, 20, 245, 40]
+	      StatesWhenEnabling      "held"
+	    }
+	    Block {
+	      BlockType		      "S-Function"
+	      Name		      "S-Function"
+	      Ports		      [1, 1]
+	      Position		      [200, 95, 260, 125]
+	      FunctionName	      "printf"
+	      Parameters	      "format"
+	    }
+	    Line {
+	      SrcBlock		      "In1"
+	      SrcPort		      1
+	      DstBlock		      "S-Function"
+	      DstPort		      1
+	    }
+	  }
+	}
+	Line {
+	  SrcBlock		  "Trigger"
+	  SrcPort		  1
+	  Points		  [125, 0]
+	  DstBlock		  "Triggered\nSubsystem"
+	  DstPort		  trigger
+	}
+	Line {
+	  SrcBlock		  "Data"
+	  SrcPort		  1
+	  Points		  [0, 0]
+	  DstBlock		  "Triggered\nSubsystem"
+	  DstPort		  1
+	}
+      }
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Raise"
+      Ports		      [1]
+      Position		      [165, 125, 225, 155]
+      BackgroundColor	      "red"
+      CopyFcn		      "raise_check(gcb,'CheckCopy');"
+      FunctionName	      "raise"
+      Parameters	      "ErrId,ErrStr,TSample"
+      MaskPromptString	      "Error Identifier|Error String|Sample Time (-1 inherited)|Destination Paths|Destination Count"
+      MaskStyleString	      "edit,edit,edit,edit,edit"
+      MaskTunableValueString  "off,off,off,off,off"
+      MaskCallbackString      "raise_check(gcb,'CheckId');||||"
+      MaskEnableString	      "on,on,on,off,on"
+      MaskVisibilityString    "on,on,on,off,off"
+      MaskToolTipString	      "on,on,on,on,on"
+      MaskVarAliasString      ",,,,"
+      MaskVariables	      "ErrId=&1;ErrStr=&2;TSample=@3;DstPath=&4;DstCount=@5;"
+      MaskDisplay	      "fprintf('%s',ErrId);"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "E10|Voltage Too High|-1|0|0"
+      MaskTabNameString	      ",,,,"
+    }
+    Block {
+      BlockType		      "S-Function"
+      Name		      "Raise\nSummary"
+      Ports		      []
+      Position		      [170, 180, 230, 210]
+      BackgroundColor	      "red"
+      CopyFcn		      "raise_summary_check(gcb,'CheckCopy');"
+      FunctionName	      "raise_summary"
+      Parameters	      "ErrId,ErrStr,ErrSrc,DstPath"
+      MaskPromptString	      "Error Identifier|Error String|Error Sources|Destination Paths"
+      MaskStyleString	      "edit,edit,edit,edit"
+      MaskTunableValueString  "off,off,off,off"
+      MaskCallbackString      "|||"
+      MaskEnableString	      "on,on,on,off"
+      MaskVisibilityString    "on,on,on,off"
+      MaskToolTipString	      "on,on,on,on"
+      MaskVarAliasString      ",,,"
+      MaskVariables	      "ErrId=&1;ErrStr=&2;ErrSrc=&3;DstPath=&4;"
+      MaskDisplay	      "fprintf('%s\\n%s',ErrId,ErrSrc);"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      MaskValueString	      "E1x|Voltage Too High|E10|0"
+      MaskTabNameString	      ",,,"
+    }
+    Block {
+      BlockType		      SubSystem
+      Name		      "cbdb"
+      Ports		      []
+      Position		      [70, 190, 121, 220]
+      CopyFcn		      "if ~strcmp(gcs,'rtai_lib')\ndisplay('CopyFcn');       \nend                       "
+      DeleteFcn		      "if ~strcmp(gcs,'rtai_lib')\ndisplay('DeleteFcn');     \nend                       "
+      UndoDeleteFcn	      "if ~strcmp(gcs,'rtai_lib')\ndisplay('UndoDeleteFcn'); \nend                       "
+      LoadFcn		      "if ~strcmp(gcs,'rtai_lib')\ndisplay('LoadFcn');       \nend                       "
+      ModelCloseFcn	      "if ~strcmp(gcs,'rtai_lib')\ndisplay('ModelCloseFcn'); \nend                       "
+      PreSaveFcn	      "if ~strcmp(gcs,'rtai_lib')\ndisplay('PreSaveFcn');    \nend                       "
+      PostSaveFcn	      "if ~strcmp(gcs,'rtai_lib')\ndisplay('PostSaveFcn');   \nend                       "
+      InitFcn		      "if ~strcmp(gcs,'rtai_lib')\ndisplay('InitFcn');       \nend                       "
+      StartFcn		      "if ~strcmp(gcs,'rtai_lib')\ndisplay('StartFcn');      \nend                       "
+      StopFcn		      "if ~strcmp(gcs,'rtai_lib')\ndisplay('StopFcn');       \nend                       "
+      NameChangeFcn	      "if ~strcmp(gcs,'rtai_lib')\ndisplay('NameChangeFcn'); \nend                       "
+      ClipboardFcn	      "if ~strcmp(gcs,'rtai_lib')\ndisplay('ClipboardFcn');  \nend                       "
+      DestroyFcn	      "if ~strcmp(gcs,'rtai_lib')\ndisplay('DestroyFcn');    \nend                       "
+      OpenFcn		      "if ~strcmp(gcs,'rtai_lib')\ndisplay('OpenFcn');       \nend                       "
+      CloseFcn		      "if ~strcmp(gcs,'rtai_lib')\ndisplay('CloseFcn');      \nend                       "
+      ParentCloseFcn	      "if ~strcmp(gcs,'rtai_lib')\ndisplay('ParentCloseFcn');\nend                       "
+      MoveFcn		      "if ~strcmp(gcs,'rtai_lib')\ndisplay('MoveFcn');       \nend                       "
+      MinAlgLoopOccurrences   off
+      RTWSystemCode	      "Auto"
+      FunctionWithSeparateData off
+      MaskDisplay	      "disp('Callback\\nDebugger');"
+      MaskIconFrame	      on
+      MaskIconOpaque	      on
+      MaskIconRotate	      "none"
+      MaskIconUnits	      "autoscale"
+      System {
+	Name			"cbdb"
+	Location		[65, 462, 230, 544]
+	Open			off
+	ModelBrowserVisibility	off
+	ModelBrowserWidth	200
+	ScreenColor		"white"
+	PaperOrientation	"landscape"
+	PaperPositionMode	"auto"
+	PaperType		"A4"
+	PaperUnits		"centimeters"
+	TiledPaperMargins	[0.500000, 0.500000, 0.500000, 0.500000]
+	TiledPageScale		1
+	ShowPageBoundaries	off
+	ZoomFactor		"100"
+      }
+    }
+  }
+}

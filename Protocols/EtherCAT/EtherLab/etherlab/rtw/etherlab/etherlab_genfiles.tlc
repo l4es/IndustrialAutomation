@@ -1,0 +1,20 @@
+%%
+%% Copyright (c) 2012 IgH Essen GmbH
+%% License: GPL
+%%
+%% Abstract: Post processing RTW file after code generation
+%%       Called by etherlab.tlc
+%%
+
+%%selectfile NULL_FILE
+
+%% Generate a file <model>_header.c containing some values extracted from
+%% the .rtw file
+%with CompiledModel 
+  %openfile header = "%<Name>_header.c"
+    const char *%<Name>_version = "%<ModelVersion>";
+    const char *%<Name>_generator = "%<Version>";
+    const char *%<Name>_date = "%<GeneratedOn>";
+  %closefile header
+%endwith
+

@@ -1,0 +1,84 @@
+%implements "master_state" "C"
+%include "EtherCAT.tlc"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function BlockTypeSetup( block, system) void
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %<InitEtherCAT()>
+
+  %if LibBlockOutputSignalWidth(0) > 1
+    %openfile buf
+
+#ifndef EC_HAVE_REDUNDANCY
+#error EtherCAT Redundancy not available in this version
+#endif
+    %closefile buf
+    %<LibSetSourceFileSection(LibGetModelDotCFile(), "Defines", buf)>
+  %endif
+
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function BlockInstanceSetup( block, system) void
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %<InitEtherCATTask(block, system)>
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function Start( block, system) Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  /* %<Type> Block: %<Name>
+   */
+  %<ETL.ErrStr> = ecs_setup_master(%<MasterId>, %<RefClkSyncDec>,
+        &%<LibBlockPWork(MasterPtr, "", "", 0)>);
+  if (%<ETL.ErrStr>) {
+        snprintf(%<ETL.ErrMsg>, sizeof(%<ETL.ErrMsg>), 
+           "Setting up master in %<LibGetFormattedBlockPath(block)> "
+           "failed: %s", %<ETL.ErrStr>);
+        %<LibSetRTModelErrorStatus("%<ETL.ErrMsg>")>;
+        return;
+  }
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function Outputs( block, system) Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  /* %<Type> Block: %<Name>
+   */
+  %if LibBlockNumInputPorts(block)
+    %assign State = LibBlockIWork(ResetState, "", "", 0)
+    if (%<LibBlockInputSignal(0,"","",0)> != %<State> && %<State>)
+      ecrt_master_reset((ec_master_t*)%<LibBlockPWork(MasterPtr, "", "", 0)>);
+    %<State> = %<LibBlockInputSignal(0,"","",0)>;
+  %endif
+  %if LibBlockOutputSignalWidth(0) > 1
+  {
+    ec_master_link_state_t state;
+
+    %roll sigIdx = RollRegions, lcv = RollThreshold, block, "Roller", ["Y"]
+      %%
+      %assign masterIdx = lcv == "" ? sigIdx : "%<lcv>+%<sigIdx>"
+      %%
+      ecrt_master_link_state(\
+        (ec_master_t*)%<LibBlockPWork(MasterPtr, "", "", 0)>, \
+        %<masterIdx>, &state);
+      %<LibBlockOutputSignal(0,"",lcv,sigIdx)> = state.slaves_responding;
+      %<LibBlockOutputSignal(1,"",lcv,sigIdx)> = state.al_states;
+      %<LibBlockOutputSignal(2,"",lcv,sigIdx)> = state.link_up ? 1 : 0;
+
+    %endroll
+   }   
+  %else
+    {
+      ec_master_state_t state;
+
+      ecrt_master_state(\
+         (ec_master_t*)%<LibBlockPWork(MasterPtr, "", "", 0)>, &state);
+      %<LibBlockOutputSignal(0,"","",0)> = state.slaves_responding;
+      %<LibBlockOutputSignal(1,"","",0)> = state.al_states;
+      %<LibBlockOutputSignal(2,"","",0)> = state.link_up ? 1 : 0;
+    }
+  %endif
+%endfunction

@@ -1,0 +1,34 @@
+#
+# Sample process data persistence daemon service file for systemd.
+#
+# vim: tw=78 spelllang=en spell
+#
+# BEFORE USAGE please adapt the ExecStart line to your environment!
+#
+
+[Unit]
+Description=Process data persistence daemon
+
+#
+# Optional: Require and After for real-time application
+# This only makes sense, if auto-reconnect is disabled.
+#
+#Requires=my_rt_app.service
+#After=my_rt_app.service
+
+[Service]
+Type=simple
+ExecStart=/vol/opt/etherlab/bin/pdpersistd --restore /etc/persist.conf
+
+# Standard output and error are directed to syslog() internally.
+StandardOutput=null
+StandardError=null
+
+#
+# Restart should be disabled if auto-reconnect is disabled,
+# to avoid duplicate restoring.
+#
+#Restart=no
+
+[Install]
+WantedBy=multi-user.target

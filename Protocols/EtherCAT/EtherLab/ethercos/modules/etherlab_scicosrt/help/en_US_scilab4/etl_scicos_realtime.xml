@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../dtd/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>Etherlab Scicos Realtime</TITLE>
+
+  <TYPE>Scicos Block</TYPE>
+
+  <DATE>20-Jan-2008</DATE>
+
+  <SHORT_DESCRIPTION name="etl_scicos_realtime">scicos_realtime</SHORT_DESCRIPTION>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Do Realtime</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+	
+          <SP>	 Enables Realtime behavior. The scicos solver realtime flag should be disabled. For higher process priority, scilab has to be started as root. </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>Cycletime</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>Cycletime in ms </SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+
+    <P>  This Block changes the process priority of scilab/scicos to RT-priority. The realtime behavior is implemented by the function call clock nanosleep.</P>
+
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>Andreas Stewering, IgH Essen</AUTHORS_ITEM>
+  </AUTHORS>
+  <!-- ================================= -->
+  <SECTION label="Availability">
+	  The latest version of Etherlab can be found at
+	  <P><A href="http://www.etherlab.org">http://www.etherlab.org</A></P>
+  </SECTION>
+<!-- ================================= -->
+</MAN>

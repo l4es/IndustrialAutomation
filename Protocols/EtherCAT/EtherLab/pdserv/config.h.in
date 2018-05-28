@@ -1,0 +1,49 @@
+/*****************************************************************************
+ *
+ *  $Id$
+ *
+ *  Copyright 2010 Richard Hacker (lerichi at gmx dot net)
+ *
+ *  This file is part of the pdserv library.
+ *
+ *  The pdserv library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published
+ *  by the Free Software Foundation, either version 3 of the License, or (at
+ *  your option) any later version.
+ *
+ *  The pdserv library is distributed in the hope that it will be useful, but
+ *  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ *  or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+ *  License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public License
+ *  along with the pdserv library. If not, see <http://www.gnu.org/licenses/>.
+ *
+ *****************************************************************************/
+
+#ifndef PD_CONFIG_H
+#define PD_CONFIG_H
+
+// Repository Version
+#define PKGID @Package_HG_ID@
+
+#define MAJOR_VERSION @MAJOR_VERSION@
+#define MINOR_VERSION @MINOR_VERSION@
+#define PATCH_LEVEL   @PATCH_LEVEL@
+#define PROJECT_NAME  @PROJECT_NAME@
+
+#define SYSCONFDIR  @CMAKE_INSTALL_FULL_SYSCONFDIR@
+#define LIBDIR      @CMAKE_INSTALL_FULL_LIBDIR@
+
+#define STR(x) #x
+#define QUOTE(x) STR(x)
+
+#cmakedefine SRC_PATH_LENGTH @SRC_PATH_LENGTH@
+#cmakedefine PDS_DEBUG
+#cmakedefine GNUTLS_FOUND
+
+#ifndef PDS_DEBUG
+#   define LOG4CPLUS_DISABLE_TRACE
+#endif // PDS_DEBUG
+
+#endif //PD_CONFIG_H

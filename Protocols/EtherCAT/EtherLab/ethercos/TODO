@@ -1,0 +1,43 @@
+TODO List for the EtherCos Scicos Project
+
+Target Release 0.0.1: - Proof of Concepts
+
+Target Release 0.0.2: - Bugfix Components
+		      - Fix Bug in EL32xx	
+                      - Test for Alias addressing
+	 	      - Test for correct Locking on MP-Systems 
+	 	      - Test for correct CPU-Set Handling on MP-Systems
+                      - Test EL5001
+                      - Implement and Test EL5101
+                      - Implement MTS-Sensor Slave
+		      - Failure Handling for Data Type in etl_slave.c
+		      - Check for locking of Systemcall clock_gettime
+		      - Update Documentation
+
+Target Release 0.0.3: - Bugfix Components
+		      - Build System Information Block (Systemload, cpuload, mem, swap, uptime)		     
+		      - Extend Taskinfo, Modeltime, Pagefaults, memusage,...
+		      - Create Installation Manual
+		      - Integrate MSR-Reduction in Dialog and RTMain
+		      - Improve failure handling in ecrt_support layer
+		      - Implement Vector Input, Output
+		      - Add Blocks for Vector handling from hart project
+		      - Add filter Blocks from hart project
+		      - Restructure Build Process, Build MSR code in a library
+		      - Remove Bitlength from Map Structure	
+
+Target Release 0.1: - Bugfix all Components
+		    - Rebuild Blocks for new Gui Interface
+		    - Implement Generic Slave Block 
+                    - Implement Master State Block
+                    - Implement Domain State Block
+		    - Implement Infrastructure Block
+		    - First Customer Release
+		    - Update Slavedescriptions
+
+Target Release 0.2: - Test Build and Start Script under Scilab 5.1
+		    - Finish the XML to SCI-struct converter 
+		    - Restructure Blocksetlibrary
+		    - Integrate DC-Feature
+		    - Prepare Codegeneration under Windows Systems
+                    - Build up Comedi Support

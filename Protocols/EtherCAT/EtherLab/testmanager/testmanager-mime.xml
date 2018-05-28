@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/testmanager">
+    <comment>Testmanager Layout</comment>
+    <comment xml:lang="de">Testmanager-Layout</comment>
+    <comment xml:lang="en">Testmanager Layout</comment>
+    <icon name="testmanager-layout"/>
+    <magic priority="50">
+      <match value="tabs" type="string" offset="0:256"/>
+    </magic>
+    <glob pattern="*.tml"/>
+  </mime-type>
+</mime-info>

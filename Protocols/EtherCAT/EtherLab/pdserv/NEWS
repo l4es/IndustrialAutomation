@@ -1,0 +1,38 @@
+
+$Id$
+
+Version 1.1.0
+
+- Fixed some bugs and memory leaks
+- Added <remote_host polite> so that the process does not send any messages by
+  itself
+- Parameter write failure not logged any more
+- Removed unnecessary output stream locking
+- Removed value='' attribute for <rk> and <rp>
+- Removed MSR <info> broadcast when new session connects
+- Using log4cplus instead of log4cpp
+- Using standard cmake installation paths. Default installation to /usr/local
+- Simplified events defined with a path instead of a numeric identifier
+- Simplified configuration. Removed default configuration option
+
+Version 1.0.0
+
+- Removed duplicate unit attribute.
+- Fixed some locking issues.
+- Fixed memory leak on every network disconnect
+- Loading config file as early as possible
+- Added configuration option for lib
+- Integrated compound data types into msr protocol
+- Fixed bug where not all parameters were added in traditional mode
+- Large improvements on performance
+- Added 'out of sync' log message.
+- Change <connected> tag to name="MSR"
+- Export vector signals also in traditional mode.
+- Traditional mode as a runtime configuration option.
+- Traditional mode inserts model name in front of variable path for MSR
+- Added 64-bit library support in spec file.
+
+Version 0.99.3
+
+- Changed License to LGPLv3.
+

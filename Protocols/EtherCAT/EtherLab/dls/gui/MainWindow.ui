@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1032</width>
+    <height>602</height>
+   </rect>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="DLS::Graph" name="dlsGraph"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="title">
+        <string>Signal selection</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QTreeView" name="treeView">
+          <property name="dragEnabled">
+           <bool>true</bool>
+          </property>
+          <property name="dragDropMode">
+           <enum>QAbstractItemView::DragOnly</enum>
+          </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::ExtendedSelection</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QToolButton" name="toolButtonNewDir">
+            <property name="text">
+             <string>Add local datasource</string>
+            </property>
+            <property name="icon">
+             <iconset resource="dlsgui.qrc">
+              <normaloff>:/images/Folder.svg</normaloff>:/images/Folder.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="shortcut">
+             <string>Ctrl+N</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButtonNewUrl">
+            <property name="text">
+             <string>Add local datasource</string>
+            </property>
+            <property name="icon">
+             <iconset resource="dlsgui.qrc">
+              <normaloff>:/images/Folder-remote.svg</normaloff>:/images/Folder-remote.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="shortcut">
+             <string>Ctrl+U</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1032</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <widget class="QMenu" name="menuRecentFiles">
+     <property name="title">
+      <string>&amp;Recent views</string>
+     </property>
+     <property name="icon">
+      <iconset resource="dlsgui.qrc">
+       <normaloff>:/images/document-open.svg</normaloff>:/images/document-open.svg</iconset>
+     </property>
+    </widget>
+    <addaction name="actionNew"/>
+    <addaction name="actionLoad"/>
+    <addaction name="menuRecentFiles"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
+    <addaction name="separator"/>
+    <addaction name="actionClose"/>
+   </widget>
+   <widget class="QMenu" name="menuOptions">
+    <property name="title">
+     <string>Options</string>
+    </property>
+    <addaction name="actionSettings"/>
+   </widget>
+   <widget class="QMenu" name="menuWindows">
+    <property name="title">
+     <string>Windows</string>
+    </property>
+    <addaction name="actionLogWindow"/>
+   </widget>
+   <widget class="QMenu" name="menuScripts">
+    <property name="title">
+     <string>Scripts</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="actionAboutDlsgui"/>
+   </widget>
+   <widget class="QMenu" name="menuDatasource">
+    <property name="title">
+     <string>Datasource</string>
+    </property>
+    <addaction name="actionAddLocalDataSource"/>
+    <addaction name="actionAddRemoteDataSource"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuDatasource"/>
+   <addaction name="menuOptions"/>
+   <addaction name="menuScripts"/>
+   <addaction name="menuWindows"/>
+   <addaction name="menuAbout"/>
+  </widget>
+  <action name="actionClose">
+   <property name="icon">
+    <iconset resource="dlsgui.qrc">
+     <normaloff>:/images/system-log-out.svg</normaloff>:/images/system-log-out.svg</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Close</string>
+   </property>
+   <property name="toolTip">
+    <string>Close the application</string>
+   </property>
+  </action>
+  <action name="actionLoad">
+   <property name="icon">
+    <iconset resource="dlsgui.qrc">
+     <normaloff>:/images/document-open.svg</normaloff>:/images/document-open.svg</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Open view...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a stored view</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset resource="dlsgui.qrc">
+     <normaloff>:/images/document-save.svg</normaloff>:/images/document-save.svg</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save view</string>
+   </property>
+   <property name="toolTip">
+    <string>Save the current view</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="icon">
+    <iconset resource="dlsgui.qrc">
+     <normaloff>:/images/document-save-as.svg</normaloff>:/images/document-save-as.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Save view &amp;as...</string>
+   </property>
+   <property name="iconText">
+    <string>Save as</string>
+   </property>
+   <property name="toolTip">
+    <string>Save the current view to a different file</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>Settings</string>
+   </property>
+  </action>
+  <action name="actionLogWindow">
+   <property name="text">
+    <string>Log Window</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset resource="dlsgui.qrc">
+     <normaloff>:/images/document-new.svg</normaloff>:/images/document-new.svg</iconset>
+   </property>
+   <property name="text">
+    <string>New view</string>
+   </property>
+  </action>
+  <action name="actionAboutDlsgui">
+   <property name="text">
+    <string>About dlsgui...</string>
+   </property>
+  </action>
+  <action name="actionAddLocalDataSource">
+   <property name="icon">
+    <iconset resource="dlsgui.qrc">
+     <normaloff>:/images/Folder.svg</normaloff>:/images/Folder.svg</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Add local datasource...</string>
+   </property>
+  </action>
+  <action name="actionAddRemoteDataSource">
+   <property name="icon">
+    <iconset resource="dlsgui.qrc">
+     <normaloff>:/images/Folder-remote.svg</normaloff>:/images/Folder-remote.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Add remote datasource...</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>DLS::Graph</class>
+   <extends>QFrame</extends>
+   <header>DlsWidgets/Graph.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="dlsgui.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>actionClose</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>364</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

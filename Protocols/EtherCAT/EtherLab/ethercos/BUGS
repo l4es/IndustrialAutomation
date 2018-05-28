@@ -1,0 +1,39 @@
+#1, Fixed, Prio High, Date 2009-05-31, Autor ab, Files: build_mapstruct.sci:
+     Fix Scaling Problem
+     Extraction of scale params fails, 
+     every channel of a block has the same scaling
+     Solution: Index failure in SCI File, every channel got value of
+     first channel   
+#2, Fixed, Prio High, Date 2009-05-31, Autor ab, Files: etl_slave_mts.sci: 
+     Fix Registration Error with MTS Block
+     Model crash in msr opar registration after Codegeneration
+     Failure depends on opar type index failure
+#3, Open, Prio High, Date 2009-05-31, Autor ab, Files: rtmain.c: 
+     Check on clock settings by user
+#4, Fixed, Prio High, Date 2009-05-31, Autor ab, Files: rtmain.c: 
+     Check Jitter calculation
+     Jitter calculation seems to be wrong
+     Solution: Calculated Value is ok, base jitter of 30 mus+ call difference
+     (for my devellopment system)
+     Question: Under heavy cpuload the values for jitter and call_time
+     are reduced. Why?
+#5, Fixed, Prio Medium, Date 2009-05-31, Autor ab, Files: rtmain.c: 
+     Stopping DLS Job under heavy load kills the process
+     To be checked and reproduced
+     Anlysed via gdb: Process recieves SIGPIPE (Broken Pipe), 
+     Reason: dlsd shuts down before MSR-Serverprocess shut down the link 
+     and writes some data on a closed link
+     Solution: Ingnore Signal,
+     Question: Why does the MSR Server not recodnize the stopped client?
+#6, Open, Prio Medium, Date 2009-05-31, Autor ab, Files: ?: 
+     Overruns at Model start or high load on ethercat state
+     maschine, to be checked and reproduced
+#7, Fixed, Prio High, Date 2009-05-31, Autor ab, Files: rtmain.c:
+     Overrun in Executiontime every 1s, Bug in Timedifference Calculation
+     Can not be reproduced an Pentium-M platform, Reason old hardware!
+#8, Fixed, Prio Medium, Date 2009-05-31, Autor ab, Files: ?: 
+     Overruns at Model if Testmanager copy scrolling graph, Graphical timeouts?
+     to be checked and reproduced
+     Can not be reproduced an Pentium-M platform, Reason old hardware!
+#9, Open, Prio High, Date 2009-06-06, Autor ab, Files: ?: 
+     Pointer free error after model end in generated model

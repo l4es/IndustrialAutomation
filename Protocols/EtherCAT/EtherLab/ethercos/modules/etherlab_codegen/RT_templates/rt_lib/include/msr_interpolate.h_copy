@@ -1,0 +1,281 @@
+/**************************************************************************************************
+*
+*                          msr_interpolate.h
+*
+*           Interpolation über ein vorgegebenes Array fixer Größe. Als x-Achse ist die Zeitachse
+*           
+*           Autor: Andreas Bone
+*
+*           (C) Copyright IgH 2005
+*           Ingenieurgemeinschaft IgH
+*           Heinz-Bäcker Str. 34
+*           D-45356 Essen
+*           Tel.: +49 201/61 99 31
+*           Fax.: +49 201/61 98 36
+*           E-mail: ab@igh-essen.com
+*
+*
+*           $RCSfile: msr_interpolate.h,v $
+*           $Revision: 1.7 $
+*           $Author: ab $
+*           $Date: 2005/07/13 05:51:06 $
+*           $State: Exp $
+*
+*
+*           $Log: msr_interpolate.h,v $
+*           Revision 1.7  2005/07/13 05:51:06  ab
+*           par->shrink Zeitverzerrungsfaktor hinzugefuegt
+*
+*           Revision 1.6  2005/07/12 13:18:47  ab
+*           *** empty log message ***
+*
+*           Revision 1.5  2005/07/12 10:10:20  ab
+*           *** empty log message ***
+*
+*           Revision 1.4  2005/06/15 07:23:05  ab
+*           *** empty log message ***
+*
+*           Revision 1.3  2005/06/14 13:55:53  hm
+*           *** empty log message ***
+*
+*           Revision 1.2  2005/06/14 13:55:13  hm
+*           *** empty log message ***
+*
+*           Revision 1.1  2005/06/14 13:47:07  ab
+*           Initial revision
+*
+*
+*
+*
+*
+**************************************************************************************************/
+
+
+/*--Schutz vor mehrfachem includieren------------------------------------------------------------*/
+
+#ifndef _MSR_INTERPOLATE_H_
+#define _MSR_INTERPOLATE_H_
+
+
+#include <msr_target.h>
+#include <msr_error_reg.h>
+#include <msr_statemaschine.h>
+#include <linux/time.h>
+#include <linux/list.h>
+
+/*--includes-------------------------------------------------------------------------------------*/
+
+/*--defines--------------------------------------------------------------------------------------*/
+
+#define MSR_INPOS(x,y,e) (fabs((x)-(y)) < (e))
+#define INTERPOLATEARRAYSIZE 5000
+
+/*--structs/typedefs-----------------------------------------------------------------------------*/
+
+/*--external functions---------------------------------------------------------------------------*/
+
+/*--external data--------------------------------------------------------------------------------*/
+
+/*--structs/typedefs-----------------------------------------------------------------------------*/
+
+struct msr_interpolate_yval {
+    double *valuesy;
+    double output;
+    struct msr_param_list *param;
+    
+};
+
+struct msr_interpolate  {
+    /* Zustandsgrößen */
+    char *name;
+    struct msr_statemaschine* statemaschine; /*Zustandsmaschine, die den Regler
+					    kontrolliert*/
+    unsigned int flags;
+    int start;
+    int stop;
+    int pause;
+    int running;
+    int restart;
+    int init;
+    int calc_null;
+    double shrink;
+    double dt;
+    double relativ_time;
+    double *valuestime;
+    int num_values;
+    int runflag;
+    int valid_values;
+    int index;
+    struct msr_param_list *param;
+    struct msr_error_list * error_monotonie;
+};
+
+
+/*--public data----------------------------------------------------------------------------------*/
+
+/*--prototypes-----------------------------------------------------------------------------------*/
+
+
+/*
+***************************************************************************************************
+*
+* Function: msr_interpolate_init_yvalues
+*
+* Beschreibung: Initialisiert die Struktur der y-Achsen für die Interpolation
+*
+* Parameter: name: Parametername
+*            unit: Einheit des Ausgangssignals (für die Kanal und Parameterregistrierung)
+*            yval_par: Pointer auf zu registrierende yval-Struktur
+*            par: Pointer auf die zugehörige x-Achse
+* Rückgabe: 
+*               
+* Status: exp
+*
+***************************************************************************************************
+*/
+
+void msr_interpolate_init_yvalues(struct msr_interpolate_yval *yval_par,
+				  struct msr_interpolate *par,
+				  char *name,              /* Name */
+				  char *unit              /* Einheit des Ausgangssignals */
+    );
+
+
+
+/*
+***************************************************************************************************
+*
+* Function: msr_interpolate_init
+*
+* Beschreibung: Initialisiert die Struktur für die Interpolation
+*
+* Parameter: name: Basisname in der Parameterstruktur
+*            unit: Einheit des Ausgangssignals (für die Kanal und Parameterregistrierung)
+*            statemaschine :Zustandsmaschine, die den Regler kontrolliert
+*            abtastfrequenz: mit der der Regler aufgerufen wird
+*
+* Rückgabe: 
+*               
+* Status: exp
+*
+***************************************************************************************************
+*/
+
+
+
+int msr_interpolate_init(struct msr_interpolate *par,
+			 char *name,              /* Basisname */
+			 struct msr_statemaschine* statemaschine, /*Zustandsmaschine, die den Regler
+								    kontrolliert*/
+			 unsigned int flags,      /* Flags für die Registierung der Parameter */
+			 int num_values,          /* Anzahl der Werte in den Arrays*/
+			 int abtastfrequenz       /*Abtastfrequenz der Interruptroutine*/
+    );
+
+
+/*
+***************************************************************************************************
+*
+* Function: msr_interpolate_xaxis_run
+*
+* Beschreibung: Zustandsverwaltung der Interpolation, Kontrolle der X-Achse
+*
+* Parameter: parParameterstruktur
+*
+* Rückgabe:
+*               
+* Status: exp
+*
+***************************************************************************************************
+*/
+
+void msr_interpolate_xaxis_run(struct msr_interpolate *par);
+
+
+
+/*
+***************************************************************************************************
+*
+* Function: msr_interpolate_run
+*
+* Beschreibung: Interpolation über ein vorgegebenes Array fixer Größe. Als x-Achse wird die Zeitachse verwendet
+*
+* Parameter: parParameterstruktur
+*
+* Rückgabe: interpolierter Wert für den aktuellen Zeitpunkt, 0.0 wenn nicht aktiv oder Fehler
+*               
+* Status: exp
+*
+***************************************************************************************************
+*/
+
+
+
+double msr_interpolate_run(struct msr_interpolate *par,struct msr_interpolate_yval *yval_par);
+
+
+
+/*
+***************************************************************************************************
+*
+* Function: msr_interpolate_reset
+*
+* Beschreibung: Setzt Interpolation zurück
+*
+* Parameter: par : Interpolationsstruktur
+*
+*               
+* Status: exp
+*
+***************************************************************************************************
+*/
+void msr_interpolate_reset(struct msr_interpolate *par);
+
+/*
+***************************************************************************************************
+*
+* Function: msr_interpolate_freex
+*
+* Beschreibung: Gibt allozierten Speicher frei
+*
+* Parameter: par : Interpolationsstruktur
+*
+*               
+* Status: exp
+*
+***************************************************************************************************
+*/
+void msr_interpolate_freex(struct msr_interpolate *par);
+/*
+***************************************************************************************************
+*
+* Function: msr_interpolate_freey
+*
+* Beschreibung: Gibt allozierten peicher frei
+*
+* Parameter: par : Interpolationsstruktur
+*
+*               
+* Status: exp
+*
+***************************************************************************************************
+*/
+void msr_interpolate_freey(struct msr_interpolate_yval *par);
+#endif 	// 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

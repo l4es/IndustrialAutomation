@@ -1,0 +1,38 @@
+<RCC>
+  <qresource prefix="/">
+    <file>images/align-horizontal-center.svg</file>
+    <file>images/align-horizontal-left.svg</file>
+    <file>images/align-horizontal-right.svg</file>
+    <file>images/align-vertical-bottom.svg</file>
+    <file>images/align-vertical-center.svg</file>
+    <file>images/align-vertical-top.svg</file>
+    <file>images/applications-other.png</file>
+    <file>images/computer.png</file>
+    <file>images/edit-clear.svg</file>
+    <file>images/edit.svg</file>
+    <file>images/etherlabsign.svg</file>
+    <file>images/exit.png</file>
+    <file>images/folder.svg</file>
+    <file>images/list-add.png</file>
+    <file>images/list-remove.png</file>
+    <file>images/network-transmit-receive.svg</file>
+    <file>images/new.png</file>
+    <file>images/open.png</file>
+    <file>images/plugin-button.svg</file>
+    <file>images/plugin-dial.svg</file>
+    <file>images/plugin-digital.svg</file>
+    <file>images/plugin-graph.svg</file>
+    <file>images/plugin-qlabel.png</file>
+    <file>images/plugin-spinbox.svg</file>
+    <file>images/plugin-xygraph.svg</file>
+    <file>images/preferences-system.svg</file>
+    <file>images/save-as.png</file>
+    <file>images/save.png</file>
+    <file>images/stylesheet.svg</file>
+    <file>images/tab-new.svg</file>
+    <file>images/testmanager.svg</file>
+    <file>images/utilities-system-monitor.png</file>
+    <file>images/window.png</file>
+    <file>testmanager_de.qm</file>
+  </qresource>
+</RCC>

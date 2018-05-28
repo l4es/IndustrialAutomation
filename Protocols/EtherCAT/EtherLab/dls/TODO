@@ -1,0 +1,61 @@
+
+$Id$
+
+vim: tw=78 spelllang=en spell syntax=markdown
+
+# Common
+    * Move unit and type attributes into chunk
+    * Synopsis in usage strings
+    * man pages for commands
+    * Check for PdCom in a portable way
+    * Allow compiling without PCRE
+
+# DLS Widgets
+    * Fix time scaling bug concerning scrollbar
+    * Show signals as tree
+    * Feed color selector with solarized colors
+    * Try minimum line width
+    * Interactive changing of header sizes
+
+# User frontend (dlsgui)
+    * Make loading data sources run in background (so that window is shown
+      immediately)
+    * Fix adding data sources on loading view
+    * Show if channel is actually logged
+    * Integrate configuration functionality of DLS Manager
+        * Available channels as tree with filter function
+    * Fix URI file:// slash problem in UriDialog.cpp
+    * Make exported channel file names unique (dialog?)
+
+# FLTK frontends
+    * Use PdCom to load available channels
+
+# Daemon (dlsd)
+    * Protocol authentication
+    * Configuration via protocol
+    * Fix online sample time change
+
+# Command-line tool (dls)
+    * option -Q for really quiet
+    * export:
+        * times with the date parser
+        * additional information in dls_export_info (channel name, unit,
+            command-line options, intersected chunks, min-max values)
+        * times in dls_export_info in ISO format
+	* split
+	* delete
+	* check
+	* repair
+    * list
+        * optionally don't go through every chunk
+    * status (replace dls-status.pl)
+    * getopt() long
+    * show compression rate
+
+# Library (LibDLS):
+    * Auto-import jobs on reconnect
+    * Add version macros
+    * Fetch chunks and data in same network request
+    * Avoid XML parsing via ring buffer (used in dls-ctl): xml-no-ring.patch
+    * Check for PdCom version
+

@@ -1,0 +1,54 @@
+%%
+%% Generic Routines to handle Raise and Catch
+%% 
+%% Copyright (C) 2006
+%% Richard Hacker
+%% IgH Essen GmbH
+%% 
+%% License: GPL
+
+%include "ETL.tlc"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function InitRaiseCatch() void
+%% This function checks whether the RaiseCatch system has been called once
+%% before already, which is demonstrated by the existance of variable 
+%% ::RaiseCatch. If not, include C-header file for RaiseCatch, 
+%% and declare a variable where the slave's data structure is placed 
+%% by RaiseCatch when registering the slaves during mdlStart()
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %if !EXISTS(CompiledModel.RaiseCatch)
+    %assign model_c = LibGetModelDotCFile()
+
+    %<InitETL()>
+
+    %trace "Initializing RaiseCatch Interface"
+    %addtorecord CompiledModel RaiseCatch 1
+
+    %with CompiledModel
+      %% RaiseCatch header
+      %<LibAddToCommonIncludes("<raise_catch.h>")>
+  
+      %openfile buf
+  
+      /* Starting RaiseCatch subsystem */
+      if ((%<ETL.ErrStr> = raise_catch_start())) {
+            snprintf(%<ETL.ErrMsg>, sizeof(%<ETL.ErrMsg>), 
+               "Starting RaiseCatch subsystem failed: %s\n", %<ETL.ErrStr>);
+            %<LibSetRTModelErrorStatus("%<ETL.ErrMsg>")>;
+            return;
+      }
+      %closefile buf
+      %<LibMdlStartCustomCode(buf, "trailer")>
+  
+      %openfile buf
+  
+      /* Shutting down RaiseCatch subsystem */
+      raise_catch_end();
+      %closefile buf
+      %<LibMdlTerminateCustomCode(buf, "execution")>
+  
+  %endwith
+  %endif
+%endfunction

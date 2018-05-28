@@ -1,0 +1,13 @@
+%
+% EtherLab (License GPLv3)
+% Version @VERSION@ @DATE@
+% PKGID @Package_HG_ID@
+%
+
+% Copyright (C) 2012 Richard Hacker, IgH GmbH
+% Generated from Contents.m.in
+
+disp('EtherLab Version @VERSION@')
+disp('')
+disp('Copyright (C) 2012 Richard Hacker, IgH GmbH')
+disp('License: GPLv3')

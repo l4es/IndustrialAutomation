@@ -1,0 +1,1525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1032</width>
+    <height>602</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item>
+       <widget class="QSplitter" name="splitter_4">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+          <horstretch>1</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="title">
+          <string>Bar Graphs</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="Pd::Bar" name="bar1">
+            <property name="scaleMax">
+             <double>30.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="Pd::Bar" name="bar2">
+            <property name="scaleMin">
+             <double>10.000000000000000</double>
+            </property>
+            <property name="scaleMax">
+             <double>18.000000000000000</double>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QGroupBox" name="groupBox_8">
+         <property name="title">
+          <string>Image</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="Pd::Image" name="pdImage">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(197, 233, 255);</string>
+            </property>
+            <property name="defaultPixmap">
+             <pixmap>etherlabsign.svg</pixmap>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSplitter" name="splitter_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+          <horstretch>1</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Analog 1</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <property name="margin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QSplitter" name="splitter_3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <widget class="Pd::Graph" name="scroll1">
+             <property name="scaleMax">
+              <double>100000.000000000000000</double>
+             </property>
+             <property name="autoScaleWidth">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="Pd::Graph" name="scroll2">
+             <property name="autoScaleWidth">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QSplitter" name="splitter">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="title">
+           <string>Triggered</string>
+          </property>
+          <layout class="QGridLayout">
+           <property name="margin">
+            <number>9</number>
+           </property>
+           <property name="spacing">
+            <number>6</number>
+           </property>
+           <item row="1" column="0">
+            <widget class="QSlider" name="sliderScale">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>1000</number>
+             </property>
+             <property name="pageStep">
+              <number>100</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QSlider" name="sliderLevel">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LeftToRight</enum>
+             </property>
+             <property name="minimum">
+              <number>0</number>
+             </property>
+             <property name="maximum">
+              <number>2000</number>
+             </property>
+             <property name="pageStep">
+              <number>100</number>
+             </property>
+             <property name="sliderPosition">
+              <number>0</number>
+             </property>
+             <property name="tracking">
+              <bool>true</bool>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="invertedAppearance">
+              <bool>false</bool>
+             </property>
+             <property name="invertedControls">
+              <bool>false</bool>
+             </property>
+             <property name="tickPosition">
+              <enum>QSlider::NoTicks</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QSlider" name="sliderPos">
+             <property name="maximum">
+              <number>1000</number>
+             </property>
+             <property name="pageStep">
+              <number>100</number>
+             </property>
+             <property name="value">
+              <number>500</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="invertedAppearance">
+              <bool>false</bool>
+             </property>
+             <property name="invertedControls">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSlider" name="sliderRange">
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>1000</number>
+             </property>
+             <property name="pageStep">
+              <number>100</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="Pd::Graph" name="scroll3"/>
+           </item>
+           <item row="2" column="2">
+            <widget class="QCheckBox" name="checkBoxAuto">
+             <property name="text">
+              <string>Auto</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QGroupBox" name="groupBox_5">
+          <property name="title">
+           <string>X-Y Graph</string>
+          </property>
+          <layout class="QHBoxLayout">
+           <property name="spacing">
+            <number>6</number>
+           </property>
+           <property name="margin">
+            <number>9</number>
+           </property>
+           <item>
+            <widget class="Pd::XYGraph" name="xyGraph"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox_6">
+        <property name="title">
+         <string>Digital Displays</string>
+        </property>
+        <layout class="QGridLayout">
+         <property name="margin">
+          <number>9</number>
+         </property>
+         <property name="spacing">
+          <number>6</number>
+         </property>
+         <item row="7" column="4">
+          <widget class="Pd::Digital" name="digital_28">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="13" column="0">
+          <widget class="Pd::Digital" name="digital_58">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="14" column="4">
+          <widget class="Pd::Digital" name="digital_61">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="13" column="4">
+          <widget class="Pd::Digital" name="digital_76">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="14" column="2">
+          <widget class="Pd::Digital" name="digital_75">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="3">
+          <widget class="Pd::Digital" name="digital_74">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="14" column="3">
+          <widget class="Pd::Digital" name="digital_73">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="1">
+          <widget class="Pd::Digital" name="digital_72">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="12" column="2">
+          <widget class="Pd::Digital" name="digital_71">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="13" column="1">
+          <widget class="Pd::Digital" name="digital_70">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="12" column="1">
+          <widget class="Pd::Digital" name="digital_69">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="13" column="2">
+          <widget class="Pd::Digital" name="digital_68">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="4">
+          <widget class="Pd::Digital" name="digital_67">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="2">
+          <widget class="Pd::Digital" name="digital_66">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="2">
+          <widget class="Pd::Digital" name="digital_65">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="12" column="3">
+          <widget class="Pd::Digital" name="digital_64">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="3">
+          <widget class="Pd::Digital" name="digital_63">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="13" column="3">
+          <widget class="Pd::Digital" name="digital_62">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="12" column="4">
+          <widget class="Pd::Digital" name="digital_60">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="4">
+          <widget class="Pd::Digital" name="digital_59">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="14" column="1">
+          <widget class="Pd::Digital" name="digital_57">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="10" column="0">
+          <widget class="Pd::Digital" name="digital_56">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="14" column="0">
+          <widget class="Pd::Digital" name="digital_55">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="0">
+          <widget class="Pd::Digital" name="digital_54">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="11" column="1">
+          <widget class="Pd::Digital" name="digital_53">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="12" column="0">
+          <widget class="Pd::Digital" name="digital_52">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="4">
+          <widget class="Pd::Digital" name="digital_33">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="4">
+          <widget class="Pd::Digital" name="digital_51">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="4">
+          <widget class="Pd::Digital" name="digital_50">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="0">
+          <widget class="Pd::Digital" name="digital_49">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="3">
+          <widget class="Pd::Digital" name="digital_48">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="Pd::Digital" name="digital_47">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="3">
+          <widget class="Pd::Digital" name="digital_46">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="1">
+          <widget class="Pd::Digital" name="digital_45">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="4">
+          <widget class="Pd::Digital" name="digital_44">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="3">
+          <widget class="Pd::Digital" name="digital_43">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="Pd::Digital" name="digital_42">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <widget class="Pd::Digital" name="digital_41">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="Pd::Digital" name="digital_40">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="2">
+          <widget class="Pd::Digital" name="digital_39">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="Pd::Digital" name="digital_38">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="3">
+          <widget class="Pd::Digital" name="digital_37">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="2">
+          <widget class="Pd::Digital" name="digital_36">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="2">
+          <widget class="Pd::Digital" name="digital_35">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="Pd::Digital" name="digital_34">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="Pd::Digital" name="digital_32">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="9" column="2">
+          <widget class="Pd::Digital" name="digital_31">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="Pd::Digital" name="digital_30">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="3">
+          <widget class="Pd::Digital" name="digital_29">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="2">
+          <widget class="Pd::Digital" name="digital_27">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="4">
+          <widget class="Pd::Digital" name="digital_25">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="3">
+          <widget class="Pd::Digital" name="digital_26">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="Pd::Digital" name="digital_24">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="Pd::Digital" name="digital_23">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="Pd::Digital" name="digital_22">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="4">
+          <widget class="Pd::Digital" name="digital_17">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="3">
+          <widget class="Pd::Digital" name="digital_21">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="Pd::Digital" name="digital_20">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="Pd::Digital" name="digital_19">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="Pd::Digital" name="digital_18">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="4">
+          <widget class="Pd::Digital" name="digital_12">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="Pd::Digital" name="digital_16">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="Pd::Digital" name="digital_15">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="Pd::Digital" name="digital_14">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="Pd::Digital" name="digital_13">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="Pd::Digital" name="digital_11">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="Pd::Digital" name="digital_10">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="Pd::Digital" name="digital_9">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="Pd::Digital" name="digital_8">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="4">
+          <widget class="Pd::Digital" name="digital_7">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4">
+          <widget class="Pd::Digital" name="digital_6">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
+           </property>
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="Pd::Digital" name="digital_5">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="Pd::Digital" name="digital_4">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="Pd::Digital" name="digital_3">
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="Pd::Digital" name="digital_2">
+           <property name="palette">
+            <palette>
+             <active>
+              <colorrole role="Base">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Window">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>148</red>
+                 <green>224</green>
+                 <blue>113</blue>
+                </color>
+               </brush>
+              </colorrole>
+             </active>
+             <inactive>
+              <colorrole role="Base">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>255</red>
+                 <green>255</green>
+                 <blue>255</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Window">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>148</red>
+                 <green>224</green>
+                 <blue>113</blue>
+                </color>
+               </brush>
+              </colorrole>
+             </inactive>
+             <disabled>
+              <colorrole role="Base">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>148</red>
+                 <green>224</green>
+                 <blue>113</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="Window">
+               <brush brushstyle="SolidPattern">
+                <color alpha="255">
+                 <red>148</red>
+                 <green>224</green>
+                 <blue>113</blue>
+                </color>
+               </brush>
+              </colorrole>
+             </disabled>
+            </palette>
+           </property>
+           <property name="decimals">
+            <UInt>2</UInt>
+           </property>
+           <property name="suffix">
+            <string> µs</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="groupBox_7">
+        <property name="title">
+         <string>Table</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="Pd::TableView" name="pdTableView"/>
+         </item>
+         <item>
+          <widget class="Pd::Bar" name="pdBar">
+           <property name="orientation">
+            <enum>Pd::Bar::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="Pd::Dial" name="pdDial"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="Pd::Digital" name="digital">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 170, 255);</string>
+        </property>
+        <property name="decimals">
+         <UInt>2</UInt>
+        </property>
+        <property name="suffix">
+         <string> µs</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="Pd::Time" name="time">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 127);</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="Pd::TouchEdit" name="pdTouchEdit">
+        <property name="palette">
+         <palette>
+          <active>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>170</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Base">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>170</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Window">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>170</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </active>
+          <inactive>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>170</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Base">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>170</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Window">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>170</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </inactive>
+          <disabled>
+           <colorrole role="Button">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>170</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Base">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>170</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Window">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>170</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </disabled>
+         </palette>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(170, 255, 255);</string>
+        </property>
+        <property name="suffix">
+         <string>°</string>
+        </property>
+        <property name="lowerLimit">
+         <double>0.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_6">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="Pd::PushButton" name="pushButton">
+        <property name="text">
+         <string>Button</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="Pd::Led" name="led"/>
+      </item>
+      <item>
+       <widget class="Pd::MultiLed" name="multiLed"/>
+      </item>
+      <item>
+       <widget class="Pd::CheckBox" name="checkBox">
+        <property name="text">
+         <string>CheckBox</string>
+        </property>
+        <property name="onValue">
+         <number>42</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Solltemperatur:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Pd::DoubleSpinBox" name="doubleSpinBox">
+        <property name="suffix">
+         <string> °C</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="Pd::RadioButton" name="pdRadioButton1">
+        <property name="text">
+         <string>1</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Pd::RadioButton" name="pdRadioButton2">
+        <property name="text">
+         <string>2</string>
+        </property>
+        <property name="checkValue">
+         <number>2</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1032</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuApplication">
+    <property name="title">
+     <string>Application</string>
+    </property>
+    <addaction name="actionConnect"/>
+    <addaction name="actionDisconnect"/>
+    <addaction name="separator"/>
+    <addaction name="actionClose"/>
+   </widget>
+   <widget class="QMenu" name="menuLanguage">
+    <property name="title">
+     <string>Language</string>
+    </property>
+    <addaction name="actionGerman"/>
+    <addaction name="actionEnglish"/>
+   </widget>
+   <addaction name="menuApplication"/>
+   <addaction name="menuLanguage"/>
+  </widget>
+  <action name="actionDisconnect">
+   <property name="text">
+    <string>Disconnect</string>
+   </property>
+  </action>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Connect</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="actionGerman">
+   <property name="text">
+    <string>Deutsch</string>
+   </property>
+  </action>
+  <action name="actionEnglish">
+   <property name="text">
+    <string>English</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Pd::Bar</class>
+   <extends>QWidget</extends>
+   <header>QtPdWidgets/Bar.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Pd::CheckBox</class>
+   <extends>QCheckBox</extends>
+   <header>QtPdWidgets/CheckBox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Pd::Digital</class>
+   <extends>QFrame</extends>
+   <header>QtPdWidgets/Digital.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Pd::DoubleSpinBox</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>QtPdWidgets/DoubleSpinBox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Pd::Graph</class>
+   <extends>QFrame</extends>
+   <header>QtPdWidgets/Graph.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Pd::Image</class>
+   <extends>QFrame</extends>
+   <header>QtPdWidgets/Image.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Pd::Led</class>
+   <extends>Pd::MultiLed</extends>
+   <header>QtPdWidgets/Led.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Pd::MultiLed</class>
+   <extends>QWidget</extends>
+   <header>QtPdWidgets/MultiLed.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Pd::PushButton</class>
+   <extends>QPushButton</extends>
+   <header>QtPdWidgets/PushButton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Pd::RadioButton</class>
+   <extends>QRadioButton</extends>
+   <header>QtPdWidgets/RadioButton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Pd::TableView</class>
+   <extends>QTableView</extends>
+   <header>QtPdWidgets/TableView.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Pd::Time</class>
+   <extends>QLabel</extends>
+   <header>QtPdWidgets/Time.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Pd::TouchEdit</class>
+   <extends>Pd::Digital</extends>
+   <header>QtPdWidgets/TouchEdit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Pd::XYGraph</class>
+   <extends>QFrame</extends>
+   <header>QtPdWidgets/XYGraph.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Pd::Dial</class>
+   <extends>QFrame</extends>
+   <header>QtPdWidgets/Dial.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionClose</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>364</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

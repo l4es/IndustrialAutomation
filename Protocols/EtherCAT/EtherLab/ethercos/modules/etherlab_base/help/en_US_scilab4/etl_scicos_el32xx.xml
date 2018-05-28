@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../dtd/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>etl_scicos_el32xx</TITLE>
+
+  <TYPE>Scicos Block</TYPE>
+
+  <DATE>22-April-2009</DATE>
+
+  <SHORT_DESCRIPTION name="etl_scicos_el32xx">etl_scicos_el32xx</SHORT_DESCRIPTION>
+
+  <PARAM>
+    <PARAM_INDENT>
+      <PARAM_ITEM>
+        <PARAM_NAME>Master ID</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+	
+          <SP>	  Master-ID of the Master Interface. Has to be zero or an positive integer.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>Domain ID</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>Working Domain ID for the working slave. Default zero or an positive integer.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>Slave Alias</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP> Alternative slave addressing possibillíty, see Slave Position. Zero or an positive 16 Bit integer.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>Slave Position</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>Slave position in the ethercat bus. Zero or an positive integer</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>Enable Statusoutput</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP>Enable Status Output for special type of Slaves. For further Information please read the Beckhoff Slave Documentation.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+      <PARAM_ITEM>
+        <PARAM_NAME>Other Settings</PARAM_NAME>
+
+        <PARAM_DESCRIPTION>
+          <SP> For further Information please read the Beckhoff Slave Documentation.</SP>
+        </PARAM_DESCRIPTION>
+      </PARAM_ITEM>
+
+    </PARAM_INDENT>
+  </PARAM>
+
+  <DESCRIPTION>
+
+    <P> This Block represents an EL32xx Beckhoff EtherCAT Slave. You can access Fieldbus IO during Simulation and after Codegeneration in standalone running mode </P>
+
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>Andreas Stewering-Bone, IgH Essen</AUTHORS_ITEM>
+  </AUTHORS>
+  <!-- ================================= -->
+  <SECTION label="Availability">
+	  The latest version of Etherlab can be found at
+	  <P><A href="http://www.etherlab.org">http://www.etherlab.org</A></P>
+  </SECTION>
+<!-- ================================= -->
+</MAN>

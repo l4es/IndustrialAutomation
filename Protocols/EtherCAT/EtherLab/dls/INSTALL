@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------
+
+Dies ist die INSTALL-Datei des Data-Logging-Services (DLS).
+
+$Id$
+
+-------------------------------------------------------------------------------
+
+Kompilieren und Installieren
+============================
+
+Hinweise zur Kompilierung und Installation des DLS finden sich im
+Anhang A der Dokumentation. Siehe:
+
+-> doku/dls_doku.pdf
+
+-------------------------------------------------------------------------------

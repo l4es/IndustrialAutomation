@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MAN SYSTEM "../dtd/help.dtd">
+<MAN>
+  <LANGUAGE>eng</LANGUAGE>
+
+  <TITLE>Etherlab codegeneration</TITLE>
+
+  <TYPE>General Information</TYPE>
+
+  <DATE>20-Jan-2008</DATE>
+
+  <SHORT_DESCRIPTION name="EtherLAB_Codegeneration">EtherLAB Codegeneration</SHORT_DESCRIPTION>
+
+
+
+  <DESCRIPTION>
+
+    <P> The EtherLAB Codegeneration compiles a Scicos Superblock to an standalone Executeable. It integrates the MSR Protocol. The Executeable is prepared to run as normal userspace process under high priority to minimize the calling jitter. Under a Linux Kernel with RT-Preempt Patch there are process cycles up to 50 kHz possible (depends on CPU, additional Hardware, IO-Infrastructure). The Codegeneration is based on the RTAILAB Codegeneration. Thanks to Roberto Bucher for his great work.</P>
+
+
+  </DESCRIPTION>
+
+  <AUTHORS>
+    <AUTHORS_ITEM>Andreas Stewering, IgH Essen</AUTHORS_ITEM>
+  </AUTHORS>
+  <!-- ================================= -->
+  <SECTION label="Availability">
+	  The latest version of Etherlab can be found at
+	  <P><A href="http://www.etherlab.org">http://www.etherlab.org</A></P>
+  </SECTION>
+<!-- ================================= -->
+</MAN>

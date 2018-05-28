@@ -1,0 +1,77 @@
+%implements "rtipc_rx" "C"
+
+%%
+%% This TLC provides the necessary functionality to inline RealTime
+%% interprocess communication
+%%
+%% Copyright (C) 2012
+%% Richard Hacker
+%% 
+%% License: GPL
+
+%include "RtIPC.tlc"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function BlockTypeSetup( block, system ) void
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %<InitRtIPC()>
+%endfunction
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function BlockInstanceSetup( block, system ) void
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %assign tid = LibGetGlobalTIDFromLocalSFcnTID(0)
+  %addtorecord block RtIPCHandle InitRtIPCTask(tid)
+%endfunction
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function Start(block, system) Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%
+  %assign dtype = GetRtIPCDTypeName(LibBlockOutputSignalDataTypeId(0))
+  %%
+  /* Input RT Variable %<Type> Block: %<VarName> 
+   * Registering destination variable with EtherLAB IO Signal Layer
+   */
+  rtipc_pdo = rtipc_rxpdo(%<RtIPCHandle>, "%<VarName>", %<dtype>, \
+            &%<LibBlockOutputSignal(0,"","",0)>, \
+            %<LibBlockOutputSignalWidth(0)>, \
+            &%<LibBlockOutputSignal(1,"","",0)>);
+  %if ISFIELD(block,"ForceOutput")
+    %<LibBlockPWork(Pdo,"","",0)> = rtipc_pdo;
+  %endif
+  if (!rtipc_pdo) {
+        %<LibSetRTModelErrorStatus(\
+           "\"RealTime IPC Input Signal %<VarName> could not be registered\"")>;
+  }
+%endfunction
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function Outputs( block, system ) Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%
+  %if !ISFIELD(block,"ForceOutput")
+    /* %<Type> %<LibGetBlockName(block)>
+     * Nothing to do */
+    %return
+  %endif
+  %%
+  /* %<Type> %<LibGetBlockName(block)> */
+  %%
+  %assign force = LibBlockIWork(Force,"","",0)
+  %assign param = LibBlockParameter(ForceOutput,"","",0)
+  %%
+  if (%<force> != %<param>) {
+    const struct rxpdo *pdo = \
+        (const struct rxpdo *)%<LibBlockPWork(Pdo,"","",0)>;
+
+    %<force> = %<param>;
+    
+    rtipc_set_rxpdo_addr(pdo, \
+            %<param> ? %<LibBlockParameterAddr(ForceValue,"","",0)> : NULL);
+  }
+%endfunction
+

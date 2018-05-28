@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!--
+vim:tw=78
+-->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>EtherLab :: EL51xx</title>
+        <link rel="stylesheet" href="docstyle.css" type="text/css">
+        <meta name="generator" content="DocBook XSL Stylesheets V1.52.2">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+        <meta name="toctype" content="ug">
+        <script language="JavaScript" src="docscripts.js"></script>
+    </head>
+    <body>
+        <a name="top_of_page"></a>
+        <p style="font-size:1px;">&nbsp;</p>
+        <h1>Beckhoff EL51xx Incremental Encoder interface terminal</h1>
+
+        <b>Warning:</b> This slave is very complex, so read the <a
+            href="http://download.beckhoff.com/download/Document/BusTermi/BusTermi/EL515xen.chm">documentation</a>.
+        This contains information how to configure and use the slave, which
+        PDO's to choose and the correspondig CoE objects to configure.
+
+        <p/> Configure the slave by choosing the appropriate PDO's in the
+        <b>Main</b> tab as well as setting the correct CoE objects in the
+        respective tabs.
+
+        <p/> The ports are added sequencially for every PDO that is enabled.
+        One port is added for every PDO Entry, with the exception are boolean
+        PDO Entries which are grouped into a boolean vector per PDO.
+
+        <p/>For the EL5101:
+        <table cellspacing="0" width="80%">
+            <tr><th width="20%">PDO</th>
+                <th width="50%">Port</th>
+                <th width="30%">Data Type</th></tr>
+            <tr><td>#x1600</td><td>#x7000:1..4</td><td>bool[4]</td></tr>
+            <tr><td>      </td><td>#x7000:17</td><td>uint32</td></tr>
+            <tr><td>#x1601</td><td>#x7000:1..4</td><td>bool[4]</td></tr>
+            <tr><td>      </td><td>#x7000:17</td><td>uint16</td></tr>
+            <tr><td>#x1a00</td><td>#x6000:1..3,8..11,13</td><td>bool[9]</td></tr>
+            <tr><td>      </td><td>#x6000:17</td><td>uint32</td></tr>
+            <tr><td>      </td><td>#x6000:18</td><td>uint32</td></tr>
+            <tr><td>#x1a01</td><td>#x6000:1..3,8..11,13</td><td>bool[9]</td></tr>
+            <tr><td>      </td><td>#x6000:17</td><td>uint16</td></tr>
+            <tr><td>      </td><td>#x6000:18</td><td>uint16</td></tr>
+            <tr><td>#x1a02</td><td>#x6000:20</td><td>uint32</td></tr>
+            <tr><td>#x1a03</td><td>#x6000:19</td><td>uint32</td></tr>
+            <tr><td>#x1a05</td><td>#x6000:19</td><td>uint32</td></tr>
+        </table>
+
+        <p/>For the EL5151:
+        <table cellspacing="0" width="80%">
+            <tr><th width="20%">PDO</th>
+                <th width="50%">Port</th>
+                <th width="30%">Data Type</th></tr>
+            <tr><td>#x1600</td><td>#x7000:1..4</td><td>bool[4]</td></tr>
+            <tr><td>      </td><td>#x7000:17</td><td>uint32</td></tr>
+            <tr><td>#x1601</td><td>#x7000:1..4</td><td>bool[4]</td></tr>
+            <tr><td>      </td><td>#x7000:17</td><td>uint16</td></tr>
+            <tr><td>#x1a00</td><td>#x6000:1..3,8..11,13</td><td>bool[9]</td></tr>
+            <tr><td>      </td><td>#x6000:17</td><td>uint32</td></tr>
+            <tr><td>      </td><td>#x6000:18</td><td>uint32</td></tr>
+            <tr><td>#x1a01</td><td>#x6000:1..3,8..11,13</td><td>bool[9]</td></tr>
+            <tr><td>      </td><td>#x6000:17</td><td>uint16</td></tr>
+            <tr><td>      </td><td>#x6000:18</td><td>uint16</td></tr>
+            <tr><td>#x1a02</td><td>#x6000:20</td><td>uint32</td></tr>
+            <tr><td>#x1a03</td><td>#x6000:19</td><td>uint32</td></tr>
+            <tr><td>#x1a05</td><td>#x6000:19</td><td>uint32</td></tr>
+        </table>
+
+        <p/>For the EL5152:
+        <table cellspacing="0" width="80%">
+            <tr><th width="20%">PDO</th>
+                <th width="50%">Port</th>
+                <th width="30%">Data Type</th></tr>
+            <tr><td>#x1600</td><td>#x7000:3</td><td>bool</td></tr>
+            <tr><td>      </td><td>#x7000:17</td><td>uint32</td></tr>
+            <tr><td>#x1601</td><td>#x7000:3</td><td>bool</td></tr>
+            <tr><td>      </td><td>#x7000:17</td><td>uint16</td></tr>
+            <tr><td>#x1602</td><td>#x7010:3</td><td>bool</td></tr>
+            <tr><td>      </td><td>#x7010:17</td><td>uint32</td></tr>
+            <tr><td>#x1603</td><td>#x7010:3</td><td>bool</td></tr>
+            <tr><td>      </td><td>#x7010:17</td><td>uint16</td></tr>
+            <tr><td>#x1a00</td><td>#x6000:3,8..10</td><td>bool[4]</td></tr>
+            <tr><td>      </td><td>#x6000:17</td><td>uint32</td></tr>
+            <tr><td>#x1a01</td><td>#x6000:3,8..10</td><td>bool[4]</td></tr>
+            <tr><td>      </td><td>#x6000:17</td><td>uint16</td></tr>
+            <tr><td>#x1a02</td><td>#x6000:20</td><td>uint32</td></tr>
+            <tr><td>#x1a03</td><td>#x6000:19</td><td>uint32</td></tr>
+            <tr><td>#x1a04</td><td>#x6010:3,8..10</td><td>bool[4]</td></tr>
+            <tr><td>      </td><td>#x6010:17</td><td>uint32</td></tr>
+            <tr><td>#x1a05</td><td>#x6010:3,8..10</td><td>bool[4]</td></tr>
+            <tr><td>      </td><td>#x6010:17</td><td>uint16</td></tr>
+            <tr><td>#x1a06</td><td>#x6010:20</td><td>uint32</td></tr>
+            <tr><td>#x1a07</td><td>#x6010:19</td><td>uint32</td></tr>
+        </table>
+
+        <h3>Common Slave Options</h3>
+        <ul>
+            <li><a href="general.html#address">Master</a></li>
+            <li><a href="general.html#slave">Slave Index</a></li>
+            <li><a href="general.html#model">Device Model</a></li>
+            <li><a href="general.html#dc">Distributed Clocks</a></li>
+            <li><a href="general.html#sampletime">Sample Time</a></li>
+        </ul>
+</html>

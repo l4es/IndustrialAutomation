@@ -1,0 +1,2195 @@
+%------------------------------------------------------------------------------
+%
+%  Dokumentation "Data Logging Service"
+%
+%  Ingenieurgemeinschaft IgH
+%
+%  Autor: Florian Pose
+%
+%  $Id$
+%
+%  Permission is granted to copy, distribute and/or modify this document under
+%  the terms of the GNU Free Documentation License, Version 1.3 or any later
+%  version published by the Free Software Foundation; with no Invariant
+%  Sections, no Front-Cover Texts and no Back-Cover Texts. A copy of the
+%  license is included in the file fdl-1.3.txt.
+%
+%------------------------------------------------------------------------------
+
+\documentclass[a4paper,12pt,BCOR6mm,bibtotoc,idxtotoc]{scrbook}
+
+\usepackage[german]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage[automark,headsepline]{scrpage2}
+\usepackage{makeidx}
+\usepackage{listings}
+\usepackage[nofancy]{rcsinfo}
+\usepackage[pdfpagelabels,plainpages=false,linkcolor=blue,urlcolor=blue,colorlinks=true]{hyperref}
+
+\setlength{\parskip}{1.5ex plus 0.8ex minus 0.5ex}
+\setlength{\parindent}{0mm}
+
+\lstset{basicstyle=\ttfamily\small,numberstyle=\tiny,aboveskip=4mm,
+  belowskip=2mm,gobble=2,escapechar=`}
+
+\newcommand{\IgH}{\raisebox{-0.7667ex}
+  {\includegraphics[height=2.2ex]{bilder/ighsign}}}
+
+\DeclareFontShape{OT1}{cmtt}{bx}{n}
+{
+  <5><6><7><8><9><10><10.95><12><14.4><17.28><20.74><24.88>cmttb10
+}{}
+
+\rcsInfo $RCSId$
+
+\makeindex
+
+\begin{document}
+
+%------------------------------------------------------------------------------
+
+% Titelseite
+
+\pagenumbering{roman}
+\pagestyle{empty}
+
+\begin{titlepage}
+  \begin{center}
+    \rule{\textwidth}{1.5mm}
+
+    {\Huge\bf Data Logging Service (DLS)\\[1ex]
+      Version 1.2}
+
+    \vspace{1ex}
+
+    \rule{\textwidth}{1.5mm}
+
+    \vspace{\fill}
+
+    {\Large Florian Pose, \url{fp@igh-essen.com}\\[1ex]
+      Ingenieurgemeinschaft \IgH}
+
+    \vspace{\fill}
+
+    Der \glqq DLS\grqq\ ist ein Messdaten-Erfassungssystem,
+    das in der Lage ist, hochfrequente Daten über lange Zeit zu
+    sammeln und stark komprimiert abzulegen. Die Zielsetzung ist, dem
+    Benutzer dabei jederzeit uneingeschränkten und performanten
+    Zugriff auf die erfassten Daten zu gewähren: Sei es der gesamte
+    Jahresüberblick oder eine winzige Schwankung im Bruchteil einer
+    Sekunde.
+
+    \vspace{\fill}
+
+    {\large Essen, den \rcsInfoLongDate\\[1ex]
+      Revision \rcsInfoRevision}
+  \end{center}
+\end{titlepage}
+
+%------------------------------------------------------------------------------
+
+% Inhaltsverzeichnis
+
+\pagestyle{scrheadings}
+
+\tableofcontents
+
+%------------------------------------------------------------------------------
+
+% Dokument
+
+\chapter{Allgemeines}
+\label{sec:allg}
+\pagenumbering{arabic}
+
+%------------------------------------------------------------------------------
+
+\section{Grundlagen der Datenerfassung}
+\label{sec:allg_grund}
+
+Der \glqq Data-Logging-Service\grqq\ (im Folgenden
+\textit{DLS})\index{DLS} ist ein Messdatenerfassungssystem, das in der
+Lage ist, beliebige Messdaten über lange Zeit zu erfassen,
+komprimieren, archivieren und bei Bedarf auch schnell wieder
+auszugeben.
+
+Voraussetzung für eine Messdatenerfassung ist eine
+\textit{Datenquelle}\index{Datenquelle!Definition}, die Messdaten
+liefert. In diesem Fall ist dies ein Server, der die Messdaten der von
+der \textit{IgH} entwickelten \textit{rt\_lib} über das Netzwerk
+bereitstellt. Die Kommunikation mit der Datenquelle wird in Kapitel
+\ref{sec:dlsd_logger_comm} beschrieben.
+
+Alle zu liefernden Daten sind in
+\textit{Kanälen}\index{Kanal!Definition} organisiert. Ein Kanal ist
+die Abstraktion einer messbaren, physikalischen Größe, die von der
+Datenquelle angeboten wird. Eigenschaften eines Kanales sind die
+Einheit\index{Kanal!Einheit}, die maximale
+Abtastfrequenz\index{Kanal!Abtastfrequenz} und der
+Datentyp\index{Kanal!Datentyp}.
+
+Der DLS kann sich mit der Datenquelle verbinden und so Informationen
+über die angebotenen Kanäle abfragen. Auf dem selben Weg kann er dann
+auch die Messdaten zu bestimmten Kanälen anfordern und empfangen.
+
+%------------------------------------------------------------------------------
+
+\section{Messaufträge}
+\label{sec:allg_jobs}
+
+Der DLS erfasst Daten über sog.
+\textit{Messaufträge}\index{Messauftrag!Definition}. Diese beinhalten
+allgemeine Vorgaben zur Erfassung zusammen mit der Liste der zu
+erfassenden Kanäle und deren Vorgaben. Ein Messauftrag ist zwar immer
+an eine bestimmte Datenquelle gebunden. Es können beliebig viele
+Messaufträge gleichzeitig existieren.
+
+Innerhalb eines Messauftrags können Daten von unterschiedlichen
+Kanälen gleichzeitig erfasst werden. Dazu muss für jeden, zu
+erfassenden Kanal eine sog. \textit{Kanalvorgabe}\index{Kanalvorgabe}
+existieren. Diese fasst die Bedingungen zusammen, unter denen Daten
+von einem Kanal erfasst und gespeichert werden sollen. Dies sind die
+Abtastrate, die Blockgröße, die zu erfassenden Meta-Daten (siehe
+Kapitel \ref{sec:dlsd_data_meta}), die Meta-Untersetzung und die
+Kopressionsmethode.
+
+%------------------------------------------------------------------------------
+
+\section{Datenablage}
+\label{sec:allg_ablage}
+
+Erfasste Daten werden zusammen mit den Erfassungsvorgaben, Zeit- und
+Kanalinformationen nach Messaufträgen sortiert im
+DLS-Datenverzeichnis\index{DLS-Datenverzeichnis} gespeichert. Dieses
+ist standardmäßig das aktuelle Verzeichnis. Wenn ein anderer Ablageort
+gewünscht ist, kann dies den Programmen des DLS-Paketes entweder über
+Kommandozeilenparameter (Option \texttt{-d}) mitgeteilt, oder in der
+Umgebungsvariable \$DLS\_DIR\index{\$DLS\_DIR} abgelegt werden. Die
+Suchreihenfolge ist immer: Parameter - Umgebungsvariable - aktuelles
+Verzeichnis.
+
+Es können durchaus mehrere DLS-Datenverzeichnisse existieren, die aber
+von unterschiedlichen Instanzen des DLS-Daemons bedient werden müssen
+(siehe Kapitel \ref{sec:dlsd_mother}).
+
+Eine genaue Beschreibung der Struktur des DLS-Datenverzeichnisses und
+der darin enthaltene Daten befindet sich in Kapitel \ref{sec:data}.
+
+%------------------------------------------------------------------------------
+
+\section{Werkzeuge}
+\label{sec:allg_tools}
+\index{Werkzeuge}
+
+\begin{description}
+\item[DLS Manager]\index{DLS Manager} Messaufträge\index{Messauftrag}
+  können über eine grafische Benutzeroberfläche, den \textit{DLS
+    Manager} (siehe Kapitel \ref{sec:manager}) editiert werden. Mit
+  diesem ist der Benutzer in der Lage, neue Messaufträge anzulegen und
+  bestehende anzupassen. Dies kann während einer Erfassung erfolgen.
+  Es lässt sich auch einsehen, ob eine Erfassung gerade läuft.
+\item[DLS View] Zur Ansicht der Daten existiert ebenfalls ein
+  grafisches Tool \textit{DLS View}\index{DLS View} (siehe Kapitel
+  \ref{sec:view}).  Der Benutzer kann damit beliebige, erfasste Kanäle
+  eines Messauftrags über einer gemeinsamen Zeitskala anzeigen. Dabei
+  ist auch die Navigation im Zeitfenster und das Bestimmen einzelner
+  Datenwerte möglich.
+\item[dls] Das Kommandozeilenwerkzeug \textit{dls}\index{dls (Tool)}
+  kennt Befehle um bereits erfasste Daten einzusehen und zu
+  exportieren. Siehe Abschnitt~\ref{sec:apx_cmd_dls} für eine
+  Auflistung.
+\item[Init-Script]\index{Init-Script} Zum Starten und Stoppen des dlsd
+  und aller damit zusammenhängenden Dienste wird ein Init-Script
+  mitgeliefert. Dieses kennt die Parameter \texttt{start},
+  \texttt{stop}, \texttt{restart} und \texttt{status}. Die
+  Konfiguration des Dienstes erfolgt über eine
+  Sysconfig-Datei\index{Sysconfig-Datei}, die alle nötigen Variablen
+  enthält. Es wird empfohlen, die enthaltenen Variablen über das
+  ebenfalls mitgelieferte Profile-Script zu exportieren und so für
+  alle Benutzer zugänglich zu machen.
+\item[dls\_status] Zur allgemeinen Überwachung der Datenerfassung
+  dient das Script \textit{dls\_\-status}\index{dls\_status}. Es ist
+  ein Kommandozeilentool, das die grundsätzliche Bereitschaft zur
+  Messdatenerfassung für ein bestimmtes DLS-Datenverzeichnis anzeigen
+  kann. Es gibt aus, ob der DLS-Mutterprozess läuft, welche
+  Messaufträge es gibt, und ob für diese die jeweiligen
+  DLS-Erfassungsprozesse laufen.
+\end{description}
+
+%------------------------------------------------------------------------------
+
+\chapter{Der DLS-Daemon (dlsd)}
+\label{sec:dlsd}
+
+Für die gesamte Datenerfassung und -ablage ist der \textit{DLS-Daemon}
+(kurz: \textit{dlsd})\index{dlsd} zu\-stän\-dig. Er ist ein Prozess,
+der im Hintergrund (ohne Verbindung zu einer Konsole) arbeitet und an
+ein bestimmtes DLS-Datenverzeichnis\index{DLS-Datenverzeichnis}
+gebunden ist. Dieser muss immer laufen, wenn Daten erfasst werden
+sollen.
+
+Eine Ansicht der Architektur\index{Architektur} des Gesamtsystems
+bietet Abbildung \ref{fig:arch}.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=250pt]{bilder/arch}
+  \end{center}
+  \caption{Architektur}
+  \label{fig:arch}
+\end{figure}
+
+%------------------------------------------------------------------------------
+
+\section{Der dlsd-Mutterprozess}
+\label{sec:dlsd_mother}
+\index{dlsd!Mutterprozess}
+
+Ein mit dem Befehl \texttt{dls start} gestarteter dlsd-Prozess
+übernimmt die Überwachung der Messaufträge\index{Messauftrag}. Er
+heißt dann \textit{dlsd-Mutterprozess}. Er hält im Speicher eine Liste
+von eigenen Kopien der im DLS-Datenverzeichnis vorhandenen
+Auftragsvorgaben vor, die zusätzlich Informationen über die
+dazugehörigen Erfassungsprozesse enthalten.
+
+Jeder gestartete Mutterprozess muss in einem anderen
+DLS-Datenverzeichnis\index{DLS-Datenverzeichnis} arbeiten.  Es sind
+Schutzmechanismen implementiert, die dieses ge\-währ\-lei\-sten
+(\textit{PID}-Da\-teien\index{PID-Dateien}, siehe Anhang
+\ref{sec:apx_pid}).
+
+%------------------------------------------------------------------------------
+
+\subsection{Verhalten des Mutterprozesses}
+\label{sec:dlsd_mother_behaviour}
+
+Anfangs liest der Mutterprozess alle Messauftrags-Vorgaben im
+DLS-Datenverzeichnis ein und spaltet für jeden aktiven
+Messauftrag\index{Messauftrag} eine Kopie seiner selbst
+(\textit{dlsd-Er\-fass\-ungs\-pro\-zess}, siehe Kapitel
+\ref{sec:dlsd_logger}) ab, die dann für die Erfassung des jeweiligen
+Messauftrages zuständig ist. Danach führt er in einem festgelegten
+Zeitintervall die folgenden Aufgaben aus:
+
+\begin{itemize}
+\item Prüfen, ob zwischenzeitlich Signale empfangen wurden. Das kann
+  beispielsweise passieren, wenn der dlsd beendet werden soll, oder
+  wenn einer der Erfassungsprozesse beendet wurde (siehe Kapitel
+  \ref{sec:dlsd_mother_signals}).
+\item Prüfen des Spooling-Verzeichnisses auf neue Einträge. Wird im
+  Spooling-Ver\-zeich\-nis eine oder mehrere Dateien gefunden, werden
+  diese als Spooling-In\-forma\-tion\-en bewertet und, wie im Kapitel
+  \ref{sec:dlsd_mother_spooling} beschrieben, abgearbeitet.
+\item Prüfen der Erfassungsprozesse. Der Mutterprozess ist dafür
+  verantwortlich, dass für jeden aktiven Messauftrag immer ein
+  entsprechender Erfassungsprozess läuft.
+\end{itemize}
+
+%------------------------------------------------------------------------------
+
+\subsection{Spooling}
+\label{sec:dlsd_mother_spooling}
+\index{Spooling}
+
+Um einen reibungsfreien Ablauf bei der Änderung von
+Messaufträgen\index{Messauftrag} während der Erfassung zu
+gewährleisten, wird ein Spooling-Verfahren angewendet. Da die
+Messaufträge in Dateien organisiert sind, wäre ohne ein derartiges
+Verfahren nicht sichergestellt, dass eine Vorgabendatei während des
+Schreibens durch den Benutzer nicht auch gleichzeitig vom dlsd gelesen
+würde. Dadurch könnten Fehler in der Verarbeitung entstehen.
+
+Im DLS-Datenverzeichnis existiert daher ein Unterverzeichnis
+\texttt{spool}. Der dlsd-Mut\-ter\-pro\-zess leert dieses Verzeichnis
+beim Start und liest dann einmalig alle Auftragsvorgaben ein. Danach
+greift er nur noch lesend auf die Auftragsvorgaben zu, wenn er durch
+ein Spooling-Kommando explizit dazu aufgefordert wird.
+
+Ein gültiges Spooling-Kommando ist für den dlsd eine Datei mit
+beliebigem Namen im Spooling-Verzeichnis, die lediglich eine
+ASCII-codierte Auftrags-ID (positive Ganzzahl) enthält. Anhand dieser
+ID kann er entscheiden, was zu tun ist:
+
+\begin{itemize}
+\item Kennt er noch keinen Auftrag mit dieser ID, so geht er davon
+  aus, dass dieser neu angelegt wurde. Er importiert diesen und
+  startet bei Bedarf den entsprechenden Erfassungsprozess.
+\item Kennt er hingegen einen Auftrag mit dieser ID \textbf{und}
+  existiert die Datei mit den Auftragsvorgaben (\textit{job.xml},
+  siehe Kapitel \ref{sec:data_jobs}), werden die Vorgaben neu
+  eingelesen und der Erfassungsprozess je nach Bedarf gestartet,
+  gestoppt oder benachrichtigt.
+\item Kennt er einen Auftrag mit dieser ID, aber die Vorgabendatei
+  existiert \textbf{nicht}, geht der dlsd davon aus, dass der Auftrag
+  gelöscht wurde. Er beendet einen eventuell laufenden
+  Erfassungsprozess und entfernt die Vorgabe aus seiner Liste.
+\end{itemize}
+
+Allgemein gilt, dass die Spooling-Datei zur Bestätigung der Übernahme
+der neuen Informationen gelöscht wird. Tritt während der Verarbeitung
+ein Fehler auf, wird die Datei im Spooling-Verzeichnis belassen.
+
+%------------------------------------------------------------------------------
+
+\subsection{Signalbehandlung}
+\label{sec:dlsd_mother_signals}
+\index{Signalbehandlung}
+
+Folgende Signale werden vom dlsd-Mutterprozess verarbeitet:
+
+\begin{description}
+\item[SIGCHLD] Ein Kindprozess wurde beendet. Dies kann
+  unterschiedliche Gründe haben:
+  \begin{itemize}
+  \item Der Prozess wurde explizit beendet und hat den Rückgabewert
+    0 (kein Fehler). Dann wird er bei der nächsten Überprüfung neu
+    gestartet, da die Beendigung nicht über die Vorgaben erfolgt ist
+    und die Erfassung so schnell wie möglich fortgesetzt werden muss.
+  \item Der Prozess hat einen internen Fehler festgestellt und sich
+    selbst mit dem Rückgabewert $-1$ beendet. Dies wird vom
+    Mutterprozess so vermerkt, woraufhin der Prozess auch nicht neu
+    gestartet wird. Allerdings erhält der Benutzer keine explizite
+    Warnung, dass die Erfassung nicht mehr läuft. Es wird lediglich
+    eine Nachricht an den \textit{syslogd}\index{syslogd} verschickt.
+  \item Der Prozess hatte einen Timing-Fehler und hat sich selbst mit
+    dem Rück\-gabe\-wert $-2$ beendet. Der Prozess wird nach Ablauf
+    einer festgelegten Zeitspanne vom Mutterprozess neu gestartet.
+  \end{itemize}
+\item[SIGINT/SIGTERM] Der dlsd soll beendet werden. Der Mutterprozess
+  wird das Signal daraufhin an alle seine Kindprozesse weiterleiten,
+  warten bis diese ihre Daten gespeichert haben und sich daraufhin
+  selbst mit dem Rückgabewert 0 (kein Fehler) beenden.
+\item[SIGSEGV u. A.] Diese Signale werden zur Sicherheit überwacht und
+  vom dlsd-Mut\-ter\-pro\-zess und -Erfassungsprozess gleichartig
+  behandelt.  Der Prozess wird beim Auftreten eines solchen Zustandes
+  eine Datei mit Namen \textit{error\_\textless PID\textgreater} im
+  DLS-Datenverzeichnis hinterlassen, die Informationen über das
+  empfangene Signal ent\-hält, und sich kurz darauf mit dem
+  Rückgabewert $-3$ beenden.
+\end{description}
+
+%------------------------------------------------------------------------------
+
+\section{Der dlsd-Erfassungsprozess}
+\label{sec:dlsd_logger}
+\index{dlsd!Erfassungsprozess}
+
+Der vom dlsd-Mutterprozess abgespaltene Erfassungsprozess ist für die
+Kommunikation mit der Datenquelle, das Komprimieren der empfangenen
+Daten und das Speichern der komprimierten Daten auf der Festplatte
+zuständig. Er ist einem bestimmten Messauftrag\index{Messauftrag}
+zugeordnet, der ihm beim Start vom dlsd-Mutterprozess mitgegeben
+wurde. Dieser Messauftrag wird über das DLS-Datenverzeichnis und die
+entsprechende Messauftrags-ID eindeutig identifiziert. Jegliche Daten
+zu diesem Auftrag werden dort im Unterverzeichnis \textit{job\textless
+  ID\textgreater} abgelegt (siehe Kapitel \ref{sec:data}).
+
+%------------------------------------------------------------------------------
+
+\subsection{Verhalten des Erfassungsprozesses}
+\label{sec:dlsd_logger_behaviour}
+
+Der dlsd-Erfassungsprozess importiert zunächst die Vorgaben seines
+Messauftrags\index{Messauftrag} aus der zentralen Vorgabendatei
+\textit{job\textless ID\textgreater/job.xml} und verbindet sich dann
+über TCP/IP mit der dort angegebenen Datenquelle (Beschreibung des
+Kommunikationsprotokolles, siehe Kapitel \ref{sec:dlsd_logger_comm}).
+
+Die erfassten Messdaten laufen für jeden Kanal in einen sog.
+\textit{Block-Puffer}. Ist dieser voll, werden die Daten blockweise
+komprimiert, gespeichert und und mit dem Zeitstempel des ersten
+Datenwertes im Block indiziert. Dies hat den Vorteil, dass zur
+Komprimierung kein Streaming-Verfahren nötig ist und die einzelnen
+Datenwerte später gezielt auffindbar sind. Die Größe dieses
+Datenblockes\index{Datenblock} (und somit des \textit{Block-Puffers}
+kann vom Benutzer in den Kanalvorgaben angegeben werden.
+
+Eine zeitlich kontinuierliche Folge von Datenblöcken wird in diesem
+Zusammenhang als \textit{Chunk}\index{Chunk!Definition}
+bezeichnet. Dieser enthält die Messdaten eines einzelnen Kanales, die
+in einem kontinuierlichen, abgeschlossenen Zeitbereich erfasst
+wurden. Er vereint die zu Grunde liegende Kanalvorgabe mit den realen
+Eigenschaften des entsprechenden Kanals der Datenquelle und den
+letztendlich erfassten Daten (siehe Kapitel \ref{sec:data_chunks}).
+
+%------------------------------------------------------------------------------
+
+\subsection{Erzeugung von Meta-Daten}
+\label{sec:dlsd_data_meta}
+
+Um auch auf großen Datenmengen einen schnellen Überblick bieten zu
+können, speichert der DLS-Erfassungsprozess nicht nur die von der
+Datenquelle empfangenen (\glqq generischen\grqq)
+Datenwerte\index{Daten!generische}, sondern legt zusätzlich auch noch
+über bestimmte Zeitspannen zusammengefasste Daten, sog. \glqq
+Meta-Daten\grqq\index{Meta-Daten} ab. Diese existieren in
+unterschiedlichen Reduktionsstärken, den sog. \glqq Meta-Ebenen\grqq.
+Ein lesend zugreifender Prozess kann dann anhand der gewünschten
+Auflösung entscheiden, welche Meta-Ebene er verwenden möchte und die
+Daten dadurch sehr schnell laden.
+
+Mathematisch bedeutet das, dass die Komplexität des Algorithmus zum
+Laden von $n$ Datenwerten einer Zeitspanne $\Delta t$ und einer
+Abtastfrequenz $f$, wobei gilt: $n = \Delta t \cdot f$, nicht mehr
+$O(n)$, also linear Abhängig von der Anzahl zu Grunde liegender
+Datenwerte in der Zeitspanne ist, sondern nur noch Abhängig von der
+Anzahl der in der aktuellen Auflösung gewünschten Stützstellen ist,
+die aber wiederum unabhängig von der Anzahl der zu Grunde liegenden
+Datenwerte ist. Der Algorithmus hat also in Hinblick auf Zeit- und
+Speicherbedarf die Ordnung $O(1)$.
+
+Zur Erzeugung der (redundanten) Meta-Daten existiert im
+dlsd-Erfassungsprozess parallel zum Block-Puffer ein sog.
+\textit{Meta-Puffer}. Dieser Speicher fasst $u$ Datenwerte, wobei $u$
+die sog. Meta-Untersetzung\index{Meta-Untersetzung} ist, die der
+Benutzer in den Kanalvorgaben festlegen kann. Die Meta-Untersetzung
+gilt für alle Ebenen. Ist der Meta-Puffer voll, so wird aus den $u$
+generischen Datenwerten ein \glqq Meta-Datenwert\grqq\ der Meta-Ebene
+1 generiert und dort wiederum in einem Block- und einem Meta-Puffer
+abgelegt. Für diese gelten wieder die selben Regeln wie für die Ebene
+der generischen Daten, d. h. die Meta-Ebenen werden \glqq
+kaskadiert\grqq\ erzeugt. So wird auch erst Speicher für eine neue
+Ebene reserviert, wenn der erste Meta-Wert dieser Ebene anfällt.
+
+Es gibt verschiedene Typen von Meta-Daten\index{Meta-Typen}, die auch
+gleichzeitig erzeugt werden kön\-nen. Momentan werden Folgende
+unterstützt:
+
+\begin{description}
+\item[Mittelwerte] (\glqq mean\grqq, Maskenbit 0) Ein Meta-Wert der
+  Ebene $n$ ist der arithmetische Mittelwert von $u$ Werten der Ebene
+  $n - 1$.
+\item[Minima] (\glqq min\grqq, Maskenbit 1) Ein Meta-Wert der Ebene
+  $n$ ist der Kleinste von $u$ Werten aus Ebene $n - 1$.
+\item[Maxima] (\glqq max\grqq, Maskenbit 2) Ein Meta-Wert der Ebene
+  $n$ ist der Größte von $u$ Werten aus Ebene $n - 1$.
+\end{description}
+
+Welche Typen von Meta-Werten letztendlich während der Erfassung
+erzeugt werden sollen, kann der Benutzer in den Kanalvorgaben mit der
+sog. Meta-Maske\index{Meta-Maske} bestimmen. Diese entsteht durch die
+bitweise \textit{ODER}-Verknüpfung der angegebenen Masken-Bits.
+(Beispiele: \glqq Mittelwerte, Minima und Maxima\grqq\ entspricht
+Meta-Maske 7, \glqq nur Mittelwerte\grqq\ entspricht Meta-Maske 1, und
+\glqq Minima und Maxima\grqq\ entspricht Meta-Maske 6).
+
+Es kommt fast immer vor, dass beim Abschließen eines
+Chunks\index{Chunk} in einer Ebene weniger als $u$ Werte übrig
+bleiben. Aus diesen Werten wird \textbf{kein} weiterer Meta-Wert mehr
+erzeugt, da man davon ausgehen kann, dass dieser Datenwert in der
+Anzeige immer schmaler als ein Pixel sein würde. Die überschüssigen
+Werte in den Meta-Puffern werden also verworfen.
+
+%------------------------------------------------------------------------------
+
+\subsection{Kommunikation mit der Datenquelle}
+\label{sec:dlsd_logger_comm}
+
+Die Kommunikation mit der Datenquelle erfolgt über das an
+XML\index{XML} angelehnte Protokoll der \textit{rt\_lib} (Version $\ge
+2.7$) der \textit{IgH}. Die Verbindung zur Datenquelle erfolgt über
+TCP/IP (Port 2345).
+
+\paragraph{Identifikation der Datenquelle}
+Nach dem Verbinden wird zunächst ein \textit{\textless
+  connected\textgreater}-Tag erwartet, das als Attribut \textit{name}
+den Wert \textit{MSR} (\glqq Messen - Steuern - Regeln\grqq, Kennung
+der \textit{rt\_lib}) enthalten muss. Die kodierte Version der
+Software der Datenquelle im Attribut \textit{version} wird auf
+Kompatiblität mit der aktuellen dlsd-Version geprüft.
+Zusätzlich kann das \textit{\textless connected\textgreater}-Tag ein
+Attribut \textit{arch} enthalten, das die Architektur (\glqq
+Endianess\grqq\index{Endianess}) der Datenquelle und somit der
+gesendeten Binärdaten enthält. Mögliche Werte sind \textit{big} (für
+\glqq big-endian\grqq) oder \textit{little} (für \glqq
+little-endian\grqq). Existiert kein \textit{arch}-Attribut, wird als
+Quellenarchitektur \glqq little-endian\grqq\ angenommen und eine
+Warnung ausgegeben.
+
+\paragraph{Bestimmung der maximalen Abtastfrequenz}
+Nachdem das von der Datenquelle gesendete \textit{\textless
+  connected\textgreater}-Tag emp\-fan\-gen und überprüft wurde, fragt
+der Erfassungsprozess zunächst den MSR-Parameter
+\textit{/Taskinfo/Abtastfrequenz} ab und wartet auf die Antwort.
+Dieser Wert (die maximale Abtastfrequenz der Datenquelle) wird später
+benötigt, um die Plausibilität von Kanalvorgaben zu prüfen und die
+Untersetzung der Abtastfrequenzen zu berechnen.
+
+\paragraph{Auslesen aller Kanäle}
+Danach wird mit einem \textit{\textless rk\textgreater}-Befehl die
+vollständige Liste der von der Datenquelle angebotenen Kanäle
+angefordert. Die Antwort der Datenquelle hat mit einem einleitenden
+\textit{\textless channels\textgreater}-Tag zu beginnen, auf das dann
+die einzelnen Kanäle folgen, die jeweils in einem \textit{\textless
+channel\textgreater}-Tag beschrieben sind. Das Ende der Kanalliste
+markiert wiederum ein \textit{\textless /channels\textgreater}-Tag.
+
+Beispiel einer Antwort der Datenquelle auf einen \textit{\textless
+rk\textgreater}-Befehl:
+
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+  <channels>
+    <channel name="/Time" unit="s" alias="" index="0" `$\hookleftarrow$`
+             typ="TDBL" bufsize="50000" HZ="10000" value="1112814601.3209"/>
+    <channel name="/Taskinfo/Controller_Execution_Time" unit="us" `$\hookleftarrow$`
+             alias="" index="6" typ="TUINT" bufsize="50000" HZ="10000" value="22"/>
+    <channel name="/Taskinfo/Controller_Call_Time" unit="us" alias="" `$\hookleftarrow$`
+             index="7" typ="TUINT" bufsize="50000" HZ="10000" value="99"/>
+    <channel name="/Istwert/Kraft" unit="N" alias="" index="9" `$\hookleftarrow$`
+             typ="TDBL" bufsize="50000" HZ="10000" value="-0.6745"/>
+    <channel name="/Istwert/Druck" unit="bar" alias="" index="12" `$\hookleftarrow$`
+             typ="TDBL" bufsize="50000" HZ="10000" value="0.1372"/>
+  </channels>
+\end{lstlisting}
+
+Von den Attributen im \textit{\textless channel\textgreater}-Tag
+werden Folgende zur späteren Verwendung gespeichert:
+
+\begin{description}
+\item[name] - Kanalname (eindeutig)
+\item[unit] - Einheit des Kanals (wird als String gespeichert)
+\item[index] - Die Position des Kanals innerhalb der Liste. Diese wird
+  später auch als Identifier für ein Kanalverzeichnis innerhalb des
+  DLS-Datenverzeichnis verwendet (siehe Kapitel \ref{sec:data}).
+\item[typ] - Datentyp. Dieser muss einer der bekannten Datentypen aus
+  der Tabelle in Anhang \ref{sec:apx_types} sein, damit die später
+  empfangenen Daten verarbeitet werden können.
+\item[bufsize] - Größe des Ringspeichers innerhalb der
+  Datenquelle. Diese wird später zur Prüfung der Plausibilität einer
+  vorgegebenen Abtastrate herangezogen:
+
+  $ \hbox{BlockSize} \cdot \hbox{Reduction} \stackrel{!}{\le}
+  \frac{\hbox{BufferSize}}{2} $
+
+\item[HZ] - Kanalspezifische, maximale Abtastrate.
+\end{description}
+
+All diese Kanalinformationen werden in einer Liste im Speicher jedes
+Erfassungsprozesses abgelegt und beim Hinzufügen oder bei der
+Änderung einer Kanalvorgabe für die Plausibilitätsprüfungen
+herangezogen.
+
+\paragraph{Start der Erfassung}
+Kennt der Erfassungsprozess die Liste der Kanäle, so wird die
+Erfassung gestartet (wenn nicht vorher auf den Trigger-Parameter
+gewartet werden soll). Dies geschieht über den Befehl
+\textit{\textless xsad\textgreater}, der für jeden zu erfassenden
+Kanal einmal gesendet wird. Attribute des Befehls sind:
+
+\begin{description}
+\item[channels] - Enthält den Index des angefragten Kanals in der
+  Liste aller Kanäle,
+\item[reduction] - der (ganzzahlige) Untersetzungsfaktor von der
+  maximalen Abtastfrequenz des Kanals, um die absolute Abtastfrequenz zu
+  beschreiben,
+\item[blocksize] - die Anzahl der in einem Block zu sendenden Werte
+  (dieser Wert ist vollkommen unabhängig von der Blockgröße in der
+  Kanalvorgabe), und
+\item[coding] - die Kodierung der Daten, welche im Moment auf
+  \textit{Base64} festgelegt ist.
+\end{description}
+
+Ein typisches Kommando zum Start der Erfassung von daten eines Kanals könnte
+also wie folgt aussehen:
+
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+  <xsad channels="7" reduction="100" blocksize="1000" coding="Base64"/>
+\end{lstlisting}
+
+\paragraph{Empfang von Daten}
+
+Der Erfassungsprozess wartet nun auf ein \textit{\textless
+data\textgreater}-Tag, das den Beginn eines Blockes von Kanaldatentags
+bedeutet. Dieses Tag muss ein Attribut \textit{time} enthalten, das
+dem Zeitstempel aller jeweils letzten Datenwerte in den folgenden
+Kanaldatentags entspricht. Diese werden als \textit{\textless
+F\textgreater}-Tags erwartet, die jeweils die letzten Messdaten eines
+einzelnen Kanales enthalten und die Attribute \textit{c} (Kanalindex)
+und \textit{d} (kodierte Messdaten) besitzen. Nach dem letzten
+\textit{\textless F\textgreater}-Tag hat ein \textit{\textless
+/data\textgreater}-Tag zu folgen, dass den Erfassungsprozess wieder in
+den Wartezustand versetzt.
+
+\paragraph{Änderung von Kanalvorgaben}
+Bei einer Änderung einer Kanalvorgabe während der Erfassung wird vom
+Erfassungsprozess ein erneutes \textit{\textless xsad\textgreater}-Tag
+gesendet, dass neben den neuen Kanalvorgaben auch ein
+\textit{id}-Attribut besitzt, welches eine (verbindungsweit)
+eindeutige Kommandokennung darstellt. Hat die Datenquelle die
+Kanalvorgaben übernommen und entsprechen die nächsten Daten des
+betroffenen Kanals definitiv den \textbf{neuen} Vorgaben, so wird von
+der Datenquelle vorher ein \textit{\textless ack\textgreater}-Tag
+erwartet, das als Attribut die Kommando-ID des entsprechenden
+\textit{\textless xsad\textgreater}-Tags besitzt. Dann wird auch der
+Erfassungsprozess endgültig auf die neuen Kanalvorgaben umgestellt.
+
+%------------------------------------------------------------------------------
+
+\subsection{Begrenzung des Datenvolumens (Quota)}
+\label{sec:dlsd_logger_quota}
+\index{Quota}
+
+Der dlsd kennt Mechanismen zum Begrenzen des erforderlichen
+Speicherplatzes für die erfassten Daten eines Messauftrages. Es werden
+verschiedene Kriterien für die Über\-schrei\-tung dieser Grenzen
+unterstützt:
+
+\begin{description}
+\item[Daten-Quota] Die gesamte Größe des Job-Verzeichnisses im
+  Dateisystem darf eine bestimmte Grenze nicht überschreiten.
+\item[Zeit-Quota] Die Zeitspanne der gesamten, erfassten Daten eines
+  Messauftrages, soll eine bestimmte Breite nicht überschreiten.
+\end{description}
+
+Hat der Benutzer eine oder mehrere Quotas aktiviert und überschreitet
+die Gesamtheit der erfassten Daten eines oder mehrere der Kriterien,
+so wird jeweils der älteste Chunk\index{Chunk} entfernt, bis die
+Kriterien nicht mehr erfüllt werden. Der neueste Chunk jedes Kanales
+wird allerdings nie entfernt, da hier gerade eine Erfassung
+stattfinden könnte.
+
+Die Aufgabe des Löschens übernimmt der DLS-Quota-Daemon. Dieser muss
+immer parallel zum dlsd laufen, sobald in mindestens einem Auftrag
+Quotas konfiguriert sind. Der Start erfolgt manuell mit:
+
+\begin{lstlisting}
+  `\$` `\textbf{dls\_quota}\index{dls\_quota}`
+\end{lstlisting}
+
+Die Kommandozeilenparameter sind in Anhang \ref{sec:apx_cmd_quota}
+einsehbar.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=250pt]{bilder/quota}
+  \end{center}
+  \caption{Einhaltung der Zeit-Quota}
+  \label{fig:quota}
+\end{figure}
+
+Da der DLS-Quota-Daemon immer nur komplette Chunks\index{Chunk} auf
+einmal entfernen kann, wäre ein sukzessives Löschen nicht möglich,
+wenn die erfassten Daten eines Kanales aus lediglich einem einzelnen
+Chunk bestehen würden. Es muss also sichergestellt sein, dass immer
+viele, kleine Chunks existieren, auch wenn der dlsd-Erfassungsprozess
+nicht unterbrochen wurde.
+
+Daher überwacht der dlsd-Erfassungsprozess die Quota-Kriterien auch
+selber. Er sorgt bei aktivierter Quota dafür, dass innerhalb der
+kritischen Spanne immer genug einzelne Chunks entstehen (Abbildung
+\ref{fig:quota}). Dafür teilt er jedes gesetzte Quota-Kriterium in
+gleiche Anteile auf und beginnt bei Überschreitung eines dieser
+feineren Kriterien eigenmächtig einen neuen Chunk.
+
+Da das Abschliessen eines Chunks\index{Chunk} sehr zeitaufwändig sein
+kann und dies nicht mit den Echtzeit-Anfor\-derun\-gen des
+dlsd-Erfassungsprozesses vereinbar ist, wird zum Speichern der
+restlichen, erfassten Daten ein eigener Prozess erzeugt. Dieser \glqq
+Auf\-räum\-pro\-zess\grqq\index{Aufräumprozess} speichert nun alle
+Daten des aktuellen Chunks ab, während der Erfassungsprozess diese
+einfach verwirft und sich der Erfassung der Daten des neu begonnenen
+Chunks widmet. Nach dem Abschliessen des \glqq alten\grqq\ Chunks
+beendet sich der Aufräumprozess selbstständig.
+
+%------------------------------------------------------------------------------
+
+\subsection{Nachrichten der Datenquelle}
+\label{sec:dlsd_logger_msg}
+
+Die Datenquelle kann -neben den Messdaten- auch jederzeit
+Nachrichten\index{Nachrichten} versenden. Diese Nachrichten beinhalten
+Notizen des Benutzers, die mit in den Datenstrom aufgenommen werden
+sollen, Warnungen oder Fehlerzustände. Insgesamt gibt es folgende
+Nachrichtstypen:
+
+\begin{description}
+\item[info] - Eine Information, die lediglich für den aktuellen
+  Erfassungsprozess bestimmt ist.
+\item[warn] - Eine Warnung der Datenquelle.
+\item[error] - In der Datenquelle ist ein Fehler aufgetreten.
+\item[crit\_error] - In der Datenquelle ist ein Fehler aufgetreten,
+  der den weiteren Betrieb schwierig bis unmöglich macht.
+\item[broadcast] - Eine Nachricht für alle Prozesse, die gerade mit
+  der Datenquelle verbunden sind.
+\end{description}
+
+Eine Nachricht wird von der Datenquelle immer als einzelnes XML-Tag
+versendet, welches als Titel den Typ der Nachricht enthält. Weiterhin
+sind ein Attribut \textit{time} enthalten, dass den Zeitstempel der
+Nachricht in Sekunden enthält und -je nach Nachricht- ein Attribut
+\textit{text}, das aber vom dlsd nicht weiter ausgewertet wird.
+
+Ein Typisches Nachrichten-Tag sieht also so aus:
+
+\begin{lstlisting}
+  <broadcast time="1093072549.866241" text="Test-Nachricht"/>
+\end{lstlisting}
+
+Der dlsd-Erfassungsprozess speichert die Nachrichten im
+Unterverzeichnis \textit{messages} des Auftragsverzeichnisses (siehe
+Kapitel \ref{sec:data_msg}). Nachrichten sind -wie Messdaten- in
+Chunks organisiert. Allerdings wurde dieses Konzept hier etwas
+abgewandelt: Chunks, die Nachrichten enthalten, sind nicht zeitlich
+kontinuierlich und werden nur deshalb engelegt, um später bestimmte
+Zeitspannen von Nachrichten einfacher löschen zu können.
+
+%------------------------------------------------------------------------------
+
+\subsection{Signalbehandlung}
+\label{sec:dlsd_logger_signals}
+
+Folgende Signale\index{Signalbehandlung} werden vom
+dlsd-Erfassungsprozess verarbeitet:
+
+\begin{description}
+\item[SIGINT/SIGTERM] Der Erfassungsprozess soll beendet werden. Er
+  wird daraufhin sofort die Verbindung zur Datenquelle schliessen und
+  die noch im Speicher befindlichen Daten auf die Festplatte
+  sichern. Dies kann einige Sekunden dauern, da u. U. viele Dateien
+  geschrieben werden müssen. Passiert dabei kein Fehler, beendet sich
+  der Prozess mit einem Rückgabewert von 0.
+\item[SIGHUP] Der Empfang dieses Signales bedeutet für den
+  Erfassungsprozess, dass er seine Vorgabedaten neu einlesen
+  muss. Nachdem er dies getan hat, prüft er sofort, ob er nach den
+  neuen Vorgaben überhaupt noch erfassen muss. Wenn nicht, leitet er
+  die Beendigung wie bei \textit{SIGINT} oder \textit{SIGTERM}
+  ein. Ansonsten sendet er evtl. geänderte Vorgaben an die Datenquelle
+  und erfasst nach Bestätigung (siehe Kapitel
+  \ref{sec:dlsd_logger_comm}) unter den neuen Bedingungen weiter.
+\item[SIGCHLD] Ein \glqq Aufräumprozess\grqq\index{Aufräumprozess}
+  (siehe Kapitel \ref{sec:dlsd_logger_quota}) hat sich beendet. Dies
+  wird lediglich über den \textit{syslogd}\index{syslogd} vermerkt.
+\item[SIGSEGV u. A.] Behandlung wie im Mutterprozess (siehe Kapitel
+  \ref{sec:dlsd_mother_signals}).
+\end{description}
+
+%------------------------------------------------------------------------------
+
+\chapter{Das DLS-Datenverzeichnis}
+\label{sec:data}
+
+Alle persistenten Daten des DLS-Systems sind in
+\textit{DLS-Datenverzeichnissen}\index{DLS-Datenverzeichnis}
+organisiert. Die grund\-sätzliche Struktur zeigt Abbildung
+\ref{fig:dls_data}.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=300pt]{bilder/dls_data}
+  \end{center}
+  \caption{Struktur des DLS-Datenverzeichnisses}
+  \label{fig:dls_data}
+\end{figure}
+
+%------------------------------------------------------------------------------
+
+\section{Wurzelverzeichnis}
+\label{sec:data_root}
+
+Das Wurzelverzeichnis ist die oberste Verzeichnisebene innerhalb des
+DLS-Daten\-ver\-zeich\-nis\-ses. Hier liegen hauptsächlich Dateien für
+den dlsd-Mutterprozess. Darüber hinaus liegen im Wurzelverzeichnis
+auch alle Auftragsverzeichnisse (siehe Kapitel \ref{sec:data_jobs}).
+
+Dateien und Unterverzeichnisse im Wurzelverzeichnis:
+
+\begin{description}
+\item[id\_sequence] Diese Datei enthält die nächste, freie Auftrags-ID
+  als ASCII-kodierte Ziffernfolge. Sie wird vom DLS Manager benötigt,
+  wenn ein neuer Auftrag angelegt werden soll. Dieser liest die ID,
+  verwendet diese für den neuen Auftrag, erhöht sie um 1 und schreibt
+  die neue ID in die Datei zurück.
+\item[dlsd.pid] Dies ist die \textit{PID}-Datei\index{PID-Dateien} des
+  dlsd-Mutterprozesses (siehe Anhang \ref{sec:apx_pid}).  Sie wird zur
+  Laufzeit automatisch angelegt und zeigt an, dass gerade ein
+  dlsd-Mut\-ter\-pro\-zess läuft.
+\item[jobXXX] Jedes Auftragsverzeichnis liegt im
+  DLS-Wurzelverzeichnis. Der Name ist immer \textit{job}, gefolgt von
+  der Auftrags-ID. Siehe Kapitel \ref{sec:data_jobs}.
+\item[spool] Dies ist das Spooling-Verzeichnis des
+  dlsd-Mutterprozesses. Eine Beschreibung steht in Kapitel
+  \ref{sec:dlsd_mother_spooling}.
+\end{description}
+
+%------------------------------------------------------------------------------
+
+\section{Auftrags-Verzeichnisse}
+\label{sec:data_jobs}
+
+Jedes Auftragsverzeichnis (\textit{job\textless ID\textgreater}) wird
+im laufenden Betrieb von einem eigenen dlsd-Erfassungs\-prozess
+bearbeitet. Dieser liest von dort seine Vorgaben und schreibt auch die
+erfassten Daten dorthin.
+
+Dateien und Unterverzeichnisse in einem Auftragsverzeichnis:
+
+\begin{description}
+\item[job.xml] Die zentrale Vorgabendatei für einen Auftrag. Sie
+  enthält Auftrags- und Kanalvorgaben. Wird diese editiert, während
+  der dazu gehörige Erfassungsprozess läuft, so muss ein
+  Spooling-Kommando (siehe Kapitel \ref{sec:dlsd_mother_spooling})
+  erzeugt werden, damit dieser die neuen Vorgaben übernimmt. Der DLS
+  Manager macht dies automatisch.
+
+  Die Vorgabendatei ist im XML-Format und enthält folgende
+  Informationen (Reihenfolge obligatorisch!):
+
+  \begin{lstlisting}[gobble=4]
+    <dlsjob>
+      <description text="`\textit{Beschreibung}`"/>
+      <state name="`\textit{(}`running`\textit{|}`paused`\textit{)}`"/>
+      <source address="`\textit{IP-Adresse oder Hostname}`"/>
+      <quota size="`\textit{Daten-Quota}`" time="`\textit{Zeit-Quota}`"/>
+      <trigger parameter="\textit{Trigger-Parameter}"/>
+
+      <channels>
+        <channel name="`\textit{Kanalname}`" `$\hookleftarrow$`
+                 frequency="`\textit{Abtastrate}`" `$\hookleftarrow$`
+                 block_size="`\textit{Blockgröße}`" `$\hookleftarrow$`
+                 meta_mask="`\textit{Meta-Maske}`" `$\hookleftarrow$`
+                 meta_reduction="`\textit{Meta-Untersetzung}`" `$\hookleftarrow$`
+                 format="`\textit{Kompressionsformat}`" `$\hookleftarrow$`
+                 mdct_block_size="`\textit{MDCT-Blockgröße}`" `$\hookleftarrow$`
+                 mdct_accuracy="`\textit{MDCT-Genauigkeit}`" `$\hookleftarrow$`
+                 type="`\textit{Datentyp}`"/>
+      </channels>
+    </dlsjob>
+  \end{lstlisting}
+
+  Die Attribute \textit{mdct\_block\_size} bzw.
+  \textit{mdct\_accuracy} werden nur benötigt, wenn das
+  Kompressionsformat auf der MDCT (siehe Kapitel \ref{sec:comp_mdct})
+  basiert.
+
+  Die Vorgaben können mit dem DLS Manager editiert werden.  Die
+  Beschreibungen der einzelnen Parameter finden sich entsprechend in
+  den Kapiteln \ref{sec:manager_auftrag_create} bzw.
+  \ref{sec:manager_kanaele_edit}.
+
+\item[watchdog und logging] Dies sind zwei leere Dateien, die für die
+  Überwachung der dlsd-Erfassungprozesse seitens des DLS Managers
+  verwendet werden. Läuft ein Erfassungsprozess für das
+  Auftragsverzeichnis, so ändert er jede Sekunde den Zeitstempel der
+  Datei \textit{watchdog}. Erfasst der Prozess gleichzeitig auch
+  Daten, so verfährt er ebenso mit der Datei \textit{logging}. Der DLS
+  Manager prüft die Zeitstempel dieser Dateien regelmäßig, erhält so
+  Aufschluß über den Zustand des Erfassungsprozesses und kann dies so
+  dem Benutzer anzeigen.
+\item[dlsd.pid] Dies ist die \textit{PID}-Datei\index{PID-Dateien} des
+  dlsd-Erfassungsprozesses (siehe Anhang \ref{sec:apx_pid}). Sie wird
+  zur Laufzeit automatisch angelegt und zeigt an, dass der
+  Erfassungsprozess gerade läuft.
+\item[channelXXX] Die erfassten Daten sind weiterhin in Kanälen
+  organisiert, die jeweils ihr eigenes Kanal-Verzeichnis besitzen
+  (siehe Kapitel \ref{sec:data_channels}). Der Index im Namen des
+  Kanalverzeichnisses entspricht dem Kanalindex, den der Befehl
+  \textit{\textless rk\textgreater} beim Auslesen aller Kanäle der
+  Datenquelle während des Startvorganges des
+  dlsd-Mutter\-pro\-zes\-ses zurückgeliefert hat (siehe Kapitel
+  \ref{sec:dlsd_logger_comm}).
+\item[messages] Jeder Erfassungsprozess legt die Nachrichten, die er währen der
+  Erfassung von der Datenquelle empfangen hat in diesem Verzeichnis
+  ab. Wenn es noch nicht existiert, erstellt er es bei
+  Bedarf. Nachrichten sind -wie Messdaten- in Chunks
+  organisiert. Siehe Kapitel \ref{sec:data_msg}.
+\end{description}
+
+%------------------------------------------------------------------------------
+
+\section{Kanalverzeichnisse}
+\label{sec:data_channels}
+
+In den Kanal-Verzeichnissen (\textit{channel\textless
+INDEX\textgreater}) werden alle Daten abgelegt, die zu diesem Kanal
+erfasst wurden. Ein Kanalverzeichnis ist fest einem bestimmten Kanal
+der Datenquelle zugeordnet. Zur Beschreibung der Eigenschaften des
+Kanals existiert die Datei \textit{channels.xml}, die folgenden Inhalt
+hat:
+
+\begin{lstlisting}
+  <dlschannel>
+    <channel name="`\textit{Kanalname}`" index="`\textit{Index}`" `$\hookleftarrow$`
+             unit="`\textit{Einheit}`" type="`\textit{Datentyp}`"/>
+  </dlschannel>
+\end{lstlisting}
+
+Diese Datei dient nicht nur zur Beschreibung der Daten in den
+Chunk-Verzeichnissen, sondern wird auch jedesmal vom
+dlsd-Erfassungsprozess überprüft, wenn eine neue Erfassung in ein
+Kanalverzeichnis erfolgen soll. Diese darf nämlich nur stattfinden,
+wenn die Kanaldaten (Name, Index, Einheit und Typ) sich nicht geändert
+haben.
+
+%------------------------------------------------------------------------------
+
+\section{Chunk-Verzeichnisse}
+\label{sec:data_chunks}
+
+Die erfassten Daten eines Kanals sind in \textit{Chunks} organisiert
+(\textit{chunk\textless ZEIT\textgreater}). Ein Chunk\index{Chunk} ist
+eine lückenlos erfasste Serie von Daten, die ab einem bestimmten
+Zeitpunkt mit der selben Kanalvorgabe erfasst wurden.  Der Zeitstempel
+im Verzeichnisnamen ist der Zeitstempel des ersten Datenwertes im
+Chunk. Zur Beschreibung der Chunk-Eigenschaften existiert die Datei
+\textit{chunk.xml} mit folgendem Inhalt:
+
+\begin{lstlisting}
+  <dlschunk>
+    <chunk sample_frequency="`\textit{Abtastrate}`" `$\hookleftarrow$`
+           block_size="`\textit{Datenblockgröße}`" `$\hookleftarrow$`
+           meta_mask="`\textit{Meta-Maske}`" `$\hookleftarrow$`
+           meta_reduction="`\textit{Meta-Untersetzung}`" `$\hookleftarrow$`
+           format="`\textit{Kompressionsformat}`" `$\hookleftarrow$`
+           mdct_block_size="`\textit{MDCT-Blockgröße}`" `$\hookleftarrow$`
+           mdct_accuracy="`\textit{MDCT-Genauigkeit}`" `$\hookleftarrow$`
+           architecture="`\textit{Architektur (Endianess)}`"/>
+  </dlschunk>
+\end{lstlisting}
+
+Die \textit{mdct\_*}-Attribute existieren nur, wenn das Kompressionsformat auf
+der MDCT beruht (siehe Kapitel \ref{sec:comp_mdct}).
+
+In jedem Chunk-Verzeichnis sind die Daten wiederum in
+Verzeichnissen untergebracht, die deren Meta-Ebene
+entsprechen (generische Daten im Verzeichnis \textit{level0}, Daten
+der ersten Meta-Ebene in \textit{level1} usw.).
+
+%------------------------------------------------------------------------------
+
+\section{Daten-Verzeichnisse}
+\label{sec:data_data}
+
+Die Datenverzeichnisse (\textit{level\textless
+Meta-Ebene\textgreater}), die gleichzeitig auch die Sortierung der
+Daten nach der jeweiligen Meta-Ebene darstellen, sind der unterste
+Teil der Verzeichnishierarchie. Hier befinden sich die Datendateien
+und die dazugehörigen Index-Dateien.
+
+\paragraph{Datendateien} Datendateien beinhalten die erfassten
+Messdaten. Diese werden für jeden Meta-Typ getrennt angelegt. Daher
+haben sie folgendes Namensschema:
+
+\begin{quote}
+  \textit{data\textless ZEITSTEMPEL\textgreater\_\textless
+    META-TYP\textgreater}
+\end{quote}
+
+Der Zeitstempel im Dateinamen ist der Zeitstempel des ersten
+Datenwertes im ersten Block in dieser Datei.
+
+Im Verzeichnis \textit{level0} ist der Meta-Typ immer \textit{gen}
+(\glqq generic\grqq).
+
+Datendateien besitzen eine einfache XML-Struktur. Jeder Datenblock
+erscheint hier als \textit{\textless b\textgreater}-Tag. Dieses erhält
+den Zeitstempel des ersten Wertes im Block als Attribut \textit{t}
+(\glqq time\grqq), die Anzahl der komprimierten Datenwerte als
+Attribut \textit{s} (\glqq size\grqq) und die kodierten Daten als
+Attribut \textit{d} (\glqq data\grqq).
+
+Datendateien haben eine festgelegte Maximalgröße. Sobals der
+dlsd-Erfassungprozess diese mit dem Anfügen des nächsten Blockes
+überschreiten würde, legt er zuerst eine neue Datendatei an.
+
+Mit welchen Parametern letztendlich die Erfassung stattgefunden hat
+und in welcher Weise komprimiert wurde, ist nur zusammen mit den
+höhergelegenen Beschreibungsdateien \textit{chunk.xml} und
+\textit{channel.xml} ersichtlich.
+
+\paragraph{Index-Dateien}
+Index-Dateien sind Binärdateien mit fester Eintragslänge, die immer
+einer Datendatei zugeordnet sind. Sie stellen sehr schnell auslesbare
+Informationen über die Datenblöcke in der entsprechenden Datendatei
+bereit. Das Namensschema ist das der Datendatei mit einer
+entsprechenden Erweiterung:
+
+\begin{quote}
+ \textit{data\textless ZEITSTEMPEL\textgreater\_\textless
+   META-TYP\textgreater.idx}
+\end{quote}
+
+Die Einträge in der Index-Datei entsprechen immer einem Block in der
+Datendatei. Den Aufbau eines Eintrags zeigt Abbildung
+\ref{fig:dls_data_index}.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[height=15pt]{bilder/dls_data_index}
+  \end{center}
+  \caption{Eintrag einer Index-Datei}
+  \label{fig:dls_data_index}
+\end{figure}
+
+Jeder Eintrag ist 20 Bytes lang. Die ersten 8 Bytes entsprechen dem in
+einen \textit{long long int} konvertierte Zeitstempel des ersten
+Datenwertes im entsprechenden Block in Mikrosekunden. Die nächsten 8
+Bytes entsprechen in gleicher Weise dem Zeitstempel des letzten
+Datenwertes im Block. Die letzten 4 Byte sind die als \textit{unsigned
+  int} kodierte Offset-Adresse des Block-Tags in der Datendatei, d. h.
+die Position des einleitenden \textit{\textless}-Zeichens.
+
+\paragraph{Globale Index-Dateien}
+\glqq Globale\grqq\ Index-Dateien erleichtern das Ermitteln der
+Zeitspannen der Daten der einzelnen Datendateien eines bestimmten
+Meta-Typs. Ihr Namensschema lautet:
+
+\begin{quote}
+ \textit{data\_\textless META-TYP\textgreater.idx}
+\end{quote}
+
+Ein Eintrag in einer globalen Index-Datei entspricht immer einer
+Datendatei des selben Meta-Typs. Die Struktur eines Eintrags zeigt
+Abbildung \ref{fig:dls_data_index_glob}.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[height=15pt]{bilder/dls_data_index_glob}
+  \end{center}
+  \caption{Eintrag einer globalen Index-Datei}
+  \label{fig:dls_data_index_glob}
+\end{figure}
+
+Ein Eintrag in einer globalen Index-Datei ist immer 16 Bytes lang. Die
+ersten 8 Bytes entsprechen dem Zeitstempel des ersten Datenwertes in
+der Datendatei in Mikrosekunden als \textit{long long int}, die
+letzten 8 Bytes dem des letzten Datenwertes.
+
+Wird in eine Datendatei gerade erfasst, so ist der zweite Zeitstempel
+des entsprechenden (letzten) Eintrags in der globalen Index-Datei 0. In diesem
+Fall muss der gesuchte Zeitstempel durch ein Auslesen des letzten Eintrags in
+der entsprechenden Daten-Indexdatei ermittelt werden. Sobald die Erfassung in
+die Datendatei beendet wurde, wird der zweite Zeitstempel mit dem \glqq
+richtigen\grqq\ Wert belegt.
+
+%------------------------------------------------------------------------------
+
+\section{Nachrichtenverzeichnis}
+\label{sec:data_msg}
+
+Nachrichten der Datenquelle sind im Nachrichtenverzeichnis
+(\textit{messages}) in getrennten Chunks gespeichert. Die
+Chunk-Verzeichnisse haben alle den Namen
+
+\begin{quote}
+  \textit{chunk\textless ZEITSTEMPEL\textgreater},
+\end{quote}
+
+wobei der Zeitstempel dem der ersten Nachricht entspricht, die in diesem
+Verzeichnis vermerkt ist. Innerhalb der Verzeichnisse gibt es immer nur zwei
+Dateien: Die Nachrichtendatei und die dazu gehörige Nachrichten-Index-Datei.
+
+\paragraph{Nachrichtendateien}
+Eine Datei mit Nachrichten der Datenquelle heisst immer \textit{messages}. Die
+Nachrichten der Datenquelle werden unverändert in diese Datei gespeichert, so
+dass diese nur einzelne XML-Tags enthält, die jeweils den Nachrichten
+entsprechen (siehe Kapitel \ref{sec:dlsd_logger_msg}).
+
+\paragraph{Nachrichten-Index-Dateien}
+Die Index-Datei \textit{messages.idx} gehört zu der eigentlichen
+Nachrichtendatei und wird benötigt, um Nachrichten einer bestimmten
+Zeitspanne in kurzer Zeit laden zu können, ohne gleich die die gesamte
+Nachrichten-Datei einlesen zu müssen.
+
+Ein Eintrag in einer Nachrinten-Index-Datei entspricht immer einer
+Nachricht in der Nachrichten-Datei. Die Struktur eines Eintrags zeigt
+Abbildung \ref{fig:dls_data_index_msg}.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[height=15pt]{bilder/dls_data_index_msg}
+  \end{center}
+  \caption{Eintrag einer Nachrichten-Index-Datei}
+  \label{fig:dls_data_index_msg}
+\end{figure}
+
+
+
+%------------------------------------------------------------------------------
+
+\chapter{Der DLS Manager}
+\label{sec:manager}
+
+Der \textit{DLS Manager}\index{DLS Manager} ist die grafische
+Benutzeroberfläche zur Konfiguration der
+Messaufträge\index{Messauftrag} in einem DLS-Datenverzeichnis. Er
+dient weiterhin zur Steuerung und Kontrolle der laufenden
+Erfassungsprozesse.
+
+Der Aufruf des DLS Managers erfolgt mit dem Kommando \texttt{dls\_ctl}.
+
+Wie auch der dlsd kann diesem Tool in der Kommandozeile mit dem
+Parameter \texttt{-d} das DLS-Daten\-verzeich\-nis mitgeteilt werden,
+auf dem es arbeiten soll (siehe Anhang \ref{sec:apx_cmd_dlsctl}).
+
+Beim Programmstart führt der DLS Manager selbstständig einige
+Prüfungen durch:
+
+\begin{itemize}
+\item Wenn das angegebene DLS-Datenverzeichnis ein noch leeres
+  Verzeichnis ist, wird der Benutzer gefragt, ob darin eine gültige
+  DLS-Datenverzeichnis-Struktur angelegt werden soll.
+\item Läuft zum angegebenen DLS-Datenverzeichnis noch keine Instanz
+  des dlsd, wird der Benutzer gefragt, ob eine Instanz gestartet
+  werden soll.
+\end{itemize}
+
+%------------------------------------------------------------------------------
+
+\section{Hauptdialog}
+
+Abbildung \ref{fig:dls_ctl_main} zeigt das Hauptfenster des DLS
+Managers, welches direkt nach dem Starten des Programmes sichtbar
+wird.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=300pt]{bilder/ctl_main}
+  \end{center}
+  \caption{Hauptdialog des DLS Managers}
+  \label{fig:dls_ctl_main}
+\end{figure}
+
+%------------------------------------------------------------------------------
+
+\subsection{Anzeigen}
+
+Im Hauptdialog werden die einzelnen Messaufträge\index{Messauftrag}
+als Zeilen in einer Tabelle angezeigt. Folgende Informationen stehen
+in den Spalten bereit:
+
+\begin{description}
+\item[Auftrags-ID und Bezeichnung] Die Beichnung des Auftrages ist
+  willkürlich und kann jederzeit geändert werden. Die ID ist eine
+  feste Nummer, die beim Anlegen des Auftrags automatisch gewählt
+  wird. Alle Daten eines Auftrages werden im
+  DLS-Datenverzeichnis im Unterverzeichnis
+  \textit{job\textless ID\textgreater} gespeichert.
+\item[Quelle] Der Name oder die IP-Adresse des Servers, der als
+  Datenquelle dienen soll. Auf diesem muss ein MSR-Server über den
+  TCP-Port 2345 zu erreichen sein. Die Quelle kann nur beim Erstellen
+  des Auftrags gewählt werden und ist später nicht mehr veränderbar.
+\item[Status] Der vom Benutzer gewählte Status des Auftrags: \glqq
+  gestartet\grqq, wenn die Erfassung laufen soll, sonst \glqq
+  angehalten\grqq.
+\item[Trigger] Der Parameter der Datenquelle, der dem
+  Erfassungsprozess als Trig\-ger-Para\-meter dienen soll. Ist ein
+  Trigger-Parameter gewählt, wird nur erfasst, wenn dieser den Wert 1
+  hat.
+\item[Prozess] Gibt an, ob derzeit ein Erfassungsprozess für diesen
+  Auftrag läuft. Keine Anzeige, wenn der Auftrag angehalten ist.
+\item[Erfassung] Wenn ein Trigger konfiguriert ist, kann man hier
+  erkennen, ob dieser gerade eingeschaltet ist. Ohne Trigger muss die
+  Erfassung immer laufen, wenn auch der Erfassungsprozess läuft.
+\end{description}
+
+%------------------------------------------------------------------------------
+
+\subsection{Interaktionen}
+
+\begin{itemize}
+\item Die Zeilen mit den einzelnen Aufträgen können mit dem Mauscursor
+  markiert werden.
+\item Ist ein Auftrag markiert, erscheint eine Schaltfläche zum Starten,
+  bzw. Anhalten der Erfassung.
+\item Ein Doppelklick auf auf eine Auftrags-Zeile öffnet den Dialog
+  zum Editieren des jeweiligen Auftrags (siehe Kapitel
+  \ref{sec:manager_auftrag_edit}).
+\item Die Schaltfläche \glqq Schliessen\grqq\ beendet das Programm.
+\end{itemize}
+
+%------------------------------------------------------------------------------
+
+\section{Dialoge \glqq Auftrag erstellen\grqq\ und
+  \glqq Auftrag ändern\grqq}
+\label{sec:manager_auftrag_create}
+
+Das Aussehen des Dialoges zum Erstellen oder Ändern eines
+Messauftrages ist in Abbildung \ref{fig:dls_ctl_change} zu sehen. Er
+erscheint nach Betätigen der Schaltflächen \glqq Neuer Auftrag\grqq\ im
+Hauptdialog, oder \glqq Ändern\grqq\ im Dialog \glqq Auftrag
+bearbeiten\grqq. Der Unterschied besteht darin, dass die Datenquelle
+nur beim Erstellen eines Auftrages geändert werden kann.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=100pt]{bilder/ctl_change}
+  \end{center}
+  \caption{Dialog zum Erstellen oder Ändern eines Messauftrages}
+  \label{fig:dls_ctl_change}
+\end{figure}
+
+%------------------------------------------------------------------------------
+
+\subsection{Anzeigen}
+
+Die Dialogmaske bietet dem Benutzer die Möglichkeit, mehrerere Angaben
+zum Messauftrag zu machen:
+
+\begin{description}
+\item[Beschreibung] Dies ist ein willkürlicher Name für den
+  Messauftrag, der nur zum Zwecke der Wiedererkennung verwendet wird.
+\item[Quelle] Die Adresse der Datenquelle. Dies kann ein Hostname oder
+  eine IP-Adresse sein. Wird ein Hostname verwendet, so muss
+  sichergestellt sein, dass dieser vom dlsd zur Laufzeit in eine
+  IP-Adresse aufgelöst werden kann. Auf dem angegebenen Host muss zur
+  Erfassung und zum Hinzufügen von Kanälen über den entsprechenden
+  Dialog (siehe Kapitel \ref{sec:manager_kanaele_hinzu}) eine
+  Datenquelle vorhanden sein.
+\item[Trigger] Der Name des Parameters, der als Trigger-Parameter
+  dienen soll. Ist hier ein Trigger-Para\-meter angegeben, so wird
+  später nur erfasst, wenn dieser den Wert 1 hat. Wird dieses
+  Eingabefeld leer gelassen, so wird kein Trigger verwendet.
+\item[Zeit-Quota] Die Zeit-Quota (Länge des maximal zu speichernden
+  Zeitraumes erfasster Daten, siehe Kapitel
+  \ref{sec:dlsd_logger_quota}) kann hier in einer Kombination aus
+  einem (ganzzahligen) Wert und der dazugehörigen Zeiteinheit
+  eingestellt werden. Kein Eintrag im Eingabefeld für den Wert
+  bedeutet, dass keine Zeit-Quota verwendet werden soll.
+\item[Daten-Quota] Die Daten-Quota (Größe des maximal zu verwendenden
+  Speicherplatzes, der im Dateisystem für die erfassten Daten
+  reserviert werden soll) kann hier ebenfalls in einer Kombination aus
+  einer Ganzzahl und der dazugehörigen Größeneinheit angegeben
+  werden. Kein Eintrag bedeutet wieder, dass keine Daten-Quota
+  verwendet werden soll.
+\end{description}
+
+%------------------------------------------------------------------------------
+
+\subsection{Interaktionen}
+
+\begin{itemize}
+\item Betätigen der Schaltfläche \glqq OK\grqq\ (oder Drücken der
+  \textit{Enter}-Taste) prüft die angegebenen Daten. Sind diese
+  fehlerhaft, wird ein Fenster mit den genauen Fehlermeldungen
+  angezeigt. Andernfalls werden die Daten übernommen und der Dialog
+  geschlossen. Läuft ein dlsd -Erfassungsprozess, wird dieser zur
+  Übernahme der neuen Vorgaben aufgefordert.
+\item Bei Betätigung der Schaltfläche \glqq Abbrechen\grqq\ werden die
+  angegebenen Daten verworfen und der Dialog geschlossen.
+\end{itemize}
+
+%------------------------------------------------------------------------------
+
+\section{Dialog \glqq Auftrag bearbeiten\grqq}
+\label{sec:manager_auftrag_edit}
+
+Abbildung \ref{fig:dls_ctl_edit} zeigt den Dialog zum Bearbeiten eines
+Auftrages, der nach einem Doppelklick auf einen Auftrag im
+Hauptdialogfenster erscheint.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=300pt]{bilder/ctl_edit}
+  \end{center}
+  \caption{Dialog zum Bearbeiten eines Auftrages}
+  \label{fig:dls_ctl_edit}
+\end{figure}
+
+%------------------------------------------------------------------------------
+
+\subsection{Anzeigen}
+
+Im oberen Bereich werden ausgewählte Stammdaten zum Auftrag
+angezeigt. Darunter befindet sich die Liste der zu erfassenden Kanäle
+mit den wichtigsten Parametern. Diese sind:
+
+\begin{description}
+\item[Kanal] Der Name des zu erfassenden Kanals
+\item[Typ] Der Kanaltyp. Ein Kanal kann entweder einen ganzzahligen
+  oder einen Gleitkommatyp haben (siehe Anhang \ref{sec:apx_types}).
+\item[Abtastrate] Die Frequenz, mit der die einzelnen Messwerte
+  gespeichert werden sollen.
+\item[Blockgröße] Die Anzahl der Messwerte, die zusammen in einer
+  Einheit komprimiert und gespeichert werden sollen.
+\item[Format] Die Kompressionsmethode (siehe Kapitel \ref{sec:comp}).
+\end{description}
+
+%------------------------------------------------------------------------------
+
+\subsection{Interaktionen}
+
+\begin{itemize}
+\item Der Dialog zum Editieren der Auftrags-Stammdaten kann über die
+  Schaltfläche \glqq Ändern\grqq\ aufgerufen werden.
+\item Die Kanalzeilen der Tabelle können mit dem Mauscursor markiert
+  werden. Dann sind auch die Schaltflächen \glqq Kanäle
+  editieren...\grqq\ und \glqq Kanäle entfernen\grqq\ an\-wähl\-bar.
+\item Durch Drücken der \textit{Shift}-, bzw. \textit{Strg}-Tasten
+  können in der Tabelle auch mehrere Kanäle gleichzeitig angewählt
+  werden, die dann auch gleichzeitig editiert oder entfernt werden
+  können.
+\item Die Vorgaben zu einem oder mehrerer, markierter Kanäle können
+  durch Be\-tä\-ti\-gen der Schaltfläche \glqq Kanäle
+  editieren...\grqq\ im darauf folgenden Dialog bearbeitet werden.
+  Beim Editieren mehrerer Kanäle gelten allerdings besondere
+  Bedingungen (siehe Kapitel \ref{sec:manager_kanaele_edit_parallel}).
+\item Ein Doppelklick auf eine Kanalzeile öffnet ebenfalls den Dialog
+  zum Editieren der Vorgaben des entsprechenden Kanals.
+\item Durch Betätigen der Schaltfläche \glqq Kanäle entfernen\grqq\ 
+  werden alle markierten Kanä\-le aus den Vorgaben gelöscht. Erfasste
+  Daten bleiben aber weiterhin ver\-füg\-bar.
+\item Beim Betätigen der Schaltfläche \glqq Kanäle hinzufügen\grqq\
+  öffnet sich der Dialog zum Hinzufügen von Kanalvorgaben (siehe
+  Kapitel \ref{sec:manager_kanaele_hinzu}).
+\item Die Schaltfläche \glqq Schliessen\grqq\ beendet den Dialog und
+  kehrt zum  Hauptdialog zurück.
+\end{itemize}
+
+%------------------------------------------------------------------------------
+
+\section{Dialog \glqq Kanäle hinzufügen\grqq}
+\label{sec:manager_kanaele_hinzu}
+
+Nach dem Betätigen der Schaltfläche \glqq Kanäle hinzufügen\grqq\ im
+Dialog zum Bearbeiten eines Auftrages öffnet sich ein Dialogfenster,
+wie in Abbildung \ref{fig:dls_ctl_add} dargestellt. Gleichzeitig wird
+versucht, eine TCP-Verbindung zur Datenquelle aufzubauen, um deren
+Kanäle abzurufen.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=300pt]{bilder/ctl_add}
+  \end{center}
+  \caption{Dialog zum Hinzufügen von Kanalvorgaben}
+  \label{fig:dls_ctl_add}
+\end{figure}
+
+%------------------------------------------------------------------------------
+
+\subsection{Anzeigen}
+
+\begin{itemize}
+\item Während versucht wird, die Verbindung mit der Datenquelle
+  aufzubauen, erscheint eine Meldung \glqq Empfange Kanäle...\grqq. Kann die
+  Verbindung auch nach einer festgelegten Wartezeit nicht aufgebaut
+  werden, erscheint ein Fenster mit der entsprechenden Fehlermeldung
+  und der Dialog schliesst sich.
+\item Wurde die Kanalliste erfolgreich abgerufen, erscheinen die
+  einzelnen Kanäle in einer Tabelle. Dort sind der Kanalname, die
+  Einheit, die maximale Abtastfrequenz und der Kanal-Datentyp
+  angegeben.
+\end{itemize}
+
+%------------------------------------------------------------------------------
+
+\subsection{Interaktionen}
+
+\begin{itemize}
+\item Der Benutzer kann einzelne Kanäle mit dem Cursor selektieren.
+  Durch Drücken der \textit{Strg}- bzw. \textit{Shift}-Tasten lassen
+  sich auch mehrere Kanäle gleichzeitig an\-wäh\-len.
+\item Bei Betätigen der Schaltfläche \glqq OK\grqq\ werden alle
+  angewählten Kanäle in die Liste der Kanalvorgaben des Auftrags
+  eingefügt. Ist ein Kanal schon vorhanden, so wird dies in einem
+  Fenster mit der entsprechenden Warnmeldung angezeigt. Die restlichen
+  Kanäle werden aber dennoch hinzugefügt. Falls Änderungen
+  durchgeführt wurden, wird ein evtl. laufender dlsd-Erfassungsprozess
+  zur Übernahme der neuen Kanalvorgaben aufgefordert.
+\item Das Betätigen der Schaltfläche \glqq Abbrechen\grqq\ schliesst den
+  Dialog, ohne neue Kanalvorgaben zum Auftrag hinzuzufügen.
+\end{itemize}
+
+%------------------------------------------------------------------------------
+
+\section{Dialog \glqq Kanäle bearbeiten\grqq}
+\label{sec:manager_kanaele_edit}
+
+Der in Abbildung \ref{fig:dls_ctl_channel} dargestellte Dialog zum
+Bearbeiten von Kanalvorgaben erscheint bei einem Doppelklick auf eine
+Kanalvorgabe im Dialog zum Bearbeiten eines Auftrags, oder nach
+Betätigen des Schaltfläche \glqq Kanäle bearbeiten\grqq, nachdem ein oder
+mehrere Kanäle selektiert wurden.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=100pt]{bilder/ctl_channel}
+  \end{center}
+  \caption{Dialog zum Bearbeiten von Kanalvorgaben}
+  \label{fig:dls_ctl_channel}
+\end{figure}
+
+%------------------------------------------------------------------------------
+
+\subsection{Anzeigen}
+
+Folgende Eingabefelder stehen dem Benutzer zur Parametrisierung der
+Kanalvorgabe(n) bereit:
+
+\begin{description}
+\item[Abtastrate] Die Anzahl der Werte, die pro Sekunden gespeichert
+  werden sollen. Diese Rate muss ein ganzzahliger Teiler der maximalen
+  Abtastfrequenz des betroffenen Kanales sein.
+\item[Blockgröße] Die Anzahl der Werte, die in einem Block komprimiert
+  und gespeichert werden. Je größer der Block, desto besser kann
+  u. U. komprimiert werden, desto länger dauert allerdings auch der
+  Kompressionsvorgang. Die Blockgröße muss bei einer MDCT-basierten
+  Kompression ein ganzzahliges Vielfaches der MDCT-Blockgröße sein.
+\item[Meta-Maske] \textit{Dieser Wert kann momentan nicht editiert
+  werden}\\ Die Meta-Maske ist eine Bitmaske, die die Arten der zu
+  speichernden Meta-Daten angibt. Siehe dazu Kapitel
+  \ref{sec:dlsd_data_meta}.
+\item[Untersetzung] Die Meta-Untersetzung ist die Anzahl Datenwerte
+  einer Meta-Ebene aus denen ein neuer Meta-Wert der nächsthöheren
+  Ebene generiert wird. Siehe dazu ebenfalls Kapitel
+  \ref{sec:dlsd_data_meta}. Dieser Wert bedarf normalerweise keiner
+  Anpassung.
+\item[Format] Das Kompressionsformat, mit dem die erfassten Daten vor
+  der Speicherung komprimiert werden. Je nach Kompressionsverfahren
+  sind noch weitere Parameter anzugeben.
+\item[MDCT-Blockgröße] Dieser Parameter ist bei MDCT-Basierten
+  Kompressionsverfahren mit anzugeben und verhält sich ähnlich wie die
+  Blockgröße. Siehe Kapitel \ref{sec:comp_mdct}.
+\item[Genauigkeit] Manche, verlustbehaftete Kompressionsverfahren
+  erlauben es, den maximalen, absoluten Fehler anzugeben. Der Fehler
+  muss immer in der Einheit des entsprechenden Kanales angegeben
+  werden.
+\end{description}
+
+%------------------------------------------------------------------------------
+
+\subsection{Interaktionen}
+
+\begin{itemize}
+\item Betätigen der Schaltfläche \glqq OK\grqq\ prüft die angegebenen
+  Parameter zuerst auf Plausibilität. Schlägt dies fehl, wird ein
+  Fenster mit den entsprechenden Fehlermeldungen angezeigt. Ansonsten
+  werden alle angegebenen Parameter bei den zuvor selektierten
+  Kanalvorgaben angewendet, der evtl. laufende
+  dlsd-Er\-fas\-sungs\-pro\-zess zur Übernahme der neuen Parameter
+  aufgefordert und der Dialog geschlossen.
+\item Bei Betätigung der Schaltfläche \glqq Abbrechen\grqq\ werden
+  keine Änderungen durchgeführt und der Dialog geschlossen.
+\end{itemize}
+
+%------------------------------------------------------------------------------
+
+\subsection{Gleichzeitiges Editieren mehrerer Kanalvorgaben}
+\label{sec:manager_kanaele_edit_parallel}
+
+Der Dialog zum Bearbeiten von Kanalvorgaben (Abbildung
+\ref{fig:dls_ctl_channel}) kann auch dazu genutzt werden, mehrere
+Kanäle gleichzeitig zu editieren. In diesem Fall gilt Folgendes:
+
+\begin{itemize}
+\item Beim Öffnen des Dialoges werden alle Parameter, die zu diesem
+  Zeitpunkt bei allen zu ändernden Kanalvorgaben gleich sind, in der
+  Dialogmaske angezeigt. Bei Parametern, die \textbf{nicht} bei allen
+  Kanalvorgaben gleich sind, bleiben die entsprechenden Eingabefelder
+  leer.
+\item Das Verändern oder Eintragen eines Wertes in der Dialogmaske
+  führt dazu, dass dieser Wert nach Betätigen der \glqq OK\grqq-Schaltfläche
+  bei \textbf{allen} zuvor selektierten Kanalvorgaben eingetragen
+  wird.
+\item Ist ein Wert in der Maske bei Betätigen der \glqq OK\grqq-Schaltfläche
+  leer, so wird dieser bei \textbf{keiner} Kanalvorgabe
+  verändert. Alle zuvor selektierten Kanäle behalten in diesem Fall
+  den entsprechenden, vorherigen Wert. So ist es möglich bei einer
+  Reihe von Kanalvorgaben z. B. nur die Abtastrate zu ändern.
+\item Die Parameter der Kompression (\textit{Format},
+  \textit{MDCT-Blockgröße} und \textit{Genauigkeit}) sind
+  diesbezüglich eine Einheit. Das bedeutet, dass die
+  Kompressionsparameter anfangs nur gezeigt werden, wenn sie bei
+  \textbf{allen} Kanalvorgaben exakt gleich sind. Respektive können die
+  genannten Kompressionsparameter auch nur alle gemeinsam geändert
+  werden.
+\end{itemize}
+
+%------------------------------------------------------------------------------
+
+\chapter{Der Betrachter DLS View}
+\label{sec:view}
+\index{DLS View}
+
+Das Programm \textit{DLS View} dient zur einfachen Ansicht der
+erfassten Daten eines Auftrages. Es besteht deshalb lediglich aus zwei
+Dialogen (siehe Abbildungen \ref{fig:dls_view_main} und
+\ref{fig:dls_view_export}).
+
+%------------------------------------------------------------------------------
+
+\section{Hauptdialog}
+\label{sec:view_main}
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=\textwidth]{bilder/view_normal}
+  \end{center}
+  \caption{Hauptdialog des Betrachters DLS View}
+  \label{fig:dls_view_main}
+\end{figure}
+
+%------------------------------------------------------------------------------
+
+\subsection{Anzeigen}
+
+\begin{itemize}
+\item Am oberen Rand befindet sich links ein Auswahlfeld, in dem der
+  Benutzer den Messauftrag anwählen kann, zu dem Daten angezeigt
+  werden sollen.
+\item Rechts befindet die Liste der Kanäle, die zu dem gewählten Auftrag
+  erfasst wurden.
+\item Den Großteil des Dialogfensters macht die Datenanzeige
+  aus. Diese ist so aufgebaut, dass die Daten mehrerer Kanäle
+  übereinander auf einer gemeinsamen Zeitskala angezeigt werden
+  können, die am oberen Rand zu sehen ist. Die Skalenstriche
+  erscheinen als senkrechte, graue Linien im Koordinatensystem.
+\item Ganz unten in der Anzeige befindet sich eine schmale Textzeile,
+  in der die jeweils angezeigte Zeitspanne zu sehen ist.
+\item Über jedem, angezeigten Kanal ist eine schmale Kopfzeile zu
+  sehen, in der der Kanalname, der angezeigte Wertebereich, die Anzahl
+  der geladenen Datenblöcke und die geladenen Meta-Ebenen (siehe
+  Kapitel \ref{sec:dlsd_data_meta}) angezeigt werden. Darunter folgen
+  jeweils die Daten. Eine blaue Kurve bedeutet, dass es sich bei den
+  angezeigten Daten um generische Daten (Meta-Ebene 0) handelt, wurde
+  zur Anzeige eine höhere Meta-Ebene verwendet, ist der entsprechende
+  Kurvenabschnitt grün.
+\item Wurden in einer Zeitspanne keine Daten erfasst, wird dieser in
+  der betroffenen Kanalzeile hellgelb hinterlegt (siehe Abbildung
+  \ref{fig:dls_view_scan}).
+\item Da alle Kanalzeilen sich die Gesamthöhe der Anzeige teilen müssen,
+  werden die Kanalzeilen mit zunehmender Anzahl
+  schmaler. Unterschreitet die Höhe einer einzelnen Kanalzeile einen
+  festgelegten Wert, wird rechts eine Scroll-Leiste eingeblendet.
+\end{itemize}
+
+%------------------------------------------------------------------------------
+
+\subsection{Interaktionen}
+
+\begin{itemize}
+\item In der Auswahlliste \glqq Auftrag\grqq\ kann der Benutzer den
+  Auftrag wählen, dessen erfasste Daten er anzeigen möchte. Daraufhin
+  wird die Liste der erfassten Kanäle aktualisiert.
+\item Der Benutzer kann durch Markieren der Kästchen vor den
+  Kanalnamen in der Kanalliste einzelne Kanäle in der Datenanzeige
+  ein- oder ausblenden.
+\item Durch Betätigen der Schaltfläche \glqq Gesamt\grqq\ wird die
+  Gesamtzeitspanne, in der zu den gewählten Kanälen Daten
+  erfasst wurden, ermittelt und angezeigt.
+
+  Werden unmittelbar danach Kanäle hinzugefügt oder entfernt, wird
+  immer wieder die neue Gesamtzeitspanne ermittelt. Erst wenn der
+  Benutzer explizit eine andere Zeitspanne zur Anzeige wählt, bleibt
+  diese auch beim Hinzufügen oder Entfernen von Kanälen konstant.
+\item Das betätigen der Schalfläche \glqq Aktualisieren\grqq\ liest
+  alle Kanaldaten der eingestellten Zeitspanne neu ein und zeigt diese
+  an.
+\item Bei Betätigung der Schaltfläche \glqq Exportieren...\grqq\ 
+  öffnet sich der Export-Dialog (siehe Abschnitt
+  \ref{sec:view_export}).
+\item Durch Drücken und Halten der linken Maustaste im Datenbereich
+  der Anzeige kann der Benutzer eine neue Zeitspanne anwählen, die
+  während des Haltens der Maustaste durch zwei senkrechte, rote Linien
+  markiert wird. Diese sind am oberen Rand mit den genauen Zeitpunkten
+  beschriftet. Durch Loslassen der linken Maustaste wird der neue
+  Zeitbereich übernommen und es werden die entsprechenden Daten
+  geladen.
+
+  Übrigens kann die Position beim Loslassen der Maustaste
+  durchaus auch ausserhalb des Anzeigebereiches liegen, womit eine
+  leichte Vergrößerung der angezeigten Zeitspanne möglich ist.
+\item In ähnlicher Weise kann durch Drücken und Halten der rechten
+  Maustaste auf dem Anzeigebereich die angezeigte Zeitspanne
+  verschoben werden. Loslassen der Maustaste bewirkt die Übernahme der
+  neuen Zeitspanne.
+\item Ein Doppelklick in den Datenbereich bewirkt, dass die angezeigte
+  Zeitspanne um den Faktor 2 erweitert wird. Vorher wird sie um den
+  angeklickten Zeitpunkt zentriert. Ist während des Doppelklicks die
+  \textit{Shift}-Taste gedrückt, wird für die Erweiterung der Faktor
+  10 verwendet.
+\item Hat der Daten-Bereich den Tastatur-Fokus, bewirkt das Drücken
+  der \textit{Strg}-Taste, dass an dem Zeitpunkt, auf den der
+  Mauscursor zeigt, eine vertikale \glqq Scanlinie\grqq\ gezeichnet wird
+  (siehe Abbildung \ref{fig:dls_view_scan}). Schneidet diese Linie
+  eine angezeigte Kurve, so wird der Datenwert am Schnittpunkt
+  angezeigt.
+
+  Da die Scanlinie nicht unendlich schmal ist, fallen evtl. viele
+  Datenwerte in den Bereich, den sie überdeckt. In diesem Fall wird
+  der gesamte Wertebereich der \glqq unter\grqq\ der Scanlinie
+  liegenden Werte mit zwei horizontalen Linien markiert, die dann dem
+  Minimum und dem Maximum entsprechen (siehe 3. Kanal in Abbildung
+  \ref{fig:dls_view_scan}).
+\end{itemize}
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=\textwidth]{bilder/view_scan}
+  \end{center}
+  \caption{Scanlinien bei gedrückter \textit{Strg}-Taste}
+  \label{fig:dls_view_scan}
+\end{figure}
+
+%------------------------------------------------------------------------------
+
+\section{Dialog \glqq Exportieren...\grqq}
+\label{sec:view_export}
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=.6\textwidth]{bilder/view_export}
+  \end{center}
+  \caption{Export-Dialog des Betrachters DLS View}
+  \label{fig:dls_view_export}
+\end{figure}
+
+%------------------------------------------------------------------------------
+
+\subsection{Anzeigen}
+
+\begin{itemize}
+\item Im oberen Teil des Dialogs (siehe
+  Abb.~\ref{fig:dls_view_export}) werden die Anzahl der gewählten
+  Kanäle und die gewählte Zeitspanne angezeigt. Exportiert wird immer
+  die aktuell gewählte Ansicht des Hauptdialogs.
+\item Im unteren Bereich befindet sich ein Fortschrittsbalken, der
+  später den Export-Fortschritt anzeigt.
+\end{itemize}
+
+%------------------------------------------------------------------------------
+
+\subsection{Interaktionen}
+
+\begin{itemize}
+\item In der Mitte des Dialogs (siehe Abb.~\ref{fig:dls_view_export})
+  befinden sich Checkboxen um die Export-Formate zu wählen. Es können
+  durchaus mehrere Formate gleichzeitig exportiert werden.
+\item Bei Betätigen der Schaltfläche \glqq Exportieren\grqq\ beginnt
+  der Datenexport. Falls die Umgebungsvariable
+  \$DLS\_EXPORT\index{\$DLS\_EXPORT} gesetzt ist, werden die Daten in
+  das entsprechende Verzeichnis geschrieben. Andernfalls wird das
+  aktuelle Verzeichnis genutzt. Damit beim Export keine Daten
+  überschrieben werden, wird immer ein Unterverzeichnis erstellt, dass
+  alle Datendateien enthält. Der Name dieses Unterverzeichnisses wird
+  durch die Umgebungsvariable
+  \$DLS\_EXPORT\_FMT\index{\$DLS\_EXPORT\_FMT} bestimmt, die
+  Platzhalter nach den Konventionen der C-Funktion strftime() erlaubt.
+  Siehe \texttt{man 3 strftime} für eine Auflistung. Ist die
+  Umgebungsvariable nicht gesetzt, wird ein Standardverzeichnisname
+  \textit{dls-export-\%Y-\%m-\%d-\%H-\%M-\%S} angenommen.
+\item Die Schaltfläche \glqq Abbrechen \grqq\ bricht den Export ab und
+  schließt den Dialog.
+\end{itemize}
+
+%------------------------------------------------------------------------------
+
+\chapter{Kompressionsmethoden}
+\label{sec:comp}
+\index{Kompression}
+
+Die Kompression der von der Datenquelle empfangenen Messdaten dient zur
+Verkleinerung des benötigten Speicherplatzes im Dateisystem. Sie findet immer
+Blockweise statt (d. h. es werden immer eine bestimmte Anzahl Datenwerte
+gemeinsam komprimiert), wobei der Benutzer die Blockgröße in den Kanalvorgaben
+einstellen kann. Man unterscheidet grundsätzlich zwischen verlustfreier und
+verlustbehafteter Kompression.
+
+Das DLS-System unterstützt verschiedene Kompressionsalgorithmen. Da
+die meisten Algorithmen binäre Daten als Ausgabe haben, werden diese
+vor der Speicherung in die Datendateien in Base64 kodiert. Das hat
+zwar zur Folge, dass der benötigte Speicherplatz um ein Drittel
+vergrößert wird, hat aber zum Vorteil, dass die komprimierten Daten in
+\glqq druckbaren\grqq\ Zeichen vorliegen, und somit in XML kodiert
+werden können. Deswegen haben alle Kompressionsmethoden des DLS das
+Suffix \textit{/Base64}.
+
+Folgende Kompressionsmethoden werden vom DLS unterstützt:
+
+\begin{description}
+\item[ZLib/Base64] Ein einfaches, aber effizientes
+  Kompressionsverfahren, dass eine verlustfreie Kompression
+  bietet. Siehe Kapitel \ref{sec:comp_zlib}.
+\item[MDCT/ZLib/Base64] Ein erweitertes Kompressionsverfahren, dass
+  die Daten durch eine Transformation und eine Quantisierung
+  aufbereitet und dann erst komprimiert. Siehe Kapitel
+  \ref{sec:comp_mdct}.
+\end{description}
+
+%------------------------------------------------------------------------------
+
+\section{Kompression mit der ZLib}
+\label{sec:comp_zlib}
+
+Kompressionsverfahren: ZLib/Base64\\
+Komprimierbare Datentypen: Alle.
+
+Die Bibliothek \glqq ZLib\grqq\index{ZLib}
+(\url{http://www.gzip.org/zlib}) stellt Funktionen zur verlustfreien
+Kompression von Daten bereit. Der dlsd-Erfassungprozess nutzt diese im
+Kompressionsverfahren ZLib/Base64. Ausserdem wird der ZLib-Algorithmus
+zur Unter\-stütz\-ung in den weiteren Verfahren genutzt, um die
+bereits aufbereiteten Daten weiter zu komprimieren.
+
+Da die ZLib Binärdaten liefert, werden diese danach in allen Verfahren
+in Base64 kodiert gespeichert.
+
+%------------------------------------------------------------------------------
+
+\section{Kompression mit der MDCT}
+\label{sec:comp_mdct}
+\index{MDCT}
+
+Kompressionsverfahren: MDCT/ZLib/Base64\\
+Komprimierbare Datentypen: \textit{TFLT}, \textit{TDBL}
+
+Das Kompressionverfahren MDCT (\glqq modifizierte, diskrete
+Cosinus-Transformation\grqq) des DLS ist eigentlich ein hybrides
+Verfahren in dem die Daten zuerst mit der MDCT transformiert, dann
+quantisiert und schliesslich bitweise transponiert werden, um die
+darauf folgende Kompression mit der ZLib effektiver zu machen. Dabei
+wird das Ziel verfolgt, die Messdaten zwar verlustbehaftet, aber mit
+begrenztem Fehler zu komprimieren.
+
+\subsection{MDCT}
+
+Die MDCT eine Art diskretes Äquivalent zur Fourier-Transformation, dass ein
+Signal in die entsprechende Repräsentation als Koeffizienten von harmonischen
+Schwingungen transformiert, die überlagert wieder das Originalsignal ergeben.
+
+Während die \glqq normale\grqq\ DCT darauf basiert, dass immer $n$ Werte in
+$n$ Koeffizienten transformiert werden, aus denen dann das Originalsignal
+vollständig wiederhergestellt werden kann, werden bei der \glqq
+modifizierten\grqq\ DCT immer $n$ Werte in $\frac{n}{2}$ Koeffizienten
+transformiert, die an sich eine unvollständige Repräsentation des
+Originalsignales sind. Da die Transformation aber zu 50\% überlappend
+durchgeführt wird, kann das Originalsignal durch erneutes Überlappen zweier
+aufeinanderfolgender, rücktransformierter Sequenzen von Koeffizienten
+wiederhergestellt werden. Dieses Verfahren ist in Abbildung
+\ref{fig:comp_mdct} dargestellt.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics[width=300pt]{bilder/mdct}
+  \end{center}
+  \caption{Modifizierte, diskrete Cosinus-Transformation}
+  \label{fig:comp_mdct}
+\end{figure}
+
+Diese modifizierte DCT wird ergänzt durch das Überlagern der zu
+transformierenden Werte mit einer Fensterfunktion, die die am Rand liegenden
+Werte geringer gewichtet. So wird verhindert, dass die unterschiedlichen
+Fehler an den Randbereichen der Einzeltransformationen zu \glqq
+Artefakten\grqq\ führen und das Originalsignal sich nahtlos wiederherstellen
+lässt.
+
+\subsection{Quantisierung}
+
+Die durch die MDCT ermittelten Koeffizienten werden einer
+Integer-Quantisierung unterzogen. Dabei wird mit einem
+Bisektionsverfahren entschieden, wie viele Bit minimal zur
+Quantisierung herangezogen werden können, ohne das der maximale Fehler
+bei einer Rücktransformation zu groß würde. Das
+Quantisierungsverfahren liefert neben den auf $n$ Bits quantisierten
+Koeffizienten auch noch den Gleitkomma-Skalierungsfaktor, der zur
+Wiederherstellung der Originalkoeffizienten benötigt wird.
+
+Da der maximale Fehler bei einer einzelnen, inversen MDCT nicht genau
+bestimmt werden kann, wird dieser durch die Hälfte des vorgegebenen Fehlers
+abgeschätzt. Wenn zwei Sequenzen von rücktransformierten Koeffizienten
+zur Wiederherstellung des Originalsignales überlagert werden, kann der
+vorgegebene Fehler nicht überschritten werden, wenn der absolute
+Fehler in beiden Teilsignalen die Hälfte des maximalen Gesamtfehlers
+nicht überschreitet.
+
+Signale aus technischen Prozessen eignen sich oft sehr gut für
+die Transformation mit der MDCT, da sie in den meisten Fällen
+auf überlagerte, harmonische Schwingungen zurückzuführen sind. Das
+bedeutet, dass die hochfrequenten Anteile der entsprechenden
+Koeffizienten oft nicht stark ausgeprägt sind und durch die
+Quantisierung weitestgehend angeglichen werden können. Das führt
+später zu einer guten Kompressiblität.
+
+\subsection{Transponierung}
+\label{sec:comp_mdct_trans}
+
+Die Transponierung wird deshalb benötigt, weil das
+Kompressionsverfahren ZLib byteweise arbeitet und ähnliche Bitmuster
+in den meisten Fällen nicht erkennen kann. Also werden die einzelnen
+Bits der quantisierten Koeffizienten im Speicher umsortiert. Dazu
+werden die Koeffizienten zuerst von ihren Vorzeichnen getrennt. Die
+Vorzeichenbits werden separat vor den Koeffizientenbits abgelegt. Dann
+folgen zuerst alle \textit{MSB}'s (\glqq most significant bits\grqq)
+der Koeffizienten und zuletzt alle \textit{LSB}'s (\glqq least
+significant bits\grqq). So entstehen durch die meist sehr kleinen
+Koeffizienten der höherfrequenten Schwingungen viele Null-Bytes, die
+sich gut komprimieren lassen.
+
+Ein Komprimierter MDCT-Block besteht also aus dem Skalierungsfaktor
+der quantisierten Koeffizienten (4 Bytes, bzw. 8 Bytes), der Anzahl
+$q$ der benutzten Quantisierungsbits (1 Byte), $n$ Vorzeichnenbits und
+schliesslich $q \cdot (n - 1) $ Koeffizientenbits.
+
+\subsection{MDCT über schnelle FFT}
+
+Marios Athineos\footnote{marios@ee.columbia.edu,
+  \url{http://www.ee.columbia.edu/~marios}, Columbia University} hat
+ein Verfahren entwickelt, um eine MDCT über $n$ Werte auf eine
+Fourier-Trans\-formation über $\frac{n}{4}$ Werte zu reduzieren. Der
+DLS benutzt dieses Verfahren in Kombination mit der
+\textit{FFTW3}-Bibliothek (siehe Anhang \ref{sec:apx_install}) um den
+Rechenaufwand erheblich zu mindern. Diese Bibliothek vereint
+effiziente Algorithmen zur Berechnung der Fourier-Transformation mit
+der Benutzung von Prozessor-Erweiterungen wie MMX oder DDE.
+
+%------------------------------------------------------------------------------
+
+\section{Kompression über Quantisierung}
+\label{sec:comp_quant}
+\index{Quantisierung}
+
+Kompressionsverfahren: Quant/ZLib/Base64\\
+Komprimierbare Datentypen: \textit{TFLT}, \textit{TDBL}
+
+Dieses verlustbehaftete Kompressionsverfahren unterzieht die zu
+komprimierenden Datenwerte einer absoluten Quantisierung,
+differentiert diese, und speichert sie transponiert ab. Dieses
+Verfahren bereitet die \glqq Rohdaten\grqq\ auf und macht so die
+darauffolgende Kompression mit der ZLib noch effektiver.
+
+\subsection{Quantisierung}
+
+Bei der Quantisierung werden die einzelnen (Fließkomma-)Werte über
+einen Skalierungsfaktor auf einen begrenztes Intervall der natürlichen
+Zahlen abgebildet. Eine Kompression wird dadurch erreicht, dass
+versucht wird, dieses Intervall möglichst klein zu halten, um die
+quantisierten Werte mit wenigen Bits kodieren zu können. Dies wird
+allerdings nur soweit verfolgt, wie der dadurch entstehende Fehler
+unter einer vom Benutzer festgelegten Grenze bleibt.
+
+\subsection{Differentierung}
+
+Zusätzlich werden die quantisierten Werte differentiert, um lineare
+Signalverläufe in der Kodierung gleichartiger werden zu lassen, so
+dass der ZLib-Algorithmus die Daten besser komprimieren kann. Dazu
+wird am Anfang des komprimierten Datensatzes das (Integer-)Offset
+abgelegt und von dort an nur noch die Differenz von Wert zu Wert
+gespeichert.
+
+\subsection{Transponierung}
+
+Die Transponierung erfolgt aus den selben Gründen wie im Verfahren
+\textbf{MDCT/ZLib/Base64}. Siehe dazu Kapitel \ref{sec:comp_mdct_trans}.
+
+%------------------------------------------------------------------------------
+
+\appendix
+
+\chapter{Installation des DLS}
+\label{sec:apx_install}
+\index{Installation}
+
+\section{Systemvoraussetzungen}
+
+Der DLS ist zu weiten Teilen in der Programmiersprache C++\index{C++}
+implementiert. Er benö\-tigt zum Kompilieren und Laufen ein
+Linux-Betriebssystem\index{Linux}.
+
+Folgende Software muss für die Kompilierung und zur Laufzeit
+installiert sein:
+
+\begin{itemize}
+\item Für das Aufzeichnen der während der Laufzeit anfallenden
+  Nachrichten wird der \textit{syslogd}\index{syslogd} verwendet, der
+  standardmäßig jeder Linux-Distribution beiliegt.
+\item Für das Kompilieren der grafischen Benutzeroberflächen DLS
+  Manager\index{DLS Manager} und DLS View\index{DLS View} ist
+  zusätzlich die GUI-Bibliothek \textit{FLTK}\index{FLTK} in der
+  Version 1.1 nötig, die von der FLTK-Homepage
+  \url{http://www.fltk.org} heruntergeladen werden kann. Die
+  Bibliothek muss mit Unterstützung für Multithreading\footnote{Leider
+    liegt manchen Linux-Distributionen nur ein Packet ohne
+    Multithreading vor, so dass die FLTK-Bibliothek selber kompiliert
+    werden muss.} kompiliert worden sein (\texttt{configure}-Schalter
+  \texttt{--enable-threads}).
+\item Für die Kompression wird die \textit{ZLib} benötigt. Diese ist
+  in nahezu jeder Linux-Distribution enthalten. Notfalls kann sie von
+  \url{http://www.gzip.org/zlib} heruntergeladen und installiert
+  werden.
+\item Ebenfalls für die Kompression wird die \textit{FFTW3}-Bibliothek
+  benötigt. Mit dieser ist der DLS in der Lage die für die
+  MDCT-Kompression nötigen Fourier-Transformationen effizient zu
+  berechnen. Die Bezugsquelle für die Bibliothek ist
+  \url{http://www.fftw.org/download.html}.
+\item Für den DLS Manager und für FLTK wird die
+  \textit{pthreads}-Bibliothek benötigt.
+\end{itemize}
+
+\section{Installation}
+
+Nach dem Kopieren von der EtherLab\textsuperscript{\textregistered}-CD
+oder Herunterladen von der
+EtherLab\textsuperscript{\textregistered}-Homepage
+\url{http://etherlab.org} kann das DLS-Archiv entpackt werden:
+
+\begin{lstlisting}
+  `\$` `\textbf{tar xjf dls-1.0-rXXX.tar.bz2}`
+  `\$` `\textbf{cd dls-1.0-rXXX.tar.bz2}`
+\end{lstlisting}
+
+Nun kann der Quellcode mit den unten angegebenen Befehlen konfiguriert
+und kompiliert werden. Der \texttt{configure}-Befehl kennt die
+Parameter \texttt{--with-fltk-dir} und \texttt{--with-fftw3-dir} um
+die (abweichenden) Installationsverzeichnisse der jeweiligen
+Bibliotheken anzugeben. Das Standard-Installationsverzeichnis des DLS
+is \textit{/opt/etherlab}.  Ein anderes Verzeichnis kann mit dem
+Parameter \texttt{--prefix} angegeben werden.
+
+\begin{lstlisting}
+  `\$` `\textbf{./configure}`
+  `\$` `\textbf{make}`
+\end{lstlisting}
+
+Ein anschließender Aufruf (als \textit{root}) von
+
+\begin{lstlisting}
+  # `\textbf{make install}`
+\end{lstlisting}
+
+installiert alle nötigen Executables, Scripts und
+Template-Konfigurationsdateien.
+
+\section{DLS als Dienst einrichten}
+
+Soll der DLS als Dienst eingerichtet werden, müssen das Init-Script,
+die Sysconfig-Datei und das Profile-Script in die für die Distribution
+passenden Verzeichnisse kopiert werden. Die folgenden Befehle passen
+für eine SUSE Linux Distribution, können für andere Distributionen
+allerdings leicht abweichen:
+
+\begin{lstlisting}
+  # `\textbf{cd /opt/etherlab}`
+  # `\textbf{cp etc/init.d/dls /etc/init.d/dls}`
+  # `\textbf{cp etc/sysconfig/dls /etc/sysconfig/dls}`
+  # `\textbf{cp etc/profile.d/dls /etc/profile.d/dls}`
+  # `\textbf{insserv dls}`
+\end{lstlisting}
+
+Die Konfiguration geschieht durch Anpassen der Sysconfig-Datei
+\textit{/etc/sysconfig/dls}. Die entsprechnden Konfigurationsvariablen
+sind in der Datei dokumentiert und werden später durch ein
+Profile-Script als Umgebungsvariablen exportiert und stehen so allen
+Benutzern zur Verfügung.
+
+Das Anlegen eines DLS-Datenverzeichnisses geschieht automatisch beim
+Start des DLS Managers. Dafür muss entweder die Umgebungsvariable
+\$DLS\_DIR\index{\$DLS\_DIR} gesetzt sein, oder das zu
+initialisierende Verzeichnis muss mittels Parameter \texttt{-d}
+übergeben werden. Ist das angebene Verzeichnis noch kein
+DLS-Datenverzeichnis, wird der Benutzer gefragt, ob es als solches
+initialisiert werden soll.
+
+%------------------------------------------------------------------------------
+
+\chapter{Datentypen}
+\label{sec:apx_types}
+
+Tabelle \ref{tab:typen} zeigt alle bisher unterstützten
+Kanal-Datentypen\index{Kanal!Datentypen} und die jeweils mög\-lichen
+Kompressionsmethoden.
+
+\begin{table}[htb]
+  \centering
+  \caption{Unterstützte Kanal-Datentypen}
+  \label{tab:typen}
+  \vspace{1.5ex}
+  \begin{tabular}[thb]{|l|l|l|} \hline
+    \textbf{Typ} & \textbf{Beschreibung} & \textbf{Kompression}\\
+    \hline
+    \textit{TCHAR} & 1 Byte Ganzzahl (mit Vorzeichen) & ZLib/Base64\\
+    \hline
+    \textit{TUCHAR} & 1 Byte Ganzzahl (ohne Vorzeichen) &
+    ZLib/Base64\\ \hline
+    \textit{TINT} & 4 Byte Ganzzahl (mit Vorzeichen) & ZLib/Base64\\
+    \hline
+    \textit{TUINT} & 4 Byte Ganzzahl (ohne Vorzeichen) & ZLib/Base64\\
+    \hline
+    \textit{TLINT} & 4 Byte Ganzzahl (mit Vorzeichen) & ZLib/Base64\\
+    \hline
+    \textit{TULINT} & 4 Byte Ganzzahl (ohne Vorzeichen) &
+    ZLib/Base64\\ \hline
+    \textit{TFLT} & 4 Byte Gleitkomma & ZLib/Base64,\\
+                  &                   & MDCT/ZLib/Base64,\\
+                  &                   & Quant/ZLib/Base64\\ \hline
+    \textit{TDBL} & 8 Byte Gleitkomma & ZLib/Base64,\\
+                  &                   & MDCT/ZLib/Base64,\\
+                  &                   & Quant/ZLib/Base64\\ \hline
+  \end{tabular}
+\end{table}
+
+%------------------------------------------------------------------------------
+
+\chapter{PID-Dateien}
+\label{sec:apx_pid}
+
+Das DLS-System verwendet an mehreren Stellen sog.
+\textit{PID}-Dateien\index{PID-Dateien}, einen Mechanismus, der
+verhindern soll, dass für eine konkrete Aufgabe mehrere Prozesse
+laufen. Eine \textit{PID}-Datei enthält die \textit{ASCII}-kodierte
+Prozess-ID (\textit{PID}) des aktuell laufenden Prozesses. Nach jedem
+Prozessstart wird deshalb ermittelt, ob die entsprechende Datei und
+evtl. schon ein Prozess mit der dort angegebenen PID existiert. Wenn
+beides zutrifft, darf kein neuer Prozess gestartet werden. Der Prozess
+muss sich sofort beenden. Existiert keine andere Instanz, kann der neu
+gestartete Prozess weiterlaufen un eine neue PID-Datei erstellen. Eine
+veraltete \textit{PID}-Datei (d. h. der angegebene Prozess existiert
+nicht mehr) kann zuvor gelöscht werden.
+
+%------------------------------------------------------------------------------
+
+\chapter{Kommandozeilenparameter}
+
+%------------------------------------------------------------------------------
+
+\section{dlsd}
+\index{dlsd!Kommandozeilenparameter}
+
+\begin{lstlisting}
+  dlsd 1.0.0 revision 26
+  Usage: dlsd [OPTIONS]
+         -d <dir>       Set DLS data directory.
+         -u <user>      Switch to <user>.
+         -n <number>    Set maximal number of open files.
+         -k             Do not detach from console.
+         -h             Show this help.
+\end{lstlisting}
+
+%------------------------------------------------------------------------------
+
+\section{Init-Script}
+\index{Init-Script!Kommandozeilenparameter}
+
+(Der Pfad kann je nach Linux-Distribution abweichen.)
+
+\begin{lstlisting}
+  USAGE: /etc/init.d/dls {start|stop|restart|status}
+\end{lstlisting}
+
+%------------------------------------------------------------------------------
+
+\section{dls\_status}
+\index{dls\_status!Kommandozeilenparameter}
+
+\begin{lstlisting}
+  Aufruf: dls_status [OPTIONEN]
+  Optionen:
+          -d [Verzeichnis]   DLS-Datenverzeichnis
+          -h                 Diese Hilfe anzeigen
+\end{lstlisting}
+
+%------------------------------------------------------------------------------
+
+\section{dls\_ctl}
+\label{sec:apx_cmd_dlsctl}
+\index{DLS Manager!Kommandozeilenparameter}
+
+Der DLS Manager wird in Kap.~\ref{sec:manager} beschrieben.
+
+\begin{lstlisting}
+  dls_ctl 1.0.0 revision 26
+  Aufruf: dls_ctl [OPTIONEN]
+          -d [Verzeichnis]   DLS-Datenverzeichnis angeben
+          -u [Benutzer]      DLS-Benutzer angeben
+          -h                 Diese Hilfe anzeigen
+\end{lstlisting}
+
+%------------------------------------------------------------------------------
+
+\section{dls\_view}
+\index{DLS View!Kommandozeilenparameter}
+
+\begin{lstlisting}
+  dls_view 1.0.0 revision 26
+  Aufruf: dls_view [OPTIONEN]
+          -d [Verzeichnis]   DLS-Datenverzeichnis angeben
+          -h                 Diese Hilfe anzeigen
+\end{lstlisting}
+
+%------------------------------------------------------------------------------
+
+\section{dls}
+\label{sec:apx_cmd_dls}
+\index{dls (Tool)!Kommandozeilenparameter}
+
+\begin{lstlisting}
+  Usage: dls COMMAND [OPTIONS]
+  Commands:
+      list - List available chunks.
+    export - Export collected data.
+      help - Print this help.
+  Enter "dls COMMAND -h" for command-specific help.
+\end{lstlisting}
+
+%------------------------------------------------------------------------------
+
+\subsection{dls list}
+
+\begin{lstlisting}
+  Usage: 1. dls list [OPTIONS]
+         2. dls list -j JOB [OPTIONS]
+
+  Description:
+         1. Lists all available jobs.
+         2. Lists chunks in the specified job.
+
+  Options:
+          -d DIR   Specify DLS data directory.
+          -j JOB   Specify job ID.
+          -h       Print this help.
+\end{lstlisting}
+
+%------------------------------------------------------------------------------
+
+\subsection{dls export}
+
+\begin{lstlisting}
+  Usage: dls export [OPTIONS]
+  Options:
+     -d DIR         DLS data directory. Default: `\$`DLS_DIR
+     -o DIR         Output directory.
+                    Default: `\$`DLS_EXPORT_DIR or "."
+     -f NAMEFMT     Naming format for export directory. See
+                    strftime(3).
+                    Default: `\$`DLS_EXPORT_FMT or
+                    "dls-export-%Y-%m-%d-%H-%M-%S"
+     -a             Enable ASCII exporter
+     -m             Enable MATLAB4 exporter
+     -j ID          Job to export (MANDATORY)
+     -c CHANNELS    Indices of channels to export (see below).
+                    Default: All channels
+     -s TIMESTAMP   Start time (see below).
+                    Default: Start of recording
+     -e TIMESTAMP   End time (see below). Default:
+                    End of recording
+     -q             Be quiet (no progress bar)
+     -h             Print this help
+  CHANNELS is a comma-separated list of channel indices.
+     Use the minus sign to specify ranges.
+     Examples: "2,4,9", "1-20", "2,4,13-15,42".
+  TIMESTAMP is a broken-down time with microsecond resolution:
+     YYYY[-MM[-DD[-HH[-MM[-SS[-UUUUUU]]]]]] or
+     YYYY[-MM[-SS[ HH[:MM[:SS[.UUUUUU]]]]]].
+     Examples: "2006-08", "2005-08-15 13:14:58.896366"
+\end{lstlisting}
+
+%------------------------------------------------------------------------------
+
+\section{dls\_quota}
+\label{sec:apx_cmd_quota}
+\index{dls\_quota!Kommandozeilenparameter}
+
+\begin{lstlisting}
+  Aufruf: dls_quota [OPTIONEN]
+          -d [Verzeichnis]   DLS-Datenverzeichnis
+          -i [Sekunden]      Überprüfungs-Intervall
+          -k                 Kein Daemon werden
+          -h                 Diese Hilfe anzeigen
+\end{lstlisting}
+
+%------------------------------------------------------------------------------
+
+\printindex
+
+\end{document}
+
+%------------------------------------------------------------------------------

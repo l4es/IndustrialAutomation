@@ -1,0 +1,64 @@
+##############################################################################
+#
+#  $Id$
+#
+#  Copyright (C) 2015-2016  Richard Hacker (lerichi at gmx dot net)
+#
+#  This file is part of the PdCom library.
+#
+#  The PdCom library is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your
+#  option) any later version.
+#
+#  The PdCom library is distributed in the hope that it will be useful, but
+#  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+#  or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+#  License for more details.
+#
+#  You should have received a copy of the GNU Lesser General Public License
+#  along with the PdCom library. If not, see <http://www.gnu.org/licenses/>.
+#
+##############################################################################
+
+from distutils.core import setup, Extension
+
+def split(s):
+    if not s:
+        return ()
+    else:
+        return s.split(';')
+
+def splitdefines(s):
+    v = s.split('=');
+    if len(v) < 2:
+        v.append(None)
+    return tuple(v)
+
+version = '${PYLIB_MAJOR}.${PYLIB_MINOR}'
+
+setup(name = 'pdcom',
+        version = version,
+        description = 'Python library to connect to PdServ servers',
+        long_description = '',
+        author = 'Richard Hacker',
+        author_email = 'lerichi@gmx.net',
+        url = 'http://www.etherlab.org',
+        download_url = '',
+        license = 'LGPLv3+',
+        ext_modules=[
+            Extension('${PROJECT_NAME}',
+                split('${SRC}'),
+                depends = split('${LIBHEADERS}'),
+                include_dirs = split('${INCLUDES}'),
+                libraries = (['${PROJECT_NAME}']),
+                library_dirs = (['${CMAKE_BINARY_DIR}']
+                    + split('${Boost_LIBRARY_DIRS}')),
+                extra_compile_args = split('${CFLAGS}'),
+                define_macros = (
+                    list(map(lambda x: splitdefines(x), split('${DEFS}')))
+                    + [('PYLIB_MAJOR',${PYLIB_MAJOR}),
+                        ('PYLIB_MINOR', ${PYLIB_MINOR})]),
+                extra_objects = split('${Boost_LIBRARIES}')),
+            ]
+        )

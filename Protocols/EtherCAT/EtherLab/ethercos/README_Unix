@@ -1,0 +1,194 @@
+                EtherCos - The HIL and Realtime Toolbox for Scilab/Scicos
+                =============================================
+                                Version 0.0.2
+                                =============
+
+Andreas Stewering-Bone, IgH Essen (Andreas.Stewering-Bone@gmx.de, ab@igh-essen.com)
+
+********************************************************************************
+
+0 - COPYRIGHT NOTICE
+====================
+
+  EtherCos, The HIL and Realtime Toolbox for Scilab/Scicos, is free software released under
+  the terms of the GNU Lesser General Public License.
+
+  See the included license: "license.txt" in English.
+
+********************************************************************************
+
+I - WHAT'S NEW IN RELEASE 0.0.1
+===============================
+
+First alpha Release
+
+I - WHAT'S NEW IN RELEASE 0.0.2
+===============================
+
+Bugfixes, Prepare for Release 0.1
+
+
+
+********************************************************************************
+
+II - INSTALL THE EtherCos TOOLBOX FOR SCILAB/SCICOS
+===================================================
+
+  The requirements for installing EtherCos from source code are the following:
+
+    a - Scilab.
+
+      The new version of EtherCos only runs with Scilab 4.1.2 and Scilab_GTK-4.1.2 and Scicoslab-4.3.
+      Your Scilab can be both a stable version (source, binary file).
+      Get it from www.scilab.org
+
+    b - Operating System
+      
+      EtherCos has to be executed under Linux (until now only X86 is supported).
+      A running Kernel with HRT-Timer activated and the Preempt-RT patch included is neccessary.
+      
+      Tested Plattforms:
+	- Debian Etch (i386)
+	- Debian Lenny (i386)
+
+    c - EtherCAT-Master
+
+      EtherCos needs a running EtherCAT-Master Stack (Version >=1.5). Please install from www.etherlab.org
+
+    d - C Compiler.
+
+      The source version of EtherCos contains several .c files (see the section:
+      "VI - TOOLBOX COMPOSITION", below) that must be compiled as a shared
+      library.
+
+      The most widely used compiler is GCC.
+	
+    e - Perl
+
+      EtherCos will need a perl installation. That should be no problem on most systems.
+      Furthermore you need the XML::LibXML and IO::File modules.
+   
+    f - TcL/Tk
+      EtherCos will need a local TcL/Tk installation
+ 
+  The 3 steps that follow must be performed when you only have to install the
+  toolbox (i.e. one time only). If you already have installed the toolbox, skip
+  to the next section: "III - LOAD THE EtherCos TOOLBOX FOR SCILAB/SCICOS".
+
+    1 - Unpack the file ethercos-0.0.2-rxxx-src.tar.gz.
+
+
+      The file can be unpacked in a directory of your own choice, provided that
+      the path to this directory does not contain any spaces.
+
+
+      The unpacked files are stored in a directory called ethercos-0.0.1-rxxx-src.
+      From now on, the path to the ethercos-0.0.2-rxxx-src directory will be referred to as
+      <PATH>.
+
+    2 - Build EtherCos.
+
+      Open the Scilab prompt and type the following command:
+
+                        exec <PATH>/builder.sce;
+
+      This will compile EtherCos on your machine. It is also possible to use the Makefile:
+			cd <PATH>; make
+
+
+********************************************************************************
+
+III - LOAD THE EtherCos TOOLBOX FOR SCILAB/SCICOS
+=================================================
+
+  Open the Scilab prompt and type the following command:
+
+                        exec <PATH>/loader.sce;
+
+  This will load the toolbox into Scilab. You must type this command in every
+  Scilab session that you want to use the toolbox.
+
+ Note that, as the final user, you may want EtherCos to be loaded automatically. To
+  do this just put the above command in your ~/.Scilab/(VERSION)/.scilab startup file for
+  automatic loading.
+
+  An additional caveat: if somewhere in your scilab session you run the clear
+  command, you will have to reload the toolbox. To avoid that, you can add the
+  command predef('all') in your ~/.Scilab/(VERSION)/.scilab file after your
+  exec <PATH>/loader.sce command.
+
+  As an example, below is the sequence you could do on your own machine for
+  automatic loading:
+
+    1 - open ~/.Scilab/(VERSION)/.scilab file with your favorite text editor.
+
+    2 - Add the following line at the end of ~/.Scilab/(VERSION)/.scilab:
+
+                        exec <PATH>/loader.sce;
+
+    3 - Add the following line after your exec command:
+
+                        predef('all');
+
+    4 - save the ~/.Scilab/(VERSION)/.scilab file.
+
+
+  That's it! Every time you enter scilab it already loads EtherCos-Scicos 
+  and even if you run the clear command you won't have to reload the toolbox 
+  anymore.
+
+********************************************************************************
+IV - REMARKS
+============
+EtherLAB-Scicos will be renamed to EtherCos because of naming convention on the website www.etherlab.org.
+
+
+
+********************************************************************************
+V - DOCUMENTATION
+=================
+
+  Detailed HTML help documentation, written in English language is provided for
+  each Scilab function and Scicos block in the toolbox. Every help page is
+  enriched with many examples which illustrate the usage of the corresponding
+  Scilab function or Scicos block.
+
+********************************************************************************
+VI - TOOLBOX COMPOSITION
+========================
+
+  The root directory contains 7 sub-directories:
+
+   1 - etc/
+	contains the starter script ethercos_toolbox.start. This file is executed from loader.sce
+   2 - includes
+	some c/c++-header files
+   3 - macros
+	macros for compiling and loading the toolbox
+   4 - modules
+	modules-directory. At startup the loader.sce in each subdirectory is excuted. 
+   5 - src
+	some c/c++ files which can be used in all modules
+   6 - template_for_module
+	can be used as template for a new module. copy the directory your_name to modules and rename the directory.
+
+  and 4 files:
+
+    1 - builder.sce
+
+      The main builder script. Build also all modules.
+
+    2 - loader.sce
+
+      The main loader script.
+
+    3 - README_Unix
+
+      This file. Notes about toolbox description and installation.
+
+    4 - license.txt
+
+      The text of the GNU General Public License Version 2, under which the
+      toolbox is distributed.
+
+********************************************************************************

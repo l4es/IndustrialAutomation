@@ -1,0 +1,160 @@
+------------------------------------------------------------------------------
+
+$Id$
+
+vim700: spelllang=en spell
+
+------------------------------------------------------------------------------
+
+Since 1.4.0-rc2
+
+* Daemon
+    * Keep logging messages independent of trigger
+
+Version 1.4.0-rc2
+
+* Common
+    * Added configuration check for PdCom
+    * Added README for building the GUI on windows
+
+* Library
+    * Fetch messages via protocol
+    * Regex-based message filter
+    * Improved protocol buffers usage
+    * Avoid using fixed-size ring buffer for loading data
+
+* Daemon
+    * Provide logging mechanism for library calls
+    * Set SO_REUSEADDR flag on listening socket
+    * Improved protocol buffers usage
+
+* GUI
+    * Support for removing directories
+    * Include version and revision in about dialog
+    * Moved dls_ctl to getaddrinfo()
+    * Message filter dialog
+
+Version 1.4.0-rc1
+
+* Common
+    * Implemented DLS protocol for remote data access
+    * Support compiling library, widgets and GUI for windows
+    * Changed default prefix to /usr/local
+    * Some autotools usage improvements
+
+* Daemon
+    * Use PdCom library to access process data
+    * Triggering on signal possible
+    * Message logging via plainmessages.xml in job directory
+    * DLS protocol for data access (protocol buffers based)
+    * Optionally build without protocol server
+    * Read-only mode switch
+    * Flush data on SIGUSR1
+    * Improved checking for stale PID file
+    * Added sample systemd service file
+
+* Library
+    * Directory import based on URIs (DLS protocol support)
+    * Fetch deeper data levels if not close enough to chunk end
+    * Exporting messages
+
+* DlsWidgets
+    * Allow layer without channel
+    * Made gap color more visible
+    * Improved drawing overlapping chunks
+    * List channels in dls_export_info
+    * 8 default colors from Solarized colorscheme
+    * Draw generic and extrema data (both possible together)
+    * Continue loading settings if channel not found
+    * Qt designer integration
+    * Qt5 support
+    * Avoid drawing busy icon during printing
+    * Graph touch input improvements
+
+* GUI
+    * DLS protocol support (URI dialog)
+    * Support for relative signal paths in dlsgui view files
+    * Store absolute paths of recent files
+    * About dialog and datasource menu
+    * Display URI in sections dialog
+
+* Command-line tool
+    * Directory may be an URI (DLS protocol support)
+    * Implemented -p option for dls export command
+    * Export ASCII files with maximum precision
+
+Version 1.3.1
+
+* Added Icons, MIME information and desktop files for DLSGUI.
+* Accept first argument as file to load on Unix.
+* Spec file improvements; building on openSUSE build service.
+
+Version 1.3.0
+
+* Added Qt-based dlsgui.
+* Made libdls public.
+* Create job file with world-readable rights in dls_ctl.
+* Fixed segv when creating temporary file name in dls_ctl.
+
+Version 1.2.7
+
+* Fixed displaying negative time differences.
+* Fixed scrolling in dls_view introduced in 1.2.6.
+* Using FLTK headers with capital '.H' extender.
+* Fixed ZLib usage at 64 bit.
+* Marked sysconfig file as %config in spec file.
+* Changed license to GPLv3 / FDL 1.3; added license headers.
+* Fixed warning message display.
+* Use mkstemp() to write job.xml to avoid empty files on full filesystems.
+* Added AM_PROG_AR necessary for autoconf 1.12.
+* Ignore unknown channel types.
+
+Version 1.2.6
+
+* Added mouse-buffer capable time-stamps in export dialog.
+* Fixed 64-bit index file problems.
+* Removed querying '/Taskinfo/Abtastfrequenz' on connect.
+
+Version 1.2.5
+
+* English documentation.
+* Fixed freezing channel selection dialog if receive ringbuffer is full.
+
+Version 1.2.4
+
+* Bugfix: Abort reading channels after parser error.
+* Added .desktop files for dls_view and dls_ctl.
+
+Version 1.2.3
+
+* Added support for changing data source port (not in GUI yet).
+* Accept missing unit attribute.
+* Ignore _LIST and _MATRIX types.
+* Init script using startproc, checkprog and killproc (wait for completion).
+
+Version 1.2.2
+
+* Support for newer compilers and 64-bit.
+
+Version 1.2.1
+
+* "Reduce to 1 Hz" checkbox in channel selection.
+
+Version 1.2
+
+* If no data is received for NO_DATA_ABORT_TIME, the logger process is
+  restarted.
+* Sample times may be floating-point (i. e. less than 1)
+* Sort signal names before displaying.
+* Restart logging after non-critical errors.
+* Export decimation in dls and dls_view.
+* Disabling message loading in dls_view.
+* Avoided buffer overflow via intermediate reading.
+
+Changes from version 1.0 to version 1.1:
+
+* Sending host and application identification after connect().
+* Changed library mechanism of the building process from libtool to ranlib to
+  avoid duplicate compiling.
+
+------------------------------------------------------------------------------

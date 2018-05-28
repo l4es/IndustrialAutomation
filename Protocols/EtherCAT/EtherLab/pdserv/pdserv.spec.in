@@ -1,0 +1,94 @@
+#
+#  spec file for pdserv library
+#
+#  Copyright (c) 2011 - 2012  Florian Pose <fp@igh-essen.com>
+#
+#  This file is part of the pdserv library.
+#
+#  The pdserv library is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU Lesser General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your
+#  option) any later version.
+#
+#  The pdserv library is distributed in the hope that it will be useful, but
+#  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+#  or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+#  License for more details.
+#
+#  You should have received a copy of the GNU Lesser General Public License
+#  along with the pdserv library. If not, see <http://www.gnu.org/licenses/>.
+#
+#  vim: tw=78 noexpandtab
+#
+
+Name:			pdserv
+Version:		@VERSION@
+Release:		1
+
+Summary:		Process-data server library
+Summary(de):	Prozessdaten-Server-Bibliothek
+License:		GPL
+Group:			Development/Libraries
+Group(de):		Entwicklung/Bibliotheken
+Url:			http://etherlab.org/en/pdserv
+Source:			http://etherlab.org/download/pdserv/%name-%version.tar.bz2
+BuildRoot:		%_tmppath/%name-%version-root
+BuildRequires:	gcc-c++ libyaml-devel cmake log4cplus-devel
+
+%description
+PdServ is a process data communication server for realtime processes.
+
+%description -l de
+PdServ ist eine Kommunikationsbibliothek für Prozessdaten von
+Echtzeit-Applikationen.
+
+%package -n pdserv-devel
+Summary: 		Development files for pdserv
+Summary(de):	Entwickungsdateien für pdserv
+Group: 			Development/Libraries
+Group(de): 		Entwicklung/Bibliotheken
+Requires: 		%name = %version
+
+%description -n pdserv-devel
+The %name-devel package contains the static libraries and header files
+needed for development with %name.
+
+%description -n pdserv-devel -l de
+Das %name-devel-Paket enthält statische Bibliotheken und Header-Dateien für die
+Entwicklung mit %name.
+
+%prep
+%setup
+find -name CMakeCache.txt -exec rm -v {} \;
+cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} \
+	-DCMAKE_INSTALL_SYSCONFDIR=%{_sysconfdir} \
+	-DCMAKE_INSTALL_LIBDIR=%{_libdir} .
+
+%build
+make
+
+%install
+make install DESTDIR=$RPM_BUILD_ROOT
+
+%clean
+%{__rm} -rf $RPM_BUILD_ROOT
+
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
+
+%files
+%defattr(-,root,root,755)
+%{_libdir}/libpdserv.so*
+%{_sysconfdir}/pdserv.conf
+
+%files -n pdserv-devel
+%defattr(-,root,root,755)
+%{_includedir}/pdserv.h
+%{_libdir}/pkgconfig/libpdserv.pc
+
+%changelog
+* Wed Jan 11 2012 fp@igh-essen.com
+- German localisation.
+* Fri Dec 30 2011 fp@igh-essen.com
+- Initial package.

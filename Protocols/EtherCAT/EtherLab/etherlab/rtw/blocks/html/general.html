@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!--
+vim:tw=78
+-->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>EtherLab :: Common slave options</title>
+        <link rel="stylesheet" href="docstyle.css" type="text/css"/>
+        <meta name="generator" content="DocBook XSL Stylesheets V1.52.2"/>
+        <meta http-equiv="Content-Script-Type" content="text/javascript"/>
+        <meta name="toctype" content="ug"/>
+        <script language="JavaScript" src="docscripts.js"></script>
+    </head>
+    <body>
+        <a name="top_of_page"></a>
+        <p style="font-size:1px;">&nbsp;</p>
+        <h2>Common EtherCAT slave options</h2>
+
+        Many slave options are common for all slaves. In this section the
+        following options are discussed:
+        <ul>
+            <li><a href="#master">Master</a></li>
+            <li><a href="#slave">Slave Index</a></li>
+            <li><a href="#model">Device Model</a></li>
+            <li><a href="#vector">Vector Outputs/Inputs</a></li>
+            <li><a href="#i_scale">Input Scale</a></li>
+            <li><a href="#o_scale">Output Scale/Offset/Filter</a></li>
+            <li><a href="#dc">Distributed Clocks</a></li>
+            <li><a href="#sampletime">Sample Time</a></li>
+        </ul>
+
+        <a name="master"><h3>Master</h3></a>
+        A numeric scalar representing the master that the slave is
+        connected to.
+
+        <a name="slave"> <h3>Slave Index</h3></a>
+        A slave can be identified by its absolute position in the EtherCAT
+        bus or by its position relative to another slave.
+
+        <p/>The absolute position counter is incremented with every slave
+        starting from zero with the first slave. If the bus topology changes,
+        a slave's absolute position will be affected if the change was closer
+        to the master.
+
+        <p/>Slaves can also be addressed relative to each other. For this
+        purpose, a slave's alias is used. This alias is a number that is
+        permanently stored in a slave's non-volatile memory (see the
+        <tt>ethercat alias</tt> command). Thus it is possible to identify a
+        slave even after a power reset.
+
+        <p/>Every time a slave with an alias is encountered during bus
+        scanning, the alias counter is reset. Subsequent slaves can be
+        addressed relative to this one.
+
+        <p/>To enter an absolute address, simply enter the slave position as a
+        numeric scalar. A relative address is entered as a vector
+        <tt>[alias&nbsp;position]</tt>.
+
+        <p/>Example:<br/>
+        The <tt>ethercat slaves</tt> command can be used to show all
+        slaves attached to a master device:
+        <pre class="programlisting">
+user@host:~$ ethercat slaves
+0  0:0   OP     +  EK1101 ...
+1  0:1   OP     +  EL4004 ...
+2  0:2   OP     +  EL2624 ...
+3  100:0   OP     +  EL4004 ...
+4  100:1   OP     +  EL2624 ...
+5  100:2   OP     +  EL1144 ...
+6  100:3   OP     +  EL2624 ...
+        </pre>
+
+        In column 1 the slave's absolute position is shown. Column 2 shows a
+        slave's relative addressing using the alias. Slave 3 has an alias of
+        100 set.
+
+        <p/>The slave at absolute position 5 (EL1144) can also be addressed
+        relative to slave 3 that has an alias set. In this case, its address
+        is <tt>[100 2]</tt>.  This relative address will not change if slave
+        at position 2 (EL2624) is removed, for example. It will obviously
+        change if slave 4 is removed.
+
+        <p/>Examples of addressing slave 5 in the block's mask:
+        <table>
+            <tr>
+                <td>Absolute Addressing:</td>
+                <td><img src="abs-address.png"/></td>
+            </tr>
+            <tr>
+                <td>Relative Addressing:</td>
+                <td><img src="rel-address.png"/></td>
+            </tr>
+        </table>
+
+        <a name="model"><h3>Device Model</h3></a>
+        Select a device from the drop down list.
+
+        <a name="vector"><h3>Vector Inputs/Outputs</h3></a>
+        Checking this option groups the block's inputs and/or outputs to fewer
+        ports.
+
+        <a name="i_scale"><h3>Input Scale</h3></a>
+        This value will prescale the input before it is written to the PDO.
+        The effect of setting this is:
+        <ul>
+
+            <li><b>Empty vector</b> (e.g. <tt>[]</tt>): Raw input. Data type
+            can be either Real32, Real64 or the PDO's data type</li>
+
+            <li><b>Scalar</b> (e.g. <tt>0.1</tt>): The input port data type is
+            forced to double. All inputs are premultiplied by the scalar
+            value, where the result should be in the range [0,1) or [-1,1).
+            This result is mapped to the PDO's domain [IntMin,IntMax]. The
+            scaling value is available as a run-time parameter.</li>
+
+            <li><b>Vector</b> (e.g. <tt>[0.1 0.5]</tt>): The input port data type is
+            forced to double. The inputs are vector multiplied with the value,
+            where the result should be in the range [0,1) or [-1,1). The
+            scaling value is available as a run-time parameter.</li>
+        
+        </ul>
+
+        Note: When the input is of type <tt>double</tt>, the PDO
+        value is limited between its maximum and minimum values. There is thus
+        no need to worry about the value wrapping.
+
+        <a name="o_scale"><h3>Output Scale/Offset/Filter</h3></a>
+        This setting is similar to <a href="#i_scale">Input Scale</a> 
+
+        <p/>Setting any one of these values will cause the output to be of type
+        <tt>double</tt>. The PDO value is then scaled to a value in the range
+        [0,1) or [-1,1) for unipolar or bipolar outputs respectively,
+        multiplied by the scalar value and adding the offset.
+        
+        <p/>LPF time constant of a low pass filter applied after scaling. The
+        unit is [s]. (See <a href="#filter">deprecated use of frequency</a>
+        below).
+
+        <p/>All these parameter values are available as run-time parameters.
+        
+        <p/>If any one of these parameters are empty (<tt>[]</tt>), the
+        specific operation is ignored. The corresponding run-time parameter is
+        also not generated.
+
+        <a name="filter"><h3>Deprecated LPF frequency (rad/s)</h3></a>
+        The use of <b>LPF frequency</b> is deprecated because the
+        implementation was misleading, changed when block sample time changed
+        and inconsistent between continuous and discrete block sample time.
+        Replace the block with a new one from the library and use <b>LPF time
+        constant</b> instead.
+
+        <p/>Continuous blocks (Sample Time = 0) just insert the inverse, i.e.
+        <pre>TimeConstant = 1 / LPF_Frequency.</pre>
+
+        <p/>Discrete blocks use 
+        <pre>TimeConstant = BlockSampleTime / LPF_Frequency</pre>
+
+        <a name="dc"><h3>Distributed Clocks</h3></a>
+        Select the correct Distributed Clocks mode from the selection list.
+        The last item <tt>DC Customized</tt> allows custom control of DC by
+        being able to set values for:
+        <tt>
+        <table>
+        <tr><td>AssignActivate</td></tr>
+        <tr><td>CycleTimeSync0</td><td>CycleTimeSync0Factor</td></tr>
+        <tr><td>ShiftTimeSync0</td><td>ShiftTimeSync0Factor</td></tr> 
+        <tr><td>ShiftTimeSync0Input</td></tr>
+        <tr><td>CycleTimeSync1</td><td>CycleTimeSync1Factor</td></tr>
+        <tr><td>ShiftTimeSync1</td><td>ShiftTimeSync1Factor</td></tr>
+        </table>
+        </tt>
+
+        <p/>The values of CycleTimeSyncX and ShiftTimeSyncX are in nanoseconds.
+
+        <p/>These vector specifies the values for <tt>CycleTime0</tt> (ESC 0x9A0),
+        <tt>CycleTime1</tt> (ESC 0x9A4) and <tt>StartTime</tt> (ESC 0x990) for
+        the slave in nanoseconds and <tt>AssignActivate</tt> (ESC 0x980).
+
+        <p/>The value for <tt>CycleTime0</tt> is calculated as:
+<pre>if CycleTimeSync0 ~= 0
+        CycleTime0 = CycleTimeSync0
+else if CycleTimeSync0Factor &gt; 0
+        CycleTime0 = BlockSampleTime * 1e9 * CycleTimeSync0Factor
+else if CycleTimeSync0Factor &lt; 0
+        CycleTime0 = BlockSampleTime * 1e9 / -CycleTimeSync0Factor
+else
+        CycleTime0 = 0
+endif</pre>
+
+        The value for <tt>CycleTime1</tt> is calculated as:
+<pre>if CycleTimeSync1 ~= 0
+        T1 = CycleTimeSync1
+else if CycleTimeSync1Factor &gt; 0
+        T1 = CycleTime0 * CycleTimeSync1Factor
+else if CycleTimeSync1Factor &lt; 0
+        T1 = BlockSampleTime * 1e9 * -CycleTimeSync1Factor
+else
+        T1 = 0
+endif
+CycleTime1 = T1 - CycleTime0 + ShiftTimeSync1</pre>
+
+        The value for <tt>ShiftTime</tt> is calculated as:
+<pre>if ShiftTimeSync0Factor &gt; 0
+        ShiftTime = ShiftTimeSync0 + CycleTime0 *  ShiftTimeSync0Factor
+else if ShiftTimeSync0Factor &lt; 0
+        ShiftTime = ShiftTimeSync0 + CycleTime0 / -ShiftTimeSync0Factor
+else
+        ShiftTime = ShiftTimeSync0
+endif</pre>
+        The value of <tt>ShiftTime</tt> is used to calculate the start time of
+        the internal clocks.
+
+        <p/>Take particular note how the sign of factor chooses
+        BlockSampleTime or CycleTime0!
+
+        <p/>Usually it is a bad idea to use fixed times for cycle times
+        (<tt>CycleTimeSyncX</tt>). Using factors
+        (<tt>CycleTimeSyncXFactor</tt>) increases flexibility because it
+        relates to the model's sample time.
+
+        <p/>The values of <tt>ShiftTimeSync0Input</tt> and
+        <tt>ShiftTimeSync1Factor</tt> are ignored and reserved for future use.
+
+        <p/>Consult the EtherCAT documentation for further references
+        regarding the meaning of these values.
+
+        <a name="sampletime"><h3>Sample Time</h3></a>
+        The <tt>Sample Time</tt> is either a scalar or a vector with two
+        elements.
+
+        <p/>The first value of a vector or the scalar value sets the block's
+        sample time as follows:
+        <table>
+            <tr><td>-1</td><td>Inherited sample rate</td></tr>
+            <tr><td>0</td><td>Continuous/fastest sample rate</td></tr>
+            <tr><td>T</td><td>Discrete sample rate with period T</td></tr>
+        </table>
+
+        <p/>Data exchanged with slaves is organized in groups called domains.
+        Every sample time in a Simulink diagram has at least one domain,
+        domain<&nbsp;>0.
+
+        <p/>The second element of a vector in this field specifies the domain
+        identifier where a slave's data is grouped into.  The domain
+        identifier is any positive number.  The domain is 0 if a scalar is
+        entered for <tt>Sample Time</tt>.  The number of domains are
+        practically unlimited.  However, a small overhead is caused by every
+        domain.
+
+        <p/>All slaves having the same key <tt>[SampleTime Domain]</tt> reside
+        in the same domain.
+
+        <p/>Domains can be used to manage slaves. The <b>Domain State</b>
+        block in <tt>etherlab_lib/EtherCAT</tt> can be used to monitor if all
+        slaves in a domain are present or not.
+
+        <p/>Very rarely, some very simple unintelligent EtherCAT slaves cannot
+        handle domains having both input and output PDOs (from other slaves of
+        coarse). If the domain identifier is chosen carefully, a domain will
+        only consist of the one or other PDO direction, enabling these slaves
+        to be used.
+
+    </body>
+</html>

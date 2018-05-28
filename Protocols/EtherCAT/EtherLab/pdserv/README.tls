@@ -1,0 +1,114 @@
+# PdServ now comes with TLS. Inside it uses a kind of STARTTLS command, which
+# means that a separate TLS enabled port is not required.
+# 
+# TLS configuration is achieved using the "tls:" option. See details in the
+# example configuration file for options.
+# 
+# TLS requires certificates and keys, at least on the server side.  Client
+# authentication via TLS is also possible, then the client needs certificates
+# and keys as well. 
+#
+# This file can be used as a makefile to generate the required self signed
+# certificates and keys: make -f README.tls
+#
+# Deffie-Hellmann parameter file (dh.pem) is also generated. Precalculating
+# encryption parameters lets the server start much faster.
+#
+# Default template files are also generated, on which the certificates depend.
+# You can and should modify them, espicially checking the DNS name in
+# pdserv.template and call make again which will generate new certificates.
+#
+# PLEASE NOTE: the *.key files are critical and MUST BE KEPT PRIVATE, never
+# leave the host on which it should work, definately NOT be stored on ANY
+# medium other than the host's own private storage.  These files are the best
+# kept secret and company asset of public certification authorities like
+# Verisign and the like. Thus the *.key file must be generated only on the
+# host where it will be used and never leave it!  It is an important asset.  A
+# backup thereof must be on a medium whose sole purpose is to back up the
+# *.key file and then be locked up in a safe forever. This is possible because
+# the *.key files only change when they expire (every 20+ years or so), are
+# revoked or are compromised (and therefor subsequently revoked). The *.key
+# files also have 0600 access rights - it should not be changed.
+#
+# On the other hand, *.crt files are public knowledge and should be posted on
+# public billboards and be attached to every email. There is nothing secret
+# about them.
+#
+# A client certificate and key are generated as well as an example, but
+# because the client's key is now known to the server (see above), these
+# should not be used. Best take this script to the clients and create locally
+# self signed certificates there, passing the client's CA certificate
+# (client-ca.crt) to the pdserver. Or (if you know how to), you can generate a
+# certificate signing request on the client and have it signed by PdServ's CA
+# key (in which case you won't have a client-ca.crt to pass around)
+#
+# Copyright 2016 Richard Hacker
+# License: LGPL
+#
+
+all: pdserv-ca.key pdserv-ca.crt pdserv.key pdserv.crt dh.pem \
+    client-example.key client-example.crt
+	@echo "****************** FINISHED *******************"
+	@echo Now copy pdserv.key pdserv.crt dh.pem to the pdserv server.
+	@echo Set \"cert: /path/to/pdserv.crt\"
+	@echo and \"key: /path/to/pdserv.key\"
+	@echo and \"dh: /path/to/dh.pem\"
+	@echo in the configuration file under the \"tls:\" section
+	@echo
+	@echo Pass pdserv-ca.crt to the client and add it its CA list
+
+# KEY ###########################################################
+%.key:
+	@echo Generating $@ ...
+	certtool --generate-privkey --outfile $@
+	@echo
+
+# CA Certificate ################################################
+pdserv-ca.crt: pdserv-ca.key pdserv-ca.template
+	certtool --generate-self-signed \
+	    --load-privkey $< \
+	    --template pdserv-ca.template 2>/dev/null \
+	    | certtool -i --outfile $@
+
+# Server Certificate ###########################################
+pdserv.crt: pdserv-ca.key pdserv-ca.crt pdserv.key pdserv.template
+	certtool --generate-certificate \
+	    --load-privkey pdserv.key \
+	    --load-ca-certificate pdserv-ca.crt \
+	    --load-ca-privkey pdserv-ca.key \
+	    --template pdserv.template 2>/dev/null \
+	    | certtool -i --outfile pdserv.crt
+
+# Client Certificate ###########################################
+client-example.crt: pdserv-ca.key pdserv-ca.crt client-example.key client-example.template
+	certtool --generate-certificate \
+	    --load-privkey client-example.key \
+	    --load-ca-certificate pdserv-ca.crt \
+	    --load-ca-privkey pdserv-ca.key \
+	    --template client-example.template 2>/dev/null \
+	    | certtool -i --outfile client-example.crt
+
+pdserv-ca.template:
+	@echo Creating a default $@ ...
+	@echo "cn = PdServ Certification Authority" >> $@
+	@echo "ca" >> $@
+	@echo "cert_signing_key" >> $@
+	@echo "crl_signing_key" >> $@
+	@echo "expiration_days = 3650" >> $@
+
+pdserv.template:
+	@echo Creating a default $@ ...
+	@echo "cn = PdServ Server" >> $@
+	@echo "tls_www_server" >> $@
+	@echo "dns_name = $(shell hostname)" >> $@
+
+client-example.template:
+	@echo Creating a default $@ ...
+	@echo "cn = PdServ Client" >> $@
+
+# Deffie-Hellmann parameters ####################################
+dh.pem:
+	@echo Generate Deffie-Hellmann parameters...
+	certtool --generate-dh-params --outfile $@
+
+# vim: ft=make tw=78

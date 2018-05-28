@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!--
+vim:tw=78
+-->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>EtherLab :: murr_dio</title>
+        <link rel="stylesheet" href="docstyle.css" type="text/css">
+        <meta name="generator" content="DocBook XSL Stylesheets V1.52.2">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+        <meta name="toctype" content="ug">
+        <script language="JavaScript" src="docscripts.js"></script>
+    </head>
+    <body>
+        <a name="top_of_page"></a>
+        <p style="font-size:1px;">&nbsp;</p>
+        <h1>Murr Impact67 Digital IO Slave</h1>
+
+        This block adds support for Murr Digital IO field box.
+        The following Terminals are supported:
+        <center>
+            <table width="80%">
+                <tr><td>DI8DO8</td><td> 8 Input 8 Output Ports</td></tr>
+                <tr><td>DO16</td><td> 16 Output Ports</td></tr>
+                <tr><td>DO8</td><td> 8 Output Ports</td></tr>
+                <tr><td>DI16</td><td> 16 Input Ports</td></tr>
+            </table>
+        </center>
+
+
+        <h3>Common Slave Options</h3>
+        <ul>
+            <li><a href="general.html#address">Master</a></li>
+            <li><a href="general.html#slave">Slave Index</a></li>
+            <li><a href="general.html#model">Device Model</a></li>
+            <li><a href="general.html#vector">Vector Outputs</a></li>
+            <li><a href="general.html#sampletime">Sample Time</a></li>
+        </ul>
+
+        <h3>Port arrangement</h3>
+        <b>Vector IO</b> is enabled:<br/>
+        Input ports: If the model has output terminals (DI8DO8, DO16, DO8),
+        one input port will appear.
+
+        <p/>Output ports:
+        <ul>
+            <li>if the model has input terminals (DI8DO8, DI16), the first
+            port is the logical status of the input pin.
+            <li>Next follows a model status port. Depending on the model, this port
+            will have between 2 and 4 status bits.
+            <table cellspacing="15">
+                <tr><td>DI8DO8</td>
+                    <td>Undervoltage US<br/>
+                        Undervoltage UA<br/>
+                        Sensor Shortcut (global)<br/>
+                        Actuator Shortcut (global)
+                    </td>
+                </tr>
+                <tr><td>DO16/DO8</td>
+                    <td>Undervoltage US<br/>
+                        Undervoltage UA<br/>
+                        Actuator Shortcut (global)
+                    </td>
+                <tr><td>DI16</td>
+                    <td>Undervoltage US<br/>
+                        Sensor Shortcut (global)
+                    </td>
+            </table>
+            <li>Next follows a output terminal status port if the terminal has
+            outputs.
+        </ul>
+
+        If <b>Vector IO</b> is not enabled, the input and output ports will be
+        split up in the order listed above
+</html>

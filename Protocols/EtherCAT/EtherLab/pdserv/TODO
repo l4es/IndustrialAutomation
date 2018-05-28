@@ -1,0 +1,16 @@
+
+$Id$
+
+- Build buddy test only if buddy enabled
+- Move yaml library search to CMakeLists.txt in root dir.
+- Export hg information in dist tarball.
+- Improve FindMercurial macros (use hg parent).
+- Include AUTHORS, README, NEWS, etc. in dist tarball, installation and RPM.
+
+- MsrProto::XmlElement with implicit lock
+
+- Improve startup error reporting in pdserv_prepare()
+    - use semaphores/pipes/signals
+
+- Improve example
+- document yaml config file

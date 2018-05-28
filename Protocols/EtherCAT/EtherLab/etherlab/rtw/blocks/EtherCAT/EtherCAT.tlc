@@ -1,0 +1,175 @@
+%%
+%% Generic Routines to handle EtherCAT
+%% 
+%% Copyright (C) 2006
+%% Richard Hacker
+%% IgH Essen GmbH
+%% 
+%% License: GPL
+
+%addincludepath ".."
+%include "ETL.tlc"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function InitEtherCAT() void
+%% This function checks whether the EtherCAT system has been called once
+%% before already, which is demonstrated by the existance of variable 
+%% ::EtherCAT. If not, include C-header file for EtherCAT, 
+%% and declare a variable where the slave's data structure is placed 
+%% by EtherCAT when registering the slaves during mdlStart()
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %if EXISTS(CompiledModel.EtherCAT)
+    %return
+  %endif
+
+  %trace "Initializing EtherCAT Interface"
+
+  %<InitETL()>
+
+  %addtorecord CompiledModel EtherCAT { ...
+              MasterSampleTime [] ...
+              Pdo "pdo" ...
+              Slave "slave" ...
+              SlaveOwner "" ...
+              PDO_Map {} ...
+              SlaveCount 0 ...
+              model_c LibGetModelDotCFile() ...
+              }
+
+  %with CompiledModel
+
+    %% EtherCAT header
+    %<LibAddToCommonIncludes("<ecrt_support.h>")>
+    %<LibAddToCommonIncludes("<stdio.h>")>
+  
+    %openfile buf
+    const struct ec_slave *slave_head;
+    const struct ec_slave **slave_list = &slave_head;
+    /* Zero terminated list of sample times for EtherCAT */
+    unsigned int ec_st[%<ETL.NumSt>] = {
+    %foreach tid = ETL.NumSt
+        %assign EtherCAT.MasterSampleTime = EtherCAT.MasterSampleTime + 0.0
+        %assign StepSize = LibGetClockTickStepSize(tid + LibGetTID01EQ())
+        %<CAST("Unsigned", StepSize*1000000000 + 0.5)>,
+    %endforeach
+    };
+    %closefile buf
+    %<LibMdlStartCustomCode(buf, "header")>
+
+    %openfile buf
+  
+    /* Starting EtherCAT subsystem */
+    if ((%<ETL.ErrStr> = ecs_start(slave_head, ec_st, %<ETL.NumSt>, \
+                %<LibIsSingleTasking()>))) {
+          snprintf(%<ETL.ErrMsg>, sizeof(%<ETL.ErrMsg>), 
+             "Starting EtherCAT subsystem failed: %s", %<ETL.ErrStr>);
+          %<LibSetRTModelErrorStatus("%<ETL.ErrMsg>")>;
+          return;
+    }
+    %closefile buf
+    %<LibMdlStartCustomCode(buf, "trailer")>
+  
+    %openfile buf
+  
+    /* Shutting down EtherCAT subsystem */
+    ecs_end(%<ETL.NumSt>);
+    %closefile buf
+    %<LibMdlTerminateCustomCode(buf, "execution")>
+  
+  %endwith
+
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function GetEtherCATId()
+%% Every EtherCAT slave calls InitEtherCAT, where a unique Id is generated
+%% per slave. This function returns the Id
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %assign CompiledModel.EtherCAT.SlaveCount = ...
+              CompiledModel.EtherCAT.SlaveCount + 1
+  %return CompiledModel.EtherCAT.SlaveCount
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function InitEtherCATTask( block, system) void
+%% Make sure the domain for the block's sample time exists
+%% Return: Idx : index in EtherCAT.Task[Idx]
+%%                      correspondig to block's Tid
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %with EtherCAT
+
+    %%%trace "LibIsSingleTasking %<LibIsSingleTasking()>
+    %%%trace "LibIsSingleRateModel %<LibIsSingleRateModel()>"
+    %%%trace "LibNumAsynchronousSampleTimes %<LibNumAsynchronousSampleTimes()>"
+    %%%trace "LibNuEmDiscreteSampleTimes %<LibNumDiscreteSampleTimes()>"
+
+    %%%foreach tid = LibNumDiscreteSampleTimes()
+    %%    %trace CONCAT("======= Sample time %<tid>", ...
+    %%           "LibIsContinuous %<LibIsContinuous(tid)>", ...
+    %%           "LibIsDiscrete %<LibIsDiscrete(tid)>", ...
+    %%           "LibTriggeredTID %<LibTriggeredTID(tid)>", ...
+    %%           "LibGetClockTickStepSize %<LibGetClockTickStepSize(tid)>", ...
+    %%           "LibAsynchronousTriggeredTID %<LibAsynchronousTriggeredTID(tid)>", ...
+    %%           "LibGetClockTickDataTypeId %<LibGetClockTickDataTypeId(tid)>")
+    %%%endforeach 
+
+    %% Get RTW Task ID of the block
+    %assign tid = LibGetGlobalTIDFromLocalSFcnTID(0)
+
+    %assign ETL_tid = ETL.tid[tid]
+
+    %% And the Step Size thereof
+    %assign Ts = LibGetClockTickStepSize(tid)
+
+    %if !LibNumDiscreteSampleTimes()
+      %assign msg = "Sample Time: There are no discrete sample times defined\n" + \
+        "Check Fixed-step size in the Solver pane of Configuration Parameters"
+      %exit %<msg>
+    %endif
+
+    %if MasterSampleTime[ETL_tid]
+      %return ETL_tid
+    %endif
+
+    %% No domain exists with this Task Id
+
+    %assign MasterSampleTime[ETL_tid] = Ts
+
+    %trace "Added new Task for SampleTime %<Ts> @ %<ETL_tid>"
+
+    %% Note: LibIsSampleHit() is undocumented!
+    %if ETL.tid[tid] || !LibIsContinuous(0)
+      %assign SendCondition = "%<LibIsSampleHit(tid)>"
+    %else
+      %assign SendCondition = "%<LibTID()> == 0 && %<LibIsMajorTimeStep()>"
+    %endif
+
+    %openfile buf
+
+    /* EtherCAT Process for Sample Time [%<Ts>] */
+    if (%<SendCondition>) {
+      ecs_receive(%<ETL_tid>);
+      #ifdef ASYNC_ECAT
+      ecs_send(%<ETL_tid>);
+      #endif
+    }
+    %closefile buf
+    %<LibSystemOutputCustomCode(system,buf,"execution")>
+
+    %openfile buf
+
+    /* EtherCAT Queue for Sample Time [%<Ts>] */
+    #ifndef ASYNC_ECAT
+    if (%<SendCondition>) {
+      ecs_send(%<ETL_tid>);
+    }
+    #endif
+    %closefile buf
+    %<LibSystemUpdateCustomCode(system,buf,"trailer")>
+
+  %endwith
+
+  %return ETL_tid
+%endfunction

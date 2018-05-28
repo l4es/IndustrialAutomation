@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+
+$Id$
+
+vim700: spelllang=en spell
+
+-------------------------------------------------------------------------------
+
+- Pd::Graph
+    - Set trigger
+    - getValues()
+- Pd::Digital
+    - calculate border with to get textRect.
+- Do not call clearData() when changing variable connection.
+- Emit ScalarVariable::disconnected() signal.
+
+- Exceptions and message handling.
+- Implement default values for all widgets, if not connected.
+
+-------------------------------------------------------------------------------

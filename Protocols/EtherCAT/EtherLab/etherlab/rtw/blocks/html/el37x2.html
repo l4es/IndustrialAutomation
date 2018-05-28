@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!--
+vim:tw=78
+-->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>EtherLab :: EL37x2</title>
+        <link rel="stylesheet" href="docstyle.css" type="text/css">
+        <meta name="generator" content="DocBook XSL Stylesheets V1.52.2">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+        <meta name="toctype" content="ug">
+        <script language="JavaScript" src="docscripts.js"></script>
+    </head>
+    <body>
+        <h1>Beckhoff EL37x2 XFC oversampling analog input</h1>
+
+        The EL37x2 family of input slaves are oversampling slaves capable of
+        sampling an analog input faster than the model's sample time.
+
+        Supported slaves are:
+        <ul>
+          <li>EL3702: +-10V voltage input</li>
+          <li>EL3742: 0..20mA current input</li>
+        </ul>
+
+        The channels are presented as a vector for further processing.
+
+        <p/>Apart from the <a href="general.html">common slave options</a>, the
+        following options configure the slave:
+
+        <h3>1 Ch. only</h3>
+        Only use first input channel (reduces EtherCAT frame size)
+
+        <h3>Oversampling configuration</h3>
+        Oversampling is configured by the ratio of CycleTimeSync1 to
+        CycleTimeSync0, where CycleTimeSync1 is an integer multiple (=
+        oversampling factor) of CycleTimeSync0. Moreover, CycleTimeSync1 is
+        the block's sample time.
+        
+        <p/>This is automatically taken care of when choosing one of the
+        predefined oversampling modes. By choosing <tt>Custom</tt>, the values
+        can be set by the user, taking meticulous care not to choose any
+        incorrect modes.
+
+        <p/>Specifically, the overampling factor is set by the (negative) value of
+        <tt>CycleTimeSync0:Factor</tt>, while keeping <tt>CycleTimeSync0</tt>,
+        <tt>CycleTimeSync1</tt> and <tt>ShiftTimeSync1</tt> at zero and
+        <tt>CycleTimeSync1:Factor</tt> at -1.
+
+        <p/>The user should only try his luck on <tt>ShiftTimeSync0</tt> and
+        <tt>ShiftTimeSync0:Factor</tt>
+    </body>
+</html>

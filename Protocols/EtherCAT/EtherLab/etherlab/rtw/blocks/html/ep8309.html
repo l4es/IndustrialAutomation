@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!--
+vim:tw=78
+-->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>EtherLab :: EP8309</title>
+        <link rel="stylesheet" href="docstyle.css" type="text/css">
+        <meta name="generator" content="DocBook XSL Stylesheets V1.52.2">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+        <meta name="toctype" content="ug">
+        <script language="JavaScript" src="docscripts.js"></script>
+    </head>
+    <body>
+        <a name="top_of_page"></a>
+        <p style="font-size:1px;">&nbsp;</p>
+        <h1>Beckhoff EP8309 Multifunctional I/O EtherCAT BOX</h1>
+
+        <b>Warning:</b> This slave is very complex, so read the <a
+            href="http://http://download.beckhoff.com/download/Document/FieldbusBox/EP8309-1022en.chm">documentation</a>.
+        This contains information how to configure and use the slave, which
+        PDO's to choose and the correspondig CoE objects to configure.
+
+        <p/> Configure the slave by choosing the appropriate modes in the
+        <b>Digital</b>, <b>Analog Input</b>, <b>Tacho</b> and <b>Analog Out</b>
+        tabs. The appropriate CoE objects to configure are blended in accoding
+        to the selection. For a description of the object consult the
+        documentation.
+
+        <p/> The ports are added sequencially for every PDO that is enabled.
+        One port is added for every PDO Entry, with the exception are boolean
+        PDO Entries which are grouped into a boolean vector per PDO.
+
+        <!-- ########################################### -->
+        <h2>Digital</h2>
+        Select <b>Digital Input</b>, <b>Digital Output</b> or <b>Device
+        Status</b>.
+
+        <p/>Although the PDO's are mandatory, the block's ports will be added
+        depending on selection.
+    
+        <p/>The following input ports are added for <b>Digital Output</b>
+        <table cellspacing="0" width="100%">
+            <tr><th width="13%">PDO</th>
+                <th width="20%">Index</th>
+                <th width="13%">Type</th>
+                <th width="13%">Name</th>
+                <th width="40%">Signals</th>
+            </tr>
+            <tr>
+                <td>#x1601</td>
+                <td>#x7040:1..8</td>
+                <td>bool[8]</td>
+                <td>DigIn</td>
+                <td>Digital value</td>
+            </tr>
+        </table>
+
+        <p/>The following output ports are added for <b>Digital Input</b>.
+        <table cellspacing="0" width="100%">
+            <tr><th width="13%">PDO</th>
+                <th width="20%">Index</th>
+                <th width="13%">Type</th>
+                <th width="13%">Name</th>
+                <th width="40%">Signals</th>
+            </tr>
+            <tr>
+                <td>#x1a05</td>
+                <td>#x6040:1..8</td>
+                <td>bool[8]</td>
+                <td>DigIn</td>
+                <td>Digital value</td>
+            </tr>
+        </table>
+
+        <p/>The following output ports are added for <b>Device Status</b>
+        <table cellspacing="0" width="100%">
+            <tr><th width="13%">PDO</th>
+                <th width="20%">Index</th>
+                <th width="13%">Type</th>
+                <th width="13%">Name</th>
+                <th width="40%">Signals</th>
+            </tr>
+            <tr>
+                <td>#x1a08</td>
+                <td>#xf611:1..2</td>
+                <td>bool[2]</td>
+                <td>DevStat</td>
+                <td>Undervoltage Us, Up</td>
+            </tr>
+        </table>
+
+        <!-- ########################################### -->
+        <h2>Analog Input</h2>
+        Check <b>Analog Input</b> to activate both channels.
+
+        <p/>Choose appropriate <a href="general.html#o_scale">Output
+            Scale/Offset/Filter</a>
+
+        <p/>The following output ports are added:
+        <table cellspacing="0" width="100%">
+            <tr><th width="13%">PDO</th>
+                <th width="15%">Index</th>
+                <th width="25%">Type</th>
+                <th width="13%">Name</th>
+                <th width="40%">Signals</th>
+            </tr>
+            <tr>
+                <td>#x1a00</td>
+                <td>#x6000:16</td>
+                <td>INT16/double[2](*)</td>
+                <td>AIn</td>
+                <td>Analog value Ch.1, 2</td>
+            </tr>
+            <tr>
+                <td>#x1a01</td>
+                <td>#x6010:16</td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td>#x1a00</td>
+                <td>#x6000:7</td>
+                <td>bool[2]</td>
+                <td>AInStat</td>
+                <td>Error Ch.1, 2</td>
+            </tr>
+            <tr>
+                <td>#x1a01</td>
+                <td>#x6010:7</td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+        </table>
+
+        <p/>*) See <a href="general.html#o_scale">Output
+            Scale/Offset/Filter</a>
+
+        <!-- ########################################### -->
+        <h2>Tacho</h2>
+        Choose one of <b>Single shaft</b> or <b>Dual shaft</b> to activate
+        tacho input.
+
+        <p/><em>Note: </em>CoE configuration option #x80XX:15 allows a
+        presentation to be selected. With this object, the granularity and
+        range is chosen. The output port uses a gain value that reverses the
+        calculation to present the user a consistent value.
+
+        <p/>The following input ports are added:
+        <table cellspacing="0" width="100%">
+            <tr><th width="13%">PDO</th>
+                <th width="20%">Index</th>
+                <th width="13%">Type</th>
+                <th width="13%">Name</th>
+                <th width="40%">Signals</th>
+            </tr>
+            <tr>
+                <td>#x1600</td>
+                <td>#x7020:9</td>
+                <td>bool</td>
+                <td>TachoCtl</td>
+                <td>Reset Tacho</td>
+            </tr>
+        </table>
+
+        <p/>The following output ports are added for <b>Single shaft</b>
+        <table cellspacing="0" width="100%">
+            <tr><th width="13%">PDO</th>
+                <th width="20%">Index</th>
+                <th width="13%">Type</th>
+                <th width="20%">Name</th>
+                <th width="40%">Signals</th>
+            </tr>
+            <tr>
+                <td>#x1a02</td>
+                <td>#x6037:11</td>
+                <td>double</td>
+                <td>Tacho</td>
+                <td>Value</td>
+            </tr>
+            <tr>
+                <td>#x1a02</td>
+                <td>#x6037:2..5</td>
+                <td>bool[4]</td>
+                <td>TachoStat</td>
+                <td>Error IN A</td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td>Status IN A</td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td>Error IN B</td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td>Status IN B</td>
+            </tr>
+        </table>
+
+        <p/>The following output ports are added for <b>Dual shaft</b>
+        <table cellspacing="0" width="100%">
+            <tr><th width="13%">PDO</th>
+                <th width="20%">Index</th>
+                <th width="13%">Type</th>
+                <th width="20%">Name</th>
+                <th width="40%">Signals</th>
+            </tr>
+            <tr>
+                <td>#x1a03</td>
+                <td>#x6020:11</td>
+                <td>double[2]</td>
+                <td>Tacho</td>
+                <td>Value 1, 2</td>
+            </tr>
+            <tr>
+                <td>#x1a04</td>
+                <td>#x6030:11</td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td>#x1a03</td>
+                <td>#x6020:1</td>
+                <td>bool[2]</td>
+                <td>TachoStat</td>
+                <td>Status IN A, B</td>
+            </tr>
+            <tr>
+                <td>#x1a04</td>
+                <td>#x6030:1</td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+        </table>
+
+
+        <!-- ########################################### -->
+        <h2>Analog Output</h2>
+        Choose between <b>Current</b> or <b>PWM</b>.
+
+        <p/>Choose appropriate <a href="general.html#i_scale">Input Scale</a>
+
+        <p/>The following input ports are added for <b>Current</b>
+        <table cellspacing="0" width="100%">
+            <tr><th width="13%">PDO</th>
+                <th width="15%">Index</th>
+                <th width="25%">Type</th>
+                <th width="13%">Name</th>
+                <th width="40%">Signals</th>
+            </tr>
+            <tr>
+                <td>#x1603</td>
+                <td>#x7060:11</td>
+                <td>UINT16/double(*)</td>
+                <td>AOut</td>
+                <td>Analog value</td>
+            </tr>
+        </table>
+
+        <p/>The following input ports are added for <b>PWM</b>
+        <table cellspacing="0" width="100%">
+            <tr><th width="13%">PDO</th>
+                <th width="20%">Index</th>
+                <th width="25%">Type</th>
+                <th width="13%">Name</th>
+                <th width="40%">Signals</th>
+            </tr>
+            <tr>
+                <td>#x1602</td>
+                <td>#x7050:11</td>
+                <td>UINT16/double(*)</td>
+                <td>PWM</td>
+                <td>Analog value</td>
+            </tr>
+            <tr>
+                <td>#x1602</td>
+                <td>#x7050:1,6,7</td>
+                <td>bool[3]</td>
+                <td>PWMCtl</td>
+                <td>Dithering,Enable,Reset</td>
+            </tr>
+        </table>
+
+        <p/>The following output ports are added for <b>PWM</b>
+        <table cellspacing="0" width="100%">
+            <tr><th width="10%">PDO</th>
+                <th width="15%">Index</th>
+                <th width="10%">Type</th>
+                <th width="13%">Name</th>
+                <th width="40%">Signals</th>
+            </tr>
+            <tr>
+                <td>#x1a06</td>
+                <td>#x6050:5..7</td>
+                <td>bool[3]</td>
+                <td>PWMStat</td>
+                <td>Ready,Warning,Error</td>
+            </tr>
+        </table>
+
+        <p/>*) See <a href="general.html#i_scale">Input Scale</a>
+
+        <h3>Common Slave Options</h3>
+        <ul>
+            <li><a href="general.html#address">Master</a></li>
+            <li><a href="general.html#slave">Slave Index</a></li>
+            <li><a href="general.html#model">Device Model</a></li>
+            <li><a href="general.html#sampletime">Sample Time</a></li>
+        </ul>
+</html>

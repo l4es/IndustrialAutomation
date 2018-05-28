@@ -1,0 +1,3038 @@
+2013-10-10  Richard Hacker  <lerichi@gmx.net>
+
+	* src/buddy/Event.cpp, src/buddy/Main.cpp, src/lib/Main.cpp,
+	src/lib/Task.cpp, src/msrproto/Session.cpp,
+	src/supervisor/Server.cpp, test/datatype.cpp, test/parser.cpp,
+	test/test1.cpp, test/xmlwriter.cpp:
+	Fixed compiler warnings
+	[86d2981a1092] [tip]
+
+	* CMakeLists.txt, src/CMakeLists.txt, src/test_headers.c:
+	Improved detection of struct members for buddy
+	[b45d02e43fb1]
+
+2013-10-08  Richard Hacker  <lerichi@gmx.net>
+
+	* CMakeLists.txt, src/CMakeLists.txt:
+	Removed unnecessary compile definitions that made cross-compiling
+	impossible
+	[4153b55cc1c4]
+
+2013-10-07  ha  <ha@lanserv.awi-neumayer.de>
+
+	* src/DataType.cpp:
+	Fixed typecast warning
+	[d0d17514a11d]
+
+2013-09-18  Richard Hacker  <ha@igh.de>
+
+	* src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h:
+	Fixed memory leak where session disconnects did not release all
+	memory
+	[b42d1118ae58]
+
+2013-09-11  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/XmlElement.cpp:
+	Fixed bug where outputting vectors was incorrect
+	[72a513894ab3]
+
+2013-08-13  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Session.cpp, src/msrproto/Session.h:
+	Added <remote_host polite> so that the process does not send any
+	messages by itself
+	[b373f2625c6c]
+
+	* src/Main.cpp:
+	Parameter write failure not logged any more
+	[1fe2218212fa]
+
+	* src/msrproto/Session.cpp, src/msrproto/XmlElement.cpp:
+	Moved <ack id=..> to Server.cpp
+	[8b976ecd9bad]
+
+2013-08-03  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/DirectoryNode.cpp, src/msrproto/Event.cpp,
+	src/msrproto/Event.h, src/msrproto/FindFirstOf.h,
+	src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/Subscription.cpp, src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h, src/msrproto/Variable.cpp,
+	src/msrproto/XmlElement.cpp, src/msrproto/XmlElement.h,
+	test/test1.cpp, test/xmlwriter.cpp:
+	Reworked the msr XML output stream
+	[d382e3d13031]
+
+2013-07-25  ha  <ha@newton.igh-essen.int>
+
+	* CMakeLists.txt, cmake/compat/FindGNUInstallDirs.cmake,
+	cmake/compat/GNUInstallDirs.cmake:
+	Improved GNUInstallDirs inclusion
+	[ec178bcca8e2]
+
+2013-07-22  ha  <ha@ernie.igh-essen.int>
+
+	* CMakeLists.txt, cmake/compat/FindGNUInstallDirs.cmake:
+	Added GNUInstallDirs for cmake < 2.8
+	[b1fa711f23bd]
+
+2013-06-28  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt, src/msrproto/Event.cpp, src/msrproto/Event.h,
+	src/msrproto/OStream.cpp, src/msrproto/OStream.h,
+	src/msrproto/Parameter.cpp, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h, test/xmlwriter.cpp:
+	Removed unnecessary output stream locking
+	[2356b9e48610]
+
+2013-06-27  Richard Hacker  <lerichi@gmx.net>
+
+	* src/buddy/EventQ.cpp, src/lib/Main.cpp, src/msrproto/Server.cpp,
+	src/msrproto/Server.h, src/msrproto/Session.cpp,
+	src/msrproto/Session.h:
+	Prevent inter-session locking issues
+	[526d16437ed9]
+
+2013-06-26  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Session.cpp:
+	<rk> supplies values again Timeout when write takes too long
+	[7bf4e8a631bd]
+
+2013-06-19  Richard Hacker  <lerichi@gmx.net>
+
+	* src/buddy/Signal.cpp, src/msrproto/Parameter.cpp,
+	src/msrproto/Session.cpp:
+	Removed value='' attribute for <rk> and <rp>
+	[fa054c1b954f]
+
+2013-06-13  Richard Hacker  <lerichi@gmx.net>
+
+	* INSTALL:
+	Updated INSTALL instructions
+	[2c33d0eed64f]
+
+	* src/Main.cpp, src/lib/Main.cpp, src/msrproto/Server.cpp,
+	src/msrproto/Session.cpp, src/supervisor/Server.cpp:
+	Added missing headers for log4cplus for newer compilers
+	[c6a189ec5dc6]
+
+2013-06-08  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Subscription.cpp, src/msrproto/Subscription.h,
+	src/msrproto/SubscriptionManager.cpp, test/test1.cpp:
+	Fixed incorrect behaviour in MSR where empty data tags d="" were
+	sent for event subscriptions
+	[49f3d1071ebf]
+
+2013-05-15  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/OStream.cpp, src/msrproto/OStream.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	test/xmlwriter.cpp:
+	Simplified xmlstream in MSR
+	[e0958c7a5354]
+
+	* src/msrproto/Session.cpp:
+	Removed MSR <info> broadcast when new session connects
+	[095784f15675]
+
+	* pdserv.conf, src/msrproto/Session.cpp:
+	Locking fixed on MSR session initialize
+	[71dfbdb09219]
+
+2013-04-17  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Server.cpp:
+	Fixed bug where <pu> for single elements of a vector was not emitted
+	[d2ee78c9cde2]
+
+2013-04-01  lan  <lan@lansim.igh-essen.int>
+
+	* src/CMakeLists.txt, src/buddy/Main.cpp, src/buddy/Main.h,
+	src/buddy/buddy.conf, src/buddy/main.cpp, src/msrproto/Event.cpp,
+	src/msrproto/Session.cpp, src/supervisor/Server.cpp:
+	Buddy configured for log4cplus
+	[e841a5ed38ce]
+
+2013-03-31  Richard Hacker  <lerichi@gmx.net>
+
+	* CMakeLists.txt, INSTALL, cmake/Modules/FindLog4Cpp.cmake,
+	cmake/Modules/FindLog4cplus.cmake, config.h.in, pdserv.conf,
+	src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/buddy/Event.cpp,
+	src/buddy/Main.cpp, src/buddy/Main.h, src/buddy/main.cpp,
+	src/lib/Main.cpp, src/lib/Main.h, src/lib/SessionTaskData.cpp,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/supervisor/Server.cpp, src/supervisor/Server.h,
+	src/test_headers.c, test/CMakeLists.txt, test/test1.cpp:
+	Replaced logging subsystem with log4cplus
+	[05483eefdcbc]
+
+2013-03-29  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/libpdserv.pc.in:
+	Updated pkg-config files
+	[0d13e21f6a52]
+
+2013-03-12  Richard Hacker  <ha@igh-essen.com>
+
+	* CMakeLists.txt, include/CMakeLists.txt, src/CMakeLists.txt:
+	Using standard cmake installation paths. Default installation to
+	/usr/local
+	[28bf05b7b89d]
+
+2013-03-06  Richard Hacker  <ha@igh-essen.com>
+
+	* CMakeLists.txt, src/CMakeLists.txt, test/CMakeLists.txt:
+	cmake configuration
+	[c0318c00b6d3]
+
+2013-03-03  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/DirectoryNode.cpp, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/XmlParser.cpp,
+	src/msrproto/XmlParser.h, test/CMakeLists.txt, test/parser.cpp:
+	Optimized XML Parser
+	[c11c0b9caf18]
+
+2013-02-28  Richard Hacker  <lerichi@gmx.net>
+
+	* include/pdserv.h, src/Event.cpp, src/Event.h, src/lib/Event.cpp,
+	src/lib/Event.h, src/lib/Main.cpp, src/lib/Main.h,
+	src/lib/interface.cpp, src/msrproto/Event.cpp, src/msrproto/Event.h,
+	src/msrproto/Session.cpp, src/supervisor/Server.cpp, test/test1.cpp:
+	Events defined with a path instead of a numeric identifier
+	[348125436f32]
+
+	* src/msrproto/Event.cpp, src/msrproto/Event.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h:
+	Reduced/simplified MSR event handling
+	[c0b6c3dfd93f]
+
+2013-02-27  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Main.cpp, src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/supervisor/Server.cpp, src/supervisor/Server.h:
+	Simplified configuration. Removed default configuration option
+	[bf4eef72dbcd]
+
+	* include/pdserv.h, src/Event.cpp, src/Event.h, src/lib/Event.cpp,
+	src/lib/Event.h, src/lib/interface.cpp, src/msrproto/Event.cpp,
+	src/supervisor/Server.cpp, test/test1.cpp:
+	Events are greatly simplified. No message formatting any more
+	[a26da74c9e98]
+
+2013-01-29  Florian Pose  <fp@igh-essen.com>
+
+	* .hgtags:
+	Added tag release-1.0.0 for changeset 61f91b55ab3c
+	[c2d5f2a21d9b]
+
+	* CMakeLists.txt, ChangeLog, NEWS:
+	Version 1.0.0.
+	[61f91b55ab3c] [release-1.0.0]
+
+2012-12-18  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt, src/etlproto/Action.cpp, src/etlproto/Action.h,
+	src/etlproto/Directory.cpp, src/etlproto/Directory.h,
+	src/etlproto/Server.cpp, src/etlproto/Server.h,
+	src/etlproto/Session.h:
+	Refined list action
+	[18e49fc7ddf7] <EtlProto>
+
+2012-12-17  Florian Pose  <fp@igh-essen.com>
+
+	* src/msrproto/SubscriptionManager.cpp:
+	Fixed duplicate variable declaration.
+	[7b7ccc9c8b3f]
+
+	* src/msrproto/Variable.cpp:
+	Merge.
+	[ba6450034486]
+
+2012-12-17  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Variable.cpp:
+	Applied patch from rev 394:e42112d97662
+	[19d6cc235e2f]
+
+	* src/msrproto/Variable.cpp:
+	Removed duplicate unit='' from MSR variable stream
+	[e42112d97662] <EtlProto>
+
+	* src/etlproto/Action.cpp, src/etlproto/Action.h,
+	src/etlproto/ProtocolLayer.h, src/etlproto/Session.cpp:
+	Using ticket instead of transaction
+	[216e59c26021] <EtlProto>
+
+2012-12-12  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt, src/etlproto/Action.cpp, src/etlproto/Action.h,
+	src/etlproto/IOBuffer.cpp, src/etlproto/IOBuffer.h,
+	src/etlproto/ProtocolLayer.cpp, src/etlproto/ProtocolLayer.h,
+	src/etlproto/Server.cpp, src/etlproto/Session.cpp,
+	src/etlproto/Session.h:
+	LIST command working.
+	[56f993c72e13] <EtlProto>
+
+2012-12-14  Florian Pose  <fp@igh-essen.com>
+
+	* merge
+	[197caf21fbe2]
+
+2012-12-09  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h,
+	src/msrproto/Server.cpp, test/test1.cpp:
+	Framing input stream working
+	[d303a6291b63] <EtlProto>
+
+	* EtlProto branch
+	[572f8f4940a2] <EtlProto>
+
+	* src/msrproto/Server.cpp:
+	Fixed another locking issue
+	[e30dc4d7ec54]
+
+	* src/etlproto/IOBuffer.cpp, src/etlproto/IOBuffer.h,
+	src/etlproto/ProtocolLayer.cpp, src/etlproto/ProtocolLayer.h,
+	src/etlproto/Server.cpp, src/etlproto/Server.h,
+	src/etlproto/Session.cpp, src/etlproto/Session.h:
+	IO Buffering OK
+	[4e0cf1fcfc76]
+
+2012-11-25  Richard Hacker  <lerichi@gmx.net>
+
+	* TODO:
+	TODO
+	[3c29ad4177e8]
+
+	* include/pdserv.h:
+	Cleaned up interface
+	[709b33e4dd29]
+
+	* src/Event.cpp:
+	Typecast for index
+	[ada6ce6d9d1a]
+
+	* test/test1.cpp:
+	Bug in example causes segv
+	[0efd28558ec4]
+
+2012-12-14  Florian Pose  <fp@igh-essen.com>
+
+	* src/msrproto/Variable.cpp:
+	Removed duplicate unit attribute.
+	[f3f04852fb7a]
+
+2012-11-08  Richard Hacker  <ha@igh-essen.com>
+
+	* include/pdserv.h:
+	Fixed compile time bug
+	[31473c44d4c8]
+
+2012-11-06  lan  <lan@lansim.igh-essen.int>
+
+	* pdserv.conf, src/Event.cpp, src/buddy/Event.cpp, src/buddy/Event.h,
+	src/buddy/Main.cpp, src/supervisor/Server.cpp:
+	Refined event logging for buddy
+	[f6d0893a35fb]
+
+2012-11-06  Richard Hacker  <lerichi@gmx.net>
+
+	* include/pdserv.h, src/CMakeLists.txt, src/Event.cpp, src/Event.h,
+	src/Main.cpp, src/Main.h, src/lib/Event.cpp, src/lib/Event.h,
+	src/lib/Main.cpp, src/lib/Main.h, src/lib/interface.cpp,
+	src/supervisor/Server.cpp, src/supervisor/Server.h, test/test1.cpp:
+	Events are logged
+	[d145d483d08a]
+
+	* src/buddy/EventQ.cpp:
+	Removed obsolete #includes
+	[1be8dfe5c224]
+
+	* include/pdserv.h, pdserv.conf, src/CMakeLists.txt, src/Config.cpp,
+	src/Config.h, src/Event.cpp, src/Event.h, src/Main.h,
+	src/buddy/Event.cpp, src/buddy/Event.h, src/buddy/EventQ.cpp,
+	src/buddy/EventQ.h, src/buddy/Main.cpp, src/buddy/Main.h,
+	src/buddy/Signal.cpp, src/buddy/main.cpp, src/lib/Main.cpp,
+	src/lib/Main.h, src/lib/interface.cpp, src/msrproto/Event.cpp,
+	src/msrproto/Event.h, src/msrproto/Server.cpp,
+	src/msrproto/Session.cpp, test/test1.cpp:
+	Events in buddy
+	[8cdb0c5e22e8]
+
+2012-11-03  Richard Hacker  <lerichi@gmx.net>
+
+	* include/pdserv.h, pdserv.conf, src/CMakeLists.txt, src/Config.cpp,
+	src/Config.h, src/Event.cpp, src/Event.h, src/Main.cpp, src/Main.h,
+	src/Session.cpp, src/Session.h, src/SessionTaskData.cpp,
+	src/lib/Event.cpp, src/lib/Event.h, src/lib/Main.cpp,
+	src/lib/Main.h, src/lib/SessionData.cpp, src/lib/SessionData.h,
+	src/lib/ShmemDataStructures.h, src/lib/interface.cpp,
+	src/msrproto/Event.cpp, src/msrproto/Event.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, test/test1.cpp:
+	Added events to pdserv
+	[3921eb4ee2b8]
+
+2012-11-02  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt, src/SessionTaskData.h:
+	Removed obsolete files
+	[3f5305e3e7f0]
+
+2012-11-01  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Session.cpp:
+	Improved lock for broadcasts
+	[13b4473aa49e]
+
+	* src/msrproto/Session.cpp:
+	merge
+	[09bc7ca0bd4d]
+
+	* src/msrproto/Session.cpp, src/msrproto/Session.h:
+	Fixed memory leak on every network disconnect
+	[21e7b657a99c]
+
+2012-11-01  Florian Pose  <fp@igh-essen.com>
+
+	* src/msrproto/Channel.cpp, src/msrproto/Session.cpp:
+	merge.
+	[8090f7c4bb34]
+
+	* .hgignore:
+	Added some ignores.
+	[25b7907e8a0a]
+
+	* src/msrproto/Session.cpp:
+	Fixed locking for all kinds of MSR broadcasts.
+	[246998c4e118]
+
+	* src/msrproto/Channel.cpp:
+	Minor change.
+	[1617b356d66f]
+
+2012-10-28  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/DirectoryNode.cpp, src/msrproto/DirectoryNode.h,
+	src/msrproto/HyperDirNode.cpp, src/msrproto/HyperDirNode.h:
+	Added missing files
+	[5da246ded50a]
+
+	* cmake/Modules/FindYaml.cmake, pdserv.conf, src/CMakeLists.txt,
+	src/Config.cpp, src/Config.h, src/DataType.cpp, src/DataType.h,
+	src/Parameter.cpp, src/Parameter.h, src/Variable.cpp,
+	src/buddy/main.cpp, src/lib/Main.cpp, src/msrproto/Channel.cpp,
+	src/msrproto/Channel.h, src/msrproto/Parameter.cpp,
+	src/msrproto/Parameter.h, src/msrproto/Server.cpp,
+	src/msrproto/Server.h, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/StatSignal.cpp,
+	src/msrproto/StatSignal.h, src/msrproto/TimeSignal.cpp,
+	src/msrproto/TimeSignal.h, src/msrproto/Variable.cpp,
+	src/msrproto/Variable.h, test/test1.cpp:
+	Reworked directory tree in msrproto
+	[4bcce32e151c]
+
+	* src/buddy/SignalInfo.cpp:
+	Fixed path creating in buddy
+	[eeb6a75c04f7]
+
+	* include/pdserv.h, src/lib/interface.cpp:
+	Minor change to interface
+	[eff8e19bfca4]
+
+2012-10-19  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/Main.cpp:
+	Loading config file as early as possible
+	[113889a23b66]
+
+2012-10-09  Richard Hacker  <ha@igh-essen.com>
+
+	* TODO:
+	TODO
+	[244a025000c6]
+
+2012-09-27  Richard Hacker  <lerichi@gmx.net>
+
+	* include/pdserv.h, src/Config.cpp, src/Config.h, src/Main.cpp,
+	src/lib/Main.cpp, src/lib/Main.h, src/lib/interface.cpp:
+	Added configuration option for lib
+	[7e4a6cfe62fa]
+
+2012-09-26  Richard Hacker  <lerichi@gmx.net>
+
+	* CMakeLists.txt, src/DataType.cpp, src/DataType.h, src/Main.cpp,
+	src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/Server.cpp, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/Subscription.cpp,
+	src/msrproto/Variable.cpp, src/msrproto/Variable.h,
+	src/msrproto/XmlElement.cpp, test/datatype.cpp:
+	Parameter changing of compounds working
+	[c58a1782747c]
+
+2012-09-23  Richard Hacker  <lerichi@gmx.net>
+
+	* pdserv.conf, src/Main.cpp, src/Main.h, src/Parameter.h,
+	src/ProcessParameter.cpp, src/ProcessParameter.h,
+	src/buddy/Main.cpp, src/buddy/Main.h, src/buddy/Parameter.cpp,
+	src/buddy/SignalInfo.cpp, src/buddy/SignalInfo.h, src/lib/Main.h,
+	src/lib/Parameter.cpp, src/lib/Parameter.h, src/msrproto/Server.cpp,
+	src/msrproto/Session.cpp, test/test1.cpp:
+	Communication of parameter changes now byte orientated
+	[f8b41181a040]
+
+2012-07-08  Richard Hacker  <lerichi@gmx.net>
+
+	* src/buddy/SignalInfo.cpp, src/buddy/SignalInfo.h, src/lib/Main.cpp,
+	src/msrproto/Parameter.cpp:
+	Fixed bug where setting a hexvalue in msrproto
+	[4d47b0a60697]
+
+2012-07-02  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt:
+	Changed library compile flags
+	[09eeb0920d9c]
+
+	* include/pdserv.h, src/lib/interface.cpp:
+	Added const specifier
+	[11e1dd8a83a4]
+
+2012-06-30  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt, src/msrproto/OStream.cpp,
+	src/msrproto/OStream.h, src/msrproto/Parameter.cpp,
+	src/msrproto/Parameter.h, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h, src/msrproto/XmlElement.cpp,
+	src/msrproto/XmlElement.h, test/CMakeLists.txt, test/xmlwriter.cpp:
+	Improved Xml Element generation and stream locking
+	[f036de2804c6]
+
+2012-06-30  lan  <lan@lansim.igh-essen.int>
+
+	* src/msrproto/Directory.cpp:
+	Fixed bug concerning duplicate paths
+	[f9d18a07b406]
+
+2012-06-30  Richard Hacker  <lerichi@gmx.net>
+
+	* TODO, src/DataType.cpp, src/DataType.h, src/lib/Signal.cpp,
+	src/lib/Task.cpp, src/msrproto/Channel.cpp, src/msrproto/Channel.h,
+	src/msrproto/Directory.cpp, src/msrproto/Directory.h,
+	src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/Subscription.cpp,
+	src/msrproto/Subscription.h, src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/Variable.cpp, src/msrproto/Variable.h,
+	src/msrproto/XmlElement.cpp, test/test1.cpp:
+	Integrated compound data types into msr protocol
+	[5c52a8659737]
+
+2012-06-28  Florian Pose  <fp@igh-essen.com>
+
+	* test/datatype.cpp:
+	Added missing header.
+	[1a901e8752cd]
+
+2012-06-26  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Directory.cpp:
+	merge
+	[7c91566cc979]
+
+	* src/DataType.cpp, src/msrproto/Channel.cpp,
+	src/msrproto/Parameter.cpp, src/msrproto/Variable.cpp,
+	src/msrproto/Variable.h, src/msrproto/XmlElement.cpp,
+	src/msrproto/XmlElement.h:
+	Export compound data type in msrproto
+	[e6f4a38113c5]
+
+	* test/test1.cpp:
+	Test for compound data type
+	[65754c3c08a7]
+
+	* include/pdserv.h, src/lib/interface.cpp:
+	Compound data types available in lib
+	[448a37b7b64c]
+
+	* src/msrproto/Directory.cpp, src/msrproto/Session.cpp,
+	src/msrproto/Variable.cpp, src/msrproto/XmlElement.cpp,
+	src/msrproto/XmlElement.h:
+	Removed unnecessary level of indirection when setting attributes for
+	channels and parameters
+	[fcdea28cfd41]
+
+2012-06-25  lan  <lan@lansim.igh-essen.int>
+
+	* src/buddy/Main.cpp, src/buddy/Parameter.cpp,
+	src/buddy/SignalInfo.cpp, src/buddy/SignalInfo.h:
+	Updated buddy to use generic data types
+	[905f6f079db6]
+
+	* src/msrproto/Directory.cpp:
+	Fixed bug where not all parameters were added in traditional mode
+	[31094dd588f7]
+
+2012-06-25  Richard Hacker  <lerichi@gmx.net>
+
+	* src/DataType.cpp, src/DataType.h, src/Main.cpp, src/Parameter.cpp,
+	src/Parameter.h, src/ProcessParameter.cpp, src/ProcessParameter.h,
+	src/Signal.cpp, src/Signal.h, src/Variable.cpp, src/Variable.h,
+	src/lib/Main.cpp, src/lib/Main.h, src/lib/Parameter.cpp,
+	src/lib/Parameter.h, src/lib/Signal.cpp, src/lib/Signal.h,
+	src/lib/Task.cpp, src/lib/Task.h, src/lib/interface.cpp,
+	src/msrproto/Channel.cpp, src/msrproto/Directory.cpp,
+	src/msrproto/Directory.h, src/msrproto/Parameter.cpp,
+	src/msrproto/Session.cpp, src/msrproto/StatSignal.cpp,
+	src/msrproto/Subscription.cpp, src/msrproto/TimeSignal.cpp,
+	src/msrproto/Variable.cpp, src/msrproto/Variable.h,
+	src/msrproto/XmlElement.cpp:
+	Integrated new general class DataType
+	[251e1fefad51]
+
+2012-06-21  Richard Hacker  <lerichi@gmx.net>
+
+	* include/pdserv.h, src/CMakeLists.txt, src/DataType.cpp,
+	src/DataType.h, src/Variable.cpp, src/Variable.h,
+	test/CMakeLists.txt, test/datatype.cpp:
+	Prepare for data types
+	[525b84eb7910]
+
+2012-06-20  lan  <lan@lansim.igh-essen.int>
+
+	* src/buddy/SessionTaskData.cpp:
+	Fixed buddy bug
+	[7e4bb00eec65]
+
+2012-06-20  Richard Hacker  <ha@igh-essen.com>
+
+	* src/lib/Task.cpp:
+	Compiler warnings
+	[a3fd20799a47]
+
+2012-06-20  lan  <lan@lansim.igh-essen.int>
+
+	* CMakeLists.txt, include/CMakeLists.txt:
+	Improved packaging and install process
+	[b82200b72bb2]
+
+2012-06-20  Richard Hacker  <ha@igh-essen.com>
+
+	* src/msrproto/Server.cpp, src/msrproto/Session.cpp,
+	src/msrproto/SubscriptionManager.cpp:
+	Fixed size_t compile issues
+	[b376932f1ac1]
+
+2012-06-20  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Config.h, src/Main.cpp, src/Main.h, src/Parameter.h,
+	src/ProcessParameter.h, src/Session.cpp, src/Session.h,
+	src/SessionStatistics.h, src/SessionTask.h, src/SessionTaskData.h,
+	src/TaskStatistics.h, src/Variable.h, src/msrproto/Session.h:
+	Cleaned up header and #include<>
+	[0596fea646e6]
+
+2012-06-20  lan  <lan@lansim.igh-essen.int>
+
+	* pdserv.conf, src/CMakeLists.txt, src/Parameter.h,
+	src/ProcessParameter.cpp, src/ProcessParameter.h,
+	src/SessionShadow.h, src/SessionTask.h, src/Signal.h, src/Task.h,
+	src/Variable.h, src/buddy/Main.cpp, src/buddy/Main.h,
+	src/buddy/Parameter.cpp, src/buddy/SessionShadow.cpp,
+	src/buddy/SessionShadow.h, src/buddy/SessionTaskData.cpp,
+	src/buddy/SessionTaskData.h, src/buddy/Signal.cpp,
+	src/buddy/Signal.h, src/buddy/SignalInfo.cpp, src/buddy/Task.cpp,
+	src/buddy/Task.h, src/buddy/main.cpp:
+	Also updated buddy to new interface
+	[c5d9a0cf90b6]
+
+2012-06-19  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/Main.cpp, src/lib/Main.h, src/lib/SessionShadow.cpp,
+	src/lib/SessionShadow.h, src/lib/SessionTaskData.cpp,
+	src/lib/Signal.cpp, src/lib/Task.cpp, src/lib/Task.h,
+	src/msrproto/Channel.cpp, src/msrproto/Channel.h,
+	src/msrproto/Directory.cpp, src/msrproto/Directory.h,
+	src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/StatSignal.cpp,
+	src/msrproto/StatSignal.h, src/msrproto/Subscription.cpp,
+	src/msrproto/Subscription.h, src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h, src/msrproto/TimeSignal.cpp,
+	src/msrproto/TimeSignal.h, src/msrproto/Variable.h,
+	src/msrproto/XmlElement.cpp, src/msrproto/XmlElement.h,
+	src/msrproto/XmlParser.cpp, src/msrproto/XmlParser.h:
+	Cleaned up #include <>
+	[61ccc5724583]
+
+	* .hgignore, src/SessionTask.cpp, src/SessionTask.h:
+	Added missing files
+	[70103fe76214]
+
+	* src/Task.h, src/lib/SessionTaskData.cpp, src/lib/SessionTaskData.h,
+	src/lib/Task.cpp, src/lib/Task.h, src/msrproto/Subscription.cpp,
+	src/msrproto/Subscription.h, src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h:
+	Large improvements on performance
+	[fa6cf0988eb2]
+
+2012-06-18  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Task.h, src/lib/SessionTaskData.cpp, src/lib/SessionTaskData.h,
+	src/lib/Signal.cpp, src/lib/Task.cpp, src/lib/Task.h,
+	src/msrproto/StatSignal.cpp, src/msrproto/Subscription.cpp,
+	src/msrproto/Subscription.h, src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h, src/msrproto/TimeSignal.cpp:
+	Huge rewrite to improve performance of clients
+	[365a2be33019]
+
+2012-06-16  Richard Hacker  <lerichi@gmx.net>
+
+	* src/buddy/Main.cpp, src/buddy/Main.h, src/buddy/main.cpp,
+	src/lib/Parameter.cpp, src/lib/SessionShadow.cpp,
+	src/lib/SessionTaskData.cpp, src/lib/Task.cpp,
+	src/msrproto/Parameter.cpp, src/msrproto/Server.cpp,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/Variable.cpp, src/msrproto/XmlElement.cpp,
+	src/msrproto/XmlElement.h, src/msrproto/XmlParser.cpp:
+	Removed spaces
+	[ca3b756e2a0e]
+
+	* src/lib/Main.cpp:
+	Merge
+	[399b7c616f30]
+
+	* src/CMakeLists.txt, src/Main.h, src/Session.cpp, src/Session.h,
+	src/SessionShadow.h, src/Signal.h, src/Task.h, src/Variable.h,
+	src/buddy/Main.cpp, src/lib/Main.cpp, src/lib/Main.h,
+	src/lib/Parameter.cpp, src/lib/Parameter.h,
+	src/lib/SessionShadow.cpp, src/lib/SessionTaskData.cpp,
+	src/lib/SessionTaskData.h, src/lib/Signal.cpp, src/lib/Signal.h,
+	src/lib/Task.cpp, src/lib/Task.h, src/msrproto/Attribute.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/StatSignal.cpp, src/msrproto/StatSignal.h,
+	src/msrproto/Subscription.cpp, src/msrproto/Subscription.h,
+	src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h, src/msrproto/TimeSignal.cpp,
+	src/msrproto/TimeSignal.h:
+	Huge redesign to improve performance
+	[c4efbd889326]
+
+2012-06-14  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Session.cpp:
+	Fixed bug in response to gethostname() replying with ENAMETOOLONG
+	[7fdfc33e4797]
+
+2012-06-14  Florian Pose  <fp@igh-essen.com>
+
+	* src/lib/Main.cpp:
+	Removed whitespace.
+	[14f737f3f0ce]
+
+2012-06-14  Richard Hacker  <lerichi@gmx.net>
+
+	* pdserv.conf, src/Main.cpp, src/lib/Main.cpp,
+	src/msrproto/Server.cpp, src/msrproto/Server.h:
+	Improved server configuration options
+	[a7a638cf4ae5]
+
+2012-06-13  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/Task.cpp:
+	Improved subscription and unsubscription algorithm
+	[98a1c715f333]
+
+	* src/lib/Main.cpp:
+	Config file is now read correctly
+	[6a744f114d83]
+
+	* src/lib/Signal.cpp:
+	Fixed bug where server coredumped when an unsubscribed signal was
+	unsubscribed
+	[dc973e61ae62]
+
+2012-06-12  lan  <lan@lansim.igh-essen.int>
+
+	* src/msrproto/Directory.cpp:
+	Fixed bug where vector channels were overwritten in the directory
+	[54e5f9b29898]
+
+2012-06-04  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/SessionTaskData.cpp, src/lib/Task.cpp:
+	Fixed bugs
+	        * Slow tasks caused <error text="process synchronization lost"/>
+	        * Possible incorrect calculations caused by postincrement/-decrement
+	operators inside std::copy()
+	[549985f9b3d8]
+
+	* src/Debug.cpp:
+	Protect debug messages with semaphore
+	[a5d0fd06e310]
+
+2012-05-28  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Session.cpp, src/msrproto/XmlElement.cpp:
+	Fixed msrproto stream locking issues
+	[edc8cc5b5e9b]
+
+2012-04-18  Florian Pose  <fp@igh-essen.com>
+
+	* src/lib/SessionTaskData.cpp, src/lib/ShmemDataStructures.h:
+	Removed Pdo::End type and added some debug statements.
+	[8e9e13417b22]
+
+	* src/lib/Signal.cpp:
+	Minor change.
+	[27f0ae9d8273]
+
+2012-04-17  Florian Pose  <fp@igh-essen.com>
+
+	* src/msrproto/Session.cpp:
+	Added 'out of sync' log message.
+	[c4ca6496e59c]
+
+	* src/lib/Main.cpp:
+	Added syslog as default logging appender for lib.
+	[fad662b698c9]
+
+	* src/lib/SessionTaskData.cpp:
+	Debug statements for sync / out of sync.
+	[47a8603224c6]
+
+	* src/Session.cpp, src/Session.h:
+	Minor changes.
+	[29f1bf5956e7]
+
+	* CMakeLists.txt, src/Debug.h, src/lib/SessionTaskData.cpp:
+	Minor changes.
+	[c0252bae3ade]
+
+2012-04-16  Florian Pose  <fp@igh-essen.com>
+
+	* merge.
+	[35be2594762b]
+
+2012-04-10  Richard Hacker  <ha@igh-essen.com>
+
+	* src/msrproto/Session.cpp:
+	Change <connected> tag to name="MSR"
+	[1ae75b2ff22c]
+
+2012-04-16  Florian Pose  <fp@igh-essen.com>
+
+	* src/lib/ShmemDataStructures.h:
+	Randomized PDO IDs.
+	[819998aeca89]
+
+2012-04-02  Florian Pose  <fp@igh-essen.com>
+
+	* src/Config.cpp:
+	Fixed sequential node index operator.
+	[b4e6d7a9661e]
+
+2012-03-12  Florian Pose  <fp@igh-essen.com>
+
+	* src/msrproto/Directory.cpp:
+	Export vector signals also in traditional mode.
+	[1cf966449b45]
+
+2012-03-01  Florian Pose  <fp@igh-essen.com>
+
+	* CMakeLists.txt, config.h.in, pdserv.conf, src/lib/Main.cpp,
+	src/lib/Main.h, src/msrproto/Channel.cpp, src/msrproto/Channel.h,
+	src/msrproto/Directory.cpp, src/msrproto/Directory.h,
+	src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Variable.cpp, src/msrproto/Variable.h:
+	Traditional mode as a runtime configuration option.
+	[aaf98e121f53]
+
+2012-02-29  Florian Pose  <fp@igh-essen.com>
+
+	* README.txt:
+	Improved README.
+	[75207d497a07]
+
+2012-02-23  Richard Hacker  <ha@igh-essen.com>
+
+	* src/lib/SessionTaskData.cpp, src/msrproto/Directory.cpp,
+	src/msrproto/Directory.h, src/msrproto/Server.cpp:
+	merge
+	[d567bb93459b]
+
+	* src/msrproto/Directory.cpp:
+	Removed debug message
+	[d53e1394451a]
+
+	* src/lib/SessionTaskData.cpp, src/msrproto/Directory.cpp,
+	src/msrproto/Directory.h, src/msrproto/Server.cpp:
+	Traditional mode inserts model name in front of variable path for
+	MSR Fixed bug where process synchronization is lost
+	[30fa521472b2]
+
+2012-02-23  Florian Pose  <fp@igh-essen.com>
+
+	* pdserv.spec.in:
+	Added 64-bit library support in spec file.
+	[854c3582d35b]
+
+	* ChangeLog:
+	Updated ChangeLog.
+	[5eaffa2d3d6c]
+
+	* CMakeLists.txt, ChangeLog, NEWS:
+	Version 0.99.3.
+	[36981ea3481b]
+
+	* NEWS:
+	Added NEWS.
+	[f462c07596fb]
+
+	* CMakeLists.txt, INSTALL, include/pdserv.h, src/etlproto/Server.cpp,
+	src/etlproto/Server.h, src/etlproto/Session.cpp,
+	src/etlproto/Session.h, src/lib/libpdserv.pc.in,
+	test/CMakeLists.txt, test/config.cpp, test/parser.cpp,
+	test/test1.cpp:
+	Added missing license headers.
+	[c9b7ba4cc451]
+
+	* CMakeLists.txt, COPYING.LESSER, README.txt, config.h.in,
+	pdserv.spec.in, src/CMakeLists.txt, src/Config.cpp, src/Config.h,
+	src/Debug.cpp, src/Debug.h, src/Main.cpp, src/Main.h,
+	src/Parameter.cpp, src/Parameter.h, src/ProcessParameter.cpp,
+	src/ProcessParameter.h, src/Session.cpp, src/Session.h,
+	src/SessionShadow.h, src/SessionStatistics.h,
+	src/SessionTaskData.cpp, src/SessionTaskData.h, src/Signal.cpp,
+	src/Signal.h, src/Task.cpp, src/Task.h, src/TaskStatistics.h,
+	src/Variable.cpp, src/Variable.h, src/buddy/Main.cpp,
+	src/buddy/Main.h, src/buddy/Parameter.cpp, src/buddy/Parameter.h,
+	src/buddy/SessionShadow.cpp, src/buddy/SessionShadow.h,
+	src/buddy/SessionTaskData.cpp, src/buddy/SessionTaskData.h,
+	src/buddy/Signal.cpp, src/buddy/Signal.h, src/buddy/SignalInfo.cpp,
+	src/buddy/SignalInfo.h, src/buddy/Task.cpp, src/buddy/Task.h,
+	src/buddy/main.cpp, src/lib/Main.cpp, src/lib/Main.h,
+	src/lib/Parameter.cpp, src/lib/Parameter.h, src/lib/Pointer.h,
+	src/lib/SessionShadow.cpp, src/lib/SessionShadow.h,
+	src/lib/SessionTaskData.cpp, src/lib/SessionTaskData.h,
+	src/lib/ShmemDataStructures.h, src/lib/Signal.cpp, src/lib/Signal.h,
+	src/lib/Task.cpp, src/lib/Task.h, src/lib/interface.cpp,
+	src/msrproto/Attribute.cpp, src/msrproto/Attribute.h,
+	src/msrproto/Channel.cpp, src/msrproto/Channel.h,
+	src/msrproto/Directory.cpp, src/msrproto/Directory.h,
+	src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/StatSignal.cpp, src/msrproto/StatSignal.h,
+	src/msrproto/Subscription.cpp, src/msrproto/Subscription.h,
+	src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h, src/msrproto/TaskStatistics.h,
+	src/msrproto/TimeSignal.cpp, src/msrproto/TimeSignal.h,
+	src/msrproto/Variable.cpp, src/msrproto/Variable.h,
+	src/msrproto/XmlElement.cpp, src/msrproto/XmlElement.h,
+	src/msrproto/XmlParser.cpp, src/msrproto/XmlParser.h,
+	src/test_headers.c:
+	Changed license to LGPLv3.
+	[c0db4dad3c20]
+
+2012-02-14  Richard Hacker  <ha@igh-essen.com>
+
+	* src/Variable.cpp:
+	Fix for incorrect dimension calculation when registering variables
+	with ndim=N, dim=(nil)
+	[def0ccb0d5d2]
+
+	* src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/XmlElement.cpp, src/msrproto/XmlElement.h:
+	Mutex patch so that the xml stream does not get corrupted by a
+	<write_parameter>
+	[744070b7fad9]
+
+2012-01-21  Florian Pose  <fp@igh-essen.com>
+
+	* src/CMakeLists.txt:
+	Added missing pthread dependency for buddy2.
+	[37e77e4969ab]
+
+2012-01-14  Richard Hacker  <lerichi@gmx.net>
+
+	* etherlab_buddy2.conf, include/pdserv/pdserv.h, pdserv.spec,
+	src/etherlab_buddy2.conf, src/lib/Main.cpp:
+	Merge
+	[f519f3090845]
+
+	* src/lib/Main.cpp:
+	Fixed parameter writing bug in library
+	[d168ecf05592]
+
+	* config.h.in:
+	Avoid namespace conflict "#define CONFIG_H"
+	[9160a84639d9]
+
+2012-01-08  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/Main.cpp, src/lib/Task.cpp:
+	Fixed bug with more than one task
+	[ab052a28a24f]
+
+2012-01-13  Florian Pose  <fp@igh-essen.com>
+
+	* CMakeLists.txt, src/CMakeLists.txt:
+	Added SOVERSION.
+	[d24667fa0145]
+
+2012-01-11  Florian Pose  <fp@igh-essen.com>
+
+	* CMakeLists.txt:
+	Version 0.99.2.
+	[6f7277fded1d]
+
+	* pdserv.spec.in:
+	German localisation.
+	[faa481de636e]
+
+	* CMakeLists.txt:
+	Ignore build* directories on dist.
+	[cf520c95e9ba]
+
+	* TODO, include/pdserv.h, include/pdserv/pdserv.h, pdserv.spec.in,
+	src/lib/Main.cpp, src/lib/Parameter.h, src/lib/interface.cpp,
+	test/test1.cpp:
+	Moved include/pdserv/pdserv.h to include/pdserv.h.
+	[c5294476153a]
+
+	* CMakeLists.txt, etherlab_buddy2.conf, pdserv.conf,
+	src/buddy/main.cpp, src/etherlab_buddy2.conf:
+	Use pdserv.conf as configuration file; install pdserv.conf to
+	SYSCONFDIR.
+	[acc0fa3b7814]
+
+	* .hgignore, CMakeLists.txt, pdserv.spec, pdserv.spec.in:
+	Configure version in spec file.
+	[96f56735ff24]
+
+2012-01-08  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Signal.cpp, src/Signal.h, src/buddy/Signal.cpp,
+	src/lib/Signal.cpp, src/msrproto/Channel.cpp,
+	src/msrproto/Session.cpp, src/msrproto/StatSignal.cpp,
+	src/msrproto/TimeSignal.cpp:
+	Added decimation feature to signals
+	[6ec481cc2701]
+
+	* include/pdserv/pdserv.h, src/lib/interface.cpp, test/test1.cpp:
+	Renamed all data types to pd_*
+	[7571741b09cb]
+
+2012-01-05  lan  <lan@lansim.igh-essen.int>
+
+	* src/msrproto/Subscription.cpp:
+	Uninitialized variable causing crash
+	[30de78130f58]
+
+2012-01-04  ha  <ha@lanserv.awi-neumayer.de>
+
+	* src/Debug.cpp:
+	DEBUG ifdef
+	[e1edff2264ec]
+
+2012-01-05  lan  <lan@lansim.igh-essen.int>
+
+	* src/buddy/Main.cpp:
+	Fixed bug where no data was being transmitted after connecting
+	[66326ed631a8]
+
+	* src/msrproto/Variable.cpp, src/msrproto/Variable.h:
+	Removed redundant printing function from MSR
+	[1ab240069719]
+
+	* src/Main.cpp, src/Variable.cpp, src/Variable.h:
+	Proper parameter logging with value output
+	[1b87f23d9d89]
+
+2012-01-04  lan  <lan@lansim.igh-essen.int>
+
+	* src/buddy/Main.cpp:
+	Removed redundant #include error
+	[976cac17107d]
+
+2012-01-04  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/Parameter.h,
+	src/ProcessParameter.cpp, src/ProcessParameter.h, src/Variable.cpp,
+	src/Variable.h, src/buddy/Log.cpp, src/buddy/Log.h,
+	src/buddy/Main.cpp, src/buddy/Main.h, src/buddy/Parameter.cpp,
+	src/buddy/Parameter.h, src/buddy/Signal.cpp,
+	src/buddy/SignalInfo.cpp, src/buddy/main.cpp, src/lib/Main.cpp,
+	src/lib/Parameter.cpp, src/lib/Parameter.h, src/lib/Task.cpp,
+	src/msrproto/Channel.cpp, src/msrproto/Directory.cpp,
+	src/msrproto/Parameter.cpp, src/msrproto/Server.cpp,
+	src/msrproto/Session.cpp, src/msrproto/Subscription.cpp,
+	src/msrproto/Variable.cpp:
+	Added parameter change reporting, among other improvements
+	[6d863dc5d9ff]
+
+	* cmake/Modules/FindYaml.cmake:
+	Better error reporting for versions <2.8
+	[260d4580221b]
+
+2012-01-02  Richard Hacker  <lerichi@gmx.net>
+
+	* cmake/Modules/FindYaml.cmake, src/CMakeLists.txt,
+	test/CMakeLists.txt:
+	Reworked YAML dependencies
+	[f6bc6138835b]
+
+2012-01-02  lan  <lan@lansim.igh-essen.int>
+
+	* src/Config.cpp, src/Debug.cpp, src/Debug.h, src/Main.cpp,
+	src/Main.h, src/buddy/Main.cpp, src/buddy/Main.h,
+	src/buddy/Parameter.cpp, src/buddy/Task.cpp, src/buddy/Task.h,
+	src/buddy/main.cpp, src/etherlab_buddy2.conf, src/lib/Main.cpp,
+	src/lib/Task.cpp, src/msrproto/Directory.cpp,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h:
+	Added logging mechanism
+	[ef4d9e8625cd]
+
+2011-12-30  Florian Pose  <fp@igh-essen.com>
+
+	* CMakeLists.txt, pdserv.spec:
+	Version 0.99.1.
+	[26a5c235f071]
+
+	* CMakeLists.txt, TODO:
+	Removed generated files from dist tarball.
+	[b11114d91a78]
+
+	* pdserv.spec:
+	Improved .spec file.
+	[0e954d53deee]
+
+	* TODO:
+	Added TODO.
+	[856318b219cf]
+
+	* pdserv.spec:
+	Added spec file.
+	[5d2e97cfc1f1]
+
+	* CMakeLists.txt:
+	Made mercurial optional, otherwise building from tarball fails.
+	[c3b3d3c32995]
+
+	* .hgignore:
+	Ignore _CPack_Packages.
+	[7c79ae8a7bf1]
+
+	* cmake/Modules/FindLog4Cpp.cmake, cmake/Modules/FindYaml.cmake,
+	src/CMakeLists.txt, test/CMakeLists.txt:
+	Added cmake modules for finding yaml and log4cpp.
+	[30bb30feb06d]
+
+	* .hgignore:
+	Ignore test/config
+	[5cc53cdcb719]
+
+2011-12-26  lan  <lan@lansim.igh-essen.int>
+
+	* src/buddy/Log.cpp, src/buddy/Log.h:
+	Added threading support for logging
+	[db1d3ccef45d]
+
+	* src/Main.cpp, src/Main.h, src/Task.cpp, src/buddy/Main.cpp,
+	src/lib/Main.cpp, src/lib/Main.h, src/msrproto/Server.cpp:
+	Removed expensive variable map from class PdServ::Main
+	[0684da35d469]
+
+	* CMakeLists.txt, config.h.in, src/CMakeLists.txt, src/Config.cpp,
+	src/Config.h, src/Debug.h, src/buddy/Log.cpp, src/buddy/Log.h,
+	src/buddy/Main.cpp, src/buddy/Main.h, src/buddy/main.cpp,
+	src/lib/Main.cpp, src/lib/Task.cpp, src/msrproto/Directory.cpp,
+	src/msrproto/Server.cpp, src/msrproto/Session.cpp:
+	Added logging facility
+	[daa1b750765b]
+
+2011-12-24  lan  <lan@lansim.igh-essen.int>
+
+	* src/msrproto/Subscription.cpp:
+	Event channels sent as <E>
+	[88003581fb4b]
+
+	* src/msrproto/Directory.cpp:
+	Fixed coredump when listing directory with hidden children
+	[c78ae35d9c15]
+
+2011-12-24  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt, test/test1.cpp:
+	Fixed dependency checking for rt_kernel
+	[959180881275]
+
+2011-12-23  Richard Hacker  <ha@igh-essen.com>
+
+	* src/msrproto/StatSignal.cpp, src/msrproto/StatSignal.h:
+	MSR Taskinfo channels are now all TDBL
+	[79161d481a1e]
+
+	* src/CMakeLists.txt, src/Config.cpp, src/Config.h, src/Main.cpp,
+	src/Main.h, src/ServerConfig.cpp, src/ServerConfig.h,
+	src/buddy/BuddyConfig.cpp, src/buddy/BuddyConfig.h,
+	src/buddy/Main.cpp, src/buddy/Main.h, src/buddy/main.cpp,
+	src/lib/Main.cpp, test/config.cpp:
+	Using new class Config throughout
+	[dbd491d9cba6]
+
+	* src/CMakeLists.txt, src/Config.cpp, src/Config.h, src/Debug.h,
+	test/CMakeLists.txt, test/config.cpp:
+	Added new YAML configuration interface
+	[91013ce53810]
+
+	* src/Main.cpp, src/Main.h, src/SessionStatistics.h,
+	src/buddy/Main.cpp, src/buddy/Main.h, src/buddy/Parameter.cpp,
+	src/buddy/Signal.cpp, src/buddy/SignalInfo.cpp,
+	src/buddy/SignalInfo.h, src/etlproto/Session.h, src/lib/Main.cpp,
+	src/lib/Main.h:
+	Revised some unsigned int's and size_t's
+	[566a009d3bdd]
+
+2011-12-23  ha  <ha@lanserv.awi-neumayer.de>
+
+	* src/Main.cpp, src/lib/SessionTaskData.cpp, src/lib/Task.cpp,
+	src/msrproto/Parameter.cpp, src/msrproto/Session.cpp,
+	src/msrproto/StatSignal.cpp:
+	Explicit type conversions
+	[041814a6afaf]
+
+2011-12-22  lan  <lan@lansim.igh-essen.int>
+
+	* src/CMakeLists.txt, src/ServerConfig.cpp, src/ServerConfig.h,
+	src/buddy/BuddyConfig.cpp, src/buddy/SessionTaskData.cpp,
+	src/buddy/SignalInfo.cpp, src/test_headers.c:
+	Improved header testing
+	[608f89fdb47f]
+
+	* src/buddy/Main.cpp:
+	Forgot to initialize Main::fp
+	[1e772ff59d1d]
+
+	* src/msrproto/Session.cpp, src/msrproto/XmlElement.cpp:
+	Fixed output stream bug where session was not closed on stream error
+	[1a9f004b5133]
+
+2011-12-22  Richard Hacker  <ha@igh-essen.com>
+
+	* src/msrproto/Directory.cpp, test/parser.cpp:
+	Compilier issues
+	[56b5a8d76734]
+
+2011-12-22  lan  <lan@lansim.igh-essen.int>
+
+	* etherlab_buddy2.conf, src/Main.cpp, src/ServerConfig.cpp,
+	src/ServerConfig.h, src/buddy/BuddyConfig.cpp,
+	src/buddy/BuddyConfig.h, src/buddy/main.cpp,
+	src/msrproto/Server.cpp, src/msrproto/Server.h:
+	MSR port can now be configured
+	[62f9fa323698]
+
+	* src/msrproto/Outbuf.cpp, src/msrproto/Outbuf.h,
+	src/msrproto/Session.h:
+	Removed redundant Outbuf class in MSR
+	[1e6ae34bea12]
+
+	* src/buddy/BuddyConfig.cpp:
+	Fixed bug where no config file is found
+	[95c1bca274fa]
+
+2011-12-21  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/ServerConfig.cpp,
+	src/ServerConfig.h, src/buddy/BuddyConfig.cpp,
+	src/buddy/BuddyConfig.h, src/buddy/Main.cpp, src/buddy/Main.h,
+	src/buddy/main.cpp, src/lib/Main.cpp:
+	Added YAML configuration infrastructure
+	[be8cedf223fd]
+
+2011-12-20  lan  <lan@lansim.igh-essen.int>
+
+	* cmake/Modules/FindLibDaemon.cmake:
+	Added missing file
+	[f65705174aec]
+
+	* config.h.in, src/CMakeLists.txt, src/buddy/main.cpp,
+	src/lib/Main.cpp:
+	Properly daemonizing buddy
+	[9c060df82e82]
+
+2011-12-19  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Server.cpp, src/msrproto/Session.cpp,
+	src/msrproto/Session.h:
+	Automatically increase port number for MSR server
+	[68553e3405ff]
+
+2011-12-19  lan  <lan@lansim.igh-essen.int>
+
+	* src/buddy/Main.cpp:
+	Update parameter time when modifying
+	[dbd48afed565]
+
+	* src/msrproto/Directory.cpp, src/msrproto/Directory.h,
+	src/msrproto/Session.cpp:
+	Fixed issues with new Variables overwriting previous ones
+	[8b939a09d50e]
+
+2011-12-19  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Directory.cpp, src/msrproto/Directory.h,
+	src/msrproto/Session.cpp:
+	Fixed unexpected result of reading not existed paths
+	[330c2e5efd3d]
+
+2011-12-19  lan  <lan@lansim.igh-essen.int>
+
+	* src/msrproto/Directory.cpp, src/msrproto/XmlParser.cpp,
+	src/msrproto/XmlParser.h:
+	Fixed bugs in MSR signal and parameter registration
+	[96054d749500]
+
+2011-12-18  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Directory.cpp:
+	Fixed a memory leak in MSR hypernodes
+	[3d6640b29301]
+
+	* src/msrproto/Directory.cpp:
+	removed unnecessary include file
+	[282f329218dd]
+
+	* src/msrproto/Channel.cpp, src/msrproto/Directory.cpp,
+	src/msrproto/Directory.h, src/msrproto/Server.cpp,
+	src/msrproto/Server.h, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/Variable.cpp,
+	src/msrproto/Variable.h, test/test1.cpp:
+	Reworked MSR variable directory. Introduced MSR <list> command
+	[c37b7da05dc0]
+
+2011-12-16  lan  <lan@lansim.igh-essen.int>
+
+	* src/msrproto/Session.cpp, src/msrproto/XmlParser.cpp,
+	src/msrproto/XmlParser.h:
+	Fixed bug when MSR XML input buffer became full
+	[acf27ff213a9]
+
+2011-12-16  Richard Hacker  <ha@igh-essen.com>
+
+	* src/Session.cpp, src/Session.h, src/msrproto/Parameter.cpp,
+	src/msrproto/Parameter.h, src/msrproto/Server.cpp,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/Subscription.cpp, src/msrproto/Subscription.h,
+	src/msrproto/SubscriptionManager.h, src/msrproto/XmlElement.cpp,
+	src/msrproto/XmlElement.h:
+	Completely customized TCPStream for MSR. Made network IO robust
+	against exceptions
+	[bf046fedb25f]
+
+2011-12-15  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/Session.cpp, src/msrproto/XmlElement.cpp,
+	src/msrproto/XmlElement.h:
+	MSR parameter always shown writeable
+	[604ffd5ce4f3]
+
+2011-12-15  Richard Hacker  <ha@igh-essen.com>
+
+	* src/msrproto/Subscription.cpp:
+	Compiler issues
+	[5bd27aab47ec]
+
+2011-12-15  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/Task.cpp, src/msrproto/Session.cpp,
+	src/msrproto/SubscriptionManager.cpp:
+	Fixed MSR xsad with sync
+	[4f47ff4b076f]
+
+	* src/msrproto/Session.cpp, src/msrproto/Subscription.cpp,
+	src/msrproto/Subscription.h:
+	Corrected some reduction issues with MSR
+	[3792ab9fc541]
+
+2011-12-14  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/Task.cpp, src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/Subscription.cpp, src/msrproto/Subscription.h,
+	src/msrproto/SubscriptionManager.cpp:
+	Fixed a msr reduction bug
+	[2c8aacf09be3]
+
+2011-12-14  Richard Hacker  <ha@igh-essen.com>
+
+	* CMakeLists.txt, src/CMakeLists.txt:
+	Buddy now called etherlab_buddy2 CMake option of disabling buddy
+	[471285b2846f]
+
+	* src/lib/SessionTaskData.h:
+	merge
+	[4efea375f44d]
+
+	* src/CMakeLists.txt:
+	Optimized include directories in CMake
+	[e98a95aaf51a]
+
+	* src/lib/SessionTaskData.h:
+	Removed unncessary volatile attribute
+	[0d984fe3bef8]
+
+	* src/buddy/SessionShadow.cpp, src/buddy/SessionShadow.h,
+	src/buddy/SessionTaskData.cpp, src/buddy/SessionTaskData.h:
+	Added getTaskTime() to buddy
+	[e157a94956ef]
+
+2011-12-14  Florian Pose  <fp@igh-essen.com>
+
+	* src/lib/SessionTaskData.h, src/msrproto/Attribute.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp:
+	Fixed compiler errors and warnings
+	[958e07bf6143]
+
+2011-12-14  Richard Hacker  <lerichi@gmx.net>
+
+	* merge
+	[d78a636d1291]
+
+	* include/pdserv/pdserv.h, src/Parameter.cpp, src/Parameter.h,
+	src/Session.cpp, src/Session.h, src/SessionShadow.h, src/Signal.cpp,
+	src/Signal.h, src/TaskStatistics.h, src/Variable.cpp,
+	src/Variable.h, src/buddy/Signal.cpp, src/lib/Main.cpp,
+	src/lib/Main.h, src/lib/Parameter.cpp, src/lib/Parameter.h,
+	src/lib/SessionShadow.cpp, src/lib/SessionShadow.h,
+	src/lib/SessionTaskData.cpp, src/lib/SessionTaskData.h,
+	src/lib/ShmemDataStructures.h, src/lib/Signal.cpp, src/lib/Signal.h,
+	src/lib/Task.cpp, src/lib/Task.h, src/lib/interface.cpp,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/StatSignal.cpp, src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h, src/msrproto/TimeSignal.cpp,
+	test/test1.cpp:
+	Reworked process statistics. Made user space library shared memory
+	more robust
+	[80a62f324d6f]
+
+2011-12-12  Florian Pose  <fp@igh-essen.com>
+
+	* src/msrproto/Parameter.cpp:
+	Fixed SEGV on writing scalar paremeters.
+	[905132360307]
+
+2011-12-11  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/Task.cpp:
+	Fixed coredump after <xsod>
+	[d7534d6293e1]
+
+	* src/Main.cpp, src/lib/Main.cpp:
+	Fixed coredump when calling pdserv_exit()
+	[410f5ed7ec9d]
+
+	* src/lib/Parameter.cpp:
+	Fixed <rp>
+	[f50b37fabdac]
+
+	* src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h:
+	MSR AIC working
+	[eb15c6f20ebc]
+
+	* src/lib/Main.cpp:
+	Reworked daemonizing
+	[e126207e97e3]
+
+2011-12-09  lan  <lan@lansim.igh-essen.int>
+
+	* src/lib/Main.cpp:
+	merge
+	[f67c0aab8ba5]
+
+	* src/lib/Main.cpp, src/lib/Main.h:
+	Cleanup after fork()
+	[3bd50b9b1e47]
+
+	* src/msrproto/Directory.cpp:
+	traditional mode does not modify variable path to remove <>
+	[b1f5d242f311]
+
+2011-12-09  Florian Pose  <fp@igh-essen.com>
+
+	* src/buddy/SessionShadow.cpp, src/etlproto/Server.cpp:
+	Removed some iostream references.
+	[26fe6577535e]
+
+	* CMakeLists.txt:
+	Fixed include order.
+	[bdbf4bef3f9e]
+
+	* include/pdserv/pdserv.h, src/lib/Main.cpp, src/lib/Parameter.cpp,
+	src/lib/Parameter.h, src/lib/interface.cpp, test/test1.cpp:
+	Renamed public 'struct variable' to 'struct pdvariable' for
+	namespace reasons.
+	[77c5088d7b8a]
+
+	* .hgignore:
+	Ignores.
+	[abe785e959e4]
+
+	* include/pdserv/pdserv.h:
+	Comment changes.
+	[6ed5f23763e3]
+
+2011-12-09  lan  <lan@lansim.igh-essen.int>
+
+	* src/msrproto/Parameter.cpp, src/msrproto/Session.cpp,
+	src/msrproto/Variable.cpp, src/msrproto/XmlElement.cpp,
+	src/msrproto/XmlElement.h:
+	Rename of XML Attribute setWithCare() -> setEscaped()
+	[6b71fb1bc9d9]
+
+	* CMakeLists.txt, config.h.in, src/buddy/SignalInfo.cpp,
+	src/buddy/main.cpp, src/msrproto/Channel.cpp,
+	src/msrproto/Channel.h, src/msrproto/Directory.cpp,
+	src/msrproto/Directory.h, src/msrproto/Parameter.cpp,
+	src/msrproto/Parameter.h, src/msrproto/Server.cpp,
+	src/msrproto/Server.h, src/msrproto/Session.cpp,
+	src/msrproto/Variable.cpp, src/msrproto/Variable.h:
+	Added traditional configuration switch for MSR
+	[831983d3866e]
+
+2011-12-08  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h:
+	MSR broadcast working
+	[d18df41a07be]
+
+	* src/msrproto/XmlElement.cpp:
+	Fixed an XML issue
+	[7432e5aa0432]
+
+	* CMakeLists.txt, src/msrproto/Session.cpp,
+	src/msrproto/XmlParser.cpp, src/msrproto/XmlParser.h,
+	test/parser.cpp:
+	New XML structure
+	[4b6c82628d69]
+
+	* CMakeLists.txt, src/msrproto/Session.cpp,
+	src/msrproto/XmlParser.cpp, src/msrproto/XmlParser.h,
+	test/parser.cpp:
+	merge
+	[28512b27f2a7]
+
+2011-12-06  Richard Hacker  <lerichi@gmx.net>
+
+	* include/pdserv/pdserv.h, src/Main.cpp, src/Main.h,
+	src/buddy/Main.cpp, src/buddy/Main.h, src/buddy/main.cpp,
+	src/lib/Main.cpp, src/lib/Main.h, src/lib/interface.cpp,
+	src/msrproto/Server.cpp, src/msrproto/Server.h, test/test1.cpp:
+	Removed argc and argv from Main
+	[2782b6ed9e32]
+
+2011-12-08  Richard Hacker  <ha@igh-essen.com>
+
+	* CMakeLists.txt, src/msrproto/Session.cpp,
+	src/msrproto/XmlParser.cpp, src/msrproto/XmlParser.h,
+	test/parser.cpp:
+	Reworked XML Parser
+	[26318a0213bb]
+
+2011-12-06  lan  <lan@lansim.igh-essen.int>
+
+	* src/CMakeLists.txt, src/Main.cpp, src/msrproto/Parameter.cpp,
+	src/msrproto/Parameter.h, src/msrproto/Server.cpp,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/XmlElement.cpp, src/msrproto/XmlElement.h:
+	Using TCPSocket and TCPSession instead of socket service
+	[5fe47e36b198]
+
+2011-12-05  lan  <lan@lansim.igh-essen.int>
+
+	* src/msrproto/Directory.cpp, src/msrproto/Directory.h,
+	src/msrproto/Session.cpp:
+	Hidden parameters not printed any more with <rp>
+	[b03d9ecf8fc6]
+
+2011-12-05  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Signal.h, src/Variable.h, src/buddy/Main.cpp,
+	src/buddy/Parameter.cpp, src/buddy/Parameter.h,
+	src/buddy/Signal.cpp, src/buddy/Signal.h, src/buddy/SignalInfo.cpp,
+	src/buddy/SignalInfo.h, src/lib/Parameter.cpp, src/lib/Parameter.h,
+	src/lib/Signal.cpp, src/lib/Signal.h, src/msrproto/Channel.cpp,
+	src/msrproto/Directory.cpp, src/msrproto/Directory.h,
+	src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/Session.cpp, src/msrproto/StatSignal.cpp,
+	src/msrproto/StatSignal.h, src/msrproto/Subscription.cpp,
+	src/msrproto/TimeSignal.cpp, src/msrproto/TimeSignal.h,
+	src/msrproto/Variable.cpp, src/msrproto/XmlElement.cpp,
+	src/msrproto/XmlElement.h:
+	Simplified creating Xml Documents for MSR
+	[a44627b0264c]
+
+2011-12-02  lan  <lan@lansim.igh-essen.int>
+
+	* src/buddy/Main.cpp, src/buddy/SignalInfo.cpp,
+	src/msrproto/Directory.cpp, src/msrproto/Parameter.cpp,
+	src/msrproto/Parameter.h, src/msrproto/Session.cpp:
+	MSR parameter write ok
+	[9502f381fe80]
+
+	* src/buddy/Main.cpp, src/buddy/Parameter.cpp,
+	src/buddy/SignalInfo.cpp:
+	Parameter writing for buddy working
+	[d850702067fa]
+
+2011-12-01  lan  <lan@lansim.igh-essen.int>
+
+	* src/buddy/SessionTaskData.cpp, src/msrproto/Session.cpp,
+	src/msrproto/Subscription.cpp, src/msrproto/XmlElement.cpp:
+	Fixed bugs with Base64
+	[17cd5e53e49a]
+
+2011-12-01  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Main.cpp, src/Main.h, src/buddy/Main.cpp,
+	src/msrproto/Session.cpp:
+	Easier changing of name and version strings in PdServ::Main
+	[6c7f12276e47]
+
+	* src/CMakeLists.txt, src/buddy/SessionTaskData.cpp:
+	Test for timespec or timeval for buddy task statistics
+	[ed71891005ad]
+
+2011-11-30  Richard Hacker  <lerichi@gmx.net>
+
+	* src/buddy/SessionTaskData.cpp, src/buddy/SessionTaskData.h:
+	Synchronization
+	[5ecfe3d0f536]
+
+2011-12-01  lan  <lan@lansim.igh-essen.int>
+
+	* src/CMakeLists.txt, src/Session.cpp, src/Session.h,
+	src/SessionTaskData.cpp, src/SessionTaskData.h, src/buddy/Main.cpp,
+	src/buddy/Main.h, src/buddy/SessionShadow.cpp,
+	src/buddy/SessionShadow.h, src/buddy/SessionTaskData.cpp,
+	src/buddy/SessionTaskData.h, src/buddy/Signal.cpp,
+	src/buddy/Signal.h, src/buddy/Task.cpp, src/buddy/Task.h,
+	src/lib/SessionTaskData.cpp, src/lib/SessionTaskData.h,
+	src/lib/Task.cpp, src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/StatSignal.cpp, src/msrproto/StatSignal.h,
+	src/msrproto/TimeSignal.cpp:
+	<xsad> working for buddy
+	[3c626f2d6456]
+
+2011-11-30  lan  <lan@lansim.igh-essen.int>
+
+	* src/msrproto/Parameter.cpp, src/msrproto/Parameter.h:
+	Improved template instanciation
+	[2f0363258357]
+
+	* src/buddy/Main.cpp, src/buddy/Task.cpp, src/lib/Task.cpp:
+	Merged 182 and 185
+	[b0e0dfa724f5]
+
+2011-11-29  lan  <lan@lansim.igh-essen.int>
+
+	* src/Main.cpp, src/Main.h, src/Task.h, src/buddy/Main.cpp,
+	src/buddy/Task.cpp, src/buddy/Task.h, src/lib/Main.cpp,
+	src/lib/Task.cpp, src/msrproto/Server.cpp,
+	src/msrproto/XmlElement.cpp:
+	Moved signals from Main to Task
+	[ed2e9c98e4a1]
+
+2011-11-30  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Session.h, src/SessionTaskData.h, src/lib/SessionShadow.cpp,
+	src/lib/SessionTaskData.cpp, src/lib/SessionTaskData.h,
+	src/lib/Task.cpp, src/lib/Task.h, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/Subscription.cpp,
+	src/msrproto/Subscription.h, src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h:
+	Improved method of communicating task statistics Fixed unnecessary
+	and empty <data> tag for MSR
+	[f6929f576239]
+
+2011-11-29  Richard Hacker  <ha@igh-essen.com>
+
+	* src/buddy/Main.cpp, src/buddy/Main.h, src/buddy/Parameter.cpp,
+	src/buddy/Parameter.h, src/buddy/SessionShadow.cpp,
+	src/buddy/SessionShadow.h, src/buddy/Signal.cpp, src/buddy/Signal.h,
+	src/buddy/SignalInfo.cpp, src/buddy/SignalInfo.h,
+	src/buddy/Task.cpp, src/buddy/main.cpp:
+	Strange modified files
+	[53820318fd9d]
+
+2011-11-29  Richard Hacker  <lerichi@gmx.net>
+
+	* CMakeLists.txt, src/CMakeLists.txt, src/msrproto/Subscription.cpp:
+	Fixed CMake files
+	[cfaf0b10d77c]
+
+2011-11-28  lan  <lan@lansim.igh-essen.int>
+
+	* src/msrproto/Directory.cpp:
+	Optimized MSR variable path() method
+	[013ac1681069]
+
+	* src/msrproto/Channel.cpp, src/msrproto/Channel.h,
+	src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/Server.cpp, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/Subscription.cpp,
+	src/msrproto/Subscription.h, src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h, src/msrproto/Variable.cpp,
+	src/msrproto/Variable.h, src/msrproto/XmlElement.cpp,
+	src/msrproto/XmlElement.h:
+	Optimized printing a bit
+	[555c1d68842d]
+
+2011-11-26  lan  <lan@lansim.igh-essen.int>
+
+	* src/CMakeLists.txt, src/Debug.h, src/buddy/Main.cpp,
+	src/buddy/Signal.cpp, src/buddy/Task.cpp, src/buddy/Task.h,
+	src/lib/Signal.cpp, src/msrproto/Directory.cpp,
+	src/msrproto/Parameter.cpp, src/msrproto/Server.cpp,
+	src/msrproto/Session.cpp:
+	Fixed <rk> issues
+	[a0b375fb6d8b]
+
+2011-11-24  lan  <lan@lansim.igh-essen.int>
+
+	* src/Main.h, src/Receiver.cpp, src/Receiver.h, src/Session.cpp,
+	src/Session.h, src/SessionShadow.h, src/buddy/Main.cpp,
+	src/buddy/Main.h, src/buddy/SessionShadow.cpp,
+	src/buddy/SessionShadow.h, src/buddy/Signal.cpp, src/buddy/Signal.h,
+	src/buddy/SignalInfo.h, src/msrproto/Directory.cpp,
+	src/msrproto/Outbuf.cpp, src/msrproto/Session.cpp:
+	<rk> working in principle
+	[c012cd59cb27]
+
+	* src/Main.h, src/buddy/Main.cpp, src/buddy/Signal.cpp,
+	src/buddy/Signal.h, src/buddy/main.cpp, src/msrproto/Directory.cpp,
+	src/msrproto/Directory.h:
+	Reworked msr directory structure
+	[9545470431f8]
+
+2011-11-23  lan  <lan@lansim.igh-essen.int>
+
+	* CMakeLists.txt, include/pdserv/etl_data_info.h,
+	include/pdserv/pdserv.h, src/CMakeLists.txt, src/Debug.cpp,
+	src/Debug.h, src/Main.cpp, src/Main.h, src/Parameter.cpp,
+	src/Parameter.h, src/Signal.cpp, src/Signal.h, src/Variable.cpp,
+	src/Variable.h, src/buddy/Main.cpp, src/buddy/Main.h,
+	src/buddy/Parameter.cpp, src/buddy/Parameter.h,
+	src/buddy/SessionShadow.cpp, src/buddy/SessionShadow.h,
+	src/buddy/Signal.cpp, src/buddy/Signal.h, src/buddy/SignalInfo.cpp,
+	src/buddy/SignalInfo.h, src/buddy/main.cpp, src/etlproto/Session.h,
+	src/lib/Main.cpp, src/lib/Main.h, src/lib/Parameter.cpp,
+	src/lib/Parameter.h, src/lib/Signal.cpp, src/lib/Signal.h,
+	src/lib/Task.cpp, src/lib/Task.h, src/lib/interface.cpp,
+	src/msrproto/Channel.cpp, src/msrproto/Channel.h,
+	src/msrproto/Directory.cpp, src/msrproto/Directory.h,
+	src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/PrintVariable.cpp, src/msrproto/PrintVariable.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/StatSignal.cpp, src/msrproto/StatSignal.h,
+	src/msrproto/Subscription.cpp, src/msrproto/Subscription.h,
+	src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h, src/msrproto/TimeSignal.cpp,
+	src/msrproto/TimeSignal.h, src/msrproto/Variable.cpp,
+	src/msrproto/Variable.h, src/msrproto/XmlDoc.cpp,
+	src/msrproto/XmlDoc.h, src/msrproto/XmlElement.cpp,
+	src/msrproto/XmlElement.h, src/msrproto/XmlParser.cpp,
+	src/msrproto/XmlParser.h, test/test1.cpp:
+	<rp> for buddy working
+	[6d08cec726c9]
+
+2011-11-19  Richard Hacker  <lerichi@gmx.net>
+
+	* .hgignore:
+	hgignore
+	[3cbc241fb327]
+
+2011-11-18  Richard Hacker  <lerichi@gmx.net>
+
+	* CMakeLists.txt, config.h.in, src/CMakeLists.txt, src/Debug.h,
+	src/Main.cpp, src/Parameter.cpp, src/Receiver.cpp, src/Session.cpp,
+	src/SessionTaskData.cpp, src/Signal.cpp, src/Variable.cpp,
+	src/lib/Main.cpp, src/lib/Parameter.cpp, src/lib/SessionShadow.cpp,
+	src/lib/SessionTaskData.cpp, src/lib/Signal.cpp, src/lib/Task.cpp,
+	src/msrproto/Attribute.cpp, src/msrproto/Channel.cpp,
+	src/msrproto/Directory.cpp, src/msrproto/Parameter.cpp,
+	src/msrproto/PrintVariable.cpp, src/msrproto/Server.cpp,
+	src/msrproto/Session.cpp, src/msrproto/StatSignal.cpp,
+	src/msrproto/Subscription.cpp, src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/TimeSignal.cpp, src/msrproto/Variable.cpp,
+	src/msrproto/XmlDoc.cpp, src/msrproto/XmlParser.cpp:
+	Added a debug interface
+	[ca2d0581b018]
+
+	* src/CMakeLists.txt, src/Main.h, src/Session.cpp, src/Session.h,
+	src/SessionMirror.h, src/SessionShadow.h, src/lib/Main.cpp,
+	src/lib/Main.h, src/lib/SessionMirror.cpp, src/lib/SessionMirror.h,
+	src/lib/SessionShadow.cpp, src/lib/SessionShadow.h,
+	src/msrproto/Session.cpp:
+	Renamed SessionMirror -> SessionShadow
+	[26930f4ff1e7]
+
+2011-11-15  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Session.cpp:
+	Optimized end of network session detection
+	[d904f5a2c57b]
+
+	* src/msrproto/Session.cpp:
+	Improved end of network session detection
+	[9e7f9333781c]
+
+	* src/lib/SessionTaskData.cpp, src/lib/SessionTaskData.h,
+	src/lib/Signal.cpp, src/lib/Signal.h, src/lib/Task.cpp,
+	src/lib/Task.h:
+	Bugfixes concerning initialization of the session's signal list
+	[9f4abd086e58]
+
+2011-11-14  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/Task.cpp, src/lib/Task.h:
+	Moved separate memory used for polling to the pdo shared memory area
+	[3c139760b393]
+
+2011-11-11  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/StatSignal.cpp, src/msrproto/StatSignal.h,
+	src/msrproto/TaskStatistics.h:
+	Added missing files
+	[cadf42fbf1d7]
+
+	* src/CMakeLists.txt, src/Main.h, src/Session.cpp, src/Session.h,
+	src/SessionMirror.h, src/TaskStatistics.h,
+	src/lib/SessionMirror.cpp, src/lib/SessionMirror.h,
+	src/msrproto/Directory.cpp, src/msrproto/Directory.h,
+	src/msrproto/Server.cpp, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/TimeSignal.cpp,
+	src/msrproto/TimeSignal.h, test/test1.cpp:
+	Local MSR channels (/Time /TaskInfo) working
+	[b3aaf04e08b7]
+
+2011-11-11  Richard Hacker  <ha@igh-essen.com>
+
+	* src/Main.cpp, src/Main.h, src/msrproto/Server.cpp,
+	src/msrproto/Session.cpp:
+	Fixed method argument types
+	[268c1e2f9cbf]
+
+2011-11-11  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/Session.cpp,
+	src/Session.h, src/SessionMirror.h, src/lib/SessionMirror.cpp,
+	src/lib/SessionMirror.h, src/lib/SessionTaskData.cpp,
+	src/lib/Task.cpp, src/lib/Task.h, src/msrproto/Server.cpp,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/TimeSignal.cpp, src/msrproto/TimeSignal.h:
+	MSR /Time is working
+	[4c6c32139b5f]
+
+2011-11-10  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/SessionMirror.cpp, src/lib/SessionTaskData.cpp,
+	src/lib/SessionTaskData.h, src/lib/Task.cpp, src/lib/Task.h:
+	Simplified method of creating new TaskMirrors
+	[76593dac7146]
+
+	* src/Main.cpp, src/Main.h, src/Session.cpp, src/Session.h,
+	src/SessionMirror.h, src/SessionTaskData.cpp, src/SessionTaskData.h,
+	src/Signal.h, src/Variable.h, src/lib/Main.cpp, src/lib/Main.h,
+	src/lib/Parameter.cpp, src/lib/Parameter.h,
+	src/lib/SessionMirror.cpp, src/lib/SessionMirror.h,
+	src/lib/SessionTaskData.cpp, src/lib/Signal.cpp, src/lib/Signal.h,
+	src/lib/Task.cpp, src/lib/Task.h, src/msrproto/Server.cpp,
+	src/msrproto/Server.h, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/Subscription.cpp,
+	src/msrproto/Subscription.h, src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h, src/msrproto/TimeChannel.h,
+	test/test1.cpp:
+	PdServ::Main is now const for sessions. buffers are void*
+	[d6df6a2df011]
+
+	* src/Session.cpp, src/Session.h, src/SessionMirror.h,
+	src/lib/SessionMirror.cpp, src/lib/SessionMirror.h,
+	src/lib/SessionTaskData.cpp, src/lib/SessionTaskData.h,
+	src/lib/Task.cpp, src/lib/Task.h, src/msrproto/Session.cpp,
+	src/msrproto/SubscriptionManager.cpp:
+	Fixed bugs and made receiving pdo's more robust
+	[e4f5f90c894e]
+
+2011-11-09  Richard Hacker  <lerichi@gmx.net>
+
+	* include/pdserv/pdserv.h, src/CMakeLists.txt, src/Main.cpp,
+	src/Main.h, src/Session.cpp, src/Session.h, src/SessionMirror.h,
+	src/SessionTaskData.cpp, src/SessionTaskData.h, src/Signal.h,
+	src/Task.h, src/TaskStatistics.h, src/lib/Main.cpp, src/lib/Main.h,
+	src/lib/SessionMirror.cpp, src/lib/SessionMirror.h,
+	src/lib/SessionTaskData.cpp, src/lib/SessionTaskData.h,
+	src/lib/Signal.cpp, src/lib/Signal.h, src/lib/Task.cpp,
+	src/lib/Task.h, src/lib/interface.cpp, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h, test/test1.cpp:
+	xsad working
+	[e5a3be5ee8cb]
+
+2011-11-07  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Directory.cpp, src/msrproto/Directory.h:
+	Simplified dependent parameters
+	[e16313d6d264]
+
+	* src/lib/Main.cpp, src/lib/Main.h, src/lib/interface.cpp:
+	Small mods
+	[bfeabd0c2f8c]
+
+2011-11-07  Richard Hacker  <ha@igh-essen.com>
+
+	* src/lib/Main.cpp, src/msrproto/Directory.h:
+	Minor compile fixes
+	[c47307fe3ce9]
+
+2011-11-07  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/TimeChannel.h, src/msrproto/Variable.cpp,
+	src/msrproto/Variable.h:
+	Added missing files
+	[a35eee1d2bad]
+
+	* src/Task.cpp, src/Task.h:
+	Added missing files
+	[319cd6b1fbdb]
+
+	* include/pdserv/pdserv.h, src/Main.h, src/lib/Main.cpp,
+	src/lib/Main.h, src/lib/Parameter.cpp, src/lib/Parameter.h,
+	src/lib/interface.cpp, src/msrproto/Parameter.cpp,
+	src/msrproto/Session.cpp, test/test1.cpp:
+	Parameter writing working
+	[ad3783d45a9f]
+
+	* src/msrproto/Directory.cpp, src/msrproto/Parameter.cpp,
+	src/msrproto/Parameter.h, src/msrproto/Session.cpp:
+	Small optimization regarding parameter flags and bugfix
+	[a4474b066c55]
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h,
+	src/msrproto/Channel.cpp, src/msrproto/Channel.h,
+	src/msrproto/Directory.cpp, src/msrproto/Directory.h,
+	src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/Subscription.cpp:
+	MSR directory structure reworked
+	[e75410c28099]
+
+2011-11-05  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/Task.cpp, src/msrproto/Server.cpp, src/msrproto/Session.cpp:
+	Fixed some bugs concerning <rk>
+	[1ae585eef3da]
+
+2011-11-04  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/Parameter.cpp,
+	src/Parameter.h, src/Signal.cpp, src/Signal.h, src/Variable.h,
+	src/lib/Main.cpp, src/lib/Main.h, src/lib/Parameter.cpp,
+	src/lib/Parameter.h, src/lib/Signal.cpp, src/lib/Signal.h,
+	src/lib/Task.cpp, src/lib/Task.h, src/lib/interface.cpp,
+	src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/Server.cpp, src/msrproto/Session.cpp:
+	Reworked class dependency
+	[f1746eea3d03]
+
+	* src/lib/interface.cpp, src/msrproto/Parameter.cpp,
+	src/msrproto/Parameter.h, src/msrproto/Session.cpp:
+	merge 147
+	[7b1248df84d7]
+
+	* CMakeLists.txt, include/pdserv/pdserv.h, src/CMakeLists.txt,
+	src/Main.cpp, src/Main.h, src/Session.cpp, src/Signal.cpp,
+	src/Signal.h, src/Task.cpp, src/Task.h, src/lib/Main.cpp,
+	src/lib/Main.h, src/lib/Parameter.cpp, src/lib/Parameter.h,
+	src/lib/Receiver.cpp, src/lib/Receiver.h, src/lib/Signal.cpp,
+	src/lib/Signal.h, src/lib/Task.cpp, src/lib/Task.h,
+	src/lib/interface.cpp, src/msrproto/Channel.cpp,
+	src/msrproto/Parameter.cpp, src/msrproto/Server.cpp,
+	src/msrproto/Server.h, src/msrproto/Session.cpp, test/test1.cpp:
+	<rk> working with poll
+	[4aff03d04ed9]
+
+2011-11-01  Richard Hacker  <lerichi@gmx.net>
+
+	* .hgignore:
+	hgignore
+	[b0beb5772d06]
+
+2011-05-06  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Session.cpp:
+	Fixed Vector index bug in <pu>
+	[d74a2428483c]
+
+	* src/lib/interface.cpp:
+	Fixed coredump bug when copy() function was not specified
+	[551f36c2177d]
+
+	* src/msrproto/Parameter.cpp, src/msrproto/Parameter.h:
+	Fixed problem of incorrect parameter index
+	[7dc999df0b41]
+
+2011-04-11  Richard Hacker  <lerichi@gmx.net>
+
+	* CMakeLists.txt, README.txt, config.h.in,
+	include/pdcomserv/etl_data_info.h, include/pdcomserv/pdcomserv.h,
+	include/pdserv/etl_data_info.h, include/pdserv/pdserv.h,
+	src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/Parameter.cpp,
+	src/Parameter.h, src/Receiver.cpp, src/Receiver.h, src/Session.cpp,
+	src/Session.h, src/SessionStatistics.h, src/Signal.cpp,
+	src/Signal.h, src/Task.cpp, src/Task.h, src/Variable.cpp,
+	src/Variable.h, src/etlproto/Server.cpp, src/etlproto/Server.h,
+	src/etlproto/Session.cpp, src/etlproto/Session.h, src/lib/Main.cpp,
+	src/lib/Main.h, src/lib/Parameter.cpp, src/lib/Parameter.h,
+	src/lib/Pointer.h, src/lib/Receiver.cpp, src/lib/Receiver.h,
+	src/lib/ShmemDataStructures.h, src/lib/Signal.cpp, src/lib/Signal.h,
+	src/lib/Task.cpp, src/lib/Task.h, src/lib/interface.cpp,
+	src/lib/libpdcomserv.pc.in, src/lib/libpdserv.pc.in,
+	src/msrproto/Attribute.cpp, src/msrproto/Attribute.h,
+	src/msrproto/Channel.cpp, src/msrproto/Channel.h,
+	src/msrproto/Directory.cpp, src/msrproto/Directory.h,
+	src/msrproto/Outbuf.cpp, src/msrproto/Outbuf.h,
+	src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/PrintVariable.cpp, src/msrproto/PrintVariable.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/Subscription.cpp, src/msrproto/Subscription.h,
+	src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h, src/msrproto/XmlDoc.cpp,
+	src/msrproto/XmlDoc.h, src/msrproto/XmlParser.cpp,
+	src/msrproto/XmlParser.h, test/CMakeLists.txt, test/test1.cpp:
+	Cleaned up namespace Using PdServ now throughout
+	[bbe67c5a6e81]
+
+2011-02-07  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/Main.cpp, src/msrproto/Directory.cpp,
+	src/msrproto/Server.cpp:
+	MSR traditional mode from command line
+	[5f21f238169a]
+
+2011-02-06  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Session.cpp:
+	Removed debugging
+	[fc6fe92a87f7]
+
+	* src/msrproto/Server.cpp:
+	Remove debugging lines
+	[4553bf22e5f7]
+
+	* include/pdcomserv/pdcomserv.h, src/Main.cpp, src/Main.h,
+	src/Parameter.cpp, src/Parameter.h, src/Signal.cpp, src/Signal.h,
+	src/lib/Main.cpp, src/lib/Main.h, src/lib/Parameter.cpp,
+	src/lib/Parameter.h, src/lib/Signal.cpp, src/lib/Signal.h,
+	src/msrproto/Directory.cpp, src/msrproto/Directory.h,
+	src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/XmlParser.cpp, src/msrproto/XmlParser.h,
+	test/test1.cpp:
+	Major rewrite of parameter and channel registration for MSR
+	[7475b7c15bcf]
+
+2011-01-09  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Channel.cpp, src/msrproto/Channel.h,
+	src/msrproto/Directory.cpp, src/msrproto/Directory.h,
+	src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/XmlParser.cpp,
+	src/msrproto/XmlParser.h, test/test1.cpp:
+	Parameters and Channels are inserted into directory tree now
+	[ccf3ca91db3f]
+
+2011-01-08  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Directory.cpp, src/msrproto/Directory.h,
+	test/parser.cpp:
+	Merged class Node into DirectoryNode
+	[b89e16b9249b]
+
+	* src/CMakeLists.txt, src/msrproto/Inbuf.cpp, src/msrproto/Inbuf.h,
+	src/msrproto/Session.h, src/msrproto/XmlParser.cpp,
+	src/msrproto/XmlParser.h, test/CMakeLists.txt, test/parser.cpp:
+	Renamed class Inbuf to XmlParser
+	[12bd1f67b673]
+
+2011-01-07  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Inbuf.cpp, src/msrproto/Inbuf.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	test/CMakeLists.txt, test/parser.cpp, test/test1.cpp:
+	New MSR parser working
+	[7dba92b09a15]
+
+2011-01-03  Richard Hacker  <ha@igh-essen.com>
+
+	* include/pdcomserv/pdcomserv.h, src/Parameter.cpp, src/Parameter.h,
+	src/Signal.cpp, src/Signal.h, src/Variable.cpp, src/Variable.h,
+	src/lib/Main.cpp, src/lib/Parameter.cpp, src/lib/Parameter.h,
+	src/lib/Pointer.h, src/lib/Signal.cpp, src/lib/Signal.h,
+	src/lib/Task.cpp, src/lib/interface.cpp, src/msrproto/Parameter.cpp,
+	src/msrproto/Session.cpp:
+	Cleaned up variable type compile errors
+	[abd021d45168]
+
+	* src/msrproto/Channel.cpp, src/msrproto/PrintVariable.cpp:
+	Bug in report of data type
+	[073e02783ce3]
+
+2011-01-03  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Receiver.h, src/Session.cpp, src/Session.h,
+	src/lib/Receiver.cpp, src/lib/Receiver.h, src/lib/Task.cpp:
+	Simplified resending a signal list to sessions
+	[b8e99fd4abb8]
+
+	* src/Main.h, src/Signal.h, src/lib/Main.cpp, src/lib/Main.h,
+	src/lib/Signal.cpp, src/lib/Signal.h, src/lib/Task.cpp,
+	src/lib/Task.h:
+	Signal subscription bug fix
+	[b1b5e16de98c]
+
+2011-01-02  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Parameter.cpp, src/msrproto/Server.cpp,
+	src/msrproto/Server.h:
+	Parameter writing working
+	[dd7eee248316]
+
+	* src/CMakeLists.txt, src/msrproto/Channel.cpp,
+	src/msrproto/Channel.h, src/msrproto/Directory.cpp,
+	src/msrproto/Directory.h, src/msrproto/Parameter.cpp,
+	src/msrproto/Parameter.h, src/msrproto/Server.cpp,
+	src/msrproto/Server.h, src/msrproto/Session.cpp,
+	src/msrproto/SubscriptionManager.h:
+	Parameters and Channels are organized in a tree now NOTE! Parameter
+	write is broken
+	[05e0ddd5cdb3]
+
+2011-01-01  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Session.cpp, src/msrproto/SubscriptionManager.cpp:
+	Delete subscription error fixed
+	[ab5db1f2ce36]
+
+2010-12-31  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Session.cpp:
+	Removed index from statistics Change <F>
+	[86547373a720]
+
+	* CMakeLists.txt, src/CMakeLists.txt, src/Session.h,
+	src/lib/Receiver.cpp, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/Subscription.cpp,
+	src/msrproto/Subscription.h, src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h:
+	Improved and simplified channel subscription process
+	[531a4a930221]
+
+2010-12-29  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Parameter.cpp, src/msrproto/Parameter.h:
+	Improved parameter writing
+	[16db19ae42a0]
+
+	* src/msrproto/Parameter.cpp:
+	Fixed bug in Parameter write
+	[a49d78e4b58b]
+
+2010-12-28  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Subscription.cpp:
+	Fixed registration bug
+	[835c67f59b2b]
+
+2010-12-27  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt, src/Receiver.cpp, src/Receiver.h, src/Session.h,
+	src/lib/Receiver.cpp, src/lib/Receiver.h, src/lib/Task.cpp,
+	src/lib/Task.h, src/msrproto/Attribute.cpp,
+	src/msrproto/Channel.cpp, src/msrproto/Parameter.cpp,
+	src/msrproto/Parameter.h, src/msrproto/PrintVariable.cpp,
+	src/msrproto/Server.cpp, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/Subscription.cpp,
+	src/msrproto/Subscription.h, src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h, src/msrproto/Task.cpp,
+	src/msrproto/Task.h, src/msrproto/XmlDoc.cpp, src/msrproto/XmlDoc.h:
+	xsad working again, this time with separate channels for signals
+	which have more than one element
+	[92b473079b1d]
+
+2010-12-25  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt, src/msrproto/Channel.cpp,
+	src/msrproto/Channel.h, src/msrproto/Parameter.cpp,
+	src/msrproto/Parameter.h, src/msrproto/PrintVariable.cpp,
+	src/msrproto/PrintVariable.h, src/msrproto/Session.cpp,
+	src/msrproto/Subscription.cpp, src/msrproto/Subscription.h,
+	src/msrproto/XmlDoc.cpp, src/msrproto/XmlDoc.h:
+	Improved printing of variables
+	[026d62a0d585]
+
+	* config.h.in, include/pdcomserv/pdcomserv.h, src/CMakeLists.txt,
+	src/Main.cpp, src/Main.h, src/lib/Main.cpp, src/lib/interface.cpp,
+	src/msrproto/Channel.cpp, src/msrproto/Channel.h,
+	src/msrproto/Parameter.cpp, src/msrproto/Parameter.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/Subscription.cpp, src/msrproto/Subscription.h,
+	src/msrproto/SubscriptionChange.cpp,
+	src/msrproto/SubscriptionChange.h,
+	src/msrproto/SubscriptionManager.cpp,
+	src/msrproto/SubscriptionManager.h, src/msrproto/Task.cpp,
+	src/msrproto/Task.h, src/msrproto/XmlDoc.cpp, src/msrproto/XmlDoc.h,
+	test/test1.cpp:
+	Traditional use of MSR protocol where signals and parameters are
+	split into separate elements when they are arrays
+	[7a29040d3b1c]
+
+2010-12-19  Richard Hacker  <lerichi@gmx.net>
+
+	* .hgignore, CMakeLists.txt, include/pdcomserv/etl_data_info.h,
+	include/pdcomserv/pdcomserv.h, include/rtlab/etl_data_info.h,
+	include/rtlab/rtlab.h, src/CMakeLists.txt, src/Variable.h,
+	src/lib/Main.h, src/lib/Parameter.h, src/lib/Task.h,
+	src/lib/interface.cpp, src/msrproto/Session.h, test/test1.cpp:
+	Renamed include/rtlab to include/pdcomserv
+	[88fe458a9152]
+
+	* CMakeLists.txt, README.txt, config.h.in, src/CMakeLists.txt,
+	src/Main.cpp, src/Main.h, src/Parameter.cpp, src/Parameter.h,
+	src/Receiver.cpp, src/Receiver.h, src/Session.cpp, src/Session.h,
+	src/SessionStatistics.h, src/Signal.cpp, src/Signal.h, src/Task.cpp,
+	src/Task.h, src/Variable.cpp, src/Variable.h, src/lib/Main.cpp,
+	src/lib/Main.h, src/lib/Parameter.cpp, src/lib/Parameter.h,
+	src/lib/Pointer.h, src/lib/Receiver.cpp, src/lib/Receiver.h,
+	src/lib/ShmemDataStructures.h, src/lib/Signal.cpp, src/lib/Signal.h,
+	src/lib/Task.cpp, src/lib/Task.h, src/lib/interface.cpp,
+	src/msrproto/Attribute.cpp, src/msrproto/Attribute.h,
+	src/msrproto/Inbuf.cpp, src/msrproto/Inbuf.h,
+	src/msrproto/Outbuf.cpp, src/msrproto/Outbuf.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/SubscriptionChange.cpp,
+	src/msrproto/SubscriptionChange.h, src/msrproto/Task.cpp,
+	src/msrproto/Task.h, src/msrproto/XmlDoc.cpp, src/msrproto/XmlDoc.h:
+	Added copyright notices
+	[5561f165bf0d]
+
+	* CMakeLists.txt, INSTALL, README.txt, config.h.in,
+	src/CMakeLists.txt, src/lib/libpdcomserv.pc.in:
+	Improved cmake configuration process
+
+	HG: Enter commit message. Lines beginning with 'HG:' are removed.
+	HG: Leave message empty to abort commit. HG: -- HG: user: Richard
+	Hacker <lerichi@gmx.net> HG: branch 'default' HG: changed
+	CMakeLists.txt HG: changed INSTALL HG: changed config.h.in HG:
+	changed src/CMakeLists.txt HG: changed src/lib/libpdcomserv.pc.in
+	[93463e7b50b6]
+
+	* .hgignore, CMakeLists.txt, COPYING, INSTALL, README.txt,
+	config.h.in, src/CMakeLists.txt, src/lib/Main.cpp, src/lib/Main.h,
+	src/lib/libpdcomserv.pc.in, src/msrproto/Inbuf.h,
+	src/msrproto/Session.h, test/CMakeLists.txt:
+	Improved packaging/installing process
+	[adba15c71e04]
+
+2010-12-17  Richard Hacker  <lerichi@gmx.net>
+
+	* test/test1.cpp:
+	Added some variables to make msr_testmanager happy
+	[210db8cdaa74]
+
+	* src/lib/Receiver.cpp, src/lib/Task.cpp, src/msrproto/Session.cpp,
+	src/msrproto/SubscriptionChange.cpp:
+	Fixed up subscription problems
+	[dce3cabf204d]
+
+	* src/CMakeLists.txt, src/Session.h, src/lib/Main.h,
+	src/lib/Receiver.cpp, src/lib/Receiver.h, src/lib/Task.cpp,
+	src/lib/Task.h, src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/SubscriptionChange.cpp:
+	Working again!
+	[9237985d5b2c]
+
+2010-12-14  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/Main.cpp, src/lib/Parameter.cpp, src/lib/Parameter.h,
+	src/lib/Receiver.cpp, src/lib/Receiver.h,
+	src/lib/ShmemDataStructures.h, src/lib/Signal.cpp, src/lib/Signal.h,
+	src/lib/Task.cpp, src/lib/Task.h:
+	Changed the way signals are subscribed for the user space lib
+	[133d2b531c47]
+
+2010-12-12  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/SubscriptionChange.cpp,
+	src/msrproto/SubscriptionChange.h, src/msrproto/Task.cpp,
+	src/msrproto/Task.h:
+	Improved subscription and unsubscription process (delayed cache)
+	[45bbe10ecda5]
+
+2010-12-11  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/Main.cpp, src/lib/Main.h, src/lib/Parameter.cpp,
+	src/lib/Parameter.h:
+	Optimized parameter changing
+	[1683af5879b3]
+
+	* src/Parameter.cpp, src/Parameter.h, src/lib/Main.cpp,
+	src/lib/Main.h, src/lib/Parameter.cpp, src/lib/Parameter.h:
+	<rp> working again
+	[dfa9d0e4ec68]
+
+2010-12-10  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Main.cpp, src/Main.h, src/Parameter.cpp, src/Parameter.h,
+	src/Receiver.h, src/Session.cpp, src/Session.h, src/Signal.cpp,
+	src/Signal.h, src/Task.cpp, src/Task.h, src/lib/Main.cpp,
+	src/lib/Main.h, src/lib/Parameter.cpp, src/lib/Parameter.h,
+	src/lib/Receiver.h, src/lib/Signal.cpp, src/lib/Signal.h,
+	src/lib/Task.cpp, src/lib/Task.h, src/lib/interface.cpp,
+	src/msrproto/Attribute.h, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/Task.cpp,
+	src/msrproto/XmlDoc.cpp:
+	A lot of optimization Parameter write not working in this version
+	[267b4497f0b8]
+
+2010-12-09  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Main.cpp, src/Main.h, src/Parameter.h, src/lib/Main.cpp,
+	src/lib/Main.h, src/lib/Parameter.cpp, src/lib/Parameter.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h:
+	Exported Parameter as const
+	[3b81a8c1dde9]
+
+	* src/lib/Main.cpp, src/lib/Parameter.cpp, src/lib/Parameter.h,
+	src/lib/Signal.cpp, src/lib/Signal.h, src/lib/Task.cpp:
+	Added index attribute to class Signal and Parameter in lib/
+	[5ba696e66fab]
+
+	* src/lib/ShmemDataStructures.h, src/lib/Task.cpp, src/lib/Task.h,
+	src/msrproto/Session.cpp, src/msrproto/Task.cpp:
+	Added dummy subscription to ensure that sessions get the signal list
+	[01883fae4b9c]
+
+2010-12-08  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Main.cpp, src/Main.h, src/Parameter.h, src/lib/Main.cpp,
+	src/lib/Main.h, src/lib/Parameter.cpp, src/lib/Parameter.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h, test/test1.cpp:
+	<write_parameter> working
+	[2ff888ddc73e]
+
+	* src/msrproto/Attribute.cpp, src/msrproto/Session.cpp:
+	Check that index is in range for <xsad> <xsod>
+	[b5aab33e261c]
+
+	* src/msrproto/Session.cpp, src/msrproto/Task.cpp,
+	src/msrproto/Task.h:
+	<xsod> working
+	[1e21f62b0f32]
+
+	* src/msrproto/Session.cpp, src/msrproto/Task.cpp,
+	src/msrproto/Task.h:
+	<xsad> working
+	[5d039767d7e7]
+
+	* src/Main.h, src/lib/Main.cpp, src/lib/Main.h, src/lib/Task.cpp,
+	src/lib/Task.h:
+	Removal of all subscriptions much more efficient
+	[05ab22205bc8]
+
+	* src/Main.h, src/lib/Main.cpp, src/lib/Main.h, src/lib/Signal.h,
+	src/lib/Task.cpp, src/lib/Task.h, src/msrproto/Session.cpp:
+	Added HRTLab::Main::subscribe() and unsubscribe()
+	[db4cb3f9a5ce]
+
+2010-12-07  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Main.h, src/lib/Main.cpp, src/lib/Main.h, src/lib/Parameter.cpp,
+	src/lib/Signal.cpp, src/msrproto/Session.cpp:
+	<read_parameter> working
+	[a7f47280fb5b]
+
+	* src/lib/Main.cpp, src/msrproto/Session.cpp:
+	Optimized waiting time for real time task Fixed race condition in
+	SocketPort
+	[f0962ebb6692]
+
+	* src/msrproto/Session.cpp:
+	Fixed race condition where socket was read before the Session was
+	ready
+	[be5f97dbd55d]
+
+	* src/Main.h, src/Session.cpp, src/lib/Main.cpp, src/lib/Main.h,
+	src/lib/Signal.cpp, src/lib/Signal.h, src/lib/Task.cpp,
+	src/lib/Task.h, src/msrproto/Session.cpp, src/msrproto/Task.cpp,
+	src/msrproto/Task.h:
+	Changed the way signals are subscribed and unsubscribed
+	[9092e4390e24]
+
+2010-12-06  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Main.h, src/Signal.h, src/lib/Main.cpp, src/lib/Main.h,
+	src/lib/ShmemDataStructures.h, src/lib/Signal.cpp, src/lib/Task.cpp,
+	src/lib/Task.h, src/msrproto/Session.cpp:
+	Signal polling aka <rp> working
+	[0ffd162a3eba]
+
+	* src/lib/Main.cpp, src/lib/Receiver.cpp, src/lib/Receiver.h,
+	src/lib/ShmemDataStructures.h, src/lib/Task.cpp, src/lib/Task.h,
+	src/msrproto/Session.cpp, src/msrproto/Task.cpp:
+	Principally working again
+	[09cd7c7fdb1f]
+
+2010-12-05  Richard Hacker  <lerichi@gmx.net>
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/Parameter.cpp,
+	src/Parameter.h, src/Receiver.cpp, src/Receiver.h, src/Session.cpp,
+	src/Session.h, src/Signal.cpp, src/Signal.h, src/Task.cpp,
+	src/lib/Main.cpp, src/lib/Main.h, src/lib/Parameter.cpp,
+	src/lib/Pointer.h, src/lib/Receiver.cpp, src/lib/Receiver.h,
+	src/lib/Task.cpp, src/lib/Task.h, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/Task.cpp, src/msrproto/Task.h:
+	Compiling is successful. Still segv's
+	[baa1e9330b1e]
+
+2010-12-03  Richard Hacker  <lerichi@gmx.net>
+
+	* src/lib/Main.cpp, src/lib/Task.cpp, src/lib/Task.h:
+	Some optimizations
+	[32ea53d70c6d]
+
+	* src/lib/Pointer.h, src/pointer.h:
+	new pointer header
+	[802e6226a327]
+
+	* src/Main.h, src/lib/Main.cpp, src/lib/Main.h, src/lib/Signal.cpp,
+	src/lib/Signal.h, src/lib/Task.cpp, src/lib/Task.h:
+	Implemented Main::poll and lib/Task::(un)subscribe
+	[fe0fb8ce852e]
+
+2010-12-02  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Main.cpp, src/Main.h, src/lib/Main.cpp, src/lib/Main.h,
+	src/lib/Task.cpp, src/lib/Task.h:
+	Deleting things in destructor
+	[145573e87c49]
+
+	* include/rtlab/rtlab.h, src/Main.cpp, src/Main.h, src/lib/Main.cpp,
+	src/lib/Main.h, src/lib/interface.cpp:
+	Completed hrtlab_init()
+	[110e8758d5bc]
+
+	* src/Main.h, src/lib/Main.cpp, src/lib/Main.h, src/lib/Signal.cpp,
+	src/lib/Signal.h, src/lib/Task.cpp, src/lib/Task.h:
+	Small optimizations
+	[913a4ad0101d]
+
+	* src/lib/Main.cpp, src/lib/Signal.h, src/lib/Task.cpp,
+	src/lib/Task.h, src/pointer.h:
+	Ported up to hrtlab_update in interface.c
+	[72ddedf6325f]
+
+2010-12-01  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Session.h, src/Signal.h, src/lib/Signal.cpp, src/lib/Signal.h,
+	src/lib/Task.h:
+	Completed communication paths
+	[b22fe941c0d8]
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/Parameter.cpp,
+	src/Parameter.h, src/Receiver.h, src/Session.cpp, src/Session.h,
+	src/Signal.cpp, src/Signal.h, src/Variable.h, src/lib/Main.h,
+	src/lib/Parameter.cpp, src/lib/Parameter.h, src/lib/Receiver.cpp,
+	src/lib/Receiver.h, src/lib/ShmemDataStructures.h,
+	src/lib/Signal.cpp, src/lib/Signal.h, src/lib/Task.h,
+	src/msrproto/Session.cpp, src/msrproto/Task.cpp,
+	src/msrproto/Task.h, src/msrproto/XmlDoc.cpp:
+	more revamping. Much better method of retrieving pdo's
+	[07b4185b1303]
+
+2010-11-28  Richard Hacker  <lerichi@gmx.net>
+
+	* include/rtlab/rtlab.h, src/interface.cpp, src/lib/Main.h,
+	src/lib/interface.cpp, test/test1.cpp:
+	Fixed up interface.*
+
+	HG: Enter commit message. Lines beginning with 'HG:' are removed.
+	HG: Leave message empty to abort commit. HG: -- HG: user: Richard
+	Hacker <lerichi@gmx.net> HG: branch 'default' HG: changed
+	include/rtlab/rtlab.h HG: changed src/lib/Main.h HG: changed
+	src/lib/interface.cpp HG: removed src/interface.cpp
+	[73ebf74d4d6f]
+
+	* include/rtlab/rtlab.h, src/CMakeLists.txt, src/Main.cpp, src/Main.h,
+	src/Parameter.cpp, src/Parameter.h, src/Session.cpp, src/Session.h,
+	src/SessionStatistics.h, src/Signal.cpp, src/Signal.h, src/Task.cpp,
+	src/Task.h, src/Variable.h, src/lib/Main.cpp, src/lib/Main.h,
+	src/lib/Parameter.cpp, src/lib/Parameter.h, src/lib/Signal.cpp,
+	src/lib/Signal.h, src/lib/Task.cpp, src/lib/Task.h,
+	src/lib/interface.cpp, src/msrproto/Server.cpp,
+	src/msrproto/Server.h, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/Task.cpp, src/msrproto/Task.h,
+	src/msrproto/XmlDoc.cpp, src/msrproto/XmlDoc.h:
+	Separated out library version to ./lib Communication paths are
+	working, now have join the dots
+	[bc1573fb831f]
+
+2010-11-27  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Main.cpp, src/Main.h, src/Parameter.cpp, src/Parameter.h,
+	src/Session.cpp, src/Session.h, src/Signal.cpp, src/Signal.h,
+	src/Task.cpp, src/Task.h, src/Variable.cpp, src/Variable.h,
+	src/interface.cpp, src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/Task.cpp, src/msrproto/Task.h, src/msrproto/XmlDoc.cpp,
+	src/msrproto/XmlDoc.h:
+	Just before revamping into different modules such as buddy, lib, etc
+	[9a5d136f2054]
+
+	* .hgtags:
+	Added tag Library only version for changeset 19e82f5e0f19
+	[8db686a1c084]
+
+2010-11-25  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Main.cpp, src/Main.h, test/test1.cpp:
+	Improved error reporting when writeing parameters
+	[19e82f5e0f19] [Library only version]
+
+2010-11-24  Richard Hacker  <lerichi@gmx.net>
+
+	* include/rtlab/rtlab.h, src/Main.cpp, src/Main.h, src/Parameter.cpp,
+	src/Parameter.h, src/Signal.cpp, src/Signal.h, src/Task.cpp,
+	src/Variable.cpp, src/Variable.h, src/interface.cpp,
+	src/msrproto/XmlDoc.cpp, test/test1.cpp:
+	Cleaned up real-time initialization interface
+	[0f23a9300a64]
+
+	* src/msrproto/Attribute.cpp, src/msrproto/Attribute.h,
+	src/msrproto/Inbuf.cpp, src/msrproto/XmlDoc.cpp:
+	Made XML parser reentrant, including new buffer allocation
+	[72b8f700ab48]
+
+	* src/msrproto/XmlDoc.cpp:
+	Eye candy
+	[bc654ff1a9ba]
+
+	* src/msrproto/XmlDoc.cpp:
+	Improved CSV printing function
+	[67a07d4d642b]
+
+	* src/msrproto/XmlDoc.cpp:
+	Base64 encoder for Msr
+	[462e577e1407]
+
+2010-11-23  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Session.cpp, src/msrproto/XmlDoc.cpp,
+	src/msrproto/XmlDoc.h:
+	Added correct flags to MSR
+	[9f0536376a59]
+
+	* include/rtlab/rtlab.h, src/Main.cpp, src/Main.h, src/Parameter.cpp,
+	src/Parameter.h, src/Signal.cpp, src/Signal.h, src/Variable.cpp,
+	src/Variable.h, src/interface.cpp, src/msrproto/Session.cpp,
+	src/msrproto/XmlDoc.cpp, src/msrproto/XmlDoc.h, test/test1.cpp:
+	Added mode for parameters Removed alias from Signal and Parameter
+	definitions Added hrtlab_set_alias(), hrtlab_set_unit() and
+	hrtlab_set_comment()
+	[cc5a5772a044]
+
+	* src/msrproto/Session.cpp, src/msrproto/Task.cpp,
+	src/msrproto/Task.h, src/msrproto/XmlDoc.cpp, src/msrproto/XmlDoc.h:
+	Improved setting of value="" for MsrXml
+	[3a267e3c7f30]
+
+	* src/msrproto/Inbuf.cpp, src/msrproto/Inbuf.h:
+	Change buffer pointer management
+	[d65acbe2f940]
+
+2010-11-22  Richard Hacker  <lerichi@gmx.net>
+
+	* src/msrproto/Inbuf.cpp:
+	Uninitialised variable
+	[0c09c02c8f65]
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/Signal.cpp,
+	src/Variable.cpp, src/msrproto/Server.cpp:
+	Cleaning up memory with delete
+	[8e60216030ca]
+
+	* src/Main.cpp, src/Signal.cpp, src/Task.cpp, src/Variable.cpp,
+	src/msrproto/Session.cpp:
+	Changed the way parameter errors are transferred
+	[5af6ba5ea084]
+
+	* src/Main.cpp, src/Main.h, src/Session.cpp, src/Session.h,
+	src/msrproto/Outbuf.h, src/msrproto/Server.cpp,
+	src/msrproto/Server.h, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/Task.cpp, src/msrproto/Task.h,
+	test/test1.cpp:
+	Changed some pointers to const*
+	[bb9ca5add7de]
+
+2010-11-21  Richard Hacker  <lerichi@gmx.net>
+
+	* include/rtlab/rtlab.h, src/Main.cpp, src/Main.h, src/MainTask.cpp,
+	src/Parameter.cpp, src/Parameter.h, src/PdoSignalList.cpp,
+	src/PdoSignalList.h, src/interface.cpp, src/msrproto/Inbuf.cpp,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/XmlDoc.cpp, src/msrproto/XmlDoc.h, test/test1.cpp:
+	Parameter writing working MsrXml allows using attributes without
+	quotes
+	[a4d73cfe8bf4]
+
+	* .hgignore, src/Main.cpp, src/Main.h, src/Parameter.cpp,
+	src/Session.cpp, src/Session.h, src/msrproto/Server.cpp,
+	src/msrproto/Server.h, src/msrproto/Session.cpp,
+	src/msrproto/Session.h:
+	MSRProto <write_parameter> working All: Process of getting session
+	statistics has been changed
+	[b7169aa4272c]
+
+	* src/Main.h, src/Parameter.cpp, src/Task.cpp, src/Task.h,
+	src/interface.cpp, src/msrproto/Session.cpp, src/msrproto/Session.h:
+	Some comments Cleaned up program
+	[30fe9f49937f]
+
+2010-11-20  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Main.cpp, src/Main.h, src/Session.cpp, src/Session.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h:
+	Process Statistics implemented Comments added
+	[ad76cef4913a]
+
+	* CMakeLists.txt, config.h.in, src/CMakeLists.txt, src/Task.cpp,
+	src/etlproto/Server.cpp, src/etlproto/Session.cpp,
+	src/msrproto/Attribute.h, src/msrproto/Inbuf.cpp,
+	src/msrproto/Server.cpp, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/Task.cpp, src/msrproto/Task.h,
+	src/msrproto/XmlDoc.cpp, src/msrproto/XmlDoc.h, test/test1.cpp:
+	Cleaned up includes Added -DDEBUG=1 option to cmake
+	[efd83e959408]
+
+	* src/Task.cpp, src/msrproto/Session.cpp, src/msrproto/Task.cpp:
+	Removed some comments
+	[d26843ebd99d]
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/Task.cpp,
+	src/Task.h, src/msrproto/Session.cpp, src/msrproto/Task.cpp,
+	test/test1.cpp:
+	TestManager working now!
+	[b90b249d0ae9]
+
+2010-11-14  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Main.cpp, src/Main.h, src/Task.cpp, src/msrproto/Session.cpp,
+	src/msrproto/XmlDoc.cpp, test/test1.cpp:
+	Fixed bug for addSignals
+	[1706754aa5a3]
+
+	* src/Main.cpp, src/Session.cpp, src/Session.h, src/Task.cpp,
+	src/Task.h, src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/Task.cpp, src/msrproto/Task.h, src/msrproto/XmlDoc.cpp:
+	Output from MSR Working
+	[5d28c0da75b5]
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/Session.cpp,
+	src/Task.cpp, src/Task.h, src/Variable.h, src/msrproto/Session.cpp:
+	Introduced Task.h Variable communication between sessions and tasks
+	working
+	[24bc407b439b]
+
+2010-11-11  Richard Hacker  <lerichi@gmx.net>
+
+	* src/Main.cpp, src/Main.h, src/MainTask.cpp:
+	Prepared to move out Task from class Main
+	[3341c822ad10]
+
+	* src/CMakeLists.txt:
+	Removed unrequired library and etags target
+	[9be35a16ee3e]
+
+2010-11-06  Richard Hacker  <ha@igh-essen.com>
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/PdoSignalList.cpp,
+	src/PdoSignalList.h, src/Session.cpp, src/Session.h,
+	src/etlproto/Session.cpp, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/Task.cpp, src/msrproto/Task.h:
+	Reworked the way PDO data is communicated to the sessions
+	[dd248a513cbe]
+
+2010-10-30  Richard Hacker  <ha@igh-essen.com>
+
+	* src/msrproto/Attribute.cpp, src/msrproto/Attribute.h,
+	src/msrproto/Inbuf.cpp, src/msrproto/Inbuf.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h:
+	Removed Session::Inbuf to separate file
+	[5570a01a531a]
+
+2010-10-28  Richard Hacker  <ha@igh-essen.com>
+
+	* src/msrproto/Outbuf.cpp, src/msrproto/Outbuf.h:
+	New property names for Outbuf
+	[7bbe744ab871]
+
+	* src/CMakeLists.txt, src/msrproto/Outbuf.cpp, src/msrproto/Outbuf.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h:
+	Moved MsrProto::Session::Outbuf to separate file
+	[4d4fb8a46730]
+
+	* src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/XmlDoc.cpp, src/msrproto/XmlDoc.h:
+	Moved out methods for to set channel and parameter attributes to
+	XmlDoc
+	[5bce8f3efaf0]
+
+	* src/CMakeLists.txt, src/msrproto/Attribute.cpp,
+	src/msrproto/Attribute.h, src/msrproto/Session.cpp,
+	src/msrproto/Session.h:
+	Moved out Session::Attr to separate file
+	[e8f33d6a023f]
+
+	* src/CMakeLists.txt, src/msrproto/Inbuf.cpp, src/msrproto/Inbuf.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h:
+	Moved out Session::Input to separate source file
+	[3a78302cf426]
+
+	* src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/XmlDoc.cpp:
+	Removed class Session::Task from class Session
+	[6304ca818146]
+
+2010-10-27  Richard Hacker  <ha@igh-essen.com>
+
+	* src/CMakeLists.txt, src/msrproto/Session.cpp,
+	src/msrproto/Session.h, src/msrproto/Task.cpp, src/msrproto/Task.h,
+	src/msrproto/XmlDoc.cpp, src/msrproto/XmlDoc.h:
+	Moved MsrProto::Session::Task to own file
+	[5283578b1ce5]
+
+	* src/CMakeLists.txt, src/Main.cpp, src/MsrServer.cpp,
+	src/MsrServer.h, src/MsrSession.cpp, src/MsrSession.h,
+	src/MsrSessionTask.cpp, src/XmlDoc.cpp, src/XmlDoc.h,
+	src/msrproto/Server.cpp, src/msrproto/Server.h,
+	src/msrproto/Session.cpp, src/msrproto/Session.h,
+	src/msrproto/TCPServer.cpp, src/msrproto/TCPServer.h,
+	src/msrproto/Task.cpp, src/msrproto/XmlDoc.cpp,
+	src/msrproto/XmlDoc.h:
+	Moved MSR specific files into separate directory
+	[495071a67748]
+
+2010-10-26  Richard Hacker  <ha@igh-essen.com>
+
+	* src/MsrSession.cpp, src/MsrSession.h:
+	Optimimised MSR output buffer
+	[87cd5133dbf6]
+
+2010-10-25  Richard Hacker  <ha@igh-essen.com>
+
+	* src/MsrSession.cpp, src/MsrSession.h:
+	Most of the old functionality exists with new parser now
+	[fbbae64d330a]
+
+	* src/MsrSession.cpp, src/MsrSession.h, src/XmlDoc.cpp:
+	Added more commands
+	[d7ab941caa5d]
+
+2010-10-24  Richard Hacker  <ha@igh-essen.com>
+
+	* src/MsrSession.cpp, src/MsrSession.h:
+	XML Parser basically working. Starting to implement the commands
+	[4ca6d49a48a2]
+
+	* src/MsrSession.cpp, src/MsrSession.h, src/XmlDoc.cpp, src/XmlDoc.h:
+	Attribute order XML replies is maintained
+	[a2d802e9ec41]
+
+	* src/MsrSession.cpp, src/MsrSession.h:
+	New XML parser started
+	[4eb7c405f457]
+
+2010-09-10  Richard Hacker  <ha@igh-essen.com>
+
+	* src/XmlDoc.cpp, src/XmlDoc.h:
+	Commented XmlDoc
+	[8eeb25c119e8]
+
+2010-09-09  Richard Hacker  <ha@igh-essen.com>
+
+	* src/MsrSession.cpp, src/XmlDoc.cpp, src/XmlDoc.h:
+	XmlDoc escape characters
+	[3f54f5386288]
+
+	* src/Main.cpp, src/Main.h, src/MsrSession.cpp, src/MsrSession.h,
+	src/Session.cpp, src/Session.h:
+	<readstatistics> working
+	[26fc111ec570]
+
+	* src/MsrSession.cpp, src/MsrSessionTask.cpp:
+	<xsod> working
+	[5177a291a4df]
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/MainTask.cpp,
+	src/MsrSession.cpp, src/MsrSession.h, src/MsrSessionTask.cpp,
+	src/Session.cpp, src/Session.h, src/Signal.cpp, test/test1.cpp:
+	<xsad> working with numeric output
+	[96e57ac93605]
+
+2010-09-07  Richard Hacker  <ha@igh-essen.com>
+
+	* src/MsrSession.cpp, src/MsrSession.h, src/MsrSessionTask.cpp,
+	src/XmlDoc.cpp, src/XmlDoc.h:
+	<xsad> working, except for quiet/sync
+	[682e9779edfc]
+
+2010-09-06  Richard Hacker  <ha@igh-essen.com>
+
+	* src/CMakeLists.txt, src/MsrSession.cpp, src/MsrSession.h,
+	src/MsrSessionTask.cpp:
+	Decimations for <xsad> working. Need to output the data to the
+	clients still
+	[8966319f7430]
+
+2010-09-05  Richard Hacker  <ha@igh-essen.com>
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/MainTask.cpp,
+	src/MsrSession.cpp, src/MsrSession.h:
+	started on <xsad>
+	[150862c7f9b1]
+
+2010-09-03  Richard Hacker  <ha@igh-essen.com>
+
+	* src/MsrServer.cpp, src/MsrServer.h, src/MsrSession.cpp,
+	src/MsrSession.h:
+	<remote_host> working
+	[05d39fe2be60]
+
+2010-09-02  Richard Hacker  <ha@igh-essen.com>
+
+	* src/MsrSession.cpp, src/MsrSession.h:
+	<echo> working
+	[3b4c9c2e2d1c]
+
+	* src/Main.cpp, src/Main.h, src/MsrSession.cpp, src/MsrSession.h:
+	<rk> working
+	[eb1fdbe55c5b]
+
+	* src/Main.cpp, src/Main.h, src/MsrSession.cpp, src/MsrSession.h,
+	src/etlproto/Session.cpp:
+	<rk> for a single channel working
+	[f96ef36430bd]
+
+2010-08-31  Richard Hacker  <ha@igh-essen.com>
+
+	* src/Main.cpp, src/Main.h, src/MsrSession.cpp, src/MsrSession.h,
+	src/etlproto/Session.cpp:
+	Minor optimizations
+	[0f46e091329c]
+
+	* src/Main.cpp, src/Main.h, src/MsrServer.cpp, src/MsrServer.h,
+	src/MsrSession.cpp, src/MsrSession.h, src/Parameter.cpp,
+	src/Parameter.h:
+	Parameter changing working.
+	[cebbdefaa40f]
+
+2010-08-30  Richard Hacker  <ha@igh-essen.com>
+
+	* src/Main.cpp, src/Main.h, src/MsrSession.cpp, src/MsrSession.h,
+	src/Parameter.cpp, src/Parameter.h:
+	Prepared for <wp>
+	[e1d1aa19949c]
+
+2010-08-29  Richard Hacker  <ha@igh-essen.com>
+
+	* include/rtlab/rtlab.h, src/Main.cpp, src/Main.h, src/MsrServer.cpp,
+	src/MsrServer.h, src/MsrSession.cpp, src/MsrSession.h,
+	src/Parameter.cpp, src/XmlDoc.cpp, src/XmlDoc.h, src/interface.cpp,
+	test/test1.cpp:
+	More MSR Commands working
+	[273ea2822b1d]
+
+2010-08-28  Richard Hacker  <ha@igh-essen.com>
+
+	* src/Main.cpp, src/MsrSession.cpp, src/MsrSession.h,
+	src/Parameter.cpp, src/Parameter.h, src/XmlDoc.cpp, src/XmlDoc.h:
+	Parameter outputs working
+	[4b9f22d1266a]
+
+2010-08-27  Richard Hacker  <ha@igh-essen.com>
+
+	* src/Main.cpp, src/Main.h, src/MsrSession.cpp, src/MsrSession.h,
+	src/Variable.h, src/XmlDoc.cpp, src/XmlDoc.h,
+	src/etlproto/Session.cpp:
+	MsrProto <rp>
+	[03c2ad2cb43d]
+
+2010-08-25  Richard Hacker  <ha@igh-essen.com>
+
+	* src/CMakeLists.txt, src/Main.cpp, src/MsrServer.cpp,
+	src/MsrServer.h, src/MsrSession.cpp, src/MsrSession.h,
+	src/XmlDoc.cpp, src/XmlDoc.h:
+	Added first parts of MsrServer - ping working already
+	[0abebb00584e]
+
+2010-08-22  Richard Hacker  <ha@igh-essen.com>
+
+	* src/etlproto/Server.cpp, src/etlproto/Server.h:
+	Added missing files
+	[1b32bebf27f4]
+
+	* .hgignore, CMakeLists.txt, config.h.in, src/CMakeLists.txt,
+	src/Main.cpp, src/TCPServer.cpp, src/TCPServer.h,
+	src/etlproto/Session.cpp, src/etlproto/Session.h:
+	Moved TCPServer to the new ./etlproto
+	[7e5ad2eb6fe3]
+
+2010-08-20  Richard Hacker  <ha@igh-essen.com>
+
+	* src/CMakeLists.txt, src/TCPServer.cpp, src/msrproto/TCPServer.cpp,
+	src/msrproto/TCPServer.h:
+	Started adding MsrProto
+	[70fc9e7b9d7a]
+
+	* include/rtlab/rtlab.h, src/Main.cpp, src/Main.h, src/Parameter.cpp,
+	src/Parameter.h, src/TCPServer.cpp, src/TCPServer.h,
+	src/Variable.cpp, src/Variable.h, src/interface.cpp, test/test1.cpp:
+	Changed variable registration
+	[d2136832f14e]
+
+2010-08-18  Richard Hacker  <ha@igh-essen.com>
+
+	* src/Main.h, src/TCPServer.cpp, src/TCPServer.h:
+	Signal decimations working
+	[5b788f5d68d7]
+
+2010-08-17  Richard Hacker  <ha@igh-essen.com>
+
+	* src/Main.cpp, src/Main.h:
+	Signal transmission is sorted by sizeof(object)
+	[09ee67fcdf01]
+
+2010-08-16  Richard Hacker  <ha@igh-essen.com>
+
+	* src/Main.cpp, src/TCPServer.cpp, src/TCPServer.h:
+	Reworked dp-mem a little. Started work on synchronizing decimations
+	[762f52a2c9ff]
+
+2010-08-15  Richard Hacker  <ha@igh-essen.com>
+
+	* src/Main.cpp, src/Main.h, src/Parameter.cpp, src/Parameter.h,
+	src/Signal.cpp, src/Signal.h, src/Variable.cpp, src/Variable.h,
+	src/interface.cpp:
+	Changed a call from memcpy() to std::copy
+	[32e03a71b3fa]
+
+	* src/Main.cpp, src/Main.h, src/Signal.h, src/TCPServer.cpp,
+	src/TCPServer.h:
+	Subscribing started working
+	[00e76bc9e940]
+
+2010-08-14  Richard Hacker  <ha@igh-essen.com>
+
+	* src/TCPServer.cpp:
+	optimised TCP Server startup
+	[42c2d15473c6]
+
+	* include/rtlab/rtlab.h, src/CMakeLists.txt, src/Main.cpp, src/Main.h,
+	src/TCPServer.cpp, src/interface.cpp, test/test1.cpp:
+	Signal copying now working
+	[b42bcc060fa5]
+
+	* src/Main.cpp, src/Main.h, src/Parameter.cpp, src/Parameter.h,
+	src/Signal.cpp, src/Signal.h, src/TCPServer.cpp, src/TCPServer.h,
+	src/Variable.cpp, src/Variable.h:
+	Signal subscription via the shmem interface is begun
+	[4b9c182c8cec]
+
+2010-08-12  Richard Hacker  <ha@igh-essen.com>
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/Parameter.cpp,
+	src/Signal.cpp, src/Signal.h, src/TCPServer.cpp, src/TCPServer.h,
+	src/Variable.cpp, src/Variable.h, test/test1.cpp:
+	ls command working
+	[65bb07b6def0]
+
+2010-08-10  Richard Hacker  <ha@igh-essen.com>
+
+	* include/rtlab/rtlab.h, src/Main.cpp, src/Main.h, src/TCPServer.cpp,
+	src/TCPServer.h, src/interface.cpp, test/test1.cpp:
+	Added variable tests Extended interface TCP Login reports process
+	information
+	[ad6bbab5732d]
+
+2010-08-09  Richard Hacker  <ha@igh-essen.com>
+
+	* src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/TCPServer.cpp,
+	src/TCPServer.h, test/test1.cpp:
+	Added TCP service
+	[1a7b27c9179e]
+
+2010-08-08  Richard Hacker  <ha@igh-essen.com>
+
+	* include/rtlab/etl_data_info.h, include/rtlab/rtlab.h,
+	src/CMakeLists.txt, src/Main.cpp, src/Main.h, src/Parameter.cpp,
+	src/Parameter.h, src/Signal.cpp, src/Signal.h, src/Variable.cpp,
+	src/Variable.h, src/interface.cpp, test/test1.cpp:
+	Added parameters, signals
+	[4cd9953ea8bb]
+
+2010-08-07  Richard Hacker  <ha@igh-essen.com>
+
+	* include/rtlab/rtlab.h, src/CMakeLists.txt, src/Main.cpp, src/Main.h,
+	src/interface.cpp, test/test1.cpp:
+	Added Signals
+	[4f00dd14f1bf]
+
+	* include/rtlab/rtlab.h, src/CMakeLists.txt, src/Main.cpp, src/Main.h,
+	src/interface.cpp:
+	Added main
+	[e7c79a311e0e]
+
+2010-08-06  Richard Hacker  <ha@igh-essen.com>
+
+	* .hgignore, CMakeLists.txt, cmake/Modules/FindMercurial.cmake,
+	include/rtlab/rtlab.h, src/CMakeLists.txt, src/interface.cpp,
+	test/CMakeLists.txt, test/test1.cpp:
+	Initial start
+	[703e4d7db4ff]
+

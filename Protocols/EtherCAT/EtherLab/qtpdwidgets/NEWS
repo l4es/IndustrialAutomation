@@ -1,0 +1,90 @@
+
+$Id$
+
+vim700: spelllang=en spell
+
+Version 1.3.7:
+
+- Reworked Pd::Graph triggering.
+- Enable socket keep-alive mechanism in Pd::Process.
+- Made Pd::Digital, Pd::Bar, Pd::Graph style-aware.
+- Locale-aware number formatting in value scale.
+- Added autoScaleWidth property for Pd::Graph.
+- Added Pd::removeTranslator().
+- Added Pd::Process::sendBroadcast().
+- Added Pd::NoPdTouchEdit.
+- Table widget with current line and number of visible rows.
+- Fixed checkable pushbuttons for onValues other than 1.
+- Provide an interface on Pd::Process to change the application name.
+- Determine login/hostname on windows.
+- Implemented Pd::Digital time display property.
+- Added resource prefix to avoid conflicts with other resources.
+- Added gridColor property for ValueScale.
+- Reworked Pd::Text; added TextCondition to display conditions.
+- Removed editable property of TouchEdit (use setEnabled() instead).
+- Support Debian based distributions in project file.
+- Added style property and setGradientStops() to Pd::Bar.
+- Fixed missing layer cleanup in Graph destructor.
+- Added support for MinGW.
+- Support out-of-place builds.
+- Merged improved scale calculation from DLS widget.
+
+Version 1.3.6:
+
+- MessageModel accepts EtherLabPlainMessages instead of EtherLabMessages.
+- Touchedit closes the dialog, if editable is reset.
+- Optional prefix to the messages path.
+- Added missing headers for GCC 4.7.
+
+Version 1.3.5:
+
+- Pd::PushButton respects checkable property. 
+- Added dutch translation.
+
+Version 1.3.4:
+
+- Graph widget supports multiple layers (variables)
+- Added complete library translation (German / English)
+- Re-worked filter settings (introduced tau parameter)
+- Added TouchEdit
+- Stacked sections in bar graphs
+- Added TableView / TableModel
+
+Version 1.3.3:
+
+- Language support in MessageModel.
+- Support for 64-bit architectures.
+
+Version 1.3.2:
+
+- Added mydist.sh script to overcome qmake's crappy dist target implementation.
+- Fixed missing Process::disconnect() signal.
+- Fixed ScalarVariable::hasData() on disconnect; removed ScalarVariable::setValue();
+- Fixed Bar::Orientation in test Mainwindow.
+- Reset immediately on disconnectFromHost(); use disconnectFromHost() in
+  destructor.
+- Avoided copying of ScalarSubscriber objects.
+- Improved MessageModel again and validated with Qt modeltest.
+
+Version 1.3.1:
+
+- Fixed WIN32_LIB_VERSION.
+
+Version 1.3.0 (r365):
+
+- Avoided QAbstractSocket bug under Linux.
+- Renamed Alignment to Orientation in Pd::Scale and Pd::Bar.
+- Improved Pd::Bar origin; renamed OriginMode to Origin.
+- Added LGPLv3 headers.
+- Fixed ScalarSubscriber::setVariable() bug on PdCom::VariableException().
+- Pd::Bar with multiple sections.
+- Bugfixes in Pd::Process, Pd::Text, Pd::Graph, Pd::MessageModel and
+  Pd::RadioButton.
+- DLL versioning scheme under win32.
+- Added dataPresent flag to Pd::CheckBox.
+
+Version 1.2.0 (r341):
+
+* Ported to PdCom.
+* Added text color and font information for Pd::Text hash.
+

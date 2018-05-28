@@ -1,0 +1,40 @@
+-------------------------------------------------------------------------------
+
+$Id$
+
+-------------------------------------------------------------------------------
+
+1) General Information
+
+This is the QtPdWidgets library, a process-data aware widget library for Qt
+from the EtherLab project. See http://etherlab.org/en/pdwidgets.
+
+-------------------------------------------------------------------------------
+
+2) License
+
+The QtPdWidgets library is licensed unter the terms and conditions of the GNU
+Lesser General Public License (LGPL), version 3 or (at your option) any later
+version.
+
+-------------------------------------------------------------------------------
+
+3) Prerequisites
+
+* Qt4.
+* PdCom 3.0.X (see http://etherlab.org/en/pdcom).
+
+-------------------------------------------------------------------------------
+
+4) Building and Installing
+
+The build process is handled by qmake. To build and install, call:
+
+qmake
+make
+make install 
+
+
+Have fun!
+
+-------------------------------------------------------------------------------

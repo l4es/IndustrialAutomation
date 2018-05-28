@@ -1,0 +1,195 @@
+#
+# This file is part of the Data Logging Service (DLS).
+#
+# DLS is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# DLS is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along
+# with DLS. If not, see <http://www.gnu.org/licenses/>.
+#
+# vim: tw=78 spelllang=en
+#
+
+Name: @PACKAGE@
+Version: @VERSION@
+Release: 1
+
+%define package_version %{version}
+%define libver 4
+
+Summary: Data Logging Service
+License: GPL-3.0+
+Vendor: Ingenieurgemeinschaft IgH GmbH
+Group: Productivity/Other
+Url: http://etherlab.org/en/dls
+Source0: %{name}-%{package_version}.tar.bz2
+Source1: dls-rpmlintrc
+Patch0: subdir-objects.patch
+Patch1: pid_file_name.patch
+PreReq: permissions
+Requires(post): %insserv_prereq %fillup_prereq
+BuildRoot: %_tmppath/%name-%{package_version}-root
+BuildRequires: fftw3-devel
+BuildRequires: fltk-devel
+BuildRequires: fontconfig-devel
+BuildRequires: gcc-c++
+BuildRequires: libXext-devel
+BuildRequires: libXft-devel
+BuildRequires: libXinerama-devel
+BuildRequires: libfltk1
+BuildRequires: xorg-x11-proto-devel
+BuildRequires: libqt4-devel
+BuildRequires: shared-mime-info
+BuildRequires: desktop-file-utils
+BuildRequires: liburiparser-devel
+BuildRequires: pdcom-devel
+BuildRequires: protobuf-devel
+BuildRequires: libxml2-devel
+BuildRequires: autoconf
+BuildRequires: automake
+BuildRequires: libtool
+BuildRequires: pcre-devel
+Requires: desktop-file-utils
+
+%description
+DLS is a process data logging service, capable of capturing high-frequency
+data over a long time and storing it in a compressed way. The aim is to allow
+the user unlimited high-performance access to the data at any time. Be it a
+year's overview or a small signal peak in fractions of a second.
+
+%package -n dls-devel
+Summary:        Development files for data logging service
+Summary(de):    Entwickungsdateien für den DLS
+Group:          Development/Libraries/C and C++
+Requires:       %name = %version
+Requires:       fftw3-devel
+Requires:       zlib-devel
+
+%description -n dls-devel
+The %name-devel package contains the static libraries and header files
+needed for development with %name.
+
+%prep
+%setup -n %{name}-%{package_version}
+%patch0 -p1
+%patch1 -p1
+
+%build
+./bootstrap.sh # because patches modify build system
+%configure
+make %{?_smp_mflags}
+cd widgets
+qmake PREFIX=%{_prefix}
+make %{?_smp_mflags}
+cd ..
+cd gui
+qmake PREFIX=%{_prefix}
+make %{?_smp_mflags}
+cd ..
+
+%install
+make DESTDIR=${RPM_BUILD_ROOT} install
+%if "%{_vendor}" == "suse"
+install -d ${RPM_BUILD_ROOT}%{_sbindir}
+ln -s %{_sysconfdir}/init.d/dls ${RPM_BUILD_ROOT}%{_sbindir}/rcdls
+install -d ${RPM_BUILD_ROOT}/var/adm/fillup-templates
+mv ${RPM_BUILD_ROOT}/%{_sysconfdir}/sysconfig/dls \
+    ${RPM_BUILD_ROOT}/var/adm/fillup-templates/sysconfig.dls
+%endif
+cd widgets
+make install INSTALL_ROOT=${RPM_BUILD_ROOT}
+cd ..
+cd gui
+make install INSTALL_ROOT=${RPM_BUILD_ROOT}
+cd ..
+
+%clean
+%{__rm} -rf $RPM_BUILD_ROOT
+
+%verifyscript
+%verify_permissions -e /usr/bin/dls_ctl
+%verify_permissions -e /usr/bin/dls_view
+%verify_permissions -e /usr/bin/dlsgui
+
+%post
+%{fillup_and_insserv dls}
+%set_permissions /usr/bin/dls_ctl
+%set_permissions /usr/bin/dls_view
+%set_permissions /usr/bin/dlsgui
+/sbin/ldconfig
+/usr/bin/update-mime-database /usr/share/mime
+touch /usr/share/icons/hicolor
+/usr/bin/update-desktop-database
+
+%preun
+%stop_on_removal
+
+%postun
+%insserv_cleanup
+/sbin/ldconfig
+/usr/bin/update-mime-database /usr/share/mime
+touch /usr/share/icons/hicolor
+/usr/bin/update-desktop-database
+%restart_on_update
+
+%files
+%defattr(-,root,root)
+%doc AUTHORS ChangeLog COPYING NEWS
+%config %{_sysconfdir}/profile.d/dls.sh
+%if "%{_vendor}" == "suse"
+/var/adm/fillup-templates/sysconfig.dls
+%endif
+%{_sysconfdir}/init.d/dls
+%{_bindir}/dls*
+%if "%{_vendor}" == "suse"
+%{_sbindir}/rcdls
+%endif
+%{_datadir}/applications/*.desktop
+%{_datadir}/mime/packages/*.xml
+%{_datadir}/icons/hicolor
+%{_libdir}/libdls.so.%{libver}.0.0
+%{_libdir}/libDlsWidgets.so
+
+%files -n dls-devel
+%defattr(-,root,root,755)
+%dir %{_includedir}/DlsWidgets
+%{_includedir}/DlsWidgets/Graph.h
+%{_includedir}/DlsWidgets/Layer.h
+%{_includedir}/DlsWidgets/Model.h
+%{_includedir}/DlsWidgets/Scale.h
+%{_includedir}/DlsWidgets/Section.h
+%{_includedir}/DlsWidgets/Translator.h
+%{_includedir}/DlsWidgets/ValueScale.h
+%dir %{_includedir}/LibDLS
+%{_includedir}/LibDLS/Channel.h
+%{_includedir}/LibDLS/ChannelPreset.h
+%{_includedir}/LibDLS/Chunk.h
+%{_includedir}/LibDLS/Data.h
+%{_includedir}/LibDLS/Dir.h
+%{_includedir}/LibDLS/Exception.h
+%{_includedir}/LibDLS/Export.h
+%{_includedir}/LibDLS/Job.h
+%{_includedir}/LibDLS/JobPreset.h
+%{_includedir}/LibDLS/Time.h
+%{_includedir}/LibDLS/globals.h
+%{_libdir}/libdls.a
+%{_libdir}/libdls.la
+%{_libdir}/libdls.so.%{libver}
+%{_libdir}/libdls.so
+%{_libdir}/qt4/plugins/designer/libDlsWidgets.so
+
+%changelog
+* Thu Jan 8 2013 fp@igh-essen.com
+- Added some BuildRequires
+* Thu Jan 26 2012 fp@igh-essen.com
+- Used macro dirs
+- Added .desktop files
+* Mon Jan 23 2012 fp@igh-essen.com
+- Improved Url, BuildRoot, Source, BuildRequires.

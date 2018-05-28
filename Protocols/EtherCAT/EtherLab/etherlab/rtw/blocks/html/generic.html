@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!--
+vim:tw=78
+-->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>EtherLab :: Generic</title>
+        <link rel="stylesheet" href="docstyle.css" type="text/css">
+        <meta name="generator" content="DocBook XSL Stylesheets V1.52.2">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+        <meta name="toctype" content="ug">
+        <script language="JavaScript" src="docscripts.js"></script>
+    </head>
+    <body>
+        <h1>Generic EtherCAT Slave</h1>
+        This library of EtherCAT Slaves can never contain all available slaves
+        on the market. To enable custom slaves, this generic EtherCAT slave is
+        provided.
+
+        A mask configuration parameter, <b>EtherCAT Slave Configuration</b>,
+        is used to setup the slave. It is a Matlab struct.
+
+        Behind the scenes, the other preconfigured slaves use the same
+        SFunction as the generic slave, but with the comfort of not having to
+        specify a structure.
+
+        <p/>Apart from the <a href="general.html">common slave options</a>,
+        the configuration structure has to be specified.
+
+        At the top level, the structure has the fields
+        <ul>
+            <li><tt>slave.SlaveConfig</tt> used to specify the EtherCAT setup
+            in a fashion similar to the EtherCATInfo slave description xml
+            supplied by the manufacturor.
+            <li><tt>slave.PortConfig</tt> used to specify the Simulink block
+            inputs and outputs, based on SlaveConfig
+        </ul>
+
+        In the following sections, these two fields are described.
+
+        <h2>SlaveConfig</h2>
+        SlaveConfig describes the slave as required by the EtherCAT Master
+        communication process to configure the slave in the network. This
+        information is available in the EtherCATInfo xml description file
+        supplied by the manufacturor.
+
+        SlaveConfig by itself is a structure with the fields:
+        <ul>
+            <li><b>vendor</b>: Vendor Id
+            <li><b>product</b>: Product Code
+            <li><b>description</b> (optional): Description string
+            <li><b>sm</b>: SyncManager configuration
+            <li><b>sdo</b>: CAN over EtherCAT slave specific configuration
+            <li><b>dc</b>: Distributed clock setup
+            <li><b>soe</b>: (OBSOLETE) Sercos configuration
+        </ul>
+
+        <pre>slave.SlaveConfig.vendor = 2;
+slave.SlaveConfig.product = hex2dec('bb93052')
+slave.SlaveConfig.description = 'EL3001'  % optional</pre>
+
+        <h3>SyncManager Configuration</h3>
+        SyncManager configuration specifies PDO's that are mapped into a
+        SyncManager and the Entries it contains. Once a PDO Entry is
+        specified, it can be assigned to a block input or output port.
+
+        <p/>The SyncManager is specified by assigning
+        <tt>slave.SlaveConfig.sm</tt> a cell array with as many elements as
+        the slave has SyncManagers that need to be configured.
+
+        <p/>The elements of the cell array are cell arrays themselves that
+        have three elements: <tt>{SmIndex, SmDirection, SmPDO}</tt>
+        where:
+        <ol>
+            <li><b>SmIndex</b>: Zero based index number of the
+            <tt>&lt;Sm&gt;</tt> xml element in the EtherCATInfo xml file
+            <li><b>SmDirection</b>: SyncManager direction as seen by the
+            master: 0&nbsp;=&nbsp;Output (for RxPdo); 1&nbsp;=&nbsp;Input (for
+            TxPdo); 
+            <li><b>SmPDO</b>: Cell array of PDO's that are mapped to the
+            SyncManager
+        </ol>
+        for example:<br/>
+        <pre>slave.SlaveConfig.sm = {Sm2, Sm3};</pre>
+        <pre>Sm2 = {2, 0, Sm2PDO}  % SyncManager Index 2, Output
+Sm3 = {3, 1, Sm3PDO}  % SyncManager Index 3, Input</pre>
+
+        The third element of a SyncManager cell array is another cell array
+        with one element for every PDO that will be included in it. This array
+        has two elements: <tt>{PdoIndex, PdoEntries}</tt> where:
+        <ol>
+            <li><b>PdoIndex</b>: PDO index number
+            <li><b>PdoEntries</b>: PDO index number
+        </ol>
+        for example:
+        <pre>Sm3PDO = {TxPDO1, TxPDO2}
+TxPDO1 = {hex2dec('1a00') Entries_1a00}
+TxPDO2 = {hex2dec('1a01') Entries_1a01}</pre>
+
+        The second element of a PDO specification lists the Entries of a PDO.
+        This is a Nx3 numeric array with one row for every Entry. The columns
+        of this array specify
+        <ol>
+            <li> Entry Index
+            <li> Entry SubIndex
+            <li> BitLen
+        </ol>
+        The values are obtained directly from the EtherCATInfo xml file.
+
+        <pre>Entries_1a00 = [hex2dec('6000')  1  1;
+                hex2dec('6000')  2  1;
+                hex2dec('6000')  3  2;
+                hex2dec('6000')  5  2;
+                hex2dec('6000')  7  1;
+                0                0  7;  % 7 space bits
+                hex2dec('1800')  7  1;
+                hex2dec('1800')  9  1;
+                hex2dec('1800') 17 16]</pre>
+
+        Note how a space Entry is specified with an Entry Index of 0. In this
+        case only the BitLen is required, the SubIndex is ignored and can have
+        any value.
+
+        <h3>CAN over EtherCAT configuration</h3>
+        CAN over EtherCAT is a protocol which is used to configure slaves. The
+        required configuration options are set using the synchronous data
+        objects cell array <tt>slave.SlaveConfig.sdo</tt>.
+
+        <p/>This cell array has 4 columns and as many rows as there are
+        options to be configured. The rows can be specified to configure
+        either a single value or the whole SDO at once.
+
+        <p/> Specify a single SDO value: This mode directly configures a
+        single SDO. The column elements specify:
+        <ol>
+            <li> SDO Index
+            <li> SDO SubIndex
+            <li> Data type: 8 = uint8, 16  = uint16, 32 = uint32
+            <li> Value
+        </ol>
+
+        Complete SDO specification: This mode configures all elements of a
+        SDO. In this case columns 2 and 3 are ignored and should be 0:
+        <ol>
+            <li>SDO Index
+            <li>Ignored
+            <li>Ignored
+            <li>Either a string, or an array of values interpreted as uint8
+        </ol>
+
+        For example:
+        <pre>slave.SlaveConfig.sdo = { hex2dec('8000'),6,8,1;
+                          hex2dec('8001'),0,0,'save';
+                          hex2dec('8002'),0,0,[64,65,66,67] };</pre>
+
+
+        <h3>Distributed Clocks configuration</h3>
+        Distributed Clocks allows the slaves to be synchronized in the range
+        of nanoseconds. Distributed clocks is specified by assigning
+        <tt>slave.SlaveConfig.dc</tt> either a single value or a vector with
+        10 elements.
+
+        <p/> Vector specification: the elements specify:
+        <ol>
+            <li>Assign Activate
+            <li>Cycle Time Sync0
+            <li>Cycle Time Sync0 Factor
+            <li>Shift Time Sync0
+            <li>Shift Time Sync0 Factor
+            <li>Shift Time Sync0 Input
+            <li>Cycle Time Sync1
+            <li>Cycle Time Sync1 Factor
+            <li>Shift Time Sync1
+            <li>Shift Time Sync1 Factor
+        </ol>
+
+        <p/> A single value just sets Assign Activate.
+
+        <p/> For example:
+        <pre>slave.SlaveConfig.dc = hex2dec('320');
+slave.SlaveConfig.dc = [hex2dec('320'), 0, 1, 0, 0, 1, 0, 0, 0, 15000];</pre>
+
+        <h3>Sercos over EtherCAT</h3>
+        This obsolete configuration sends Sercos messages over EtherCAT.  The
+        required configuration options are set using the cell array
+        <tt>slave.SlaveConfig.soe</tt>.
+
+        <p/>This cell array has 2 columns and as many rows as there are
+        options to be configured:
+        <ol>
+            <li> SDO Index
+            <li>Either a string, or an array of values interpreted as uint8
+        </ol>
+
+        For example:
+        <pre>slave.SlaveConfig.soe = { hex2dec('8001'),'save';
+                          hex2dec('8002'),[64,65,66,67] };</pre>
+
+
+        <h2>PortConfig</h2>
+        PortConfig describes the input and output ports of a block. PortConfig
+        is a struct with the fields <b>input</b> and <b>output</b>.
+
+        <h3>Output Port specification</h3>
+        <tt>slave.PortConfig.output</tt> is a structure vector with the
+        fields:
+        <ul>
+            <li><b>pdo</b> Nx4 array specifying which PDO entries are mapped
+            to the port. PDO Entries may be referenced as often as required,
+            on the same or on another port, even with different data types.
+            <li><b>pdo_data_type</b> Data Type interpretation of the PDO Entry
+            (required if <b>pdo</b> is not empty)
+            <li><b>big_endian</b> PDO Entry is in big endian format (optional)
+            <li><b>full_scale</b> Used to normalize the PDO Entry to unity.
+            filter (optional)
+            <li><b>gain</b> see below (optional)
+            <li><b>offset</b> see below (optional)
+            <li><b>filter</b> Time constant of a first order low pass filter.
+            (optional)
+        </ul>
+
+        The number of elements of <tt>slave.SlaveConfig.output</tt> determines
+        how many output ports a block has. For example: the block with
+        <pre>slave.PortConfig.output(1).pdo = [ 0 0 0 0 ];
+slave.PortConfig.output(2).pdo = [ 0 1 0 0;
+                                   0 1 1 0;
+                                   0 1 1 1 ];</pre>
+        will have 2 scalar output ports. Port 2 is a vector with 3 elements.
+
+        <p/> The PDO specification is a zero-based Nx4 array of index address
+        of a PDO Entry. The columns specify:
+        <ol>
+            <li> SyncManager Index. This index addresses the SyncManager
+            element of the <tt>slave.SlaveConfig.sm</tt> cell vector.
+            Only input SyncManagers (element 2 of the SyncManager field is 1)
+            should be addressed.  Addressing a SyncManager with direction
+            output (0) will result in a warning.
+
+            <li> PDO Index. This index addresses the PDO element of the third
+            element of the SyncManager cell vector.
+            <li> Entry Index. This index addresses the Entry row of the second
+            element of the PDO cell vector.
+            <li> Element Index. This index addresses the data type element of
+            the PDO Entry. (eg. if a Entry has BitLen=8 and it is interpreted
+            as a boolean, Element Index can be [0..7])
+        </ol>
+
+        The indices are <b>zero-based</b>.
+
+        <p/> The port will have as many elements as <b>pdo</b> has rows (N).
+
+        <p/> <tt>pdo_data_type</tt> is a value that specifies which data type
+        the PDO Entry is interpreted as:
+        <table cellspacing="2" align="center"
+            width="50%">
+
+            <tr><th width="25%">Value</th><th>Data Type</th></tr>
+
+            <tr><td>1001</td><td>Boolean</td></tr>
+            <tr><td>1002</td><td>Bit2</td></tr>
+            <tr><td>1003</td><td>Bit3</td></tr>
+            <tr><td>1004</td><td>Bit4</td></tr>
+            <tr><td>1005</td><td>Bit5</td></tr>
+            <tr><td>1006</td><td>Bit6</td></tr>
+            <tr><td>1007</td><td>Bit7</td></tr>
+            <tr><td>1008</td><td>Unsigned8</td></tr>
+            <tr><td>1016</td><td>Unsigned16</td></tr>
+            <tr><td>1024</td><td>Unsigned24</td></tr>
+            <tr><td>1032</td><td>Unsigned32</td></tr>
+            <tr><td>1040</td><td>Unsigned40</td></tr>
+            <tr><td>1048</td><td>Unsigned48</td></tr>
+            <tr><td>1056</td><td>Unsigned56</td></tr>
+            <tr><td>1064</td><td>Unsigned64</td></tr>
+            <tr><td>2008</td><td>Integer8</td></tr>
+            <tr><td>2016</td><td>Integer16</td></tr>
+            <tr><td>2032</td><td>Integer32</td></tr>
+            <tr><td>2064</td><td>Integer64</td></tr>
+            <tr><td>3032</td><td>Real32</td></tr>
+            <tr><td>3064</td><td>Real64</td></tr>
+        </table>
+
+        <p/> The data type must match the PDO Entry's BitLen. The remainder of
+        division BitLen&nbsp;/&nbsp;mantissa_bits must be zero. Specifying
+        a data type with fewer bits than BitLen will create a vector. For
+        example, if BitLen=64 and pdo_data_type=1001 (boolean), the PDO Entry
+        will have 64 elements. Placing all booleans on one output will have:
+        <pre>slave.PortConfig.output(3).pdo_data_type = 1001;
+slave.PortConfig.output(3).pdo = [ 0,0,0,0;
+                                   0,0,0,1;
+                                   ...
+                                   0,0,0,63 ];</pre>
+        Output port 3 will have 64 boolean elements;
+
+        <p/> <tt>full_scale</tt> is intended to normalize the PDO Entry value
+        to unity so that scaling can be performed naturally. For example,
+        <tt>full_scale</tt> has the value 2^15 for int16.
+
+        <p/> <tt>Gain</tt>, <tt>offset</tt>, <tt>filter</tt> and
+        <tt>full_scale</tt> apply the following operation:
+        <pre>output = filter((PDO_Entry / full_scale) * gain + offset);</pre>
+
+        <p/> <tt>Gain</tt>, <tt>offset</tt> and <tt>filter</tt> are either
+        empty (or not even specified), a scalar or a vector with as many
+        elements as <b>pdo</b> field has rows. If it is empty, the operation
+        is not applied. A scalar operates on every PDO Entry whereas the
+        vector will be applied element for element.
+
+        <p/> Specifying any of gain, offset, full_scale or filter causes the
+        output's data type to be set to double.
+
+        <p/> gain, offset, full_scale or filter may assigned a 2 element cell
+        array <tt>{'NameString', ValueArray}</tt>. The variable will be
+        available as a parameter, allowing values to be changed at run-time.
+        
+        <p/> Not specifying any of gain, offset, full_scale or filter will set
+        the data type to the PDO Entries raw data type, possibly promoting the
+        value to the next superiour type. Unsigned64 and Integer64 are
+        represented as Real64 because they are not available in Simulink
+        Coder.
+
+
+        <h3>Input Port specification</h3>
+        This is very similar to Output Port specification with the following
+        exceptions:
+        <ul>
+            <li> There is no <b>filter</b>
+            <li> Input port signals may have fewer elements as there are rows
+            in <b>pdo</b>
+        </ul>
+         
+        The signal's data type must either match <tt>pdo_data_type</tt> or be
+        Real64.
+
+        <p/> <tt>Gain</tt>, <tt>offset</tt> and <tt>full_scale</tt> apply the
+        following operation:
+        <pre>PDO_Entry = (input * gain + offset) * full_scale;</pre>
+
+    </body>
+</html>

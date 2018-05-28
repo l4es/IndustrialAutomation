@@ -1,0 +1,77 @@
+vim: syntax=markdown tw=78
+
+# Storage
+
+* Store properties with native data type (integer, etc.)
+
+# Property editor
+
+* Fix clicking on property is enough to store it
+
+* Catch geometry property
+
+# Editing
+
+* Alignment toolbar
+* Match size
+* Distribute
+* Drag Widgets to another Tab via QTabBar::changeCurrentOnDrag
+* Enable delete via context menu if no widget selected
+
+# Stylesheets
+
+* Move testmanager resources to special path
+* Recalculate styles on objectName change
+* Avoid styles being applied to tab headers
+
+* Notes on plugin class names
+* Move style sheet hints to help dialog
+* Embed resources
+
+# Slots
+
+* Allow dropping disconnected variables
+* Slot editor
+    * Ok/Cancel
+    * Drag/Drop variables inside dialog
+    * Drag/Drop variables from data model
+
+* Improve storage of single slot (as json object)
+* Remember variable settings (in independent database?)
+* Preload slot group names
+
+# Datasources
+
+* Close connect dialog immediately
+* Shorten wait time if datasource not available
+* Improve symbols for disconnected data sources and variables
+* Add/remove nodes after connect
+* Mark widgets using signal/datasource
+* Watch list (event/continuous)
+* Display variable usage / data transfer
+* Data transfer report / event transfer debugger
+
+# Application
+
+* Ask before closing withut saving
+
+* Undo/Redo stack
+* Windows Icon (.ico)
+* Replace all icons with SVG versions
+* Broadcast
+* Add support for messages (plain XML format)
+
+# Python
+
+* Backward search in console widget
+* Implement calculated signals
+* Implement layout/widget interface
+
+# Plugins
+
+* Legend for graph / digital / etc.
+* Checkbox
+* LED
+* Graph trigger signal
+* Update Dial on style change
+* Allow only continuous data for graph

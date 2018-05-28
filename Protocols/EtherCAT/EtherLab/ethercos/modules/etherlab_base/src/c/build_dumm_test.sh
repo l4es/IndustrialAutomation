@@ -1,0 +1,3 @@
+#!/bin/bash
+
+gcc -o dummy_test -g -fpic -fno-stack-protector   -I/opt/etherlab/include  -I/home/ab/projekte_local/etl_etherlab/software/scicos/src-trunk/trunk/modules/etherlab_base/src/c/../../../../includes -Wl,--rpath -Wl,/home/ab/projekte_local/etl_etherlab/software/scicos/src-trunk/trunk/modules/etherlab_base/src/c/../../../../src/c -L/home/ab/projekte_local/etl_etherlab/software/scicos/src-trunk/trunk/modules/etherlab_base/src/c/../../../../src/c -lpthread -lstdc++ -lrt -lm -letherlab dummy_test.c

@@ -1,0 +1,383 @@
+# Copyright 2012 IgH Essen GmbH
+#
+# Abstract:
+#   Real-Time Workshop template makefile for building a user space
+#   executable of a Simulink model
+#
+#   Note that this template is automatically customized by the build 
+#   procedure to create "<model>.mk"
+#
+#   The following defines can be used to modify the behavior of the
+#   build:
+#     EXTRA_CFLAGS  - optional compile flags
+#     EXTRA_LDFLAGS - optional link flags (e.g. EXTRA_LDFLAGS="-some -flags")
+#     STAGING_DIR   - Optional directory where EtherLab and libraries are
+#                     installed (e.g. STAGING_DIR=/path/to/install)
+#     VERBOSE       - Show compile line (e.g. VERBOSE=1)
+#     DEBUG         - Adds -g to CFLAGS and LDFLAGS (e.g. DEBUG=1)
+#     USER_SRCS     - Additional user sources, such as files needed by
+#                     S-functions.
+#     USER_INCLUDES - Additional include paths
+#                    (i.e. USER_INCLUDES="-Iwhere-ever -Iwhere-ever2")
+#
+#   These flags can be set on the make command line in
+#   Configuration Parameters -> Real-Time Workshop -> Make command:
+#   e.g.: make_rtw EXTRA_CFLAGS=-m32 EXTRA_LDFLAGS=-m32
+#
+#   This template makefile is designed to be used with a system target
+#   file that contains 'rtwgensettings.BuildDirSuffix' see grt.tlc
+
+#------------------------ Macros read by make_rtw ------------------------------
+#
+# The following macros are read by the build procedure:
+#
+#  MAKECMD         - This is the command used to invoke the make utility
+#  HOST            - What platform this template makefile is targeted for
+#                    (i.e. PC or UNIX)
+#  BUILD           - Invoke make from the build procedure (yes/no)?
+#  SYS_TARGET_FILE - Name of system target file.
+
+MAKECMD         = make
+HOST            = UNIX
+BUILD           = yes
+SYS_TARGET_FILE = etherlab.tlc
+COMPILER_TOOL_CHAIN = unix
+
+unexport LD_LIBRARY_PATH
+
+#---------------------- Tokens expanded by make_rtw ----------------------------
+#
+# The following tokens, when wrapped with "|>" and "<|" are expanded by the
+# build procedure.
+#
+#  MODEL_NAME          - Name of the Simulink block diagram
+#  MODEL_MODULES       - Any additional generated source modules
+#  MAKEFILE_NAME       - Name of makefile created from template makefile <model>.mk
+#  MATLAB_ROOT         - Path to where MATLAB is installed.
+#  S_FUNCTIONS         - List of S-functions.
+#  S_FUNCTIONS_LIB     - List of S-functions libraries to link.
+#  SOLVER              - Solver source file name
+#  NUMST               - Number of sample times
+#  TID01EQ             - yes (1) or no (0): Are sampling rates of continuous task
+#                        (tid=0) and 1st discrete task equal.
+#  NCSTATES            - Number of continuous states
+#  COMPUTER            - Computer type. See the MATLAB computer command.
+#  BUILDARGS           - Options passed in at the command line.
+#  MULTITASKING        - yes (1) or no (0): Is solver mode multitasking
+#  EXT_MODE            - yes (1) or no (0): Build for external mode
+#  TMW_EXTMODE_TESTING - yes (1) or no (0): Build ext_test.c for external mode
+#                        testing.
+#  EXTMODE_TRANSPORT   - Index of transport mechanism (e.g. tcpip, serial) for extmode
+#  EXTMODE_STATIC      - yes (1) or no (0): Use static instead of dynamic mem alloc.
+#  EXTMODE_STATIC_SIZE - Size of static memory allocation buffer.
+#  GEN_MDLREF_SFCN     - (1/0): are we generating model reference wrapper s-function
+#  TGT_FCN_LIB         - Target Funtion library to use
+#  MODELREFS           - List of referenced models
+
+MODEL                = |>MODEL_NAME<|
+MODULES              = |>MODEL_MODULES<|
+MAKEFILE             = |>MAKEFILE_NAME<|
+MATLAB_ROOT          = |>MATLAB_ROOT<|
+ALT_MATLAB_ROOT      = |>ALT_MATLAB_ROOT<|
+MATLAB_BIN           = |>MATLAB_BIN<|
+MASTER_ANCHOR_DIR    = |>MASTER_ANCHOR_DIR<|
+START_DIR            = |>START_DIR<|
+S_FUNCTIONS          = |>S_FUNCTIONS<|
+S_FUNCTIONS_LIB      = |>S_FUNCTIONS_LIB<|
+SOLVER               = |>SOLVER<|
+NUMST                = |>NUMST<|
+TID01EQ              = |>TID01EQ<|
+NCSTATES             = |>NCSTATES<|
+COMPUTER             = |>COMPUTER<|
+BUILDARGS            = |>BUILDARGS<|
+MULTITASKING         = |>MULTITASKING<|
+TMW_EXTMODE_TESTING  = |>TMW_EXTMODE_TESTING<|
+MEXEXT               = |>MEXEXT<|
+TGT_FCN_LIB          = |>TGT_FCN_LIB<|
+MODELREFS            = |>MODELREFS<|
+SHARED_SRC           = |>SHARED_SRC<|
+SHARED_SRC_DIR       = |>SHARED_SRC_DIR<|
+SHARED_BIN_DIR       = |>SHARED_BIN_DIR<|
+SHARED_LIB           = |>SHARED_LIB<|
+TARGET_LANG_EXT      = |>TARGET_LANG_EXT<|
+OPTIMIZATION_FLAGS   = |>OPTIMIZATION_FLAGS<|
+ADDITIONAL_LDFLAGS   = |>ADDITIONAL_LDFLAGS<|
+
+# CLASSIC_INTERFACE    = >CLASSIC_INTERFACE<|
+# Optional for GRT
+# ONESTEPFCN           = >COMBINE_OUTPUT_UPDATE_FCNS<|
+TERMFCN              = 1
+MULTI_INSTANCE_CODE  = 0
+
+# EtherLAB options
+OVERRUNMAX      = |>OVERRUNMAX<|
+BUFFER_TIME     = |>BUFFER_TIME<|
+STACKSIZE       = |>STACKSIZE<|
+
+#--------------------------- Model and reference models -----------------------
+MODELLIB                  = |>MODELLIB<|
+MODELREF_LINK_LIBS        = |>MODELREF_LINK_LIBS<|
+MODELREF_INC_PATH         = |>START_MDLREFINC_EXPAND_INCLUDES<|-I|>MODELREF_INC_PATH<| |>END_MDLREFINC_EXPAND_INCLUDES<|
+RELATIVE_PATH_TO_ANCHOR   = |>RELATIVE_PATH_TO_ANCHOR<|
+# NONE: standalone, SIM: modelref sim, RTW: modelref coder target
+MODELREF_TARGET_TYPE       = |>MODELREF_TARGET_TYPE<|
+
+#-- In the case when directory name contains space ---
+ifneq ($(MATLAB_ROOT),$(ALT_MATLAB_ROOT))
+MATLAB_ROOT := $(ALT_MATLAB_ROOT)
+endif
+
+#--------------------------- Tool Specifications -------------------------------
+
+CC = gcc
+LD = $(CC)
+CXX = g++
+OPT_OPTS = -O2
+WARN_OPTS = -Wall
+ETHERLAB_DIR = @CMAKE_INSTALL_PREFIX@
+PLATFORM_LIBDIR = @CMAKE_INSTALL_LIBDIR@
+
+#------------------------------ Include Path -----------------------------------
+
+MATLAB_INCLUDES = \
+        -I$(MATLAB_ROOT)/simulink/include \
+        -I$(MATLAB_ROOT)/extern/include \
+        -I$(MATLAB_ROOT)/rtw/c/src \
+        -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common
+
+# Additional file include paths
+ADD_INCLUDES = \
+|>START_EXPAND_INCLUDES<|    -I|>EXPAND_DIR_NAME<| \
+|>END_EXPAND_INCLUDES<|
+
+SHARED_INCLUDES =
+ifneq ($(SHARED_SRC_DIR),)
+SHARED_INCLUDES = -I$(SHARED_SRC_DIR)
+endif
+
+INCLUDES = -I$(RELATIVE_PATH_TO_ANCHOR) $(MATLAB_INCLUDES) $(ADD_INCLUDES) $(USER_INCLUDES) \
+        $(MODELREF_INC_PATH) $(SHARED_INCLUDES) \
+        -I$(ETHERLAB_DIR)/rtw/include -I$(ETHERLAB_DIR)/include
+
+
+#-------------------------------- C Flags --------------------------------------
+
+# General User Options
+ifeq ($(DEBUG),1)
+DBG_FLAG = -g
+endif
+
+CPP_REQ_DEFINES = -DMODEL=$(MODEL) -DRT -DUSE_RTMODEL -DNUMST=$(NUMST) \
+                  -DTID01EQ=$(TID01EQ) -DNCSTATES=$(NCSTATES) -DUNIX \
+                  -DMT=$(MULTITASKING) -DHAVESTDIO \
+		  -DONESTEPFCN=$(ONESTEPFCN) -DTERMFCN=$(TERMFCN) \
+		  -DMULTI_INSTANCE_CODE=$(MULTI_INSTANCE_CODE) \
+		  -DCLASSIC_INTERFACE=$(CLASSIC_INTERFACE) \
+                  -DOVERRUNMAX=$(OVERRUNMAX) -DBUFFER_TIME=$(BUFFER_TIME) \
+                  -DSTACKSIZE=$(STACKSIZE)
+
+CFLAGS   = $(DBG_FLAG) $(OPT_OPTS) $(CPP_REQ_DEFINES) $(INCLUDES) \
+                $(OPTIMIZATION_FLAGS) $(EXTRA_CFLAGS)
+LDFLAGS  = $(DBG_FLAG) $(ADDITIONAL_LDFLAGS) $(EXTRA_LDFLAGS)
+
+#-------------------------- Additional Libraries ------------------------------
+
+SYSLIBS = -lm -L$(STAGING_DIR)$(ETHERLAB_DIR)/$(PLATFORM_LIBDIR) -lpdserv \
+    -Wl,-rpath=$(ETHERLAB_DIR)/$(PLATFORM_LIBDIR) -ldl -lrt -pthread
+
+ifneq ($(findstring rtipc.c,$(S_FUNCTIONS)),)
+    SYSLIBS += -lrtipc
+    S_FUNCTIONS := $(filter-out rtipc.c,$(S_FUNCTIONS))
+endif
+
+ifneq ($(findstring ecrt_support.c,$(S_FUNCTIONS)),)
+    SYSLIBS += -lethercat
+endif
+
+LIBS = $(S_FUNCTIONS_LIB) $(INSTRUMENT_LIBS) \
+|>START_PRECOMP_LIBRARIES<|    |>EXPAND_LIBRARY_NAME<|.a \
+|>END_PRECOMP_LIBRARIES<||>START_EXPAND_LIBRARIES<|    |>EXPAND_LIBRARY_NAME<|.a \
+|>END_EXPAND_LIBRARIES<|
+
+#----------------------------- Source Files ------------------------------------
+
+USER_SRCS =
+
+USER_OBJS       = $(addsuffix .o, $(basename $(USER_SRCS)))
+LOCAL_USER_OBJS = $(notdir $(USER_OBJS))
+
+
+SRCS = $(MODULES) $(S_FUNCTIONS)
+
+ifeq ($(MODELREF_TARGET_TYPE), NONE)
+    PRODUCT            = $(RELATIVE_PATH_TO_ANCHOR)/$(MODEL)
+    BIN_SETTING        = $(LD) -o $(PRODUCT) $(LDFLAGS)
+    BUILD_PRODUCT_TYPE = "executable"
+    ifeq ($(CLASSIC_INTERFACE), 1)
+       MAIN_SRC  = hrt_main_classic.c
+       OTHER_SRC = rt_sim.c
+    else
+       MAIN_SRC  = hrt_main.c
+       OTHER_SRC = rt_sim.c
+    endif
+    SRCS               += $(MODEL).$(TARGET_LANG_EXT) $(MAIN_SRC) $(OTHER_SRC) $(EXT_SRC) $(SOLVER) 
+else
+    # Model reference coder target
+    PRODUCT            = $(MODELLIB)
+    BUILD_PRODUCT_TYPE = "library"
+endif
+
+ifneq ($(findstring .cpp,$(suffix $(SRCS), $(USER_SRCS))),)
+  LD = $(CXX)
+endif
+
+OBJS      = $(addsuffix .o, $(basename $(SRCS))) $(USER_OBJS)
+LINK_OBJS = $(addsuffix .o, $(basename $(SRCS))) $(LOCAL_USER_OBJS)
+
+SHARED_SRC := $(wildcard $(SHARED_SRC))
+SHARED_OBJS = $(addsuffix .o, $(basename $(SHARED_SRC)))
+
+# Add RELATIVE_PATH_TO_ANCHOR to non-absolute files
+MODULE_PAYLOAD := $(filter /%,$(MODULE_PAYLOAD)) \
+                  $(addprefix $(RELATIVE_PATH_TO_ANCHOR)/,\
+                          $(filter-out /%,$(MODULE_PAYLOAD)))
+
+# Filter out files that do not exist
+MODULE_PAYLOAD := $(wildcard $(MODULE_PAYLOAD))
+
+#------------- Verbose build options -------------------------------------------
+
+ifeq ($(VERBOSE),1)
+cc  = $(CC)
+cxx = $(CXX)
+ld  = $(LD)
+ar  = $(AR)
+else
+cc  = @echo "	CC " $@; $(CC)
+cxx = @echo "	C++ " $@; $(CXX)
+ld  = @echo "	LD " $@; $(LD)
+ar  = @echo "	AR " $@; $(AR)
+endif
+
+#--------------------------------- Rules ---------------------------------------
+.PHONY : all
+all: Makefile $(PRODUCT)
+
+ifeq ($(MODELREF_TARGET_TYPE),NONE)
+$(PRODUCT) : $(OBJS) $(SHARED_LIB) $(LIBS) $(MODELREF_LINK_LIBS)
+	$(BIN_SETTING) $(LINK_OBJS) $(MODELREF_LINK_LIBS) $(SHARED_LIB) $(LIBS)  $(ADDITIONAL_LDFLAGS) $(SYSLIBS)
+	@echo "### Created $(BUILD_PRODUCT_TYPE): $@"
+else
+$(PRODUCT) : $(OBJS) $(SHARED_LIB)
+	@rm -f $(MODELLIB)
+	ar ruvs $(MODELLIB) $(LINK_OBJS)
+	@echo "### Created $(MODELLIB)"
+	@echo "### Created $(BUILD_PRODUCT_TYPE): $@"
+endif
+
+#-------------------------------- Depencencies -------------------------------
+
+# Generate model symbol file
+module_payload.c: $(MODULE_PAYLOAD)
+	@echo Generating $@
+	@$(ETHERLAB_DIR)/rtw/bin/gen_payload.py $^ > $@
+
+Makefile: $(MAKEFILE)
+	ln -s $< $@
+
+ifneq ($(SHARED_SRC_DIR),)
+$(SHARED_BIN_DIR)/%.o : $(SHARED_SRC_DIR)/%.c
+	cd $(SHARED_BIN_DIR); $(CC) -c $(CFLAGS) $(notdir $?)
+
+$(SHARED_BIN_DIR)/%.o : $(SHARED_SRC_DIR)/%.cpp
+	cd $(SHARED_BIN_DIR); $(CXX) -c $(CXXFLAGS) $(notdir $?)
+endif
+
+%.o : %.c
+	$(cc) -c $(CFLAGS) $(GCC_WALL_FLAG) "$<"
+
+%.o : %.cpp
+	$(cxx) -c $(CXXFLAGS) $(GCC_WALL_FLAG) "$<"
+
+%.o : $(RELATIVE_PATH_TO_ANCHOR)/%.c
+	$(cc) -c $(WARN_OPTS) $(CFLAGS) $(GCC_WALL_FLAG) "$<"
+
+%.o : $(RELATIVE_PATH_TO_ANCHOR)/%.cpp
+	$(cxx) -c $(WARN_OPTS) $(CXXFLAGS) "$<"
+
+%.o : $(ETHERLAB_DIR)/rtw/src/%.c
+	$(cc) -c $(WARN_OPTS) $(CFLAGS) $(GCC_WALL_FLAG_MAX) "$<"
+
+%.o : $(MATLAB_ROOT)/rtw/c/src/%.c
+	$(cc) -c $(CFLAGS) $(GCC_WALL_FLAG_MAX) "$<"
+
+%.o : $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/%.c
+	$(cc) -c $(CFLAGS) $(GCC_WALL_FLAG_MAX) "$<"
+
+%.o : $(MATLAB_ROOT)/rtw/c/src/rtiostream/rtiostreamtcpip/%.c
+	$(cc) -c $(CFLAGS) $(GCC_WALL_FLAG_MAX) "$<"
+
+%.o : $(MATLAB_ROOT)/rtw/c/src/ext_mode/custom/%.c
+	$(cc) -c $(CFLAGS) $(GCC_WALL_FLAG_MAX) "$<"
+
+|>START_EXPAND_RULES<|%.o : |>EXPAND_DIR_NAME<|/%.c
+	$(cc) -c $(CFLAGS) $(GCC_WALL_FLAG_MAX) "$<"
+
+|>END_EXPAND_RULES<|
+
+|>START_EXPAND_RULES<|%.o : |>EXPAND_DIR_NAME<|/%.cpp
+	$(cxx) -c $(CXXFLAGS) "$<"
+|>END_EXPAND_RULES<|
+
+%.o : $(MATLAB_ROOT)/simulink/src/%.c
+	$(cc) -c $(CFLAGS) $(GCC_WALL_FLAG_MAX) "$<"
+
+%.o : $(MATLAB_ROOT)/simulink/src/%.cpp
+	$(cxx) -c $(CXXFLAGS) "$<"
+
+#------------------------------- Libraries -------------------------------------
+
+|>START_EXPAND_LIBRARIES<|MODULES_|>EXPAND_LIBRARY_NAME<| = \
+|>START_EXPAND_MODULES<|	|>EXPAND_MODULE_NAME<|.o \
+|>END_EXPAND_MODULES<|
+
+|>EXPAND_LIBRARY_NAME<|.a : $(MAKEFILE) rtw_proj.tmw $(MODULES_|>EXPAND_LIBRARY_NAME<|)
+	@echo "### Creating $@ "
+	ar rs $@ $(MODULES_|>EXPAND_LIBRARY_NAME<|)
+	@echo "### $@ Created "
+
+|>END_EXPAND_LIBRARIES<|
+
+|>START_PRECOMP_LIBRARIES<|MODULES_|>EXPAND_LIBRARY_NAME<| = \
+|>START_EXPAND_MODULES<|	|>EXPAND_MODULE_NAME<|.o \
+|>END_EXPAND_MODULES<|
+
+|>EXPAND_LIBRARY_NAME<|.a : $(MAKEFILE) rtw_proj.tmw $(MODULES_|>EXPAND_LIBRARY_NAME<|)
+	@echo "### Creating $@ "
+	ar rs $@ $(MODULES_|>EXPAND_LIBRARY_NAME<|)
+	@echo "### $@ Created "
+
+|>END_PRECOMP_LIBRARIES<|
+
+#----------------------------- Dependencies ------------------------------------
+
+$(OBJS) : $(MAKEFILE) rtw_proj.tmw
+
+$(SHARED_LIB) : $(SHARED_OBJS)
+	@echo "### Creating $@ "
+	ar ruvs $@ $(SHARED_OBJS)
+	@echo "### $@ Created  "
+
+
+#--------- Miscellaneous rules to purge, clean ---------------------------------
+
+purge : clean
+	@echo "### Deleting the generated source code for $(MODEL)"
+	@\rm -f $(MODEL).c $(MODEL).h $(MODEL)_types.h $(MODEL)_data.c \
+	        $(MODEL)_private.h $(MODEL).rtw $(MODULES) rtw_proj.tmw $(MAKEFILE) Makefile
+
+clean :
+	@echo "### Deleting the objects and $(PRODUCT)"
+	@\rm -f $(LINK_OBJS) $(PRODUCT) $(MODELLIB)
+
+# EOF: etherlab_hrt.tmf

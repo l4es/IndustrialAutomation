@@ -1,0 +1,60 @@
+%implements "raise" "C"
+
+%include "RaiseCatch.tlc"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function BlockTypeSetup( block, system) void
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %<InitRaiseCatch()>
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function BlockInstanceSetup( block, system) void
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function Start( block, system) Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  /* %<Type> Block: %<Name>
+   */
+  if ((%<ETL.ErrStr> = etl_register_raise("%<Id>", ...
+                           "%<MsgStr>", ...
+                           %<AutoReset>, ...
+                           %<LibBlockInputSignalWidth(0)>, ...
+                           &%<LibBlockPWork(Addr,"","",0)>))) {
+    snprintf(%<ETL.ErrMsg>, sizeof(%<ETL.ErrMsg>),
+               "Could not register %<LibGetFormattedBlockPath(block)> "
+               "with RaiseCatch Support layer: %s",
+               %<ETL.ErrStr>);
+    %<LibSetRTModelErrorStatus("%<ETL.ErrMsg>")>;
+    return;
+  }
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function Outputs( block, system) Output
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  /* %<Type> Block: %<Name>
+   */
+  %assign rollVars = ["U", "<iwork>/RaiseState"]
+  %roll sigIdx = RollRegions, lcv = RollThreshold, block, ...
+        "Roller", rollVars
+    %if lcv == ""
+      %assign paramSettingIdx = sigIdx
+    %else
+      %if sigIdx == 0
+        %assign paramSettingIdx = lcv
+      %else
+        %assign paramSettingIdx = "%<lcv> + %<sigIdx>"
+      %endif
+    %endif
+    %assign State = LibBlockIWork(RaiseState,"",lcv,sigIdx)
+    if (%<State> != (%<LibBlockInputSignal(0,"",lcv,sigIdx)> != 0)) {
+      etl_raise(%<LibBlockPWork(Addr,"","",0)>, %<paramSettingIdx>, 
+         (%<State> = (%<LibBlockInputSignal(0,"",lcv,sigIdx)> != 0)));
+    }
+  %endroll
+%endfunction

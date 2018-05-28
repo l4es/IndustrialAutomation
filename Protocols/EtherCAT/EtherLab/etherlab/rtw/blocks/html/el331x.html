@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!--
+vim:tw=78
+-->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>EtherLab :: EL331x</title>
+        <link rel="stylesheet" href="docstyle.css" type="text/css">
+        <meta name="generator" content="DocBook XSL Stylesheets V1.52.2">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+        <meta name="toctype" content="ug">
+        <script language="JavaScript" src="docscripts.js"></script>
+    </head>
+    <body>
+        <h1>Beckhoff EL331x Thermocouple input terminal</h1>
+
+        The EL331x series input slave is a temperature measurement slave that
+        allows a wide range of thermocouples as a sensor. Information for
+        individual channel configuration is available in the documentation.
+
+        All channels are mapped.
+
+        <p/>Apart from the <a href="general.html">common slave options</a>, the
+        following options configure the slave:
+
+        <h3>Vector Output</h3>
+        Collect all outputs (and inputs) to a single vector.
+
+        <h3>Status Output</h3>
+        Error status of channel (disconnected, overrange, underrange). This is
+        only available when vector output is chosen.
+
+        <h3>CoE Configuration</h3>
+        In tabs Ch.1 .. Ch.8, the individual channels are configured.
+
+        <p/>The temperature output is scaled correctly according to SDO #x80n0:02.
+
+        <p/>If external cold junction compensation (SDO #x80n0:0C) is chosen for
+        any channel, an input port becomes available where the external
+        temperature (in degrees) can be transmitted to the slave.
+
+    </body>
+</html>

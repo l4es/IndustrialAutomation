@@ -1,0 +1,209 @@
+%%
+%% Generic Routines to handle EtherLAB Generic IO Layer
+%% 
+%% Copyright (C) 2007
+%% Richard Hacker
+%% IgH Essen GmbH
+%% 
+%% License: GPL
+
+%include "ETL.tlc"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function InitEtherLABIO() void
+%% This function checks whether the EtherLAB IO layer has been called once
+%% before already, which is demonstrated by the existance of variable 
+%% ::EtherLABIO. If not, include C-header file for EtherLABIO, 
+%% and declare a variable where the slave's data structure is placed 
+%% by EtherLABIO when registering the slaves during mdlStart()
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %if !EXISTS(CompiledModel.EtherLABIO)
+    %assign model_c = LibGetModelDotCFile()
+
+    %<InitETL()>
+
+    %trace "Initializing EtherLAB IO Interface"
+    %if LibNumDiscreteSampleTimes() > 1
+      %assign Tid01Eq = %<ISEQUAL(LibGetClockTickStepSize(0), \
+                          LibGetClockTickStepSize(1))>
+    %else
+      %assign Tid01Eq = 0
+    %endif
+    %addtorecord CompiledModel EtherLABIO { ...
+                NumTasks 0 ...
+                VarSpace "rt_var_space" ...
+                Tid01Eq %<Tid01Eq> ...
+                }
+
+    %with CompiledModel
+      %% Generic IO header
+      %<LibAddToCommonIncludes("<rt_vars.h>")>
+  
+      %openfile buf
+
+      /* Global pointer to EtherLAB General IO Layer Variable Space */
+      struct rt_var_space *%<EtherLABIO.VarSpace>;
+      %closefile buf
+      %<LibSetSourceFileSection(model_c, "Declarations", buf)>
+
+      %openfile buf
+  
+      /* Initialising Generic IO Layer */
+      %<EtherLABIO.VarSpace> = rt_get_var_space( \
+          "%<LibGetModelName()>", \
+          %<LibNumDiscreteSampleTimes()>);
+      if (!%<EtherLABIO.VarSpace>) {
+          snprintf(%<ETL.ErrMsg>, sizeof(%<ETL.ErrMsg>),
+                   "Could not initialise Generic IO Layer");
+          %<LibSetRTModelErrorStatus("%<ETL.ErrMsg>")>;
+          return;
+      }
+      %closefile buf
+      %<LibMdlStartCustomCode(buf, "execution")>
+  
+      %openfile buf
+  
+      /* Shutting down Generic IO Layer */
+      rt_clr_var_space(%<EtherLABIO.VarSpace>);
+      %closefile buf
+      %<LibMdlTerminateCustomCode(buf, "execution")>
+  
+  %endwith
+  %endif
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function GetEtherLABIOTaskIdx(Tid)
+%% Find the record index for sample time %<SampleTime>
+%% Return: SampleTimeIdx : index in EtherLABIO if found
+%%         -1: not found
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %with EtherLABIO
+    %foreach m = NumTasks
+      %if Task[m].Tid == Tid
+        %trace "Found sample time %<Tid> @ Idx %<m>"
+        %return m
+      %endif
+    %endforeach
+  %endwith
+  %return -1
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function InitEtherLABIOTask( block, system)
+%% Make sure the domain for the block's sample time exists
+%% Return: Idx : index in EtherLABIO.Task[Idx]
+%%                      correspondig to block's Tid
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  %with EtherLABIO
+    %% Get Task ID of the block
+    %assign tid = LibGetGlobalTIDFromLocalSFcnTID(0)
+    %% And the Step Size thereof
+    %assign Ts = LibGetClockTickStepSize(tid)
+
+    %if EtherLABIO.Tid01Eq && tid == 1
+        %assign tid = 0
+    %endif
+
+    %addtorecord block EtherLABIOTid tid
+
+    %assign Idx = GetEtherLABIOTaskIdx(tid)
+
+    %if Idx != -1
+      %% SampleDomain has been registered already
+      %return Idx
+    %endif
+
+    %% No domain exists with this Task Id
+
+    %%
+    %% Insert a new Task with this task id
+    %%
+    %assign TaskIdx = EtherLABIO.NumTasks
+    %assign EtherLABIO.NumTasks = TaskIdx + 1
+    %addtorecord EtherLABIO Task { ...
+          Tid tid ...
+          SampleTime Ts ...
+          }
+    %trace "Added new Task for SampleTime %<Ts> @ %<TaskIdx>"
+
+    %openfile buf
+
+    /* EtherLABIO Process for Sample Time [%<Ts>] */
+    if (%<LibIsSampleHit(tid)>) {
+      #ifdef ASYNC_IO
+      rt_copy_buf(%<EtherLABIO.VarSpace>, %<tid>);
+      #endif
+      rt_copy_vars(%<EtherLABIO.VarSpace>, %<tid>);
+    }
+    %closefile buf
+    %<LibSystemOutputCustomCode(system,buf,"execution")>
+
+    %openfile buf
+
+    /* EtherLABIO Queue for Sample Time [%<Ts>] */
+    #ifndef ASYNC_IO
+    if (%<LibIsSampleHit(tid)>) {
+      rt_copy_buf(%<EtherLABIO.VarSpace>, %<tid>);
+    }
+    #endif
+    %closefile buf
+    %<LibSystemOutputCustomCode(system,buf,"trailer")>
+
+  %endwith
+
+  %return TaskIdx
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function RegisterEtherLABIO_Output( block, Name, CTypeName) Output
+%% 
+%% This registers an output signal with the Generic IO Layer
+%% 
+%% Parameters:
+%%      block:          block pointer as passed by TLC itself
+%%      Name:           Name of the output signal
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  if (!(%<LibBlockPWork(Addr,"","",0)> = rt_reg_var( 
+        %<EtherLABIO.VarSpace>, "%<Name>", \
+        "%<CTypeName>",\
+        %<LibBlockInputSignalWidth(0)>, %<EtherLABIOTid>))) {
+    snprintf(%<ETL.ErrMsg>, sizeof(%<ETL.ErrMsg>), 
+       "Registering of EtherLAB IO Output Variable '%<Name>' for block "
+       "'%<LibGetFormattedBlockPath(block)>' failed");
+    %<LibSetRTModelErrorStatus( "%<ETL.ErrMsg>")>;
+    return;
+  }
+%endfunction
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%function GetEtherLABIO_Output( block, Name, CTypeName) Output
+%% 
+%% This connects to a source signal from the Generic IO Layer
+%% 
+%% Parameters:
+%%      block:          block pointer as passed by TLC itself
+%%      Name:           Name of the output signal
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %if UseBuffer == 1
+    %assign DstAddr = "&%<LibBlockPWork(Buffer,"","",0)>"
+  %else
+    %assign DstAddr = LibBlockOutputSignalAddr(0,"","",0)
+  %endif
+  %%
+  if (rt_get_var( \
+        %<EtherLABIO.VarSpace>, "%<Name>", \
+        "%<CTypeName>", %<DstAddr>, \
+        %<VectorLen>, %<EtherLABIOTid>)) {
+    snprintf(%<ETL.ErrMsg>, sizeof(%<ETL.ErrMsg>), 
+       "Connecting to EtherLAB IO Source Variable '%<Name>' for block "
+       "'%<LibGetFormattedBlockPath(block)>' failed");
+    %<LibSetRTModelErrorStatus( "%<ETL.ErrMsg>")>;
+    return;
+  }
+%endfunction

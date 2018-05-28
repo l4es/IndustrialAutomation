@@ -1,0 +1,64 @@
+#----------------------------------------------------------------------------
+#
+#  $Id$
+#
+#  vim: tw=78 spelllang=en spell
+#
+#----------------------------------------------------------------------------
+
+Name: @PACKAGE@
+Version: @VERSION@
+Release: 1
+
+License: GPL-3.0+
+URL: http://etherlab.org/en/pdpersistd
+
+Source: http://etherlab.org/download/pdpersistd/%{name}-%{version}.tar.bz2
+BuildRoot: /tmp/%{name}-%{version}
+BuildRequires: gcc-c++
+BuildRequires: pkg-config
+BuildRequires: libpdcom1
+BuildRequires: pdcom-devel
+BuildRequires: libyaml-0-2
+BuildRequires: libyaml-devel
+BuildRequires: sqlite3
+BuildRequires: sqlite3-devel
+
+#----------------------------------------------------------------------------
+# Main Package
+#----------------------------------------------------------------------------
+
+Summary: Process-data persistence daemon
+Group: Productivity/Other
+
+%description
+A daemon providing process variable persistence across application reloads.
+
+#----------------------------------------------------------------------------
+
+%prep
+%setup
+
+%build
+%configure
+make
+
+%install
+make DESTDIR=${RPM_BUILD_ROOT} install
+
+%clean
+rm -rf ${RPM_BUILD_ROOT}
+
+%files
+%defattr(-,root,root)
+%doc AUTHORS
+%doc COPYING
+%doc ChangeLog
+%doc NEWS
+%doc README
+%doc persist.conf
+%doc initdb.sql
+%{_bindir}/pdpersist
+%{_bindir}/pdpersistd
+
+#----------------------------------------------------------------------------

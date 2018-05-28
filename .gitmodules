@@ -238,3 +238,12 @@
 [submodule "Protocols/Modbus/modbus"]
 	path = Protocols/Modbus/modbus
 	url = https://github.com/andresarmento/modbus.git
+[submodule "Protocols/EtherCAT/lolaCAT"]
+	path = Protocols/EtherCAT/lolaCAT
+	url = https://github.com/am-lola/lolaCAT.git
+[submodule "Protocols/EtherCAT/Beckhoff/CCAT"]
+	path = Protocols/EtherCAT/Beckhoff/CCAT
+	url = https://github.com/Beckhoff/CCAT.git
+[submodule "Protocols/EtherCAT/Beckhoff/ADS"]
+	path = Protocols/EtherCAT/Beckhoff/ADS
+	url = https://github.com/Beckhoff/ADS.git

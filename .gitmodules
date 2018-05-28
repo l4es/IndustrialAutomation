@@ -229,3 +229,6 @@
 [submodule "Protocols/EtherCAT/stm32f4_ethercat"]
 	path = Protocols/EtherCAT/stm32f4_ethercat
 	url = https://github.com/ethercat-diy/stm32f4_ethercat.git
+[submodule "Protocols/EtherCAT/ihmc-ethercat-master"]
+	path = Protocols/EtherCAT/ihmc-ethercat-master
+	url = https://github.com/ihmcrobotics/ihmc-ethercat-master.git

@@ -242,8 +242,8 @@
 	path = Protocols/EtherCAT/lolaCAT
 	url = https://github.com/am-lola/lolaCAT.git
 [submodule "Protocols/EtherCAT/Beckhoff/CCAT"]
-	path = Protocols/EtherCAT/Beckhoff/CCAT
+	path = Beckhoff/CCAT
 	url = https://github.com/Beckhoff/CCAT.git
 [submodule "Protocols/EtherCAT/Beckhoff/ADS"]
-	path = Protocols/EtherCAT/Beckhoff/ADS
+	path = Beckhoff/ADS
 	url = https://github.com/Beckhoff/ADS.git

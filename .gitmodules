@@ -35,7 +35,7 @@
 	path = openXHC
 	url = https://github.com/mrgsts/openxhc.git
 [submodule "Protocols/bacnet-stack"]
-	path = Protocols/bacnet-stack
+	path = Protocols/BACNet/bacnet-stack
 	url = https://github.com/stargieg/bacnet-stack.git
 [submodule "Protocols/libmodbus"]
 	path = Protocols/Modbus/libmodbus
@@ -128,7 +128,7 @@
 	path = Protocols/CAN/SocketCAN/icsneoapi
 	url = https://github.com/intrepidcs/icsneoapi.git
 [submodule "Protocols/bacnet-demo"]
-	path = Protocols/bacnet-demo
+	path = Protocols/BACNet/bacnet-demo
 	url = https://github.com/embeddedarm/bacnet-demo.git
 [submodule "DieBie/DieBieMS"]
 	path = DieBie/DieBieMS

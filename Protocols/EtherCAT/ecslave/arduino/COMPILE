@@ -1,0 +1,8 @@
+#
+#	to compile issue a command bellow, fixed according to your configuration
+#	
+make BOARD=uno upload SERIALDEV=/dev/ttyACM0 AVRDUDE=/opt/arduino-1.0.4/hardware/tools/avrdude  ARDUINODIR=/opt/arduino
+#
+#	
+#
+# /opt/arduino-1.0.4/hardware/tools/avrdude -C/opt/arduino-1.0.4/hardware/tools/avrdude.conf  -patmega328p -carduino -P/dev/ttyACM10 -b115200 -v

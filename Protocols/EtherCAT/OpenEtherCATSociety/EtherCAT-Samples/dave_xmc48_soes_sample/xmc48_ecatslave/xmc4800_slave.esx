@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Slave fileVersion="1" id="xmc4800_slave" productCode="0x12345">
+  <Name>xmc43 slave</Name>
+  <Vendor>
+    <Id>0x1337</Id>
+    <Name>rt-labs ab</Name>
+  </Vendor>
+  <Group>
+    <Type>xmc4800</Type>
+    <Name>xmc4</Name>
+  </Group>
+  <Fmmu>Outputs</Fmmu>
+  <Fmmu>Inputs</Fmmu>
+  <Fmmu>MBoxState</Fmmu>
+  <Sm ControlByte="0x26" DefaultSize="128" StartAddress="0x1000">MBoxOut</Sm>
+  <Sm ControlByte="0x22" DefaultSize="128" StartAddress="0x1080">MBoxIn</Sm>
+  <Sm ControlByte="0x24" DefaultSize="0" StartAddress="0x1100">Outputs</Sm>
+  <Sm ControlByte="0x20" DefaultSize="0" StartAddress="0x1180">Inputs</Sm>
+  <Mailbox CoE="true" FoE="true">
+    <Bootstrap Length="128" Start="0x1000"/>
+    <Standard Length="128" Start="0x1000"/>
+  </Mailbox>
+  <Eeprom>
+    <ConfigData>8002830000000000</ConfigData>
+    <BootStrap>0010800080108000</BootStrap>
+  </Eeprom>
+  <Dictionary>
+    <Item>
+      <Name>Device Type</Name>
+      <Index>0x1000</Index>
+      <DataType>UNSIGNED32</DataType>
+      <DefaultValue>0x00001389</DefaultValue>
+    </Item>
+    <Item Managed="true">
+      <Name>Device Name</Name>
+      <Index>0x1008</Index>
+      <DataType>VISIBLE_STRING</DataType>
+      <DefaultValue>xmc4800_slave</DefaultValue>
+    </Item>
+    <Item>
+      <Name>Hardware Version</Name>
+      <Index>0x1009</Index>
+      <DataType>VISIBLE_STRING</DataType>
+      <DefaultValue>1.0</DefaultValue>
+    </Item>
+    <Item>
+      <Name>Software Version</Name>
+      <Index>0x100A</Index>
+      <DataType>VISIBLE_STRING</DataType>
+      <DefaultValue>1.0</DefaultValue>
+    </Item>
+    <Item Managed="true">
+      <Name>Identity Object</Name>
+      <Index>0x1018</Index>
+      <DataType>RECORD</DataType>
+      <SubItem>
+        <Name>Max SubIndex</Name>
+        <Index>0x00</Index>
+        <DataType>UNSIGNED8</DataType>
+        <DefaultValue>4</DefaultValue>
+      </SubItem>
+      <SubItem>
+        <Name>Vendor ID</Name>
+        <Index>0x01</Index>
+        <DataType>UNSIGNED32</DataType>
+        <DefaultValue>0x1337</DefaultValue>
+      </SubItem>
+      <SubItem>
+        <Name>Product Code</Name>
+        <Index>0x02</Index>
+        <DataType>UNSIGNED32</DataType>
+        <DefaultValue>0x12345</DefaultValue>
+      </SubItem>
+      <SubItem>
+        <Name>Revision Number</Name>
+        <Index>0x03</Index>
+        <DataType>UNSIGNED32</DataType>
+        <DefaultValue>0</DefaultValue>
+      </SubItem>
+      <SubItem>
+        <Name>Serial Number</Name>
+        <Index>0x04</Index>
+        <DataType>UNSIGNED32</DataType>
+        <DefaultValue>0x00000000</DefaultValue>
+      </SubItem>
+    </Item>
+    <Item Managed="true">
+      <Name>LEDs</Name>
+      <Index>0x1600</Index>
+      <DataType>RECORD</DataType>
+      <SubItem>
+        <Name>Max SubIndex</Name>
+        <Index>0x00</Index>
+        <DataType>UNSIGNED8</DataType>
+        <DefaultValue>2</DefaultValue>
+      </SubItem>
+      <SubItem>
+        <Name>LED1</Name>
+        <Index>0x01</Index>
+        <DataType>UNSIGNED32</DataType>
+        <DefaultValue>0x70000108</DefaultValue>
+      </SubItem>
+      <SubItem>
+        <Name>LED2</Name>
+        <Index>0x02</Index>
+        <DataType>UNSIGNED32</DataType>
+        <DefaultValue>0x70000208</DefaultValue>
+      </SubItem>
+    </Item>
+    <Item Managed="true">
+      <Name>Buttons</Name>
+      <Index>0x1A00</Index>
+      <DataType>RECORD</DataType>
+      <SubItem>
+        <Name>Max SubIndex</Name>
+        <Index>0x00</Index>
+        <DataType>UNSIGNED8</DataType>
+        <DefaultValue>1</DefaultValue>
+      </SubItem>
+      <SubItem>
+        <Name>Button</Name>
+        <Index>0x01</Index>
+        <DataType>UNSIGNED32</DataType>
+        <DefaultValue>0x60000108</DefaultValue>
+      </SubItem>
+    </Item>
+    <Item Managed="true">
+      <Name>Sync Manager Communication Type</Name>
+      <Index>0x1C00</Index>
+      <DataType>ARRAY</DataType>
+      <SubItem>
+        <Name>Max SubIndex</Name>
+        <Index>0x00</Index>
+        <DataType>UNSIGNED8</DataType>
+        <DefaultValue>4</DefaultValue>
+      </SubItem>
+      <SubItem>
+        <Name>Communications Type SM0</Name>
+        <Index>0x01</Index>
+        <DataType>UNSIGNED8</DataType>
+        <DefaultValue>1</DefaultValue>
+      </SubItem>
+      <SubItem>
+        <Name>Communications Type SM1</Name>
+        <Index>0x02</Index>
+        <DataType>UNSIGNED8</DataType>
+        <DefaultValue>2</DefaultValue>
+      </SubItem>
+      <SubItem>
+        <Name>Communications Type SM2</Name>
+        <Index>0x03</Index>
+        <DataType>UNSIGNED8</DataType>
+        <DefaultValue>3</DefaultValue>
+      </SubItem>
+      <SubItem>
+        <Name>Communications Type SM3</Name>
+        <Index>0x04</Index>
+        <DataType>UNSIGNED8</DataType>
+        <DefaultValue>4</DefaultValue>
+      </SubItem>
+    </Item>
+    <Item Managed="true">
+      <Name>Sync Manager 2 PDO Assignment</Name>
+      <Index>0x1C12</Index>
+      <DataType>ARRAY</DataType>
+      <SubItem>
+        <Name>Max SubIndex</Name>
+        <Index>0x00</Index>
+        <DataType>UNSIGNED8</DataType>
+        <DefaultValue>1</DefaultValue>
+      </SubItem>
+      <SubItem>
+        <Name>PDO Mapping</Name>
+        <Index>0x01</Index>
+        <DataType>UNSIGNED16</DataType>
+        <DefaultValue>0x1600</DefaultValue>
+      </SubItem>
+    </Item>
+    <Item Managed="true">
+      <Name>Sync Manager 3 PDO Assignment</Name>
+      <Index>0x1C13</Index>
+      <DataType>ARRAY</DataType>
+      <SubItem>
+        <Name>Max SubIndex</Name>
+        <Index>0x00</Index>
+        <DataType>UNSIGNED8</DataType>
+        <DefaultValue>1</DefaultValue>
+      </SubItem>
+      <SubItem>
+        <Name>PDO Mapping</Name>
+        <Index>0x01</Index>
+        <DataType>UNSIGNED16</DataType>
+        <DefaultValue>0x1A00</DefaultValue>
+      </SubItem>
+    </Item>
+    <Item Managed="true">
+      <Name>Buttons</Name>
+      <Index>0x6000</Index>
+      <DataType>RECORD</DataType>
+      <Variable>Buttons</Variable>
+      <VariableType>Input</VariableType>
+      <SubItem>
+        <Name>Max SubIndex</Name>
+        <Index>0x00</Index>
+        <DataType>UNSIGNED8</DataType>
+        <DefaultValue>1</DefaultValue>
+      </SubItem>
+      <SubItem>
+        <Name>Button</Name>
+        <Index>0x01</Index>
+        <DataType>UNSIGNED8</DataType>
+        <DefaultValue>0</DefaultValue>
+        <Access>RO</Access>
+        <Variable>Button</Variable>
+        <VariableType>Input</VariableType>
+      </SubItem>
+    </Item>
+    <Item Managed="true">
+      <Name>LEDs</Name>
+      <Index>0x7000</Index>
+      <DataType>RECORD</DataType>
+      <Variable>LEDs</Variable>
+      <VariableType>Output</VariableType>
+      <SubItem>
+        <Name>Max SubIndex</Name>
+        <Index>0x00</Index>
+        <DataType>UNSIGNED8</DataType>
+        <DefaultValue>2</DefaultValue>
+      </SubItem>
+      <SubItem>
+        <Name>LED1</Name>
+        <Index>0x01</Index>
+        <DataType>UNSIGNED8</DataType>
+        <DefaultValue>0</DefaultValue>
+        <Access>RO</Access>
+        <Variable>LED1</Variable>
+        <VariableType>Output</VariableType>
+      </SubItem>
+      <SubItem>
+        <Name>LED2</Name>
+        <Index>0x02</Index>
+        <DataType>UNSIGNED8</DataType>
+        <DefaultValue>0</DefaultValue>
+        <Access>RO</Access>
+        <Variable>LED2</Variable>
+        <VariableType>Output</VariableType>
+      </SubItem>
+    </Item>
+  </Dictionary>
+  <RxPdo>
+    <Index>0x1600</Index>
+    <Container>LEDs</Container>
+    <Name>LEDs</Name>
+    <Entry>
+      <Index>0x7000</Index>
+      <SubIndex>1</SubIndex>
+      <Variable>LED1</Variable>
+    </Entry>
+    <Entry>
+      <Index>0x7000</Index>
+      <SubIndex>2</SubIndex>
+      <Variable>LED2</Variable>
+    </Entry>
+  </RxPdo>
+  <TxPdo>
+    <Index>0x1A00</Index>
+    <Container>Buttons</Container>
+    <Name>Buttons</Name>
+    <Entry>
+      <Index>0x6000</Index>
+      <SubIndex>1</SubIndex>
+      <Variable>Button</Variable>
+    </Entry>
+  </TxPdo>
+  <Input>
+    <Index>0x6000</Index>
+    <Name>Buttons</Name>
+    <ObjectType>RECORD</ObjectType>
+    <Member>
+      <Index>0x01</Index>
+      <Name>Button</Name>
+      <Type>UNSIGNED8</Type>
+    </Member>
+  </Input>
+  <Output>
+    <Index>0x7000</Index>
+    <Name>LEDs</Name>
+    <ObjectType>RECORD</ObjectType>
+    <Member>
+      <Index>0x01</Index>
+      <Name>LED1</Name>
+      <Type>UNSIGNED8</Type>
+    </Member>
+    <Member>
+      <Index>0x02</Index>
+      <Name>LED2</Name>
+      <Type>UNSIGNED8</Type>
+    </Member>
+  </Output>
+</Slave>

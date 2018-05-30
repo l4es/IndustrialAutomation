@@ -247,3 +247,6 @@
 [submodule "Protocols/EtherCAT/Beckhoff/ADS"]
 	path = Beckhoff/ADS
 	url = https://github.com/Beckhoff/ADS.git
+[submodule "Protocols/EtherCAT/FreeECAT"]
+	path = Protocols/EtherCAT/FreeECAT
+	url = https://github.com/suda-morris/FreeECAT.git

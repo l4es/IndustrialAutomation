@@ -250,3 +250,18 @@
 [submodule "Protocols/EtherCAT/FreeECAT"]
 	path = Protocols/EtherCAT/FreeECAT
 	url = https://github.com/suda-morris/FreeECAT.git
+[submodule "X-Ray/ComptonSoft"]
+	path = X-Ray/ComptonSoft
+	url = https://github.com/odakahirokazu/ComptonSoft.git
+[submodule "X-Ray/ADXpad"]
+	path = X-Ray/ADXpad
+	url = https://github.com/ImXPAD/ADXpad.git
+[submodule "X-Ray/Lima-camera-imxpad"]
+	path = X-Ray/Lima-camera-imxpad
+	url = https://github.com/esrf-bliss/Lima-camera-imxpad.git
+[submodule "X-Ray/ADCore"]
+	path = X-Ray/ADCore
+	url = https://github.com/areaDetector/ADCore.git
+[submodule "X-Ray/quadEM"]
+	path = X-Ray/quadEM
+	url = https://github.com/epics-modules/quadEM.git

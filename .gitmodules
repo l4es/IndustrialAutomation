@@ -265,3 +265,6 @@
 [submodule "X-Ray/quadEM"]
 	path = X-Ray/quadEM
 	url = https://github.com/epics-modules/quadEM.git
+[submodule "EPICS/areaDetector"]
+	path = EPICS/areaDetector
+	url = https://github.com/areaDetector/areaDetector.git

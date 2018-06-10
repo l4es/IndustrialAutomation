@@ -277,3 +277,18 @@
 [submodule "X-Ray/dxpSITORO"]
 	path = X-Ray/dxpSITORO
 	url = https://github.com/epics-modules/dxpSITORO.git
+[submodule "ChimeraTK/MotorDriverCard"]
+	path = ChimeraTK/MotorDriverCard
+	url = https://github.com/ChimeraTK/MotorDriverCard.git
+[submodule "ChimeraTK/ApplicationCore"]
+	path = ChimeraTK/ApplicationCore
+	url = https://github.com/ChimeraTK/ApplicationCore.git
+[submodule "ChimeraTK/DeviceAccess"]
+	path = ChimeraTK/DeviceAccess
+	url = https://github.com/ChimeraTK/DeviceAccess.git
+[submodule "ChimeraTK/ControlSystemAdapter"]
+	path = ChimeraTK/ControlSystemAdapter
+	url = https://github.com/ChimeraTK/ControlSystemAdapter.git
+[submodule "ChimeraTK/QtHardMon"]
+	path = ChimeraTK/QtHardMon
+	url = https://github.com/ChimeraTK/QtHardMon.git

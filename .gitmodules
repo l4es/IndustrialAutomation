@@ -268,3 +268,12 @@
 [submodule "EPICS/areaDetector"]
 	path = EPICS/areaDetector
 	url = https://github.com/areaDetector/areaDetector.git
+[submodule "X-Ray/dxp"]
+	path = X-Ray/dxp
+	url = https://github.com/epics-modules/dxp.git
+[submodule "X-Ray/gxs700"]
+	path = X-Ray/gxs700
+	url = https://github.com/JohnDMcMaster/gxs700.git
+[submodule "X-Ray/dxpSITORO"]
+	path = X-Ray/dxpSITORO
+	url = https://github.com/epics-modules/dxpSITORO.git

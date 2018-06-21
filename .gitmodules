@@ -358,3 +358,12 @@
 [submodule "3D-Scanner/Parsley/parsley"]
 	path = 3D-Scanner/Parsley/parsley
 	url = https://github.com/cheind/parsley.git
+[submodule "DCS/Tango-Controls/tango-webapp"]
+	path = DCS/Tango-Controls/tango-webapp
+	url = https://github.com/tango-controls/tango-webapp.git
+[submodule "DCS/Tango-Controls/cppTango"]
+	path = DCS/Tango-Controls/cppTango
+	url = https://github.com/tango-controls/cppTango.git
+[submodule "DCS/VOLTTRON/volttron"]
+	path = DCS/VOLTTRON/volttron
+	url = https://github.com/VOLTTRON/volttron.git

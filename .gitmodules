@@ -304,3 +304,57 @@
 [submodule "ABElectronics/ABElectronics_C_Libraries"]
 	path = ABElectronics/ABElectronics_C_Libraries
 	url = https://github.com/abelectronicsuk/ABElectronics_C_Libraries.git
+[submodule "3D-Scanner/SuperScanner/superscanner-software-s3"]
+	path = 3D-Scanner/SuperScanner/superscanner-software-s3
+	url = https://github.com/josemarroquintoledo/superscanner-software-s3.git
+[submodule "3D-Scanner/FabScanPi/FabScanPi-Server"]
+	path = 3D-Scanner/FabScanPi/FabScanPi-Server
+	url = https://github.com/mariolukas/FabScanPi-Server.git
+[submodule "3D-Scanner/FabScanPi/FabScanPi-Frontend"]
+	path = 3D-Scanner/FabScanPi/FabScanPi-Frontend
+	url = https://github.com/mariolukas/FabScanPi-Frontend.git
+[submodule "3D-Scanner/FabScanPi/FabScanPi-Firmware"]
+	path = 3D-Scanner/FabScanPi/FabScanPi-Firmware
+	url = https://github.com/mariolukas/FabScanPi-Firmware.git
+[submodule "3D-Scanner/Sardauscan"]
+	path = 3D-Scanner/Sardauscan
+	url = https://github.com/Sardau/Sardauscan.git
+[submodule "3D-Scanner/FabScanPi/FabScan-Case"]
+	path = 3D-Scanner/FabScanPi/FabScan-Case
+	url = https://github.com/mariolukas/FabScan-Case.git
+[submodule "3D-Scanner/LibreScanner/horus"]
+	path = 3D-Scanner/LibreScanner/horus
+	url = https://github.com/LibreScanner/horus.git
+[submodule "3D-Scanner/LibreScanner/horus-fw"]
+	path = 3D-Scanner/LibreScanner/horus-fw
+	url = https://github.com/LibreScanner/horus-fw.git
+[submodule "3D-Scanner/LibreScanner/ciclop"]
+	path = 3D-Scanner/LibreScanner/ciclop
+	url = https://github.com/LibreScanner/ciclop.git
+[submodule "3D-Scanner/FreeLSS/freelss"]
+	path = 3D-Scanner/FreeLSS/freelss
+	url = https://github.com/hairu/freelss.git
+[submodule "3D-Scanner/Libraries/vcglib"]
+	path = 3D-Scanner/Libraries/vcglib
+	url = https://github.com/cnr-isti-vclab/vcglib.git
+[submodule "3D-Scanner/Libraries/meshlabjs"]
+	path = 3D-Scanner/Libraries/meshlabjs
+	url = https://github.com/cnr-isti-vclab/meshlabjs.git
+[submodule "3D-Scanner/Libraries/meshlab"]
+	path = 3D-Scanner/Libraries/meshlab
+	url = https://github.com/cnr-isti-vclab/meshlab.git
+[submodule "3D-Scanner/Libraries/piccante"]
+	path = 3D-Scanner/Libraries/piccante
+	url = https://github.com/cnr-isti-vclab/piccante.git
+[submodule "3D-Scanner/FabScan/FabScan"]
+	path = 3D-Scanner/FabScan/FabScan
+	url = https://github.com/francisengelmann/FabScan.git
+[submodule "3D-Scanner/FabScan/FabScan100"]
+	path = 3D-Scanner/FabScan/FabScan100
+	url = https://github.com/francisengelmann/FabScan100.git
+[submodule "3D-Scanner/MakerScanner/makerscanner"]
+	path = 3D-Scanner/MakerScanner/makerscanner
+	url = https://github.com/andybarry/makerscanner.git
+[submodule "3D-Scanner/Parsley/parsley"]
+	path = 3D-Scanner/Parsley/parsley
+	url = https://github.com/cheind/parsley.git

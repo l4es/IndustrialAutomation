@@ -292,3 +292,15 @@
 [submodule "ChimeraTK/QtHardMon"]
 	path = ChimeraTK/QtHardMon
 	url = https://github.com/ChimeraTK/QtHardMon.git
+[submodule "ABElectronics/ABElectronics_Python_Libraries"]
+	path = ABElectronics/ABElectronics_Python_Libraries
+	url = https://github.com/abelectronicsuk/ABElectronics_Python_Libraries.git
+[submodule "ABElectronics/ABElectronics_NodeJS_Libraries"]
+	path = ABElectronics/ABElectronics_NodeJS_Libraries
+	url = https://github.com/abelectronicsuk/ABElectronics_NodeJS_Libraries.git
+[submodule "ABElectronics/ABElectronics_CPP_Libraries"]
+	path = ABElectronics/ABElectronics_CPP_Libraries
+	url = https://github.com/abelectronicsuk/ABElectronics_CPP_Libraries.git
+[submodule "ABElectronics/ABElectronics_C_Libraries"]
+	path = ABElectronics/ABElectronics_C_Libraries
+	url = https://github.com/abelectronicsuk/ABElectronics_C_Libraries.git

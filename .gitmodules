@@ -370,3 +370,9 @@
 [submodule "3D-Scanner/pylatscan"]
 	path = 3D-Scanner/pylatscan
 	url = https://github.com/mvhenten/pylatscan.git
+[submodule "OpenCNC/OpenCNCPilot"]
+	path = OpenCNC/OpenCNCPilot
+	url = https://github.com/martin2250/OpenCNCPilot.git
+[submodule "OpenCNC/CNCTool"]
+	path = OpenCNC/CNCTool
+	url = https://github.com/martin2250/CNCTool.git

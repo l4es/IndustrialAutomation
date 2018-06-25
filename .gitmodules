@@ -367,3 +367,6 @@
 [submodule "DCS/VOLTTRON/volttron"]
 	path = DCS/VOLTTRON/volttron
 	url = https://github.com/VOLTTRON/volttron.git
+[submodule "3D-Scanner/pylatscan"]
+	path = 3D-Scanner/pylatscan
+	url = https://github.com/mvhenten/pylatscan.git

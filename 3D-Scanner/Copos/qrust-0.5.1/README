@@ -1,0 +1,107 @@
+
+
+  QRUST
+
+
+General Information
+===================
+
+Qrust is a software designed to analyse a cloud of point and try to reconstruct a mesh (with triangles)
+
+/!\
+To test this software, you can use the files in the 'examples' directory.
+/!\
+
+The official web site is:
+  http://copos.berlios.de/
+
+The official download & development project site is:
+
+
+Licensing
+=========
+
+Qrust is released under the terms of the GNU General Public License 
+(GNU LGPL). 
+
+
+Supported Platforms
+===================
+
+Currently qrust supports
+
+  * Linux 
+      Tested under Linux
+
+
+Requirements
+============
+
+  * GNU C++ compiler
+
+  * GNU make
+
+  * Qt 3 or newer
+
+  * OpenGL or Mesa (http://www.mesa3d.org/)
+
+  * QGLViewer (http://artis.imag.fr/Members/Gilles.Debunne/QGLViewer/index.html)
+
+  * CGAL (http://www.cgal.org/)
+
+Installation
+============
+
+To build and install COPOS, type follows (use GNU make)
+
+  $ ./configure --with-Qt-dir=/usr/lib/qt/ --prefix=/foo/bar (other options...)
+  $ make (or gmake)
+  $ make install
+
+
+Please read INSTALL or type "./configure --help" for more details.
+!!! It's very recommanded to use the '--with-Qt-dir' option. !!!
+
+Configure Options
+=================
+
+
+Building the CVS Version of COPOS
+====================================
+
+Qrust's Berlios CVS repository can be checked out through
+anonymous (pserver) CVS with the following instruction set.
+When prompted for a password for anonymous, simply press the Enter key. 
+
+  $ cvs \
+      -d:pserver:anonymous@cvs.berlios.de:/cvsroot/copos \
+      login
+  $ cvs -z3 \
+      -d:pserver:anonymous@cvs.berlios.de:/cvsroot/copos \
+      co qrust
+
+When you are at work on the CVS version of Qrust, you can use bootstrap.sh
+for generating configure script and Makefiles.
+
+  $ ./bootstrap.sh
+  $ make
+  $ make install
+
+You may have to set ACLOCAL_FLAGS environment variable for some m4
+macros used in configure.in.
+
+The following versions of the GNU autotools are required.
+
+  autoconf 2.x and above
+  automake 1.4.x
+  libtool  1.4
+
+
+Contact
+=======
+
+Any patches, bug fixes and improvements are always welcome ;-)
+
+  Ronan Billon  <cirdan@mail.berlios.de>
+
+

@@ -1,0 +1,102 @@
+AC_PREREQ(2.59)
+AC_INIT(qrust, 0.5.1, cirdan@mail.berlios.de)
+AM_INIT_AUTOMAKE(qrust, "0.5.1")
+AM_CONFIG_HEADER(config.h:config.h.in)
+
+AC_LANG([C++])
+AC_PROG_CC
+AC_PROG_MAKE_SET
+AC_REQUIRE_CPP
+
+dnl Checks for libtool.
+AC_PROG_LIBTOOL
+
+AC_CONFIG_MACRO_DIR(m4)
+
+dnl ##################################################
+dnl # Check CGAL
+dnl ##################################################
+
+AC_ARG_WITH(cgal-includes,
+    [AC_HELP_STRING([--with-cgal-includes=DIR], [prefix of CGAL includes. e.g. /usr/include])],
+    [CXXFLAGS="$CXXFLAGS -I"${withval}],
+    [])
+AC_ARG_WITH(cgal,
+    [AC_HELP_STRING([--with-cgal=DIR], [prefix of CGAL library. e.g. /usr/lib])],
+    [LIBS="$LIBS -L${withval} -lCGAL"],
+    [LIBS="$LIBS -lCGAL"])
+
+AC_CHECK_HEADERS([CGAL/Alpha_shape_3.h])
+AC_MSG_CHECKING([CGAL])
+AC_LINK_IFELSE([AC_LANG_PROGRAM([
+	#include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
+	#include <CGAL/Delaunay_triangulation_3.h>
+	#include <CGAL/Triangulation_hierarchy_3.h>
+	#include <CGAL/Alpha_shape_3.h>
+	
+	struct K : CGAL::Exact_predicates_inexact_constructions_kernel {};
+
+	typedef CGAL::Alpha_shape_vertex_base_3<K>               Vb;
+	typedef CGAL::Triangulation_hierarchy_vertex_base_3<Vb>  Vbh;
+	typedef CGAL::Alpha_shape_cell_base_3<K>                 Fb;
+	typedef CGAL::Triangulation_data_structure_3<Vbh,Fb>     Tds;
+	typedef CGAL::Delaunay_triangulation_3<K,Tds>            Delaunay;
+	typedef CGAL::Triangulation_hierarchy_3<Delaunay>        Delaunay_hierarchy;
+	typedef CGAL::Alpha_shape_3<Delaunay_hierarchy>          Alpha_shape_3;
+	
+	Alpha_shape_3 as;
+   ])],
+   [AC_MSG_RESULT([yes])],
+   [AC_MSG_ERROR([Cannot find CGAL in your library path ! 
+		 Use the --with-cgal-includes and --with-cgal options.])])
+
+BNV_HAVE_QT
+AM_CONDITIONAL(HAVE_QT, test x$have_qt = xyes)
+AC_SUBST(QT_LIBS)
+AC_CHECK_PROG(QMAKE, qmake, qmake)
+if test -z "$QMAKE"; then
+    AC_MSG_ERROR([Cannot find qmake in your path!])
+fi
+AC_SUBST(QMAKE)
+CXXFLAGS="$CXXFLAGS $QT_CXXFLAGS"
+LIBS="$LIBS $QT_LIBS"
+
+dnl ##################################################
+dnl # Check OpenGL
+dnl ##################################################
+AC_SEARCH_LIBS(glVertex3d, GL, [], AC_MSG_ERROR([Cannot find OpenGL Library ! Please install it]))
+AC_SEARCH_LIBS(gluPerspective, GLU, [], AC_MSG_ERROR([Cannot find OpenGL GLU Library ! Please install it]))
+AC_CHECK_HEADERS(GL/glu.h)
+
+dnl ##################################################
+dnl # Check QGLViewer
+dnl ##################################################
+AC_MSG_CHECKING([QGLViewer])
+AC_ARG_WITH(qglviewer-includes,
+    [AC_HELP_STRING([--with-qglviewer-includes=DIR], [prefix of QGLViewer installation. e.g. /usr/include])],
+    [CXXFLAGS="$CXXFLAGS -I"${withval}],
+    [])
+AC_ARG_WITH(qglviewer,
+    [AC_HELP_STRING([--with-qglviewer=DIR], [prefix of QGLViewer library. e.g. /usr/lib])],
+    [LIBS="$LIBS -L"${withval}" -lQGLViewer"],
+    [LIBS="$LIBS -lQGLViewer"])
+
+AC_LINK_IFELSE([AC_LANG_PROGRAM([
+	#include <QGLViewer/qglviewer.h>
+	#include <qapplication.h>
+	class Viewer : public QGLViewer {};
+	Viewer v;
+   ])],
+   [AC_MSG_RESULT([yes])],
+   [AC_MSG_ERROR([Cannot find qglview in your include path ! 
+		 Use the --with-qglviewer-includes and --with-qglviewer options.])])
+
+
+
+
+AC_CONFIG_FILES([
+	Makefile
+	display/Makefile
+	math/Makefile
+	])
+AC_OUTPUT

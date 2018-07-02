@@ -376,3 +376,6 @@
 [submodule "OpenCNC/CNCTool"]
 	path = OpenCNC/CNCTool
 	url = https://github.com/martin2250/CNCTool.git
+[submodule "3D-Scanner/PulsedLight3dScanner"]
+	path = 3D-Scanner/PulsedLight3dScanner
+	url = https://github.com/PulsedLight3D/PulsedLight3dScanner.git

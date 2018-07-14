@@ -379,3 +379,66 @@
 [submodule "3D-Scanner/PulsedLight3dScanner"]
 	path = 3D-Scanner/PulsedLight3dScanner
 	url = https://github.com/PulsedLight3D/PulsedLight3dScanner.git
+[submodule "X-Ray/Dicom-Viewer"]
+	path = X-Ray/Dicom-Viewer
+	url = https://github.com/LunchBox/Dicom-Viewer.git
+[submodule "X-Ray/cxv"]
+	path = X-Ray/cxv
+	url = https://github.com/lukemueller/cxv.git
+[submodule "X-Ray/webDICOM"]
+	path = X-Ray/webDICOM
+	url = https://github.com/mi-kas/webDICOM.git
+[submodule "X-Ray/droid-dicom-viewer"]
+	path = X-Ray/droid-dicom-viewer
+	url = https://github.com/yy1300326388/droid-dicom-viewer.git
+[submodule "X-Ray/dicom-viewer"]
+	path = X-Ray/dicom-viewer
+	url = https://github.com/grzegorzgajda/dicom-viewer.git
+[submodule "X-Ray/d3-xray"]
+	path = X-Ray/d3-xray
+	url = https://github.com/vijithassar/d3-xray.git
+[submodule "X-Ray/studycentric"]
+	path = X-Ray/studycentric
+	url = https://github.com/chop-dbhi/studycentric.git
+[submodule "X-Ray/ginkgocadx"]
+	path = X-Ray/ginkgocadx
+	url = https://github.com/gerddie/ginkgocadx.git
+[submodule "X-Ray/dicomviewer"]
+	path = X-Ray/dicomviewer
+	url = https://github.com/ayselafsar/dicomviewer.git
+[submodule "X-Ray/xpedaq"]
+	path = X-Ray/xpedaq
+	url = https://github.com/lucabaldini/xpedaq.git
+[submodule "X-Ray/xrayvision"]
+	path = X-Ray/xrayvision
+	url = https://github.com/sunpy/xrayvision.git
+[submodule "X-Ray/osirix"]
+	path = X-Ray/osirix
+	url = https://github.com/pixmeo/osirix.git
+[submodule "X-Ray/dwv"]
+	path = X-Ray/dwv
+	url = https://github.com/ivmartel/dwv.git
+[submodule "X-Ray/xray-vision"]
+	path = X-Ray/xray-vision
+	url = https://github.com/Nikea/xray-vision.git
+[submodule "X-Ray/cornerstone"]
+	path = X-Ray/cornerstone
+	url = https://github.com/cornerstonejs/cornerstone.git
+[submodule "X-Ray/dwv-angular"]
+	path = X-Ray/dwv-angular
+	url = https://github.com/ivmartel/dwv-angular.git
+[submodule "X-Ray/dwv-react"]
+	path = X-Ray/dwv-react
+	url = https://github.com/ivmartel/dwv-react.git
+[submodule "X-Ray/dwv-jqmobile"]
+	path = X-Ray/dwv-jqmobile
+	url = https://github.com/ivmartel/dwv-jqmobile.git
+[submodule "X-Ray/dwv-vue"]
+	path = X-Ray/dwv-vue
+	url = https://github.com/ivmartel/dwv-vue.git
+[submodule "X-Ray/Viewers"]
+	path = X-Ray/Viewers
+	url = https://github.com/OHIF/Viewers.git
+[submodule "X-Ray/js-dicom-viewer"]
+	path = X-Ray/js-dicom-viewer
+	url = https://github.com/cvdlab/dicom-viewer.git

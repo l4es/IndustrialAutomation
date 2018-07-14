@@ -442,3 +442,6 @@
 [submodule "X-Ray/js-dicom-viewer"]
 	path = X-Ray/js-dicom-viewer
 	url = https://github.com/cvdlab/dicom-viewer.git
+[submodule "X-Ray/fabio"]
+	path = X-Ray/fabio
+	url = https://github.com/silx-kit/fabio.git

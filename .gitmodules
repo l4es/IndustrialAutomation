@@ -472,3 +472,9 @@
 [submodule "Monarco/node-red-contrib-monarco-hat"]
 	path = Monarco/node-red-contrib-monarco-hat
 	url = https://github.com/monarco/node-red-contrib-monarco-hat.git
+[submodule "Controllino-PLC/CONTROLLINO_Library"]
+	path = Controllino-PLC/CONTROLLINO_Library
+	url = https://github.com/CONTROLLINO-PLC/CONTROLLINO_Library.git
+[submodule "Controllino-PLC/CONTROLLINO_Samples"]
+	path = Controllino-PLC/CONTROLLINO_Samples
+	url = https://github.com/ckuehnel/Controllino.git

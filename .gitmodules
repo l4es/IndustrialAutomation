@@ -478,3 +478,9 @@
 [submodule "Controllino-PLC/CONTROLLINO_Samples"]
 	path = Controllino-PLC/CONTROLLINO_Samples
 	url = https://github.com/ckuehnel/Controllino.git
+[submodule "RexControls/rex-install-rpi"]
+	path = RexControls/rex-install-rpi
+	url = https://github.com/rexcontrols/rex-install-rpi.git
+[submodule "RexControls/REXexamples"]
+	path = RexControls/REXexamples
+	url = https://github.com/rexcontrols/REXexamples.git

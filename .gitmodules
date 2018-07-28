@@ -484,3 +484,9 @@
 [submodule "RexControls/REXexamples"]
 	path = RexControls/REXexamples
 	url = https://github.com/rexcontrols/REXexamples.git
+[submodule "Widgetlords/libwidgetlords"]
+	path = Widgetlords/libwidgetlords
+	url = https://github.com/widgetlords/libwidgetlords.git
+[submodule "Widgetlords/node-red-contrib-widgetlords"]
+	path = Widgetlords/node-red-contrib-widgetlords
+	url = https://github.com/widgetlords/node-red-contrib-widgetlords.git

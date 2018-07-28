@@ -463,3 +463,12 @@
 [submodule "OpenPLC/OpenPLC_Files"]
 	path = OpenPLC/OpenPLC_Files
 	url = https://github.com/thiagoralves/OpenPLC_Files.git
+[submodule "Monarco/monarco-hat-driver-c"]
+	path = Monarco/monarco-hat-driver-c
+	url = https://github.com/monarco/monarco-hat-driver-c.git
+[submodule "Monarco/monarco-hat-driver-nodejs"]
+	path = Monarco/monarco-hat-driver-nodejs
+	url = https://github.com/monarco/monarco-hat-driver-nodejs.git
+[submodule "Monarco/node-red-contrib-monarco-hat"]
+	path = Monarco/node-red-contrib-monarco-hat
+	url = https://github.com/monarco/node-red-contrib-monarco-hat.git

@@ -490,3 +490,15 @@
 [submodule "Widgetlords/node-red-contrib-widgetlords"]
 	path = Widgetlords/node-red-contrib-widgetlords
 	url = https://github.com/widgetlords/node-red-contrib-widgetlords.git
+[submodule "RevolutionPi/piControl"]
+	path = RevolutionPi/piControl
+	url = https://github.com/RevolutionPi/piControl.git
+[submodule "RevolutionPi/imagebakery"]
+	path = RevolutionPi/imagebakery
+	url = https://github.com/RevolutionPi/imagebakery.git
+[submodule "RevolutionPi/kernelbakery"]
+	path = RevolutionPi/kernelbakery
+	url = https://github.com/RevolutionPi/kernelbakery.git
+[submodule "RevolutionPi/IODeviceExample"]
+	path = RevolutionPi/IODeviceExample
+	url = https://github.com/RevolutionPi/IODeviceExample.git

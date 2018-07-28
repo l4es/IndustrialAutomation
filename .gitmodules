@@ -502,3 +502,9 @@
 [submodule "RevolutionPi/IODeviceExample"]
 	path = RevolutionPi/IODeviceExample
 	url = https://github.com/RevolutionPi/IODeviceExample.git
+[submodule "UniPi/evok"]
+	path = UniPi/evok
+	url = https://github.com/UniPiTechnology/evok.git
+[submodule "UniPi/neuron-tcp-modbus-overlay"]
+	path = UniPi/neuron-tcp-modbus-overlay
+	url = https://github.com/UniPiTechnology/neuron-tcp-modbus-overlay.git

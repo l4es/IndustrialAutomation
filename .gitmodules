@@ -445,3 +445,21 @@
 [submodule "X-Ray/fabio"]
 	path = X-Ray/fabio
 	url = https://github.com/silx-kit/fabio.git
+[submodule "OpenPLC/OpenPLC"]
+	path = OpenPLC/OpenPLC
+	url = https://github.com/thiagoralves/OpenPLC.git
+[submodule "OpenPLC/OpenPLC_v2"]
+	path = OpenPLC/OpenPLC_v2
+	url = https://github.com/thiagoralves/OpenPLC_v2.git
+[submodule "OpenPLC/OpenPLC_v3"]
+	path = OpenPLC/OpenPLC_v3
+	url = https://github.com/thiagoralves/OpenPLC_v3.git
+[submodule "OpenPLC/OpenPLC-Neo"]
+	path = OpenPLC/OpenPLC-Neo
+	url = https://github.com/thiagoralves/OpenPLC-Neo.git
+[submodule "OpenPLC/OpenPLC-Ladder-Editor"]
+	path = OpenPLC/OpenPLC-Ladder-Editor
+	url = https://github.com/thiagoralves/OpenPLC-Ladder-Editor.git
+[submodule "OpenPLC/OpenPLC_Files"]
+	path = OpenPLC/OpenPLC_Files
+	url = https://github.com/thiagoralves/OpenPLC_Files.git

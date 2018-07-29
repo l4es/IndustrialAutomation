@@ -583,3 +583,6 @@
 [submodule "3D-Printer/Repetier/Repetier-Server"]
 	path = 3D-Printer/Repetier/Repetier-Server
 	url = https://github.com/repetier/Repetier-Server.git
+[submodule "3D-Printer/Slic3r/Slic3r"]
+	path = 3D-Printer/Slic3r/Slic3r
+	url = https://github.com/slic3r/Slic3r.git

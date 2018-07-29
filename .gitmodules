@@ -508,3 +508,21 @@
 [submodule "UniPi/neuron-tcp-modbus-overlay"]
 	path = UniPi/neuron-tcp-modbus-overlay
 	url = https://github.com/UniPiTechnology/neuron-tcp-modbus-overlay.git
+[submodule "3D-Scanner/Scanse/sweep-sdk"]
+	path = 3D-Scanner/Scanse/sweep-sdk
+	url = https://github.com/scanse/sweep-sdk.git
+[submodule "3D-Scanner/Scanse/sweep-3d-scanner-unity-viewer"]
+	path = 3D-Scanner/Scanse/sweep-3d-scanner-unity-viewer
+	url = https://github.com/scanse/sweep-3d-scanner-unity-viewer.git
+[submodule "3D-Scanner/Scanse/sweep-learning-examples"]
+	path = 3D-Scanner/Scanse/sweep-learning-examples
+	url = https://github.com/scanse/sweep-learning-examples.git
+[submodule "3D-Scanner/Scanse/sweep-ros"]
+	path = 3D-Scanner/Scanse/sweep-ros
+	url = https://github.com/scanse/sweep-ros.git
+[submodule "3D-Scanner/Scanse/sweep-arduino"]
+	path = 3D-Scanner/Scanse/sweep-arduino
+	url = https://github.com/scanse/sweep-arduino.git
+[submodule "3D-Scanner/Scanse/sweep-3d-scanner"]
+	path = 3D-Scanner/Scanse/sweep-3d-scanner
+	url = https://github.com/scanse/sweep-3d-scanner.git

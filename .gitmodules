@@ -143,7 +143,7 @@
 	path = DieBie/DieBieMS-Bootloader
 	url = https://github.com/DieBieEngineering/DieBieMS-Bootloader.git
 [submodule "grbl"]
-	path = grbl
+	path = Protocols/G-Code/grbl
 	url = https://github.com/grbl/grbl.git
 [submodule "Protocols/FNET"]
 	path = Protocols/FNET
@@ -553,3 +553,24 @@
 [submodule "3D-Scanner/rp-3d-scanner"]
 	path = 3D-Scanner/rp-3d-scanner
 	url = https://github.com/robopeak/rp-3d-scanner.git
+[submodule "Protocols/G-Code/bCNC"]
+	path = Protocols/G-Code/bCNC
+	url = https://github.com/vlachoudis/bCNC.git
+[submodule "Protocols/G-Code/Universal-G-Code-Sender"]
+	path = Protocols/G-Code/Universal-G-Code-Sender
+	url = https://github.com/winder/Universal-G-Code-Sender.git
+[submodule "Protocols/G-Code/grblweb"]
+	path = Protocols/G-Code/grblweb
+	url = https://github.com/andrewhodel/grblweb.git
+[submodule "Protocols/G-Code/Candle"]
+	path = Protocols/G-Code/Candle
+	url = https://github.com/Denvi/Candle.git
+[submodule "Protocols/G-Code/sourcerabbit-gcode-sender"]
+	path = Protocols/G-Code/sourcerabbit-gcode-sender
+	url = https://github.com/nsiatras/sourcerabbit-gcode-sender.git
+[submodule "Protocols/G-Code/grblgui"]
+	path = Protocols/G-Code/grblgui
+	url = https://github.com/cody82/grblgui.git
+[submodule "Protocols/G-Code/CNCInfusion"]
+	path = Protocols/G-Code/CNCInfusion
+	url = https://github.com/nm156/CNCInfusion.git

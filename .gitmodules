@@ -589,3 +589,9 @@
 [submodule "3D-Printer/reprapweb"]
 	path = 3D-Printer/reprapweb
 	url = https://github.com/andrewhodel/reprapweb.git
+[submodule "3D-Printer/OctoPrint/OctoPrint"]
+	path = 3D-Printer/OctoPrint/OctoPrint
+	url = https://github.com/foosel/OctoPrint.git
+[submodule "3D-Printer/OctoPrint/OctoPi"]
+	path = 3D-Printer/OctoPrint/OctoPi
+	url = https://github.com/guysoft/OctoPi.git

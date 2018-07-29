@@ -595,3 +595,6 @@
 [submodule "3D-Printer/OctoPrint/OctoPi"]
 	path = 3D-Printer/OctoPrint/OctoPi
 	url = https://github.com/guysoft/OctoPi.git
+[submodule "3D-Printer/MarlinFirmware/Marlin"]
+	path = 3D-Printer/MarlinFirmware/Marlin
+	url = https://github.com/MarlinFirmware/Marlin.git

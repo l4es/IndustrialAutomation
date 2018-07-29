@@ -586,3 +586,6 @@
 [submodule "3D-Printer/Slic3r/Slic3r"]
 	path = 3D-Printer/Slic3r/Slic3r
 	url = https://github.com/slic3r/Slic3r.git
+[submodule "3D-Printer/reprapweb"]
+	path = 3D-Printer/reprapweb
+	url = https://github.com/andrewhodel/reprapweb.git

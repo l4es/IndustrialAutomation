@@ -574,3 +574,12 @@
 [submodule "Protocols/G-Code/CNCInfusion"]
 	path = Protocols/G-Code/CNCInfusion
 	url = https://github.com/nm156/CNCInfusion.git
+[submodule "3D-Printer/Repetier/Repetier-Firmware"]
+	path = 3D-Printer/Repetier/Repetier-Firmware
+	url = https://github.com/repetier/Repetier-Firmware.git
+[submodule "3D-Printer/Repetier/Repetier-Host"]
+	path = 3D-Printer/Repetier/Repetier-Host
+	url = https://github.com/repetier/Repetier-Host.git
+[submodule "3D-Printer/Repetier/Repetier-Server"]
+	path = 3D-Printer/Repetier/Repetier-Server
+	url = https://github.com/repetier/Repetier-Server.git

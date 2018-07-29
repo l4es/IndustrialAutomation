@@ -529,3 +529,27 @@
 [submodule "3D-Scanner/3DScannerESP8266"]
 	path = 3D-Scanner/3DScannerESP8266
 	url = https://github.com/bitluni/3DScannerESP8266.git
+[submodule "3D-Scanner/sweep-3d-lidar"]
+	path = 3D-Scanner/sweep-3d-lidar
+	url = https://github.com/cansik/sweep-3d-lidar.git
+[submodule "3D-Scanner/open-lidar-scanner"]
+	path = 3D-Scanner/open-lidar-scanner
+	url = https://github.com/cansik/open-lidar-scanner.git
+[submodule "3D-Scanner/hdl_localization"]
+	path = 3D-Scanner/hdl_localization
+	url = https://github.com/koide3/hdl_localization.git
+[submodule "3D-Scanner/Lidar-Scanner"]
+	path = 3D-Scanner/Lidar-Scanner
+	url = https://github.com/renkh/Lidar-Scanner.git
+[submodule "3D-Scanner/BreezyLidar"]
+	path = 3D-Scanner/BreezyLidar
+	url = https://github.com/simondlevy/BreezyLidar.git
+[submodule "3D-Scanner/SyntheticLidarScanner"]
+	path = 3D-Scanner/SyntheticLidarScanner
+	url = https://github.com/daviddoria/SyntheticLidarScanner.git
+[submodule "3D-Scanner/FinalProjectLidar"]
+	path = 3D-Scanner/FinalProjectLidar
+	url = https://github.com/andrefedalto/lidar-scanner.git
+[submodule "3D-Scanner/rp-3d-scanner"]
+	path = 3D-Scanner/rp-3d-scanner
+	url = https://github.com/robopeak/rp-3d-scanner.git

@@ -601,3 +601,21 @@
 [submodule "3D-Printer/NodeGoose/node-goose"]
 	path = 3D-Printer/NodeGoose/node-goose
 	url = https://github.com/rniice/node-goose.git
+[submodule "Protocols/G-Code/OpenCNCPilot"]
+	path = Protocols/G-Code/OpenCNCPilot
+	url = https://github.com/martin2250/OpenCNCPilot.git
+[submodule "Protocols/G-Code/GrblServer"]
+	path = Protocols/G-Code/GrblServer
+	url = https://github.com/cho45/GrblServer.git
+[submodule "Protocols/G-Code/cncjs"]
+	path = Protocols/G-Code/cncjs
+	url = https://github.com/cncjs/cncjs.git
+[submodule "Protoneer/GRBL-Arduino-Library"]
+	path = Protoneer/GRBL-Arduino-Library
+	url = https://github.com/Protoneer/GRBL-Arduino-Library.git
+[submodule "Protoneer/Raspberry-Pi-CNC"]
+	path = Protoneer/Raspberry-Pi-CNC
+	url = https://github.com/Protoneer/Raspberry-Pi-CNC.git
+[submodule "Protoneer/RPI-CNC-Config-Scripts"]
+	path = Protoneer/RPI-CNC-Config-Scripts
+	url = https://github.com/Protoneer/RPI-CNC-Config-Scripts.git

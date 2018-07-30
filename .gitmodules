@@ -598,3 +598,6 @@
 [submodule "3D-Printer/MarlinFirmware/Marlin"]
 	path = 3D-Printer/MarlinFirmware/Marlin
 	url = https://github.com/MarlinFirmware/Marlin.git
+[submodule "3D-Printer/NodeGoose/node-goose"]
+	path = 3D-Printer/NodeGoose/node-goose
+	url = https://github.com/rniice/node-goose.git

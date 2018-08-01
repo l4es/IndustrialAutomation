@@ -619,3 +619,18 @@
 [submodule "Protoneer/RPI-CNC-Config-Scripts"]
 	path = Protoneer/RPI-CNC-Config-Scripts
 	url = https://github.com/Protoneer/RPI-CNC-Config-Scripts.git
+[submodule "CAMotics/CAMotics"]
+	path = CAMotics/CAMotics
+	url = https://github.com/CauldronDevelopmentLLC/CAMotics.git
+[submodule "CAMotics/Buildbotics/bbctrl-firmware"]
+	path = CAMotics/Buildbotics/bbctrl-firmware
+	url = https://github.com/buildbotics/bbctrl-firmware.git
+[submodule "CAMotics/Buildbotics/bbctrl-pcb"]
+	path = CAMotics/Buildbotics/bbctrl-pcb
+	url = https://github.com/buildbotics/bbctrl-pcb.git
+[submodule "CAMotics/Buildbotics/bbctrl-datasheet"]
+	path = CAMotics/Buildbotics/bbctrl-datasheet
+	url = https://github.com/buildbotics/bbctrl-datasheet.git
+[submodule "CAMotics/Buildbotics/bbctrl-enclosure"]
+	path = CAMotics/Buildbotics/bbctrl-enclosure
+	url = https://github.com/buildbotics/bbctrl-enclosure.git

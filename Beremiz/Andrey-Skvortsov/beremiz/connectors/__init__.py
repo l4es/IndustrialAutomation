@@ -1,0 +1,103 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# This file is part of Beremiz, a Integrated Development Environment for
+# programming IEC 61131-3 automates supporting plcopen standard and CanFestival.
+#
+# Copyright (C) 2007: Edouard TISSERANT and Laurent BESSARD
+# Copyright (C) 2017: Andrey Skvortsov
+#
+# See COPYING file for copyrights details.
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+# Package initialisation
+
+
+from __future__ import absolute_import
+from os import listdir, path
+import util.paths as paths
+
+_base_path = paths.AbsDir(__file__)
+
+
+def _GetLocalConnectorClassFactory(name):
+    return lambda: getattr(__import__(name, globals(), locals()), name + "_connector_factory")
+
+
+def _GetLocalConnectorClassDialog(name):
+    return lambda: getattr(__import__(name + '.dialog', globals(), locals(), fromlist=['dialog']), name + "_connector_dialog")
+
+
+def _GetLocalConnectorURITypes(name):
+    return lambda: getattr(__import__(name + '.dialog', globals(), locals(), fromlist=['dialog']), "URITypes", None)
+
+
+connectors = {name:
+              _GetLocalConnectorClassFactory(name)
+              for name in listdir(_base_path)
+              if (path.isdir(path.join(_base_path, name)) and
+                  not name.startswith("__"))}
+
+connectors_dialog = {name:
+                     {"function": _GetLocalConnectorClassDialog(name), "URITypes": _GetLocalConnectorURITypes(name)}
+                     for name in listdir(_base_path)
+                     if (path.isdir(path.join(_base_path, name)) and
+                         not name.startswith("__"))}
+
+
+def ConnectorFactory(uri, confnodesroot):
+    """
+    Return a connector corresponding to the URI
+    or None if cannot connect to URI
+    """
+    servicetype = uri.split("://")[0].upper()
+    if servicetype == "LOCAL":
+        # Local is special case
+        # pyro connection to local runtime
+        # started on demand, listening on random port
+        servicetype = "PYRO"
+        runtime_port = confnodesroot.AppFrame.StartLocalRuntime(
+            taskbaricon=True)
+        uri = "PYROLOC://127.0.0.1:" + str(runtime_port)
+    elif servicetype in connectors:
+        pass
+    elif servicetype[-1] == 'S' and servicetype[:-1] in connectors:
+        servicetype = servicetype[:-1]
+    else:
+        return None
+
+    # import module according to uri type
+    connectorclass = connectors[servicetype]()
+    return connectorclass(uri, confnodesroot)
+
+
+def ConnectorDialog(conn_type, confnodesroot):
+    if conn_type not in connectors_dialog:
+        return None
+
+    connectorclass = connectors_dialog[conn_type]["function"]()
+    return connectorclass(confnodesroot)
+
+
+def GetConnectorFromURI(uri):
+    typeOfConnector = None
+    for conn_type in connectors_dialog:
+        connectorTypes = connectors_dialog[conn_type]["URITypes"]()
+        if connectorTypes and uri in connectorTypes:
+            typeOfConnector = conn_type
+            break
+
+    return typeOfConnector

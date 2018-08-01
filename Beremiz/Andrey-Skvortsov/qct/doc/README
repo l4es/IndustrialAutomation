@@ -1,0 +1,21 @@
+Qct's documentation is currently kept in ASCIIDOC format, which
+is a simple plain text format that's easy to read and edit. It's also
+convertible to a variety of other formats including standard UNIX man
+page format and HTML.
+
+To do this, you'll need to install ASCIIDOC:
+
+ http://www.methods.co.nz/asciidoc/
+
+To generate the man page:
+
+ asciidoc -d manpage -b docbook qct.1.txt
+ xmlto man qct.1.xml
+
+To display:
+
+ groff -mandoc -Tascii qct.1 | more
+
+To create the html page (without stylesheets):
+
+ asciidoc -b html qct.1.txt

@@ -1,0 +1,40 @@
+QCT - Qt/PyQt based commit tool
+
+Author: Steve Borho <steve@borho.org>
+
+Downloads:
+
+http://qct.sourceforge.net/qct-version-win32.exe - Windows self-extracting zip
+http://qct.sourceforge.net/qct-version.tar.gz    - Source code
+http://qct.sourceforge.net/qct-version-py2.5.egg - Python Egg
+http://qct.sourceforge.net/hg/qct                - Mercurial Repository
+
+Primary goals:
+
+1) Cross-Platform (Linux, Windows-Native, MacOS, cygwin)
+2) Be VCS agnostic.
+3) Good keyboard navigation, keep the typical work-flow simple
+
+Keyboard Shortcuts:
+
+CTRL-O  - Commit selected files
+CTRL-R  - Refresh file list
+CTRL-N  - View diffs of next file in list
+CTRL-[] - Page up/down through file diffs
+CTRL-U  - Unselect all files
+CTRL-F  - Clear file filter text
+ESC     - Abort and exit
+
+The qct standalone application will attempt to auto-detect the
+repository you are running from, but will also accept a command line
+argument specifying the VCS back-end you wish to use.
+
+See the man page for more usage details and consult the README file for
+the version control system you wish to use.
+
+
+Known Issues:
+
+Windows has a command line limit of 32KBytes.  If you break this limit
+you get to keep both halves :)
+http://blogs.msdn.com/oldnewthing/archive/2003/12/10/56028.aspx

@@ -1,0 +1,38 @@
+====== Using Qct with Bazaar ======
+
+Qct can run as a bazaar plugin.  Just copy plugins/qctBzrPlugin.py
+to your ~/.bazaar/plugins directory.
+
+You can test this installation by running:
+
+% bzr help qct
+
+If you use the selected change feature (by registering a two-way merge
+application), it is suggested that you add .qct/ to your ignore mask to
+prevent the backed up working directory files from showing up in the
+file list.
+
+To use a commit message template, place the template message here:
+$(bzr-root)/.commit.template
+
+Bazaar does support an experimental plugin for calling external (GUI)
+diff browsers.  You can enable this plugin and then register your
+diff command with Qct in the preferences dialog.  Qct will then offer
+you a visual diff context menu option for all modified files in your
+repository.  Look for difftools on this page:
+http://bazaar-vcs.org/BzrPlugins
+
+Note that if you chose not to use the Bazaar plugin, qct can still work
+with Bazaar repositories.  If you start the standalone application `qct`
+inside the repository root (where .bzr/ resides), qct will autodetect the
+Bazaar back-end.  If you start it elsewhere in the repository directory
+tree, you will need to supply a command line argument to specify
+Bazaar:   qct --bzr
+
+In theory, Qct should work with Bazaar on Windows, but this has never
+been tested.  See README.mercurial for details about how batch files are
+sometimes necessary when Qct tries to call external python applications.
+
+PS:  The Bazaar back-end and plugin are not as well tested as I would
+like.  If you find a bug or find support for a particular bzr feature
+not to your liking, please send me an e-mail.

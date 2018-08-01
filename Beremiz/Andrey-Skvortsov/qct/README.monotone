@@ -1,0 +1,27 @@
+====== Using Qct with Monotone ======
+
+You must specify a get_passphrase() in your ~/.monotone/monotonerc in order for
+Qct to commit files.  Note that this has obvious security ramifications,
+but dem's the breaks.
+
+function get_passphrase(keypair_id)
+  return "myphrase"
+end
+
+
+If you use the selected change feature, it is suggested that you add
+.qct/ to your .mtn-ignore mask to prevent the backed up working
+directory files from showing up in the file list.
+
+Qct's support for adding ignore masks for unknown files only works
+properly when Qct is run out of the repository root (where .mtn-ignore
+is).  Patches welcome for removing this shortcoming.
+
+If you start qct inside the repository root (where .mtn/ resides), qct
+will autodetect the Monotone back-end.  If you start it elsewhere in the
+repository directory tree, you will need to supply a command line
+argument to specify Monotone:   qct --mtn
+
+PS:  The Monotone back-end is not as well tested as I would like.  If
+you find a bug or find support for a particular mtn feature not to your
+liking, please send me an e-mail.

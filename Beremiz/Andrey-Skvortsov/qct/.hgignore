@@ -1,0 +1,16 @@
+syntax: glob
+win32\release/*.exe
+qctlib/ui_preferences.py
+qctlib/ui_dialog.py
+*.pyc
+*.orig
+.*.swp
+qct-*.tar.gz
+build/
+qct.egg-info/
+dist/
+doc/qct.1
+doc/qct.1.html
+.DS_Store
+syntax: glob
+qctlib/ui_select.py

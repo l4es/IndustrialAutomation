@@ -1,0 +1,131 @@
+qct(1)
+=====
+Steve Borho <steve@borho.org>
+
+NAME
+----
+qct - Qt Commit Tool
+
+SYNOPSIS
+--------
+'qct' [VCS]
+
+DESCRIPTION
+-----------
+The qct(1) command provides a common GUI commit dialog for many revision
+control systems across many platforms, including Linux/UNIX, MacOSX, and
+Microsoft Windows.
+
+VERSION CONTROL SYSTEMS
+-----------------------
+
+Mercurial::
+    [--hg|-h] Qct supports both the simple repository model and the
+    Mercurial Queue patch maintenance model.  When MQ patches are
+    applied, qct will present a patch refresh user interface.  Consult
+    README.mercurial for more details.
+
+Bazaar::
+    [--bzr|-b] Bazaar support is complete, but could use some polishing.
+    Qct can run as a bazaar plugin.  Consult README.bazaar for more
+    details.
+
+Perforce::
+    [--p4|-4]  Perforce support is complete, if somewhat restrictive.
+    On Windows, you must override P4DIFF with a command line diff tool.
+    Consult README.perforce for more details.
+
+CVS::
+    [--cvs|-c] CVS support is feature complete, but not well tested.
+    Consult README.cvs for more details.
+
+Monotone::
+    [--mtn|-m] Monotone support is feature complete, but not well
+    tested.  Consult README.monotone for more details.
+
+Subversion::
+    [--svn|-s] Subversion support is not very well tested at this time,
+    so consider it alpha quality.  Consult README.subversion for more
+    details.
+
+Git::
+    [--cg] Git repositories are only supported via the Cogito front-end
+    interface, which must be installed in order for Qct to work
+    properly.  Consult README.git for more details.
+
+
+VCS INTEGRATION
+---------------
+
+Qct can run as a plugin inside both Mercurial and Bazaar.  Please
+consult the packaged INSTALL file and each plugin's built-in help for
+more information.
+
+SIGN OFF MESSAGES
+-----------------
+
+If you require a sign-off (or other) message to be appended to all
+of your commit messages, you can specify this message in the Qct
+preferences dialog.  The sign-off message will not show up in the
+commit message window, but will be automatically appended to your
+message when passed to the VCS for commit.
+
+CHANGE SELECTION
+----------------
+
+Qct will allow you to select individual changes made to revisioned
+files, temporarily storing the remaining changes under a .qct/ directory
+until the commit has been completed.  To enable this feature, you
+must configure a two-way merge application in the Qct preferences
+dialog.  Kompare, meld, and kdiff3 are all known to work correctly in
+this mode.  Any merge application which takes two file-names on the
+command line and allows them to be merged together can be used.
+
+EXTERNAL EDITOR
+---------------
+
+You can register an external editor with the Qct preferences dialog.
+Your editor will be presented as a context-menu option for all
+non-deleted commitable files in the file list.
+
+EXTERNAL DIFF
+-------------
+
+If your VCS supports external diff tools, you may register one of these
+with the Qct preferences dialog.  Your diff tool will be offered in the
+context menu of all modified files in your file list.  The diff tool
+will be provided with the list of selected files so it must be capable
+of retrieving the file diffs itself, typically by getting them from
+your revision control system.
+
+
+FILES
+-----
+
+~/.config/vcs/qct::
+    This file contains persistent data stored by Qct between
+    invocations.  It is not meant to be user modified.
+
+BUGS
+----
+Probably lots, please send them to be via e-mail when you find them.
+Patches (or mercurial bundles) are always welcome.
+
+Windows has a known limitation of 32Kbytes for it's command line.  Since
+Qct operates directly with the VCS command line tools, it is possible to
+run into this limit.
+
+AUTHOR
+------
+Written by Steve Borho <steve@borho.org>
+
+RESOURCES
+---------
+http://qct.sourceforge.net/[Web Page]
+http://qct.sourceforge.net/hg/qct[Source code repository]
+
+COPYING
+-------
+Copyright \(C) 2006 Steve Borho
+Free use of this software is granted under the terms of the GNU General
+Public License (GPL)

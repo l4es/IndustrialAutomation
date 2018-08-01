@@ -1,0 +1,20 @@
+====== Using Qct with CVS ======
+
+Qct can auto-detect CVS repositories, so you can run the standalone
+application from inside any CVS repo without any setup.  However, qct
+does accept a '--cvs' command line option for completeness.
+
+Usage Notes:
+  o Assumes you have a working cvs command line tool
+  o Assumes you have CVSROOT setup appropriately
+  o Assumes there is no passphrase required for rsh/ssh access
+  o Does not support listing ignored files (cvs seems broken in this regard)
+
+For a commit message template, place the template message into 
+~/.commit.template
+
+PS:  The CVS back-end is not as well tested as I would like.  If you
+find a bug or find support for a particular cvs feature not to your
+liking, please send me an e-mail.   In particular, I would like feedback
+on how well Qct works with CVS on Windows, and how well it deals with
+merge conflicts.

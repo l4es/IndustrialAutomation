@@ -1,0 +1,119 @@
+======= Installing the stand-alone application (Unix/Linux) =======
+
+The simplest approach is to do this:
+
+qct% make install
+
+This will try to build qctlib/ui_dialog.py, which is only necessary if
+you pulled sources directly out of revision control.  This file is
+supplied with the release tarballs.  Note that building ui_dialog.py
+requires Qt >= 4.2 and PyQt >= 4.1.
+
+The install rule then runs: python setup.py install --home=~
+
+This will copy the qct standalone application into ~/bin and the python
+library files into ~/lib/python/qctlib.
+
+You must ensure ~/lib/python is in your PYTHONPATH for qct to work
+correctly.  To test the installation you can try running 'qct' from
+inside any supported repository.
+
+/home/user/hgRepo% qct --hg
+
+
+
+
+======= Enabling Change Selection  =======
+
+To enable change selection (cherry picking which changes you wish to
+commit), you must have a two-way merge program installed and registered
+in the preferences dialog.
+
+Suggested two-way merge programs: kompare, gpyfm, meld, or kdiff3 (in that order).
+
+Here are the commandlines I suggest for each tool (to enter into the
+2-way diff configurable)
+
+    kompare
+    gpyfm %o %o %m
+    meld
+    kdiff3 %m %o -o %o -L1 modified -L2 original
+
+
+
+======= Installing site-wide (Unix/Linux) =======
+
+First you must be root, and then run:
+
+qct% make site-install
+
+You can download VCS plugins from these links:
+
+http://qct.sourceforge.net/hg/qct/raw-file/tip/hgext/qct.py
+http://qct.sourceforge.net/hg/qct/raw-file/tip/plugins/qctBzrPlugin.py
+
+
+
+
+====== OSX Installation ======
+
+Gain permission to install software, make sure you have a functioning
+installation of Python2.5, Qt4, and PyQt4 for OSX, then run:
+
+qct% make site-install
+
+Note that some people have reported problems with pyuic4 on OSX.  If you
+are having trouble starting Qct, try using the qctlib/ui_*.py files
+out of a release-tarball.
+
+In the future, I would like to package binary applications for Qct on
+OSX just like I do for Windows.
+
+
+
+
+====== Windows Installation (Python Source) ======
+
+Note:  Windows has a known limitation of 32Kbytes for it's command line.
+Since Qct operates directly with the VCS command line tools, it is
+possible to run into this limit.
+
+To install qct from sources, you should follow this approach:
+
+1) If you do not already have it, download and build qt4 (>=4.2)
+3) If you do not already have it, download and install python (>=2.5)
+3) If you do not already have it, download and install PyQt4 (>=4.1)
+4) Make sure $(QT_DIR)/bin is in your path
+5) Download qct, cd qct-*, make
+6) Test qct by running:   python qct
+7) If qct cannot find your underlying VCS tool, you may need to create a
+batch file somewhere in your path which calls your VCS appropriately.
+Here's an example hg.bat for Mercurial:
+
+@c:\Python25\python.exe c:\Python25\Scripts\hg %*
+
+8) now run:   python setup.py install
+9) Install the Mercurial or bazaar plugin, as needed
+10) If you don't intend to use qct as a plugin, you'll need to use the
+included batch file `win32/qct.bat` to invoke the standalone
+application.  By default, the batch file is setup to use the perforce
+back-end.  If you use a different VCS you should edit the batch file
+before copying it into your path.
+
+Don't forget to read the README file associated with your revision
+control back-end.
+
+
+
+======== Windows Installation (Binary Package) ========
+
+Download and install the latest binary release package
+
+http://qct.sourceforge.net/qct-N.N-win32.exe
+
+Don't forget to read the README file associated with your revision
+control back-end.
+
+To use qct with mercurial on windows, it's recommended you
+use the Mercurial+Qct "Batteries Included" installer available from 
+http://qct.sourceforge.net

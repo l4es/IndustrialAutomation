@@ -1,0 +1,147 @@
+#!/usr/bin/env python
+
+# qct - Commit Tool
+#
+# Copyright 2006 Steve Borho
+#
+# This software may be used and distributed according to the terms
+# of the GNU General Public License, incorporated herein by reference.
+
+import sys, os
+import getopt
+from PyQt4 import QtGui
+from qctlib.gui_logic import CommitTool
+
+def show_help():
+    'Show help'
+    print '''Qct GUI Commit Tool
+
+    Qct will attempt to auto-detect the repository you are running
+    inside of, but will also accept a command line argument specifying
+    the VCS back-end you intend to use.
+
+    qct [ --hg | --p4 | --svn | --bzr | --cvs | --mtn | --cg ]
+    qct [  -h  |  -4  |   -s  |  -b   |  -c   |  -m   ]
+    qct [ --help | --version ]
+
+    See the man page for more usage details and consult the INSTALL file for
+    more detailed documentation about each VCS back-end.
+
+    qct always tries to operate out of current directory, but in some
+    instances it must move context to your repository root.
+
+    Keyboard Shortcuts:
+
+    CTRL-O  - Commit selected files
+    CTRL-R  - Refresh file list
+    CTRL-N  - View diffs of next file in list
+    CTRL-[] - Page up/down through file diffs
+    CTRL-U  - Unselect all files
+    CTRL-F  - Clear file filter text
+    ESC     - Abort and exit'''
+
+# Standalone command line application
+
+if __name__ == "__main__":
+    # parse command line options
+    opts = []
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "s4bghcmvu:",
+                ["svn", "p4", "bzr", "hg", "cvs", "mtn", "version",
+                    "help", "cg", "gui"])
+    except getopt.error, msg:
+        pass
+
+    app = QtGui.QApplication(sys.argv)
+
+    for o in opts:
+        if o[0] == "--gui":
+            class DirDialog(QtGui.QFileDialog):
+                def __init__(self, parent=None):
+                    QtGui.QFileDialog.__init__(self, parent)
+
+                def show (self):
+                    dialog = QtGui.QFileDialog.getExistingDirectory (self, 
+                                                                     "Open Directory",
+                                                                     "",
+                                                                     QtGui.QFileDialog.ShowDirsOnly | QtGui.QFileDialog.DontResolveSymlinks)
+
+                    return dialog
+
+            dirdialog = DirDialog()
+            ret = dirdialog.show()
+            os.chdir (ret)
+            opts.remove (o)
+            break
+        
+    vcs = None
+    initRepoArgs = {}
+    if len(opts) == 0:
+        # default to auto-detect VCS back-end if no matches were found
+        if os.path.exists('.hg/'):
+            print "Auto-detected Mercurial repository"
+            from qctlib.vcs.hg import qctVcsHg
+            vcs = qctVcsHg()
+        elif os.path.exists('.bzr/'):
+            print "Auto-detected Bazaar repository"
+            from qctlib.vcs.bzr import qctVcsBzr
+            vcs = qctVcsBzr()
+        elif os.path.exists('.svn/'):
+            print "Auto-detected Subversion repository"
+            from qctlib.vcs.svn import qctVcsSvn
+            vcs = qctVcsSvn()
+        elif os.path.exists('.git/'):
+            print "Auto-detected Git (Cogito) repository"
+            from qctlib.vcs.cg import qctVcsCg
+            vcs = qctVcsCg()
+        elif os.path.exists('_MTN/'):
+            print "Auto-detected Monotone repository"
+            from qctlib.vcs.mtn import qctVcsMtn
+            vcs = qctVcsMtn()
+        elif os.path.exists('CVS/'):
+            print "Auto-detected CVS repository"
+            from qctlib.vcs.cvs import qctVcsCvs
+            vcs = qctVcsCvs()
+        else:
+            from qctlib.vcs.hg import qctVcsHg
+            vcs = qctVcsHg()
+
+    # process options
+    for opt, arg in opts:
+        if opt in ('--version', '-v'):
+            from qctlib.version import qct_version
+            print qct_version
+        elif opt == '-u':
+            initRepoArgs['username'] = arg
+        elif opt == '--help':
+            show_help()
+        elif opt == '--cg':
+            from qctlib.vcs.cg import qctVcsCg
+            vcs = qctVcsCg()
+        elif opt in ("-4", "--p4"):
+            from qctlib.vcs.p4 import qctVcsP4
+            vcs = qctVcsP4()
+        elif opt in ("-h", "--hg"):
+            from qctlib.vcs.hg import qctVcsHg
+            vcs = qctVcsHg()
+        elif opt in ("-b", "--bzr"):
+            from qctlib.vcs.bzr import qctVcsBzr
+            vcs = qctVcsBzr()
+        elif opt in ("-s", "--svn"):
+            from qctlib.vcs.svn import qctVcsSvn
+            vcs = qctVcsSvn()
+        elif opt in ("-c", "--cvs"):
+            from qctlib.vcs.cvs import qctVcsCvs
+            vcs = qctVcsCvs()
+        elif opt in ("-m", "--mtn"):
+            from qctlib.vcs.mtn import qctVcsMtn
+            vcs = qctVcsMtn()
+
+    if not vcs or vcs.initRepo(sys.argv, **initRepoArgs) != 0:
+        sys.exit()
+
+    # Now we know it's worth the trouble to open the GUI
+        
+    dialog = CommitTool(vcs)
+    dialog.show()
+    sys.exit(app.exec_())

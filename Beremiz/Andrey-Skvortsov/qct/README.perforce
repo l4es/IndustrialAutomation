@@ -1,0 +1,32 @@
+**** The perforce back-end is currently broken ****
+====== Using Qct with Perforce ======
+
+Perforce does not support extensions, and the Qct standalone application
+cannot auto-detect a perforce repository, so a shell alias or batch file
+can be useful:
+
+alias p4qct='qct --p4'
+
+For a commit message template, place the template message into a file
+and then set P4_LOG_TEMPLATE environment variable to reference that
+file.
+
+Usage Notes:
+   o  Assumes P4CLIENT, P4PORT, P4USER are properly set
+   o  Assumes a valid login to the perforce server
+   o  Will execute out of current directory (cannot find client root)
+   o  Will always use the default changelist
+
+Perforce on Windows:
+   o You must have the Windows command line tools installed (p4.exe)
+   o You must override P4DIFF in your environment to run a command line
+     diff.exe, such as one that comes with cygwin or MinGW.
+   o The included win32/qct.bat file can be used to call qct with the
+     necessary --p4 command line option.
+
+Note:  In my experience, P4Diff does not work properly as a two-way
+merge application, but it should be functional for visual diffs.
+
+PS:  The Perforce back-end is not as well tested as I would like.  If
+you find a bug or find support for a particular p4 feature not to your
+liking, please send me an e-mail.

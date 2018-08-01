@@ -1,0 +1,88 @@
+Run 'hg log --style=changelog' to get a per-commit listing
+
+Version 1.0:
+	Expect signed 32 bit return codes from Windows
+	Minor fix to allow Qct to run on PyQt4.0
+	Added a clear-filter button and shortcut Ctrl-F
+	Added a configurabe for a visual history browser
+
+Version 0.9:
+	Support for Subversion repositories
+	Support for Cogito (git) repositories
+	Support for Monotone repositories
+	Support for CVS repositories
+	Support -I/-X options in the Mercurial extension
+	Add sign-off message to preferences dialog
+	Sort file list by [filename | extension | status]
+	File filtering (simple string matching)
+	Added --version and --help command line arguments
+
+Version 0.8:
+	Change selection/cherry-picking (uses external two-way merge)
+	Context menus:
+	   -- add ignore masks for unknown files
+	   -- select copy sources for unknown and ignored files
+	   -- delete unknown and ignored files
+	   -- find rename/move targets for missing files
+	   -- revert, visual diff, external editor for all
+	      revisioned commitable files
+	Preferences dialog for specifying external tools
+	Progress bar for the repository scan
+	Simple repository auto-detection for standalone qct
+	Revert button removed, replaced with a Cancel button
+	Support for automatic sign-off messages in Hg back-end
+	Directory/module layout changes (do a fresh install)
+
+Version 0.7:
+	Support for Mercurial Queues
+	Cache scheme for hg back-end
+	Make most recent commit log messages available for re-use
+	Enable multi-selection in the file-list
+	Improved support for symbolic links in Mercurial back-end
+	Added a man-page
+	Worked around a Qt problem (multiple press events from one click)
+	Worked around more Windows path problems
+	setup.py will build UI file iff it does not exist
+
+Version 0.6:
+	Moved qct logic unto qctlib/ package, for cleaner installation
+	Added check boxes to file list to indicate selected state
+	Removed userName edit field
+	Added movable splitter between file list and diff browser
+	Keep window geometry (and splitter) persistent in ~/.config/vcs/qct.conf
+	Added CTRL-U shortcut to unselect all files
+	Added CTRL-[] shortcuts to page the diff browser up and down
+	Added '(Un)Select All' push button
+	Hard-coded Sans Serif font for diff browser
+	Revert from QDialog to QWidget, for WM reasons
+	Added support for log message templates $(repo-root)/.commit.message
+	OSX tuned optional UI layout (see INSTALL)
+
+Version 0.5:
+	Added an experimental perforce back-end
+	More layout improvements
+	Bug fixes to CTRL-N behavior
+	Fixes for PyQt 4.0
+
+Version 0.4:
+	Added syntax highlighting to diffBrowser window (thanks to hgct)
+	Layout improvements, new CTRL-N shortcut to cycle through diffs
+	Add an automated distribution Makefile rule
+	Added a back-end for bazaar, including a plugin
+	Keep selected list persistent through refresh events
+
+Version 0.3:
+	Added a 'Revert Selected' button, with warning dialog message
+	Added 'Ctrl+O' shortcut for commit, 'Esc' shortcut for abort
+	Stubbed in a git back-end
+	Cleaned up VCS back-end interface
+	Separated GUI logic from stand-alone app
+	Mercurial extension now spawns a GUI without forking another process
+
+Version 0.2:
+	Added mercurial extension
+	Improved layout and work-flow
+
+Version 0.1:
+	Initial integration with Mercurial
+	Commit dialog window works

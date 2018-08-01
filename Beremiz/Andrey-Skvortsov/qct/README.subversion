@@ -1,0 +1,12 @@
+====== Using Qct with Subversion ======
+
+Usage Notes:
+  * Assumes you have a working svn command line tool
+  * Assumes there is no passphrase required for rsh/ssh access
+
+For a commit message template, place the template file in your
+home directory: ~/.commit.template
+
+PS:  The Subversion back-end is not as well tested as I would like.  If
+you find a bug or find support for a particular svn feature not to your
+liking, please send me an e-mail.

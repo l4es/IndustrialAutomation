@@ -1,0 +1,122 @@
+=========================================
+======  Using Qct with Mercurial   ======
+=========================================
+
+====== Configuring qct.py extension ======
+
+You will want to install the hgext/qct.py extension for Mercurial
+for both performance and functionality reasons.  It allows you to
+launch qct as a Mercurial command, e.g.: 'hg qct' or 'hg commit-tool'.
+
+To use the qct.py extension, you need to specify in your ~/.hgrc file
+where Mercurial can find qct.py.
+
+You can either copy qct.py into ~/lib/python/hgext, along with the other
+Mercurial extensions (if you installed Mercurial globally, then hgext/
+will be in your python site-packages) and enable it in your ~/.hgrc via:
+
+[extensions]
+hgext.qct =
+
+or simply specify the full path to it via:
+
+[extensions]
+qct = /path/to/qct.py
+
+For more extension info, read these:
+http://www.selenic.com/mercurial/wiki/index.cgi/QctExtension
+http://www.selenic.com/mercurial/wiki/index.cgi/ExtensionHowto
+
+You can test your extension installation by running:
+% hg help qct
+
+
+====== Configuring Visual Diffs ======
+
+To enable visual diffs inside the context menus of modified files, you
+must enable the extdiff extension and then define a vdiff command, for
+example:
+
+[extensions]
+hgext.extdiff =
+
+[extdiff]
+cmd.vdiff = kdiff3
+
+You then must specify 'hg vdiff' in the 'External Diff Tool' section of
+the Qct preferences dialog.
+
+
+====== Sign-Off Message ======
+
+To enable an automatic sign-off message to be appended to all of your
+commits, you can add lines like these to your ~/.hgrc file (to take
+effect globally) or in a repository's $(root)/.hg/hgrc file (to override
+locally):
+
+[qct]
+signoff = Sign-Off: Steve Borho
+
+You can also specify a sign-off messsage in the Qct preferences dialog.
+
+
+====== Commit Message Template ======
+
+For a commit message template, place the template file in your
+repository root: $(hg-root)/.commit.template
+
+
+====== Running Qct with Mercurial ======
+
+Standalone Qct normally tries to operate out of current directory,
+but the extension layer will enforce the Mercurial standard behavior.
+For instance:
+
+    hg qct     - will run in global (repo-wide) context
+    hg qct .   - will run in local context
+
+The Mercurial extension respects the -I and -X command line arguments
+for filtering the parts of the repository you are interested in.  It
+also respects the --user command line option for specifying a username
+for this single commit (overriding ui.username).  See 'hg help qct' for
+more details.
+
+Note that if you chose not to use the Mercurial extension, Qct can
+still work with Mercurial repositories.  If you start the standalone
+application `qct` inside the repository root (where .hg/ resides), qct
+will autodetect the Mercurial back-end.  If you start it elsewhere in
+the repository directory tree, you will need to supply a command line
+argument to specify Mercurial vcs:   qct --hg
+
+
+====== Using Change Selection ======
+
+If you use the change selection feature, you will want to make sure
+*.orig is in your .hgignore mask (which is usually already the case
+since Mercurial will create .orig files when reverting).  If you do not
+do this, there's a good chance you'll see .qct/ backup files in the file
+list (listed as unknown) if you refresh the list after selecting
+changes.
+
+
+=========== Windows Qct+Mercurial Notes ============
+
+(See INSTALL file for details on installing Qct on Windows)
+
+If Qct cannot find the hg executable (complains of not finding 'hg
+root'), you probably need to create a batch file somewhere in your path
+which calls hg appropriately.  Here's an example hg.bat:
+
+@c:\Python25\python.exe c:\Python25\Scripts\hg %*
+
+If you have installed a binary version of qct.exe, and plan to use the
+qct.py extension, you will not have to add qct.exe to your path.
+Instead, you just need to follow the instructions above for installing
+the qct.py extension (available here):
+
+http://bitbucket.org/sborho/qct/raw/tip/hgext/qct.py
+
+Then add two more lines to your Mercurial.ini file like this:
+
+[qct]
+path = "C:\Path\to\Qct\qct.exe"

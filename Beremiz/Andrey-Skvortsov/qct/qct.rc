@@ -1,0 +1,7 @@
+# This file is intended to be installed in a system's hgrc.d directory
+# It enables the qct's mercurial plugin, making the 'hg qct' command
+# available.  This file presumes hgext/qct.py has been installed in
+# the hgext path
+
+[extensions]
+hgext.qct =

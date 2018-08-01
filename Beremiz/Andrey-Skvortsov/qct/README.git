@@ -1,0 +1,19 @@
+====== Using Qct with Git ======
+
+Git repositories are only supported via the Cogito front-end scripts,
+which must be installed in order for Qct to function properly.
+
+For a commit message template, place the template file in your
+repository root: $(git-root)/.commit.template
+
+If you start qct inside the repository root (where .git/ resides), qct
+will autodetect the Cogito back-end.  If you start it elsewhere in the
+repository directory tree, you will need to supply a command line
+argument to specify Cogito:   qct --cg
+
+PS:  The Cogito back-end is not as well tested as I would like.  If
+you find a bug or find support for a particular cg feature not to your
+liking, please send me an e-mail.
+
+
+Note: For a Git-Native commit tool, give GCT a try.

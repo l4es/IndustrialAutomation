@@ -1,0 +1,14 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=PLCOpen IEC-61131-3 Editor
+Name[fr]=Editeur PLCOpen IEC-61131-3
+Comment=Editor for all 5 of the IEC-61131-3 languages
+Comment[fr]=Editeur pour les 5 langages de l'IEC-61131-3
+Exec=/usr/bin/plcopeneditor
+Icon=/usr/share/plcopeneditor/Images/poe.png
+Terminal=false
+MultipleArgs=false
+Type=Application
+Categories=Application;Development;
+StartupNotify=true
+

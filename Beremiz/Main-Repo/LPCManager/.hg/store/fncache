@@ -1,0 +1,17 @@
+data/LPCtarget/__init__.pyc.i
+data/LPCtarget/toolchain_makefile.py.i
+data/pous.xml.i
+data/LPCconnector/LPCBootProto.py.i
+data/LPCconnector/LPCObject.py.i
+data/LPCconnector/__init__.pyc.i
+data/LPCconnector/LPCAppObject.py.i
+data/LPCconnector/LPCProto.py.i
+data/LPCtarget/plc_LPC_main.c.i
+data/.hgignore.i
+data/LPCconnector/LPCAppProto.py.i
+data/LPCtarget/__init__.py.i
+data/LPCtarget/XSD.i
+data/LPCconnector/__init__.py.i
+data/LPCtarget/XSD_toolchain_makefile.i
+data/LPCconnector/LPCBootObject.py.i
+data/LPCManager.py.i

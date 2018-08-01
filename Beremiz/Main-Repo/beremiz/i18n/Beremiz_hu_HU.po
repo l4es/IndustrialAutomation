@@ -1,0 +1,3947 @@
+# English translations for Beremiz package.
+# Copyright (C) 2017 THE Beremiz'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Beremiz package.
+# Automatically generated, 2017.
+# 
+# Translators:
+# Gábor Véninger <veninger.gabor@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Beremiz\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-05 13:02+0300\n"
+"PO-Revision-Date: 2017-07-05 13:02+0300\n"
+"Last-Translator: Gábor Véninger <veninger.gabor@gmail.com>, 2017\n"
+"Language-Team: Hungarian (Hungary) (https://www.transifex.com/beremiz/teams/75746/hu_HU/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hu_HU\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../BeremizIDE.py:1095 ../PLCOpenEditor.py:418
+#, python-format
+msgid ""
+"\n"
+"An unhandled exception (bug) occured. Bug report saved at :\n"
+"(%s)\n"
+"\n"
+"Please be kind enough to send this file to:\n"
+"beremiz-devel@lists.sourceforge.net\n"
+"\n"
+"You should now restart program.\n"
+"\n"
+"Traceback:\n"
+msgstr ""
+"\n"
+"Egy kezeletlen kivétel (bug) történt. Hibajelentés elmentve ide:\n"
+"(%s)\n"
+"\n"
+"Kérem legyen szíves ezt a fájlt elküldeni erre a címre:\n"
+"beremiz-devel@lists.sourceforge.net\n"
+"\n"
+"A programot újra kell indítania.\n"
+"\n"
+"Nyomonkövetés:\n"
+
+#: ../controls/VariablePanel.py:72
+msgid "   External"
+msgstr "Külső"
+
+#: ../controls/VariablePanel.py:71
+msgid "   InOut"
+msgstr "Be/Ki"
+
+#: ../controls/VariablePanel.py:71
+msgid "   Input"
+msgstr "Bemenet"
+
+#: ../controls/VariablePanel.py:72
+msgid "   Local"
+msgstr "Helyi"
+
+#: ../controls/VariablePanel.py:71
+msgid "   Output"
+msgstr "Kimenet"
+
+#: ../controls/VariablePanel.py:73
+msgid "   Temp"
+msgstr "Ideiglenes"
+
+#: ../dialogs/PouTransitionDialog.py:94 ../dialogs/ProjectDialog.py:69
+#: ../dialogs/PouActionDialog.py:92 ../dialogs/PouDialog.py:114
+#, python-format
+msgid " and %s"
+msgstr " és %s"
+
+#: ../ProjectController.py:1151
+msgid " generation failed !\n"
+msgstr "létrehozás hibás !\n"
+
+#: ../plcopen/plcopen.py:886
+#, python-format
+msgid "\"%s\" Data Type doesn't exist !!!"
+msgstr "\"%s\" Adat típus nem létezik !!!"
+
+#: ../plcopen/plcopen.py:904
+#, python-format
+msgid "\"%s\" POU already exists !!!"
+msgstr "\"%s\" POU már létezik !!!"
+
+#: ../plcopen/plcopen.py:925
+#, python-format
+msgid "\"%s\" POU doesn't exist !!!"
+msgstr "\"%s\" POU nem létezik !!!"
+
+#: ../editors/Viewer.py:247
+#, python-format
+msgid "\"%s\" can't use itself!"
+msgstr "\"%s\" sajátmaga nem használható!"
+
+#: ../IDEFrame.py:1655 ../IDEFrame.py:1674
+#, python-format
+msgid "\"%s\" config already exists!"
+msgstr "\"%s\" konfiguráció már létezik!"
+
+#: ../plcopen/plcopen.py:472
+#, python-format
+msgid "\"%s\" configuration already exists !!!"
+msgstr "\"%s\" konfiguráció már létezik !!!"
+
+#: ../IDEFrame.py:1605
+#, python-format
+msgid "\"%s\" data type already exists!"
+msgstr "\"%s\" adat típus már létezik!"
+
+#: ../dialogs/PouTransitionDialog.py:105 ../dialogs/BlockPreviewDialog.py:220
+#: ../dialogs/PouActionDialog.py:103 ../editors/Viewer.py:263
+#: ../editors/Viewer.py:331 ../editors/Viewer.py:355 ../editors/Viewer.py:375
+#: ../editors/TextViewer.py:272 ../editors/TextViewer.py:301
+#: ../controls/VariablePanel.py:396
+#, python-format
+msgid "\"%s\" element for this pou already exists!"
+msgstr "A(z) \"%s\" elem ehhez a POU-hoz már létezik!"
+
+#: ../BeremizIDE.py:897
+#, python-format
+msgid "\"%s\" folder is not a valid Beremiz project\n"
+msgstr "A(z) \"%s\" könyvtár egy nem érvényes Beremiz projekt\n"
+
+#: ../dialogs/SFCStepNameDialog.py:52 ../dialogs/PouTransitionDialog.py:101
+#: ../dialogs/BlockPreviewDialog.py:208 ../dialogs/PouNameDialog.py:50
+#: ../dialogs/PouActionDialog.py:99 ../dialogs/PouDialog.py:121
+#: ../editors/ResourceEditor.py:449 ../editors/ResourceEditor.py:484
+#: ../editors/DataTypeEditor.py:555 ../editors/DataTypeEditor.py:587
+#: ../editors/CodeFileEditor.py:776 ../controls/VariablePanel.py:773
+#: ../IDEFrame.py:1596
+#, python-format
+msgid "\"%s\" is a keyword. It can't be used!"
+msgstr "A(z) \"%s\" egy kulcsszó. Nem használható!"
+
+#: ../plcopen/plcopen.py:2417
+#, python-format
+msgid "\"%s\" is an invalid value!"
+msgstr "A(z) \"%s\" egy nem érvényes érték!"
+
+#: ../PLCOpenEditor.py:349 ../PLCOpenEditor.py:391
+#, python-format
+msgid "\"%s\" is not a valid folder!"
+msgstr "A(z) \"%s\" egy nem érvényes könyvtár!"
+
+#: ../dialogs/SFCStepNameDialog.py:50 ../dialogs/PouTransitionDialog.py:99
+#: ../dialogs/BlockPreviewDialog.py:204 ../dialogs/PouNameDialog.py:48
+#: ../dialogs/PouActionDialog.py:97 ../dialogs/PouDialog.py:119
+#: ../editors/ResourceEditor.py:447 ../editors/ResourceEditor.py:482
+#: ../editors/DataTypeEditor.py:585 ../editors/CodeFileEditor.py:774
+#: ../controls/VariablePanel.py:771 ../IDEFrame.py:1594
+#, python-format
+msgid "\"%s\" is not a valid identifier!"
+msgstr "A(z) \"%s\" egy nem érvényes azonosító!"
+
+#: ../IDEFrame.py:2410
+#, python-format
+msgid "\"%s\" is used by one or more POUs. Do you wish to continue?"
+msgstr ""
+"A(z) \"%s\" már használatban van egy vagy több POU-ban. Biztos folytatni "
+"akarja?"
+
+#: ../dialogs/BlockPreviewDialog.py:212 ../dialogs/PouDialog.py:123
+#: ../editors/Viewer.py:261 ../editors/Viewer.py:316 ../editors/Viewer.py:346
+#: ../editors/Viewer.py:368 ../editors/TextViewer.py:270
+#: ../editors/TextViewer.py:299 ../editors/TextViewer.py:350
+#: ../editors/TextViewer.py:373 ../controls/VariablePanel.py:338
+#: ../IDEFrame.py:1614
+#, python-format
+msgid "\"%s\" pou already exists!"
+msgstr "\"%s\" POU már létezik!"
+
+#: ../dialogs/SFCStepNameDialog.py:58
+#, python-format
+msgid "\"%s\" step already exists!"
+msgstr "\"%s\" lépés már létezik!"
+
+#: ../editors/DataTypeEditor.py:550
+#, python-format
+msgid "\"%s\" value already defined!"
+msgstr "\"%s\" érték már definiálva van!"
+
+#: ../dialogs/ArrayTypeDialog.py:97 ../editors/DataTypeEditor.py:743
+#, python-format
+msgid "\"%s\" value isn't a valid array dimension!"
+msgstr "\"%s\" érték nem valós tömb dimenzió!"
+
+#: ../dialogs/ArrayTypeDialog.py:103 ../editors/DataTypeEditor.py:750
+#, python-format
+msgid ""
+"\"%s\" value isn't a valid array dimension!\n"
+"Right value must be greater than left value."
+msgstr ""
+"\"%s\" érték nem valós tömb dimenzió!\n"
+"A jobb oldali érték nagyobb kell legyen mint a bal oldali."
+
+#: ../PLCGenerator.py:1101
+#, python-brace-format
+msgid "\"{a1}\" function cancelled in \"{a2}\" POU: No input connected"
+msgstr ""
+
+#: ../editors/Viewer.py:251
+#, python-brace-format
+msgid "\"{a1}\" is already used by \"{a2}\"!"
+msgstr ""
+
+#: ../plcopen/plcopen.py:496
+#, python-brace-format
+msgid "\"{a1}\" resource already exists in \"{a2}\" configuration !!!"
+msgstr ""
+
+#: ../plcopen/plcopen.py:514
+#, python-brace-format
+msgid "\"{a1}\" resource doesn't exist in \"{a2}\" configuration !!!"
+msgstr ""
+
+#: ../controls/DebugVariablePanel/DebugVariablePanel.py:578
+#, python-format
+msgid "%03gms"
+msgstr "%03gms"
+
+#: ../controls/DebugVariablePanel/DebugVariablePanel.py:569
+#, python-format
+msgid "%dd"
+msgstr "%dd"
+
+#: ../controls/DebugVariablePanel/DebugVariablePanel.py:56
+#: ../controls/DebugVariablePanel/DebugVariablePanel.py:570
+#, python-format
+msgid "%dh"
+msgstr "%dh"
+
+#: ../controls/DebugVariablePanel/DebugVariablePanel.py:55
+#: ../controls/DebugVariablePanel/DebugVariablePanel.py:571
+#, python-format
+msgid "%dm"
+msgstr "%dm"
+
+#: ../controls/DebugVariablePanel/DebugVariablePanel.py:53
+#, python-format
+msgid "%dms"
+msgstr "%dms"
+
+#: ../controls/DebugVariablePanel/DebugVariablePanel.py:54
+#: ../controls/DebugVariablePanel/DebugVariablePanel.py:572
+#, python-format
+msgid "%ds"
+msgstr "%ds"
+
+#: ../PLCControler.py:1533
+#, python-format
+msgid "%s Data Types"
+msgstr "%s Adat Típusok"
+
+#: ../PLCControler.py:1516
+#, python-format
+msgid "%s POUs"
+msgstr "%s POU-k"
+
+#: ../canfestival/SlaveEditor.py:69 ../canfestival/NetworkEditor.py:90
+#, python-format
+msgid "%s Profile"
+msgstr "%s Profil"
+
+#: ../plcopen/plcopen.py:1650 ../plcopen/plcopen.py:1657
+#: ../plcopen/plcopen.py:1669 ../plcopen/plcopen.py:1677
+#: ../plcopen/plcopen.py:1687
+#, python-format
+msgid "%s body don't have instances!"
+msgstr "%s testnek nincsenek példányai!"
+
+#: ../plcopen/plcopen.py:1705 ../plcopen/plcopen.py:1712
+#: ../plcopen/plcopen.py:1719
+#, python-format
+msgid "%s body don't have text!"
+msgstr "%s testben nincs szöveg!"
+
+#: ../IDEFrame.py:386
+msgid "&Add Element"
+msgstr "&Elem Hozzáadása"
+
+#: ../dialogs/AboutDialog.py:73 ../dialogs/AboutDialog.py:121
+#: ../dialogs/AboutDialog.py:158
+msgid "&Close"
+msgstr "&Bezárás"
+
+#: ../IDEFrame.py:356
+msgid "&Configuration"
+msgstr "&Konfiguráció"
+
+#: ../IDEFrame.py:345
+msgid "&Data Type"
+msgstr "&Adat Típus"
+
+#: ../IDEFrame.py:390
+msgid "&Delete"
+msgstr "&Törlés"
+
+#: ../IDEFrame.py:337
+msgid "&Display"
+msgstr "&Nézet"
+
+#: ../IDEFrame.py:336
+msgid "&Edit"
+msgstr "&Szerkesztés"
+
+#: ../IDEFrame.py:335
+msgid "&File"
+msgstr "&Fájl"
+
+#: ../IDEFrame.py:347
+msgid "&Function"
+msgstr "&Funkció"
+
+#: ../IDEFrame.py:338
+msgid "&Help"
+msgstr "&Segítség"
+
+#: ../dialogs/AboutDialog.py:72
+msgid "&License"
+msgstr "&Licensz"
+
+#: ../IDEFrame.py:351
+msgid "&Program"
+msgstr "&Program"
+
+#: ../PLCOpenEditor.py:127
+msgid "&Properties"
+msgstr "&Tulajdonságok"
+
+#: ../BeremizIDE.py:219
+msgid "&Recent Projects"
+msgstr "&Legutóbbi Projektek"
+
+#: ../IDEFrame.py:353
+msgid "&Resource"
+msgstr "&Erőforrás"
+
+#: ../controls/SearchResultPanel.py:239
+#, python-brace-format
+msgid "'{a1}' - {a2} match in project"
+msgstr "'{a1}' - {a2} egyezés a projektben"
+
+#: ../controls/SearchResultPanel.py:241
+#, python-brace-format
+msgid "'{a1}' - {a2} matches in project"
+msgstr "'{a1}' - {a2} egyezések a projektben"
+
+#: ../connectors/PYRO/__init__.py:90
+#, python-brace-format
+msgid "'{a1}' is located at {a2}\n"
+msgstr ""
+
+#: ../controls/SearchResultPanel.py:291
+#, python-format
+msgid "(%d matches)"
+msgstr "(%d találat)"
+
+#: ../PLCOpenEditor.py:406 ../PLCOpenEditor.py:408 ../PLCOpenEditor.py:409
+msgid ",   "
+msgstr ",   "
+
+#: ../dialogs/PouTransitionDialog.py:96 ../dialogs/PouActionDialog.py:94
+#: ../dialogs/PouDialog.py:116
+#, python-format
+msgid ", %s"
+msgstr ", %s"
+
+#: ../PLCOpenEditor.py:404
+msgid ". "
+msgstr ". "
+
+#: ../controls/LogViewer.py:279
+msgid "1d"
+msgstr "1n"
+
+#: ../controls/LogViewer.py:280
+msgid "1h"
+msgstr "1ó"
+
+#: ../controls/LogViewer.py:281
+msgid "1m"
+msgstr "1p"
+
+#: ../controls/LogViewer.py:282
+msgid "1s"
+msgstr "1mp"
+
+#: ../dialogs/PouDialog.py:125 ../IDEFrame.py:1617 ../IDEFrame.py:1663
+#: ../IDEFrame.py:1682
+#, python-format
+msgid ""
+"A POU has an element named \"%s\". This could cause a conflict. Do you wish "
+"to continue?"
+msgstr ""
+
+#: ../dialogs/SFCStepNameDialog.py:54 ../dialogs/PouTransitionDialog.py:103
+#: ../dialogs/PouNameDialog.py:52 ../dialogs/PouActionDialog.py:101
+#: ../controls/VariablePanel.py:775 ../IDEFrame.py:1631 ../IDEFrame.py:1644
+#, python-format
+msgid "A POU named \"%s\" already exists!"
+msgstr "A \"%s\" nevű POU már létezik!"
+
+#: ../ConfigTreeNode.py:424
+#, python-brace-format
+msgid "A child named \"{a1}\" already exists -> \"{a2}\"\n"
+msgstr ""
+
+#: ../dialogs/BrowseLocationsDialog.py:218
+msgid "A location must be selected!"
+msgstr "Egy helyet ki kell választani!"
+
+#: ../editors/ResourceEditor.py:451
+msgid "A task with the same name already exists!"
+msgstr "Egy feladat ezzel a névvel már létezik!"
+
+#: ../dialogs/SFCStepNameDialog.py:56 ../controls/VariablePanel.py:777
+#: ../IDEFrame.py:1633 ../IDEFrame.py:1646
+#, python-format
+msgid "A variable with \"%s\" as name already exists in this pou!"
+msgstr "Egy változó a \"%s\" névvel már létezik ebben a POU-ban!"
+
+#: ../editors/CodeFileEditor.py:780
+#, python-format
+msgid "A variable with \"%s\" as name already exists!"
+msgstr "Egy változó a \"%s\" névvel már létezik!"
+
+#: ../BeremizIDE.py:283 ../dialogs/AboutDialog.py:48 ../PLCOpenEditor.py:168
+msgid "About"
+msgstr "Névjegy"
+
+#: ../plcopen/iec_std.csv:22
+msgid "Absolute number"
+msgstr "Abszolut érték"
+
+#: ../dialogs/SFCStepDialog.py:73 ../dialogs/ActionBlockDialog.py:43
+msgid "Action"
+msgstr "Művelet"
+
+#: ../editors/Viewer.py:614 ../editors/Viewer.py:2394
+msgid "Action Block"
+msgstr "Művelet Blokk"
+
+#: ../dialogs/PouActionDialog.py:82
+msgid "Action Name"
+msgstr "Művelet Név"
+
+#: ../dialogs/PouActionDialog.py:49
+msgid "Action Name:"
+msgstr "Művelet Név:"
+
+#: ../plcopen/plcopen.py:1364
+#, python-format
+msgid "Action with name %s doesn't exist!"
+msgstr "Művelet név %s nem létezik!"
+
+#: ../PLCControler.py:98
+msgid "Actions"
+msgstr "Műveletek"
+
+#: ../dialogs/ActionBlockDialog.py:133
+msgid "Actions:"
+msgstr "Műveletek:"
+
+#: ../editors/Viewer.py:431
+msgid "Active"
+msgstr "Aktív"
+
+#: ../canfestival/SlaveEditor.py:80 ../canfestival/NetworkEditor.py:101
+#: ../BeremizIDE.py:965 ../editors/Viewer.py:647
+msgid "Add"
+msgstr "Hozzáadás"
+
+#: ../IDEFrame.py:1893 ../IDEFrame.py:1928
+msgid "Add Action"
+msgstr "Művelet hozzáadás"
+
+#: ../features.py:32
+msgid "Add C code accessing located variables synchronously"
+msgstr ""
+"A beazonosított változók szinkronizált eléréséhez tartózó C forráskód "
+"hozzáadása"
+
+#: ../IDEFrame.py:1876
+msgid "Add Configuration"
+msgstr "Konfiguráció Hozzáadás"
+
+#: ../IDEFrame.py:1856
+msgid "Add DataType"
+msgstr "Adattípus Hozzáadás"
+
+#: ../editors/Viewer.py:572
+msgid "Add Divergence Branch"
+msgstr "Elágazás Hozzáadás"
+
+#: ../dialogs/DiscoveryDialog.py:117
+msgid "Add IP"
+msgstr "IP Hozzáadás"
+
+#: ../IDEFrame.py:1864
+msgid "Add POU"
+msgstr "POU Hozzáadás"
+
+#: ../features.py:33
+msgid "Add Python code executed asynchronously"
+msgstr "Aszinkron futású Python kód Hozzáadás"
+
+#: ../IDEFrame.py:1904 ../IDEFrame.py:1954
+msgid "Add Resource"
+msgstr "Erőforrás hozzáadás"
+
+#: ../IDEFrame.py:1882 ../IDEFrame.py:1925
+msgid "Add Transition"
+msgstr "Átváltás Hozzáadás"
+
+#: ../editors/Viewer.py:559
+msgid "Add Wire Segment"
+msgstr "Vezeték Szakasz Hozzáadás"
+
+#: ../editors/SFCViewer.py:433
+msgid "Add a new initial step"
+msgstr "Új Kezdeti Lépés Hozzáadás"
+
+#: ../editors/Viewer.py:2757 ../editors/SFCViewer.py:770
+msgid "Add a new jump"
+msgstr "Új elugrás hozzáadás"
+
+#: ../editors/SFCViewer.py:455
+msgid "Add a new step"
+msgstr "Új lépés hozzáadás"
+
+#: ../features.py:34
+msgid "Add a simple WxGlade based GUI."
+msgstr "Egyszerű WxGlade alapú GUI hozzáadás"
+
+#: ../dialogs/ActionBlockDialog.py:137
+msgid "Add action"
+msgstr "Művelet hozzáadás"
+
+#: ../editors/DataTypeEditor.py:352
+msgid "Add element"
+msgstr "Elem hozzáadás"
+
+#: ../editors/ResourceEditor.py:268
+msgid "Add instance"
+msgstr "Új példány hozzáadás"
+
+#: ../canfestival/NetworkEditor.py:103
+msgid "Add slave"
+msgstr "Szolga hozzáadás"
+
+#: ../editors/ResourceEditor.py:239
+msgid "Add task"
+msgstr "Feladat hozzáadás"
+
+#: ../editors/CodeFileEditor.py:658 ../controls/VariablePanel.py:450
+msgid "Add variable"
+msgstr "Változó hozzáadás"
+
+#: ../plcopen/iec_std.csv:33
+msgid "Addition"
+msgstr "Összeadás"
+
+#: ../plcopen/definitions.py:49
+msgid "Additional function blocks"
+msgstr "További funkció blokkok"
+
+#: ../editors/Viewer.py:630
+msgid "Adjust Block Size"
+msgstr "Blokk méret beállítás"
+
+#: ../editors/Viewer.py:1686
+msgid "Alignment"
+msgstr "Elrendezés"
+
+#: ../dialogs/BrowseLocationsDialog.py:40
+#: ../dialogs/BrowseLocationsDialog.py:48
+#: ../dialogs/BrowseLocationsDialog.py:141
+#: ../dialogs/BrowseLocationsDialog.py:144 ../controls/LogViewer.py:298
+#: ../controls/VariablePanel.py:70
+msgid "All"
+msgstr "Minden"
+
+#: ../editors/FileManagementPanel.py:35
+msgid "All files (*.*)|*.*|CSV files (*.csv)|*.csv"
+msgstr "Minden fájl (*.*)|*.*|CSV files (*.csv)|*.csv"
+
+#: ../ProjectController.py:1685
+msgid "Already connected. Please disconnect\n"
+msgstr "Már csatalakoztatva van. Kérem szétcsatlakoztatni.\n"
+
+#: ../editors/DataTypeEditor.py:591
+#, python-format
+msgid "An element named \"%s\" already exists in this structure!"
+msgstr "Ez az elem név már létezik ebben a struktúrában: \"%s\""
+
+#: ../editors/ResourceEditor.py:486
+msgid "An instance with the same name already exists!"
+msgstr "Ilyen nevű példány már létezik!"
+
+#: ../dialogs/ConnectionDialog.py:100
+msgid "Apply name modification to all continuations with the same name"
+msgstr "A névváltoztatás elfogadása az összes ilyen névre."
+
+#: ../plcopen/iec_std.csv:31
+msgid "Arc cosine"
+msgstr "Arc cosine"
+
+#: ../plcopen/iec_std.csv:30
+msgid "Arc sine"
+msgstr "Arc sine"
+
+#: ../plcopen/iec_std.csv:32
+msgid "Arc tangent"
+msgstr "Arc tangent"
+
+#: ../plcopen/iec_std.csv:33
+msgid "Arithmetic"
+msgstr "Aritmetika"
+
+#: ../editors/DataTypeEditor.py:54 ../editors/DataTypeEditor.py:633
+#: ../controls/VariablePanel.py:858
+msgid "Array"
+msgstr "Tömb"
+
+#: ../plcopen/iec_std.csv:39
+msgid "Assignment"
+msgstr "Hozzárendelés"
+
+#: ../dialogs/FBDVariableDialog.py:222
+msgid "At least a variable or an expression must be selected!"
+msgstr "Legalább egy változót vagy kifejezést ki kell választani!"
+
+#: ../controls/ProjectPropertiesPanel.py:100
+msgid "Author"
+msgstr "Szerző"
+
+#: ../controls/ProjectPropertiesPanel.py:97
+msgid "Author Name (optional):"
+msgstr "Szerző Neve (opcionális):"
+
+#: ../dialogs/FindInPouDialog.py:77
+msgid "Backward"
+msgstr "Viszafele"
+
+#: ../util/Zeroconf.py:599
+msgid "Bad domain name (circular) at "
+msgstr ""
+
+#: ../util/Zeroconf.py:602
+msgid "Bad domain name at "
+msgstr ""
+
+#: ../canfestival/config_utils.py:342 ../canfestival/config_utils.py:630
+#, python-format
+msgid "Bad location size : %s"
+msgstr ""
+
+#: ../dialogs/ArrayTypeDialog.py:54 ../editors/DataTypeEditor.py:175
+#: ../editors/DataTypeEditor.py:205 ../editors/DataTypeEditor.py:297
+msgid "Base Type:"
+msgstr "Alaptípus:"
+
+#: ../editors/DataTypeEditor.py:623 ../controls/VariablePanel.py:816
+msgid "Base Types"
+msgstr "Alaptípusok"
+
+#: ../BeremizIDE.py:455
+msgid "Beremiz"
+msgstr "Beremiz"
+
+#: ../plcopen/iec_std.csv:70
+msgid "Binary selection (1 of 2)"
+msgstr "Bináris kiválasztás (1 / 2)"
+
+#: ../plcopen/iec_std.csv:62
+msgid "Bit-shift"
+msgstr "Bit eltolás"
+
+#: ../plcopen/iec_std.csv:66
+msgid "Bitwise"
+msgstr "Bitenként"
+
+#: ../plcopen/iec_std.csv:66
+msgid "Bitwise AND"
+msgstr "Bitenkénti ÉS"
+
+#: ../plcopen/iec_std.csv:67
+msgid "Bitwise OR"
+msgstr "Bitenkénti VAGY"
+
+#: ../plcopen/iec_std.csv:68
+msgid "Bitwise XOR"
+msgstr "Bitenkénti XOR"
+
+#: ../plcopen/iec_std.csv:69
+msgid "Bitwise inverting"
+msgstr "Bitenkénti invertálás"
+
+#: ../editors/Viewer.py:584 ../editors/Viewer.py:2407
+msgid "Block"
+msgstr "Blokk"
+
+#: ../dialogs/FBDBlockDialog.py:60
+msgid "Block Properties"
+msgstr "Blokk Tulajdonságok"
+
+#: ../editors/TextViewer.py:262
+msgid "Block name"
+msgstr "Blokk neve"
+
+#: ../editors/Viewer.py:550
+msgid "Bottom"
+msgstr "Alja"
+
+#: ../ProjectController.py:1363
+msgid "Broken"
+msgstr ""
+
+#: ../dialogs/BrowseValuesLibraryDialog.py:38
+#, python-format
+msgid "Browse %s values library"
+msgstr ""
+
+#: ../dialogs/BrowseLocationsDialog.py:65
+msgid "Browse Locations"
+msgstr ""
+
+#: ../ProjectController.py:1832
+msgid "Build"
+msgstr ""
+
+#: ../ProjectController.py:1297
+msgid "Build directory already clean\n"
+msgstr ""
+
+#: ../ProjectController.py:1833
+msgid "Build project into build folder"
+msgstr ""
+
+#: ../ProjectController.py:1080
+msgid "C Build crashed !\n"
+msgstr ""
+
+#: ../ProjectController.py:1077
+msgid "C Build failed.\n"
+msgstr ""
+
+#: ../c_ext/CFileEditor.py:63
+msgid "C code"
+msgstr ""
+
+#: ../ProjectController.py:1155
+msgid "C code generated successfully.\n"
+msgstr ""
+
+#: ../targets/toolchain_makefile.py:122
+msgid "C compilation failed.\n"
+msgstr ""
+
+#: ../targets/toolchain_gcc.py:192
+#, python-format
+msgid "C compilation of %s failed.\n"
+msgstr ""
+
+#: ../features.py:32
+msgid "C extension"
+msgstr ""
+
+#: ../dialogs/AboutDialog.py:71
+msgid "C&redits"
+msgstr ""
+
+#: ../canfestival/NetworkEditor.py:52
+msgid "CANOpen network"
+msgstr "CANOpen hálózat"
+
+#: ../canfestival/SlaveEditor.py:44
+msgid "CANOpen slave"
+msgstr "CANOpen szolga"
+
+#: ../features.py:31
+msgid "CANopen support"
+msgstr "CANOpen támogatás"
+
+#: ../plcopen/plcopen.py:1589 ../plcopen/plcopen.py:1603
+#: ../plcopen/plcopen.py:1627 ../plcopen/plcopen.py:1643
+msgid "Can only generate execution order on FBD networks!"
+msgstr ""
+
+#: ../controls/VariablePanel.py:267
+msgid "Can only give a location to local or global variables"
+msgstr ""
+
+#: ../PLCOpenEditor.py:344
+#, python-format
+msgid "Can't generate program to file %s!"
+msgstr ""
+
+#: ../controls/VariablePanel.py:265
+msgid "Can't give a location to a function block instance"
+msgstr ""
+
+#: ../PLCOpenEditor.py:389
+#, python-format
+msgid "Can't save project to file %s!"
+msgstr ""
+
+#: ../controls/VariablePanel.py:313
+msgid "Can't set an initial value to a function block instance"
+msgstr ""
+
+#: ../ConfigTreeNode.py:529
+#, python-brace-format
+msgid "Cannot create child {a1} of type {a2} "
+msgstr ""
+
+#: ../ConfigTreeNode.py:454
+#, python-format
+msgid "Cannot find lower free IEC channel than %d\n"
+msgstr ""
+
+#: ../connectors/PYRO/__init__.py:131
+msgid "Cannot get PLC status - connection failed.\n"
+msgstr ""
+
+#: ../ProjectController.py:943
+msgid "Cannot open/parse VARIABLES.csv!\n"
+msgstr ""
+
+#: ../canfestival/config_utils.py:374
+#, python-brace-format
+msgid ""
+"Cannot set bit offset for non bool '{a1}' variable "
+"(ID:{a2},Idx:{a3},sIdx:{a4}))"
+msgstr ""
+
+#: ../dialogs/SearchInProjectDialog.py:59 ../dialogs/FindInPouDialog.py:86
+msgid "Case sensitive"
+msgstr ""
+
+#: ../editors/Viewer.py:545
+msgid "Center"
+msgstr "Közép"
+
+#: ../Beremiz_service.py:268
+msgid "Change IP of interface to bind"
+msgstr "IP cím megváltoztatása a hozzákötött interfészen"
+
+#: ../Beremiz_service.py:267
+msgid "Change Name"
+msgstr "Név megváltoztatása"
+
+#: ../IDEFrame.py:1946
+msgid "Change POU Type To"
+msgstr "POU típus megváltoztatása"
+
+#: ../Beremiz_service.py:269
+msgid "Change Port Number"
+msgstr "Port szám megváltoztatása"
+
+#: ../Beremiz_service.py:270
+msgid "Change working directory"
+msgstr "Munkakönyvtár megváltoztatása"
+
+#: ../plcopen/iec_std.csv:81
+msgid "Character string"
+msgstr "Karakter sztring"
+
+#: ../svgui/svgui.py:128
+msgid "Choose a SVG file"
+msgstr "Válasszon SVG fájlt"
+
+#: ../ProjectController.py:542
+msgid "Choose a directory to save project"
+msgstr "Válasszon mappát a projekt mentéshez"
+
+#: ../canfestival/canfestival.py:162 ../PLCOpenEditor.py:302
+#: ../PLCOpenEditor.py:334 ../PLCOpenEditor.py:383
+msgid "Choose a file"
+msgstr "Válasszon fájlt"
+
+#: ../BeremizIDE.py:833 ../BeremizIDE.py:869
+msgid "Choose a project"
+msgstr "Válasszon projektet"
+
+#: ../dialogs/BrowseValuesLibraryDialog.py:41
+#, python-format
+msgid "Choose a value for %s:"
+msgstr "Válasszon értéket a %s-nek:"
+
+#: ../Beremiz_service.py:325
+msgid "Choose a working directory "
+msgstr "Válasszon munkakönyvtárat"
+
+#: ../ProjectController.py:449
+msgid "Chosen folder doesn't contain a program. It's not a valid project!"
+msgstr "A kiválasztott mappa nem tartalmaz érvényes projektet!"
+
+#: ../ProjectController.py:416
+msgid "Chosen folder isn't empty. You can't use it for a new project!"
+msgstr "A kiválasztott mappa nem üres. Nem használható új projekthez."
+
+#: ../controls/VariablePanel.py:53 ../controls/VariablePanel.py:54
+msgid "Class"
+msgstr "Osztály"
+
+#: ../controls/VariablePanel.py:441
+msgid "Class Filter:"
+msgstr "Osztály szűrő:"
+
+#: ../dialogs/FBDVariableDialog.py:70
+msgid "Class:"
+msgstr "Osztály:"
+
+#: ../ProjectController.py:1836
+msgid "Clean"
+msgstr "Takarítás"
+
+#: ../controls/LogViewer.py:318
+msgid "Clean log messages"
+msgstr "Log üzenetek kitakarítása"
+
+#: ../ProjectController.py:1838
+msgid "Clean project build folder"
+msgstr "Project fordítás mappa takarítása"
+
+#: ../ProjectController.py:1294
+msgid "Cleaning the build directory\n"
+msgstr "Fordítási mappa kitakarítása\n"
+
+#: ../IDEFrame.py:435
+msgid "Clear Errors"
+msgstr "Hibák törlése"
+
+#: ../editors/Viewer.py:641
+msgid "Clear Execution Order"
+msgstr "Végrehajtási Sorrend Törlése"
+
+#: ../dialogs/SearchInProjectDialog.py:103 ../dialogs/FindInPouDialog.py:109
+msgid "Close"
+msgstr "Bezárás"
+
+#: ../BeremizIDE.py:595 ../PLCOpenEditor.py:209
+msgid "Close Application"
+msgstr "Alkalmazás Bezárás"
+
+#: ../BeremizIDE.py:228 ../BeremizIDE.py:539 ../PLCOpenEditor.py:110
+#: ../IDEFrame.py:1013
+msgid "Close Project"
+msgstr "Projekt Bezárás"
+
+#: ../BeremizIDE.py:226 ../PLCOpenEditor.py:108
+msgid "Close Tab"
+msgstr "Fül Bezárás"
+
+#: ../editors/Viewer.py:600 ../editors/Viewer.py:2415
+msgid "Coil"
+msgstr "Tekercs"
+
+#: ../editors/Viewer.py:620 ../editors/LDViewer.py:506
+msgid "Comment"
+msgstr "Megjegyzés"
+
+#: ../BeremizIDE.py:276 ../BeremizIDE.py:279 ../PLCOpenEditor.py:161
+#: ../PLCOpenEditor.py:164
+msgid "Community support"
+msgstr "Közösségi támogatás"
+
+#: ../dialogs/ProjectDialog.py:60
+msgid "Company Name"
+msgstr "Vállalat Neve"
+
+#: ../controls/ProjectPropertiesPanel.py:95
+msgid "Company Name (required):"
+msgstr "Vállalat Neve (kötelező):"
+
+#: ../controls/ProjectPropertiesPanel.py:96
+msgid "Company URL (optional):"
+msgstr "Vállalat Weboldal (opcionális):"
+
+#: ../plcopen/iec_std.csv:75
+msgid "Comparison"
+msgstr "Összehasonlítás"
+
+#: ../ProjectController.py:734
+msgid "Compiling IEC Program into C code...\n"
+msgstr "IEC Program fordítása C kódra...\n"
+
+#: ../plcopen/iec_std.csv:85
+msgid "Concatenation"
+msgstr "Összefűzés"
+
+#: ../editors/ConfTreeNodeEditor.py:230
+msgid "Config"
+msgstr "Konfiguráció"
+
+#: ../editors/ProjectNodeEditor.py:36
+msgid "Config variables"
+msgstr "Változók konfigurálása"
+
+#: ../dialogs/SearchInProjectDialog.py:40
+msgid "Configuration"
+msgstr "Konfiguráció"
+
+#: ../PLCControler.py:99
+msgid "Configurations"
+msgstr "Konfigurációk"
+
+#: ../editors/Viewer.py:308 ../editors/Viewer.py:338 ../editors/Viewer.py:360
+#: ../editors/TextViewer.py:291 ../editors/TextViewer.py:342
+#: ../editors/TextViewer.py:365 ../controls/VariablePanel.py:328
+msgid "Confirm or change variable name"
+msgstr "Erősítse meg vagy változtassa meg a változó nevét"
+
+#: ../ProjectController.py:1851
+msgid "Connect"
+msgstr "Kapcsolódás"
+
+#: ../ProjectController.py:1852
+msgid "Connect to the target PLC"
+msgstr "Kapcsolódás a cél PLC-hez"
+
+#: ../ProjectController.py:1354
+#, python-format
+msgid "Connected to URI: %s"
+msgstr "Az URI: %s csatlakoztatva"
+
+#: ../dialogs/SFCTransitionDialog.py:77 ../editors/Viewer.py:586
+#: ../editors/Viewer.py:2408
+msgid "Connection"
+msgstr "Kapcsolat"
+
+#: ../dialogs/ConnectionDialog.py:53
+msgid "Connection Properties"
+msgstr "Kapcsolat Tulajdonságok"
+
+#: ../ProjectController.py:1709
+msgid "Connection canceled!\n"
+msgstr "Kapcsolódás megszakítva!\n"
+
+#: ../ProjectController.py:1734
+#, python-format
+msgid "Connection failed to %s!\n"
+msgstr "Kapcsolódás a %s-hez nem sikerült!\n"
+
+#: ../connectors/PYRO/__init__.py:115 ../connectors/WAMP/__init__.py:111
+msgid "Connection lost!\n"
+msgstr "Kapcsolat elvesztve!\n"
+
+#: ../connectors/PYRO/__init__.py:102
+#, python-format
+msgid "Connection to '%s' failed.\n"
+msgstr "Kapcsolódás a '%s'-hez nem sikerült.\n"
+
+#: ../dialogs/ConnectionDialog.py:65 ../editors/Viewer.py:1643
+msgid "Connector"
+msgstr "Csatlakozó"
+
+#: ../dialogs/SFCStepDialog.py:66
+msgid "Connectors:"
+msgstr "Csatlakozók:"
+
+#: ../BeremizIDE.py:350
+msgid "Console"
+msgstr "Konzol"
+
+#: ../controls/VariablePanel.py:60
+msgid "Constant"
+msgstr "Konstans"
+
+#: ../editors/Viewer.py:596 ../editors/Viewer.py:2411
+msgid "Contact"
+msgstr "Kapcsolat"
+
+#: ../controls/ProjectPropertiesPanel.py:198
+msgid "Content Description (optional):"
+msgstr "Tartalom leírása (opcionális)"
+
+#: ../dialogs/ConnectionDialog.py:66 ../editors/Viewer.py:1644
+msgid "Continuation"
+msgstr "Folytatás"
+
+#: ../plcopen/iec_std.csv:18
+msgid "Conversion from BCD"
+msgstr "Konvertálás BCD-ből"
+
+#: ../plcopen/iec_std.csv:19
+msgid "Conversion to BCD"
+msgstr "Konvertálás BCD-be"
+
+#: ../plcopen/iec_std.csv:21
+msgid "Conversion to date"
+msgstr "Konvertálás dátummá"
+
+#: ../plcopen/iec_std.csv:20
+msgid "Conversion to time-of-day"
+msgstr "Konvertálás napszakká (TOD)"
+
+#: ../editors/Viewer.py:656 ../controls/LogViewer.py:704 ../IDEFrame.py:370
+#: ../IDEFrame.py:425
+msgid "Copy"
+msgstr "Másolás"
+
+#: ../IDEFrame.py:1933
+msgid "Copy POU"
+msgstr "POU másolás"
+
+#: ../editors/FileManagementPanel.py:65
+msgid "Copy file from left folder to right"
+msgstr "Másolás bal oldali mappából jobbra"
+
+#: ../editors/FileManagementPanel.py:64
+msgid "Copy file from right folder to left"
+msgstr "Másolás jobb oldali mappából balra"
+
+#: ../plcopen/iec_std.csv:28
+msgid "Cosine"
+msgstr "Koszinusz"
+
+#: ../ConfigTreeNode.py:656
+#, python-brace-format
+msgid ""
+"Could not add child \"{a1}\", type {a2} :\n"
+"{a3}\n"
+msgstr ""
+
+#: ../py_ext/PythonFileCTNMixin.py:78
+#, python-format
+msgid "Couldn't import old %s file."
+msgstr "Régi %s fájlt nem lehet beimportálni."
+
+#: ../ConfigTreeNode.py:626
+#, python-brace-format
+msgid ""
+"Couldn't load confnode base parameters {a1} :\n"
+" {a2}"
+msgstr ""
+
+#: ../ConfigTreeNode.py:643 ../CodeFileTreeNode.py:124
+#, python-brace-format
+msgid ""
+"Couldn't load confnode parameters {a1} :\n"
+" {a2}"
+msgstr ""
+
+#: ../PLCControler.py:948
+msgid "Couldn't paste non-POU object."
+msgstr "Nem POU típusú objektum beillesztése nem lehetséges."
+
+#: ../ProjectController.py:1651
+msgid "Couldn't start PLC !\n"
+msgstr "PLC nem indult el!\n"
+
+#: ../ProjectController.py:1659
+msgid "Couldn't stop PLC !\n"
+msgstr "PLC nem állt le!\n"
+
+#: ../ProjectController.py:1623
+msgid "Couldn't stop debugger.\n"
+msgstr "Hibakereső nem áll le.\n"
+
+#: ../svgui/svgui.py:49
+msgid "Create HMI"
+msgstr "HMI létrehozása"
+
+#: ../dialogs/PouDialog.py:46
+msgid "Create a new POU"
+msgstr "Új Program Szervezési Egység (POU) létrehozása"
+
+#: ../dialogs/PouActionDialog.py:38
+msgid "Create a new action"
+msgstr "Új művelet létrehozása"
+
+#: ../IDEFrame.py:159
+msgid "Create a new action block"
+msgstr "Új művelek blokk létrehozása"
+
+#: ../IDEFrame.py:108 ../IDEFrame.py:138 ../IDEFrame.py:171
+msgid "Create a new block"
+msgstr "Új blokk létrehozása"
+
+#: ../IDEFrame.py:132
+msgid "Create a new branch"
+msgstr "Új ág létrehozása"
+
+#: ../IDEFrame.py:126
+msgid "Create a new coil"
+msgstr "Új tekercs létrehozása"
+
+#: ../IDEFrame.py:102 ../IDEFrame.py:117 ../IDEFrame.py:147
+msgid "Create a new comment"
+msgstr "Új megjegyzés létrehozása"
+
+#: ../IDEFrame.py:111 ../IDEFrame.py:141 ../IDEFrame.py:174
+msgid "Create a new connection"
+msgstr "Új kapcsolat léterhozása"
+
+#: ../IDEFrame.py:129 ../IDEFrame.py:180
+msgid "Create a new contact"
+msgstr "Új kötés létrehozása"
+
+#: ../IDEFrame.py:162
+msgid "Create a new divergence"
+msgstr "Új leágazás létrehozása"
+
+#: ../dialogs/SFCDivergenceDialog.py:53
+msgid "Create a new divergence or convergence"
+msgstr "Új leágazás vagy összefutás léterhozása"
+
+#: ../IDEFrame.py:150
+msgid "Create a new initial step"
+msgstr "Új kezdeti lépés létrehozása"
+
+#: ../IDEFrame.py:165
+msgid "Create a new jump"
+msgstr "Új ugrás létrehozása"
+
+#: ../IDEFrame.py:120 ../IDEFrame.py:177
+msgid "Create a new power rail"
+msgstr "Új áramsin létrehozása"
+
+#: ../IDEFrame.py:123
+msgid "Create a new rung"
+msgstr "Új rung létrehozása"
+
+#: ../IDEFrame.py:153
+msgid "Create a new step"
+msgstr "Új lépés létrehozása"
+
+#: ../dialogs/PouTransitionDialog.py:42 ../IDEFrame.py:156
+msgid "Create a new transition"
+msgstr "Új átmenet létrehozása"
+
+#: ../IDEFrame.py:105 ../IDEFrame.py:135 ../IDEFrame.py:168
+msgid "Create a new variable"
+msgstr "Új változó létrehozása"
+
+#: ../dialogs/AboutDialog.py:113
+msgid "Credits"
+msgstr "Köszönet"
+
+#: ../Beremiz_service.py:434
+msgid "Current working directory :"
+msgstr "Aktuális munka könyvtár:"
+
+#: ../editors/Viewer.py:655 ../IDEFrame.py:368 ../IDEFrame.py:424
+msgid "Cut"
+msgstr "Kivágás"
+
+#: ../editors/ResourceEditor.py:72
+msgid "Cyclic"
+msgstr "Ciklikus"
+
+#: ../plcopen/iec_std.csv:42 ../plcopen/iec_std.csv:44
+#: ../plcopen/iec_std.csv:46 ../plcopen/iec_std.csv:50
+#: ../plcopen/iec_std.csv:52 ../plcopen/iec_std.csv:54
+#: ../plcopen/iec_std.csv:56 ../plcopen/iec_std.csv:58
+#: ../plcopen/iec_std.csv:60
+msgid "DEPRECATED"
+msgstr "ELAVULT"
+
+#: ../canfestival/SlaveEditor.py:76 ../canfestival/NetworkEditor.py:97
+msgid "DS-301 Profile"
+msgstr "DS-301 Profil"
+
+#: ../canfestival/SlaveEditor.py:77 ../canfestival/NetworkEditor.py:98
+msgid "DS-302 Profile"
+msgstr "DS-302 Profil"
+
+#: ../dialogs/SearchInProjectDialog.py:36
+msgid "Data Type"
+msgstr "Adattípus"
+
+#: ../PLCControler.py:98
+msgid "Data Types"
+msgstr "Adattípusok"
+
+#: ../plcopen/iec_std.csv:16
+msgid "Data type conversion"
+msgstr "Adattípus konverzió"
+
+#: ../plcopen/iec_std.csv:44 ../plcopen/iec_std.csv:45
+msgid "Date addition"
+msgstr "Dátom hozzáadás"
+
+#: ../plcopen/iec_std.csv:56 ../plcopen/iec_std.csv:57
+#: ../plcopen/iec_std.csv:58 ../plcopen/iec_std.csv:59
+msgid "Date and time subtraction"
+msgstr "Dátum és idő kivonás"
+
+#: ../plcopen/iec_std.csv:50 ../plcopen/iec_std.csv:51
+msgid "Date subtraction"
+msgstr "Dátum kivonás"
+
+#: ../dialogs/DurationEditorDialog.py:44
+msgid "Days:"
+msgstr "Napok:"
+
+#: ../ProjectController.py:1756
+msgid "Debug does not match PLC - stop/transfert/start to re-enable\n"
+msgstr ""
+"Hibakeresés nem egyezik a PLC-vel - megállítás / letöltés / újraindítás "
+"szükséges, hogy engedélyezve legyen.\n"
+
+#: ../controls/PouInstanceVariablesPanel.py:134
+msgid "Debug instance"
+msgstr "Példány hibakeresése"
+
+#: ../editors/Viewer.py:448
+#, python-format
+msgid "Debug: %s"
+msgstr "Hibakeresés: %s"
+
+#: ../ProjectController.py:1412
+#, python-format
+msgid "Debug: Unknown variable '%s'\n"
+msgstr "Hibakeresés: Ismeretlen változó '%s'\n"
+
+#: ../ProjectController.py:1410
+#, python-format
+msgid "Debug: Unsupported type to debug '%s'\n"
+msgstr "Hibakeresés: Nem támogatott típus '%s'\n"
+
+#: ../IDEFrame.py:639
+msgid "Debugger"
+msgstr "Hibakereső"
+
+#: ../ProjectController.py:1592
+msgid "Debugger disabled\n"
+msgstr "Hibakereső letiltva\n"
+
+#: ../ProjectController.py:1753
+msgid "Debugger ready\n"
+msgstr "Hibakereső kész\n"
+
+#: ../ProjectController.py:1625
+msgid "Debugger stopped.\n"
+msgstr "Hibakereső megállt.\n"
+
+#: ../BeremizIDE.py:968 ../editors/Viewer.py:631 ../IDEFrame.py:1962
+msgid "Delete"
+msgstr "Törlés"
+
+#: ../editors/Viewer.py:573
+msgid "Delete Divergence Branch"
+msgstr "Elágazás törlése"
+
+#: ../editors/FileManagementPanel.py:153
+msgid "Delete File"
+msgstr "File törlése"
+
+#: ../editors/Viewer.py:560
+msgid "Delete Wire Segment"
+msgstr "Vezeték szakasz törlése"
+
+#: ../controls/CustomEditableListBox.py:41
+msgid "Delete item"
+msgstr "Elem törlése"
+
+#: ../plcopen/iec_std.csv:88
+msgid "Deletion (within)"
+msgstr "Törlés (ebben)"
+
+#: ../editors/DataTypeEditor.py:153
+msgid "Derivation Type:"
+msgstr ""
+
+#: ../editors/CodeFileEditor.py:739
+msgid "Description"
+msgstr "Leírás"
+
+#: ../controls/VariablePanel.py:432
+msgid "Description:"
+msgstr "Leírás:"
+
+#: ../dialogs/ArrayTypeDialog.py:60 ../editors/DataTypeEditor.py:321
+msgid "Dimensions:"
+msgstr "Méretek:"
+
+#: ../dialogs/FindInPouDialog.py:66
+msgid "Direction"
+msgstr "Irány"
+
+#: ../dialogs/BrowseLocationsDialog.py:91
+msgid "Direction:"
+msgstr "Irány:"
+
+#: ../editors/DataTypeEditor.py:54
+msgid "Directly"
+msgstr "Közvetlenül"
+
+#: ../ProjectController.py:1860
+msgid "Disconnect"
+msgstr "Szétkapcsolás"
+
+#: ../ProjectController.py:1862
+msgid "Disconnect from PLC"
+msgstr "Szétkapcsolás PLC-ről"
+
+#: ../ProjectController.py:1364
+msgid "Disconnected"
+msgstr "Szétkapcsolva"
+
+#: ../editors/Viewer.py:615 ../editors/Viewer.py:2403
+msgid "Divergence"
+msgstr "Elágazás"
+
+#: ../plcopen/iec_std.csv:36
+msgid "Division"
+msgstr "Osztás"
+
+#: ../editors/FileManagementPanel.py:152
+#, python-format
+msgid "Do you really want to delete the file '%s'?"
+msgstr "Biztos, hogy törölni akarja a '%s' fájlt?"
+
+#: ../controls/VariablePanel.py:53 ../controls/VariablePanel.py:54
+msgid "Documentation"
+msgstr "Dokumentáció"
+
+#: ../PLCOpenEditor.py:338
+msgid "Done"
+msgstr "Kész"
+
+#: ../dialogs/ActionBlockDialog.py:39
+msgid "Duration"
+msgstr "Időtartam"
+
+#: ../canfestival/canfestival.py:165
+msgid "EDS files (*.eds)|*.eds|All files|*.*"
+msgstr "EDS fájlok (*.eds)|*.eds|Minden fájl|*.*"
+
+#: ../editors/Viewer.py:629
+msgid "Edit Block"
+msgstr "Blokk Szerkesztése"
+
+#: ../dialogs/LDElementDialog.py:56
+msgid "Edit Coil Values"
+msgstr "Tekercs Értékének Szerkesztése"
+
+#: ../dialogs/LDElementDialog.py:54
+msgid "Edit Contact Values"
+msgstr "Kötés Értékének Szerkesztése"
+
+#: ../dialogs/DurationEditorDialog.py:59
+msgid "Edit Duration"
+msgstr "Időtartam Szerkesztése"
+
+#: ../dialogs/SFCStepDialog.py:51
+msgid "Edit Step"
+msgstr "Lépés Szerkesztése"
+
+#: ../wxglade_hmi/wxglade_hmi.py:38
+msgid "Edit a WxWidgets GUI with WXGlade"
+msgstr "WxWidgets GUI szerkesztése WXGlade segítségével"
+
+#: ../dialogs/ActionBlockDialog.py:121
+msgid "Edit action block properties"
+msgstr "Művelet blokk tulajdonságok szerkesztése"
+
+#: ../dialogs/ArrayTypeDialog.py:44
+msgid "Edit array type properties"
+msgstr "Tömb tulajdonságok szerkesztése"
+
+#: ../editors/Viewer.py:2626 ../editors/Viewer.py:3055
+msgid "Edit comment"
+msgstr "Megjegyzés szerkesztése"
+
+#: ../editors/FileManagementPanel.py:66
+msgid "Edit file"
+msgstr "Fájl szerkesztése"
+
+#: ../controls/CustomEditableListBox.py:39
+msgid "Edit item"
+msgstr "Elem szerkesztése"
+
+#: ../editors/Viewer.py:3014
+msgid "Edit jump target"
+msgstr "Elugrás céljának szerkesztése"
+
+#: ../ProjectController.py:1874
+msgid "Edit raw IEC code added to code generated by PLCGenerator"
+msgstr "PLCGenerator által létrehozott nyers IEC kód szerkesztése"
+
+#: ../editors/SFCViewer.py:799
+msgid "Edit step name"
+msgstr "Lépés név szerkesztése"
+
+#: ../dialogs/SFCTransitionDialog.py:52
+msgid "Edit transition"
+msgstr "Váltás szerkesztése"
+
+#: ../IDEFrame.py:611
+msgid "Editor ToolBar"
+msgstr "Szerkesztő Eszköztár"
+
+#: ../ProjectController.py:1257
+msgid "Editor selection"
+msgstr "Szerkesztő kiválasztás"
+
+#: ../editors/DataTypeEditor.py:348
+msgid "Elements :"
+msgstr "Elemek :"
+
+#: ../ProjectController.py:1362
+msgid "Empty"
+msgstr "Üres"
+
+#: ../IDEFrame.py:365
+msgid "Enable Undo/Redo"
+msgstr "Vissza/Újra Engedélyezés"
+
+#: ../Beremiz_service.py:333
+msgid "Enter a name "
+msgstr "Adjon meg egy nevet"
+
+#: ../Beremiz_service.py:318
+msgid "Enter a port number "
+msgstr "Adjon meg egy port számot"
+
+#: ../Beremiz_service.py:309
+msgid "Enter the IP of the interface to bind"
+msgstr "Adja az kötéshez használt interfész IP címét"
+
+#: ../editors/DataTypeEditor.py:54
+msgid "Enumerated"
+msgstr "Felsorolva"
+
+#: ../plcopen/iec_std.csv:77
+msgid "Equal to"
+msgstr "Egyenlő"
+
+#: ../BeremizIDE.py:1107 ../dialogs/ForceVariableDialog.py:197
+#: ../dialogs/SearchInProjectDialog.py:168 ../dialogs/SFCStepNameDialog.py:60
+#: ../dialogs/DurationEditorDialog.py:121
+#: ../dialogs/DurationEditorDialog.py:167
+#: ../dialogs/PouTransitionDialog.py:107 ../dialogs/BlockPreviewDialog.py:237
+#: ../dialogs/ProjectDialog.py:74 ../dialogs/ArrayTypeDialog.py:97
+#: ../dialogs/ArrayTypeDialog.py:103 ../dialogs/PouNameDialog.py:54
+#: ../dialogs/BrowseLocationsDialog.py:218
+#: ../dialogs/BrowseValuesLibraryDialog.py:83
+#: ../dialogs/PouActionDialog.py:105 ../dialogs/PouDialog.py:135
+#: ../PLCOpenEditor.py:345 ../PLCOpenEditor.py:350 ../PLCOpenEditor.py:430
+#: ../PLCOpenEditor.py:440 ../editors/ResourceEditor.py:436
+#: ../editors/Viewer.py:424 ../editors/LDViewer.py:666
+#: ../editors/LDViewer.py:882 ../editors/LDViewer.py:886
+#: ../editors/DataTypeEditor.py:550 ../editors/DataTypeEditor.py:555
+#: ../editors/DataTypeEditor.py:574 ../editors/DataTypeEditor.py:743
+#: ../editors/DataTypeEditor.py:750 ../editors/TextViewer.py:389
+#: ../editors/CodeFileEditor.py:762 ../ProjectController.py:372
+#: ../ProjectController.py:512 ../ProjectController.py:519
+#: ../controls/FolderTree.py:217
+#: ../controls/DebugVariablePanel/DebugVariablePanel.py:166
+#: ../controls/DebugVariablePanel/DebugVariableTextViewer.py:137
+#: ../controls/DebugVariablePanel/DebugVariableGraphicViewer.py:231
+#: ../controls/VariablePanel.py:402 ../controls/VariablePanel.py:759
+#: ../IDEFrame.py:1007 ../IDEFrame.py:1617 ../IDEFrame.py:1658
+#: ../IDEFrame.py:1663 ../IDEFrame.py:1677 ../IDEFrame.py:1682
+#: ../Beremiz_service.py:213
+msgid "Error"
+msgstr "Hiba"
+
+#: ../ProjectController.py:789
+msgid ""
+"Error : At least one configuration and one resource must be declared in PLC "
+"!\n"
+msgstr ""
+"Hiba: Legalább egy konfiguráció és egy erőforrást deklarálni kell a PLC-"
+"ben!\n"
+
+#: ../ProjectController.py:781
+#, python-format
+msgid "Error : IEC to C compiler returned %d\n"
+msgstr "Hiba: IEC-ről C-re fordítás hiba %d\n"
+
+#: ../ProjectController.py:712
+#, python-format
+msgid ""
+"Error in ST/IL/SFC code generator :\n"
+"%s\n"
+msgstr ""
+"Hiba az ST/IL/SFC kód generátorban:\n"
+"%s\n"
+
+#: ../ConfigTreeNode.py:216
+#, python-format
+msgid "Error while saving \"%s\"\n"
+msgstr "Hiba a \"%s\" mentése közben\n"
+
+#: ../canfestival/canfestival.py:170
+msgid "Error: Export slave failed\n"
+msgstr "Hiba: Szolga exportálás nem sikerült\n"
+
+#: ../canfestival/canfestival.py:371
+msgid "Error: No Master generated\n"
+msgstr "Hiba: Nincs Master létrehozva\n"
+
+#: ../canfestival/canfestival.py:366
+msgid "Error: No PLC built\n"
+msgstr "Hiba: Nincs lefordított PLC\n"
+
+#: ../ProjectController.py:1728
+#, python-format
+msgid "Exception while connecting %s!\n"
+msgstr ""
+
+#: ../dialogs/FBDBlockDialog.py:120
+msgid "Execution Control:"
+msgstr "Végrehajtás vezérlés:"
+
+#: ../dialogs/FBDVariableDialog.py:80 ../dialogs/FBDBlockDialog.py:108
+msgid "Execution Order:"
+msgstr "Végrehajtási Sorrend:"
+
+#: ../features.py:35
+msgid "Experimental web based HMI"
+msgstr "Kísérleti web alapú HMI"
+
+#: ../plcopen/iec_std.csv:38
+msgid "Exponent"
+msgstr "Kitevő"
+
+#: ../plcopen/iec_std.csv:26
+msgid "Exponentiation"
+msgstr "Hatvány"
+
+#: ../canfestival/canfestival.py:176
+msgid "Export CanOpen slave to EDS file"
+msgstr "CanOpen slave exportálása EDS fájlba"
+
+#: ../controls/DebugVariablePanel/DebugVariablePanel.py:243
+msgid "Export graph values to clipboard"
+msgstr "Grafikus értékek vágólapra másolása"
+
+#: ../canfestival/canfestival.py:175
+msgid "Export slave"
+msgstr "Szolga exportálása"
+
+#: ../dialogs/FBDVariableDialog.py:90
+msgid "Expression:"
+msgstr "Kifejezés:"
+
+#: ../controls/VariablePanel.py:72
+msgid "External"
+msgstr "Külső"
+
+#: ../ProjectController.py:802
+msgid "Extracting Located Variables...\n"
+msgstr "A megtalált változók kinyerése...\n"
+
+#: ../dialogs/PouTransitionDialog.py:36 ../dialogs/PouActionDialog.py:32
+#: ../dialogs/PouDialog.py:37 ../controls/ProjectPropertiesPanel.py:144
+msgid "FBD"
+msgstr "FBD"
+
+#: ../ProjectController.py:1791
+msgid "Failed : Must build before transfer.\n"
+msgstr "Sikertelen: Le kell fordítani az átküldés előtt.\n"
+
+#: ../dialogs/LDElementDialog.py:77 ../editors/Viewer.py:521
+msgid "Falling Edge"
+msgstr "Lefutóél"
+
+#: ../ProjectController.py:1070
+msgid "Fatal : cannot get builder.\n"
+msgstr "Hiba: fordító nem található.\n"
+
+#: ../Beremiz.py:156
+#, python-format
+msgid "Fetching %s"
+msgstr "%s Letöltése"
+
+#: ../dialogs/DurationEditorDialog.py:164
+#, python-format
+msgid "Field %s hasn't a valid value!"
+msgstr ""
+
+#: ../dialogs/DurationEditorDialog.py:166
+#, python-format
+msgid "Fields %s haven't a valid value!"
+msgstr ""
+
+#: ../controls/FolderTree.py:216
+#, python-format
+msgid "File '%s' already exists!"
+msgstr ""
+
+#: ../dialogs/SearchInProjectDialog.py:98 ../dialogs/FindInPouDialog.py:37
+#: ../dialogs/FindInPouDialog.py:104 ../IDEFrame.py:375
+msgid "Find"
+msgstr "Keresés"
+
+#: ../IDEFrame.py:377
+msgid "Find Next"
+msgstr "Következő keresése"
+
+#: ../IDEFrame.py:379
+msgid "Find Previous"
+msgstr "Előző keresése"
+
+#: ../plcopen/iec_std.csv:90
+msgid "Find position"
+msgstr "Pozíció keresése"
+
+#: ../dialogs/FindInPouDialog.py:55
+msgid "Find:"
+msgstr "Keresés:"
+
+#: ../connectors/PYRO/__init__.py:163
+msgid "Force runtime reload\n"
+msgstr "Futásidejű program kényszerítet újratöltése\n"
+
+#: ../editors/Viewer.py:1600
+msgid "Force value"
+msgstr "Kényszerített érték"
+
+#: ../dialogs/ForceVariableDialog.py:162
+msgid "Forcing Variable Value"
+msgstr "Változó érték kényszerítése"
+
+#: ../dialogs/SFCTransitionDialog.py:182 ../dialogs/PouTransitionDialog.py:97
+#: ../dialogs/ProjectDialog.py:73 ../dialogs/PouActionDialog.py:95
+#: ../dialogs/PouDialog.py:117
+#, python-format
+msgid "Form isn't complete. %s must be filled!"
+msgstr ""
+
+#: ../dialogs/SFCStepDialog.py:147 ../dialogs/FBDBlockDialog.py:236
+#: ../dialogs/ConnectionDialog.py:163
+msgid "Form isn't complete. Name must be filled!"
+msgstr ""
+
+#: ../dialogs/FBDBlockDialog.py:232
+msgid "Form isn't complete. Valid block type must be selected!"
+msgstr ""
+
+#: ../dialogs/FindInPouDialog.py:72
+msgid "Forward"
+msgstr "Előre"
+
+#: ../dialogs/SearchInProjectDialog.py:37 ../IDEFrame.py:1749
+msgid "Function"
+msgstr "Funkció"
+
+#: ../IDEFrame.py:349
+msgid "Function &Block"
+msgstr "Funkcióblokk"
+
+#: ../dialogs/SearchInProjectDialog.py:38 ../IDEFrame.py:1748
+#: ../IDEFrame.py:1941
+msgid "Function Block"
+msgstr "Funkcióblokk"
+
+#: ../controls/VariablePanel.py:854
+msgid "Function Block Types"
+msgstr "Funkcióblokk Típusok"
+
+#: ../PLCControler.py:97
+msgid "Function Blocks"
+msgstr "Funkcióblokkok"
+
+#: ../editors/Viewer.py:249
+msgid "Function Blocks can't be used in Functions!"
+msgstr "Funkcióblokkok nem használhatók a függvényekben!"
+
+#: ../PLCControler.py:2343
+#, python-format
+msgid "FunctionBlock \"%s\" can't be pasted in a Function!!!"
+msgstr "Funkcióblokk \"%s\" nem illeszthető be a függvénybe!!!"
+
+#: ../PLCControler.py:97
+msgid "Functions"
+msgstr "Függvények"
+
+#: ../PLCOpenEditor.py:117
+msgid "Generate Program"
+msgstr "Program Létrehozás"
+
+#: ../ProjectController.py:703
+msgid "Generating SoftPLC IEC-61131 ST/IL/SFC code...\n"
+msgstr "SoftPLC IEC-61131 ST/IL/SFC kód létrehozása...\n"
+
+#: ../controls/VariablePanel.py:73
+msgid "Global"
+msgstr "Globális"
+
+#: ../controls/DebugVariablePanel/DebugVariablePanel.py:242
+msgid "Go to current value"
+msgstr "Menj az aktuális értékhez"
+
+#: ../controls/ProjectPropertiesPanel.py:174
+msgid "Graphics"
+msgstr "Grafika"
+
+#: ../plcopen/iec_std.csv:75
+msgid "Greater than"
+msgstr "Nagyobb"
+
+#: ../plcopen/iec_std.csv:76
+msgid "Greater than or equal to"
+msgstr "Nagyobb vagy egyenlő"
+
+#: ../controls/ProjectPropertiesPanel.py:135
+msgid "Grid Resolution:"
+msgstr "Rács Felbontás:"
+
+#: ../runtime/NevowServer.py:182
+msgid "HTTP interface port :"
+msgstr "HTTP interfész port:"
+
+#: ../controls/ProjectPropertiesPanel.py:121
+msgid "Height:"
+msgstr "Magasság:"
+
+#: ../editors/FileManagementPanel.py:85
+msgid "Home Directory:"
+msgstr "Saját Könyvtár:"
+
+#: ../controls/ProjectPropertiesPanel.py:151
+msgid "Horizontal:"
+msgstr "Vízszintes:"
+
+#: ../dialogs/DurationEditorDialog.py:45
+msgid "Hours:"
+msgstr "Órák:"
+
+#: ../dialogs/PouTransitionDialog.py:36 ../dialogs/PouActionDialog.py:32
+#: ../dialogs/PouDialog.py:37
+msgid "IL"
+msgstr "IL"
+
+#: ../dialogs/DiscoveryDialog.py:94
+msgid "IP"
+msgstr "IP"
+
+#: ../Beremiz_service.py:310 ../Beremiz_service.py:311
+msgid "IP is not valid!"
+msgstr "IP cím nem valós!"
+
+#: ../svgui/svgui.py:44 ../svgui/svgui.py:45
+msgid "Import SVG"
+msgstr "SVG importálás"
+
+#: ../dialogs/FBDVariableDialog.py:39 ../editors/Viewer.py:1629
+#: ../controls/VariablePanel.py:71
+msgid "InOut"
+msgstr "BeKi"
+
+#: ../editors/Viewer.py:431
+msgid "Inactive"
+msgstr "Inaktív"
+
+#: ../controls/VariablePanel.py:276
+#, python-brace-format
+msgid "Incompatible data types between \"{a1}\" and \"{a2}\""
+msgstr "\"{a1}\" és \"{a2}\" nem kompatibilis adattípusok."
+
+#: ../controls/VariablePanel.py:282
+#, python-format
+msgid "Incompatible size of data between \"%s\" and \"BOOL\""
+msgstr "\"%s\" és \"BOOL\" nem kompatibilis adatméretűek."
+
+#: ../controls/VariablePanel.py:286
+#, python-brace-format
+msgid "Incompatible size of data between \"{a1}\" and \"{a2}\""
+msgstr "\"{a1}\" és \"{a2}\" nem kompatibilis méretűek"
+
+#: ../dialogs/ActionBlockDialog.py:39
+msgid "Indicator"
+msgstr "Kijelző"
+
+#: ../editors/CodeFileEditor.py:739
+msgid "Initial"
+msgstr "Kezdeti"
+
+#: ../editors/Viewer.py:611
+msgid "Initial Step"
+msgstr "Kezdeti lépés"
+
+#: ../editors/DataTypeEditor.py:50 ../controls/VariablePanel.py:53
+#: ../controls/VariablePanel.py:54
+msgid "Initial Value"
+msgstr "Kezdőérték"
+
+#: ../editors/DataTypeEditor.py:185 ../editors/DataTypeEditor.py:216
+#: ../editors/DataTypeEditor.py:272 ../editors/DataTypeEditor.py:310
+msgid "Initial Value:"
+msgstr "Kezdőérték:"
+
+#: ../svgui/svgui.py:48
+msgid "Inkscape"
+msgstr "Inkscape"
+
+#: ../dialogs/SFCTransitionDialog.py:76 ../dialogs/ActionBlockDialog.py:43
+msgid "Inline"
+msgstr "Inline"
+
+#: ../dialogs/SFCStepDialog.py:71 ../dialogs/FBDVariableDialog.py:38
+#: ../dialogs/BrowseLocationsDialog.py:41 ../editors/Viewer.py:290
+#: ../editors/Viewer.py:1627 ../editors/TextViewer.py:307
+#: ../controls/LocationCellEditor.py:98 ../controls/VariablePanel.py:71
+#: ../controls/VariablePanel.py:291 ../controls/VariablePanel.py:351
+msgid "Input"
+msgstr "Bemenet"
+
+#: ../dialogs/FBDBlockDialog.py:96
+msgid "Inputs:"
+msgstr "Bemenetek:"
+
+#: ../plcopen/iec_std.csv:87
+msgid "Insertion (into)"
+msgstr "Beszúrás (ide)"
+
+#: ../plcopen/plcopen.py:1696
+#, python-format
+msgid "Instance with id %d doesn't exist!"
+msgstr "Az %d azonosító nem létezik!"
+
+#: ../editors/ResourceEditor.py:264
+msgid "Instances:"
+msgstr "Példányok:"
+
+#: ../controls/VariablePanel.py:70
+msgid "Interface"
+msgstr "Interfész"
+
+#: ../editors/ResourceEditor.py:72
+msgid "Interrupt"
+msgstr "Megszakítás"
+
+#: ../editors/ResourceEditor.py:68
+msgid "Interval"
+msgstr "Intervallum"
+
+#: ../PLCControler.py:2331
+msgid "Invalid plcopen element(s)!!!"
+msgstr "Érvénytelen plcopen elem(ek)!!!"
+
+#: ../canfestival/config_utils.py:381
+#, python-brace-format
+msgid "Invalid type \"{a1}\"-> {a2} != {a3}  for location\"{a4}\""
+msgstr ""
+
+#: ../canfestival/config_utils.py:645
+#, python-brace-format
+msgid "Invalid type \"{a1}\"-> {a2} != {a3} for location \"{a4}\""
+msgstr ""
+
+#: ../controls/DebugVariablePanel/DebugVariablePanel.py:132
+#: ../controls/DebugVariablePanel/DebugVariableTextViewer.py:92
+#: ../controls/DebugVariablePanel/DebugVariableGraphicViewer.py:166
+#, python-format
+msgid "Invalid value \"%s\" for debug variable"
+msgstr ""
+
+#: ../controls/VariablePanel.py:255 ../controls/VariablePanel.py:258
+#, python-format
+msgid "Invalid value \"%s\" for variable grid element"
+msgstr ""
+
+#: ../editors/Viewer.py:234 ../editors/Viewer.py:237
+#, python-format
+msgid "Invalid value \"%s\" for viewer block"
+msgstr ""
+
+#: ../dialogs/ForceVariableDialog.py:195
+#, python-brace-format
+msgid "Invalid value \"{a1}\" for \"{a2}\" variable!"
+msgstr ""
+
+#: ../dialogs/DurationEditorDialog.py:121
+msgid ""
+"Invalid value!\n"
+"You must fill a numeric value."
+msgstr ""
+
+#: ../editors/Viewer.py:616 ../editors/Viewer.py:2392
+msgid "Jump"
+msgstr "Ugrás"
+
+#: ../dialogs/PouTransitionDialog.py:36 ../dialogs/PouActionDialog.py:32
+#: ../dialogs/PouDialog.py:37 ../controls/ProjectPropertiesPanel.py:144
+msgid "LD"
+msgstr "LD"
+
+#: ../editors/LDViewer.py:215 ../editors/LDViewer.py:231
+#, python-format
+msgid "Ladder element with id %d is on more than one rung."
+msgstr "A %d azonosítójú létra elem több rung-ban van használva."
+
+#: ../dialogs/PouTransitionDialog.py:86 ../dialogs/PouActionDialog.py:84
+#: ../dialogs/PouDialog.py:105
+msgid "Language"
+msgstr "Nyelv"
+
+#: ../controls/ProjectPropertiesPanel.py:187
+msgid "Language (optional):"
+msgstr "Nyelv (opcionális):"
+
+#: ../dialogs/PouTransitionDialog.py:60 ../dialogs/PouActionDialog.py:56
+#: ../dialogs/PouDialog.py:73
+msgid "Language:"
+msgstr "Nyelv:"
+
+#: ../ProjectController.py:1797
+msgid "Latest build already matches current target. Transfering anyway...\n"
+msgstr ""
+"A legutolsó fordítás már megegyezik az aktuális céllal. Mindenképpen "
+"átküldésre kerül...\n"
+
+#: ../Beremiz_service.py:273
+msgid "Launch WX GUI inspector"
+msgstr "WX GUI elemző indítása"
+
+#: ../Beremiz_service.py:272
+msgid "Launch a live Python shell"
+msgstr "Élő Python shell indítása"
+
+#: ../editors/Viewer.py:544
+msgid "Left"
+msgstr "Bal"
+
+#: ../dialogs/LDPowerRailDialog.py:63
+msgid "Left PowerRail"
+msgstr "Bal ÁramSin"
+
+#: ../plcopen/iec_std.csv:81
+msgid "Length of string"
+msgstr "String hossza"
+
+#: ../plcopen/iec_std.csv:78
+msgid "Less than"
+msgstr "Kisebb"
+
+#: ../plcopen/iec_std.csv:79
+msgid "Less than or equal to"
+msgstr "Kisebb vagy egyenlő"
+
+#: ../IDEFrame.py:631
+msgid "Library"
+msgstr "Könyvtár"
+
+#: ../dialogs/AboutDialog.py:151
+msgid "License"
+msgstr "Licensz"
+
+#: ../plcopen/iec_std.csv:73
+msgid "Limitation"
+msgstr "Határolás"
+
+#: ../targets/toolchain_gcc.py:202
+msgid "Linking :\n"
+msgstr "Összefűzés:\n"
+
+#: ../dialogs/DiscoveryDialog.py:112 ../controls/VariablePanel.py:72
+msgid "Local"
+msgstr "Helyi"
+
+#: ../canfestival/canfestival.py:348
+msgid "Local entries"
+msgstr "Helyi bejegyzések"
+
+#: ../ProjectController.py:1703
+msgid "Local service discovery failed!\n"
+msgstr "Helyi szolgáltatás felderítése nem sikerült!\n"
+
+#: ../controls/VariablePanel.py:53
+msgid "Location"
+msgstr "Hely"
+
+#: ../dialogs/BrowseLocationsDialog.py:72
+msgid "Locations available:"
+msgstr "Elérhető helyek:"
+
+#: ../plcopen/iec_std.csv:25
+msgid "Logarithm to base 10"
+msgstr "10-es alapú logaritmus"
+
+#: ../connectors/PYRO/__init__.py:94
+#, python-format
+msgid "MDNS resolution failure for '%s'\n"
+msgstr "MDNS feloldás nem sikerült a '%s'-ra\n"
+
+#: ../canfestival/SlaveEditor.py:64 ../canfestival/NetworkEditor.py:85
+msgid "Map Variable"
+msgstr "Változó Hozzárendelés"
+
+#: ../features.py:31
+msgid "Map located variables over CANopen"
+msgstr "CANopen buszon feldezett változók hozzárendelése"
+
+#: ../canfestival/NetworkEditor.py:106
+msgid "Master"
+msgstr "Fő"
+
+#: ../ConfigTreeNode.py:539
+#, python-brace-format
+msgid "Max count ({a1}) reached for this confnode of type {a2} "
+msgstr ""
+
+#: ../plcopen/iec_std.csv:71
+msgid "Maximum"
+msgstr "Maximum"
+
+#: ../editors/DataTypeEditor.py:239
+msgid "Maximum:"
+msgstr "Maximum:"
+
+#: ../dialogs/BrowseLocationsDialog.py:43 ../editors/Viewer.py:290
+#: ../editors/TextViewer.py:307 ../controls/LocationCellEditor.py:98
+#: ../controls/VariablePanel.py:291 ../controls/VariablePanel.py:351
+msgid "Memory"
+msgstr "Memória"
+
+#: ../IDEFrame.py:599
+msgid "Menu ToolBar"
+msgstr "Menü Eszköztár"
+
+#: ../dialogs/DurationEditorDialog.py:49
+msgid "Microseconds:"
+msgstr "Mikroszekundum:"
+
+#: ../editors/Viewer.py:549
+msgid "Middle"
+msgstr "Középső"
+
+#: ../dialogs/DurationEditorDialog.py:48
+msgid "Milliseconds:"
+msgstr "Ezredmásodperc"
+
+#: ../plcopen/iec_std.csv:72
+msgid "Minimum"
+msgstr "Minimum"
+
+#: ../editors/DataTypeEditor.py:226
+msgid "Minimum:"
+msgstr "Minimum:"
+
+#: ../dialogs/DurationEditorDialog.py:46
+msgid "Minutes:"
+msgstr "Perc:"
+
+#: ../controls/ProjectPropertiesPanel.py:211
+msgid "Miscellaneous"
+msgstr "Egyéb"
+
+#: ../dialogs/LDElementDialog.py:63
+msgid "Modifier:"
+msgstr "Módosító:"
+
+#: ../PLCGenerator.py:786 ../PLCGenerator.py:1230
+#, python-brace-format
+msgid ""
+"More than one connector found corresponding to \"{a1}\" continuation in "
+"\"{a2}\" POU"
+msgstr ""
+
+#: ../dialogs/ActionBlockDialog.py:140
+msgid "Move action down"
+msgstr "Tevékenység mozgatás le"
+
+#: ../dialogs/ActionBlockDialog.py:139
+msgid "Move action up"
+msgstr "Tevékenység mozgatás fel"
+
+#: ../controls/CustomEditableListBox.py:43
+msgid "Move down"
+msgstr "Mozgatás le"
+
+#: ../editors/DataTypeEditor.py:355
+msgid "Move element down"
+msgstr "Mozgatás fel"
+
+#: ../editors/DataTypeEditor.py:354
+msgid "Move element up"
+msgstr "Elem mozgatás fel"
+
+#: ../editors/ResourceEditor.py:271
+msgid "Move instance down"
+msgstr "Elem mozgatás le"
+
+#: ../editors/ResourceEditor.py:270
+msgid "Move instance up"
+msgstr "Példány mozgatás fel"
+
+#: ../editors/ResourceEditor.py:242
+msgid "Move task down"
+msgstr "Feladat mozgatás le"
+
+#: ../editors/ResourceEditor.py:241
+msgid "Move task up"
+msgstr "Feladat mozgatás fel"
+
+#: ../IDEFrame.py:99 ../IDEFrame.py:114 ../IDEFrame.py:144 ../IDEFrame.py:185
+msgid "Move the view"
+msgstr "Nézet mozgatása"
+
+#: ../controls/CustomEditableListBox.py:42
+msgid "Move up"
+msgstr "Mozgatás fel"
+
+#: ../editors/CodeFileEditor.py:661 ../controls/VariablePanel.py:453
+msgid "Move variable down"
+msgstr "Váltózó mozgatás le"
+
+#: ../editors/CodeFileEditor.py:660 ../controls/VariablePanel.py:452
+msgid "Move variable up"
+msgstr "Változó mozgatás fel"
+
+#: ../plcopen/iec_std.csv:74
+msgid "Multiplexer (select 1 of N)"
+msgstr "Multiplexer (1 az N-hez kiválasztás)"
+
+#: ../plcopen/iec_std.csv:34
+msgid "Multiplication"
+msgstr "Szorzás"
+
+#: ../editors/FileManagementPanel.py:83
+msgid "My Computer:"
+msgstr "Sajátgép:"
+
+#: ../dialogs/DiscoveryDialog.py:92
+msgid "NAME"
+msgstr "NÉV"
+
+#: ../editors/ResourceEditor.py:68 ../editors/ResourceEditor.py:83
+#: ../editors/DataTypeEditor.py:50 ../editors/CodeFileEditor.py:739
+#: ../controls/VariablePanel.py:53 ../controls/VariablePanel.py:54
+msgid "Name"
+msgstr "Név"
+
+#: ../Beremiz_service.py:334
+msgid "Name must not be null!"
+msgstr "Név nem lehet üres!"
+
+#: ../dialogs/SFCStepDialog.py:57 ../dialogs/FBDBlockDialog.py:86
+#: ../dialogs/ConnectionDialog.py:76
+msgid "Name:"
+msgstr "Név:"
+
+#: ../plcopen/iec_std.csv:24
+msgid "Natural logarithm"
+msgstr "Természetes alapú logaritmus"
+
+#: ../dialogs/LDElementDialog.py:75 ../editors/Viewer.py:519
+msgid "Negated"
+msgstr "Negált"
+
+#: ../Beremiz_service.py:580
+msgid "Nevow Web service failed. "
+msgstr ""
+
+#: ../Beremiz_service.py:556
+msgid "Nevow/Athena import failed :"
+msgstr ""
+
+#: ../BeremizIDE.py:216 ../BeremizIDE.py:251 ../PLCOpenEditor.py:104
+#: ../PLCOpenEditor.py:146
+msgid "New"
+msgstr "Új"
+
+#: ../controls/CustomEditableListBox.py:40
+msgid "New item"
+msgstr "Új elem"
+
+#: ../editors/Viewer.py:518
+msgid "No Modifier"
+msgstr "Nincs módosító"
+
+#: ../ProjectController.py:1826
+msgid "No PLC to transfer (did build succeed ?)\n"
+msgstr "Nincs letöltendő PLC (sikeres volt a fordítás?)\n"
+
+#: ../PLCGenerator.py:1631
+#, python-format
+msgid "No body defined in \"%s\" POU"
+msgstr "POU \"%s\"-ban nincs semmi definiálva."
+
+#: ../PLCGenerator.py:806 ../PLCGenerator.py:1241
+#, python-brace-format
+msgid "No connector found corresponding to \"{a1}\" continuation in \"{a2}\" POU"
+msgstr ""
+
+#: ../PLCOpenEditor.py:357
+msgid ""
+"No documentation available.\n"
+"Coming soon."
+msgstr ""
+"Dokumentáció nem elérhető\n"
+"Hamarosan érkezik."
+
+#: ../PLCGenerator.py:829
+#, python-format
+msgid "No informations found for \"%s\" block"
+msgstr ""
+
+#: ../PLCGenerator.py:1194
+#, python-brace-format
+msgid ""
+"No output {a1} variable found in block {a2} in POU {a3}. Connection must be "
+"broken"
+msgstr ""
+
+#: ../controls/SearchResultPanel.py:169
+msgid "No search results available."
+msgstr "Nincs elérhető keresési eredmény."
+
+#: ../svgui/svgui.py:134
+#, python-format
+msgid "No such SVG file: %s\n"
+msgstr "Nincs ilyen SVG fájl: %s\n"
+
+#: ../canfestival/config_utils.py:639
+#, python-brace-format
+msgid "No such index/subindex ({a1},{a2}) (variable {a3})"
+msgstr ""
+
+#: ../canfestival/config_utils.py:362
+#, python-brace-format
+msgid "No such index/subindex ({a1},{a2}) in ID : {a3} (variable {a4})"
+msgstr ""
+
+#: ../dialogs/BrowseValuesLibraryDialog.py:83
+msgid "No valid value selected!"
+msgstr ""
+
+#: ../PLCGenerator.py:1629
+#, python-format
+msgid "No variable defined in \"%s\" POU"
+msgstr ""
+
+#: ../canfestival/config_utils.py:355
+#, python-brace-format
+msgid "Non existing node ID : {a1} (variable {a2})"
+msgstr ""
+
+#: ../controls/VariablePanel.py:64
+msgid "Non-Retain"
+msgstr "Nem megőrzött"
+
+#: ../dialogs/LDElementDialog.py:75
+msgid "Normal"
+msgstr "Normál"
+
+#: ../canfestival/config_utils.py:389
+#, python-brace-format
+msgid "Not PDO mappable variable : '{a1}' (ID:{a2},Idx:{a3},sIdx:{a4}))"
+msgstr ""
+
+#: ../plcopen/iec_std.csv:80
+msgid "Not equal to"
+msgstr "Nem egyenlő"
+
+#: ../dialogs/SFCDivergenceDialog.py:89
+msgid "Number of sequences:"
+msgstr "Szekvenciák száma:"
+
+#: ../plcopen/iec_std.csv:22
+msgid "Numerical"
+msgstr "Numerikus"
+
+#: ../editors/CodeFileEditor.py:739
+msgid "OnChange"
+msgstr "Változás esetén"
+
+#: ../dialogs/SearchInProjectDialog.py:84
+msgid "Only Elements"
+msgstr "Csak elemek"
+
+#: ../BeremizIDE.py:218 ../BeremizIDE.py:252 ../PLCOpenEditor.py:106
+#: ../PLCOpenEditor.py:147
+msgid "Open"
+msgstr "Megnyit"
+
+#: ../svgui/svgui.py:143
+msgid "Open Inkscape"
+msgstr "Inkscape Megnyitás"
+
+#: ../version.py:77
+msgid ""
+"Open Source framework for automation, implemented IEC 61131 IDE with "
+"constantly growing set of extensions and flexible PLC runtime."
+msgstr ""
+"Nyílt forráskódú automatizálási keretrendszer , IEC 61131 fejlesztő "
+"környezet megvalósítva folyamatosan növekvő számű bővítményekkel, és "
+"rugalmas futásidejű PLC-vel."
+
+#: ../ProjectController.py:1878
+msgid "Open a file explorer to manage project files"
+msgstr "Fájlkezelő megnyitása a projektek kezeléséhez"
+
+#: ../wxglade_hmi/wxglade_hmi.py:155
+msgid "Open wxGlade"
+msgstr "wxGlade Megnyitása"
+
+#: ../controls/VariablePanel.py:53 ../controls/VariablePanel.py:54
+msgid "Option"
+msgstr "Beállítás"
+
+#: ../dialogs/FindInPouDialog.py:81 ../editors/CodeFileEditor.py:739
+msgid "Options"
+msgstr "Beállítások"
+
+#: ../controls/ProjectPropertiesPanel.py:98
+msgid "Organization (optional):"
+msgstr "Szervezet (opcionális)"
+
+#: ../canfestival/SlaveEditor.py:74 ../canfestival/NetworkEditor.py:95
+msgid "Other Profile"
+msgstr "Másik Profil"
+
+#: ../dialogs/SFCStepDialog.py:72 ../dialogs/FBDVariableDialog.py:40
+#: ../dialogs/BrowseLocationsDialog.py:42 ../editors/Viewer.py:290
+#: ../editors/Viewer.py:1628 ../editors/TextViewer.py:307
+#: ../controls/LocationCellEditor.py:98 ../controls/VariablePanel.py:71
+#: ../controls/VariablePanel.py:291 ../controls/VariablePanel.py:351
+msgid "Output"
+msgstr "Kimenet"
+
+#: ../canfestival/SlaveEditor.py:63 ../canfestival/NetworkEditor.py:84
+msgid "PDO Receive"
+msgstr "PDO Fogadás"
+
+#: ../canfestival/SlaveEditor.py:62 ../canfestival/NetworkEditor.py:83
+msgid "PDO Transmit"
+msgstr "PDO Küldés"
+
+#: ../targets/toolchain_gcc.py:167
+msgid "PLC :\n"
+msgstr "PLC :\n"
+
+#: ../BeremizIDE.py:355
+msgid "PLC Log"
+msgstr "PLC Log"
+
+#: ../ProjectController.py:1054
+msgid "PLC code generation failed !\n"
+msgstr "PLC kód létrehozás nem sikerült!\n"
+
+#: ../Beremiz_service.py:297
+msgid "PLC is empty or already started."
+msgstr "A PLC üres vagy már el van indítva."
+
+#: ../Beremiz_service.py:304
+msgid "PLC is not started."
+msgstr "PLC nincs elindítva."
+
+#: ../PLCOpenEditor.py:206 ../PLCOpenEditor.py:319
+#, python-brace-format
+msgid ""
+"PLC syntax error at line {a1}:\n"
+"{a2}"
+msgstr ""
+"PLC szintaktikai hiba az {a1} sorban:\n"
+"{a2}"
+
+#: ../PLCOpenEditor.py:302 ../PLCOpenEditor.py:383
+msgid "PLCOpen files (*.xml)|*.xml|All files|*.*"
+msgstr "PLCOpen fájlok (*.xml)|*.xml|Minden fájl|*.*"
+
+#: ../PLCOpenEditor.py:154 ../PLCOpenEditor.py:219
+msgid "PLCOpenEditor"
+msgstr "PLCOpenEditor"
+
+#: ../PLCOpenEditor.py:365
+msgid ""
+"PLCOpenEditor is part of Beremiz project.\n"
+"\n"
+"Beremiz is an "
+msgstr ""
+"A PLCOpenEditor része a Beremiz projektnek.\n"
+"\n"
+"A beremiz egy ..."
+
+#: ../dialogs/DiscoveryDialog.py:95
+msgid "PORT"
+msgstr "PORT"
+
+#: ../dialogs/PouDialog.py:101
+msgid "POU Name"
+msgstr "POU Név"
+
+#: ../dialogs/PouDialog.py:58
+msgid "POU Name:"
+msgstr "POU Név:"
+
+#: ../dialogs/PouDialog.py:103
+msgid "POU Type"
+msgstr "POU Típus"
+
+#: ../dialogs/PouDialog.py:65
+msgid "POU Type:"
+msgstr "POU Típus:"
+
+#: ../connectors/PYRO/__init__.py:45
+#, python-format
+msgid "PYRO connecting to URI : %s\n"
+msgstr ""
+
+#: ../connectors/PYRO/__init__.py:61
+#, python-format
+msgid "PYRO using certificates in '%s' \n"
+msgstr ""
+
+#: ../BeremizIDE.py:231 ../PLCOpenEditor.py:120
+msgid "Page Setup"
+msgstr "Oldalbeállítás"
+
+#: ../controls/ProjectPropertiesPanel.py:111
+msgid "Page Size (optional):"
+msgstr "Oldalméret (opcionális):"
+
+#: ../IDEFrame.py:2613
+#, python-format
+msgid "Page: %d"
+msgstr "Oldal: %d"
+
+#: ../controls/PouInstanceVariablesPanel.py:124
+msgid "Parent instance"
+msgstr "Szülő példány"
+
+#: ../editors/Viewer.py:657 ../IDEFrame.py:372 ../IDEFrame.py:426
+msgid "Paste"
+msgstr "Beillesztés"
+
+#: ../IDEFrame.py:1868
+msgid "Paste POU"
+msgstr "POU beillesztés"
+
+#: ../dialogs/SearchInProjectDialog.py:56
+msgid "Pattern to search:"
+msgstr "Keresési minta:"
+
+#: ../dialogs/LDPowerRailDialog.py:74
+msgid "Pin number:"
+msgstr "Tüske száma:"
+
+#: ../editors/Viewer.py:2757 ../editors/Viewer.py:3014
+#: ../editors/SFCViewer.py:770
+msgid "Please choose a target"
+msgstr "Kérem válasszon célt"
+
+#: ../editors/TextViewer.py:262
+msgid "Please enter a block name"
+msgstr "Kérem adja meg a blokk nevét"
+
+#: ../editors/Viewer.py:2627 ../editors/Viewer.py:3056
+msgid "Please enter comment text"
+msgstr "Kérem adja meg a megjegyzés szövegét"
+
+#: ../editors/SFCViewer.py:433 ../editors/SFCViewer.py:455
+#: ../editors/SFCViewer.py:799
+msgid "Please enter step name"
+msgstr "Kérem adja meg a lépés nevét"
+
+#: ../Beremiz_service.py:196
+msgid "Please enter text"
+msgstr "Kérem adja meg a szöveget"
+
+#: ../dialogs/ForceVariableDialog.py:163
+#, python-format
+msgid "Please enter value for a \"%s\" variable:"
+msgstr "Kérem adjon értéket a '%s' változónak:"
+
+#: ../Beremiz_service.py:319
+msgid "Port number must be 0 <= port <= 65535!"
+msgstr "Port száma 0 és 65535 közé kell essen."
+
+#: ../Beremiz_service.py:319
+msgid "Port number must be an integer!"
+msgstr "Port száma egész szám kell legyen!"
+
+#: ../editors/Viewer.py:595 ../editors/Viewer.py:2416
+msgid "Power Rail"
+msgstr "Áramsin"
+
+#: ../dialogs/LDPowerRailDialog.py:51
+msgid "Power Rail Properties"
+msgstr "Áramsin Tulajdonságok"
+
+#: ../BeremizIDE.py:233 ../PLCOpenEditor.py:122
+msgid "Preview"
+msgstr "Előnézet"
+
+#: ../dialogs/BlockPreviewDialog.py:57
+msgid "Preview:"
+msgstr "Előnézet:"
+
+#: ../BeremizIDE.py:235 ../BeremizIDE.py:255 ../PLCOpenEditor.py:124
+#: ../PLCOpenEditor.py:150
+msgid "Print"
+msgstr "Nyomtatás"
+
+#: ../IDEFrame.py:1079
+msgid "Print preview"
+msgstr "Nyomtatási kép"
+
+#: ../editors/ResourceEditor.py:68
+msgid "Priority"
+msgstr "Prioritás"
+
+#: ../dialogs/SFCTransitionDialog.py:90
+msgid "Priority:"
+msgstr "Prioritás:"
+
+#: ../runtime/PLCObject.py:369
+#, python-format
+msgid "Problem starting PLC : error %d"
+msgstr "PLC indítási hiba: hiba %d"
+
+#: ../dialogs/ProjectDialog.py:58
+msgid "Product Name"
+msgstr "Terméknév"
+
+#: ../controls/ProjectPropertiesPanel.py:81
+msgid "Product Name (required):"
+msgstr "Terméknév (kötelező):"
+
+#: ../controls/ProjectPropertiesPanel.py:83
+msgid "Product Release (optional):"
+msgstr "Termék kiadás (opcionális):"
+
+#: ../dialogs/ProjectDialog.py:59
+msgid "Product Version"
+msgstr "Termék Verzió"
+
+#: ../controls/ProjectPropertiesPanel.py:82
+msgid "Product Version (required):"
+msgstr "Termék Verzió (kötelező):"
+
+#: ../dialogs/SearchInProjectDialog.py:39 ../IDEFrame.py:1747
+#: ../IDEFrame.py:1944
+msgid "Program"
+msgstr "Program"
+
+#: ../PLCOpenEditor.py:347
+msgid "Program was successfully generated!"
+msgstr "Program sikeresen létrehozva!"
+
+#: ../PLCControler.py:98
+msgid "Programs"
+msgstr "Programok"
+
+#: ../editors/Viewer.py:243
+msgid "Programs can't be used by other POUs!"
+msgstr "A program nem használható más POU-k által!"
+
+#: ../controls/ProjectPropertiesPanel.py:85 ../IDEFrame.py:584
+msgid "Project"
+msgstr "Projekt"
+
+#: ../controls/SearchResultPanel.py:173
+#, python-format
+msgid "Project '%s':"
+msgstr "Projekt '%s':"
+
+#: ../ProjectController.py:1877
+msgid "Project Files"
+msgstr "Projekt Fájlok"
+
+#: ../dialogs/ProjectDialog.py:57
+msgid "Project Name"
+msgstr "Projektnév"
+
+#: ../controls/ProjectPropertiesPanel.py:79
+msgid "Project Name (required):"
+msgstr "Projektnév (kötelező):"
+
+#: ../controls/ProjectPropertiesPanel.py:80
+msgid "Project Version (optional):"
+msgstr "Projekt Verzió (opcionális):"
+
+#: ../PLCControler.py:3164
+msgid ""
+"Project file syntax error:\n"
+"\n"
+msgstr ""
+"Projekt fájl szintaktikai hiba:\n"
+"\n"
+
+#: ../dialogs/ProjectDialog.py:33 ../editors/ProjectNodeEditor.py:37
+msgid "Project properties"
+msgstr "Projekt tulajdonságok"
+
+#: ../ConfigTreeNode.py:566
+#, python-brace-format
+msgid "Project tree layout do not match confnode.xml {a1}!={a2} "
+msgstr "Projekt fa elrendezése nem egyezik meg a confnode.xml -el {a1}!={a2}"
+
+#: ../dialogs/ConnectionDialog.py:98
+msgid "Propagate Name"
+msgstr "Terjesztési Név"
+
+#: ../PLCControler.py:99
+msgid "Properties"
+msgstr "Tulajdonságok"
+
+#: ../Beremiz_service.py:442
+msgid "Publishing service on local network"
+msgstr "Kiadási szolgáltatás a helyi hálózaton"
+
+#: ../connectors/PYRO/__init__.py:118
+#, python-format
+msgid "Pyro exception: %s\n"
+msgstr ""
+
+#: ../Beremiz_service.py:429
+msgid "Pyro object's uri :"
+msgstr ""
+
+#: ../Beremiz_service.py:428
+msgid "Pyro port :"
+msgstr ""
+
+#: ../py_ext/PythonEditor.py:81
+msgid "Python code"
+msgstr "Python kód"
+
+#: ../features.py:33
+msgid "Python file"
+msgstr "Píthon fájl"
+
+#: ../dialogs/ActionBlockDialog.py:39
+msgid "Qualifier"
+msgstr ""
+
+#: ../BeremizIDE.py:238 ../PLCOpenEditor.py:130 ../Beremiz_service.py:275
+msgid "Quit"
+msgstr "Kilépés"
+
+#: ../controls/DebugVariablePanel/DebugVariablePanel.py:225
+msgid "Range:"
+msgstr "Tartomány:"
+
+#: ../ProjectController.py:1873
+msgid "Raw IEC code"
+msgstr "Nyers IEC kód"
+
+#: ../BeremizIDE.py:1047
+#, python-format
+msgid "Really delete node '%s'?"
+msgstr "Valóban törli a '%s'  csomópontot?"
+
+#: ../IDEFrame.py:362 ../IDEFrame.py:422
+msgid "Redo"
+msgstr "Újra"
+
+#: ../dialogs/SFCTransitionDialog.py:75
+msgid "Reference"
+msgstr "Referencia"
+
+#: ../dialogs/DiscoveryDialog.py:107 ../IDEFrame.py:432
+msgid "Refresh"
+msgstr "Frissítés"
+
+#: ../dialogs/SearchInProjectDialog.py:66
+msgid "Regular expression"
+msgstr "Reguláris kifejezés"
+
+#: ../dialogs/FindInPouDialog.py:96
+msgid "Regular expressions"
+msgstr "Reguláris kifejezések"
+
+#: ../editors/Viewer.py:1603
+msgid "Release value"
+msgstr ""
+
+#: ../plcopen/iec_std.csv:37
+msgid "Remainder (modulo)"
+msgstr "Maradék (modulo)"
+
+#: ../BeremizIDE.py:1048
+#, python-format
+msgid "Remove %s node"
+msgstr "Node %s eltávolítása"
+
+#: ../IDEFrame.py:2419
+msgid "Remove Datatype"
+msgstr "Adattípus eltávolítása"
+
+#: ../IDEFrame.py:2424
+msgid "Remove Pou"
+msgstr "POU eltávolítása"
+
+#: ../dialogs/ActionBlockDialog.py:138
+msgid "Remove action"
+msgstr "Művelel eltávolítása"
+
+#: ../editors/DataTypeEditor.py:353
+msgid "Remove element"
+msgstr "Elem eltávolítása"
+
+#: ../editors/FileManagementPanel.py:63
+msgid "Remove file from left folder"
+msgstr "Bal oldali mappából a fájl eltávolítása"
+
+#: ../editors/ResourceEditor.py:269
+msgid "Remove instance"
+msgstr "Példány eltávolítása"
+
+#: ../canfestival/NetworkEditor.py:104
+msgid "Remove slave"
+msgstr "Szolga eltávolítása"
+
+#: ../editors/ResourceEditor.py:240
+msgid "Remove task"
+msgstr "Feladat eltávolítása"
+
+#: ../editors/CodeFileEditor.py:659 ../controls/VariablePanel.py:451
+msgid "Remove variable"
+msgstr "Változó eltávolítása"
+
+#: ../IDEFrame.py:1948
+msgid "Rename"
+msgstr "Átnevezés"
+
+#: ../editors/FileManagementPanel.py:181
+msgid "Replace File"
+msgstr "Fájl lecserélése"
+
+#: ../editors/Viewer.py:561
+msgid "Replace Wire by connections"
+msgstr ""
+
+#: ../plcopen/iec_std.csv:89
+msgid "Replacement (within)"
+msgstr ""
+
+#: ../dialogs/LDElementDialog.py:76
+msgid "Reset"
+msgstr "Reset"
+
+#: ../editors/Viewer.py:642
+msgid "Reset Execution Order"
+msgstr "Végrehajtási sorrend törlése"
+
+#: ../IDEFrame.py:451
+msgid "Reset Perspective"
+msgstr "Perspektíva törlése"
+
+#: ../controls/SearchResultPanel.py:105
+msgid "Reset search result"
+msgstr "Keresési eredmény törlése"
+
+#: ../BeremizIDE.py:979 ../PLCControler.py:99
+msgid "Resources"
+msgstr "Erőforrások"
+
+#: ../controls/VariablePanel.py:62
+msgid "Retain"
+msgstr "Megőriz"
+
+#: ../controls/VariablePanel.py:424
+msgid "Return Type:"
+msgstr "Visszatérési Típus:"
+
+#: ../editors/Viewer.py:546
+msgid "Right"
+msgstr "Jobb"
+
+#: ../dialogs/LDPowerRailDialog.py:64
+msgid "Right PowerRail"
+msgstr "Jobb Áramsin"
+
+#: ../dialogs/LDElementDialog.py:77 ../editors/Viewer.py:520
+msgid "Rising Edge"
+msgstr "Felfutóél"
+
+#: ../plcopen/iec_std.csv:65
+msgid "Rotate left"
+msgstr "Forgatás balra"
+
+#: ../plcopen/iec_std.csv:64
+msgid "Rotate right"
+msgstr "Forgatás jobbra"
+
+#: ../plcopen/iec_std.csv:17
+msgid "Rounding up/down"
+msgstr "Kerekítés fel/le"
+
+#: ../ProjectController.py:1841
+msgid "Run"
+msgstr "Fut"
+
+#: ../ProjectController.py:1099
+msgid "Runtime IO extensions C code generation failed !\n"
+msgstr "Futás idejú IO bővítmények C kódjának létrehozása nem sikerült!\n"
+
+#: ../ProjectController.py:1108
+msgid "Runtime library extensions C code generation failed !\n"
+msgstr "Futás idejű könyvtárak C forráskódjának generálása nem sikerült!\n"
+
+#: ../canfestival/SlaveEditor.py:61 ../canfestival/NetworkEditor.py:82
+msgid "SDO Client"
+msgstr ""
+
+#: ../canfestival/SlaveEditor.py:60 ../canfestival/NetworkEditor.py:81
+msgid "SDO Server"
+msgstr ""
+
+#: ../dialogs/PouDialog.py:37 ../controls/ProjectPropertiesPanel.py:144
+msgid "SFC"
+msgstr "SFC"
+
+#: ../PLCGenerator.py:1392
+#, python-brace-format
+msgid "SFC jump in pou \"{a1}\" refers to non-existent SFC step \"{a2}\""
+msgstr ""
+
+#: ../PLCGenerator.py:773
+#, python-format
+msgid "SFC transition in POU \"%s\" must be connected."
+msgstr ""
+
+#: ../dialogs/PouTransitionDialog.py:36 ../dialogs/PouActionDialog.py:32
+#: ../dialogs/PouDialog.py:37
+msgid "ST"
+msgstr "ST"
+
+#: ../PLCOpenEditor.py:334
+msgid "ST files (*.st)|*.st|All files|*.*"
+msgstr ""
+
+#: ../svgui/svgui.py:128
+msgid "SVG files (*.svg)|*.svg|All files|*.*"
+msgstr ""
+
+#: ../features.py:35
+msgid "SVGUI"
+msgstr ""
+
+#: ../BeremizIDE.py:222 ../BeremizIDE.py:253 ../PLCOpenEditor.py:113
+#: ../PLCOpenEditor.py:148
+msgid "Save"
+msgstr "Mentés"
+
+#: ../BeremizIDE.py:254 ../PLCOpenEditor.py:115 ../PLCOpenEditor.py:149
+msgid "Save As..."
+msgstr "Mentés másként..."
+
+#: ../BeremizIDE.py:224
+msgid "Save as"
+msgstr "Mentés mint"
+
+#: ../ProjectController.py:511
+msgid "Save path is the same as path of a project! \n"
+msgstr "Mentési elérési út ugyanaz mint a projekt elérési újta!\n"
+
+#: ../dialogs/SearchInProjectDialog.py:69
+msgid "Scope"
+msgstr ""
+
+#: ../IDEFrame.py:623
+msgid "Search"
+msgstr "Keresés"
+
+#: ../dialogs/SearchInProjectDialog.py:45 ../IDEFrame.py:382
+#: ../IDEFrame.py:428
+msgid "Search in Project"
+msgstr "Keresés a Projektben"
+
+#: ../dialogs/DurationEditorDialog.py:47
+msgid "Seconds:"
+msgstr "Másodpercek:"
+
+#: ../IDEFrame.py:388
+msgid "Select All"
+msgstr "Mindet kiválaszt"
+
+#: ../editors/Viewer.py:289 ../editors/TextViewer.py:306
+#: ../controls/LocationCellEditor.py:97 ../controls/VariablePanel.py:290
+#: ../controls/VariablePanel.py:350
+msgid "Select a variable class:"
+msgstr "Változó osztály kiválasztás:"
+
+#: ../ProjectController.py:1257
+msgid "Select an editor:"
+msgstr "Szerkesztő kiválasztás:"
+
+#: ../controls/PouInstanceVariablesPanel.py:281
+msgid "Select an instance"
+msgstr "Példány kiválasztás"
+
+#: ../IDEFrame.py:607
+msgid "Select an object"
+msgstr "Objektum kiválasztás"
+
+#: ../ProjectController.py:518
+msgid "Selected directory already contains another project. Overwrite? \n"
+msgstr ""
+"A kiválasztott könyvtálr már tartalmaz egy másik projektet. Felülírjam?\n"
+
+#: ../plcopen/iec_std.csv:70
+msgid "Selection"
+msgstr "Kiválasztás"
+
+#: ../dialogs/SFCDivergenceDialog.py:65
+msgid "Selection Convergence"
+msgstr ""
+
+#: ../dialogs/SFCDivergenceDialog.py:64
+msgid "Selection Divergence"
+msgstr ""
+
+#: ../dialogs/DiscoveryDialog.py:82
+msgid "Service Discovery"
+msgstr "Szolgáltatás Felfedezés"
+
+#: ../dialogs/DiscoveryDialog.py:85
+msgid "Services available:"
+msgstr "Elérhető szolgáltatások:"
+
+#: ../dialogs/LDElementDialog.py:76
+msgid "Set"
+msgstr "Beállítás"
+
+#: ../plcopen/iec_std.csv:62
+msgid "Shift left"
+msgstr "Balra léptetés"
+
+#: ../plcopen/iec_std.csv:63
+msgid "Shift right"
+msgstr "Jobbra léptetés"
+
+#: ../ProjectController.py:1867
+msgid "Show IEC code generated by PLCGenerator"
+msgstr "PLCGenerator által létrehozott IEC kód mutatása"
+
+#: ../canfestival/canfestival.py:389
+msgid "Show Master"
+msgstr "Master mutatása"
+
+#: ../canfestival/canfestival.py:390
+msgid "Show Master generated by config_utils"
+msgstr "Mutassa a config_utils által létrehozott Master-t"
+
+#: ../ProjectController.py:1865
+msgid "Show code"
+msgstr "Kód mutatása"
+
+#: ../dialogs/SFCDivergenceDialog.py:67
+msgid "Simultaneous Convergence"
+msgstr ""
+
+#: ../dialogs/SFCDivergenceDialog.py:66
+msgid "Simultaneous Divergence"
+msgstr ""
+
+#: ../plcopen/iec_std.csv:27
+msgid "Sine"
+msgstr "Szinusz"
+
+#: ../editors/ResourceEditor.py:68
+msgid "Single"
+msgstr "Egyes"
+
+#: ../targets/toolchain_makefile.py:126
+msgid "Source didn't change, no build.\n"
+msgstr "Forrás nem változott, nincs újrafordítás.\n"
+
+#: ../PLCGenerator.py:397
+#, python-brace-format
+msgid ""
+"Source signal has to be defined for single task '{a1}' in resource "
+"'{a2}.{a3}'."
+msgstr ""
+
+#: ../plcopen/iec_std.csv:23
+msgid "Square root (base 2)"
+msgstr ""
+
+#: ../plcopen/definitions.py:48
+msgid "Standard function blocks"
+msgstr ""
+
+#: ../ProjectController.py:1843 ../Beremiz_service.py:263
+msgid "Start PLC"
+msgstr "PLC indítása"
+
+#: ../ProjectController.py:1046
+#, python-format
+msgid "Start build in %s\n"
+msgstr "Fordítás indítása a %s-ban\n"
+
+#: ../ProjectController.py:1360
+msgid "Started"
+msgstr "Elindult"
+
+#: ../ProjectController.py:1648
+msgid "Starting PLC\n"
+msgstr "PLC elindul\n"
+
+#: ../BeremizIDE.py:365
+msgid "Status ToolBar"
+msgstr "Státusz Eszköztár"
+
+#: ../editors/Viewer.py:612 ../editors/Viewer.py:2391
+msgid "Step"
+msgstr "Lépés"
+
+#: ../ProjectController.py:1846
+msgid "Stop"
+msgstr "Állj"
+
+#: ../Beremiz_service.py:264
+msgid "Stop PLC"
+msgstr "PLC Állj"
+
+#: ../ProjectController.py:1848
+msgid "Stop Running PLC"
+msgstr "Futó PLC megállítása"
+
+#: ../ProjectController.py:1361
+msgid "Stopped"
+msgstr "Megállt"
+
+#: ../ProjectController.py:1620
+msgid "Stopping debugger...\n"
+msgstr "Hibakereső megállítása...\n"
+
+#: ../editors/DataTypeEditor.py:54
+msgid "Structure"
+msgstr "Struktúra"
+
+#: ../editors/DataTypeEditor.py:54
+msgid "Subrange"
+msgstr "Altartomány"
+
+#: ../plcopen/iec_std.csv:35
+msgid "Subtraction"
+msgstr "Kivonás"
+
+#: ../ProjectController.py:1085
+msgid "Successfully built.\n"
+msgstr "Sikeres fordítás.\n"
+
+#: ../IDEFrame.py:447
+msgid "Switch perspective"
+msgstr "Perspektíva váltás"
+
+#: ../dialogs/SearchInProjectDialog.py:165 ../dialogs/FindInPouDialog.py:115
+msgid "Syntax error in regular expression of pattern to search!"
+msgstr "Szintaktikai hiba a keresési reguláris kifejezés mintában."
+
+#: ../dialogs/DiscoveryDialog.py:93
+msgid "TYPE"
+msgstr "TÍPUS"
+
+#: ../plcopen/iec_std.csv:29
+msgid "Tangent"
+msgstr "Tangens"
+
+#: ../editors/ResourceEditor.py:83
+msgid "Task"
+msgstr "Feladat"
+
+#: ../editors/ResourceEditor.py:235
+msgid "Tasks:"
+msgstr "Feladatok:"
+
+#: ../controls/VariablePanel.py:73
+msgid "Temp"
+msgstr "Ideiglenes"
+
+#: ../version.py:30
+msgid ""
+"The best place to ask questions about Beremiz/PLCOpenEditor\n"
+"is project's mailing list: beremiz-devel@lists.sourceforge.net\n"
+"\n"
+"This is the main community support channel.\n"
+"For posting it is required to be subscribed to the mailing list.\n"
+"\n"
+"You can subscribe to the list here:\n"
+"https://lists.sourceforge.net/lists/listinfo/beremiz-devel"
+msgstr ""
+"A legjobb hely a kérdések feltevésére a Beremiz/PLCOpenEditor kapcsán\n"
+"a projekt levelezési listája: beremiz-devel@lists.sourceforge.net\n"
+"\n"
+"Ez a fő támogatási csatorna.\n"
+"Az üzenet küldéshez szükséges a regisztráció a levelező listára.\n"
+"\n"
+"Itt lehet regisztrálni:\n"
+"https://lists.sourceforge.net/lists/listinfo/beremiz-devel"
+
+#: ../editors/FileManagementPanel.py:180
+#, python-format
+msgid ""
+"The file '%s' already exist.\n"
+"Do you want to replace it?"
+msgstr ""
+
+#: ../editors/LDViewer.py:882
+msgid "The group of block must be coherent!"
+msgstr ""
+
+#: ../BeremizIDE.py:542 ../IDEFrame.py:1015
+msgid "There are changes, do you want to save?"
+msgstr "Változások történtek, menteni akarja?"
+
+#: ../IDEFrame.py:1658 ../IDEFrame.py:1677
+#, python-format
+msgid ""
+"There is a POU named \"%s\". This could cause a conflict. Do you wish to "
+"continue?"
+msgstr ""
+
+#: ../IDEFrame.py:1102
+msgid ""
+"There was a problem printing.\n"
+"Perhaps your current printer is not set correctly?"
+msgstr ""
+
+#: ../editors/LDViewer.py:891
+msgid "This option isn't available yet!"
+msgstr "Ez az opció még nem létezik!"
+
+#: ../controls/DebugVariablePanel/DebugVariablePanel.py:565
+#, python-format
+msgid "Tick: %d"
+msgstr "Ütem: %d"
+
+#: ../plcopen/iec_std.csv:40
+msgid "Time"
+msgstr "Idő"
+
+#: ../plcopen/iec_std.csv:40 ../plcopen/iec_std.csv:41
+msgid "Time addition"
+msgstr "Idő összeadás"
+
+#: ../plcopen/iec_std.csv:86
+msgid "Time concatenation"
+msgstr "Idő összefűzés"
+
+#: ../plcopen/iec_std.csv:60 ../plcopen/iec_std.csv:61
+msgid "Time division"
+msgstr "Idő osztás"
+
+#: ../plcopen/iec_std.csv:46 ../plcopen/iec_std.csv:47
+msgid "Time multiplication"
+msgstr "Idő szorzás"
+
+#: ../plcopen/iec_std.csv:48 ../plcopen/iec_std.csv:49
+msgid "Time subtraction"
+msgstr "Idő kivonás"
+
+#: ../plcopen/iec_std.csv:42 ../plcopen/iec_std.csv:43
+msgid "Time-of-day addition"
+msgstr "Napszak TOD összeadás"
+
+#: ../plcopen/iec_std.csv:52 ../plcopen/iec_std.csv:53
+#: ../plcopen/iec_std.csv:54 ../plcopen/iec_std.csv:55
+msgid "Time-of-day subtraction"
+msgstr "Napszak TOD kivonás"
+
+#: ../dialogs/ForceVariableDialog.py:172
+msgid "Toggle value"
+msgstr "Érték átbillentés"
+
+#: ../editors/Viewer.py:548
+msgid "Top"
+msgstr "Felső"
+
+#: ../ProjectController.py:1855
+msgid "Transfer"
+msgstr "Átvitel"
+
+#: ../ProjectController.py:1857
+msgid "Transfer PLC"
+msgstr "PLC átvitel"
+
+#: ../ProjectController.py:1820
+msgid "Transfer completed successfully.\n"
+msgstr "Átvitel sikeresen befejezve.\n"
+
+#: ../ProjectController.py:1823
+msgid "Transfer failed\n"
+msgstr "Átvitel nem sikerült\n"
+
+#: ../editors/Viewer.py:613 ../editors/Viewer.py:2393
+#: ../editors/Viewer.py:2420
+msgid "Transition"
+msgstr "Átváltás"
+
+#: ../PLCGenerator.py:1518
+#, python-format
+msgid ""
+"Transition \"%s\" body must contain an output variable or coil referring to "
+"its name"
+msgstr ""
+
+#: ../dialogs/PouTransitionDialog.py:84
+msgid "Transition Name"
+msgstr ""
+
+#: ../dialogs/PouTransitionDialog.py:53
+msgid "Transition Name:"
+msgstr ""
+
+#: ../PLCGenerator.py:1609
+#, python-brace-format
+msgid "Transition with content \"{a1}\" not connected to a next step in \"{a2}\" POU"
+msgstr ""
+
+#: ../PLCGenerator.py:1598
+#, python-brace-format
+msgid ""
+"Transition with content \"{a1}\" not connected to a previous step in "
+"\"{a2}\" POU"
+msgstr ""
+
+#: ../plcopen/plcopen.py:1323
+#, python-format
+msgid "Transition with name %s doesn't exist!"
+msgstr ""
+
+#: ../PLCControler.py:98
+msgid "Transitions"
+msgstr ""
+
+#: ../dialogs/AboutDialog.py:131
+msgid "Translated by"
+msgstr ""
+
+#: ../editors/ResourceEditor.py:68
+msgid "Triggering"
+msgstr "Triggerelés"
+
+#: ../Beremiz_service.py:478
+msgid "Twisted unavailable."
+msgstr ""
+
+#: ../dialogs/ActionBlockDialog.py:39 ../editors/ResourceEditor.py:83
+#: ../editors/DataTypeEditor.py:50 ../editors/CodeFileEditor.py:739
+#: ../controls/VariablePanel.py:53 ../controls/VariablePanel.py:54
+msgid "Type"
+msgstr "Típus"
+
+#: ../dialogs/BrowseLocationsDialog.py:49
+msgid "Type and derivated"
+msgstr ""
+
+#: ../canfestival/config_utils.py:336 ../canfestival/config_utils.py:624
+#, python-format
+msgid "Type conflict for location \"%s\""
+msgstr ""
+
+#: ../plcopen/iec_std.csv:16
+msgid "Type conversion"
+msgstr "Típus konvertálás"
+
+#: ../editors/DataTypeEditor.py:162
+msgid "Type infos:"
+msgstr ""
+
+#: ../dialogs/BrowseLocationsDialog.py:50
+msgid "Type strict"
+msgstr ""
+
+#: ../dialogs/SFCDivergenceDialog.py:59 ../dialogs/SFCTransitionDialog.py:58
+#: ../dialogs/LDPowerRailDialog.py:57 ../dialogs/BrowseLocationsDialog.py:100
+#: ../dialogs/FBDBlockDialog.py:66 ../dialogs/ConnectionDialog.py:59
+msgid "Type:"
+msgstr "Típus:"
+
+#: ../canfestival/config_utils.py:462 ../canfestival/config_utils.py:476
+#, python-format
+msgid "Unable to define PDO mapping for node %02x"
+msgstr ""
+
+#: ../targets/Xenomai/__init__.py:39
+#, python-format
+msgid "Unable to get Xenomai's %s \n"
+msgstr ""
+
+#: ../PLCGenerator.py:961 ../PLCGenerator.py:1214
+#, python-brace-format
+msgid "Undefined block type \"{a1}\" in \"{a2}\" POU"
+msgstr ""
+
+#: ../PLCGenerator.py:254
+#, python-format
+msgid "Undefined pou type \"%s\""
+msgstr ""
+
+#: ../IDEFrame.py:360 ../IDEFrame.py:421
+msgid "Undo"
+msgstr "Vissza"
+
+#: ../ProjectController.py:423
+msgid "Unknown"
+msgstr "Ismeretlen"
+
+#: ../editors/Viewer.py:394
+#, python-format
+msgid "Unknown variable \"%s\" for this POU!"
+msgstr ""
+
+#: ../ProjectController.py:420 ../ProjectController.py:421
+msgid "Unnamed"
+msgstr "Névtelen"
+
+#: ../PLCControler.py:638
+#, python-format
+msgid "Unnamed%d"
+msgstr "Névtelen %d"
+
+#: ../controls/VariablePanel.py:284
+#, python-format
+msgid "Unrecognized data size \"%s\""
+msgstr ""
+
+#: ../editors/DataTypeEditor.py:630 ../controls/VariablePanel.py:827
+msgid "User Data Types"
+msgstr "Felhasználói Adat Típus"
+
+#: ../canfestival/SlaveEditor.py:65 ../canfestival/NetworkEditor.py:86
+msgid "User Type"
+msgstr ""
+
+#: ../PLCControler.py:97
+msgid "User-defined POUs"
+msgstr ""
+
+#: ../dialogs/ActionBlockDialog.py:39
+msgid "Value"
+msgstr "Érték"
+
+#: ../editors/DataTypeEditor.py:259
+msgid "Values:"
+msgstr "Értékek:"
+
+#: ../dialogs/ActionBlockDialog.py:43 ../editors/Viewer.py:585
+#: ../editors/Viewer.py:2423
+msgid "Variable"
+msgstr "Változó"
+
+#: ../editors/Viewer.py:309 ../editors/Viewer.py:339 ../editors/Viewer.py:361
+#: ../editors/TextViewer.py:292 ../editors/TextViewer.py:343
+#: ../editors/TextViewer.py:366 ../controls/VariablePanel.py:329
+msgid "Variable Drop"
+msgstr ""
+
+#: ../dialogs/FBDVariableDialog.py:64
+msgid "Variable Properties"
+msgstr "Változó Tulajdonságok"
+
+#: ../editors/Viewer.py:289 ../editors/TextViewer.py:306
+#: ../controls/LocationCellEditor.py:97 ../controls/VariablePanel.py:290
+#: ../controls/VariablePanel.py:350
+msgid "Variable class"
+msgstr "Változó osztály"
+
+#: ../editors/Viewer.py:396 ../editors/TextViewer.py:387
+msgid "Variable don't belong to this POU!"
+msgstr "Változó nem ehhez a POU-hoz tartozik!"
+
+#: ../dialogs/LDElementDialog.py:89
+msgid "Variable:"
+msgstr "Változó:"
+
+#: ../controls/VariablePanel.py:72
+msgid "Variables"
+msgstr "Változók"
+
+#: ../controls/ProjectPropertiesPanel.py:152
+msgid "Vertical:"
+msgstr "Függőleges"
+
+#: ../Beremiz_service.py:588
+msgid "WAMP client startup failed. "
+msgstr ""
+
+#: ../connectors/WAMP/__init__.py:91
+#, python-format
+msgid "WAMP connecting to URL : %s\n"
+msgstr ""
+
+#: ../connectors/WAMP/__init__.py:131
+msgid "WAMP connection timeout"
+msgstr ""
+
+#: ../connectors/WAMP/__init__.py:150
+#, python-format
+msgid "WAMP connection to '%s' failed.\n"
+msgstr ""
+
+#: ../Beremiz_service.py:564
+msgid "WAMP import failed :"
+msgstr ""
+
+#: ../wxglade_hmi/wxglade_hmi.py:37
+msgid "WXGLADE GUI"
+msgstr "WXGLADE GUI"
+
+#: ../dialogs/PouDialog.py:129 ../editors/LDViewer.py:891
+msgid "Warning"
+msgstr "Figyelmeztetés"
+
+#: ../ProjectController.py:707
+msgid "Warnings in ST/IL/SFC code generator :\n"
+msgstr ""
+
+#: ../dialogs/SearchInProjectDialog.py:78
+msgid "Whole Project"
+msgstr "Teljes Projekt"
+
+#: ../controls/ProjectPropertiesPanel.py:120
+msgid "Width:"
+msgstr "Szélesség:"
+
+#: ../dialogs/FindInPouDialog.py:91
+msgid "Wrap search"
+msgstr ""
+
+#: ../dialogs/AboutDialog.py:130
+msgid "Written by"
+msgstr "Írta"
+
+#: ../features.py:34
+msgid "WxGlade GUI"
+msgstr ""
+
+#: ../svgui/svgui.py:142
+msgid ""
+"You don't have write permissions.\n"
+"Open Inkscape anyway ?"
+msgstr ""
+
+#: ../wxglade_hmi/wxglade_hmi.py:154
+msgid ""
+"You don't have write permissions.\n"
+"Open wxGlade anyway ?"
+msgstr ""
+
+#: ../ProjectController.py:371
+msgid ""
+"You must have permission to work on the project\n"
+"Work on a project copy ?"
+msgstr ""
+
+#: ../editors/LDViewer.py:886
+msgid ""
+"You must select the block or group of blocks around which a branch should be"
+" added!"
+msgstr ""
+
+#: ../editors/LDViewer.py:666
+msgid "You must select the wire where a contact should be added!"
+msgstr ""
+
+#: ../dialogs/SFCStepNameDialog.py:48 ../dialogs/PouNameDialog.py:46
+msgid "You must type a name!"
+msgstr ""
+
+#: ../dialogs/ForceVariableDialog.py:193
+msgid "You must type a value!"
+msgstr ""
+
+#: ../IDEFrame.py:438
+msgid "Zoom"
+msgstr ""
+
+#: ../dialogs/DurationEditorDialog.py:155
+msgid "days"
+msgstr ""
+
+#: ../PLCOpenEditor.py:343
+#, python-format
+msgid "error: %s\n"
+msgstr ""
+
+#: ../util/ProcessLogger.py:169
+#, python-brace-format
+msgid "exited with status {a1} (pid {a2})\n"
+msgstr ""
+
+#: ../PLCOpenEditor.py:406 ../PLCOpenEditor.py:408
+msgid "file : "
+msgstr ""
+
+#: ../dialogs/PouDialog.py:32
+msgid "function"
+msgstr ""
+
+#: ../PLCOpenEditor.py:409
+msgid "function : "
+msgstr ""
+
+#: ../dialogs/PouDialog.py:32
+msgid "functionBlock"
+msgstr ""
+
+#: ../dialogs/DurationEditorDialog.py:155
+msgid "hours"
+msgstr ""
+
+#: ../PLCOpenEditor.py:409
+msgid "line : "
+msgstr ""
+
+#: ../dialogs/DurationEditorDialog.py:157
+msgid "milliseconds"
+msgstr ""
+
+#: ../dialogs/DurationEditorDialog.py:156
+msgid "minutes"
+msgstr ""
+
+#: ../dialogs/PouDialog.py:32
+msgid "program"
+msgstr ""
+
+#: ../dialogs/DurationEditorDialog.py:156
+msgid "seconds"
+msgstr ""
+
+#: ../plcopen/iec_std.csv:84
+msgid "string from the middle"
+msgstr ""
+
+#: ../plcopen/iec_std.csv:82
+msgid "string left of"
+msgstr ""
+
+#: ../plcopen/iec_std.csv:83
+msgid "string right of"
+msgstr ""
+
+#: ../Beremiz.py:164
+msgid "update info unavailable."
+msgstr ""
+
+#: ../PLCOpenEditor.py:341
+#, python-format
+msgid "warning: %s\n"
+msgstr ""
+
+#: ../PLCControler.py:972
+#, python-brace-format
+msgid "{a1} \"{a2}\" can't be pasted as a {a3}."
+msgstr ""
+
+#: ../ConfigTreeNode.py:56
+#, python-brace-format
+msgid ""
+"{a1} XML file doesn't follow XSD schema at line %{a2}:\n"
+"{a3}"
+msgstr ""
+
+#: Extra XSD strings
+msgid "CanFestivalSlaveNode"
+msgstr ""
+
+msgid "CAN_Device"
+msgstr ""
+
+msgid "CAN_Baudrate"
+msgstr ""
+
+msgid "NodeId"
+msgstr ""
+
+msgid "Sync_Align"
+msgstr ""
+
+msgid "Sync_Align_Ratio"
+msgstr ""
+
+msgid "CanFestivalNode"
+msgstr ""
+
+msgid "Sync_TPDOs"
+msgstr ""
+
+msgid "CanFestivalInstance"
+msgstr ""
+
+msgid "CAN_Driver"
+msgstr ""
+
+msgid "Generic"
+msgstr ""
+
+msgid "Command"
+msgstr ""
+
+msgid "Xenomai"
+msgstr ""
+
+msgid "XenoConfig"
+msgstr ""
+
+msgid "Compiler"
+msgstr ""
+
+msgid "CFLAGS"
+msgstr ""
+
+msgid "Linker"
+msgstr ""
+
+msgid "LDFLAGS"
+msgstr ""
+
+msgid "Linux"
+msgstr "Linux"
+
+msgid "Win32"
+msgstr "Win32"
+
+msgid "BaseParams"
+msgstr ""
+
+msgid "IEC_Channel"
+msgstr "IEC_Csatorna"
+
+msgid "Enabled"
+msgstr "Engedélyezve"
+
+msgid "BeremizRoot"
+msgstr "BeremizGyökér"
+
+msgid "TargetType"
+msgstr "CélTípus"
+
+msgid "Libraries"
+msgstr "Könyvtárak"
+
+msgid "URI_location"
+msgstr "URI  helye"
+
+msgid "Disable_Extensions"
+msgstr "Bővítmények Tiltása"
+
+msgid "%(codefile_name)s"
+msgstr "%(codefile_name)s"
+
+msgid "variables"
+msgstr "változók"
+
+msgid "variable"
+msgstr "változó"
+
+msgid "name"
+msgstr "név"
+
+msgid "type"
+msgstr "típus"
+
+msgid "class"
+msgstr "osztály"
+
+msgid "initial"
+msgstr "kezdő"
+
+msgid "desc"
+msgstr "leírás"
+
+msgid "onchange"
+msgstr "változáskor"
+
+msgid "opts"
+msgstr ""
+
+#: Extra TC6 documentation strings
+msgid "0 - current time, 1 - load time from PDT"
+msgstr ""
+
+msgid "Preset datetime"
+msgstr ""
+
+msgid "Copy of IN"
+msgstr ""
+
+msgid "Datetime, current or relative to PDT"
+msgstr ""
+
+msgid ""
+"The real time clock has many uses including time stamping, setting dates and"
+" times of day in batch reports, in alarm messages and so on."
+msgstr ""
+
+msgid "1 = integrate, 0 = hold"
+msgstr ""
+
+msgid "Overriding reset"
+msgstr ""
+
+msgid "Input variable"
+msgstr ""
+
+msgid "Initial value"
+msgstr ""
+
+msgid "Sampling period"
+msgstr ""
+
+msgid "NOT R1"
+msgstr ""
+
+msgid "Integrated output"
+msgstr ""
+
+msgid ""
+"The integral function block integrates the value of input XIN over time."
+msgstr ""
+
+msgid "0 = reset"
+msgstr ""
+
+msgid "Input to be differentiated"
+msgstr ""
+
+msgid "Differentiated output"
+msgstr ""
+
+msgid ""
+"The derivative function block produces an output XOUT proportional to the "
+"rate of change of the input XIN."
+msgstr ""
+
+msgid "0 - manual , 1 - automatic"
+msgstr "0 - kézi , 1 - automata"
+
+msgid "Process variable"
+msgstr "Folyamat változó"
+
+msgid "Set point"
+msgstr "Alapjel"
+
+msgid "Manual output adjustment - Typically from transfer station"
+msgstr ""
+
+msgid "Proportionality constant"
+msgstr "Arányos tag állandó"
+
+msgid "Reset time"
+msgstr "Reset idő"
+
+msgid "Derivative time constant"
+msgstr "Differenciáló tag állandó"
+
+msgid "PV - SP"
+msgstr "PV - SP"
+
+msgid "FB for integral term"
+msgstr "FB az integráló taghoz"
+
+msgid "FB for derivative term"
+msgstr "FB a differenciáló taghoz"
+
+msgid ""
+"The PID (proportional, Integral, Derivative) function block provides the "
+"classical three term controller for closed loop control."
+msgstr ""
+"The PID (arányos, integráló, differenciáló) funkció blokk megvalósítja a "
+"klasszikus 3 tagó zárt hurkú szabályzót."
+
+msgid "0 - track X0, 1 - ramp to/track X1"
+msgstr ""
+
+msgid "Ramp duration"
+msgstr "Rámpázás ideje"
+
+msgid "BUSY = 1 during ramping period"
+msgstr "BUSY = 1 a rámpázási periódus közben"
+
+msgid "Elapsed time of ramp"
+msgstr "Rámpázásból eltelt idő"
+
+msgid "The RAMP function block is modelled on example given in the standard."
+msgstr ""
+
+msgid ""
+"The hysteresis function block provides a hysteresis boolean output driven by"
+" the difference of two floating point (REAL) inputs XIN1 and XIN2."
+msgstr ""
+
+msgid "The SR bistable is a latch where the Set dominates."
+msgstr ""
+
+msgid "The RS bistable is a latch where the Reset dominates."
+msgstr ""
+
+msgid ""
+"The semaphore provides a mechanism to allow software elements mutually "
+"exclusive access to certain ressources."
+msgstr ""
+
+msgid "The output produces a single pulse when a rising edge is detected."
+msgstr ""
+
+msgid "The output produces a single pulse when a falling edge is detected."
+msgstr ""
+
+msgid ""
+"The up-counter can be used to signal when a count has reached a maximum "
+"value."
+msgstr ""
+
+msgid ""
+"The down-counter can be used to signal when a count has reached zero, on "
+"counting down from a preset value."
+msgstr ""
+
+msgid ""
+"The up-down counter has two inputs CU and CD. It can be used to both count "
+"up on one input and down on the other."
+msgstr ""
+
+msgid "first input parameter"
+msgstr "első bemeneti paraméter"
+
+msgid "second input parameter"
+msgstr "második bemeneti paraméter"
+
+msgid "first output parameter"
+msgstr "első kimeneti paraméter"
+
+msgid "second output parameter"
+msgstr "második kimeneti paraméter"
+
+msgid "internal state: 0-reset, 1-counting, 2-set"
+msgstr "belső állapot: 0-törlés, 1-számlálás, 2-beállítás"
+
+msgid ""
+"The pulse timer can be used to generate output pulses of a given time "
+"duration."
+msgstr ""
+"Különböző hosszúságú kimeneti impulzusok előállítására az impulzus időzítő "
+"használható."
+
+msgid ""
+"The on-delay timer can be used to delay setting an output true, for fixed "
+"period after an input becomes true."
+msgstr ""
+
+msgid ""
+"The off-delay timer can be used to delay setting an output false, for fixed "
+"period after input goes false."
+msgstr ""

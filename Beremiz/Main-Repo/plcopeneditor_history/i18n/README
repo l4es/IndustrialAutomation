@@ -1,0 +1,11 @@
+To generate message.pot file:
+
+	python mki18n.py -p --domain=PLCOpenEditor
+	
+To generate .mo files for all languages:
+
+	python mki18n.py -m --moTarget=../locale --domain=PLCOpenEditor
+
+To generate app.fil:
+	
+    find .. -name "*.py" -exec grep -q '_(' {} ';' -print -o -name "*.csv" -print > app.fil

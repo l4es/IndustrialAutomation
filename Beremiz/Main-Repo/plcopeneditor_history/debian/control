@@ -1,0 +1,17 @@
+Source: plcopeneditor
+Section: devel
+Priority: standard
+Maintainer: <edouard.tisserant@gmail.com>
+Build-Depends: debhelper (>= 5)
+Standards-Version: 3.7.2
+
+Package: plcopeneditor
+Architecture: any
+Depends: libwxgtk2.8-0, libwxbase2.8-0
+Description: The PLCopen Editor saves and loads XML projects accordingly to PLCopen TC6-XML Schemes.
+ Edits all 5 of the IEC-61131-3 languages :
+     - FBD -> Function Block Diagram
+     - SFC -> Sequential Function Chart
+     - LD -> Ladder Diagram
+     - ST -> Structured Text
+     - IL -> Instruction List

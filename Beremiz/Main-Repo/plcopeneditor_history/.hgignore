@@ -1,0 +1,6 @@
+.project
+
+syntax: regexp
+\.pyc$
+syntax: regexp
+^\.settings.*$

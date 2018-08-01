@@ -1,0 +1,94 @@
+diff -pruN M2Crypto-0.22.6rc2.orig/setup.py M2Crypto-0.22.6rc2/setup.py
+--- M2Crypto-0.22.6rc2.orig/setup.py	2015-10-19 14:34:45.000000000 +0200
++++ M2Crypto-0.22.6rc2/setup.py	2015-10-20 18:48:14.231865096 +0200
+@@ -28,6 +28,23 @@ except ImportError:
+ from distutils.core import Extension
+ from distutils.file_util import copy_file
+ 
++# DISTUTILS HOT PATCH
++from distutils.cygwinccompiler import Mingw32CCompiler
++_old_mw32_init=Mingw32CCompiler.__init__
++def Mingw32CCompInit(self, *args, **kwargs):
++    _old_mw32_init(self, *args, **kwargs)
++    for n in ["compiler", "compiler_so", "compiler_cxx", "linker_so"] :
++        l = getattr(self,n)
++        pfx = os.getenv("MINGCCPREFIX")
++        l[0] = pfx+l[0]
++    self.linker_so.insert(1, "-static-libgcc")
++Mingw32CCompiler.__init__ = Mingw32CCompInit
++
++import distutils
++distutils.sysconfig.get_python_inc = lambda *x,**y : os.getenv("PYTHONINC")
++distutils.cygwinccompiler.get_msvcr = lambda *x,**y : []
++distutils.util.get_platform = lambda *x,**y : "win32" 
++distutils.sysconfig._init_nt()
+ 
+ class _M2CryptoBuildExt(build_ext.build_ext):
+     '''Specialization of build_ext to enable swig_opts to inherit any
+@@ -40,14 +57,9 @@ class _M2CryptoBuildExt(build_ext.build_
+ 
+         build_ext.build_ext.initialize_options(self)
+ 
+-        # openssl is the attribute corresponding to openssl directory prefix
+-        # command line option
+-        if os.name == 'nt':
+-            self.libraries = ['ssleay32', 'libeay32']
+-            self.openssl = 'c:\\pkg'
+-        else:
+-            self.libraries = ['ssl', 'crypto']
+-            self.openssl = '/usr'
++        self.openssl = "mhooooo"
++        self.libraries = ['ssleay32', 'libeay32']
++        self.libraries += ['ws2_32', 'crypt32', 'gdi32', "python27", "winstrm"]
+ 
+     def finalize_options(self):
+         '''Overloaded build_ext implementation to append custom openssl
+@@ -56,7 +68,8 @@ class _M2CryptoBuildExt(build_ext.build_
+         build_ext.build_ext.finalize_options(self)
+ 
+         openssl_include_dir = os.path.join(self.openssl, 'include')
+-        openssl_library_dir = os.path.join(self.openssl, 'lib')
++        #openssl_library_dir = os.path.join(self.openssl, 'lib')
++        openssl_library_dir = self.openssl
+ 
+         self.swig_opts = ['-I%s' % i for i in self.include_dirs +
+                           [openssl_include_dir]]
+@@ -90,7 +103,7 @@ class _M2CryptoBuildExt(build_ext.build_
+             # Someday distutils will be fixed and this won't be needed.
+             self.library_dirs += [os.path.join(self.openssl, 'bin')]
+ 
+-        self.library_dirs += [os.path.join(self.openssl, openssl_library_dir)]
++        self.library_dirs += [os.getenv("PYTHONLIB"), os.path.join(self.openssl, openssl_library_dir)]
+ 
+     def run(self):
+         '''Overloaded build_ext implementation to allow inplace=1 to work,
+diff -pruN M2Crypto-0.22.6rc2.orig/SWIG/_ssl.i M2Crypto-0.22.6rc2/SWIG/_ssl.i
+--- M2Crypto-0.22.6rc2.orig/SWIG/_ssl.i	2015-10-17 21:06:56.000000000 +0200
++++ M2Crypto-0.22.6rc2/SWIG/_ssl.i	2015-10-20 18:48:24.835905739 +0200
+@@ -10,6 +10,9 @@
+ /* $Id$ */
+ 
+ %{
++#define _WIN32_WINNT 0x0600
++#include <winsock2.h>
++#undef _WIN32_WINNT
+ #include <pythread.h>
+ #include <limits.h>
+ #include <openssl/bio.h>
+@@ -17,7 +19,6 @@
+ #include <openssl/ssl.h>
+ #include <openssl/tls1.h>
+ #include <openssl/x509.h>
+-#include <poll.h>
+ #include <sys/time.h>
+ %}
+ 
+@@ -514,7 +515,7 @@ static int ssl_sleep_with_timeout(SSL *s
+         return -1;
+     }
+     Py_BEGIN_ALLOW_THREADS
+-    tmp = poll(&fd, 1, ms);
++    tmp = WSAPoll(&fd, 1, ms);
+     Py_END_ALLOW_THREADS
+     switch (tmp) {
+     	case 1:

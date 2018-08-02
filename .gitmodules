@@ -634,3 +634,6 @@
 [submodule "CAMotics/Buildbotics/bbctrl-enclosure"]
 	path = CAMotics/Buildbotics/bbctrl-enclosure
 	url = https://github.com/buildbotics/bbctrl-enclosure.git
+[submodule "Scada-Systems/szarp"]
+	path = Scada-Systems/szarp
+	url = https://github.com/Newterm/szarp.git

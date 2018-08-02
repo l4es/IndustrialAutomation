@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>cgihtml Documentation: Using cgihtml</TITLE>
+<LINK HREF="cgihtml-5.html" REL=next>
+<LINK HREF="cgihtml-3.html" REL=previous>
+<LINK HREF="cgihtml.html#toc4" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="cgihtml-5.html">Next</A>
+<A HREF="cgihtml-3.html">Previous</A>
+<A HREF="cgihtml.html#toc4">Contents</A>
+<HR>
+<H2><A NAME="s4">4. Using cgihtml</A></H2>
+
+<H2><A NAME="ss4.1">4.1 Basic programming structure</A>
+</H2>
+
+<P>There are standard initialization things that you will want to do when
+using this library.  The following template should give you some idea
+of how to properly use this library.
+<P>
+<HR>
+<PRE>
+/* template using cgihtml.a library */
+
+#include &lt;stdio.h&gt;    /* standard io functions */
+#include "cgi-lib.h"  /* CGI-related routines */
+#include "html-lib.h" /* HTML-related routines */
+
+int main()
+{
+  llist entries;  /* define a linked list; this is where the entries */
+                  /* are stored.                                     */
+
+/* parse the form data and add it to the list */
+  read_cgi_input(&amp;entries);  
+
+/* The data is now in a very usable form.  To search the list entries  */
+/* by name, call the function:                                         */
+/*      cgi_val(entries, "nameofentry")                                */
+/* which returns a pointer to the value associated with "nameofentry". */
+
+  html_header();           /* print HTML MIME header */
+  html_begin("Output");    /* send appropriate HTML headers with title */
+                           /*   &lt;title&gt;Output&lt;/title&gt;                  */
+
+/* display whatever data you wish here, probably with printf() */
+
+  html_end();   /* send appropriate HTML end footers (&lt;/body&gt; &lt;/html&gt;) */
+  list_clear(&amp;entries);     /* free up the pointers in the linked list */
+  return 0;
+}
+</PRE>
+<HR>
+<P>
+<H2><A NAME="ss4.2">4.2 Compiling your program</A>
+</H2>
+
+<P>
+<P>To compile your program with the library, include the file
+<CODE>cgihtml.a</CODE> when linking your object files.  For example, if
+your main object file is program.cgi.o, the following should work
+successfully:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+cc -o program.cgi program.cgi.o cgihtml.a
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>
+<HR>
+<A HREF="cgihtml-5.html">Next</A>
+<A HREF="cgihtml-3.html">Previous</A>
+<A HREF="cgihtml.html#toc4">Contents</A>
+</BODY>
+</HTML>

@@ -1,0 +1,8 @@
+on
+	(void)
+Preproc : error in testlexerr.c near line 8: unbalanced '
+Error in testlexerr.c near line 8: Missing single quote '
+Error in testlexerr.c near line 14: Illegal character hex value
+Error in testlexerr.c near line 16: Missing single quote '
+Error in testlexerr.c near line 18: unbalanced "
+Error: clean up forced

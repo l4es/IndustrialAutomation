@@ -1,0 +1,37 @@
+EXPORTS
+    ORTEInit                                @1
+    ORTEDomainStart                         @2
+    ORTEDomainPropDefaultGet                @3
+    ORTEDomainInitEvents                    @4
+    ORTEDomainAppCreate                     @5
+    ORTEDomainAppDestroy                    @6
+    ORTEDomainAppSubscriptionPatternAdd     @7
+    ORTEDomainAppSubscriptionPatternRemove  @8
+    ORTEDomainAppSubscriptionPatternDestroy @9
+    ORTEDomainMgrCreate                     @10
+    ORTEDomainMgrDestroy                    @11
+    ORTEPublicationCreate                   @12
+    ORTEPublicationDestroy                  @13
+    ORTEPublicationPropertiesGet            @14
+    ORTEPublicationPropertiesSet            @15
+    ORTEPublicationWaitForSubscriptions     @16
+    ORTEPublicationGetStatus                @17
+    ORTEPublicationSend                     @18
+    ORTEPublicationSendEx                   @19
+    ORTESubscriptionCreate                  @20
+    ORTESubscriptionDestroy                 @21
+    ORTESubscriptionPropertiesGet           @22
+    ORTESubscriptionPropertiesSet           @23
+    ORTESubscriptionWaitForPublications     @24
+    ORTESubscriptionGetStatus               @25
+    ORTESubscriptionPull                    @26
+    ORTETypeRegisterAdd                     @27
+    ORTETypeRegisterDestroyAll              @28
+    ORTEVerbositySetOptions                 @29
+    ORTEVerbositySetLogFile                 @30
+    ORTESleepMs                             @31
+    IPAddressToString                       @32
+    StringToIPAddress                       @33    
+    NtpTimeToStringMs                       @34
+    NtpTimeToStringUs                       @35
+    

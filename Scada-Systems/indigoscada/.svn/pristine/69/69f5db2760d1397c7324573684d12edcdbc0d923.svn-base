@@ -1,0 +1,56 @@
+In this directory is EiC's primative interface to xv. 
+
+The following is an example session:
+
+First, create some variables:
+
+        EiC> unsigned char red[256*256], green[256*256], blue[256*256];
+        EiC> int i,j;  // create some simple counting variables
+
+Next create some data that ramps from left to right:
+
+        EiC> for(i=0;i<256*256;++i) red[i] = i%256;
+
+Next include EiC's interface to xv
+
+        EiC> #include  xv.h
+        EiC> #include  xvimage.c
+
+The xv.h file, among other things, will provide the following three
+macros:
+
+#define xvGrey(data,w,h)             _xvImage(1,data,NULL,NULL,w,h)
+#define xvRgb(red,green,blue,w,h)    _xvImage(2,red,green,blue,w,h)
+#define xvBin(bin,w,h)               _xvImage(3,bin,NULL,NULL,w,h)
+
+They are used to display 2D 8 bit grey-scale image data, xvGrey,
+colour image data, xvRgb, and binary image data, xvBin. The definition
+for _xvImage is to be found in xvimage.c and the arguments w,h
+represent the image width and height respectively: the width being the
+measure of the image extent along the x-axis.
+
+Now  display the data:
+
+        EiC> xvGrey(red,256,256);  // as a grey-scale image
+        EiC> xvRgb(red,green,blue,256,256);  // as a rgb image
+
+You may have to wait a few seconds for the images to appear. To delete
+a displayed image, just move you cursor into the image display window
+and press the 'q' key.
+
+Note: binary images are simply grey-scale images where all values that
+are not zero are displayed in black, otherwise the values  are displayed
+in white.
+
+First create some binary data:
+
+        EiC> for(i=0;i<256*256;++i) \
+        EiC>     if(red[i] > 127) red[i] = 0; else red[i] = 1;
+
+Now view it:
+        EiC> xvBin(red,256,256);
+
+
+
+
+

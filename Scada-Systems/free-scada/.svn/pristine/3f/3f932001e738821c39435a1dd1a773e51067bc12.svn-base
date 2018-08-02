@@ -1,0 +1,18 @@
+// ArchiverService.idl : IDL source for ArchiverService
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ArchiverService.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(A2A9B189-807D-4BA0-B727-FC95E7A5790F),
+	version(1.0),
+	helpstring("ArchiverService 1.0 Type Library")
+]
+library ArchiverServiceLib
+{
+	importlib("stdole2.tlb");
+};

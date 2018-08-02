@@ -1,0 +1,137 @@
+on
+	(void)
+"abb" is in "cabbie" ["abbie"]
+"you" is in "your" ["your"]
+"not" is not in "It isn't here"
+"it" is in "But it is here" ["it is here"]
+"dad" is in "hodad" ["dad"]
+"yoo" is in "yoohoo" ["yoohoo"]
+"hoo" is in "yoohoo" ["hoo"]
+"oo" is in "yoohoo" ["oohoo"]
+"oh" is in "yoohoo" ["ohoo"]
+"xx" is not in "yoohoo"
+"xx" is in "xx" ["xx"]
+"x" is in "x" ["x"]
+"x" is not in "."
+  0 degrees = 0.000000000000 radians
+ 45 degrees = 0.785398163397 radians
+ 90 degrees = 1.570796326795 radians
+135 degrees = 2.356194490192 radians
+180 degrees = 3.141592653590 radians
+225 degrees = 3.926990816987 radians
+270 degrees = 4.712388980385 radians
+315 degrees = 5.497787143782 radians
+360 degrees = 6.283185307180 radians
+
+0.000000000000 radians =   0 degrees
+0.523598775598 radians =  30 degrees
+1.047197551197 radians =  60 degrees
+1.570796326795 radians =  90 degrees
+2.094395102393 radians = 120 degrees
+2.617993877992 radians = 150 degrees
+3.141592653590 radians = 180 degrees
+3.665191429188 radians = 210 degrees
+4.188790204786 radians = 240 degrees
+4.712388980385 radians = 270 degrees
+5.235987755983 radians = 300 degrees
+5.759586531581 radians = 330 degrees
+6.283185307180 radians = 360 degrees
+seed 1 for 10000 reps...
+1043618065
+round_div(333, 22) = 15
+roman2long(MCIV) returned 1104
+abcdefghijabcdefhijkabcdefghijabcdefghij
+1231231231231231231231231231231231231231
+
+abcdefghijabcdefhijkabcdefghijabcdefghij
+1234512345123451234512345123451234512345
+
+abcdefghijabcdefhijkabcdefghijabcdefghij
+1234567890123456789012345678901234567890
+
+abcdefghijabcdefhijkabcdefghijabcdefghij
+0    1    2    3    4    5    6    7    
+
+abcdefghijabcdefhijkabcdefghijabcdefghij
+1         2         3         4         
+
+soundex("helloworld") returned E4643
+stptok("ItsaniceDay", "iD")
+  buf: "Itsan"
+  returned: "ceDay"
+stptok("ItsaniceDay", "iD")
+  buf: "ce"
+  returned: "ay"
+stptok("ItsaniceDay", "iD")
+  buf: "ay"
+  returned: ""
+Found heLLo!
+Found HELLO!
+Found hello!
+Found hELLo!
+Found HellO!
+One or more of "xyzet" found at "tring"
+Names test
+   aaa is Valid
+   aux is INvalid
+   con is INvalid
+   prn is INvalid
+   nul is INvalid
+  lpt1 is INvalid
+  lpt2 is INvalid
+  lpt3 is INvalid
+  com1 is INvalid
+  com2 is INvalid
+  com3 is INvalid
+  com4 is INvalid
+  bbbb is Valid
+clock$ is INvalid
+cccccc is Valid
+dev/nul is INvalid
+clock$.ext is INvalid
+
+Tokens test
+00fname. is Valid
+01 fname is INvalid
+02fname, is INvalid
+03fname[ is INvalid
+04fname; is INvalid
+05fname: is INvalid
+06fname| is INvalid
+07fname/ is INvalid
+08fname< is INvalid
+09fname> is INvalid
+10fname+ is INvalid
+11fname= is INvalid
+12fname\ is INvalid
+13fname" is INvalid
+14fname] is INvalid
+15fname* is INvalid
+16fname? is INvalid
+filename.17 is Valid
+filename.018 is Valid
+19longfilename is INvalid
+20.longext is INvalid
+21.mlt.exts is INvalid
+a.22 is Valid
+.23 is INvalid
+fname24. is Valid
+Here's a string wrapped to 40 columns:
+
+This is a long line to be wrapped by
+the w_wrap function. Hopefully, things
+will work correctly and it will be
+wrapped between words.  On the other
+hand, maybe I should hope that it
+doesn't work well so I will have an
+opportunity to learn more about what
+I'm doing
+
+And here it's wrapped to 72:
+
+This is a long line to be wrapped by the w_wrap function. Hopefully,
+things will work correctly and it will be wrapped between words.  On
+the other hand, maybe I should hope that it doesn't work well so I will
+have an opportunity to learn more about what I'm doing
+
+	0

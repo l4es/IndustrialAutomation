@@ -1,0 +1,49 @@
+on
+	(void)
+double getNumber( double f ):
+
+    This function is passed a default value then requests a
+    number from stdin.  If a RETURN is entered, the default
+    value is returned.  If a new number is entered, the new
+    number is returned. However, if an invalid number is
+    entered, the function asks for a number again.
+
+    This function is passed a default value then requests a
+    number from stdin.  If a RETURN is entered, the default
+    value is returned.  If a new number is entered, the new
+    number is returned. However, if an invalid number is
+    entered, the function asks for a number again.
+
+    This function is passed a default value then requests a
+    number from stdin.  If a RETURN is entered, the default
+    value is returned.  If a new number is entered, the new
+    number is returned. However, if an invalid number is
+    entered, the function asks for a number again.
+
+
+    This function is passed a default value then requests a
+    number from stdin.  If a RETURN is entered, the default
+    value is returned.  If a new number is entered, the new
+    number is returned. However, if an invalid number is
+    entered, the function asks for a number again.
+
+    This function is passed a default value then requests a
+    number from stdin.  If a RETURN is entered, the default
+    value is returned.  If a new number is entered, the new
+    number is returned. However, if an invalid number is
+    entered, the function asks for a number again.
+
+    This function is passed a default value then requests a
+    number from stdin.  If a RETURN is entered, the default
+    value is returned.  If a new number is entered, the new
+    number is returned. However, if an invalid number is
+    entered, the function asks for a number again.
+
+
+012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678
+
+
+012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678
+
+
+	0

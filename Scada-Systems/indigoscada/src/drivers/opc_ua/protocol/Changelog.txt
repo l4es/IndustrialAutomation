@@ -1,0 +1,196 @@
+OPC Foundation OPC UA ANSI C-Stack
+====================================
+
+Current Version
+
+Version 1.03.341
+
+	Highlights:
+		- added cmake build support for both linux and windows in addition to existing tooling.
+		- added support for OpenSSL 1.1.x in linux and windows.
+			Linux: build_linux.sh works if openssl-1.1.0f or newer is installed, or the
+			necessary include path and lib path is given with the build command:
+			./build_linux.sh MACHINE_OPT="-I $OSSL_INSTALL/include -L $OSSL_INSTALL/lib"
+			Windows: build_win32.bat and build_win64.bat look for the extracted openssl-1.1.0f
+			or newer and build that if found.  Strawberry perl has to be installed.
+		- added new security profiles Aes128_Sha256_RsaOaep and Aes256_Sha256_RsaPss.
+			Note: Aes256_Sha256_RsaPss requires OpenSSL 1.0.2 or newer.
+
+	API changes from the 1.03.340 version:
+
+		- removed OPCUA_SECURELISTENER_SUPPORT_THREADPOOL because of inherent race conditions (issue #32)
+		- added a new configure option to control access in discovery only mode (issue #25):
+			Use OPCUA_SECURELISTENER_DISCOVERY_ALLOW_FSON to enable FindServersOnNetwork in discoyery only mode.
+			Note: Always leave this option disabled unless you are building the Stack for use in the LDS.
+		- fixed memory leaks (issue #27, #28, #29)
+		- fixed encoding of uMessageSecurityModes (issue #36):
+			The value returned from OpcUa_Endpoint_GetMessageSecureChannelSecurityPolicy
+			used the wrong enumeration type OpcUa_MessageSecurityMode instead of
+			OPCUA_ENDPOINT_MESSAGESECURITYMODE values.
+		- fixed OpcUa_EncodeableTypeTable_AddTypes and OpcUa_ProxyStub_AddTypes were potentially moving
+			type entries around.  This rarely used API was changed to not copying the type entries.
+			Therefore the a_pType parameter should always be from the static storage class.
+		- added new API function OpcUa_DestroySecretData.
+		- changed the signature of LoadPrivateKeyFromFile to return the private key in a OpcUa_Key structure.
+		- changed the signature of OpcUa_Channel_BeginConnect and OpcUa_Channel_Connect to expect
+			a pPrivateKey of type OpcUa_Key.
+
+Version 1.03.340
+	
+	Highlights: 
+		- OPC UA 1.03 compatible.
+		- all BSI reported security issues addressed.
+		- linux platform added.
+		- windows and linux layers work with 32 and 64 bit O/S.
+		- optimised async sockets handling implemented.
+		- windows and linux implement full IPv6 support.
+		- pki store implementation reworked to be more flexible.
+		- conformant with strict aliasing rules.
+		- enumeral values are checked on receive.
+		- https protocol reworked and now basically stable.
+		- negotiates tls1 to tls1_2, supports DHE protocols.
+		- tested with gcc's sanitizer asan, tsan and ubsan.
+			
+	API changes from the 1.02.336 version:
+		- 3393 OpcUa_ProxyStubConfiguration: The data type has been extended.
+				bProxyStub_Trace_Enabled set to OpcUa_True to enable traces.
+				iSerializer_MaxRecursionDepth if unsure, set to -1.
+		- 3394 OpcUa_Xxx_CopyTo: This set of functions is not supported.
+		- 3395 OpcUa_Guid_Copy: This function is deprecated now and should
+				not be used any more, because the source and destination
+				parameters were exchanged in the past, and thus it is not clear
+				what this function can be expected to do.
+		- 3396 OpcUa_EncodeabeTypeTable_AddTypes: The function signature has 
+				changed.
+				noOfEncodeableType was removed.
+				ppTypes is assumed to be null-terminated.
+		- 3397 OpcUa_Endpoint_Open: The function signature has changed.
+				sTransportProfileUri was removed because it is redundant.
+				bListenOnAllInterfaces was added.  If unsure, use OpcUa_True.
+				pPrivateKey->Key.Data must be non-zero, even if no security.
+		- 3398 OpcUa_Endpoint_Callback: The function signature has changed.
+				phRawRequestContext and uRequestedLifetime have been removed.
+		- 3399 OpcUa_Endpoint_Event: Some enum values are not supported.
+		- 3400 OpcUa_Channel_SecurityToken: This data type is not supported.
+		- 3401 OpcUa_Channel_Connect: The function signature has changed.
+				sTransportProfileUri has been removed because it is redundant.
+				ppSecurityToken is not supported and has been removed.
+		- 3402 OpcUa_Channel_ConnetionStateChanged: The function singature
+				has changed.
+				pSecurityToken is not supported and has been removed.
+		- 3403 OpcUa_Channel_Event: Some enum values are not supported.
+		- 3404 OpcUa_CertificateStoreConfiguration: has to be replaced by
+				OpcUa_P_OpenSSL_CertificateStore_Config.
+				In the most simple configuation just set the following:
+					pki.PkiType=OpcUa_OpenSSL_PKI;
+					pki.CertificateTrustListLocation="PKI/certs";
+					pki.Flags=0;
+				Use OPCUA_P_PKI_OPENSSL_XXX flags for PKI type OpenSSL
+				Use OPCUA_P_PKI_WIN32_XXX flags for PKI type Win32
+		- 3405 OpcUa_Crypto_CreateCertificate: The function signature has
+				changed.
+				 Instead of validFrom and validTo use validToInSec.
+				 validToInSec is the time in seconds how long the generated
+				 certificate will be valid.
+				 pIssuerCertificate has been removed as only self-signed
+				 certificate are supported.
+				 pCertificate holds a OpcUa_ByteString with the generated
+				 certificate, instead of a raw X509 pointer.
+		- 3406 OpcUa_Crypto_GenerateAsymmetricKeypair has been changed to
+				allocate the memory for PublicKey and PrivateKey.
+		- 3407 OpcUa_PKIProvider_SavePrivateKeyToFile is not supported.
+		- 3408 OpcUa_P_OpenSSL_X509_SaveToFile was an internal function
+				and has been removed.
+		- 3409 OPCUA_USE_STATIC_PLATFORM_INTERFACE is not supported.
+		- 3410 OPCUA_MULTITHREADED: CONFIG_NO is supported,
+				 but you must call OpcUa_SocketManager_Create(OpcUa_Null,0,0)
+				 before OpcUa_Endpoint_Open, and you must call
+				 OpcUa_SocketManager_Delete(OpcUa_Null) between
+				 OpcUa_Endpoint_Close and Opcua_Endpoint_Delete.
+		- 3411 OpcUa_Endpoint_GetPeerInfoBySecureChannelId is not supported,
+				use OpcUa_Endpoint_GetPeerInfo instead.
+
+	Mantis issues, resolved:
+		- 2459 Windows Store Intergration
+		- 2548 Send ERRF if all available connections are used up
+		- 3036 Deadlock in OpcUa_SecureListener
+		- 3047 Protocol comparison should be case insensitive
+		- 3130 Faked certificate chain
+		- 3256 SequenceNumbers not checked
+		- 3268 SHA1 used for explicit trust check
+		- 3305 possible bug within OpcUa_Socket_HandleAcceptEvent
+		- 3355 BSI: Server does not check Receive/SendBufferSize correctly
+		- 3356 BSI: For securityMode None the nonce should be NULL
+		- 3357 BSI: OpenSecureChannel protocol version not checked
+		- 3361 BSI: Possible memory leak with serialized NodeIDs
+		- 3362 BSI: Possible memory fault with invalid certificate chain
+		- 3363 BSI: Possible memory fault with ExtensionObject
+		- 3364 BSI: OpcUa_String_Clear called with uninitialized value
+		- 3385 Bleichenbacher's attack vulnerability
+		- 3412 OpenSecureChannel Renew Response with wrong Secure ChannelID
+
+Version 1.2.336
+
+	Highlights:
+		- Added FindServersOnNetwork and RegisterServer2 services.
+		- Added Basic256Sha256 security policy.
+
+	Mantis issues, resolved:
+		- 3242 Basic256Sha256 iop problem with other stacks
+		- 3108 Limit depth of recursion for variant arrays and diagnosticInfo
+		- 2996 Possible inconsistency in function converting DateTime to String
+		- 2682 Trace functionality needs to be extended with info about Trace Level
+		- 2634 Wrong or out-date comments
+		- 2628 Missing casts cause warning when compiling for x64
+		- 2687 Error label using must be refactored
+		- 2618 Need access to SecureChannel for cleaning up resources
+		- 2657 FileType properties have typos
+		- 2648 New SecurityToken should not be used directly
+		- 2870 ever-recurrence of OPCUA_SOCKET_CLOSE_EVENT or OPCUA_SOCKET_SHUTDOWN_EVENT
+		- 2565 Add implementation of SecurityPolicy Basic256Sha256
+
+	Other:
+		- Windows XP IPv6 socket not opening properly is now resolved.
+		- Updated NodeIds from schemas/NodeIds.csv
+		- Upgraded OpenSSL to 1.0.1p
+		- Fixed and added a unit test for binary decoder recursion limit.
+
+		
+Version 1.2.334 build #3
+
+	Highlights:
+		- NEW: Support for transport profile HTTPS Binary.
+		- NEW: Support for certificate chains.
+		- NEW: Influence certificate validation result in Endpoint event callback (new event type).
+		- API Change: Added SSL certificate validation hook functionality to Channel event callback.
+		- API Change: Endpoint and Channel API (creation and event callback).
+		- API Change: New default (OpenSSL) PKI file store layout and configuration.
+		- Change: Protocol handlers switched to non-blocking write on sockets.
+		- Update: Types and Services adhere to the current Specification level (1.02).
+
+	Mantis issues, resolved: 
+		- 2518  trivial Implementation Bug  Copy/paste error in OpcUa_StatusCode OpcUa_CertificateStoreConfiguration_Clear
+		- 2438  major   Implementation Bug  Crash in OpenSecureChannel handler during renew
+		- 2406  minor   Implementation Bug  Wrong use of const together with OpcUa_StringA
+		- 2440  minor   Implementation Bug  Pointer to Integer conversion problem on 64 bit systems in tcp listener connectionmanager class
+		- 2439  major   Implementation Bug  Invalid unlock order for critical section in secure listener
+		- 2338  minor   Implementation Bug  OpcUa_Guid conversion includes curly braces
+		- 2398  block   Implementation Bug  Inconsistency between UpdateEventDetails in spec and stacks
+		- 1885  minor   Implementation Bug  OpcUa_TcpListener_ProcessHelloMessage is a cause of memory leak possibly.
+		- 1388  minor   Implementation Bug  Can't connect to or host on servers with extended Unicode characters in their host-name (Win32 only).
+		- 1839  major   Implementation Bug  OpcUa_TcpListener_ConnectionManager_Initialize() does not provide address of mutex
+		- 1835  minor   API Change  Problem with key length larger 2048 bits
+		- 2117  major   API Change  CA certificates can not be separated from trust list
+		- 2073  major   Feature Request Add HTTPS protocol mapping to AnsiC Stack
+		- 2213  minor   Implementation Bug  Integration of several minor fixes, improvements and code tweaks from Unified Automation
+		- 2212  major   Implementation Bug  Secure channel may get closed without notifying the application
+		- 1312  minor   Performance Problem Inefficiency in the OpenSSL CStack OpcUa_P_OpenSSL_SeedPRNG function.
+		- 2122  major   API Change  Memory leaks
+		- 2116  major   API Change  Optional security checks for certificates
+		- 1816  minor   Feature Request It would be nice to see in trace message a Level Trace flag.
+		- 2119  minor   API Change  Open Secure Channel policy None
+		- 2123  minor   Feature Request Client Peer information
+		- 2115  major   API Change  UaServer_EndpointCallback missing information for AuditOpenSecureChannelEventType
+		- 2118  minor   API Change  Remove function pointer list for platform layer
+		- 2124  major   Implementation Bug  Memory Leak in OpcUa_TcpListener_ConnectionManager_RemoveConnections (opcua_tcplistener_connectionmanager.c)
+		- 2099  minor   Implementation Bug  Inconsistency in OpcUa_EndpointDescription name attribute

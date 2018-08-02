@@ -1,0 +1,588 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="core">
+      <UniqueIdentifier>{50d99dc0-2341-474d-8714-bbb98e1ffd8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platforms">
+      <UniqueIdentifier>{39ce9f91-6577-496d-b72a-5e70e3610193}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platforms\win32">
+      <UniqueIdentifier>{e52d600a-4dd8-478e-a822-4c5f489e9206}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="securechannel">
+      <UniqueIdentifier>{af9d7d1a-5dc0-4746-a54d-e62aba1bbe15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="transport">
+      <UniqueIdentifier>{61b75ac2-5e61-4290-a768-828e22b8a989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="transport\tcp">
+      <UniqueIdentifier>{f0c715c1-65f2-46eb-a2fe-7e093f9176ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stackcore">
+      <UniqueIdentifier>{a89f3562-1a2d-4635-9c0c-5c6b61923f09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proxystub">
+      <UniqueIdentifier>{567277dd-24e0-4f7a-85b2-3e5ac1f6f92f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proxystub\serverstub">
+      <UniqueIdentifier>{1c6adb01-746c-4b70-96a9-fde611ebcc7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proxystub\clientproxy">
+      <UniqueIdentifier>{2d1bdde0-8d4c-4a52-9f4b-d278d432c903}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="transport\https">
+      <UniqueIdentifier>{cbba7259-5d01-4bdf-804e-927370e6f92d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="core\opcua.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_buffer.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_config.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_core.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_cryptofactory.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_datetime.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_errorhandling.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_exclusions.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_guid.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_list.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_memory.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_memorystream.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_mutex.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_pkifactory.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_proxystub.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_semaphore.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_socket.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_stackstatuscodes.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_statuscodes.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_string.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_thread.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_threadpool.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_timer.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_trace.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\opcua_utilities.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_binary.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_crypto.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_cryptofactory.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_datetime.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_guid.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_interface.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_internal.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_memory.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_mutex.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_openssl.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_openssl_pki.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_pki.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_pkifactory.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_semaphore.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_socket.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_socket_interface.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_socket_internal.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_string.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_thread.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_timer.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_trace.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_types.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_utilities.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_win32_pki.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_platformdefs.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="securechannel\opcua_securechannel_types.h">
+      <Filter>securechannel</Filter>
+    </ClInclude>
+    <ClInclude Include="securechannel\opcua_secureconnection.h">
+      <Filter>securechannel</Filter>
+    </ClInclude>
+    <ClInclude Include="securechannel\opcua_securelistener.h">
+      <Filter>securechannel</Filter>
+    </ClInclude>
+    <ClInclude Include="securechannel\opcua_securelistener_channelmanager.h">
+      <Filter>securechannel</Filter>
+    </ClInclude>
+    <ClInclude Include="securechannel\opcua_securelistener_policymanager.h">
+      <Filter>securechannel</Filter>
+    </ClInclude>
+    <ClInclude Include="securechannel\opcua_securestream.h">
+      <Filter>securechannel</Filter>
+    </ClInclude>
+    <ClInclude Include="securechannel\opcua_soapsecurechannel.h">
+      <Filter>securechannel</Filter>
+    </ClInclude>
+    <ClInclude Include="securechannel\opcua_tcpsecurechannel.h">
+      <Filter>securechannel</Filter>
+    </ClInclude>
+    <ClInclude Include="transport\tcp\opcua_tcpconnection.h">
+      <Filter>transport\tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="transport\tcp\opcua_tcplistener.h">
+      <Filter>transport\tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="transport\tcp\opcua_tcplistener_connectionmanager.h">
+      <Filter>transport\tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="transport\tcp\opcua_tcpstream.h">
+      <Filter>transport\tcp</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_attributes.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_binaryencoder.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_binaryencoderinternal.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_browsenames.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_builtintypes.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_connection.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_credentials.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_crypto.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_decoder.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_encodeableobject.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_encoder.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_enumeratedtype.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_extensionobject.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_identifiers.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_listener.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_messagecontext.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_pki.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_securechannel.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_stream.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_stringtable.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="stackcore\opcua_types.h">
+      <Filter>stackcore</Filter>
+    </ClInclude>
+    <ClInclude Include="proxystub\serverstub\opcua_endpoint.h">
+      <Filter>proxystub\serverstub</Filter>
+    </ClInclude>
+    <ClInclude Include="proxystub\serverstub\opcua_endpoint_internal.h">
+      <Filter>proxystub\serverstub</Filter>
+    </ClInclude>
+    <ClInclude Include="proxystub\serverstub\opcua_serverapi.h">
+      <Filter>proxystub\serverstub</Filter>
+    </ClInclude>
+    <ClInclude Include="proxystub\serverstub\opcua_serverstub.h">
+      <Filter>proxystub\serverstub</Filter>
+    </ClInclude>
+    <ClInclude Include="proxystub\serverstub\opcua_servicetable.h">
+      <Filter>proxystub\serverstub</Filter>
+    </ClInclude>
+    <ClInclude Include="proxystub\clientproxy\opcua_asynccallstate.h">
+      <Filter>proxystub\clientproxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxystub\clientproxy\opcua_channel.h">
+      <Filter>proxystub\clientproxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxystub\clientproxy\opcua_channel_internal.h">
+      <Filter>proxystub\clientproxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxystub\clientproxy\opcua_clientapi.h">
+      <Filter>proxystub\clientproxy</Filter>
+    </ClInclude>
+    <ClInclude Include="proxystub\clientproxy\opcua_clientproxy.h">
+      <Filter>proxystub\clientproxy</Filter>
+    </ClInclude>
+    <ClInclude Include="transport\https\opcua_httpsstream.h">
+      <Filter>transport\https</Filter>
+    </ClInclude>
+    <ClInclude Include="transport\https\opcua_https_internal.h">
+      <Filter>transport\https</Filter>
+    </ClInclude>
+    <ClInclude Include="transport\https\opcua_httpsconnection.h">
+      <Filter>transport\https</Filter>
+    </ClInclude>
+    <ClInclude Include="transport\https\opcua_httpslistener.h">
+      <Filter>transport\https</Filter>
+    </ClInclude>
+    <ClInclude Include="transport\https\opcua_httpslistener_connectionmanager.h">
+      <Filter>transport\https</Filter>
+    </ClInclude>
+    <ClInclude Include="platforms\win32\opcua_p_socket_ssl.h">
+      <Filter>platforms\win32</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="core\opcua_buffer.c">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\opcua_core.c">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\opcua_datetime.c">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\opcua_guid.c">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\opcua_list.c">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\opcua_memory.c">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\opcua_memorystream.c">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\opcua_proxystub.c">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\opcua_string.c">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\opcua_thread.c">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\opcua_threadpool.c">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\opcua_timer.c">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\opcua_trace.c">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\opcua_utilities.c">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_binary.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_cryptofactory.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_datetime.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_guid.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_interface.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_internal.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_memory.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_mutex.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_openssl.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_openssl_aes.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_openssl_hmac_sha.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_openssl_nosecurity.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_openssl_pki.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_openssl_pki_nosecurity.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_openssl_random.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_openssl_rsa.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_openssl_sha.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_openssl_x509.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_pkifactory.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_semaphore.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_socket.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_socket_interface.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_socket_internal.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_string.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_thread.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_timer.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_trace.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_utilities.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_win32_pki.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="securechannel\opcua_secureconnection.c">
+      <Filter>securechannel</Filter>
+    </ClCompile>
+    <ClCompile Include="securechannel\opcua_securelistener.c">
+      <Filter>securechannel</Filter>
+    </ClCompile>
+    <ClCompile Include="securechannel\opcua_securelistener_channelmanager.c">
+      <Filter>securechannel</Filter>
+    </ClCompile>
+    <ClCompile Include="securechannel\opcua_securelistener_policymanager.c">
+      <Filter>securechannel</Filter>
+    </ClCompile>
+    <ClCompile Include="securechannel\opcua_securestream.c">
+      <Filter>securechannel</Filter>
+    </ClCompile>
+    <ClCompile Include="securechannel\opcua_soapsecurechannel.c">
+      <Filter>securechannel</Filter>
+    </ClCompile>
+    <ClCompile Include="securechannel\opcua_tcpsecurechannel.c">
+      <Filter>securechannel</Filter>
+    </ClCompile>
+    <ClCompile Include="transport\tcp\opcua_tcpconnection.c">
+      <Filter>transport\tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="transport\tcp\opcua_tcplistener.c">
+      <Filter>transport\tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="transport\tcp\opcua_tcplistener_connectionmanager.c">
+      <Filter>transport\tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="transport\tcp\opcua_tcpstream.c">
+      <Filter>transport\tcp</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_binarydecoder.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_binaryencoder.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_builtintypes.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_connection.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_crypto.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_decoder.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_encodeableobject.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_encoder.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_enumeratedtype.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_extensionobject.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_listener.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_messagecontext.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_pki.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_securechannel.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_stream.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_stringtable.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="stackcore\opcua_types.c">
+      <Filter>stackcore</Filter>
+    </ClCompile>
+    <ClCompile Include="proxystub\serverstub\opcua_endpoint.c">
+      <Filter>proxystub\serverstub</Filter>
+    </ClCompile>
+    <ClCompile Include="proxystub\serverstub\opcua_serverapi.c">
+      <Filter>proxystub\serverstub</Filter>
+    </ClCompile>
+    <ClCompile Include="proxystub\serverstub\opcua_servicetable.c">
+      <Filter>proxystub\serverstub</Filter>
+    </ClCompile>
+    <ClCompile Include="proxystub\clientproxy\opcua_asynccallstate.c">
+      <Filter>proxystub\clientproxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxystub\clientproxy\opcua_channel.c">
+      <Filter>proxystub\clientproxy</Filter>
+    </ClCompile>
+    <ClCompile Include="proxystub\clientproxy\opcua_clientapi.c">
+      <Filter>proxystub\clientproxy</Filter>
+    </ClCompile>
+    <ClCompile Include="transport\https\opcua_https_internal.c">
+      <Filter>transport\https</Filter>
+    </ClCompile>
+    <ClCompile Include="transport\https\opcua_httpsconnection.c">
+      <Filter>transport\https</Filter>
+    </ClCompile>
+    <ClCompile Include="transport\https\opcua_httpslistener.c">
+      <Filter>transport\https</Filter>
+    </ClCompile>
+    <ClCompile Include="transport\https\opcua_httpslistener_connectionmanager.c">
+      <Filter>transport\https</Filter>
+    </ClCompile>
+    <ClCompile Include="transport\https\opcua_httpsstream.c">
+      <Filter>transport\https</Filter>
+    </ClCompile>
+    <ClCompile Include="platforms\win32\opcua_p_socket_ssl.c">
+      <Filter>platforms\win32</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

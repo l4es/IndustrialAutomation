@@ -1,0 +1,101 @@
+#########################
+# Part 1: LOCAL DEFINITIONS
+
+       TOP = ../..
+     EXTRA = 
+  WARNINGS = 
+  INCLUDES =  -I$(TOP)/include -I.  $(INCLUDE_FLAGS)
+       LIB = 
+
+  DEP_LIBS =
+      LIBS = 
+      DIRS =
+
+    MODULE = GL
+    MODULE_FILE = ../modules.calls
+    LINK_LIBS = 
+
+#########################
+# Part 2: COMMON MAKE PARAMETERS
+
+include $(TOP)/make.proj
+
+#########################
+# Part 3: LOCAL SOURCES 
+
+
+#########################
+# Part 4: LOCAL TARGETS  
+
+moduleOn::  #comment out the next line to turn module ON and recompile EiC
+#	@echo  "#define NO_module_$(MODULE)" >> $(MODULE_FILE)
+
+module_call:: moduleOn
+	@echo "#ifndef NO_module_$(MODULE)" >> $(MODULE_FILE)
+	@echo "module_$(MODULE)();" >> $(MODULE_FILE)
+	@echo "#endif" >> $(MODULE_FILE)
+	@echo  "" >> $(MODULE_FILE)
+	$(DUMMY_TARGET)	
+
+all::
+install:: module_call
+
+clean::
+clobber::clean
+	$(RM) module_call
+
+
+######################################################
+######################################################
+######################################################
+####### HEADERS
+
+headers::
+
+###########################################################
+###########################################################
+###########################################################
+#### libModule 
+
+LIB_DIR = $(TOP)/lib
+LIB =  $(LIB_DIR)/libeic.a
+
+libSRCS =  
+libOBJS = 
+
+SRCS = $(libSRCS)
+
+
+$(LIB): $(libOBJS) 
+	$(RUNLIBCMD)
+lib::$(LIB)
+all::$(LIB)
+
+install:: lib
+install::
+	@echo "$(LINK_LIBS) " >> ../link.libs
+clobber::
+clean::
+
+
+
+#########################
+#########################
+#########################
+# Part 5: COMMON RULES and 
+#     and default Targets
+
+include $(CONFIG_DIR)/make.rules
+
+#########################
+# Part 6: DEPENDENCIES
+
+
+
+
+
+
+
+
+
+

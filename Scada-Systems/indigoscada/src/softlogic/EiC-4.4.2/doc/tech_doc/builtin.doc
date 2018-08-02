@@ -1,0 +1,222 @@
+ALL THE ISSUES IN THIS DOCUMENT REFER TO BUILTIN FUNCTIONS ONLY
+	AND TO ADDING BUILTIN FUNCTIONS TO EiC
+
+
+Examples interface routines can be found in:  
+
+	.../EiC/module/stdClib/src/stdlib.c
+
+The way EiC calls builtin functions is via interface routines. All
+interface routines have the same form and each builtin function must
+have an interface routine if you want to have access to it from the
+interpreter. For example, the interface routine to the <math.h> function
+`pow' is:
+
+#include <math.h>
+#include "eic.h"
+
+val_t eic_pow(void)
+{
+    val_t v;
+    v.dval = pow(arg(0,getargs(),double),
+                 arg(1,getargs(),double));
+    return v;
+}
+
+where val_t specifies a union that holds all allowed data types that
+can be passed between EiC and a builtin function.  The EiC
+`arg' facility comes in several forms, and all are defined in "eic.h":
+
+#define arg_list                  AR_t *
+#define getargc()                 ARGC
+#define getargs()                 AR[2]
+#define nextarg(x,type)           (*((type*)&(--x)->v))
+#define arg(i,x,type)             (*((type*)&x[-(i+1)].v))
+
+
+They provide direct access to EiC's runtime interpreter stack `AR[2]',
+and are comparable in use to C's variable argument mechanims as
+defined in <stdarg.h> (i.e. va_arg).
+
+Interface routines must be added to EiC's symbol table, and this is
+done via the function call (say from the EiC's `main', or from a
+module called from EiC's `main' function, see EiC/main/main.c):
+
+        add_builtinfunc("pow",eic_pow);
+
+The argument `pow' is the name of the function the interpreter will
+see, but `eic_pow' is the function it will actually call. From EiC's
+virtual machine, `interpre.c', the call to a builting function is made
+via:
+
+	case call: /* call a builtin function */
+ 	        ARGC = STK[ToP].v.ival;   /* number of arguments being passed */
+        	AR[2] = &env->LAR[env->lsp];
+	        STK[ToP - 1].v = (*STK[ToP - 1].v.vfunc) (); /* call the function */
+        	env->lsp -= STK[ToP].v.ival;
+	        ToP--;
+        	break;
+
+
+As EiC is type safe, and before EiC's interpreter will call `pow', all
+functions must be prototyped and this is done usually via including the
+appropriate header, and in this case it is <math.h>:
+
+        double pow(double a, double b);
+
+----------
+POINTERS:
+----------
+
+Passing pointers between EiC and a builtin function is complicated by
+the fact that EiC uses safe and unsafe pointer types. The main role of
+unsafe pointer type is in interfacing EiC to existing C code, where
+the passing of pointers directly or indirectly is to be carried out; 
+such as, arrays of pointers or structures that contain pointers.
+
+In EiC, at the interpreter level, all pointers are internally handled
+as safe, much like floats are handled as doubles and chars are handled
+as integers.
+            
+EiC's safe pointer definition is:
+
+                typedef struct {
+                        void *p;     /* current position */
+                        void *sp;    /* start point, lower bound */
+                        void *ep;    /* end point, upper bound */
+                }ptr_t;
+
+Where the value stored at `p' should always satisfy:
+
+                if(p >= sp  && p <= ep)
+                        okay;
+                else
+                        array_bound_violation(p);
+
+An unsafe pointer is simply a pointer that gets stored without the
+lower and upper bound information.  Therefore, the storage space of an
+unsafe pointer is typically a 3rd that required for a safe
+pointer. When used, an unsafe pointer is converted to a safe pointer
+at the assignment level, by filling in zero for the lower bound, and
+infinity for the upper bound.
+
+When passing pointers from builtin code back to EiC, it is upto the
+programmer to use the above structure, defined in "eic.h", and to use
+it correctly; for example, returning a safe pointer from a builtin
+function:
+
+Returning an unsafe pointer to EiC:
+
+#include <limits.h>
+val_t eic_malloc(void)
+{
+    val_t v;
+
+    v.p.p = xmalloc(arg(0,getargs(),size_t));
+    v.p.sp = NULL;
+    v.p.ep = (void*) ULONG_MAX;
+    return v;
+}
+
+Example usage at the interpreter level:
+
+   EiC 1> #include <stdlib.h>  /* get prototype */
+   EiC 2> int * p = malloc(sizeof(int) * 20);
+   EiC 3> int * unsafe q = malloc(sizeof(int) * 20);
+
+
+Example, passing a pointer to the builtin function `foo':
+
+val_t  foo(void)
+{
+    val_t v;
+    ptr_t p;
+
+  /* The EiC interpreter will pass the pointer such that
+   * p.p is the pointer value,
+   * p.sp is its lower bound and
+   * p.ep is its upper bound. For unsafe pointers
+   * this will be 0 and infinity for p.sp and p.ep 
+   * respectively.
+   */ 
+    p = arg(0,getargs(),ptr_t);
+    ...
+} 
+	
+Example usage at the interpreter level:
+
+   EiC 1>  void foo(int * unsafe p); // prototype
+   EiC 2>  int * safe p;
+   EiC 3>  int * unsafe q;
+   EiC 4>  foo(p); foo(q);
+
+
+At the interpreter level, the default pointer type is controlled by
+three pragmas that work on a stack principle:
+
+   #pragma  push_safeptr   /* default pointer type will be safe */
+   #pragma  push_unsafeptr /* default pointer type will be unsafe */
+   #pragma  pop_ptr        /* return to previous setting.
+
+
+The default pointer state in EiC is safe.
+
+   EiC 1> int *p;                  // define a safe pointer
+   EiC 2> #pragma push_unsafeptr
+   EiC 3> int *q                   // define an unsafe pointer
+   EiC 4> #pragma pop_ptr          // return to previous pointer state
+
+
+-----------------
+HANDLING ARRAYS:
+-----------------
+ 
+Internally, when arrays are transformed into pointers a safe pointer
+is setup.  At runtime, it is the responsibility of any builtin
+function that passes safe pointers, through its interface function, to
+initialise them correctly.  Likewise, EiC is responsiable for passes
+correctly initialised pointers to all interface routines that accept
+pointer arguments.
+
+
+-------------------
+HANDLING STRUCTURES
+-------------------
+
+If the function returns a structure or union then parameter 0 is
+treated as a hidden variable, and it will be used to hold the address
+of were to store the result. It is upto the calling routine to
+establish this parameter and the return statement handles the copying
+of the return struct/union to the address stored at parameter 0.
+
+For interpreter functions, EiC handles all of this, but for builtin
+functions, the interface routine must handle some of it. As an
+example, consider EiC's interface routine to the builtin function `div'
+defined in <stdlib.h> as:
+
+         div_t div(int numer, int denom);
+
+EiC's interface routine is:
+
+
+val_t eic_div(void)
+{
+    /*  rem: the return type is a structure;
+     *  therefore, the first slot is used for
+     *  house keeping by EiC
+     */
+       
+    val_t v;
+    static div_t d; /* create some memory */
+
+    /* skip argument position 0 and start at 1 */
+    d  = div(arg(1,getargs(),int),
+             arg(2,getargs(),int));
+
+    /* set safe */
+    v.p.sp = v.p.p = &d;
+    v.p.ep = (char*)&d + sizeof(div_t);
+
+    return v;
+}
+

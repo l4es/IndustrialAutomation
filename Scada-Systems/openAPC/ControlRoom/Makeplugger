@@ -1,0 +1,33 @@
+PROGRAM = OpenPlugger
+
+INCLUDEDIRS = -I. -I.. -I ../common/ -I ../liboapc/ -I ../plugins/
+
+LIBDIRS = 
+
+LIBS = -loapc -ldl -lrt
+
+CXXSOURCES = PluggerMain.cpp
+
+DBGFLAGS = -O2 -g0 -DNDEBUG
+ifeq ($(DEBUG),1)
+DBGFLAGS = -O0 -g3 -D_DEBUG
+endif
+
+CXXOBJECTS = $(CXXSOURCES:.cpp=.o)
+CXXFLAGS = -Wall -DESRI_UNIX $(INCLUDEDIRS) -DEXCLUDE_WX -DENV_PLUGGER -DENV_LINUX $(DBGFLAGS)
+CXX = g++
+
+LDFLAGS = $(LIBDIRS) $(LIBS)
+
+all: $(PROGRAM)
+
+$(PROGRAM): $(CXXOBJECTS)
+	$(CXX) -o $@ $(CXXOBJECTS) $(LDFLAGS)
+
+clean:
+	$(RM) -f $(CXXOBJECTS) $(PROGRAM)
+
+run:
+	./$(PROGRAM)
+
+

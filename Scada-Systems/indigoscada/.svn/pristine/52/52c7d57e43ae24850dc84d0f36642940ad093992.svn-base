@@ -1,0 +1,12 @@
+#!/home/edb/bin/eic -f
+
+#include <stdio.h>
+
+
+printf("hello 1\n");
+
+int main()
+{
+	printf("hello 2\n");
+	return 0;
+}

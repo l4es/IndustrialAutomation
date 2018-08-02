@@ -1,0 +1,24 @@
+HKCR
+{
+	MPriborDBAccessor.DataSetEx.1 = s 'DataSetEx Class'
+	{
+		CLSID = s '{5CC9F9E8-EE41-4B76-9453-724CF3AC1CBC}'
+	}
+	MPriborDBAccessor.DataSetEx = s 'DataSetEx Class'
+	{
+		CLSID = s '{5CC9F9E8-EE41-4B76-9453-724CF3AC1CBC}'
+		CurVer = s 'MPriborDBAccessor.DataSetEx.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {5CC9F9E8-EE41-4B76-9453-724CF3AC1CBC} = s 'DataSetEx Class'
+		{
+			ProgID = s 'MPriborDBAccessor.DataSetEx.1'
+			VersionIndependentProgID = s 'MPriborDBAccessor.DataSetEx'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{2B4525FF-0734-4D9C-9FF4-0E3B6D462702}'
+		}
+	}
+}

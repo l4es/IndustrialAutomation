@@ -1,0 +1,155 @@
+<HTML>
+<HEAD>
+<TITLE>Remote Interprocess Communication Server</TITLE>
+<UL>
+<LI><A HREF = "#about">About RIPC</A>
+<LI><A HREF = "#struct">Structure of RIPC package</A>
+<LI><A HREF = "doc/html/index.html">API documentation</A>
+<LI><A HREF = "#quick">Quick start</A>
+<LI><A HREF = "#distribution">Distribution terms</A>
+</UL>
+
+<BODY>
+<HR>
+<H2><A NAME = "about">About RIPC</A></H2>
+
+RIPC is library providing interprocess synchronization and communication 
+capabilities for processes running at different network nodes.
+RIPC provides wide set of standard primitives:
+semaphore, event, FIFO queue, barrier, shared memory, shared and exclusive locks.
+<P>
+
+<H2><A NAME = "struct">Structure of RIPC package</A></H2>
+
+RIPC package consists of two libraries:<P>
+
+<DL>
+<DT><code>ripcclient.lib</code><DD>Provides stubs of RIPC primitives sending requests to the server
+<DT><code>ripcserver.lib</code><DD>Server implementation of RIPC primitives
+</DL><P>
+
+RIPC supports local and remote sessions. Remote sessions
+created by <code>RIPCClientFactory</code> class
+establish connection with the server through TCP/IP stream socket.
+Server process should be started before clients.
+In this case primitives at local computer servers as stubs and redirect 
+requests to the server.
+This mode is useful to provide synchronization and communication
+between several processes at the same or different computers.<P>
+
+Local sessions are created by <code>RIPCServerFactory</code>
+class. Them are useful to provide synchronization of threads within the same
+process (if you want to use more sophisticated synchronization primitives than
+standard synchronization facilities provided by OS). 
+The single local session can be shared by all threads.
+No server process should be started in this case.<P>
+
+
+<H2><A NAME = "quick">Quick start</A></H2>
+
+Include files needed for use of RIPC package are located in <code>inc</code> directory.
+Libraries are located in <code>lib</code> directory. Version of RIPC for windows is
+provided with binaries of these librarier and server built by Visual C++ comiler.
+At all other system you will have to build these libraries yourself.
+Change directory to <code>src</code> and exceute <code>make</code> (for Visual
+C++ RIPC provides <code>make.bat</code> file which invokes MS <code>nmake</code> utility
+for <code>makefile.mvc</code>). By default static version of librarier are built. To
+produce dynamically linked librariers, edit makefile and assign set 
+<code>GENERATE_DLL=1</code>. In case of using DLL libraries do not forget to include them in 
+<code>PATH</code> (at Windows) or in <code>LD_LIBRARY_PATH</code> (at Unix).
+Server executable file will be placed in <code>bin</code> directory.<P>
+
+Server can be started by the following command:<P>
+
+<PRE>
+     RIPCServer PORT
+</PRE>
+
+Here <code>PORT</code> is any free IP port at your system. Server is starts
+interactive dialog, allowing you the inspect current state of the server
+(<code>info</code> command) or terminate the server (<code>exit</code> command).<P>
+
+It is possible to run server in debug mode. Debug level can be specified using 
+<code>-debug</code> option:<P>
+
+<UL>
+<LI><code>0</code> no debugging
+<LI><code>1</code> trace all exceptions
+<LI><code>2</code> trace session open/close requests
+<LI><code>3</code> trace all requests
+</UL><P>
+
+Default debug level is 1.<P>
+
+It is possible to start server in daemon mode, without interactive dialog.
+It can be done with <ocde>-d</code> option. For example, at Windows the following command:
+
+<PRE>
+     RIPCServer -d 6000
+</PRE>
+
+will start server process in the background. To send commands to the server started in 
+daemon mode you can use <code>RIPCServerMonitor</code>:
+
+<PRE>
+   Usage: 
+       RIPCServerMonitor HOSTNAME PORT [command]
+   Commands:
+       SHUTDOWN            shutdown server
+       INFO                dump information about server status
+</PRE>
+If command is not specified in command line, server monitor starts interactive dialog.
+In this dialog, except SHTDOWN and INFO commands it also supports EXIT and HELP commands.
+EXIT command is used to close dialog, HELP shows list of available commands.
+
+Now it is possible to start client processes using RIPC library.
+Client should create RIPC sessions using 
+<code>RIPCClientFactory.create(char const* address, int port)</code> method. 
+Here <code>address</code> is address of the host where server is started and 
+<code>port</code> is port listening by the server. Before exit client
+should close session. Below is example of using RIPC library:
+
+<PRE>
+#inlcude "ripc.h"
+
+void testRIPC(char const* hostname, int port) 
+{
+    RIPCFactory* factory = RIPCClientFactory::getInstance();
+    RIPCSession* session = factory->create(host, port);
+
+    RIPCMutex*   mutex = session->createMutex("my-mutex", false);
+    mutex->lock();
+    // do something
+    mutex->unlock();
+
+    delete session;
+}
+</PRE>
+
+<H2><A NAME = "distribution">Distribution terms</A></H2>
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the <A HREF="#Software">Software</A>), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:<P>
+
+<A NAME="Software">
+<B>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+AUTHOR OF THIS SOFTWARE BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</B>
+</A><P>
+
+I will provide e-mail support and help you with development applciation using RIPC package.<P>
+<HR>
+<P ALIGN="CENTER"><A HREF="http://www.garret.ru/~knizhnik">
+<B>Look for new version at my homepage</B></A><B> | </B>
+<A HREF="mailto:knizhnik@garret.ru">
+<B>E-Mail me about bugs and problems</B></A></P>
+</BODY>
+</HTML>

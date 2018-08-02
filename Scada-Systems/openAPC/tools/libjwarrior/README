@@ -1,0 +1,5 @@
+This library gives easy access to the JoyWarrior accelerometers, it offers
+the possibility to get (averaged) acceleration values and speed values calculated
+out of the last acceleration data. For more information about the JoyWarrior
+accelerometer please refer to http://www.codemercs.com/index.php?id=80&L=1
+

@@ -1,0 +1,150 @@
+DlgEdit:v1.2:Dialog:
+Dialog {
+	ClassHeader {SimulatorCounts.h}
+	ClassSource {SimulatorCounts.cpp}
+	ClassName {SimulatorCounts}
+	DataHeader {SimulatorCountsData.h}
+	DataSource {SimulatorCountsData.cpp}
+	DataName {SimulatorCountsData}
+	WindowBaseClass {QWidget}
+	WindowFlags {16}
+}
+WidgetLayout {
+InitialPos {-1 -1}
+Size {460 100}
+MinSize {0 0}
+MaxSize {32767 32767}
+Grid {10}
+TextTranslated {TRUE}
+
+Label {
+		Text {Sample Period}
+		Alignment {AlignHCenter|AlignVCenter|ExpandTabs}
+		AutoResize {FALSE}
+		Margin {0}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {10 10 100 20}
+		Name {Label_5}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+User {
+		UserClassHeader {../../widgets/valedit.hpp}
+		UserClassName {TIMEEDIT}
+		Rect {20 40 80 30}
+		Name {User_2}
+		Variable {Time}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+Label {
+		Text {1st Size Mean }
+		Alignment {AlignHCenter|AlignVCenter|ExpandTabs}
+		AutoResize {FALSE}
+		Margin {0}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {120 10 100 20}
+		Name {Label_7}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+Label {
+		Text {Variation}
+		Alignment {AlignHCenter|AlignVCenter|ExpandTabs}
+		AutoResize {FALSE}
+		Margin {0}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {240 10 100 20}
+		Name {Label_8}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+User {
+		UserClassHeader {../../widgets/valedit.hpp}
+		UserClassName {INTEDIT}
+		Rect {120 40 100 30}
+		Name {User_5}
+		Variable {Mean}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+User {
+		UserClassHeader {../../widgets/valedit.hpp}
+		UserClassName {INTEDIT}
+		Rect {240 40 100 30}
+		Name {User_6}
+		Variable {Variation}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+
+}

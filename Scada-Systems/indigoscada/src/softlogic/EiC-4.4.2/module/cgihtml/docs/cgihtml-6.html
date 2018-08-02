@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>cgihtml Documentation: Example programs</TITLE>
+<LINK HREF="cgihtml-7.html" REL=next>
+<LINK HREF="cgihtml-5.html" REL=previous>
+<LINK HREF="cgihtml.html#toc6" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="cgihtml-7.html">Next</A>
+<A HREF="cgihtml-5.html">Previous</A>
+<A HREF="cgihtml.html#toc6">Contents</A>
+<HR>
+<H2><A NAME="s6">6. Example programs</A></H2>
+
+<H2><A NAME="ss6.1">6.1 test.cgi</A>
+</H2>
+
+<P>test.cgi is a simple test program.  It will display the CGI
+environment, and if there is any input, it will parse and display
+those values as well.
+<P>
+<H2><A NAME="ss6.2">6.2 query-results</A>
+</H2>
+
+<P>This is a generic forms parser which is useful for testing purposes.
+It will parse both GET and POST forms successfully.  Simply call it as
+the form "action", and it will return all of the names and associated
+values entered by the user.
+<P>query-results also works from the command line.  For instance, if you
+run query-results from the command line, you will see:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+Content-type: text/html
+
+&lt;html&gt; &lt;head&gt;
+&lt;title&gt;Query Results&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+--- cgihtml Interactive Mode ---
+Enter CGI input string.  Remember to encode appropriate characters.
+Press ENTER when done:
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Suppose you enter the input string:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+name=eugene&amp;age=21
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Then query-results will return:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+ Input string: name=eugene&amp;age=21
+String length: 18
+--- end cgihtml Interactive Mode ---
+
+&lt;h1&gt;Query results&lt;/h1&gt;
+&lt;dl&gt;
+  &lt;dt&gt; &lt;b&gt;name&lt;/b&gt;
+  &lt;dd&gt; eugene
+  &lt;dt&gt; &lt;b&gt;age&lt;/b&gt;
+  &lt;dd&gt; 21
+&lt;/dl&gt;
+&lt;/body&gt; &lt;/html&gt;
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>This feature is extremely useful if you are debugging code.
+query-results will also handle file upload properly and
+transparently.  It will save the file to the directory defined by
+UPLOADDIR (/tmp by default).
+<P>
+<H2><A NAME="ss6.3">6.3 mail.cgi</A>
+</H2>
+
+<P>This is a generic comments program which will parse the form, check
+to see if the intended recipient is a valid recipient, and send
+the e-mail if so.
+<P>You will want to edit two things in the source file: <CODE>WEBADMIN</CODE>
+and <CODE>AUTH</CODE>.  <CODE>WEBADMIN</CODE> is the complete e-mail address
+to which the comments should be sent by default.  <CODE>AUTH</CODE> is the
+exact location of the authorization file.
+<P>The authorization file is simple a text file with a list of valid
+e-mail recipients.  Users will only be able to use this program to
+send e-mail to those listed in the authorization file.  Your file
+might look like this:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+web@www.company.com
+jschmoe@www.company.com
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>In the above case, you would only be able to send e-mail to
+<CODE>web@www.company.com</CODE> and <CODE>jschmoe@www.company.com</CODE>.
+Make sure you include the value of <CODE>WEBADMIN</CODE> in your
+authorization file.
+<P>The following are valid variables in your form:
+<P>
+<UL>
+<LI>to</LI>
+<LI>name</LI>
+<LI>email</LI>
+<LI>subject</LI>
+<LI>content</LI>
+</UL>
+<P>If there is no <CODE>to</CODE> variable defined in the form, the mail will
+be sent to <CODE>WEBADMIN</CODE> by default.  mail.cgi will reject empty
+forms.
+<P>mail.cgi adds a "X-Sender:" header on each message so recipients know
+that the message was sent by this program and not by a regular mail
+client.
+<P>
+<H2><A NAME="ss6.4">6.4 index-sample.cgi</A>
+</H2>
+
+<P>Imagemaps have become increasingly popular to use on home pages.
+Unfortunately, imagemaps are not lynx friendly; if you forget to
+include some sort of text index as well, lynx users will not be able
+to access any of your subpages.
+<P>You can circumvent this problem by using a CGI program as your home
+page rather than an HTML page (or by using server-side includes).
+This CGI program will determine whether your browser is a graphics or
+text-browser.  If it is a text-browser, it will send a text HTML file,
+otherwise it will send a graphics HTML file.
+<P>You will need to create two HTML files: a graphical and a text one.
+Place the names of these files in the macros: TEXT_PAGE and
+IMAGE_PAGE.
+<P>
+<H2><A NAME="ss6.5">6.5 ignore.cgi</A>
+</H2>
+
+<P>Sends a status code of 204, signifying no content.  If you use
+imagemaps, you can set "default" to /cgi-bin/ignore.cgi.  Whenever
+someone clicks on a part of the picture which is undefined, the server
+will just ignore the request.
+<P>
+<HR>
+<A HREF="cgihtml-7.html">Next</A>
+<A HREF="cgihtml-5.html">Previous</A>
+<A HREF="cgihtml.html#toc6">Contents</A>
+</BODY>
+</HTML>

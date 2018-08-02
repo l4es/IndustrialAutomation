@@ -1,0 +1,6 @@
+﻿<?xml version="1.0"?>
+<body version="1.0">
+  <Tags>
+    <Tag TagName="TEPm010101" AccessName="1" Type="I/O Real" Item="400611" MinRaw="0" MaxRaw="32000" MinEU="0" MaxEU="100" EngUnits="%" Comment="Temperature 1" />
+  </Tags>
+</body>

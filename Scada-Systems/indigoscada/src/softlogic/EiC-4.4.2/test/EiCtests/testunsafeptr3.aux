@@ -1,0 +1,78 @@
+
+#pragma push_unsafeptr
+
+"<testfloat.c>";
+#include testfloat.c
+main();
+:clear testfloat.c
+
+"<testflow.c>";
+#include testflow.c
+main();
+:clear testflow.c
+
+"<testflow2.c>";
+#include testflow2.c
+main();
+:clear testflow2.c
+
+"<testfunc.c>";
+#include testfunc.c
+main();
+:clear testfunc.c
+
+"<testinit1.c>";
+#include testinit1.c
+main();
+:clear testinit1.c
+
+"<testinit2.c>";
+#include testinit2.c
+main();
+:clear testinit2.c
+
+"<testlexer.c>";
+#include testlexer.c
+main();
+:clear testlexer.c
+
+"<testlimits.c>";
+#include testlimits.c
+main();
+:clear testlimits.c
+
+"<testlimits2.c>";
+#include testlimits2.c
+main();
+:clear testlimits2.c
+
+"<testlogi.c>";
+#include testlogi.c
+main();
+:clear testlogi.c
+
+
+"<testpopen.c>";
+#include testpopen.c
+main();
+:clear testpopen.c
+
+"<testpp2.c>";
+#include testpp2.c
+:clear testpp2.c
+
+"<testpp3.c>";
+#include testpp3.c
+main();
+:clear testpp3.c
+
+"<testprintf.c>";
+#include testprintf.c
+main();
+:clear testprintf.c
+
+#include <assert.h>
+assert(sizeof(int *) < sizeof(int * safe));
+
+:exit
+

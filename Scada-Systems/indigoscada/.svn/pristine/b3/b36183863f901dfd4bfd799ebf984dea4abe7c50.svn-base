@@ -1,0 +1,2 @@
+uic iec61850driver_configuration.ui -o iec61850driverConfigurationData.h
+uic -impl iec61850driverConfigurationData.h iec61850driver_configuration.ui -o iec61850driverConfigurationData.cpp

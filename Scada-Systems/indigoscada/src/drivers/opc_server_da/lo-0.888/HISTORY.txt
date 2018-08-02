@@ -1,0 +1,157 @@
+Light OPC Server development library
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+RELEASE HISTORY
+
+
+(the last 4 digits in version number are month & day)
+
+Year 2003:
+
+[v0.888-0313] 
+Compatible with fresh OPC headers.
+
+[v0.887-0303] ***BUGFIX***
+Memory corruption bug fixed in lo_variant_changetype_array().
+This function is not used by lightopc itself but provided for
+applications. It was introdused in v0.88.
+Crash may occure when this function used to convert from 
+complex types such as VT_ARRAY|VT_BSTR, VT_ARRAY|VT_UNKNOWN etc.
+
+Changed logic fixing the W2k timing problem.
+
+
+[v0.886-0219] 
+Source archive v0.886-0217 was broken.
+
+[v0.886-0217] (2003)
+Conditions of *ldSubscribe() callback can be altered.
+See lightopc.h for loDF_SUBSCRIBE_RAW.
+
+
+Year 2002:
+
+[v0.885-1227] 
+Support for COM aggregation has been included.
+See lightopc.h for loClientCreate_agg().
+
+The SAMPLE.cpp cleaned up a bit.
+
+Makefile.MSVC now compatible with both VS6 and VS7 (DOT-net).
+
+
+[v0.884-0930] ***BUGFIX***
+Crash on changing quality of a zero-lenght BSTR.
+
+[v0.883-0819] ***BUGFIX***
+In versions 0.86 to 0.882 function loCreateService() can be 
+executed only once: Second call will hang. This bug doesn't affect 
+applications those didn't call loCreateService() more than once
+since server process / dll loaded.
+
+[v0.882-0808]
+The function loCacheTimestamp() has been introduced for event-driven tags. 
+It does support multiple groups of tags sharing the same timestams.
+
+
+[v0.881-0717]
+The IOPCServer::RemoveGroup() method does not longer 
+invoke CoDisconnectObject() unless bForce=1 specified.
+
+[v0.88-0621]
+GMEM_flags have been changed. Previous implementation of 
+	in-proc AsyncIO1 may go wrong with some clients.
+V0.87 specefic bug in loOP_STOP implementation has been fixed.
+The lo_variant_change_array() has been introduced.
+
+
+[v0.87-0518]
+Minor changes. No bugfix.
+
+[v0.87-0516]
+Significant faster tag creation.
+A few functions have been renamed:
+        loRegisterServer        loServerRegister
+        loUnregisterServer      loServerUnregister
+        loLastTrid              loTridLast
+        loWaitTrid              loTridWait
+The functions loTridOrder() and
+lo_variant_to_filetime(), lo_filetime_to_variant() have been introduced.
+We have added workaround for a minor W2k specific timing problem.
+        (Under some circumance granularity of Sleep()/WaitFor...() might
+        became less than granularity of system clock. see LO_TIMEBACK for
+        details).
+The Pthreads now supported (though, native sychronization is still better).
+
+
+[v0.86-0414]
+Bug in implementation of loDW_ALLDONE has been fixed.
+The all allocated enumerators now can be disconnected
+via loSetState() (in earlier versions only servers & groups could
+be disconnected this way).
+
+[v0.85-0404]
+Bug in apartment model support (loDf_BOTHMODEL) has been fixed.
+Minor changes in interface of loSetState().
+
+[v0.84-0328]
+A bug in loRegisterServer() has been fixed.
+Fixed OnDataChange callback generation for fresh added/activated
+items (in earlier versions a new item has not been included in
+OnDataChange until loCacheUpdate() occured).
+
+[v0.82-0311]
+Minor corrections for Win95/98.
+Interfaces has been changed:
+		- ldAskItemID();
+		- ldReadTags();
+		- ldWriteTags().
+
+[v0.8-0211] (2002)
+Tuned to MINGW32/gcc.
+Improved sample.
+Minor change in loClientChain().
+
+
+Year 2001:
+
+[v0.7-1227]
+Enhanced support for ItemProperties.
+
+[v0.6-1108]
+Bug in GroupEnumerator has been fixed.
+
+[v0.6-1101]
+Improved support for large amounts of tags.
+
+[v0.6-0928]
+per-group localization now supported.
+Example of the localized enumerated tag is included.
+
+[v0.5-0918]
+Cosmetic changes in interface.
+Bug on writing to arrays has fixed.
+
+[v0.4-0629]
+ItemProperties now is supported.
+Bugs with SetDatatypes & Group browsing are fixed.
+Improved support for interrupt - driven tags.
+(The timestamps for all not changed tags can be updated
+ at once without even providing the tag list).
+
+[v0.3-0426]
+The logger accepts symbolyc names of levels.
+The sample now contains the code for log redirections and
+runtime reconfigurations.
+
+The "both" threading model now is supported. Althrough we suggested
+not to use it when possible. Threading behavior of the server can
+be tuned by compile-time options LO_USE_FREEMARSH/LO_USE_BOTHMODEL
+as well as by run-time options loDf_FREEMARSH/loDf_BOTHMODEL.
+
+[v0.2] 8 March 2001
+Initial release.
+No AsyncIO except data change subscription.
+
+***********************************************************************
+

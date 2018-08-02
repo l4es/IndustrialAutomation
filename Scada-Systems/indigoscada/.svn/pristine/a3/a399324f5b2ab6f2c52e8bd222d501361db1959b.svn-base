@@ -1,0 +1,213 @@
+\floatstyle{ruled}
+\newfloat{Function}{htbp}{lop}[chapter]
+\newfloat{Listing}{htbp}{lop}[chapter]
+\newfloat{Header}{htbp}{lop}[section]
+
+
+\setlength{\textheight}{20cm}
+\setlength{\textwidth}{16cm}
+
+\newcommand{\circumflex}{{\^{}}\xspace}
+\newcommand{\T}[1] {{\bf \tt #1}}
+\newcommand{\U}[1] {{\textup #1}}
+\newcommand{\proto}[1]{
+\begin{quote} 
+\begin{verbatim} 
+#1 
+\end{verbatim} 
+\end{quote}}
+
+
+\newcommand{\cell}[1]{\fbox{\rule[-1mm]{0mm}{4mm}#1}}
+
+\newsavebox{\fminibox}
+\newlength{\fminilength}
+\newenvironment{warning}[1][\linewidth]
+{\setlength{\fminilength}{#1}%
+\addtolength{\fminilength}{-5\fboxsep}%
+\addtolength{\fminilength}{-5\fboxrule}%
+        \begin{lrbox}{\fminibox}\begin{minipage}{\fminilength}}
+{\end{minipage}\end{lrbox}
+\vspace*{1ex}\marginnote{\large$\spadesuit$}
+\noindent\fbox{\usebox{\fminibox}}\vspace{1ex}}
+
+\newcommand{\marginnote}[1]
+        {\mbox{}\marginpar{\raggedleft\hspace{0pt}#1}}
+
+
+
+\newcommand{\entrylabel}[1]{\mbox{\textsf{#1:}}\hfil}
+\newenvironment{entry}
+        { \begin{list}{}%
+                {\renewcommand{\makelabel}{\entrylabel}%
+                \setlength{\labelwidth}{35pt}%
+                \setlength{\leftmargin}{\labelwidth}%
+                \addtolength{\leftmargin}{\labelsep}%
+                }%
+        }%
+        { \end{list} }
+
+
+\newenvironment{Ventry}[1]
+        { \begin{list}{}
+                {\renewcommand{\makelabel}{\entrylabel}
+                \settowidth{\labelwidth}{\textsf{#1:}}
+                \setlength{\leftmargin}{\labelwidth}
+                \addtolength{\leftmargin}{\labelsep}
+                }
+        }
+        { \end{list} }
+
+\newenvironment{Ventry2}[1]
+        { \footnotesize \begin{list}{}
+                {\renewcommand{\makelabel}{\entrylabel}
+                \settowidth{\labelwidth}{\textsf{#1:}}
+                \setlength{\itemsep}{0pt}
+                \setlength{\leftmargin}{\labelwidth}
+                \addtolength{\leftmargin}{\labelsep}
+                }
+        }
+        { \end{list} \normalsize }
+
+
+\newcommand{\Lentry}[1]{\mbox{\textsf{#1}}\hfil}
+\newenvironment{Ventry3}[1]%
+        { \footnotesize \begin{list}{}%
+                {\renewcommand{\makelabel}{\Lentry}%
+                \settowidth{\labelwidth}{\textsf{#1}}%
+                \setlength{\itemsep}{0pt}%
+                \setlength{\leftmargin}{\labelwidth}%
+                \addtolength{\leftmargin}{\labelsep}%
+                }%
+        }%
+        { \end{list} \normalsize}
+
+
+
+\newcommand{\directive}[1] {\T{\##1}}
+\newcommand{\binExp}[3] {
+	\begin{production}
+	\bp {%
+	#1\U{:}\\
+	\>      #2  \U{[} \T{#3}  #2 \U{]}*  
+	}%
+	\end{production}
+}
+
+\newcommand{\leftshift}{$<<$\xspace}
+\newcommand{\rightshift}{$>>$\xspace}
+
+\newcommand{\ChpPage}[1]{Chapter~\ref{chp:#1}, pg:~\pageref{chp:#1}\xspace}
+\newcommand{\SecPage}[1]{\S~\ref{sec:#1}, pg:~\pageref{sec:#1}\xspace}
+\newcommand{\Sec}[1]{\S~\ref{sec:#1}\xspace}
+\newcommand{\Page}[1]{pg:~\pageref{#1}\xspace}
+
+
+
+\newenvironment{production} 
+{
+\small
+\begin{quote}
+}
+{
+\end{quote}
+\normalsize
+}
+
+
+%\newcommand{\bp}[1] {
+%\parbox[t]{5cm}{\it
+%\begin{tabbing}
+%aaa\= \kill
+%#1 
+%\end{tabbing}}}
+
+\newcommand{\bpline}[1] {
+\begin{minipage}[t]{7cm}
+\raisebox{-1ex}{\rule{7cm}{0.5mm}}
+{\it 
+\begin{tabbing}
+aaa\= \kill
+#1 
+\end{tabbing}
+}
+\end{minipage} }
+
+\newcommand{\bp}[1] {
+\begin{minipage}[t]{7cm}
+{\it 
+\begin{tabbing}
+aaa\=aaaa\= \kill
+#1 
+\end{tabbing}
+}
+\end{minipage}}
+
+
+
+
+\newcommand{\PAIR}[2] 
+{
+\bpline{#1} \hspace{1cm}
+\bpline{#2}\\
+}
+
+%\newcommand{\PAIR}[2] 
+%{
+%\begin{tabular}{ll}
+%\bp{#1} &
+%\bp{#2}
+%\end{tabular}\\
+%}
+
+
+
+
+
+
+\setlength{\unitlength}{0.012500in}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined
+% extract first six characters in \fmtname
+\def\x#1#2#3#4#5#6#7\relax{\def\x{#1#2#3#4#5#6}}%
+\expandafter\x\fmtname xxxxxx\relax \def\y{splain}%
+\ifx\x\y   % LaTeX or SliTeX?
+\gdef\SetFigFont#1#2#3{%
+  \ifnum #1<17\tiny\else \ifnum #1<20\small\else
+  \ifnum #1<24\normalsize\else \ifnum #1<29\large\else
+  \ifnum #1<34\Large\else \ifnum #1<41\LARGE\else
+     \huge\fi\fi\fi\fi\fi\fi
+  \csname #3\endcsname}%
+\else
+\gdef\SetFigFont#1#2#3{\begingroup
+  \count@#1\relax \ifnum 25<\count@\count@25\fi
+  \def\x{\endgroup\@setsize\SetFigFont{#2pt}}%
+  \expandafter\x
+    \csname \romannumeral\the\count@ pt\expandafter\endcsname
+    \csname @\romannumeral\the\count@ pt\endcsname
+  \csname #3\endcsname}%
+\fi
+\fi\endgroup
+
+
+
+%\InputList{label}{Caption}{filename}
+\newcommand{\InputList}[3]% 
+{
+
+\begin{Listing}[htb]
+\scriptsize
+\caption{\label{#1} #2}
+\listinginput[1]{1}{#3}
+\normalsize
+\end{Listing}
+}
+
+
+
+
+
+
+
+
+

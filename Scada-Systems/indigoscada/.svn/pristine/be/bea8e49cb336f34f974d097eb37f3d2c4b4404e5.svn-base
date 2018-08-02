@@ -1,0 +1,841 @@
+\chapter{The EiC Preprocessor}
+\label{chp:Preprocessor}
+\label{sec:preprocessor} \index{preprocessor}
+
+
+The EiC preprocessor helps to reduce programming effort and to
+produce more readable code as it provides a way to associate
+constants (see\SecPage{Constants}) and other text to symbolic names. For example,
+the following definition:
+\begin{production}
+\begin{verbatim}
+#define PI     3.14159
+\end{verbatim}
+\end{production}
+
+associates the floating point constant 3.14159 to the symbolic name
+\T{PI}. When ever the preprocessor sees the name \T{PI} it automatically
+replaces it with the text 3.14159. This is very useful, because magic
+numbers,\index{magic numbers} such as 3.14159, are specified in just
+one place and can be referred to by name.  However, the EiC
+preprocessor is a lot more powerful than this and all input into EiC
+is first passed through EiC's preprocessor. It provides for macro
+substitution, conditional interpretations and file inclusion. While
+EiC's preprocessor commands are, as much as possible, ISO C compliant
+and as will be explained below, it lacks:
+\begin{enumerate}
+\item  the \directive{line} directive,
+\item  and trigraph sequences.
+\end{enumerate}
+
+Other than these omissions, as will now be explained, it is a complete
+C preprocessor.
+
+\section{Directives}
+\label{sec:Directives} \index{directives}
+
+Preprocessor commands are also called directives and program lines
+beginning with the hash mark \T{\#}, which in turn may be optionally
+preceded by white space, are interpreted as preprocessor directives. A
+line consisting solely of \T{\#} is ignored. Each preprocessor line is
+normally terminated by the end of line character. However, by writing
+a `$\backslash$' at the end of a line that line will be continued onto
+the next by line splicing\index{line splicing}, which is also know as
+line continuation. Otherwise, the preprocessor directive will be
+formed from all characters up to the end of the current line.
+
+Also, line splicing precedes tokenisation (see below). Lines spliced
+together will not contain the backslash character and they will
+continue from the first nonwhite character on the next line.  If a
+line ends in a backslash then the following line will never be
+treated as a preprocessor directive:
+
+\begin{production}
+\begin{verbatim}
+#define DF \
+#Doug Funny
+\end{verbatim}
+\end{production}
+
+
+\section{The Define Directive}
+\label{sec:Define} \index{define@\texttt{\#define}} 
+
+	A preprocessor directive of the form:
+ \begin{quote} {\tt \#define} {\it identifier token-sequence} \end{quote} 
+is a macro definition
+	 that will cause the given identifier to be replaced by the
+	 given token-sequence. Commonly used for manifest constants;
+	 that is: \begin{quote} {\tt \#define PI 3.14159} \end{quote}
+	
+	N.B., the same identifier can be defined multiple times as
+	long as the token-sequence remains the same.  Otherwise, it is
+	an error.
+
+
+
+\subsection{Function Like Macros}
+\label{sec:FunctionMacros}
+
+	A preprocessor directive of the form
+	\begin{quote}
+	{\tt \#define} {\it identifier\U{(}arg-list\U{)} token-sequence }
+	\end{quote}
+	is a macro with arguments; that is:
+	\begin{quote} 
+	{\tt \#define max(a,b)	  ((a) > (b) ? (a) : (b))} 
+	\end{quote} 
+ 	
+	N.B. There can be no space between the {\it identifier} and
+	the '('. Text inside quotes and or character constants are not
+	expanded.  Also note, that the above macro definition for
+	\T{max} is {\bf unsafe} since it addresses each argument more
+	than once.
+
+	It is advisable that arguments in the definition be protected 
+	by parentheses:
+
+\begin{production}
+\begin{verbatim}
+#define prod(x,y)    ((x)*(y))
+\end{verbatim}
+\end{production}
+
+to help avoid certain ambiguities:
+
+\begin{production}
+\begin{verbatim}
+   #include <assert.h>
+   ...
+   x = prod(2+4,5);    // expands to x = ((2+4)*(5));
+   assert(x == 30);
+   ...
+\end{verbatim}
+\end{production}
+
+While the macro \T{assert} is explained in section
+\SecPage{assert} its intention should be clear; that is, it reports an error if
+its argument resolves to zero.
+
+In a macro call, the number of arguments must match the number of
+parameters in its definition. However, a parameter lists can actually be empty:
+
+\begin{production}
+\begin{verbatim}
+#define N() 5
+\end{verbatim}
+\end{production}
+
+A macro can also take an arbitrary statement as an argument:
+\begin{production}
+\begin{verbatim}
+#define insert(stmt) stmt
+#define seq10  insert({int i;for(i=0;i<10;i++); A = i;})
+    ...   
+    int A;
+    seq10;
+    assert(A==10);
+    ...
+\end{verbatim}
+\end{production}
+
+
+
+ When a macro with parameters is invoked there can be
+ whitespace between its name and the left parenthesis. 
+
+\begin{production}
+\begin{verbatim}
+#define BIG    max    ( 0       ,  100 )
+assert(BIG == 100);
+\end{verbatim}
+\end{production}
+
+Therefore, a macro call is defined by an {\it identifier} followed by
+optional white space followed by \verb+(+, then the parameters, which
+are followed by \verb+)+.  A macro call can also extend across
+multiple lines without the use of the backslash character:
+\begin{production}
+\begin{verbatim}
+...
+assert(7==max(5,
+              max(6,
+                  7)
+              )
+       );
+...
+\end{verbatim}
+\end{production}
+While this feature is all well and good if input is coming from a
+file, since it allows laying out the code such that visibility is
+increased - especially if long identifier names are used.  However,
+EiC will refuse to extend a macro call across multiple lines without
+the presence of the backslash character while running interactively:
+\begin{production}
+\begin{verbatim}
+...
+EiC >  max(5,         // Illegal line continuation during macro expansion
+\end{verbatim}
+\end{production}
+
+The reason for this is that with a complex statement the carriage
+return may be pressed without the user realising that he/she has
+entered an incomplete macro call; the interpreter won't flag any
+warnings because it is just expecting more input. Hence, this means
+that the user can lose synchronisation with the interpreter -- and
+without realising it. Therefore, this feature is made illegal during
+interactive mode (see also \SecPage{EditMultipleLines}).
+ 
+A macro definition can be used to mask a real function by redefining its
+identifier:
+
+\begin{production}
+\begin{verbatim}
+int f(int x) { return x*x;}
+#define f(x) ((x)+5)
+    ...
+    assert(f(5) == 10); 
+    ...
+\end{verbatim}
+\end{production}
+
+However, it is possible to suppress the effect of the macro by
+enclosing the name of the function in parenthesis. This works because
+the name of the function/macro is then not followed by a left
+parenthesis:
+
+\begin{production}
+\begin{verbatim}
+    ...
+    assert((f)(5) == 25); 
+    ...
+\end{verbatim}
+\end{production}
+
+
+
+\section{The Undef Directive}
+\label{sec:Undef} 	\index{undef@\texttt{\#undef}} 
+The \directive{undef} {\it identifier}
+	directive is used to remove a previously defined macro
+	definition:
+\begin{production}
+\begin{verbatim}
+#define myerr(x)     fprintf(stderr,"%s",x)
+    ...
+#undef myerr
+\end{verbatim}
+\end{production}
+
+It is NOT an error to attempt to undef an {\it identifier} that has
+	not been defined.
+
+
+
+\section{Macro Expansion Rules}
+\label{sec:MacroExpansionRules} \index{macro expansion}
+
+The text to be replaced by a macro is first isolated by removing
+leading and trailing white space. For macros with arguments, all
+arguments are first collected and then each argument is isolated as
+just described. Isolated text then undergoes expansion or
+replacement. After each expansion the resulting text is always
+rescanned for the occurrence of new macro {\it identifiers}. This
+allows for the nesting of macros; for example:
+
+\begin{production} 
+{\tt \#define max3(a,b,c)	  max(a,max(b,c))}
+\end{production} 
+
+will take two expansions to expand:
+\begin{production} 
+\begin{verbatim}
+max3(a,b,c) 
+  max(a,max(b,c))  
+   ((a) > (((b) > (c) ? (b) : (c))) ? (a) : (((b) > (c) ? (b) : (c))))
+\end{verbatim}
+\end{production} 
+
+However, once a given identifier has been replaced in a given
+expansion it is not replaced if it turns up again during rescanning;
+instead it is left unchanged:
+
+\begin{production}
+\begin{verbatim}
+#define char  unsigned char     
+   ...
+    char b = 200;          // 8 bit unsigned data
+    assert(b==200);
+   ...
+#undef char
+    char b = 200;      // 8 bit signed data
+    assert(b == -56);
+    ...
+\end{verbatim}
+\end{production}
+
+Text surrounded by double quotes or characters surrounded by single
+quotes are never expanded; that is, they are protected:
+
+\subsection{The Stringization Operator: \T{\#}}
+\label{sec:Stringization} \index{stringization operator}
+
+A single \T{\#} preceding a \T{token} will be recognized by the EiC
+preprocessor as the ISO C stringization operator. Otherwise a single
+\T{\#} symbol will only have significance if it is the first nonwhite 
+character of a line. 
+
+The stringization operator influences the replacement process.  A
+\T{token} preceded by \T{\#} will cause the preprocessor
+to replace both  \T{\#} and the \T{token} by a quoted
+\T{token}:
+
+
+\begin{production}
+\begin{verbatim}
+#define S(x)  #x    
+	...
+	S(Hello, world!);  // results in "Hello, world!";
+\end{verbatim}
+\end{production}
+
+During the stringization process, the {\it token-sequence} is scanned
+and a backslash character is inserted before each double quote
+or before each backslash character. Also, all sequences of white space are
+replaced by a single space character:
+\begin{production}
+\begin{verbatim}
+    assert(strcmp("hello world",S(hello world))==0);
+    assert(strcmp("\"hello world\\n\"",S("hello world\n"))==0);
+    assert(strcmp("Its a nice day", S(Its   a   nice
+				      day)) == 0);
+\end{verbatim}
+\end{production}
+
+While there are many usages for the stringization operator, the most
+common usage is to display variables and C statements:
+
+\begin{production}
+\begin{verbatim}
+#define ASSERT(x)   if(!(x)) puts("error with: " #x)
+   ...
+   ASSERT(5 == 7);    // result: error with: 5 == 7
+\end{verbatim}
+\end{production}
+
+
+\subsection{The Merging Operator: \T{\#\#}}
+\label{sec:Merging} \index{merging operator}
+
+An ISO C preprocessor controls the merging of tokens via
+the merging operator \T{\#\#}. If a {\it token sequence} contains
+\T{\#\#}, then the text before \T{\#\#} is merged with
+the text just after it and the \T{\#\#} operator along
+with any white space either side of it is removed:
+\begin{production}
+\begin{verbatim}
+#define cat(x,y)   x ## y
+   ...
+   cat(Nice,Day);    // results in NiceDay;
+\end{verbatim}
+\end{production}
+
+After each replacement the new token will be rescanned. Also, the
+\T{\#\#} operator can not appear at the beginning or end of a {\it
+token sequence}. However, a word of warning: the token merging
+operator can produce non-intuitive output; for example, while
+\verb+cat(1,2)+ creates 12, \verb+cat(1,cat(2,3))+ creates
+\verb+1cat(2,3)+, and this is probably not the original intention. To
+achieve the effect of nesting
+\verb+cat+ macros you need to be a little more cunning:
+\begin{production}
+\begin{verbatim}
+#define xcat(x,y)  cat(x,y)
+    ...
+    assert(xcat(xcat(1,2),3) == 123);
+    assert(xcat(1,xcat(2,3)) == 123);
+\end{verbatim}
+\end{production}
+
+
+\section{Predefined Macros}
+\label{sec:PredefineMacros}
+
+EiC has complied with the ISO standard and
+ has the following five predefined macros available, and non of
+which may be redefined:
+
+\begin{Ventry}{\_\_TIME\_\_\_}
+\item[\_\_LINE\_\_\ ] \index{line@\texttt{\_\_LINE\_\_}} 
+resolves to a decimal constant containing the current source-file line
+number that is being processed. The first line of a file is always 1.
+\item[\_\_FILE\_\_\ ]  \index{file@\texttt{\_\_FILE\_\_}} 
+resolves to a string literal containing the name of the current file
+being processed.
+\item[\_\_DATE\_\_\ ] \index{date@\texttt{\_\_DATE\_\_}}  
+resolves to a string literal containing the calendar date,\\
+in the form:  \T{Mmm~dd~yyyy}.
+\item[\_\_TIME\_\_\ ] \index{time@\texttt{\_\_TIME\_\_}} 
+resolves to a string literal containing the current time, \\
+ in the form:  \T{hh:mm:ss}.
+\item[\_\_STDC\_\_\ ] \index{stdc@\texttt{\_\_STDC\_\_}}  
+resolves to 1. 
+\end{Ventry}
+\normalsize
+
+The \T{\_\_TIME\_\_} and \T{\_\_DATE\_\_} macros are useful for
+recording compile dates for program versions:
+\begin{production}
+\begin{verbatim}
+printf("build %s, %s",__DATE__,__TIME__);
+\end{verbatim}
+\end{production}
+
+The \T{\_\_FILE\_\_} and \T{\_\_LINE\_\_} macros are useful for
+producing diagnostic messages:
+
+\begin{production}
+\begin{verbatim}
+#define ASSERT(x)   if(!(x))\
+        fprintf(stderr,"In %s line %d:" #x, __FILE__,__LINE__)
+#define location()   printf("at line %d\n",__LINE__)
+\end{verbatim}
+\end{production}
+
+The \T{\_\_STDC\_\_} macro is useful when writing programs that maybe
+compiled with a non-ISO C compiler.
+
+
+
+EiC also has its own specific predefined macros:
+
+\begin{Ventry}{\_\_TIME\_\_\_} 
+\item[\_EiC] \index{stdc@\texttt{\_EiC}}  
+resolves to 1.  Used to isolate EiC specific code within C header files
+\end{Ventry}
+\normalsize
+
+
+The following reflects an EiC session:
+
+\begin{production}
+\begin{verbatim}
+EiC 1> __TIME__;
+        17:50:32
+EiC 2> __DATE__;
+        Jul 21 1996
+EiC 3> __STDC__;
+        1
+EiC 4> __LINE__;
+        4
+EiC 5> __FILE__;
+        ::EiC::
+EiC 6> _EiC;
+        1
+\end{verbatim}
+\end{production} 
+
+Note, the \T{\_\_FILE\_\_} name for the EiC interpreter is ``::EiC::''.
+
+
+\section{The Include Directive}
+\label{sec:Include}
+
+\label{item:include}   \index{include@\texttt{\#include}}
+	A preprocessor directive of the form
+	\begin{quote} 
+	{\tt \#include} {\it $<$file-name$>$}  	
+	\end{quote}
+
+	causes the above line to be replaced by the entire contents
+	of the file {\it file-name}. The file is searched for according
+	to the standard search path list (see also discussion on
+	adding paths to the search  list on page~\pageref{comm-switch}). 
+	A preprocessor directive of the form
+	\begin{quote} 
+	{\tt \#include} {\it \U{``}file-name\U{''}}  	
+	\end{quote}
+
+	causes the search to begin first in the current working
+	directory and if this fails it searches for the file in those
+	directories specified via the search path list. 
+
+	Alternatively,	a preprocessor directive of the form 
+	\begin{quote} {\tt \#include} {\it token-sequence} 
+	\end{quote}
+
+	causes first the {\it token-sequence} to be expanded as is for normal
+	identifier text and strictly ISO style, one of the two forms,
+	{\tt $< \ldots >$ or "$\ldots$"}, should result. However,
+	EiC first expands the token-sequence and then treats
+	the resulting text as a {\it file-name}; that is, a 
+	preprocessor directive of the form 
+	\begin{quote} {\tt \#include} {\it file-name} 
+	\end{quote}
+	is legal in EiC.
+
+
+
+
+
+\section{The Conditional Directive}
+\label{sec:Conditional} \index{conditional directives}
+The Conditional directives provide the preprocessor with the ability
+to pass or to not pass various lines of text onto the C parser according to
+the following syntax:
+
+\begin{production}
+\bp{
+conditional\U{:}\\
+\>	if-line  text  elif-parts \U{[}\directive{else}\U{]} \directive{endif} \\
+if-line\U{:}\\
+\>	\directive{if}   constant-expression \\
+\>	\directive{ifdef}  identifier \\
+\>	\directive{ifndef} identifier \\
+elif-parts\U{:}\\
+\>	if-line  text \\
+\>	\U{[} elif-parts \U{]} \\
+if-line\U{:}\\
+\>	\directive{elif} text 
+}
+\end{production}
+
+Like all preprocessor directives, the conditional directives must
+appear on a line by themselves. The preprocessor constant-expression
+differs from that of the C language; it must resolve to an integral
+type\index{integral type} and be evaluated at compile time. The syntax
+for preprocessor's constant-expression is given below (see
+\SecPage{SyntaxPreprocessor}). Also, all {\it if-line} conditions must 
+be used in conjunction with the \directive{endif}\index{endif@\texttt{\#endif}}
+directive. There is also the optional
+\directive{else}\index{else@\texttt{\#else}} directive that
+can be used to provide an alternative if the initial condition
+fails. There is also the
+\directive{elif}\index{elif@\texttt{\#elif}} directive for when several alternatives are required (see below). 
+
+\subsection{The \directive{ifdef} and \directive{ifndef} directives} \index{ifdef@\texttt{\#ifdef}} \index{ifndef@\texttt{\#ifndef}}
+
+The conditional directives \directive{ifdef} and
+\directive{ifndef} are used to cause different parts of a
+program unit to be translated or not, depending upon whether certain
+identifiers have be defined or not.
+
+
+A preprocessor directive of the form 
+
+\begin{quote}
+{\tt\#ifdef} {\it identifier} 
+\end{quote} 
+
+	causes the preprocessor to check to see if the identifier has been defined;
+	i.e. via  \directive{define}.  If so, then the directive is said to
+	be fulfilled and all lines of text up to the next \directive{else} 	\index{else@\texttt{\#else}} or \directive{endif} 	\index{endif@\texttt{\#endif}} 
+	will be processed.  Otherwise,
+	these lines  will be skipped.  Also lines located between
+	an optional \directive{else} and the \directive{endif} will only be
+	processed if the \directive{ifdef} is not fulfilled.  
+
+
+	Alternatively,
+	a preprocessor directive of the form 
+	\begin{quote} 
+	{\tt \#ifndef} {\it identifier} 
+	\end{quote} 
+	is only fulfilled if the {\it identifier} has not been defined.
+	
+	It is common to use these macros to form a macro, which will
+	ensure that the lines of text between the \T{\#if} and \T{\#endif}
+	are at most considered only once; for example:
+
+\begin{production}
+\begin{verbatim} 
+#ifndef STDIOH_
+#define STDIOH_
+...       // contents of stdio.h 
+#endif
+\end{verbatim}
+\end{production}
+
+\subsection{The \directive{if} directive} \index{if@\texttt{\#if}} \index{else@\texttt{\#else}} \index{endif@\texttt{\#endif}}
+   
+The conditional-directive \directive{if} also causes different parts
+of a translation unit to be translated or not, but rather than be
+depending upon whether or not an {\it identifier} has been defined, it
+depends upon the whether that the value of a {\it constant-expression} is
+zero or not; for example:
+
+\begin{production}
+\bp {
+\directive{if} constant-expression \\
+\>	....    \T{//pass these lines of text}\\
+\U{[}\\
+\>\directive{else} \\
+\>\>      ...  \T{//pass these lines of text}\\
+\U{]}\\
+\directive{endif}
+}
+\end{production}
+
+Note: the upright square brackets [ ], are used to denote that the
+\directive{else} directive is optional.
+
+\subsection{The \directive{elif} directive}
+\label{sec:elif} \index{elif@\texttt{\#elif}}
+The \directive{elif} is used when several alternatives are required and 
+are evaluated in order until one is satisfied:
+\begin{production}
+\bp {
+\directive{if} constant-expression \\
+\>	....    \T{//pass these lines of text}\\
+\directive{elif} constant-expression \\
+\>      ...  \T{//pass these lines of text}\\
+\directive{elif} constant-expression \\
+\>      ...  \T{//pass these lines of text}\\
+\U{[} \\
+\> \directive{else} \\
+\> \>      ...  \T{//pass these lines of text}\\
+\U{]} \\
+\directive{endif}
+}
+\end{production}
+
+
+\subsection{The defined operator} \index{defined@\texttt{defined}}
+
+The defined operator can be used only in a preprocessor
+constant-expression. It has the following syntax:
+\begin{production}
+\bp{
+defined-operator\U{:}  \\ 
+\>	\T{defined} identifier \\
+\>      \T{defined} \T{(} identifier \T{)}
+}
+\end{production}
+
+The defined operator evaluates to 1 if the identifier has been
+defined, else it evaluates to 0. It has the advantage that it
+can be used to test for the existence of more than one identifier at a
+time:
+
+\begin{production}
+\begin{verbatim}
+#if defined(_EiC) && !defined(UNIX)
+...
+#endif
+\end{verbatim}
+\end{production}
+
+
+\section{The \directive{error} directive} \index{error@\texttt{\#error}}
+Syntax:
+\begin{production}
+\bp{
+\>      \directive{error} token-sequence 
+}
+\end{production}
+
+
+The \directive{error} directive is usually used to flag that a
+conditional directive has failed:
+
+\begin{production}
+\bp {
+\directive{if} \T{OS == SUNOS} \\
+\>	....    \T{//pass these lines of text}\\
+\directive{elif} \T{OS == SOLARIS}\\
+\>      ...  \T{//pass these lines of text}\\
+\directive{elif}  \T{OS == ALPHA}\\
+\>      ...  \T{//pass these lines of text}\\
+\directive{else} \\
+\> \directive{error} \T{"Unknown operating system"}\\ 
+\directive{endif}
+}
+\end{production}
+
+It causes the preprocessor to output a diagnostic message and which will 
+also undergo normal macro replacement. 
+
+
+
+\section{The \directive{pragma} directive}
+\label{sec:Pragma} \index{pragma@\texttt{\#pragma}}
+Syntax:
+\begin{production}
+\bp{
+\>      \directive{pragma} token-sequence\\
+\>      \directive{pragma} 
+}
+\end{production}
+
+The \directive{pragma} directive is vaguely defined in ISO C.  Its
+purpose is to permit implementation specific C compiler directives or
+to add new preprocessor features. For instance, in some
+implementations it maybe possible to turn on or off certain compiler
+warning options using a warning \T{pragma}; for example:
+
+\begin{production}
+\begin{verbatim}
+#pragma  warning +xxx
+#pragma  warning -yyy
+\end{verbatim}
+\end{production}
+
+would specify that the \T{xxx} warning should be turned on, while the
+\T{yyy} warning should be turned off. The problem is that different
+compilers have different \T{pragmas} and hence all unrecognised
+\T{pragmas} must be simply ignored.
+
+In EiC there are only the pointer \T{pragmas} and are described in
+\SecPage{PointerPragmas}. 
+
+
+
+\section{Syntax of the EiC preprocessor}
+\label{sec:SyntaxPreprocessor} \index{syntax!preprocessor}
+
+The grammar parsed by EiC's preprocessor is given below. The
+productions for {\it identifier}, {\it int-const} and {\it char-const} plus
+an explanation of the notation used are given in Appendix~\ref{chp:Syntax}. 
+
+
+The preprocessor {\it constant-expression} \index{constant-expression!preprocessor} 
+is subject to normal macro
+replacement and after macro expansion, all defined {\it~identifiers}
+are replaced by the constant 1, otherwise they are replaced by the
+constant 0.  Similarly, but before scanning for macros
+\T{defined}~{\it identifier} or \T{defined}~\T{(}{\it identifier}\T{)}
+are replaced by the constant 1 if the identifier is defined or by 0 
+otherwise.
+
+
+\begin{production}
+\bp{
+pre-command\U{:} \\
+\>	\directive{define} identifier token-sequence \\
+\>	\directive{define} identifier\U{(}arg-list\U{)} token-sequence \\
+\>	\directive{undef}  identifier \\
+\>	\directive{include} $<$file-name$>$   \\
+\>	\directive{include} ``file-name'' \\
+\>	\directive{include} token-sequence \\
+\>	\directive{error} token-sequence \\
+\>	conditional \\
+conditional\U{:} \\
+\>	if-line  text  elif-parts \U{[}\directive{else}\U{]} \directive{endif} \\
+if-line\U{:} \\
+\>	\directive{if}   constant-expression \\
+\>	\directive{ifdef}  identifier \\
+\>	\directive{ifndef} identifier \\
+elif-parts\U{:} \\
+\>	if-line  text \\
+\>	\U{[} elif-parts \U{]} \\
+if-line\U{:} \\
+\>	\directive{elif} text 
+}
+\end{production}
+
+\begin{production}
+\bp{
+token-sequence: \\
+\>	\U{[}token-sequence \U{]} \T{\#}\T{token} \U{[}token-sequence\U{]}\\
+\>	\U{[}token-sequence \U{]} \T{token}\T{\#\#}\T{token} \U{[}token-sequence\U{]} \\
+\>	token-sequence \T{token}\\
+arg-list: \\ 
+\>	identifier \U{[,} identifier\U{]*}
+}
+
+
+\end{production}
+
+\begin{production}
+\bp{
+constant-expression\U{:} \\
+\>	and1-expr \U{[} \T{||} and1-expr \U{]}*
+}
+\end{production}
+
+\begin{production}
+\bp{
+and1-expr\U{:} \\
+\>	or2-expr \U{[} \T{\&\&} or2-expr \U{]}*
+}
+\end{production}
+
+\begin{production}
+\bp{
+or2-expr\U{:}\\
+\>	xor-expr \U{[} \T{|} xor-expr \U{]}*
+}
+\end{production}
+
+\begin{production}
+\bp{
+xor-expr\U{:}\\
+\>	and2-expr \U{[} \T{\circumflex} and2-expr \U{]}*
+}
+\end{production}
+
+\begin{production}
+\bp{
+and2-expr\U{:}\\
+\>	equal-expr \U{[} \T{\&} equal-expr \U{]}*
+}
+\end{production}
+
+\begin{production}
+\bp{
+equal-expr\U{:}\\
+\>	rel-expr \U{[} \T{==} rel-expr \U{]}*
+}
+\end{production}
+
+\begin{production}
+\bp{
+rel-expr\U{:}\\
+\>	shift-expr \U{[} \U{[} \T{<\  <=\  >=\  >}\U{]} shift-expr \U{]}*
+}
+\end{production}
+
+\begin{production}
+\bp{
+shift-expr\U{:}\\
+\>	ar1-expr \U{[} \U{[}\T{<<\ >>}\U{]} ar1-expr \U{]}*
+}
+\end{production}
+
+\begin{production}
+\bp{
+ar1-expr\U{:}\\
+\>	ar2-expr \U{[} \U{[}\T{+\ -}\U{]} ar2-expr \U{]}*
+}
+\end{production}
+
+\begin{production}
+\bp{
+ar2-expr\U{:}\\
+\>	primary-expr \U{[} \U{[}\T{*\ \%\ /}\U{]} primary-expr \U{]}*
+}
+\end{production}
+
+
+\begin{production}
+\bp{
+primary-expr\U{:} \\
+\>     \U{(} constant-expression \U{)}\\
+\>     int-const\\
+\>     char-const \\
+\>     identifier \\
+\>     \U{[}!\ +\ -\ \~{}\U{]} primary-expr \\
+\>     defined-operator \\
+defined-operator\U{:}  \\ 
+\>	\T{defined} identifier \\
+\>      \T{defined} \T{(} identifier \T{)}
+}
+\end{production} \index{preprocessor|)}
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+on
+	(void)
+125 :-> 125
+error 13 hello 13.333 :-> error 13 hello 13.333
+error 13 hello 13.333 
+6 34 -4 
+-5 6 98 23 4 
+	
+To clean :rm error,mprintf
+

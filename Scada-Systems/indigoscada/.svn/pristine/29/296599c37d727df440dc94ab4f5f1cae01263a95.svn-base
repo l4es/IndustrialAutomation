@@ -1,0 +1,29 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+   0:pushint  0            23:rvalint  5 0          46:stoval              
+   2:jmpU     27           25:stoint   5 0          48:bump     1          
+   4:bump     1            27:rvalint  5 0          50:ixa      8  0       
+   5:rvalint  5 0          28:bump     1            51:drefint             
+   6:ixa      8  0         29:pushint  5            52:stoval              
+   7:bump     1            30:ltint                 53:rvalint  5 0        
+   8:pushint  5            31:jmpTint  3            54:stoval              
+  10:rvalint  5 0          33:stoint   5 0          56:stoval              
+  11:subint                34:jmpU     63           57:pushint  4          
+  14:bump     1            37:checkar  4 1          60:incint   1          
+  16:ixa      8  0         39:bump     1            62:decint   1          
+  17:bump     1            40:rvalint  5 0          63:rvalint  5 0        
+  18:pushint  4            41:ixa      8  0         64:bump     1          
+  19:addptr2int            42:bump     1            65:pushint  5          
+  20:bump     1            43:pushint  4            66:ltint               
+  21:rvalint  5 0          44:addptr2int            67:jmpTint  35         
+  22:refint                45:drefint               68:halt                
+
+a[0].a/b = 5/0
+a[1].a/b = 4/1
+a[2].a/b = 3/2
+a[3].a/b = 2/3
+a[4].a/b = 1/4
+	(void)

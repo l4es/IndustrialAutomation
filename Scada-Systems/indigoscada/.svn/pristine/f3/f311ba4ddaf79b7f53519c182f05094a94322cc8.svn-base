@@ -1,0 +1,52 @@
+#################################################
+# HOMEofEiC is the directory above the EiC
+# include, lib, and main directories. It will be 
+# usually the directory that gets generated when EiC's
+# distribution is untarred. If you have su authority, 
+# then you might untar EiC in /usr/local, and in which case:
+#
+# HOMEofEiC = /usr/local/EiC
+#
+# or you may use one of your own directories.
+#################################################
+
+HOMEofEiC =  $(PWD)
+
+    TOP = $(HOMEofEiC)
+
+#################################################
+# INSTALL_DIR can be any directory
+# that is in your normal search path;
+# such as, /usr/local/bin, etc
+#################################################
+
+INSTALL_DIR = $(HOME)/bin
+
+
+clobber::
+	$(RM) $(INSTALL_DIR)/eic
+clean::
+
+installBinary:
+	./batch2.sh $(INSTALL_DIR)/eic
+	chmod a+r ./module/cgihtml/*.c
+	chmod a+r ./module/cgihtml/*.h
+	ln -s  $(PWD)/eicc $(INSTALL_DIR)/eic
+
+install::installBinary
+headers::
+
+####
+
+
+
+
+
+
+
+
+
+
+
+
+

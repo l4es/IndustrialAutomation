@@ -1,0 +1,115 @@
+﻿<Window 
+  x:Class="ScadaShell.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:vm="clr-namespace:ScadaShell.ViewModel"
+  xmlns:si="clr-namespace:ScadaShell.Infrastructure"
+  FontSize="13" 
+  FontFamily="Verdana" 
+  Title="{Binding Path=DisplayName}"
+  WindowStartupLocation="CenterScreen">
+    
+    <Window.Resources>
+        <ResourceDictionary Source="/Resources/MainWindowResources.xaml" />
+    </Window.Resources>
+    <Grid>
+        <DockPanel SnapsToDevicePixels="True" >
+            <Border Panel.ZIndex="1" Opacity="1" si:MousceClickInputBindingsEstension.AttachedCommand="{Binding Path=OpenEvents}"
+            Height="40" x:Name="Events" 
+            DockPanel.Dock="Bottom"
+            
+            Style="{StaticResource MainBorderStyle}">
+                <Border Background="{Binding CommonEventSummaries.StateColor}">
+                    <HeaderedContentControl
+                    Content="{Binding Path=CommonEventSummaries}"
+                    Header="Поточні події"
+                    Style="{StaticResource MainHCCStyle}">
+                    </HeaderedContentControl>
+                </Border>
+
+            </Border>
+
+            <Border
+                DockPanel.Dock="Bottom" 
+                Style="{StaticResource MainBorderStyle}">
+                <HeaderedContentControl 
+                    Content="{Binding Path=CurrentWorkspace}"
+                    
+                    Style="{StaticResource MainHCCStyle1}">
+                    <HeaderedContentControl.Resources>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="MinWidth" Value="80"/>
+                        </Style>
+                    </HeaderedContentControl.Resources>
+                    <HeaderedContentControl.Header>
+                        <Grid Width="620">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label si:MousceClickInputBindingsEstension.AttachedCommand="{Binding SwitchModeCommand}"
+                                       Content="{Binding AutoModeString, StringFormat=Режим Работы {0}}" 
+                                       BorderBrush="Orange" Foreground="Orange" BorderThickness="1"/>
+
+                                <Label Content="{Binding StatusString}" Foreground="{Binding StatusColor}" Background="Black"/>
+                                <ContentControl  Content="{Binding Path=LoginCommand}"/>
+
+                            </StackPanel>
+
+                            <Button Content="Меню" HorizontalAlignment="Left" Name="MenuButton">
+                                <Button.Triggers>
+                                    <EventTrigger RoutedEvent="Button.Click" SourceName="MenuButton">
+                                        <EventTrigger.Actions>
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ParallelTimeline>
+                                                        <DoubleAnimation
+                                        Storyboard.TargetName="Menu"
+                                        Storyboard.TargetProperty="Height"
+                                        From="0"
+                                        To="480"
+                                        Duration="0:0:0.5"/>
+                                                        <DoubleAnimation
+                                        Storyboard.TargetName="Menu"
+                                        Storyboard.TargetProperty="Height"
+                                        From="480"
+                                        To="0"
+                                        BeginTime="0:0:5"
+                                        Duration="0:0:0.5"/>
+
+                                                    </ParallelTimeline>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+
+                                        </EventTrigger.Actions>
+                                    </EventTrigger>
+                                </Button.Triggers>
+                            </Button>
+
+                        </Grid>
+                    </HeaderedContentControl.Header>
+                </HeaderedContentControl>
+            </Border>
+        </DockPanel>
+
+
+        <Border x:Name="Menu" 
+                HorizontalAlignment="Left"
+                Style="{StaticResource MainBorderStyle}"
+                Width="120"
+                Height="0">
+
+            <StackPanel>
+                <HeaderedContentControl
+                    Content="{Binding Path=Commands}"
+                    ContentTemplate="{StaticResource CommandsTemplate}"
+                    Header="Меню"
+                    Style="{StaticResource MainHCCStyle}"/>
+
+                <HeaderedContentControl
+                    Content="{Binding Path= CurrentWorkspace.WorkspaceCommands}"
+                    ContentTemplate="{StaticResource CommandsTemplate}"
+                    Header="Context"
+                    Style="{StaticResource MainHCCStyle}"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</Window>

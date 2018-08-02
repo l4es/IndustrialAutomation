@@ -1,0 +1,6 @@
+﻿<?xml version="1.0"?>
+<body version="1.0">
+ <AccessNames>
+   <AccessName ID="1" TYPE="MODBUS/TCP" ADDRESS="127.0.0.1">Test_IO</AccessName>
+ </AccessNames>
+</body>

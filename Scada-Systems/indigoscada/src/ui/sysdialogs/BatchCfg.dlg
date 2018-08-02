@@ -1,0 +1,409 @@
+DlgEdit:v1.2:Dialog:
+Dialog {
+	ClassHeader {BatchCfg.h}
+	ClassSource {BatchCfg.cpp}
+	ClassName {BatchCfg}
+	DataHeader {BatchCfgData.h}
+	DataSource {BatchCfgData.cpp}
+	DataName {BatchCfgData}
+	WindowBaseClass {QDialog}
+	IsModal {TRUE}
+	WindowCaption {Batch Editor}
+	WindowFlags {208}
+}
+WidgetLayout {
+InitialPos {-1 -1}
+Size {610 420}
+MinSize {0 0}
+MaxSize {32767 32767}
+Grid {10}
+TextTranslated {TRUE}
+
+Frame {
+		Style {51}
+		LineWidth {2}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {130 130 460 190}
+		Name {Frame_10}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+Label {
+		Text {Name}
+		Alignment {AlignLeft|AlignVCenter|ExpandTabs}
+		AutoResize {FALSE}
+		Margin {0}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {20 20 80 30}
+		Name {Label_42}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+ComboBox {
+		Style {ReadOnly}
+		SizeLimit {10}
+		Policy {AtBottom}
+		AutoResize {FALSE}
+		MaxCount {2147483647}
+		AutoCompletion {FALSE}
+		Rect {130 20 460 30}
+		Name {ComboBox_21}
+		Variable {Name}
+		Signal {[Protected]  activated --> SelChanged  (int)}
+		Signal {[Protected]  highlighted --> SelChanged  (int)}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {NoBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+Label {
+		Text {Comment}
+		Alignment {AlignLeft|AlignVCenter|ExpandTabs}
+		AutoResize {FALSE}
+		Margin {0}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {20 70 80 30}
+		Name {Label_43}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+LineEdit {
+		Text {(none)}
+		EchoMode {Normal}
+		MaxLength {128}
+		FrameShown {TRUE}
+		Alignment {AlignLeft}
+		Rect {130 70 460 30}
+		Name {LineEdit_17}
+		Variable {Comment}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {PaletteBase}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+Label {
+		Text {Start Time}
+		Alignment {AlignLeft|AlignVCenter|ExpandTabs}
+		AutoResize {FALSE}
+		Margin {0}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {150 160 70 30}
+		Name {Label_44}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+User {
+		UserClassHeader {../widgets/valedit.hpp}
+		UserClassName {TIMEEDIT}
+		Rect {230 160 100 30}
+		Name {User_6}
+		Variable {StartTime}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+Label {
+		Text {End Time}
+		Alignment {AlignLeft|AlignVCenter|ExpandTabs}
+		AutoResize {FALSE}
+		Margin {0}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {150 210 70 30}
+		Name {Label_45}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+User {
+		UserClassHeader {../widgets/valedit.hpp}
+		UserClassName {DATEEDIT}
+		Rect {350 160 140 30}
+		Name {User_7}
+		Variable {StartDate}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+User {
+		UserClassHeader {../widgets/valedit.hpp}
+		UserClassName {TIMEEDIT}
+		Rect {230 210 100 30}
+		Name {User_8}
+		Variable {EndTime}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+User {
+		UserClassHeader {../widgets/valedit.hpp}
+		UserClassName {DATEEDIT}
+		Rect {350 210 140 30}
+		Name {User_9}
+		Variable {EndDate}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {TRUE}
+		IsMenuButton {FALSE}
+		Text {Apply}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {20 360 100 30}
+		Name {PushButton_43}
+		Variable {ApplyButton}
+		Signal {[Protected]  clicked --> Apply  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteButton}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {TRUE}
+		IsMenuButton {FALSE}
+		Text {New}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {130 360 100 30}
+		Name {PushButton_44}
+		Variable {NewButton}
+		Signal {[Protected]  clicked --> New  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteButton}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {TRUE}
+		IsMenuButton {FALSE}
+		Text {Delete}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {240 360 100 30}
+		Name {PushButton_45}
+		Variable {DeleteButton}
+		Signal {[Protected]  clicked --> Delete  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteButton}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {TRUE}
+		IsMenuButton {FALSE}
+		Text {Help}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {350 360 100 30}
+		Name {PushButton_46}
+		Signal {[Protected]  clicked --> Help  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteButton}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {TRUE}
+		IsMenuButton {FALSE}
+		Text {Exit}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {490 360 100 30}
+		Name {PushButton_47}
+		Signal {[Protected]  clicked --> reject  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteButton}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {TRUE}
+		IsMenuButton {FALSE}
+		Text {Report...}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {350 260 100 30}
+		Name {PushButton_48}
+		Signal {[Protected]  clicked --> Report  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteButton}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+
+}

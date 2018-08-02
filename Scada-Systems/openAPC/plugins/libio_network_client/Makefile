@@ -1,0 +1,10 @@
+CUSTLIBRARIES= 
+
+CUSTINCLUDES= -DMAX_INCOMING_CONNECTIONS=1
+	
+CUSTOBJECTS= network_common.o
+
+include ../linux.mk
+
+
+

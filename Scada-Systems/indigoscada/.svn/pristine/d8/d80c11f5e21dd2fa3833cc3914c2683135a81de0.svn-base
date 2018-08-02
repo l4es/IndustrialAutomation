@@ -1,0 +1,32 @@
+
+    CXX=<compiler name> ./configure
+    make
+    make install
+
+
+    AIX:
+
+    	IBM C:
+	    CXX="xlC_r -qmaxmem=32768 -qro -qroconst -D_LARGE_THREADS" \
+	    ./configure
+
+	    Edit `Makefile' after running configure (see comment for AIX).
+
+
+    GNU:
+
+	    ./configure
+
+
+    Solaris:
+
+    	WS5.0, Forte WS6U1:
+	    CXX="CC -mt -w -compat=4 -features=conststrings -xbuiltin=%all \
+		-xinline=%auto"
+	    ./configure
+
+	Forte WS6U2:
+	    CXX="CC -mt -w -features=%all -xbuiltin=%all -xinline=%auto"
+	    ./configure
+
+	    or as Forte WS6U1.

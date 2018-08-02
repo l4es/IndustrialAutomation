@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @author Matthew Lohbihler
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/.
+-->
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
+  <!-- 
+    Servlet definitions.
+   -->
+  <servlet>
+    <servlet-name>springDispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <!--  
+  <servlet>
+    <servlet-name>imageChart</servlet-name>
+    <servlet-class>com.serotonin.mango.web.servlet.ImageChartServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>asyncImageChart</servlet-name>
+    <servlet-class>com.serotonin.mango.web.servlet.AsyncImageChartServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>reportExport</servlet-name>
+    <servlet-class>com.serotonin.mango.web.servlet.ReportExportServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>reportEventExport</servlet-name>
+    <servlet-class>com.serotonin.mango.web.servlet.ReportEventExportServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>reportUserCommentExport</servlet-name>
+    <servlet-class>com.serotonin.mango.web.servlet.ReportUserCommentExportServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>reportChart</servlet-name>
+    <servlet-class>com.serotonin.mango.web.servlet.ReportChartServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>httpDataSource</servlet-name>
+    <servlet-class>com.serotonin.mango.web.servlet.HttpDataSourceServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>imageValue</servlet-name>
+    <servlet-class>com.serotonin.mango.web.servlet.ImageValueServlet</servlet-class>
+  </servlet>
+  -->
+
+  <!-- 
+    Servlet mappings.
+   -->
+  <servlet-mapping>
+    <servlet-name>springDispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+  <!--servlet-mapping>
+    <servlet-name>imageChart</servlet-name>
+    <url-pattern>/chart/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>asyncImageChart</servlet-name>
+    <url-pattern>/achart/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>reportChart</servlet-name>
+    <url-pattern>/reportImageChart/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>reportExport</servlet-name>
+    <url-pattern>/export/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>reportEventExport</servlet-name>
+    <url-pattern>/eventExport/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>reportUserCommentExport</servlet-name>
+    <url-pattern>/userCommentExport/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>httpDataSource</servlet-name>
+    <url-pattern>/httpds</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>imageValue</servlet-name>
+    <url-pattern>/imageValue/*</url-pattern>
+  </servlet-mapping>
+ 
+-->
+  
+  <!-- 
+    Context listeners.
+   -->
+  <listener><listener-class>org.springframework.web.context.ContextLoaderListener</listener-class></listener>
+  <listener><listener-class>com.serotonin.mango.MangoContextListener</listener-class></listener>
+  
+  <!-- 
+    Other stuff.
+   -->
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+    
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+<!--servlet>
+    <display-name>Apache-Axis Servlet</display-name>
+    <servlet-name>AxisServlet</servlet-name>
+    <servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AxisServlet</servlet-name>
+    <url-pattern>/servlet/AxisServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AxisServlet</servlet-name>
+    <url-pattern>*.jws</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AxisServlet</servlet-name>
+    <url-pattern>/services/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>Axis Admin Servlet</display-name>
+    <servlet-name>AdminServlet</servlet-name>
+    <servlet-class>org.apache.axis.transport.http.AdminServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminServlet</servlet-name>
+    <url-pattern>/servlet/AdminServlet</url-pattern>
+  </servlet-mapping-->
+  <!-- TODO How to??? <error-page>
+    <exception-type>com.serotonin.mango.vo.permission.PermissionException</exception-type>
+    <location>/exception/accessDenied.jsp</location>
+  </error-page>
+  
+  <error-page>
+    <error-code>500</error-code>
+    <location>/exception/error.jsp</location>
+  </error-page>
+  
+  <error-page>
+    <error-code>404</error-code>
+    <location>/exception/404.jsp</location>
+  </error-page>
+  -->
+</web-app>

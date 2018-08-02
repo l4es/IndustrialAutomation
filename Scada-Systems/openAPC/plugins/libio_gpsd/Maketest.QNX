@@ -1,0 +1,25 @@
+CCOMPILER=g++ -Wall -fPIC -Wno-unused -g3 -O0 -D_REENTRANT -DENV_QNX -DTEST_MODE -D_DEBUG -I.  -I.. -I/usr/local/include/
+
+SYSLIBRARIES= -L/usr/local/lib -L.. -L/usr/lib -loapc -lph -lgps
+
+LIBS = $(SYSLIBRARIES)
+
+EXECUTABLE=gpsdtest
+
+LINK=g++
+
+OBJECTS = libio_gpsd.o
+
+default: $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
+	$(LINK) $(SYSLDFLAGS) $(LDFLAGS) -o $(EXECUTABLE) $(OBJECTS) $(LIBS)
+	cp $(EXECUTABLE) ~
+	chmod 755 ~/$(EXECUTABLE)
+
+%.o: %.cpp
+	$(CCOMPILER) -c $< -o $@
+
+clean:
+	rm -f $(OBJECTS) $(EXECUTABLE)
+

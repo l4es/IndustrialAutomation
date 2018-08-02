@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZipArchive", "ZipArchive_STL.vcproj", "{A193C830-DCEB-4B44-A101-E4744A87EF82}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+		Unicode Debug = Unicode Debug
+		Unicode Release = Unicode Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{A193C830-DCEB-4B44-A101-E4744A87EF82}.Debug.ActiveCfg = Debug|Win32
+		{A193C830-DCEB-4B44-A101-E4744A87EF82}.Debug.Build.0 = Debug|Win32
+		{A193C830-DCEB-4B44-A101-E4744A87EF82}.Release.ActiveCfg = Release|Win32
+		{A193C830-DCEB-4B44-A101-E4744A87EF82}.Release.Build.0 = Release|Win32
+		{A193C830-DCEB-4B44-A101-E4744A87EF82}.Unicode Debug.ActiveCfg = Unicode Debug|Win32
+		{A193C830-DCEB-4B44-A101-E4744A87EF82}.Unicode Debug.Build.0 = Unicode Debug|Win32
+		{A193C830-DCEB-4B44-A101-E4744A87EF82}.Unicode Release.ActiveCfg = Unicode Release|Win32
+		{A193C830-DCEB-4B44-A101-E4744A87EF82}.Unicode Release.Build.0 = Unicode Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

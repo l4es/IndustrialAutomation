@@ -1,0 +1,7 @@
+CUSTLIBRARIES= 
+
+CUSTINCLUDES=
+	
+CUSTOBJECTS= mathplot.o
+
+include ../qnx_wx.mk

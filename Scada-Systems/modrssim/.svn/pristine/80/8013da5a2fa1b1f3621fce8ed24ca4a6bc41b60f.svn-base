@@ -1,0 +1,72 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: MYLIB - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"Debug/mylib.res" /d "_DEBUG" /d "_AFXDLL" "S:\source\protdrv\UTILS\MYLIB\mylib.rc"" 
+Creating temporary file "C:\DOCUME~1\CONRAD~1.000\LOCALS~1\Temp\RSP74.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/MYLIB.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"S:\source\protdrv\UTILS\MYLIB\ado.cpp"
+"S:\source\protdrv\UTILS\MYLIB\ColorPickerCB.cpp"
+"S:\source\protdrv\UTILS\MYLIB\ColorStatic.cpp"
+"S:\source\protdrv\UTILS\MYLIB\CommsLamp.cpp"
+"S:\source\protdrv\UTILS\MYLIB\DragSizerBmp.cpp"
+"S:\source\protdrv\UTILS\MYLIB\dregkey.cpp"
+"S:\source\protdrv\UTILS\simulators\mod_RSsim\MicroTick.cpp"
+"S:\source\protdrv\UTILS\MYLIB\mylib.cpp"
+"S:\source\protdrv\UTILS\MYLIB\Resizer.cpp"
+"S:\source\protdrv\UTILS\MYLIB\StatLink.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\CONRAD~1.000\LOCALS~1\Temp\RSP74.tmp" 
+Creating temporary file "C:\DOCUME~1\CONRAD~1.000\LOCALS~1\Temp\RSP75.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/MYLIB.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"S:\source\protdrv\UTILS\MYLIB\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\CONRAD~1.000\LOCALS~1\Temp\RSP75.tmp" 
+Creating temporary file "C:\DOCUME~1\CONRAD~1.000\LOCALS~1\Temp\RSP76.tmp" with contents
+[
+/nologo /out:"Debug\MYLIB.lib" 
+.\Debug\ado.obj
+.\Debug\ColorPickerCB.obj
+.\Debug\ColorStatic.obj
+.\Debug\CommsLamp.obj
+.\Debug\DragSizerBmp.obj
+.\Debug\dregkey.obj
+.\Debug\MicroTick.obj
+.\Debug\mylib.obj
+.\Debug\Resizer.obj
+.\Debug\StatLink.obj
+.\Debug\StdAfx.obj
+.\Debug\mylib.res
+]
+Creating command line "link.exe -lib @C:\DOCUME~1\CONRAD~1.000\LOCALS~1\Temp\RSP76.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+ado.cpp
+ColorPickerCB.cpp
+ColorStatic.cpp
+CommsLamp.cpp
+DragSizerBmp.cpp
+dregkey.cpp
+MicroTick.cpp
+mylib.cpp
+Resizer.cpp
+StatLink.cpp
+Generating Code...
+Creating library...
+
+
+
+<h3>Results</h3>
+MYLIB.lib - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

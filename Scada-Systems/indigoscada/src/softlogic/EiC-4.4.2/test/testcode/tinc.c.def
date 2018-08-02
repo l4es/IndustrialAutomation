@@ -1,0 +1,24 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+   0:pushint  0            19:rvalint  4 0          38:stoval              
+   1:stoint   4 0          20:stoval                39:pushint  3          
+   3:bump     1            22:stoval                41:rvalint  4 0        
+   4:checkar  2 1          23:pushint  2            42:incint   1          
+   5:rvalint  4 0          24:call                  43:stoint   4 0        
+   6:stoval                25:rvalint  4 0          44:stoint   5 0        
+   8:stoval                27:stoint   4 0          46:bump     1          
+   9:pushint  2            28:decint   1            47:checkar  3 1        
+  10:call                  29:stoint   5 0          48:rvalint  5 0        
+  12:bump     1            31:bump     1            50:rvalint  4 0        
+  13:pushint  1            32:checkar  3 1          51:stoval              
+  15:stoint   4 0          34:stoval                53:stoval              
+  17:bump     1            36:stoval                55:call                
+
+a = 0 (0)
+a = 1 (1)
+a = 2 (2), b = 1 (1)
+a = 3 (3), b = 3 (3)
+	21

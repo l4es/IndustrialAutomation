@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="ScadaShell.View.TrendView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:charting="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+             xmlns:dd="http://research.microsoft.com/DynamicDataDisplay/1.0"
+             xmlns:vw="clr-namespace:ScadaShell.View"
+             xmlns:si="clr-namespace:ScadaShell.Infrastructure"
+             xmlns:m="clr-namespace:ScadaShell.Model">
+
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type m:ChartModel}">
+            <ListBox ItemsSource="{Binding Path=ChartData}"/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type m:ChartItemModel}">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="{Binding Path=Timestamp}"/>
+                <Label Content="{Binding Path=Value}"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+
+    <DockPanel
+        
+        HorizontalAlignment="Stretch" 
+            VerticalAlignment="Stretch" 
+            MinWidth="320"
+            Margin="10">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Width="Auto" HorizontalAlignment="Stretch">
+            <StackPanel.Resources>
+                <si:BoolToOppositeBoolConverter x:Key="boolOposite"/>
+            </StackPanel.Resources>
+            <Button Content="Збільшити" Command="{Binding Path=ScaleUp}" IsEnabled="{Binding ElementName=onlineCheck, Path=IsChecked,Converter={StaticResource boolOposite}}"/>
+            <Button Content="Зменьшити" Command="{Binding Path=ScaleDown}" IsEnabled="{Binding ElementName=onlineCheck, Path=IsChecked,Converter={StaticResource boolOposite}}"/>
+            <Button Content="Назад"  Command="{Binding Path=Rewind}" IsEnabled="{Binding ElementName=onlineCheck, Path=IsChecked,Converter={StaticResource boolOposite}}"/>
+            <Button Content="Вперед" Command="{Binding Path=Forward}" IsEnabled="{Binding ElementName=onlineCheck, Path=IsChecked,Converter={StaticResource boolOposite}}"/>
+            <Button Content="До дому" Command="{Binding Path=Home}" IsEnabled="{Binding ElementName=onlineCheck, Path=IsChecked,Converter={StaticResource boolOposite}}"/>
+            <CheckBox Content="Поточні" Height="16" Name="onlineCheck" IsChecked="{Binding Path=IsOnline}" Margin="10,0,0,0" />
+        </StackPanel>
+        <DockPanel >
+            <dd:ChartPlotter Name="_trend" >
+
+                <dd:CursorCoordinateGraph/>
+                <dd:Header TextBlock.FontSize="20">
+                    <Binding Path="Name"/>
+                </dd:Header>
+
+                <dd:ChartPlotter.HorizontalAxis>
+                    <dd:HorizontalDateTimeAxis Name="_timeAxis"/>
+                </dd:ChartPlotter.HorizontalAxis>
+            </dd:ChartPlotter>
+        </DockPanel>
+    </DockPanel>
+</UserControl>

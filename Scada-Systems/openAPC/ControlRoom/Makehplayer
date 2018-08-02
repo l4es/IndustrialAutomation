@@ -1,0 +1,45 @@
+PROGRAM = OpenHPlayer
+
+INCLUDEDIRS = \
+	-I. -I.. -I ../common/ -I ../liboapc/ -I ../plugins/ \
+	-I/usr/X11R6/include \
+	$(shell wx-config --cflags)
+
+
+LIBDIRS = 
+
+LIBS =  -loapc -loapcwx -ldl -lrt $(shell wx-config --libs)
+
+CXXSOURCES = OpenHPlayerInc.cpp
+
+DBGFLAGS = -O2 -g0
+ifeq ($(DEBUG),1)
+DBGFLAGS = -O0 -g3 -DNOSPLASH
+endif
+ifeq ($(PROFILE),1)
+DBGFLAGS = -O2 -g3
+endif
+
+
+CXXOBJECTS = $(CXXSOURCES:.cpp=.o)
+CXXFLAGS = -Wall -Wno-unused-local-typedefs -DESRI_UNIX $(INCLUDEDIRS) -DENV_PLAYER -DENV_HPLAYER -DENV_LINUX $(DBGFLAGS)
+CXX = g++
+
+LDFLAGS = $(LIBDIRS) $(LIBS)
+
+all: $(PROGRAM)
+
+$(PROGRAM): $(CXXOBJECTS)
+	$(CXX) -o $@ $(CXXOBJECTS) $(LDFLAGS)
+
+
+wx_sample.o: wx_sample.cpp wx_sample.h
+	$(CXX) $(CXXFLAGS) -c -o wx_sample.o wx_sample.cpp
+
+clean:
+	$(RM) -f $(CXXOBJECTS) $(PROGRAM)
+
+run:
+	./$(PROGRAM)
+
+

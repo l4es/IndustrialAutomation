@@ -1,0 +1,566 @@
+\chapter{The Advanced Concepts}
+\label{chp:Advanced}
+
+In this chapter the more esoteric and advanced concepts of
+EiC will be discussed.
+
+\section{EiC modules}
+\label{sec:eic_module}
+\index{module}
+
+\subsection{Building an eic module}
+\index{module!building}
+
+There are basically two types of EiC modules. Interpreter'd code
+modules and modules which get builtin to EiC (compiled code). The
+simplist modules to construction are interpreter'd modules. In a
+nutshell intepreter'd modules are related groups of EiC/C functions,
+which get interpreter'd. Builtin modules are related groups of
+compiled functions, which have been interfaced to EiC -- a process
+which has now been automated thanks to work by Jean-Bruno Richard.
+
+One of the nice features of an EiC module, is that once you have a
+module built you can add it to another EiC distribution by simply
+copying it into the `EiC/module' directory and to remove a module you
+simply remove it from the `EiC/module' directory -- easy as that. For
+builtin modules, EiC will need to be clobbered and recompiled after
+each addition or removal of a builtin module, and this is done from
+EiC's source code directory:
+
+\small
+\begin{verbatim}
+        % make clobber
+        % config/makeconfig
+        % make install
+\end{verbatim}
+\normalsize
+
+\subsection{Interpreter'd modules}
+\label{sec:interpreter_modules}
+\index{module!interpreter'd}
+
+Adding an interpreter module is simple, just create a directory for
+the module in the EiC directory `EiC/module' and place a copy (not a
+link) of the `EiC/module/Makefile.empty' in your module directory and
+rename it to Makefile.
+
+`Makefile.empty' is a dummy Makefile which is used to prevent the
+Makefile system from crashing whenever you rebuild EiC. EiC's build
+process expects a Makefile with various targets in each directory off
+the `EiC/module' directory.
+
+Once you have setup the directory and added the Makefile, you can
+start adding your own code into your module directory. Lets say the
+new interpreter'd module is called `foo' and you have code files called
+`foo.h' and `f1.c', these can now be accessed from the EiC prompt by
+simply entering:
+
+\small
+\begin{verbatim}
+        EiC > #include foo/foo.h
+        EiC > #include foo/f1.c
+\end{verbatim}
+\normalsize
+
+Or from any other file, which gets included into an EiC session. This
+is because the `EiC/module' directory is by default included in EiC's
+search list (see pg:~\pageref{item:comm-switch}).  Therefore, any
+include file that belongs to a module only needs to be referenced
+relative to its module directory.
+
+
+\subsection{Module names and assumptions}
+\label{sec:module_names}
+\index{module!names}
+
+The name given to a module, \textit{module\_name}, is important for
+several reasons, and particularly so for builtin modules. This is
+because on startup, EiC will expect to call each builtin-modules
+initialising function `module\_\textit{module\_name}' (see also
+pg:~\pageref{sec:module_initialise}).  This call will be automatically
+setup by EiC's makefile system, using the file
+`EiC/module/modules.calls'. Entries into this file will de done via
+each Makefile installed in each builtin module.  The entry for module
+directory `XXXX' would look like:
+
+\small
+\begin{verbatim}
+        #ifndef NO_module_XXXX
+        module_XXXX();
+        #endif
+\end{verbatim}
+\normalsize
+
+
+The file `EiC/module/modules.calls' is inturn included into 
+EiC's main function.
+
+
+\subsection{Building builtin modules}
+\label{sec:builtin_module}
+\index{module!builtin}
+
+        Building a builtin module is considerably more complex than
+building an interpreter'd module. Basically, a builtin module is a set
+of interface routines that interface EiC to a library of compiled C
+code and that also allows compiled C code to make
+callbacks~\index{call backs} to EiC. Callbacks are called from builtin
+code that take as an argument, a pointer to a function; such as qsort
+does.
+
+
+There are two basic steps to building a builtin module: (1) construct
+the interface code files, via EiC's `:gen' command (see
+also~\Page{item:gen}) and (2) construct the Makefile, which is done
+via a copy and modify approach. It is expected however, that the
+builder, the developer, of the interface is knowledgeable about the
+library being interfaced to and will take into consideration which
+callbacks must be multiplexed and will understand EiC's pointer
+qualifiers (see \SecPage{pointerQualifer}).
+
+
+\subsection{Restrictions for builtin functions}
+\label{sec:restrictions}
+\index{module!restrictions}
+
+
+At present EiC will not allow a builtin function to be passed a
+pointer to a function that takes a variable argument list.  This is
+becuase EiC needs to be able to construct the callback code, and to do
+this it needs to know in advanced what the callback arguments are.
+
+However, EiC's can interface to prototypes of builtin routines that
+accept as an argument pointers to callback functions which have empty
+paramater lists: For example, consider the following interpreter'd
+functions:
+
+\small
+\begin{verbatim}
+        int f0(void) { return 1;}
+        int f1(double x) { return x + 0.5;}
+        int f2(char *s) { return strlen(s););
+        int f3(int x, int y) { return x + y;}
+\end{verbatim}
+\normalsize
+
+The prototype for a builtin function might be:
+
+\small
+\begin{verbatim}
+        int fooey( int x, int f() );
+\end{verbatim}
+\normalsize
+
+It is now possible to pass the address of `f0', `f1', `f2' and `f3' to
+`fooey'. The builtin function `fooey' would then pass the proper
+arguments to the appropriate callback function, possibly based
+on the value `x', which will also be passed to `fooey'.
+
+
+\subsection{Interfacing to a library of C code}
+\label{sec:interface_ccode}
+\index{interface!C code}
+
+
+For the purpose of discussion some example code will be used. First,
+the interface between EiC and a library of C code is done via each
+library's header file(s). Therefore, the following header file, foo.h,
+will be used:
+
+\small
+\begin{verbatim}
+        1: /* begin header */
+        2: 
+        3: extern int GVALUE;
+        4: 
+        5: extern int foo1(int x, int y);
+        6: extern int foo2(int z, int (*)(int, int));
+        7: extern int * foo3(double (*)());
+\end{verbatim}
+\normalsize
+
+This is a simple header file, which is complicated enough to be
+interesting and is used to demonstrate several principles only.  On
+line 3 there is an external variable that must be shared between the
+library being interfaced with and the EiC interpreter. Line 5
+represents a straight forward function prototype.  On line 6 is a
+little more complicated prototype, as one of the arguments is a
+pointer to a function which returns an \T{int} and it accepts two
+\T{int} arguments. The prototype on line 7 is the most complicated in
+the example code, as it takes a pointer to a function that receives an
+empty parameter list. In C an empty parameter list does not mean that
+the function accepts zero aguments; i.e. void. On the contrary, it
+means it can accept a variable number of arguments from zero to N. The
+only thing that is certain is that arguments cannot be widened --
+\T{double} instead of \T{float}, \T{int} instead of \T{short} etc.
+
+        
+Moving to the directory of interest:
+
+\small
+\begin{verbatim}
+        % cd EiC/module/foo
+\end{verbatim}
+\normalsize
+
+Running EiC and from its command line the following lines are entered:
+
+\small
+\begin{verbatim}
+        EiC > #include foo.h
+        EiC > :gen foo.h "foo.c"
+\end{verbatim}
+\normalsize
+
+The `:gen' command takes input from `foo.h' and creates an output file
+`foo.c', which contains the interfaces.  Note the output file must be
+passed to the `:gen' command as a string, and if no output file is
+given the interfaces will be written to stdout.
+
+The first part of file `foo.c' includes several header files:
+
+\small
+\begin{verbatim}
+        #include <stdlib.h>
+        #include <varargs.h>
+        #include "eic.h"
+        #include "foo.h"
+\end{verbatim}
+\normalsize
+
+The varargs.h mechanism is required for passing variable arguments
+between compiled C code and EiC, and the header file ``eic.h'' contains
+macros and prototypes required to access EiC's runtime stack and
+for generating callbacks~\index{call backs}.
+
+Next, the interface to `foo1' generated is given:
+
+\small
+\begin{verbatim}
+        static val_t eic_foo1(void)
+        {
+                val_t v;
+        
+                v.ival = foo1(arg(0,getargs(),int),
+                        arg(1,getargs(),int));
+        
+                return v;
+        }
+\end{verbatim}
+\normalsize
+
+This is the simplest interface, it essentially just collects the
+arguments passed on EiC's stack, via the `arg' facililty defined in the
+header file ``eic.h'', passes these values to the function ``foo1''
+and it returns the return value, packaged in the union `v'
+to EiC.
+
+This is then followed by the interface to `foo2':
+
+\small
+\begin{verbatim}
+        static void * EiC_Cfunc_0 = NULL;
+        static int  MiddleOne_0(int  x0, int  x1)
+        {
+            setArg(0, EiC_Cfunc_0, int ,x0);
+            setArg(1, EiC_Cfunc_0, int ,x1);
+        
+            EiC_callBack(EiC_Cfunc_0);
+            return EiC_ReturnValue( int );
+        }
+        
+        static val_t eic_foo2(void)
+        {
+                val_t v;
+        
+                EiC_Cfunc_0 = arg(1,getargs(),ptr_t).p;
+                v.ival = foo2(arg(0,getargs(),int),
+                        MiddleOne_0);
+        
+                return v;
+        }
+\end{verbatim}
+\normalsize
+
+The interface to `foo2' is more complex and requirs two functions.  At
+compile time, EiC creates the callback~\index{call backs} code for the function being
+passed. The callback codes gets substituted for the pointer to the
+function and a reference to it will be stored in EiC\_Cfunc\_0 and when
+the interface routine `eic\_foo2' is called.
+
+Within `eic\_foo2' the compiled function foo2 is called, passing it a
+pointer to the proxy function `MiddleOne\_0'. The roll of `MiddleOne\_0'
+is to collect the arguments being passed from `foo2' for the
+interpreter'd function pointered to by `EiC\_Cfunc\_0', and to return
+the return value back to `foo2'. `MiddleOne\_0' uses EiC's setArg
+facility defined in `eic.h' for passing values from the machines
+runtime stack to the EiC interpreter'd function (and it makes no
+difference if the interpreter'd function being callback is actually
+another builtin function). The EiC\_ReturnValue( type ) macro gets the
+last value stored on EiC's runtime stack and casts it to `type', and it
+is this value that gets returned to its caller. 
+
+This all occurs seamlessly to the user; for  example:
+
+\small
+\begin{verbatim}
+        EiC > int f(int x, int y) { return x + y;}
+        EiC > foo2(5,f);
+\end{verbatim}
+\normalsize
+
+On line 7 is the prototype for `foo3' is given:
+
+\small
+\begin{verbatim}
+        7: extern int * foo3(double (*)());
+\end{verbatim}
+\normalsize
+
+The `foo3' function is the most complex funtion in the example code to
+interface to. This is because `foo3' receives a pointer to a function,
+to which inturn accepts a variable number of arguments and it also
+returns a pointer, adding another degree of complexity to the
+interface. The default interface generated will be:
+
+\small
+\begin{verbatim}
+        static void * EiC_Cfunc_1 = NULL;
+        static double  MiddleOne_1( va_alist )  va_dcl
+        {
+            void Auto_EiC_CallBack(code_t *callback, va_list ap);
+            va_list ap; va_start(ap);
+            Auto_EiC_CallBack(EiC_Cfunc_1,ap);
+        
+            EiC_callBack(EiC_Cfunc_1);
+            return EiC_ReturnValue( double );
+            va_end(ap);
+        }
+        
+        static val_t eic_foo3(void)
+        {
+                val_t v;
+        
+                EiC_Cfunc_1 = arg(0,getargs(),ptr_t).p;
+                v.p.ep = v.p.sp = v.p.p = foo3(MiddleOne_1);
+        
+                return v;
+        }
+\end{verbatim}
+\normalsize
+
+This interface works essentially the same way as that for `foo2'. The
+main differences being that the proxy function `MiddleOne\_1' uses the
+Unix varargs mechanism for passing variable arguments. However, rather
+than using the `setArg' mechanism, the function `Auto\_EiC\_callBack'
+is used to get the variable(s) to be passed to the callback function.
+
+
+\subsection{Returning pointers}
+\label{sec:return_pointer}
+\index{pointer!builtin}
+\index{interface!returning pointers}
+
+
+The next thing to notice in `eic\_foo3' is that it returns a pointer,
+and therefore, the limits or range for the pointer values must be
+set. EiC treats all pointers by default as safe. The value of a safe
+pointer (v.p.p) should always satisfy:
+
+\small
+\begin{verbatim}
+        v.p.ep >= v.p.p  && v.p.sp <= v.p.p;
+\end{verbatim}
+\normalsize
+
+The end point `ep' and the start start `sp' must be set
+appropriately. The `:gen' command has no insight into the function
+being interfaced with, so it must take a conservative approach.
+However, if on the otherhand the developer of the interface new that
+`foo3' was going to return a pointer to an area large enough to hold
+`N' ints for example, then the following change would be appropriate:
+
+\small
+\begin{verbatim}
+        v.p.ep = v.p.sp = v.p.p = foo3(MiddleOne_1);
+\end{verbatim}
+\normalsize
+to
+\small
+\begin{verbatim}
+        v.p.sp = v.p.p = foo3(MiddleOne_1);
+        v.p.ep = (char*)v.p.p + N * sizeof(int);
+\end{verbatim}
+\normalsize
+
+For further details on EiC pointers see: \SecPage{pointerQualifer}.
+
+\subsection{Initialising the module}
+\label{sec:module_initialise}
+\index{module!initialise}
+
+
+The last part of the file generaterd by `:gen' contains the function
+`module\_\textit{module\_name}', where for this example the
+\textit{module\_name} is `foo':
+
+\small
+\begin{verbatim}
+        void module_foo()
+        {
+                EiC_parseString("int GVALUE @ 0x%p;", &GVALUE);
+                add_builtinfunc("foo1",eic_foo1);
+                add_builtinfunc("foo2",eic_foo2);
+                add_builtinfunc("foo3",eic_foo3);
+        }
+\end{verbatim}
+\normalsize
+
+
+First the initialising function `module\_foo' setups the shared
+variables using EiC's address operator, as proposed by Eugene Brooks
+III. Next, each builtin function is added to EiC's lookup tables.  The
+first variable passed to the `add\_builtinfunc' function is the name
+of the function that will be seen by the EiC interpreter, and the
+second argument is the function that will be actually called.
+
+Also, the `module\_foo' function is the initialising function for the
+module `foo' (see also pg:~\pageref{sec:module_names}).  This is
+because the module directory name is also `foo'. Each builtin modules
+initialising function will be called automatically on EiC startup. If
+there are other header files in the directory `foo' that must be
+intialised, then it is expected that developer will insert calls to
+these other files within the initialising function module. Although
+this feature will most likely be automated in a future release of
+EiC.
+
+
+\subsection{Multiplexed interfacing}
+\label{sec:muliplexed_interface}
+\index{module!multiplexed}
+\index{call backs!multiplexed}
+
+There is still the problem of multiplexing that must be addressed;
+that is, interfacing to builtin functions that allow the call of
+different functions according to predefined signals. At this stage, it
+is upto the developer of the interface to decide which functions must
+be mutliplexed and the level of multiplexing required. For example,
+consider the problem of interfacing to a menu function that will call
+different functions depending on which menu item is selected. As an
+example, the interface to `foo2' will be modified for 3 levels of
+multiplexing; that is, at any given instant it may make callbacks on
+anyone of 3 functions:
+
+\small
+\begin{verbatim}
+        #define ML_0  3
+        static int cbs_0 = 0;
+
+        static void *EiC_Cfunc_0[ML_0];
+
+        static int  MiddleOne_0(int x, int  x0, int  x1)
+        {
+            setArg(0, EiC_Cfunc_0[x], int ,x0);
+            setArg(1, EiC_Cfunc_0[x], int ,x1);
+        
+            EiC_callBack(EiC_Cfunc_0[x]);
+            return EiC_ReturnValue( int );
+        }
+        
+        static int MiddleOne_0a(int x, int y) { return MiddleOne_0(0, x,y); }
+        static int MiddleOne_0b(int x, int y) { return MiddleOne_0(1, x,y); }
+        static int MiddleOne_0c(int x, int y) { return MiddleOne_0(2, x,y); }
+
+        static void (*tabFunc_0[])() = {
+                MiddleOne_0a,
+                MiddleOne_0b,
+                MiddleOne_0c,
+        };
+
+        static val_t eic_foo2(void)
+        {
+                val_t v;
+                
+                if(cbs_0 == ML_0) {
+                  fprintf(stderr,"EiC : too many callbacks for foo2\n");
+                  return v;
+                }
+
+                EiC_Cfunc_0[cbs_0] = arg(1,getargs(),ptr_t).p;
+                v.ival = foo2(arg(0,getargs(),int),
+                        tabFunc_0[cbs_0]);
+
+                cb_0++;
+        
+                return v;
+        }
+\end{verbatim}
+\normalsize
+
+The variable `EiC\_Cfunc\_0' is now defined as an array of pointers and
+the `MiddleOne\_0' function has been interfaced to via an array of
+pointers to functions, each of which will pass the index to the
+selected callback code stored in the `EiC\_Cfunc\_0' array, as well as
+the variables passed from `foo2'. This is done via the use of the
+function array `tabFunc\_0'. On entry into `eic\_foo2' a pointer to the
+callback function is stored in `EiC\_Cfunc\_0' and a pointer to a
+function stored in the function pointer array `tabFunc\_0' is passed to
+`foo2'.  In a interactive environment it might also be appropriate to
+first search the array `EiC\_Cfunc\_0', to see if the incoming pointer
+is already stored in `EiC\_Cfunc\_0' and to be able to reset `cb\_0' back
+to zero.
+
+\subsection{Builtin-module's makefiles}
+\label{sec:builtin_makefile}
+\index{module!makefile}
+
+The next thing that is required when building a builtin module, is a
+makefile.  To construct the builtin-module's Makefile, copy the
+`EiC/module/Makefile.builtin' to the module directory and rename it to
+`Makefile'. Next only the following variables within the `Makefile'
+will need to set:
+
+\small
+\begin{verbatim}
+        MODULE =
+        LINK_LIBS =
+        libSRCS =  
+        libOBJS =
+\end{verbatim}
+\normalsize
+
+The variable `MODULE' is used to record the module name.  The
+`LINK\_LIBS' variable should contain the names of the libraries being
+linked to and any auxially libraries required. Remember a builtin
+module is just an interface to a C library.  The `libSRCS' variable
+will contain then names of the C files that where generated by EiC's
+`:gen' command or any other C code.  The `libOBJS' variable will be
+assigned the objects to be linked into EiC. For our example, the above
+lines would be changed to:
+
+\small
+\begin{verbatim}
+        MODULE = foo
+        LINK_LIBS = -L/path_2_foo_library -lfoo
+        libSRCS =  foo.c
+        libOBJS = $(LIB)(foo.o)
+\end{verbatim}
+\normalsize
+
+The `LIB' variable is a predefined to EiC's library libeic. If a
+second interface file was needed, say fooey, then libSRCS and libOBJS
+would change to:
+
+\small
+\begin{verbatim}
+        libSRCS =  foo.c fooey.c
+        libOBJS = $(LIB)(foo.o) $(LIB)(fooey.o)
+\end{verbatim}
+\normalsize
+
+
+
+
+
+
+

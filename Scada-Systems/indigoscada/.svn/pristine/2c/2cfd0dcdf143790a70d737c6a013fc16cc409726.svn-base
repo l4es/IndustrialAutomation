@@ -1,0 +1,76 @@
+\documentclass[12pt]{book}
+\usepackage{float,moreverb,xspace,makeidx,apalike,epsfig}
+
+\makeindex
+
+
+\include{eicpreamble}
+
+\title{Extensible Interactive C }
+\author{Edmond J. Breen}
+
+\includeonly{%
+	,FigPageSetup%
+	,preface%
+	,Intro2EiC%
+	,preproc%
+	,grammar%
+	,Library%
+	,advanced%
+	,EiCgram%
+}
+
+\begin{document}
+
+\maketitle
+
+\frontmatter
+
+\tableofcontents
+\include{FigPageSetup}
+\include{preface}
+
+\mainmatter
+
+\include{Intro2EiC}
+\include{preproc}
+\include{grammar}
+\include{Library}
+\include{advanced}
+
+\appendix
+
+\include{EiCgram}
+
+\bibliographystyle{apalike}
+\bibliography{computer}
+ 
+
+\section*{On line documentation and C sources}
+\begin{itemize}
+\item  Steve Summit's Introductory C course: \\
+\verb+http://www.eskimo.com/~scs/cclass/cclass.html+
+\item  Martin Leslie's Online C Language Reference:\\
+ \verb+http://users.southeast.net/~garyg/C_ref/C/c.html+
+\item Ross Richardson's The C Standard Library:\\
+\verb+http://www.infosys.utas.edu.au/info/documentation/C/CStdLib.html+
+\item comp.lang.c Frequently Asked Questions:\\
+\verb+http://www.eskimo.com/~scs/C-faq/top.html+
+\item Other Sources, C,   Related Languages, Programming Languages:\\ 
+\verb+http://www.lysator.liu.se/c/c-www.html+
+\end{itemize}
+
+\printindex
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+

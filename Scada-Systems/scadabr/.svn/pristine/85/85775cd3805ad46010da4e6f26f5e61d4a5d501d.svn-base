@@ -1,0 +1,77 @@
+
+ ------- 
+ |     |   
+ | :-) |          EDUGRAF - LABORATORIO DE SOFTWARE EDUCACIONAL
+ |     |  
+  ------ 
+
+INE/CTC/UFSC 
+
+                      http://www.edugraf.ufsc.br 
+
+
+-------------------------------------------------------------
+	                  Como Instalar?
+-------------------------------------------------------------
+  
+
+Requisitos Mínimos para Instalar
+================================
+
+* Mango M2M >= 1.8
+
+
+Instalando o Rose
+=========================
+
+1) Copie os arquivos contidos no diretório "distribuicao" para o diretório "WEB-INF/lib" da instalação do Mango
+
+Por Exemplo,se seu Mango fica instalado em:
+
+"/home/fulano/apache-tomcat-6.0.29/webapps/mango"
+
+Descompacte o Rose em:
+
+"/home/fulano/apache-tomcat-6.0.29/webapps/mango/WEB-INF/lib"
+
+
+2) Edite o arquivo de configuração "web.xml" que fica no diretório "WEB-INF" da instalação do Mango M2M.
+
+Inclua as seguintes linhas após o comentário " <!-- Context parameters -->":
+
+<context-param>
+	<param-name>org.restlet.application</param-name>
+	<param-value>
+	br.ufsc.edugraf.rose.Rose
+	</param-value>
+</context-param>
+
+<context-param>
+		<param-name>org.restlet.clients</param-name>
+		<param-value>FILE HTTP</param-value>
+</context-param>
+
+<servlet>
+<servlet-name>RoseServlet</servlet-name>
+      <servlet-class>
+        org.restlet.ext.servlet.ServerServlet
+      </servlet-class>
+</servlet>
+
+<servlet-mapping>
+      <servlet-name>RoseServlet</servlet-name>
+      <url-pattern>/rose/*</url-pattern>
+</servlet-mapping> 
+
+3) Salve as alterações.
+
+
+4) Reinicie o Apache Tomcat.
+
+Acesse "http://URIDeAcessoDoMango/rose/" em seu navegador.
+
+Onde URIDeAcessoAoMango é a URI por onde o Mango pode ser acessado (exemplo: http://localhost:8080/mango)
+
+Deve aparecer uma frase informando que o Rose foi instalado com sucesso.
+
+Depois você pode ver os exemplos de uso na pasta "exemplos".

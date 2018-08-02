@@ -1,0 +1,236 @@
+
+
+		EiC's  TYPE SYSTEM
+              ----------------------
+
+EiC's type system does type checking and it reports errors if an
+operator is applied with incompatible operands. It also checks that the
+type of a construct matches what is expected; for example, assigning a
+double to an int, the appropriate casting must be performed. 
+
+EiC was designed with the intention that it should be easy to add a
+new type or operand. Well at least that was the intention. :)
+
+
+	This document deals with EiC's basic types and with
+	binary operators only, unary and ternary operators will 
+	be dealt with later.
+ 
+In EiC, all expressions evaluate to a type, TYPE, which maybe a basic,
+single, or a constructed type. All basic types, T, are
+identified using a sequential positive integer value. That is, T is an
+integral value such that:
+
+		T >= 0;
+
+EiC's basic types are defined in .../EiC/src/global.h as C enumeration
+values; such as:
+
+	typedef enum { /*  */
+	    t_error,   t_bool,    t_char,    t_uchar,   t_short,  t_ushort, /*5*/
+	    t_int,     t_enum,    t_uint,    t_long,    t_ulong,  t_float,  /*11*/
+	    t_double,  t_pointer, t_void,    t_struct,  t_union,             /*16*/
+	    t_lval,    t_array,   t_func,    t_funcdec, t_elem,   t_eic,     /*22*/
+	    t_builtin, t_var,     t_hidden,  
+	} obj_t;
+
+
+If an expression generates a float, its type will be t_float. If it
+generates void, its type is t_void. Note, not all types defined in the
+above enumeration are actually used in EiC; for example, there
+is no boolean type, t_bool.
+
+From the enumeration obj_t, it is seen that t_error = 0, t_bool = 1,
+etc. Also, the ordering of enumeration constants is roughly
+representative of subgroups and type complexity and or
+size. For example, t_int > t_char and a type T can be said to be
+arithmetic if the following is true:
+	
+	T >= t_char && T <= t_double.
+
+Naturally, this can be done more securely via the use of a method:
+
+	IsArithmetic(T);
+
+Associated with each type T is a binary number I(T) defined by:
+
+	#define I(T)  (1<<(T))
+
+Thus, in bit value representation:
+
+	I(t_error) = 1;
+	I(t_bool)  = 10;
+	I(t_char)  = 100;
+	I(t_uchar) = 1000;
+	...
+
+EiC uses type I(T) values to build sets of types defined via:
+
+	typedef unsigned long set_t;
+
+For example, the set S containing a boolean, a char, and an unsigned
+char, would be constructed via:
+
+	set_t S = I(t_bool) + I(t_char) + I(t_uchar);
+
+Therefore, S equals 1110. Also, a type T is a member of S if 
+	
+	(I(T) & (S)) != 0;
+
+More complex types are constructed by combining the basic types; for
+example:
+
+	int *p;
+
+has the type:
+
+	t_pointer -> t_int
+
+--------------------------------------
+	BINARY OPERATIONS
+
+
+In EiC, it is illegal to add two pointers together, but pointers can be
+subtracted from each other. To specify what is allowed for any
+binary operator the following table is used:
+
+Binset BINSET[] =
+{
+    {	'+',	 addLR, 	sizeof(addLR) / sizeof(LRset_t),},
+    {	'-',	 subLR,		sizeof(subLR) / sizeof(LRset_t),},
+    {	'*',	 multLR, 	sizeof(multLR) / sizeof(LRset_t),},
+    {	'/',	 divLR, 	sizeof(divLR) / sizeof(LRset_t),},
+    {	'%',	 modLR, 	sizeof(modLR) / sizeof(LRset_t),},
+    {	LSHT,	 modLR, 	sizeof(modLR) / sizeof(LRset_t),},
+    {	RSHT,	 modLR, 	sizeof(modLR) / sizeof(LRset_t),},
+    {	BOR,	 modLR, 	sizeof(modLR) / sizeof(LRset_t),},
+    {	XOR,	 modLR, 	sizeof(modLR) / sizeof(LRset_t),},
+    {	AND,	 modLR, 	sizeof(modLR) / sizeof(LRset_t),},
+    {	LT,	 LTLR, 		sizeof(LTLR) / sizeof(LRset_t),},
+    {	LE,	 LTLR, 		sizeof(LTLR) / sizeof(LRset_t),},
+    {	EQ,	 LTLR, 		sizeof(LTLR) / sizeof(LRset_t),},
+    {	NE,	 LTLR, 		sizeof(LTLR) / sizeof(LRset_t),},
+    {	GT,	 LTLR, 		sizeof(LTLR) / sizeof(LRset_t),},
+    {	GE,	 LTLR, 		sizeof(LTLR) / sizeof(LRset_t),},
+    {	LOR,	 LTLR, 		sizeof(LTLR) / sizeof(LRset_t),},
+    {	LAND,	 LTLR, 		sizeof(LTLR) / sizeof(LRset_t),},
+};
+
+where BINSET is an array of structures of type: 
+
+	typedef struct {
+		unsigned oper;
+		LRset_t *LRset;
+		unsigned N;
+	} Binset;
+
+
+The first member, `oper', is used to specify the operator type. The
+next member `LRset', is an array of LRset_ts, which hold the
+information on what basic types are allowed to appear simultaneously
+on the left and right hand side of the operator defined by `oper'. The
+last member, `N', specifies the length of the LRset array. The
+definition of a LRset_t is:
+
+	typedef struct {
+    		set_t Lset;      // left side 
+    		set_t Rset;      // right side
+	} LRset_t;
+
+For any given LRset_t, any member of set `Lset' can appear on the left
+hand side of the operator defined in `oper' simultaneously with any
+member from the Rset on the right hand side of the same operator. For
+example, the left and right sets for addition is given by the
+array addLR:
+
+
+LRset_t addLR[] =
+{ //    _LEFT_SIDE_                                _RIGHT_SIDE_
+    {SETNUM + SETUNUM + SETFLOAT,             SETNUM + SETUNUM + SETFLOAT},
+    {I(t_pointer) + I(t_array),               SETNUM + SETUNUM},
+    {SETNUM + SETUNUM,                        I(t_pointer) + I(t_array)},
+};
+
+
+where SETNUM etc are defined by:
+
+#define SETNUM   I(t_char)+I(t_short)+I(t_int)+I(t_enum)+I(t_long)
+#define SETUNUM  I(t_uchar)+I(t_ushort)+I(t_uint)+I(t_ulong)
+#define SETFLOAT I(t_float)+I(t_double)
+
+For addition, there are three LRset_ts that specify all the allowed operand
+combinations for the `+' operator. Note, the first set is symmetrical, what
+can appear on the left can also appear on the right. The next two sets are
+not symmetrical, the left and right sets are different and this is because
+in EiC you can't add two pointers together but you can add any integral to a
+pointer.
+
+Given any operator, left and a right operands then BINSET will yield whether
+or not such an operation is valid. Internally, this is done via a call to
+the function designated as `compatiable':
+
+	compatiable(operator, left_type, right_type);
+ 
+Which returns NULL if the operation is invalid or a pointer to the
+function that will handle the binary operation.
+
+In EiC there is a function defined to handle all binary operations
+associted with any particular type. For example, all binary operation
+that includes a pointer operand are handled by the function `binhlval'
+defined in "EiC/src/typesets.c". When deciding which function to call
+to handle an operation the following rule is used,
+
+	if(left_type > right_type) 
+              return the function defined to handle the 
+		 type specified by the left_type.
+	else
+	      return the function defined to handle the
+                         type specified by the right_type
+	
+
+For example, this shows that the binary handler for type char only has to
+consider combinations of chars. Similarly, the int handler deals with the
+case where an int type is consider the maximum type. In EiC, chars are
+handled as ints and therefore the smallest set is type int.
+
+
+The following defines the binary handle functions used for binary operations:
+	
+extern void binhint(),        // handle integers   
+            binhuint(),       // handle unsigned integers
+            binhlong(),       // handle longs
+	    binhulong(),      // handle unsigned longs
+	    binhdouble(),     // handle floating types
+	    binhlval(),       // handle pointers
+	    binhconst();      // handle constants of any type
+
+All the binary operations associated with type T and of types of lower order
+are obtained via:
+
+	BINFUNC[T];
+
+
+where BINFUNC is an array of pointers to functions declared as:
+
+
+void (*BINFUN[]) () = {
+    NULL, NULL,		/* t_error,   t_bool, */
+    binhint, binhint,	/* t_char,    t_uchar, */
+    binhint, binhint,	/* t_short,   t_ushort */
+    binhint, binhint,	/* t_int,     t_enum, */
+    binhuint,		/* t_uint, */
+    
+    binhlong, binhulong,  /* t_long,    t_ulong, */
+    binhdouble, binhdouble, /* t_float,   t_double, */
+    binhlval, NULL,	  /* t_pointer, t_void */
+    NULL,NULL,            /* t_struct, t_union */
+    NULL,binhlval,        /* t_lval,  t_array */       
+    
+};
+
+
+
+----------------
+By Ed.Breen@Altavista.net
+
+	

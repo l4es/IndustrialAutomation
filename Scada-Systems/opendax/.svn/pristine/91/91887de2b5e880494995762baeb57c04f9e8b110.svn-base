@@ -1,0 +1,38 @@
+-- Main configuration file for the OpenDAX system
+
+--Set to 'false' to run OpenDAX in the foreground
+daemonize = false
+
+--Verbosity can be set from 0 to 8
+verbosity = 10
+
+--statustag = "_status"
+
+--pidfile = "/var/run/opendax.pid"
+
+daxroot = "/home/opendax/"
+
+--We only run this part when it's the server configuration call
+if calling_module == "opendax" then
+
+    m = {}
+    
+    m.startup   = 1
+    m.restart   = false
+    m.openpipes = false
+    
+    --This is the regression test module.
+    m.name      = "test"
+    m.path      = daxroot.."modules/test/daxtest"
+    
+    --add_module(m)
+    
+    
+    --This is an example of setting up the modbus module
+    m.name      = "modbus"
+    m.path      = daxroot.."modules/modbus/modbus"
+    m.args      = "-C " .. daxroot .. "etc/modbus.conf"
+    
+    --add_module(m)
+
+end

@@ -1,0 +1,12 @@
+on
+	(void)
+Warning: in testsetjmp.c near line 21: Possible dangling pointer
+case 0
+case 1
+case 2
+	case 2: 0
+	case 2: -7
+case 3
+	case 2: 5
+SUCCESS testing <setjmp.h>
+	0

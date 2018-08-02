@@ -1,0 +1,35 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+PrintDVector -> Func (
+	v: * struct: size  16 bytes
+	) returning void 
+   1:bump     1            10:drefdouble          
+   2:checkar  3 1          11:stoval              
+   4:bump     1            13:stoval              
+   5:pushint  8            14:pushint  3          
+   6:addptr2int            15:call                
+   7:drefdouble            16:eicreturn           
+   8:stoval              
+
+   0:rvalptr  5 0          18:addptr2int            36:pushint  3          
+   1:bump     1            19:bump     1            37:call                
+   3:refdouble             21:refdouble             39:bump     1          
+   5:bump     1            23:bump     1            41:rvalptr  5 0        
+   6:pushint  8            24:checkar  3 1          42:stoval              
+   7:addptr2int            25:rvalptr  5 0          43:pushint  1          
+   8:bump     1            26:bump     1            44:eiccall             
+  10:refdouble             28:addptr2int            46:bump     1          
+  11:rvalptr  6 0          29:drefdouble            47:checkar  1 1        
+  12:bump     1            30:stoval                48:rvalptr  6 0        
+  13:pushdouble  1.1       31:rvalptr  5 0          49:stoval              
+  14:refdouble             32:drefdouble            50:pushint  1          
+  15:rvalptr  6 0          33:stoval                51:eiccall             
+  17:pushint  8            35:stoval              
+
+--- v = (1/1.5)
+--- v = (1/1.5)
+--- v = (1.1/1.6)
+	(void)

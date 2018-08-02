@@ -1,0 +1,12 @@
+CC = gcc
+PLATFORM = _LINUX
+DEFINES = -D$(PLATFORM) -D_SEIC_
+CFLAGS =  -ansi -pedantic -g -fsigned-char -Wall $(DEFINES) 
+OBJS =  cdecl.o func.o  main.o preproc.o  symbol.o \
+	eicmod.o interpre.o optomizer.o readline.o typemod.o\
+	emitter.o parser.o stab.o typesets.o\
+	error.o lexer.o preexpr.o starteic.o ymem.o\
+
+seic: $(OBJS)
+	$(CC) $(CFLAGS) -o  seic $(OBJS) -lm		
+

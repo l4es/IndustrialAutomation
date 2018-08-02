@@ -1,0 +1,37 @@
+CC = powerpc-eabi-gcc
+AR = powerpc-eabi-ar
+AS = powerpc-eabi-as
+LD = powerpc-eabi-ld
+
+LIB =  libstdClib.a
+
+PLATFORM = POWERPC 
+DEFINES = -D$(PLATFORM) -D_SEIC_ -DNO_TIME -DNO_DIR -DNO_TMPFILE -DNO_FILEIO -DNO_FSEEK -DNO_FNCTL -DNO_PIPE -DNO_STDARG -DNO_SYSTEM -DNO_ENV -DNO_DIRENT -DPOWERPC -DPPCLIB
+
+LIBPATH = /ppc/lib/gcc-lib/powerpc-eabi/egcs-2.91.14/nof \
+	  -L /ppc/powerpc-eabi/lib/nof
+
+CFLAGS =  -O4 -mno-eabi -mcpu=403 -mbig -fsigned-char -Wall $(DEFINES) \
+          -I ../../../include  -I . -I ../../../src -I-  -L . -L $(LIBPATH) 
+
+
+libOBJS = 	$(LIB)(stdlib.o)\
+		$(LIB)(itoa.o)\
+		$(LIB)(ctype.o)\
+		$(LIB)(eicfftoa.o)\
+		$(LIB)(fopen.o)\
+		$(LIB)(strrev.o)\
+		$(LIB)(strround.o)
+
+		
+all:	
+	make -f makefile.ppc libstdClib.a
+
+clean:	
+	rm libstdClib.a
+
+
+$(LIB): $(libOBJS)
+	
+lib::$(LIB)
+

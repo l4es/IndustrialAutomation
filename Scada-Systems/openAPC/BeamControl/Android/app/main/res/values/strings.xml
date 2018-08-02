@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ <string name="app_name">BeamControl for Smart Interface</string>
+
+ <string name="prefs">Preferences</string>
+ <string name="really_exit_app">Really exit application?</string>
+ <string name="really_delete_conn">Really delete this connection together with all settings?</string>
+ <string name="ok">OK</string>
+ <string name="no">No</string>    
+ <string name="exit">Exit</string>
+ <string name="delete">Delete</string>
+ <string name="about">About</string>
+ <string name="cancel">Cancel</string>
+ <string name="host">IP/Hostname</string>
+ <string name="enter_ip_text">Please enter the IP of the new connection to be added</string>
+
+ <string name="prefsTextSize">Text font size</string>
+ <string name="prefsTextSizeText">Size of the font that is used to show text - larger ones are easier to read but need more space</string>
+ <string name="prefsScreenLight">Screen brightness / stand-by</string>
+ <string name="prefsScreenLightText">Specifies the screens behaviour when the device would go to stand-by mode (requires restarting the App)</string>
+ <string name="prefsTheme">Application theme</string>
+ <string name="prefsThemeText">The design of the application (requires restarting the App)</string>
+
+ <string name="detProjectText">Project:</string>
+ <string name="detProjectError">Error:</string>
+ <string name="detProjectParts">Parts:</string>
+ <string name="detProjectProgress">Build progress:</string>
+ <string name="detTimeText">Last update:</string>
+
+ <string name="stateDisonnected">Disconnected</string>
+ <string name="stateReady">Ready</string>
+ <string name="stateIdle">Idle</string>
+ <string name="stateMarking">Marking</string>
+ <string name="statePaused">Paused</string>
+ <string name="stateError">Error</string>
+ <string name="stateUnknown">unknown</string>
+
+ <string name="readyToIdle">Change from ready to idle</string>
+ <string name="markingToReady">Change from marking to ready</string>
+
+
+</resources>

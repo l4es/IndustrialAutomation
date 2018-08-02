@@ -1,0 +1,60 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:ScadaShell.ViewModel;assembly=ScadaShell"
+    xmlns:vw="clr-namespace:ScadaShell.View;assembly=ScadaShell"
+	xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <DataTemplate DataType="{x:Type vm:AutoSettingsSchemaViewModel}">
+        <DataTemplate.Resources>
+            <ResourceDictionary Source="../View/ChannelEditView.xaml"/>
+        </DataTemplate.Resources>
+        <Border BorderBrush="Green" BorderThickness="1" Width="320" HorizontalAlignment="Center">
+            <StackPanel >
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Рабочий тиск" Width="200" Foreground="Black"/>
+                    <ContentPresenter Width="60" Height="25"  Content="{Binding Pwork}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                    <Label Content="кг/см&#178;" Width="200" Foreground="Black"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Пріоритет крану 3" Width="200" Foreground="Black"/>
+                    <ContentPresenter Width="60" Height="25"  Content="{Binding Kran3Prioritet}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Пріоритет крану 4" Width="200" Foreground="Black"/>
+                    <ContentPresenter Width="60" Height="25"  Content="{Binding Kran4Prioritet}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Аварійне підвищеня" Width="200" Foreground="Black"/>
+                    <ContentPresenter Width="60" Height="25"  Content="{Binding SetPointMaxMax}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                    <Label Content="%" Width="200" Foreground="Black"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Попереджувальне підвищеня" Width="200" Foreground="Black"/>
+                    <ContentPresenter Width="60" Height="25"  Content="{Binding SetPointMax}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                    <Label Content="%" Width="200" Foreground="Black"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Попереджувальне пониження" Width="200" Foreground="Black"/>
+                    <ContentPresenter Width="60" Height="25"  Content="{Binding SetPointMin}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                    <Label Content="%" Width="200" Foreground="Black"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Аварійне пониження" Width="200" Foreground="Black"/>
+                    <ContentPresenter Width="60" Height="25"  Content="{Binding SetPointMinMin}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                    <Label Content="%" Width="200" Foreground="Black"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Затримка спрацювання" Width="200" Foreground="Black"/>
+                    <ContentPresenter Width="60" Height="25"  Content="{Binding SpTimeout}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                    <Label Content="с" Width="200" Foreground="Black"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Час відновлення" Width="200" Foreground="Black"/>
+                    <ContentPresenter Width="60" Height="25"  Content="{Binding RepairTime}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                    <Label Content="с" Width="200" Foreground="Black"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+</ResourceDictionary>

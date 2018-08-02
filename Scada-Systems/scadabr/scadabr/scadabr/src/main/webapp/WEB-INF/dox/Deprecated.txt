@@ -1,0 +1,1 @@
+Arne Plöse: Move the content of this dir to static html files I.E. src/main/webapp/html/help/* or serve as jsp ??

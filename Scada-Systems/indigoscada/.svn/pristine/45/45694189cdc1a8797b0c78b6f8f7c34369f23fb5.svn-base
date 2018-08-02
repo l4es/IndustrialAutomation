@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qwt", "qwt.vcproj", "{F17E1B69-A6E7-30D6-AE8C-2836944B18CB}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qwtplugin", "designer\qwtplugin.vcproj", "{DA881AA1-AE14-344E-9F0D-C0C36041BD24}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F17E1B69-A6E7-30D6-AE8C-2836944B18CB} = {F17E1B69-A6E7-30D6-AE8C-2836944B18CB}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{F17E1B69-A6E7-30D6-AE8C-2836944B18CB}.Debug.ActiveCfg = Debug|Win32
+		{F17E1B69-A6E7-30D6-AE8C-2836944B18CB}.Debug.Build.0 = Debug|Win32
+		{F17E1B69-A6E7-30D6-AE8C-2836944B18CB}.Release.ActiveCfg = Release|Win32
+		{F17E1B69-A6E7-30D6-AE8C-2836944B18CB}.Release.Build.0 = Release|Win32
+		{DA881AA1-AE14-344E-9F0D-C0C36041BD24}.Debug.ActiveCfg = Debug|Win32
+		{DA881AA1-AE14-344E-9F0D-C0C36041BD24}.Debug.Build.0 = Debug|Win32
+		{DA881AA1-AE14-344E-9F0D-C0C36041BD24}.Release.ActiveCfg = Release|Win32
+		{DA881AA1-AE14-344E-9F0D-C0C36041BD24}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

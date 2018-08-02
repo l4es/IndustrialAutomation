@@ -1,0 +1,14 @@
+#!/bin/sh
+setenv REQUEST_METHOD   'GET'
+setenv QUERY_STRING    'name=John%20Surge&company=ABC'
+setenv HTTP_ACCEPT     'image/gif, image/x-xbitmap, image/jpeg, */*'
+setenv SERVER_PROTOCOL  'HTTP/1.0'
+setenv REMOT_ADDR       '198.198.198.198'
+setenv DOCUMENT_ROOT    '/usr/local/bin/httpd/public'
+setenv GATEWAY_INTERFACE 'CGI/1.1'
+setenv SCRIPT_NAME 'cgi-bib/abc.pl'
+setenv SERVER_SOFTWARE 'NCSA/1.4.2'
+setenv REMOTE_HOST   'gateway.cgi.com'
+#setenv REQUEST_METHOD 'POST'
+#setenv CONTENT_LENGTH 29
+ 

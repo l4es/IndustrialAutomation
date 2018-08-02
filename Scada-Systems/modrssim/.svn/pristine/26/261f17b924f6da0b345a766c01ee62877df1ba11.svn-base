@@ -1,0 +1,1040 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\MOD_RSsim.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\MOD_RSsimul.ico"
+IDR_MAINZETH            ICON                    "res\\idr_main.ico"
+IDR_MAINZDF1            ICON                    "res\\ico00001.ico"
+IDR_MAINJOY             ICON                    "res\\ico00002.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 305, 177
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About MOD_RSsim"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,248,7,50,14,WS_GROUP
+    LTEXT           "Visit our website at",IDC_STATIC,13,136,66,8
+    LTEXT           "or Email :",IDC_STATIC,13,145,52,8
+    LTEXT           "www.plcsimulator.org",IDC_WWWLINK,85,136,140,8
+    LTEXT           "zaphodikus@hotmail.com",IDC_EMAILLINK,66,145,164,8
+    LTEXT           "Registration info",IDC_REGISTRATIONINFO,13,155,213,8
+    LTEXT           "",IDC_SINKSTAT2,7,133,232,37,SS_SUNKEN
+    PUSHBUTTON      "Start-up\nSplash",IDC_SPLASH,248,146,50,24,BS_CENTER | BS_MULTILINE
+    LTEXT           "Static",IDC_CREDITSTATIC,7,7,232,120,0,WS_EX_CLIENTEDGE
+    DEFPUSHBUTTON   "Updates",IDB_CHECKUPDATES,248,23,50,14,WS_GROUP
+    DEFPUSHBUTTON   "Register",IDB_EDITREGISTRATION,248,40,50,14,WS_GROUP
+END
+
+IDD_TI_SIM_DIALOG DIALOGEX 0, 0, 434, 247
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "MODBUS PLC - Simulator"
+CLASS "MYSimulator_Window_Classname"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_SERVERSTATS,2,3,228,12,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER
+    CONTROL         "",IDC_LAMPRX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,236,3,10,8
+    CONTROL         "",IDC_LAMPTX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,246,3,9,8
+    CTEXT           "-IDB_TOOLBARID-",IDB_TOOLBARID,270,0,162,15,SS_CENTERIMAGE | SS_SUNKEN | NOT WS_VISIBLE
+    LTEXT           "Address :",IDC_STATIC_1,7,21,33,8
+    CONTROL         "Hex",IDC_VIEWHEX,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,43,20,29,10
+    CONTROL         "Dec",IDC_VIEWDEC,"Button",BS_AUTORADIOBUTTON,78,20,29,10
+    LTEXT           "I/O",IDC_STATIC_2,116,21,16,8
+    COMBOBOX        IDC_COMBOAREA,132,18,83,78,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Fmt:",IDC_STATIC_3,233,21,14,8
+    COMBOBOX        IDC_DATAFORMAT,252,18,54,87,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Clone",IDC_CLONE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,398,20,34,10
+    CONTROL         "List1",IDC_DATALIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_OWNERDATA | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,2,37,430,183
+    CONTROL         "00",IDC_STATION00,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,224,12,10
+    CONTROL         "01",IDC_STATION01,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,224,12,10
+    CONTROL         "00",IDC_STATION02,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,29,224,12,10
+    CONTROL         "01",IDC_STATION03,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,42,224,12,10
+    CONTROL         "01",IDC_STATION04,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,55,224,12,10
+    CONTROL         "01",IDC_STATION05,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,68,224,12,10
+    CONTROL         "01",IDC_STATION06,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,81,224,12,10
+    CONTROL         "01",IDC_STATION07,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,94,224,12,10
+    CONTROL         "01",IDC_STATION08,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,107,224,12,10
+    CONTROL         "01",IDC_STATION09,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,224,12,10
+    CONTROL         "00",IDC_STATION10,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,133,224,12,10
+    CONTROL         "01",IDC_STATION11,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,146,224,12,10
+    CONTROL         "00",IDC_STATION12,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,159,224,12,10
+    CONTROL         "01",IDC_STATION13,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,172,224,12,10
+    CONTROL         "01",IDC_STATION14,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,185,224,12,10
+    CONTROL         "01",IDC_STATION15,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,198,224,12,10
+    CONTROL         "01",IDC_STATION16,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,211,224,12,10
+    CONTROL         "01",IDC_STATION17,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,224,224,12,10
+    CONTROL         "01",IDC_STATION18,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,237,224,12,10
+    CONTROL         "01",IDC_STATION19,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,250,224,12,10
+    CONTROL         "01",IDC_STATION20,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,263,224,12,10
+    CONTROL         "01",IDC_STATION21,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,276,224,12,10
+    CONTROL         "00",IDC_STATION22,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,289,224,12,10
+    CONTROL         "01",IDC_STATION23,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,302,224,12,10
+    CONTROL         "01",IDC_STATION24,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,315,224,12,10
+    CONTROL         "01",IDC_STATION25,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,328,224,12,10
+    CONTROL         "01",IDC_STATION26,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,3,235,12,10
+    CONTROL         "01",IDC_STATION27,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,235,12,10
+    CONTROL         "01",IDC_STATION28,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,29,235,12,10
+    CONTROL         "01",IDC_STATION29,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,42,235,12,10
+    CONTROL         "01",IDC_STATION30,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,55,235,12,10
+    CONTROL         "01",IDC_STATION31,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,68,235,12,10
+    CONTROL         "00",IDC_STATION32,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,81,235,12,10
+    CONTROL         "33",IDC_STATION33,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,94,235,12,10
+    CONTROL         "34",IDC_STATION34,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,107,235,12,10
+    CONTROL         "35",IDC_STATION35,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,235,12,10
+    CONTROL         "36",IDC_STATION36,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,133,235,12,10
+    CONTROL         "37",IDC_STATION37,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,146,235,12,10
+    CONTROL         "38",IDC_STATION38,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,159,235,12,10
+    CONTROL         "39",IDC_STATION39,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,172,235,12,10
+    CONTROL         "40",IDC_STATION40,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,185,235,12,10
+    CONTROL         "40",IDC_STATION41,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,198,235,12,10
+    CONTROL         "40",IDC_STATION42,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,211,235,12,10
+    CONTROL         "40",IDC_STATION43,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,224,235,12,10
+    CONTROL         "40",IDC_STATION44,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,237,235,12,10
+    CONTROL         "40",IDC_STATION45,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,250,235,12,10
+    CONTROL         "40",IDC_STATION46,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,263,235,12,10
+    CONTROL         "40",IDC_STATION47,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,276,235,12,10
+    CONTROL         "40",IDC_STATION48,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,289,235,12,10
+    CONTROL         "40",IDC_STATION49,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,302,235,12,10
+    CONTROL         "40",IDC_STATION50,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,315,235,12,10
+    CONTROL         "40",IDC_STATION51,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,328,235,12,10
+    LISTBOX         IDC_COMMSLIST,2,37,430,183,LBS_NOINTEGRALHEIGHT | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "^",IDB_TOGGLEDISP,388,223,44,14
+    PUSHBUTTON      "Pause",IDC_PAUSECOMMS,2,21,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "Track end",IDC_TRACKCOMMS,61,21,61,14,NOT WS_VISIBLE
+    SCROLLBAR       IDC_VSCROLLSTATIONS,344,223,11,22,SBS_VERT
+    LTEXT           "Prot:",IDC_STATIC_4,309,21,16,8
+    CONTROL         "",IDC_PLANTSIM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,219,20,10,8
+    CONTROL         "",IDC_RULER,"Static",SS_BLACKFRAME | NOT WS_VISIBLE,2,221,334,1
+    PUSHBUTTON      "T",IDC_TRAININGSIM,366,223,18,14
+    COMBOBOX        IDC_PROTOCOL,329,18,62,54,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Clear",IDC_CLEARCOMMS,133,21,61,14,NOT WS_VISIBLE
+    CONTROL         "Show times",IDC_SHOWCOMMSTIME,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,199,24,55,10
+    LTEXT           "--",IDC_DRAG,425,238,8,8,SS_NOTIFY
+    CONTROL         "",IDC_LAMPCTS,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,260,25,10,8
+    CONTROL         "",IDC_LAMPDSR,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,272,25,10,8
+    CONTROL         "",IDC_LAMPRING,"Button",BS_AUTOCHECKBOX | NOT WS_VISIBLE | WS_TABSTOP,284,25,10,8
+END
+
+IDD_SERVERSETTINGS_232 DIALOG  0, 0, 211, 226
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "RS-232 MODBUS PLC Sim-server Settings"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,154,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,154,24,50,14
+    LTEXT           "P&ort",IDC_STATIC,14,21,55,10
+    COMBOBOX        IDC_PORT,70,19,55,46,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Baud rate",IDC_STATIC,14,36,55,10
+    COMBOBOX        IDC_BAUDRATE,70,34,55,58,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "P&arity",IDC_STATIC,14,51,55,10
+    COMBOBOX        IDC_PARITY,70,49,55,59,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Data bits",IDC_STATIC,14,66,55,10
+    COMBOBOX        IDC_DATA_BITS,70,64,55,35,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "S&top bits",IDC_STATIC,14,80,55,10
+    COMBOBOX        IDC_STOP_BITS,70,78,55,47,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Responsiveness (ms)",IDC_STATIC,13,129,68,8
+    EDITTEXT        IDC_RESPONSEDELAY,87,126,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "(0 to 10 000 ms)",IDC_STATIC,133,129,60,8
+    GROUPBOX        "Server settings",IDC_STATIC,7,115,197,50
+    GROUPBOX        "RS-232 Port",IDC_STATIC,7,7,126,106
+    LTEXT           "If you see a little * next to the COM port, it is the current port, or being used by another program.",IDC_STATIC,140,41,64,47,SS_SUNKEN
+    GROUPBOX        "Advanced settings",IDC_STATIC4,7,168,197,51
+    CONTROL         "Perform MODBUS - MOSCAD (row/table) checks",IDC_MOSCAD,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,180,171,10
+    CONTROL         "Load register values at startup.",IDC_AUTOLOAD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,143,128,10
+    CONTROL         "Units are all off at start-up",IDC_STARTOFF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,153,128,10
+    LTEXT           "RTS control",IDC_STATIC,13,96,55,10
+    COMBOBOX        IDC_RTS_COMBO,70,93,55,55,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Allen-Bradley master mode PLC",IDC_ABMASTER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,191,114,10
+    LTEXT           "Checksum calculation is",IDC_STATIC,14,203,77,8
+    COMBOBOX        IDC_CHECKTYPE,97,201,68,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_EDITMEMCELL DIALOG  0, 0, 186, 46
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,129,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,24,50,14
+    EDITTEXT        IDC_VALUE,49,7,70,14,ES_AUTOHSCROLL
+    LTEXT           "Value:",IDC_STATIC,7,10,21,8
+    LTEXT           "PS- reg. name",IDC_REGISTERNAME,7,27,114,8
+END
+
+IDD_ANIMATE DIALOG  0, 0, 340, 278
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Animation settings"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,283,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,283,24,50,14
+    GROUPBOX        "Animation",IDC_STATIC,7,7,261,100
+    CONTROL         "&No animation",IDC_NOANIMATE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,15,16,57,10
+    CONTROL         "Increment &BYTES",IDC_ANIMATEBYTES,"Button",BS_AUTORADIOBUTTON,27,28,73,10
+    CONTROL         "Increment &WORDS",IDC_ANIMATEWORDS,"Button",BS_AUTORADIOBUTTON,27,40,77,10
+    CONTROL         "&Training PLC simulation",IDC_TRAINING,"Button",BS_AUTORADIOBUTTON,30,70,89,10
+    LTEXT           "Increment by (+/-)",IDC_STATIC1,112,40,57,8
+    EDITTEXT        IDC_VALUE,175,35,50,14,ES_AUTOHSCROLL
+    LTEXT           "Increment after every",IDC_STATIC2,112,57,68,8
+    EDITTEXT        IDC_REFRESHES,186,52,29,14,ES_AUTOHSCROLL
+    LTEXT           "'th refresh.",IDC_STATIC3,218,57,34,8
+    GROUPBOX        "Activity indicators",IDC_STATIC,7,111,326,91
+    LTEXT           "Station lights stay on for ",IDC_STATIC,14,122,78,8
+    EDITTEXT        IDC_ANIMATION_ON,97,119,40,14,ES_AUTOHSCROLL
+    LTEXT           "ticks (x 500 milliseconds)",IDC_STATIC,143,122,78,8
+    RTEXT           "Sample light graphic",IDC_STATIC,16,138,76,11
+    CONTROL         "00",IDC_DEMOCHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,97,138,11,10
+    RTEXT           "Station enabled (backing) color:",IDC_STATIC,10,156,101,8
+    COMBOBOX        IDC_STN_ENABLED,119,153,61,59,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_SORT | CBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Station disabled color:",IDC_STATIC,41,172,70,8
+    COMBOBOX        IDC_STN_DISABLED,119,167,61,60,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_SORT | CBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Station active(border) color:",IDC_STATIC,23,185,88,8
+    COMBOBOX        IDC_STN_ACTIVE,119,182,61,60,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_SORT | CBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Station inactive color:",IDC_STATIC,189,153,69,8
+    COMBOBOX        IDC_STN_INACTIVE,266,150,61,60,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_SORT | CBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Text enabled:",IDC_STATIC,190,169,68,8
+    COMBOBOX        IDC_STN_TEXT,266,165,61,60,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_SORT | CBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Text disabled:",IDC_STATIC,187,183,71,8
+    COMBOBOX        IDC_STN_DISTEXT,266,180,61,60,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_SORT | CBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_SCRIPTNAME,73,83,180,14,ES_AUTOHSCROLL
+    LTEXT           "Script",IDC_STATIC5,45,86,19,8
+    GROUPBOX        "HTML output GUI",IDC_STATIC,7,206,326,64
+    EDITTEXT        IDC_INPUT_HTMLNAME,72,216,180,14,ES_AUTOHSCROLL | WS_GROUP
+    LTEXT           "Input HTM File",IDC_STATIC,16,219,48,8,NOT WS_GROUP
+    EDITTEXT        IDC_OUTPUT_HTMLNAME,72,233,180,14,ES_AUTOHSCROLL
+    LTEXT           "Output HTM File",IDC_STATIC,16,236,53,8
+    LTEXT           "Update rate (sec)",IDC_STATIC,73,252,56,8
+    EDITTEXT        IDC_HTML_UPDATERATE,137,249,40,14,ES_AUTOHSCROLL
+    CONTROL         "Enable",IDC_ENABLEHTMLGUI,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,252,38,10
+END
+
+IDD_FAULTSDLG DIALOGEX 0, 0, 258, 198
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Communications Fault Simulation"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,201,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,201,24,50,14
+    GROUPBOX        "                                   ",IDC_STATIC,7,7,187,184
+    CONTROL         "Simulate faults",IDC_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,7,63,10
+    CONTROL         "Insert dummy characters",IDC_INSERTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,48,92,10
+    CONTROL         "Strip characters out",IDC_DELETES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,58,92,10
+    CONTROL         "Replace/corrupt characters",IDC_CORRUPTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,68,121,10
+    CONTROL         "Generate framing errors",IDC_MISFRAMES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,78,129,10
+    CONTROL         "Ignore requests",IDC_IGNORES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,99,74,10
+    CONTROL         "Delay responses for",IDC_DELAYS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,110,81,10
+    EDITTEXT        IDC_DELAYPERIOD,99,107,40,14,ES_AUTOHSCROLL
+    LTEXT           "milliseconds",IDC_STATIC,143,110,45,8
+    CTEXT           "Set the frequency of errors with this slider. Going further right introduces more errors.",IDC_STATIC,13,127,172,20,SS_SUNKEN,WS_EX_TRANSPARENT
+    CONTROL         "Slider1",IDC_FREQ,"msctls_trackbar32",TBS_TOP | WS_TABSTOP,16,149,160,25
+    CTEXT           "Select the types of errors to simulate, the fewer selected, the less chance of a bad response being simulated.",IDC_STATIC,13,17,172,27,SS_SUNKEN,WS_EX_TRANSPARENT
+    CONTROL         "Beep after a fault is generated",IDC_BEEP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,174,115,10
+    CONTROL         "Generate parity errors",IDC_PARITY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,89,129,10
+END
+
+IDD_EASTEREGG DIALOG  0, 0, 248, 201
+STYLE DS_SETFONT | WS_POPUP | WS_BORDER
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_STARTSCTRL,"Static",SS_BLACKFRAME,0,0,248,201
+END
+
+IDD_ADVEMULATION DIALOG  0, 0, 229, 239
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Modbus PLC - Advanced emulation settings"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,172,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,172,24,50,14
+    LTEXT           "Outputs (0-9999)",IDC_STATIC,14,19,54,8
+    GROUPBOX        "Upper register limits",IDC_STATIC,7,7,155,93
+    EDITTEXT        IDC_OUTPUTS,111,16,40,14,ES_AUTOHSCROLL
+    LTEXT           "Inputs (0-9999)",IDC_STATIC,14,34,48,8
+    EDITTEXT        IDC_INPUTS,111,31,40,14,ES_AUTOHSCROLL
+    LTEXT           "Analog inputs (0-9999)",IDC_STATIC,14,49,72,8
+    EDITTEXT        IDC_ANALOGS,111,46,40,14,ES_AUTOHSCROLL
+    LTEXT           "Holding registers (0-65535)",IDC_STATIC,13,64,85,8
+    EDITTEXT        IDC_HOLDING,111,61,40,14,ES_AUTOHSCROLL
+    LTEXT           "Extended registers (0-65535)",IDC_STATIC,13,79,91,8
+    EDITTEXT        IDC_EXTENDED,111,76,40,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Defaults",IDC_DEFAULTS,172,41,50,14
+    PUSHBUTTON      "Maximums",IDC_MAXIMUM,172,58,50,14
+    CONTROL         "Perform MOSCAD (row/table) checks",IDC_MOSCAD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,145,134,10
+    GROUPBOX        "Other settings",IDC_STATIC,7,101,215,131
+    EDITTEXT        IDC_PDUSIZE,115,122,40,14,ES_AUTOHSCROLL
+    LTEXT           "PDU (data portion) size :",IDC_STATIC,31,126,78,8
+    LTEXT           "Max. byte length of data request allowed.",IDC_STATIC,13,113,130,8
+    CONTROL         "Modify coils/regs. before responding",IDC_MODIFY_FIRST,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,156,130,10
+    CONTROL         "Disable writting of coils/regs (PLC is read-only)",IDC_DISABLEWRITES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,168,161,10
+    CONTROL         "Use a seperate set of registers for each station:",IDC_SEPERATED,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,203,170,10
+    LTEXT           "# registers or I/O per station :",IDC_STATIC,29,217,93,8
+    EDITTEXT        IDC_NUMSEPERATE,127,214,40,14,ES_AUTOHSCROLL
+    CONTROL         160,IDC_BMPMODE,"Static",SS_BITMAP | SS_NOTIFY | SS_SUNKEN | WS_BORDER,15,182,78,19
+END
+
+IDD_SERVERSETTINGS_ETH DIALOG  0, 0, 232, 205
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Ethernet TCP/IP Settings"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,175,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,175,24,50,14
+    LTEXT           "Supporting %d simultaneous connections.",IDC_SERVERLINE,11,14,145,10,SS_SUNKEN
+    LTEXT           "Local IP",IDC_STATIC,23,33,27,8
+    EDITTEXT        IDC_LOCALIP,83,29,54,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Remote IP",IDC_STATIC,23,50,34,8
+    EDITTEXT        IDC_REMOTEIP,83,46,54,14,ES_AUTOHSCROLL | ES_READONLY
+    GROUPBOX        "Server settings",IDC_STATIC,7,72,218,125
+    LTEXT           "# Server connections",IDC_STATIC,17,84,69,8
+    EDITTEXT        IDC_NUMSERVERS,91,81,40,14,ES_AUTOHSCROLL
+    LTEXT           "Port (502)",IDC_STATIC,17,103,32,8
+    EDITTEXT        IDC_LOCALPORT,91,98,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Alternate port",IDC_STATIC,17,119,43,8
+    EDITTEXT        IDC_LOCALPORT2,91,115,40,14,ES_AUTOHSCROLL | ES_NUMBER | WS_DISABLED
+    LTEXT           "Station ID",IDC_STATIC,17,139,32,8
+    EDITTEXT        IDC_LOCALID,91,132,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Responsiveness (ms)",IDC_STATIC,17,167,68,8
+    EDITTEXT        IDC_RESPONSEDELAY,91,163,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "(0 to 10 000 ms)",IDC_STATIC,137,167,52,8
+    CONTROL         "Linger on close of socket (SO_LINGER)",IDC_LINGER,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,182,172,10
+    GROUPBOX        "Status",IDC_STATIC,7,7,155,62
+END
+
+IDD_TRAININGSIM DIALOG  0, 0, 320, 185
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Training simulation"
+CLASS "MYSimulator_Window_Classname"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,263,7,50,14
+    CONTROL         "H20 Tank valve",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,84,10
+    GROUPBOX        "Discrete Controls",IDC_STATIC,7,84,100,94
+    GROUPBOX        "Discrete Feedback",IDC_STATIC,111,84,100,94
+    CONTROL         "Conc tank valve",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,105,84,10
+    CONTROL         "Main tank drain valve",IDC_CHECK3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,116,84,10
+    CONTROL         "Heater",IDC_CHECK4,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,126,84,10
+    CONTROL         "Reset",IDC_CHECK5,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,135,84,10
+    CONTROL         "Low main tank level",IDC_CHECK6,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,15,145,84,10
+    CONTROL         "Auto mode",IDC_CHECK7,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,156,84,10
+    CONTROL         "Mixer start",IDC_CHECK8,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,166,84,10
+    CONTROL         "H20 Tank valve",IDC_CHECK9,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,115,94,84,10
+    CONTROL         "Conc tank valve",IDC_CHECK10,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,115,105,84,10
+    CONTROL         "Main tank drain valve",IDC_CHECK11,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,115,114,84,10
+    CONTROL         "Heater",IDC_CHECK12,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,115,124,84,10
+    CONTROL         "N/A",IDC_CHECK13,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,115,134,84,10
+    CONTROL         "Low main tank level",IDC_CHECK14,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,115,145,84,10
+    CONTROL         "Auto mode",IDC_CHECK15,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,115,156,84,10
+    CONTROL         "Mixer running",IDC_CHECK16,"Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,115,166,84,10
+    COMBOBOX        IDC_CBREGISTERNAMES,66,41,115,130,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "PLC Registers",IDC_STATIC,7,30,248,51
+    LTEXT           "Select register:",IDC_STATIC,14,44,48,8
+    LTEXT           "=",IDC_STATIC,186,44,8,8
+    EDITTEXT        IDC_REGVALUE,196,41,52,14,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Set",IDC_SET,227,60,22,14
+    EDITTEXT        IDC_REGVALUESET,172,60,52,14,ES_AUTOHSCROLL
+    LTEXT           "Status:",IDC_STATIC,7,12,23,8
+    EDITTEXT        IDC_STATUSLINE,36,12,217,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER
+    LTEXT           "The tick-boxes and register set button, allow control of the simulation.\n\nNOTE:\nIf a script is being run in the simulation, the behaviour of this dialog is not defined!",IDC_STATIC,217,88,96,90,SS_SUNKEN
+END
+
+IDD_JOYSCC_EMULATION DIALOG  0, 0, 221, 188
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "DF1 Master Emulation"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,164,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,164,24,50,14
+    PUSHBUTTON      "Mod-BUS\nParameters...",IDC_EMU,164,42,50,26,BS_MULTILINE
+    LTEXT           "Destination station:",IDC_STATIC,15,19,61,8
+    EDITTEXT        IDC_SCC_DEST,108,16,40,14,ES_AUTOHSCROLL
+    LTEXT           "Source Master station:",IDC_STATIC,15,36,72,8
+    EDITTEXT        IDC_SCC_SOURCE,108,33,40,14,ES_AUTOHSCROLL
+    LTEXT           "# Files (from File 101...)",IDC_STATIC,13,54,74,8
+    EDITTEXT        IDC_NUMSHIELDS,108,50,40,14,ES_AUTOHSCROLL
+    LTEXT           "PLC Values are as for an RS-20\n[0-255 = 0-15v]\n[39-200 = 0-8000psi]",IDC_STATIC,7,151,110,30,SS_SUNKEN
+    GROUPBOX        "Master Settings",IDC_STATIC,7,7,148,136
+    CONTROL         "Run built-in animation variables.",IDC_RUN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,126,115,10
+    CONTROL         "Issue Read requests",IDC_READVARIABLES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,102,81,10
+    CONTROL         "Issue Write requests",IDC_WRITEVARIABLES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,114,80,10
+    LTEXT           "Between Trans. idle  (ms)",IDC_STATIC,14,71,80,8
+    EDITTEXT        IDC_IDLE,108,67,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_TIMEOUT,108,84,40,14,ES_AUTOHSCROLL
+    LTEXT           "Master timeout (100-20K ms)",IDC_STATIC,14,88,90,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 298
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 170
+    END
+
+    IDD_TI_SIM_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 432
+        BOTTOMMARGIN, 245
+    END
+
+    IDD_SERVERSETTINGS_232, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 204
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 219
+    END
+
+    IDD_EDITMEMCELL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 39
+    END
+
+    IDD_ANIMATE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 333
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 271
+    END
+
+    IDD_FAULTSDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 251
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 191
+    END
+
+    IDD_ADVEMULATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 222
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 232
+    END
+
+    IDD_SERVERSETTINGS_ETH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 225
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 198
+    END
+
+    IDD_TRAININGSIM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 313
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 178
+    END
+
+    IDD_JOYSCC_EMULATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 214
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 181
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+CG_IDR_POPUP_APPMENU MENU 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Save",                        IDC_SAVE
+        MENUITEM "Load",                        IDC_LOAD
+        MENUITEM "Zero values",                 IDC_ZEROES
+        MENUITEM "CSV Import...",               IDM_CSVIMPORT
+        MENUITEM "Read-only view",              IDM_READONLY
+        MENUITEM SEPARATOR
+        MENUITEM "Port settings...",            IDC_SETTINGS
+        MENUITEM "Animation...",                IDC_SIMULATE
+        MENUITEM "Emulation...",                IDC_EMULATION
+        MENUITEM "Toggle port",                 IDM_TOGGLEPORT
+        MENUITEM SEPARATOR
+        MENUITEM "Exit",                        IDCANCEL
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_TOOLBAR1 TOOLBAR  16, 15
+BEGIN
+    BUTTON      IDC_SAVE
+    BUTTON      IDC_LOAD
+    BUTTON      IDC_ZEROES
+    BUTTON      IDC_SETTINGS
+    BUTTON      IDC_SIMULATE
+    SEPARATOR
+    BUTTON      IDS_ABOUTBOX
+    BUTTON      IDC_OPEN
+    BUTTON      IDB_ALPHABLEND
+    BUTTON      IDB_ALPHABLEND60
+    BUTTON      IDB_ALPHABLEND70
+    BUTTON      IDC_NOISE
+    BUTTON      IDC_NOISY
+    BUTTON      IDC_EMULATION
+    BUTTON      IDC_CLOSE
+    BUTTON      ID_BUTTONHELP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_TOOLBAR1            BITMAP                  "res\\toolbar1.bmp"
+IDB_SPLASH              BITMAP                  "res\\bitmap1.bmp"
+IDB_CREDITBMP1          BITMAP                  "res\\creditbm.bmp"
+IDB_CREDITBMP2          BITMAP                  "res\\bmp00001.bmp"
+IDB_CREDITBMP3          BITMAP                  "res\\bmp00002.bmp"
+IDB_CREDITBMP4          BITMAP                  "res\\bmp00003.bmp"
+IDB_DRAGSE              BITMAP                  "res\\drag.bmp"
+IDB_CREDITBMP5          BITMAP                  "res\\bmp00004.bmp"
+IDB_MULTISLAVEMODE      BITMAP                  "res\\bmp00005.bmp"
+IDB_SINGLESLAVEMODE     BITMAP                  "res\\multisla.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDD_TI_SIM_DIALOG ACCELERATORS 
+BEGIN
+    "B",            IDH_ABOUT,              VIRTKEY, CONTROL, NOINVERT
+    "M",            IDH_EMULATION,          VIRTKEY, CONTROL, NOINVERT
+    "E",            IDH_ERASE,              VIRTKEY, CONTROL, NOINVERT
+    VK_F1,          IDH_HELPKEY,            VIRTKEY, NOINVERT
+    "J",            IDH_INJECTERROR,        VIRTKEY, CONTROL, NOINVERT
+    "L",            IDH_LOAD,               VIRTKEY, CONTROL, NOINVERT
+    "N",            IDH_NOISE,              VIRTKEY, CONTROL, NOINVERT
+    "A",            IDH_SAVE,               VIRTKEY, CONTROL, NOINVERT
+    "S",            IDH_SETTINGS,           VIRTKEY, CONTROL, NOINVERT
+    "C",            IDH_TOGGLEDISP,         VIRTKEY, CONTROL, NOINVERT
+    "T",            IDH_TRANSPARENCY,       VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      IDH_COPYCLIP,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// HELPFILES
+//
+
+IDR_HELPHTM             HELPFILES               "help\\index.htm"
+IDR_HELPSHOT1           HELPFILES               "help\\images\\shot1.gif"
+IDR_HELPSHOT2           HELPFILES               "help\\images\\shot2.gif"
+IDR_HELPANIM            HELPFILES               "help\\images\\anim.gif"
+IDR_HELPJUICE           HELPFILES               "help\\images\\juice.gif"
+IDR_HELPPORTA           HELPFILES               "help\\images\\portA.gif"
+IDR_JOYSHOT             HELPFILES               "help\\images\\joyshot.gif"
+IDR_ADVMBUS             HELPFILES               "help\\images\\advmbus.gif"
+IDR_TOOLBARSHOT         HELPFILES               "help\\images\\toolbar.gif"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_TI_SIM_DIALOG DLGINIT
+BEGIN
+    IDC_PROTOCOL, 0x403, 14, 0
+0x4f4d, 0x4244, 0x5355, 0x5220, 0x2d53, 0x3332, 0x0032, 
+    IDC_PROTOCOL, 0x403, 14, 0
+0x4f4d, 0x4244, 0x5355, 0x5420, 0x5043, 0x492f, 0x0050, 
+    IDC_PROTOCOL, 0x403, 18, 0
+0x6c41, 0x656c, 0x206e, 0x7242, 0x6461, 0x656c, 0x2079, 0x4644, 0x0031, 
+
+    IDC_PROTOCOL, 0x403, 12, 0
+0x4f4a, 0x2059, 0x4353, 0x2043, 0x4644, 0x0031, 
+    0
+END
+
+IDD_SERVERSETTINGS_232 DLGINIT
+BEGIN
+    IDC_CHECKTYPE, 0x403, 20, 0
+0x7375, 0x6e69, 0x2067, 0x5243, 0x2043, 0x3228, 0x622d, 0x7479, 0x7365, 
+0x0029, 
+    IDC_CHECKTYPE, 0x403, 19, 0
+0x7375, 0x6e69, 0x2067, 0x4342, 0x2043, 0x3128, 0x622d, 0x7479, 0x2965, 
+"\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_MYHANDCURSOR        CURSOR                  "myhandcu.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About MOD_sim..."
+    IDP_SOCKETS_INIT_FAILED "Windows sockets initialization failed."
+    IDS_TITLE               "%s %s PLC - Simulator (%s)"
+    IDS_ALPHA_60            "Alpha blend 60%"
+    IDS_ALPHA_70            "Alpha blend 70%"
+    IDS_ALPHA               "Solid window"
+    IDS_SYNC_WRITTING       "Interlock error while saving register values to disk."
+    IDS_SYNC_READING        "Interlock error while reading register values from disk."
+    IDS_MNU_ONTOP           "Always on &Top"
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_ONTOP               "Always on &Top"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_VIEWHEX             "Addresses in HEX format"
+    IDC_VIEWDEC             "Addresses in decimal format"
+    IDC_VALUE               "Value to increment by (negative values decrement)"
+    IDC_NOANIMATE           "No values will (animate) change automatically."
+    IDC_ANIMATEBYTES        "Increment the HI and LO bytes of each Register."
+    IDC_ANIMATEWORDS        "Increment the Register value (digitals items toggle)"
+    IDC_TRAINING            "Enable the Traning mode value simulation."
+    IDC_ZEROES              "Zero all values"
+    IDC_LOAD                "Load all register values"
+    IDC_SAVE                "Save all register values"
+    IDC_MENU                "Click for menu"
+    IDC_STATION00           "Broadcast station"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_DATALIST            "double-click to edit/toggle a value"
+    IDC_COMBOAREA           "Select I-O/Registers to be viewed."
+    IDC_SETTINGS            "Set up the communication Serial or TCP/IP port."
+    IDC_SIMULATE            "Simulation : Set up how values change, and the station lamps."
+    IDC_RESPONSEDELAY       "Delay before the program responds to any MODBUS request."
+    IDC_SERVERSTATS         "Simulation status."
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_STN_ENABLED         "Background color of an enabled station."
+    IDC_STN_DISABLED        "Background color of a disabled station."
+    IDC_STN_ACTIVE          "Outline color of a recently communicated station."
+    IDC_STN_INACTIVE        "Outline color of an idle station."
+    IDC_STN_TEXT            "Text color for an enabled station."
+    IDC_DEMOCHECK           "Sample tick-mark showing colors selected."
+    IDC_CLONE               "Data bytes are reversed for float type."
+    IDC_DATAFORMAT          "Select format for the register contents."
+    IDC_PROTOCOL            "Select protocol to use."
+    IDC_ENABLE              "Enable faults to be simulated by this program."
+    IDC_INSERTS             "Insert dummy characters into the responses."
+END
+
+STRINGTABLE 
+BEGIN
+    IDOK                    "Accept settings and close this dialog"
+    IDCANCEL                "Exit"
+    IDS_PORTTOGGLE          "Port open/close"
+    IDS_UPDATE_AVAILABLE    "You are currently running version %u.%u .\nThe newest version %u.%u is available online.\n\n Would you like to visit the website update page now?"
+    IDS_UPDATE_NO           "No Updates available."
+    IDS_UPDATE_NOCHECK      "Unable to check for updates."
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_STATION01           "Station 1"
+    IDC_STATION02           "Station 2"
+    IDC_STATION03           "Station 3"
+    IDC_STATION04           "Station 4"
+    IDC_STATION05           "Station 5"
+    IDC_STATION06           "Station 6"
+    IDC_STATION07           "Station 7"
+    IDC_STATION08           "Station 8"
+END
+
+STRINGTABLE 
+BEGIN
+    IDB_ALPHABLEND          "Flip 'Alpha Blend'"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_NOISE               "Noise settings..."
+    IDS_ADROITWEBURL        "http://www.plcsimulator.org/"
+    IDC_EMULATION           "PLC : Emulation settings"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_WWWLINK             "Click here to visit my web-site"
+    IDC_EMAILLINK           "Click here to compose a mail to the author."
+    IDC_MODICONLINK         "Click here to visit the modicon website."
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_PORT                "Communications port."
+    IDC_BAUDRATE            "Baud rate"
+    IDC_PARITY              "Parity (odd/even/none)"
+    IDC_STOP_BITS           "number of stop bits"
+    IDC_DATA_BITS           "Number of data bits"
+    IDC_RTS_COMBO           "RTS line control (default=enabled)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_DELETES             "Remove/strip characters from the response."
+    IDC_CORRUPTS            "Corrupt a character in the response."
+    IDC_MISFRAMES           "The sim. will modify the baud-rate on-the-fly to generate an error."
+    IDC_IGNORES             "Randomly ignore (don't respond) to a request."
+    IDC_DELAYS              "Enables random delays."
+    IDC_FREQ                "Slide to far left= no errors"
+    IDC_BEEP                "Make a beep sound every time an error is generated."
+    IDC_REFRESHES           "After how many refreshed (500ms) to animate."
+    IDC_STN_DISTEXT         "Text color of a disabled station."
+    IDC_LAMPRX              "Recieved data lamp"
+    IDC_LAMPTX              "Transmitted data lamp"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_ANIMATION_ON        "Time that a light will still stay on for after the station communicates."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_EMULATION           "Adv. Emulation..."
+    IDS_NOTSUPPORTEDETH     "This function is not supported in the Modbus Ethernet PLC simulation mode!"
+    IDS_ABDF1SETUPTITLE     "RS-232 Allen-bradley DF1 PLC Sim-server Settings"
+    IDS_JOYSETUPTITLE       "RS-232 AB-DF1 (Joy SCC) Sim-server Settings"
+    IDC_CLOSE               "Toggle port open/close"
+    IDS_CLOSE               "Close port"
+    IDS_OPEN                "Open port"
+    IDC_CSVIMPORT           "CSV Import..."
+    IDS_MSGCSVSTARTPROCESSING "Help"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_PLANTSIM            "Training - plant simulation (green=run)"
+    IDC_LAMPCTS             "CTS modem control line <in>"
+    IDC_LAMPDSR             "DSR modem control line <in>"
+    IDC_LAMPRING            "Ring Indicator modem line <in>"
+    IDC_COMMSLIST           "Communications display debugger."
+    IDB_TOGGLEDISP          "Toggle display between comms/values mode."
+    IDC_PAUSECOMMS          "Click to pause/unpause the communications debugger screen."
+    IDC_TRACKCOMMS          "Click to stop/resume the comms screen scrolling."
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_VSCROLLSTATIONS     "Scroll thru available modbus stations broadcast and 1-255."
+    IDC_CLEARCOMMS          "Clear the comms debugger screen"
+    IDC_CHECK1              "Water tank valve position (control)"
+    IDC_CHECK2              "Concentrate tank valve position (control)"
+    IDC_CHECK3              "Main tank draining valve position (control)"
+    IDC_CHECK4              "Heater switch (control)"
+    IDC_CHECK5              "Reset parameters (control)"
+    IDC_CHECK6              "N/A"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_STATUSLINE          "Training simulation mode and status is displayed here."
+    IDC_TRAININGSIM         "Training simulation view"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_CHECK7              "Auto/man mode (control)"
+    IDC_CHECK8              "Mixer start signal (control)"
+    IDC_CHECK9              "Water tank valve position (feedback)"
+    IDC_CHECK10             "Concentrate tank valve position (feedback)"
+    IDC_CHECK11             "Main tank drain valve position (feedback)"
+    IDC_CHECK12             "Heater (feedback)"
+    IDC_CHECK13             "N/A"
+    IDC_CHECK14             "Main tank low level sensor (alarm)"
+    IDC_CHECK15             "Auto/man mode (feedback)"
+    IDC_CHECK16             "Mixer running (feedback)"
+    IDC_CBREGISTERNAMES     "Select a pre-defined register from this list"
+    IDC_REGVALUE            "The current register value appears here"
+    IDC_SET                 "Click to transfer the typed value into the register"
+    IDC_REGVALUESET         "Type in a new register value here"
+    IDC_SCRIPTNAME          "Training simulation script filename (blank to not run script)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_SHOWCOMMSTIME       "Show times for comms events:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_NEEDSSTATION        "Simulator must check the station ID, ID is ignored if this option is off."
+    IDC_NUMSEPERATE         "'Num' - number of registers per station if I/O address > Num, a PLC exception code is returned."
+    IDC_BMPMODE             "I/O req. for seperate stations use (station ID x Num) for actual address."
+    IDS_SEPERATED           "I/O req. for seperate stations use (station ID x Num) for actual address."
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_CSVIMPORT           "CSV Import..."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MSGCSVSTARTPROCESSING_MAN "Start processing manual loaded '%s'"
+    IDS_MYBLOGURL           "http://www.zaphodikusrealm.blogspot.com"
+    IDS_HOMEPAGEURL         "http://www.plcsimulator.org"
+END
+
+STRINGTABLE 
+BEGIN
+    IDM_READONLY            "Read-only toggle"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.K.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_UK
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CSV_IMPORTDLG DIALOG  0, 0, 426, 81
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "CSV Import"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,369,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,369,24,50,14
+    LTEXT           "Import files from ",IDC_STATIC,17,39,52,8
+    EDITTEXT        IDC_IMPORTFOLDER,80,34,268,14,ES_AUTOHSCROLL
+    GROUPBOX        "Import settings",IDC_STATIC,7,7,352,67
+    LTEXT           "Report log (.log)",IDC_STATIC,18,54,51,8
+    EDITTEXT        IDC_IMPORTLOGNAME,80,51,268,14,ES_AUTOHSCROLL
+    CONTROL         "Enable CSV importing (alpha)",IDC_IMPORTENABLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,21,107,10
+    PUSHBUTTON      "Load File...",IDC_QUICKIMPORT,369,42,50,14
+END
+
+IDD_REGISTRATIONDLG DIALOGEX 0, 0, 209, 92
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "User Self Registration:"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,49,71,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,111,71,50,14
+    EDITTEXT        IDC_USERNAME,69,18,118,14,ES_AUTOHSCROLL
+    LTEXT           "User Name",IDC_STATIC,18,21,36,8
+    GROUPBOX        "Enter Registration key codes",IDC_STATIC,7,7,195,52
+    EDITTEXT        IDC_REGISTRATION_KEY,69,37,53,14,ES_AUTOHSCROLL
+    LTEXT           "KEY (hex)",IDC_STATIC,19,41,32,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CSV_IMPORTDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 419
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 74
+    END
+
+    IDD_REGISTRATIONDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 202
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 85
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 8,20,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x17L
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080904b0"
+        BEGIN
+            VALUE "Comments", "GNU GLP v3"
+            VALUE "CompanyName", "Embedded Intelligence Limited"
+            VALUE "FileDescription", "mod_RSsim protocol test simulator"
+            VALUE "FileVersion", "8, 20, 0, 1"
+            VALUE "InternalName", "mod_RSsim"
+            VALUE "LegalCopyright", "Copyright (C) 2009 Embedded Intelligence Limited"
+            VALUE "OriginalFilename", "mod_RSsim.exe"
+            VALUE "ProductName", "mod_RSsim Simulator"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x809, 1200
+    END
+END
+
+#endif    // English (U.K.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\MOD_RSsim.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

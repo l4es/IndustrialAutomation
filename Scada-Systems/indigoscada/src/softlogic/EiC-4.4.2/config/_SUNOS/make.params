@@ -1,0 +1,20 @@
+	 PLATFORM = _SUNOS
+               CC = gcc
+       STD_CFLAGS = -ansi -pedantic -O2 -fsigned-char -Wall 
+     INCLUDE_FLAGS = -I-
+
+
+               AR = ar
+          ARFLAGS = rv
+               RM = rm -f
+          INSTALL = mv
+               MV = mv 
+             COPY = cp
+             MAKE = make
+	    MKDIR = mkdir
+       MKDIRFLAGS = -p
+           RANLIB = ranlib
+        RUNLIBCMD = $(RANLIB) $@
+	 
+
+

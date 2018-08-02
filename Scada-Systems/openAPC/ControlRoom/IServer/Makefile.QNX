@@ -1,0 +1,37 @@
+PROGRAM = OpenIServer
+
+INCLUDEDIRS = -I/usr/X11R6/include -I .. -I../plugins -I../liboapc/
+
+
+LIBDIRS = \
+	-L/usr/X11R6/lib -L/usr/lib
+
+LIBS = -loapc -lph
+
+DBGFLAGS = -O2 -g0 -DNDEBUG
+ifeq ($(DEBUG),1)
+DBGFLAGS = -O0 -g3 -D_DEBUG
+endif
+
+CXXSOURCES = OpenIServerInc.cpp
+
+CXXOBJECTS = $(CXXSOURCES:.cpp=.o)
+CXXFLAGS = -Wall -DESRI_UNIX -DENV_QNX -DENV_PLAYER -DENV_ISERVER -DEXCLUDE_WX $(INCLUDEDIRS) $(DBGFLAGS)
+CXX = g++
+
+LDFLAGS = $(LIBDIRS) $(LIBS)
+
+all: $(PROGRAM)
+
+$(PROGRAM): $(CXXOBJECTS)
+	$(CXX) -o $@ $(CXXOBJECTS) $(LDFLAGS)
+	cp $(PROGRAM) /usr/bin/
+	chmod 755 /usr/bin/Open*
+
+wx_sample.o: wx_sample.cpp wx_sample.h
+	$(CXX) $(CXXFLAGS) -c -o wx_sample.o wx_sample.cpp
+
+
+clean:
+	$(RM) -f $(CXXOBJECTS) $(PROGRAM)
+

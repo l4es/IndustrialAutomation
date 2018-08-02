@@ -1,0 +1,97 @@
+#pragma push_unsafeptr
+
+"<testqsort.c>";
+#include testqsort.c
+main();
+:clear testqsort.c
+
+"<testreturn.c>";
+#include testreturn.c
+main();
+:clear testreturn.c
+
+"<testscanf.c>";
+#include testscanf.c
+main();
+:clear testscanf.c
+
+"<testscop.c>";
+#include testscop.c
+main();
+:clear testscop.c
+
+"<testsign.c>";
+#include testsign.c
+main();
+:clear testsign.c
+
+"<testsizeof.c>";
+#include testsizeof.c
+main();
+:clear testsizeof.c
+
+"<teststatic.c>";
+#include teststatic.c
+main();
+:clear teststatic.c
+:clear teststatic1.aux
+
+"<teststdio.c>";
+#include teststdio.c
+main();
+:clear teststdio.c
+
+"<teststmt.c>";
+#include teststmt.c
+:clear teststmt.c
+
+"<teststring.c>";
+#include teststring.c
+main();
+:clear teststring.c
+
+"<teststru.c>";
+#include teststru.c
+main();
+:clear teststru.c
+
+"<teststru2.c>";
+#include teststru2.c
+main();
+:clear teststru2.c
+
+"<testtime.c>";
+#include testtime.c
+main();
+:clear testtime.c
+
+"<testtrace.c>";
+#include testtrace.c
+main();
+:clear testtrace.c
+
+"<testtypedef.c>";
+#include testtypedef.c
+main();
+:clear testtypedef.c
+
+
+"<testtypes.c>";
+#include testtypes.c
+main();
+:clear testtypes.c
+
+"<testtypes2.c>";
+#include testtypes2.c
+main();
+:clear testtypes2.c
+
+"<testva.c>";
+#include testva.c
+main();
+:clear testva.c
+
+#include <assert.h>
+assert(sizeof(int *) < sizeof(int * safe));
+
+:exit

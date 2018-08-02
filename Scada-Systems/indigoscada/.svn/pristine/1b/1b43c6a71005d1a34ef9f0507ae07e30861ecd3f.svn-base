@@ -1,0 +1,34 @@
+                           EiC Distribution List
+
+Each distribution contains EiC's documentation in postscript form, EiC's
+implementation of the ISO/ANSI Standard C library, EiC's C preprocessor and
+a collection of plug-in modules, which are explained in the table below.
+                                EiC Modules
+
+         Module                       Discription
+
+        cgihtml    Cgihtml is a set of CGI and HTML routines written
+                   for C by Eugene Eric Kim, and can be run via EiC.
+
+        examples   Example code referenced in EiC's documentation
+
+                   EiC's interface routine to gnuplot.
+                   There is also a demonstration program:
+        gnuplot
+                      % eic gnuplot/demo.c
+
+       MathStats   A collection of Math routines.
+
+                   EiC's implementation of the Standard C library.
+        stdClib    Also presents an example of how to add builtin
+                   functions to EiC.
+
+         tools     A collection of C routines designed to run within
+                   an interactive environment.
+
+	  xv       EiC's primative interface to John Bradley's 
+                   XV  - interactive image display and manipulation 
+                   for X11.
+
+----------------------------------------------------------------------------
+[Image]

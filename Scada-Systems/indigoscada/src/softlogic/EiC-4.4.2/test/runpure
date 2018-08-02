@@ -1,0 +1,43 @@
+#! /bin/sh
+#
+# usage runpure *.c
+
+usage='
+  echo ""
+  echo "    usage: runpure C-files."
+  echo "Do not forget to remove eicc."
+  echo "chmod the test and src directories"
+  echo "You must be RJ or CMS for this to work "
+  echo " "
+
+'
+
+if [ $# -eq 0 ] ; then
+  eval "$usage";
+  exit 1;
+fi
+
+#cd ../src
+#make purify
+#cd ../test
+
+for arg
+do
+	PURIFYOPTIONS="-log-file=./$arg.pv"
+        export PURIFYOPTIONS
+        rm -f $arg.pv
+        echo $PURIFYOPTIONS
+        echo "#include $arg" > runsent.in
+        echo ":exit" >> runsent.in 
+        eic -s < runsent.in 
+done
+
+#rm -f runsent.in
+#cd ../src
+#rm eicc
+#make eic
+
+
+
+
+

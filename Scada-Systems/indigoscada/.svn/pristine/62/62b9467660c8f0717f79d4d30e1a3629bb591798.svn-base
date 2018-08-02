@@ -1,0 +1,102 @@
+DlgEdit:v1.2:Dialog:
+Dialog {
+	ClassHeader {ReceipeSelect.h}
+	ClassSource {ReceipeSelect.cpp}
+	ClassName {ReceipeSelect}
+	DataHeader {ReceipeSelectData.h}
+	DataSource {ReceipeSelectData.cpp}
+	DataName {ReceipeSelectData}
+	WindowBaseClass {QDialog}
+	IsModal {TRUE}
+	WindowCaption {Select Receipe}
+	WindowFlags {208}
+}
+WidgetLayout {
+InitialPos {-1 -1}
+Size {470 430}
+MinSize {0 0}
+MaxSize {32767 32767}
+Grid {10}
+TextTranslated {TRUE}
+
+ListBox {
+		DragSelect {TRUE}
+		AutoScroll {TRUE}
+		ScrollBar {TRUE}
+		AutoScrollBar {TRUE}
+		BottomScrollBar {TRUE}
+		AutoBottomScrollBar {TRUE}
+		SmoothScrolling {FALSE}
+		MultiSelection {FALSE}
+		AutoUpdate {TRUE}
+		Style {50}
+		LineWidth {2}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {20 30 430 330}
+		Name {ListBox_1}
+		Variable {List}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {TRUE}
+		AutoDefault {TRUE}
+		IsMenuButton {FALSE}
+		Text {Ok}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {20 370 100 30}
+		Name {PushButton_1}
+		Variable {OkButton}
+		Signal {[Protected]  clicked --> accept  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteButton}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {FALSE}
+		IsMenuButton {FALSE}
+		Text {Cancel}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {350 370 100 30}
+		Name {PushButton_2}
+		Signal {[Protected]  clicked --> reject  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteButton}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+
+}

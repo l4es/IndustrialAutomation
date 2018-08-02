@@ -1,0 +1,94 @@
+Contents of this directory:
+
+AndroidViewer - (partial) implementation of a ControlRoom player for android
+
+BeamControl - sources of a mobile application which make use of the Smart Interface which can be
+              used for Industry 4.0 / Smart Factory applications; this is an implementation which
+			  gives the possibility to remote-watch several running instances/machines and to get
+			  informed when marking process has finished so that user interaction is necessary
+
+BeamSDK - placeholder directory for BeamSDK,
+          for details pelase refer to https://halaser.eu/feature.php#BeamSDK
+
+ControlRoom - contains all sources, Makefiles, projectfiles and buildscripts to compile the free
+              and GPL'ed version of ControlRoom HMI/process control software. This includes editor
+			  debugger and all player variants
+
+common - several useful sources
+
+exampleprojects - OpenAPC project examples
+   accelerometer.apcp - demonstrates usage of JoyWarrior(tm) 3D accelerometer, displays acceleration
+      and resulting speed values in 2D graph
+   CNConstruct_demo.apcp - demonstration for integration of CNConstruct processing data into an
+      OpenAPC-project; this demo displays the vector data that are processed next within a Vector2D
+      element and simulates the movement of the related Xand Y axes with bar graphs around it.
+      Additionally two separate drives with three axes each are shown via another progress bars
+      to simulate movement of additional axes. A CNCP-file can be choosen with the "..." button, via
+      "Simulate" the process simulation of the data can be started
+   openplugger_demo.apcp - self-contained demo of an environment that makes use of a local Interlock
+      Server and an external Plug-in handled by the OpenPlugger; data are transmitted from Player via
+      Interlock Server to the Plug-in and back again
+   pump_flowdemo.apcp - demonstration of a pump control system with three tanks and two pumps that pump
+      material to the main tank; the user can switch on and of valves to fill the small tanks
+   samlight_cci_demo.apcp - uses several functions of SAMLight(tm) CCI to control a laser scanner system
+   scaps_feb_demo.apcp - demonstrates the usage of the SCAPS(tm) FEB-Plug-in to control a stand alone
+      laser scanner card
+   userdemo.apcp - an example project that contains different users and roles and that shows the handling
+      of their different privileges
+
+libe1701 - headers, binaries and examples for binary API of E1701 XY2-100 scanner card controller
+
+libe1701inter - headers and sources for intermediate library from EasyLase(tm), EtherDream(tm),
+                Scanlab RTC4(tm) and SCAPS SCI(tm) programming interfaces to E1701 easy interface
+
+libe1701m - headers, binaries and examples for binary API of E1701M stepper motor controller
+
+libe1701p - headers, binaries and examples for binary API of E1701P XY laser plotter controller
+
+liboapc - sources, project- and makefiles for liboapc and liboapcwx shared libraries
+
+packaging - all scripts and configuration files to create complete ControlRoom packages for
+            Windows (NSIS .exe) and Linux (.deb and .rpm)
+
+plugins - sources, project and makefiles for external Plug-ins (flow and HMI)
+
+src - several sources that are related to the OpenAPC project and its interfaces
+   interface - sources related to the OpenAPC general communication interface as used by the serial or
+      network communication Plug-ins
+      example1.apcp - example project that contains the OpenAPC-side part of a communication channel to
+         an external application, the other side is done by one of the example applications mentioned
+         below
+      C - a plain C project that communicates with an OpenPlayer running the project example1.apcp
+         listed above
+      Java - Java example programs and packages for communication with OpenPlayer projects and/or
+         a running Interlock Server
+         Example1.java - Java program that demonstrate the communication with an OpenPlayer running the
+            project example1.apcp listed above and using the contained packages
+         IServerExample1.java - Java program that demonstrates the communication with the Interlock
+            Server, controls the example project listed above in directory iserver/ and uses the
+            contained packages
+            com/oapc/ - this directory contains the full Java implementation for both, the communication
+               with a project running in OpenPlayer (using a network communication Plug-in) and the
+               communication with a running Interlock Server
+   iserver - sourcecodes related to communication with the Interlock Server, for fetching and setting
+      data within its data space
+      iserver_example1.apcp - example project that makes use of the Interlock Server and can be controlled
+         by the scripts/programs within the sub folders of this directory
+         C - a plain C project that controls the example project 1
+         IL - an Instruction List script that controls the example project 1
+         Java - the Java example program that controls the example project 1 can be found in src/interface
+            because the required implementation packages are located there
+         LUA - an LUA script that controls the example project 1
+
+tools - several useful tools that are not mandatory for the OpenAPC project but may be useful
+   gtrace - traces the position and acceleration data of e.g. a vehicle via GPS and stores them in
+      rotating logfiles; this program makes use of plugins/libio_gpsd and tools/libjwarrior
+   iswatcher - a small command line application that docks onto a locally running Interlock
+      Server and prints out every data change to stdout; this tool can be used to debug own
+      applications that access the OpenIServer
+   libjwarrior - encapsulates access to a JoyWarrior(tm) accelerometer, retrieves the acceleration
+      values and calculates the current speed out of them, this library makes use of
+      plugins/libio_jwarrior
+
+translations - directory containing translation files for ControlRoom, CNConstruct, BeamConstruct and all
+               related applications and plug-ins   

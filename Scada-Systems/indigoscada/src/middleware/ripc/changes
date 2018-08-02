@@ -1,0 +1,28 @@
+--- Release version 1.02 (09.08.2002) -------------------------------------
+
+1. Fix bug in RIPCServerMonitor
+
+--- Release version 1.03 (07.05.2003) -------------------------------------
+
+1. Add RIPCSesssion.isOk() and RIPCSession.getErrorText() methods to obtain information about the connection status
+
+--- Release version 1.04 (19.05.2003) -------------------------------------
+
+1. Fix bug in RIPCQueueStub.get method.
+2. Fix bug in RIPCSessionStub.close method.
+
+--- Release version 1.05 (08.07.2003) -------------------------------------
+
+1. Implement priority wait
+
+--- Release version 1.06 (12.11.2003) -------------------------------------
+
+1. Fix memory leaks
+2. Make it possible to specify maximal number of connection attempts for session
+
+--- Release version 1.07 (26.11.2003) -------------------------------------
+1. Fix bug in RIPCServer constructor
+2. Update doxygen documentation
+
+--- Release version 1.08 (05.08.2008) -------------------------------------
+1. Fix incompatibilities with the latest GCC versions.

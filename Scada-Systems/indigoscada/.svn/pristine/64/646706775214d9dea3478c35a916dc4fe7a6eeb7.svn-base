@@ -1,0 +1,241 @@
+//==============================================================================
+// TITLE: OpcComn.idl
+//
+// CONTENTS:
+// 
+// Interface declarations for the OPC Common specification.
+//
+// (c) Copyright 1998-2002 The OPC Foundation
+// ALL RIGHTS RESERVED.
+//
+// DISCLAIMER:
+//  This code is provided by the OPC Foundation solely to assist in 
+//  understanding and use of the appropriate OPC Specification(s) and may be 
+//  used as set forth in the License Grant section of the OPC Specification.
+//  This code is provided as-is and without warranty or support of any sort
+//  and is subject to the Warranty and Liability Disclaimers which appear
+//  in the printed OPC Specification.
+//
+// MODIFICATION LOG:
+//
+// Date       By    Notes
+// ---------- ---   -----
+// 1998/04/09 acc   import unknwn.idl rather than oaidl.idl
+// 1998/06/15 acc   add 'library' object at end to allow typelib generation
+// 1998/06/19 acc   change V2 uuids prior to final release
+//                  to avoid conflict with 'old' OPCDA Automation uuids
+// 1998/09/18 acc   add OPCServerList IDL (with help from Gary Klassen)
+// 2002/08/21 rsa   Added asynchrounous UUIDs. Fixed formatting.
+// 
+
+import "comcat.idl";
+import "oaidl.idl";
+import "ocidl.idl";
+import "objidl.idl";
+
+//==============================================================================
+// IOPCShutdown
+
+[
+    object,
+    uuid(F31DFDE1-07B6-11d2-B2D8-0060083BA1FB),
+    // async_uuid(32E8D701-A335-4fc1-8F4B-663F505C7D62),
+    pointer_default(unique)
+]
+interface IOPCShutdown : IUnknown
+{
+    HRESULT ShutdownRequest(
+        [in, string] LPCWSTR szReason
+    );
+}
+
+//=============================================================================
+// IOPCCommon
+
+[
+    object,
+    uuid(F31DFDE2-07B6-11d2-B2D8-0060083BA1FB),
+    // async_uuid(32E8D702-A335-4fc1-8F4B-663F505C7D62),
+    pointer_default(unique)
+]
+interface IOPCCommon : IUnknown
+{
+
+    HRESULT SetLocaleID( 
+        [in] LCID dwLcid
+    );
+
+    HRESULT GetLocaleID( 
+        [out] LCID *pdwLcid
+    );
+
+    HRESULT QueryAvailableLocaleIDs( 
+        [out]                     DWORD  * pdwCount,
+        [out, size_is(,*pdwCount)] LCID ** pdwLcid
+    );
+
+    HRESULT GetErrorString( 
+        [in]          HRESULT  dwError,
+        [out, string] LPWSTR * ppString
+    );
+
+    HRESULT SetClientName( 
+        [in, string] LPCWSTR szName 
+    );
+}
+
+//==============================================================================
+// IOPCServerList
+//
+// The OPCEnum.EXE object provided by the OPC Foundation supports the 
+// IOPCServerList interface via DCOM to allow clients to determine available 
+// OPC servers on remote machines
+
+[
+	object,
+	uuid(13486D50-4821-11D2-A494-3CB306C10000),
+    // async_uuid(32E8D703-A335-4fc1-8F4B-663F505C7D62),
+	pointer_default(unique)
+]
+interface IOPCServerList : IUnknown
+{
+    HRESULT EnumClassesOfCategories(
+        [in]                       ULONG        cImplemented,
+        [in,size_is(cImplemented)] CATID        rgcatidImpl[],
+        [in]                       ULONG        cRequired,
+        [in,size_is(cRequired)]    CATID        rgcatidReq[],
+        [out]                      IEnumGUID ** ppenumClsid
+    );
+
+    HRESULT GetClassDetails(
+        [in]  REFCLSID  clsid, 
+        [out] LPOLESTR* ppszProgID, 
+        [out] LPOLESTR* ppszUserType
+    );
+
+    HRESULT CLSIDFromProgID(
+        [in]  LPCOLESTR szProgId, 
+        [out] LPCLSID   clsid
+    );
+};
+
+//==============================================================================
+// IOPCEnumGUID
+//
+// The OPCEnum.EXE object now has an interface
+// IOPCServerList2 which uses IOPCEnumGUID rather than
+// the standard MS IEnumGUID. This was done to work
+// around problems with the MS version on certain
+// system configurations. IOPCEnumGUID is impelmented
+// in OPCEnum.EXE.
+
+[
+    object,
+	uuid(55C382C8-21C7-4e88-96C1-BECFB1E3F483),
+    // async_uuid(32E8D704-A335-4fc1-8F4B-663F505C7D62),
+    pointer_default(unique)
+]
+interface IOPCEnumGUID : IUnknown
+{
+    typedef [unique] IOPCEnumGUID * LPOPCENUMGUID;
+
+    HRESULT Next(
+        [in]                                           ULONG   celt,
+        [out, size_is(celt), length_is(*pceltFetched)] GUID  * rgelt,
+        [out]                                          ULONG * pceltFetched
+    );
+
+    HRESULT Skip(
+        [in] ULONG celt
+    );
+
+    HRESULT Reset();
+
+    HRESULT Clone(
+        [out] IOPCEnumGUID **ppenum
+    );
+}
+
+//==============================================================================
+// IOPCServerList2
+
+[
+	object,
+	uuid(9DD0B56C-AD9E-43ee-8305-487F3188BF7A),
+    // async_uuid(32E8D705-A335-4fc1-8F4B-663F505C7D62),
+	pointer_default(unique)
+]
+interface IOPCServerList2 : IUnknown
+{
+    HRESULT EnumClassesOfCategories(
+        [in]                       ULONG           cImplemented,
+        [in,size_is(cImplemented)] CATID           rgcatidImpl[],
+        [in]                       ULONG           cRequired,
+        [in,size_is(cRequired)]    CATID           rgcatidReq[],
+        [out]                      IOPCEnumGUID ** ppenumClsid
+    );
+
+    HRESULT GetClassDetails(
+        [in]  REFCLSID  clsid, 
+        [out] LPOLESTR* ppszProgID, 
+        [out] LPOLESTR* ppszUserType,
+        [out] LPOLESTR* ppszVerIndProgID
+    );
+
+    HRESULT CLSIDFromProgID(
+        [in]  LPCOLESTR szProgId, 
+        [out] LPCLSID   clsid
+    );
+};
+
+//==============================================================================
+// Type Library
+
+[
+    uuid(B28EEDB1-AC6F-11d1-84D5-00608CB8A7E9),
+    version(1.10),
+    helpstring("OPC Common 1.10 Type Library")
+]
+library OPCCOMN
+{
+    importlib("stdole32.tlb");
+    importlib("stdole2.tlb");
+    
+    //==========================================================================
+    // Standard Interfaces
+
+	interface IEnumString;
+	interface IEnumUnknown;
+	interface IEnumGUID;
+	interface IConnectionPointContainer;
+	interface IConnectionPoint;
+    
+    //==========================================================================
+    // OPC Synchronous Interfaces
+
+    interface IOPCCommon;
+	interface IOPCShutdown;
+	interface IOpcServerList;
+    interface IOPCServerList2;
+    interface IOPCEnumGUID;
+    
+    //==========================================================================
+    // Standard Asynchronous Interfaces
+	
+    // interface ICallFactory;
+    // interface ICancelMethodCalls;
+    // interface IAsyncManager;
+    // interface ISynchronize;
+    // interface IWaitMultiple;
+        
+    //==========================================================================
+    // OPC Asynchronous Interfaces
+
+	// interface AsyncIOPCCommon;
+	// interface AsyncIOPCShutdown;
+	// interface AsyncIOpcServerList;
+    // interface AsyncIOPCServerList2;
+    // interface AsyncIOPCEnumGUID;
+};
+
+

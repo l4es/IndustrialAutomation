@@ -1,0 +1,30 @@
+object Form1: TForm1
+  Left = 231
+  Height = 302
+  Top = 136
+  Width = 400
+  Caption = 'Form1'
+  ClientHeight = 302
+  ClientWidth = 400
+  LCLVersion = '0.9.28.2'
+  object Label1: TLabel
+    Left = 50
+    Height = 14
+    Top = 20
+    Width = 32
+    Caption = 'Label1'
+    Font.Color = clWhite
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 22
+    Height = 14
+    Top = 20
+    Width = 17
+    Caption = 'T1:'
+    Font.Color = clWhite
+    ParentColor = False
+    ParentFont = False
+  end
+end

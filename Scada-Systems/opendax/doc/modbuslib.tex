@@ -1,0 +1,92 @@
+\input{format.tex}
+
+\title{OpenDAX Modbus Library Manual}
+\date{March 30, 2010}
+\author{Phil Birkelbach}
+
+
+\begin{document}
+\maketitle
+
+\begin{flushleft}
+Copyright \textcopyright 2010 - Phil Birkelbach\linebreak
+All Rights Reserved
+\end{flushleft}
+
+\tableofcontents
+\newpage
+
+\chapter{Introduction}
+Modbus is a communication protocol that was created many years ago to allow communication to Modicon PLC's (Programmable Logic Controller).  It has become the lowest common denominator of communications in industrial automation and control.  There are many different methods for industrial control systems to communicate to one another and sometimes they can talk to each other over more proprietary protocols but if no other mechanism can be found, it's a safe bet that they can both talk Modbus.
+
+The OpenDAX Modbus Library is a C programming language library that makes it easy to write programs that communicate with other Modbus capable devices.  It is primarily written for Linux and other Unix-like operating systems.  It works in Linux, BSD and Mac OSX.  It probably won't compile under Windows although a port to that platform would not be that difficult.  If you feel like porting the library (or any other part of OpenDAX) to Windows, please feel free to do so.
+
+The OpenDAX Modbus Library was originally part of the OpenDAX Modbus communications module.  It was separated out into it's own library to make the module code easier to maintain and in the hope that someone else might find it useful.  It may even become part of a Modbus simulation program that will be distributed as part of OpenDAX at some point in the future.
+
+The library contains most of the Modbus specification.  For copies of the specification see the Modbus website at http://www.modbus.org.  If you intend to use this library for something and a feature of the specification is not implemented, please feel free to log onto the project website http://www.opendax.org, and ask for help.  Someone on the project will try to help, but be patient because we are all volunteers.
+
+\chapter{Getting Started}
+\section{Getting the Library}
+Right now the OpenDAX Modbus Library is distributed as part of the larger OpenDAX system.  You can download the OpenDAX distribution from the project website at http://www.opendax.org.
+
+\section{Installing the Library}
+Detailed instructions on how to install the entire OpenDAX distribution can be found in the \textit{OpenDAX User's Manual} that can be downloaded from the project website or in the distribution tarball.  If you are reading this document you probably already have the \textit{OpenDAX User's Manual}
+
+If you are in a hurry to get started simply download the OpenDAX distribution tarball, unzip it in a directory of you choice, change into that directory and use these commands...
+
+\begin{verbatim}
+    ./configure
+    make
+    sudo make install 
+\end{verbatim} 
+
+If all of the OpenDAX dependencies are met this should install the entire system onto your machine.  If you don't want to install the entire system you should be able to run the configure script from the root directory of the distribution and then change into the \texttt{modules/modbus/lib directory} from there and use \texttt{make} and \texttt{make install} to install only the library.
+
+The \texttt{configure} script may fail if it does not find dependencies that are needed for the larger OpenDAX system, but not necessarily for the Modbus Library.  See the help for \texttt{configure} using the \texttt{--help} flag on the command line to see all of the features that you can disable from the configure script.  This may help you get through the \texttt{configure} script.
+
+If all else fails you should be able to manually compile and install the library.  All of the source files in the \texttt{modules/modbus/lib} directory should compile into a single library file.  You can install that library file wherever is convenient and put the \texttt{modbus.h} file where the rest of your header files are located.
+
+The Modbus library doesn't really have any dependencies.  It should compile on any POSIX compatible system.  It has not been tested on all systems and right now it is an integral part of the OpenDAX system.  At some point in the future we may remove it from the OpenDAX system and make it a standalone library.  We are hesitant to do that at the moment because having it part of the OpenDAX distribution saves the OpenDAX users the step of having to install this library.
+
+OpenDAX development is the priority for us at the moment and the Modbus Library is a small part of that effort.
+
+\section{The Port}
+Everything in library is based around the concept of \textit{The Port}.  This is basically an object in the library.  It represents a single communications port to the modbus library.  The port can be either a serial port or a network socket.
+
+The port object is an internally defined structure, and all access to it should be carried out using function in the library.  You should not attempt to manipulate the members of the port structure.
+
+Each port can be one of two different device types and communicate using three different Modbus Protocols. The type of the port can be either serial or network.  If it is a serial port you can use the Modbus RTU or ASCII protocols.  If it is a network port you can use RTU, ASCII or TCP.  If you choose a network port and either RTU or ASCII the data will be sent to the remote IP host just as though it was being sent out of the a serial port.  This is helpful if you are using a device server of some kind that converts serial data to TCP/IP.  The TCP protocol is only available over the network type port.  For Modbus RTU and ASCII the port can be configured as either a Master or Slave and for Modbus TCP communications the port can be either a server or client.
+
+How your program interacts with the port is greatly dependent on how the port is set up.  An RTU Master port will behave much differently than a TCP Client.  There are also a few different ways to interact with the port for each of the different configuration.  Most of the time you will use the event loop type interface.  First you create a new port, then you configure the port to match your needs then you call \texttt{mb\_run\_port(port)}.  The \texttt{mb\_run\_port()} function is simply an event loop.  It will handle all of the Modbus communications on the port and may be the last function that your program calls.
+
+If the port is a master or client port the idea of a command is introduced.  Commands are analogous to a Modbus frame.  Modbus is a poll/response type protocol.  The Master/Client requests data and the Slave/Server responds.  Commands in the library are just a way to represent the polling request of the Master/Client.  A port can contain any number commands.  These commands can be automatically sent from the event loop, or your program can send them manually.  We will discuss the details of all this later.
+
+\section{Thread Safety}
+
+We tried to write the library to be as useful in as many different contexts as possible.  One problem with this was catering to those that wanted to run ports asynchronously with other threads in their program.  The problem arises when members of the mb\_port structure are modified while the event loop is running.
+
+The modbus library doesn't actually start any threads for the developer.  We wanted to make it as generic as possible and if the developer is happy with a single thread of execution for his program then there would be no sense in even compiling thread support into the library.  Since threading is required by the OpenDAX server pthreads is required for an OpenDAX build so that library is assumed, and is compiled into the library.  It is not mandatory that your program use these features.
+
+There are some resources that could come into contention if the port event loop is running in a different thread than one that is trying to modify the resource. One of the most obvious is the area of memory that is used to represent the modbus data tables in a Slave or Server port.  If these areas are going to be modified from a separate thread while the event loop is running a lock would have to be obtained. 
+
+It is possible to use the OpenDAX Modbus Library in applications that would never need to modify any of these resources while the event loop was running.  However, it  pretty expensive to try and acquire a lock for a resource that will never be contended because of the nature of the application.  To solve this problem we have conditionally compiled in thread safety, and added an attribute flag to the port data structure.  There is a precompiler definition in the \texttt{mblib.h} header file that can be undefined to remove all of the thread safety features of the library.  Also each port can be configured during run time as a thread safe port or not.  This is done by passing flags to the \texttt{mb\_new\_port()} function when the port is created.  If the \texttt{MB\_THREAD\_SAFE} flag is set in the port structure then all the calls to functions that would modify contended resources will first try to acquire a lock.
+
+It is important to note that you can still have multi-threaded applications that run different port's event loops in different threads and not have to set the thread safety flag in the port.  The only time that you have to set the flag is if you are going to modify port data from a different thread from the one in which the event loop is running, while the event loop is running.  So if you modify data before or after the event loop function is called you don't have to worry about thread safety.  You also, do not have to worry about thread safety if the only interaction that you have to the port data is via the callback functions that are generated by the event loop.  
+
+There are several callback functions that the event loop can call during it's execution.  For example if the event loop is running an RTU Slave there is a callback function that can be set up for the application that will be called when a request is received by the slave but before the response is sent.  It is perfectly safe to modify port parameters from within this callback function.  There are other callback functions that can be used as well and the same thing goes for these.  
+
+Another issue trying to stop the event loop.  The event loop is normally stuck in a \texttt{select()} system call waiting for data to come in on a device.  The \texttt{select()} system call can be interrupted by a signal.  Everytime the event loop tries the \texttt{select()} call it will do some housekeeping.  One thing that it does is to check to see if it has been asked to exit.  If it has then it will exit with a proper exit code to tell the calling function that it was asked to exit.  This exit flag is also a contended resource that can be set from another thread or from within a callback function.
+
+
+\chapter{Master Port}
+
+The following code is used to allocate and initialize a new port.
+
+\begin{verbatim}
+mb_port *port;
+port = mb_new_port("PortName");
+\end{verbatim}
+
+Once you have allocated the port you have to set it up. You can use one of two functions to setup the port parameters.
+
+\end{document}

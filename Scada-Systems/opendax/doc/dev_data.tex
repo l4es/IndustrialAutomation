@@ -1,0 +1,192 @@
+\chapter{Dealing with Data}
+The basic unit of data in OpenDAX is the \textit{Tag}.  A tag is similar to a variable in a programming language.
+\section{Data Types}
+Tags can be one of 15 different data types in OpenDax.  These are given in the following table.
+
+\begin{tabular}{|l|l|l|l|l|}
+\hline \textbf{Name} & \textbf{Description} & \textbf{Size} & \textbf{Min} & \textbf{Max} \\
+\hline BOOL & Boolean (True/False) & 1 & 0 & 1 \\
+\hline BYTE & Bit String & 8 & 0 & 255 \\
+\hline SINT & Signed Short Integer & 8 & -128 & 127 \\
+\hline WORD & Bit String & 16 & 0 & 65,535 \\
+\hline INT & Signed Integer & 16 & -32,768 & 32,767 \\
+\hline UINT & Unsigned Integer & 16 & 0 & 65,535 \\
+\hline DWORD & Bit String & 32 & 0 & $2^{32}$ \\
+\hline DINT & Double Integer & 32 & $-2^{31}$ & $2^{31}-1$ \\
+\hline UDINT & Unsigned Double Integer & 32 & 0 & $2^{32}$ \\
+\hline TIME & Unix Timestamp & 32 &  &  \\
+\hline REAL & IEC 754 Floating Point & 32 &  &  \\
+\hline LWORD & Bit String & 64 & 0 & $2^{64}$ \\
+\hline LINT & Long Integer & 64 & $-2^{63}$ & $2^{63}-1$ \\
+\hline ULINT & Unsigned Long Integer & 64 & 0 & $2^{64}$ \\
+\hline LREAL & IEC 754 Double Floating Point & 64 &  &  \\
+\hline 
+\end{tabular}
+ 
+The opendax.h header file contains the definitions for these data types.  These definitions are the name of the data type in the above table prefixed with "\texttt{DAX\_}".  So to represent a Boolean data type to the OpenDAX library you would use the definition \texttt{DAX\_BOOL}.  These definitions are used anytime your module needs to communicate a data type to the OpenDAX library.  For example, when creating a tag the module has to specify the data type.  You could create an INT tag with a call like this...
+
+\begin{verbatim}
+dax_add_tag("MyInt", DAX_INT, 1);
+\end{verbatim}
+
+This would create a tag in the server with the name \textit{MyInt} of type INT.  The 1 as the last argument just means a single member.  A larger number would signify an array.
+
+There are also some typedefs in opendax.h that help with declaring variables within you module code.  They are the same as the datatype definitions except they are all lower case.  For example, if you want to declare a variable that will match the \verb|DAX_DINT| data type you would use \verb|dax_dint| typedef.  These make sure that the variable definitions inside your module match the data types of the tags in OpenDAX.  For the above Tag you could create a variable in C with this code...
+
+\begin{verbatim}
+dax_int myInt;
+myInt = 13000;
+\end{verbatim}
+
+Each Tag in OpenDAX can be a single value of any of these base data types or it can be an array of these.  
+
+\begin{verbatim}
+dax_add_tag("MyInt", DAX_INT, 10);
+\end{verbatim}
+
+This code would generate an array of INT's in the Server.  It is important to note that tags can be redefined as long as they data type stays the same.  If you call dax\_add\_tag() again with a count that is higher than the previous call it would increase the size of the array.  If you call it with a count smaller than the previous, it will ignore it and keep the array the same size.  If you change the data type in the second call the function will return an error.
+
+OpenDAX also supports the concept of a \textit{Compound Data Type}\index{Compound Data Type}.  This is an aggregate data type that is very similar to a structure in C.  Your module can create a new compound data type or it can use ones that are created by other modules.
+
+These are the four functions that we will need to use from the libdax library.
+
+\begin{verbatim}
+dax_cdt *dax_cdt_new(char *name, int *error);
+
+int dax_cdt_member(dax_state *ds, dax_cdt *cdt, char *name,
+                   tag_type mem_type, unsigned int count);
+
+int dax_cdt_create(dax_state *ds, dax_cdt *cdt, tag_type *type);
+
+void dax_cdt_free(dax_cdt *cdt);
+\end{verbatim}
+
+To create a CDT you first have to allocate a CDT object.
+
+The \verb|dax_cdt_new()|\index{dax\_cdt\_new() function} allocates, initializes and returns a pointer to a new CDT object.  The \textit{name} argument is the name that would be given to the CDT.  The \textit{error} argument is a pointer to an integer that can indicate any errors.  If there is an error the function will return NULL and the integer pointed to \textit{error} will be set to the error code.  If you are not interested in this error code then you can pass NULL to the function.
+
+Once you have the object you add members to the CDT one at a time.  These members can be of any previously defined data type including other CDTs.  They can also be arrays and even arrays of other CDT's.  We do this with the \verb|dax_cdt_member()|\index{dax\_cdt\_member() function}.  The \textit{cdt} argument is the object that was returned from the \verb|dax_cdt_new()| function.  The \textit{name} argument is the name that we want to give to our member.  The \textit{mem\_type} argument is either one of the 15 base DAX\_* datatypes from above or a predefined compound data type.
+
+Once all of the members have been added the module the \verb|dax_cdt_create()|\index{dax\_cdt\_create() function} function is used to send the data type definition to the server and actually create the data type.  The \textit{type} argument to \verb|dax_cdt_create()| will contain the new type identifier of the created compound data type.  This identifier can be used anywhere another data type definition (such as DAX\_DINT) could be used.
+
+The \verb|dax_cdt_free()|\index{dax\_cdt\_free() function} function simply frees the memory associated with the new data type.  Don't try to free the memory yourself because there are other data structures in the \verb|dax_cdt| object that have to be freed.  Simply passing the pointer to \verb|free()| for example will result in a memory leak.  Once the data type has been created it can be freed.  Obviously failure to do this will also result in a memory leak.  Don't try to reuse a \verb|dax_cdt| object either.  You can reuse the pointer but you need to free the old one with \verb|dax_cdt_free()| and then reallocate a new one with \verb|dax_cdt_new()|.
+
+Perhaps it's time for an example.  Let's build a CDT that has the following structure...
+
+\begin{verbatim}
+MyCDT
+  MyInteger INT
+  MyReals   REAL[10]
+  MyBools   BOOL[8]
+\end{verbatim}
+
+The following code would be used \ldots
+
+\begin{verbatim}
+dax_cdt *dc;
+int error;
+tag_type type;
+
+dc = dax_new("MyCDT", &error);
+if(dc == NULL) {
+    printf("Error code returned is %d\n", error);
+    //handle error
+} else {
+    dax_cdt_member(ds, dc, "MyInteger", DAX_INT, 1);
+    dax_cdt_member(ds, dc, "MyReals", DAX_REAL, 10);
+    dax_cdt_member(ds, dc, "MyBools", DAX_BOOL, 8);
+
+    error = dax_cdt_create(ds, dc, &type);
+    if(error) {
+        printf("Error from dax_cdt_member() is %d\n", error);
+	    //handle error
+    } else {
+        printf("CDT created!  Data Type = 0x%X\n", type);
+    }
+    dax_cdt_free(dc);
+}
+
+\end{verbatim}
+
+This code will build the above CDT.  There is some error checking missing on the return values of \verb|dax_cdt_member()| functions but this is for clarity.  In your code you would want to check these return values.  Also be careful of the error handling so that you don't exit this code before the \verb|dax_cdt_free()| function has been called to free the \verb|dax_cdt| object.
+
+% NEED TO ADD A SECTION ON GETTING THE TAG'S SIZE
+
+% NEED TO ADD A SECTION ON HOW TO ITERATE THROUGH A CDT
+
+\section{Creating Tags}
+The main function to use for creating tags for \opendax is \verb| dax_tag_add()| function\index{dax\_tag\_add() function}.  The prototype is given here.
+
+\begin{verbatim}
+int dax_tag_add(dax_state *ds, Handle *h, char *name,
+                tag_type type, int count)|
+\end{verbatim}
+
+There are three pieces of information that must be passed to this function to create a tag.  First you have to pass a \emph{name}.  The name is statically allocated so the size of the tag is fixed.  It must be less than \verb|DAX_TAGNAME_SIZE|.  Right now this is set at 32 characters.  It can easily be changed to allow longer tag names or made smaller to conserve memory in smaller systems.  The definition is in \emph{opendax.h} and once changed you will have to recompile everything.
+
+The rules for naming tags are pretty simple.  The tag must begin with either the underscore character or a letter.  The rest of the tags can contain underscores, letters or numbers.  For example \verb|_ThisTag| and \verb|_some_tag23| are both valid tag names.  However \verb|23some_tag| is not a valid tag name.  Hyphens and symbols are not allowed.  This fairly restrictive set of rules for tag naming gives the module developer more freedom when using symbols within their module.  There is no confusion related to having to determine the context of a symbol when symbols are illegal in tag names.
+
+The \emph{type} argument, is the data type of the tag.  This can be one of the base data types or a compound data type.
+
+The  last argument, \emph{count}, is the number of items in the tag.  Basically the tag is either a single tag and \emph{count} would be 1 or the tag represents an array and \emph{count} would be something greater than 1.
+
+The \emph{h} pointer argument is a pointer to a handle\index{handle}.  If this pointer is not NULL \verb|dax_tag_add()| will fill it in with the necessary information to identify the tag.  Tag handles are described in detail in the following section.
+
+\section{Tag Handles}
+It would be very inefficient for the server/library to have to work with the strings that represent different tags in this system.  Strings would use a lot of bandwidth and parsing the strings to determine the actual data point would use extra processor power.
+
+To alleviate some of these concerns \opendax uses the idea of a \emph{handle} to identify tags.  They can also be used to identify parts of the tags.  For example, let's say that we have a tag that is an array of 1,000 INT's named \emph{MyInt}.  The handle that identifies the entire array would be different than one that would identify the items from MyInt[100] through MyInt[199], and that would be different than any of the 1,000 handles that would identify a single point in the array.
+
+A Handle is actually a structure that is defined in \emph{opendax.h}.  This is simply to make it easier for modules to allocate and use.  It would be bad form to access the individual members of the structure.
+
+There are a couple of ways to get a Handle assigned.  The first is to pass a pointer to the \verb|dax_tag_ad()| function.  \verb|dax_tag_ad()| will assign the information necessary to access the entire tag when the tag is created.
+
+\verb|int dax_tag_handle(dax_state *ds, Handle *h, char *str, int count)|
+
+The \verb|dax_tag_handle()| function \index{dax\_tag\_handle() function} is the other way to get a handle.  The arguments to this function are a pointer to the handle that you want to have assigned, a string that represents the tag for which you would like the handle and an integer that represents the number of items you would like assigned to the handle in the case that the tag is an array.
+
+The string passed to \verb|dax_tag_handle()| can be more than simply the tag name.  It can be a full description of part of a tag.  Suppose we are using the compound data type that we defined earlier.
+
+\begin{verbatim}
+MyCDT
+  MyInteger INT
+  MyReals   REAL[10]
+  MyBools   BOOL[8]
+\end{verbatim}
+
+Let's say we create a tag that is a 10 item array of this type, named \emph{MyTag}.  We could represent parts of this tag with the following strings \ldots
+
+\begin{tabular}{lll}
+\textbf{str} & \textbf{cnt} & \textbf{Handle represents \ldots} \\
+\verb|"MyTag"| & 1 & the entire tag \\ 
+\verb|"MyTag[0]"| & 1 & the entire first element \\ 
+\verb|"MyTag[0]"| & 2 & all of the first two elements \\ 
+\verb|"MyTag[1].MyInteger"| & n/a & the MyInteger member of the 2nd element \\ 
+\verb|"MyTag[1].MyBools"| & n/a & the entire MyBools array of the 2nd element \\ 
+\verb|"MyTag[2].MyReals[1]"| & 2 & two MyReals starting with the 2nd one \\ 
+\end{tabular} 
+
+This is the way that tags and parts of tags should be represented within your module as well.  This representation should be pretty familiar to a C programmer.  Square brackets and numbers are used to index the arrays and '.'s are used to dereference parts of a tag that have a compound data type.  Arrays are zero indexed.
+
+\section{Reading and Writing Data}
+
+Once you have a handle to the data you can start to read and write that data.  The three functions that you will use to read and write data are \ldots
+
+\begin{verbatim}
+int dax_read_tag(dax_state *ds, Handle handle, void *data);
+int dax_write_tag(dax_state *ds, Handle handle, void *data);
+int dax_mask_tag(dax_state *ds, Handle handle, void *data,
+                 void *mask);
+\end{verbatim}
+
+The \verb|dax_read_tag()| function \index{dax\_read\_tag() function}, as its name suggests is used to read tag data from the server.  The \verb|void *data| pointer should point to data that is formated in the same way that the handle data is formatted.  Usually this simply means that the variables in you module should be of the same type and size as what is pointed to by \emph{handle}.
+
+The \verb|dax_write_tag()| function \index{dax\_write\_tag() function} and the \verb|dax_mask_tag()| function \index{dax\_mask\_tag() function} are both used to write data to the server.  Again the \emph{data} pointer should point to a data area within your module that is of the same type and size as the tag that is represented by the \emph{handle}.  The \verb|dax_mask_tag()| function function adds the ability to only write part of the data.  The \emph{mask} pointer should point to an area of memory that is the same size as the \emph{data} pointer.  The only \emph{data} that will be written to the server will have a '1' set in that bit location in the \emph{mask} memory area.
+
+\section{Compound Data}
+
+See the implementation of the \verb|dax_cdt_iter()| function \index{dax\_cdt\_iter() function} to see how to deal with compound data.  The easiest and least efficient way is to get handles to the individual members of the CDT.
+
+The packing of the CDT is also specified and it's pretty simple.  The members are packed in the same order in which they were added by the  \verb|dax_cdt_member()| function \index{dax\_cdt\_member() function}.  They are single byte aligned and BOOLs are packed into bytes.  One BOOL will take up an entire byte.  Any subsequent BOOL's that are added will occupy that same byte until there are more than 8 in which case another byte will be added.  This continues until the first non-BOOL data type.  The first non-BOOL typed member will occupy the next byte.  For this reason it is more efficient to put the BOOL data types together.  A single BOOL member followed by an INT then followed by another BOOL will occupy 4 bytes, one for the first BOOL, two for the INT and then another byte for the second BOOL.  If we put the two BOOL members first and second, with the INT last, the data type size will only be 3 bytes, and we still have room for 6 more BOOLs before the size would grow.
+
+\section{Data Handling Example}

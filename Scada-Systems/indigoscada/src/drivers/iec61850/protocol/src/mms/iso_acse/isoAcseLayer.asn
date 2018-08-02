@@ -1,0 +1,266 @@
+-- Module ACSE1 (X.227:04/1995)
+ACSE1 {jointisoitut associationcontrol(2) modules(0) apdus(0) version1(1)}
+--  ACSE1 refers to ACSE version 1
+DEFINITIONS ::=
+BEGIN
+
+EXPORTS
+  acseasid, ACSEapdu, aCSEid, Applicationcontextname, APtitle,
+    AEqualifier, AEtitle, APinvocationidentifier, AEinvocationidentifier,
+    Mechanismname, Authenticationvalue, ACSErequirements, ObjectSet;
+
+IMPORTS
+  Name, RelativeDistinguishedName
+    FROM InformationFramework {jointisoitut ds(5) module(1)
+      informationFramework(1) 3};
+
+--  The data types Name and RelativeDistinguishedName are imported from ISO/IEC 95942.
+--  object identifier assignments
+acseasid OBJECT IDENTIFIER ::=
+  {jointisoitut associationcontrol(2) abstractsyntax(1) apdus(0)
+   version1(1)}
+
+--  may be used to reference the abstract syntax of the ACSE APDUs
+aCSEid OBJECT IDENTIFIER ::=
+  {jointisoitut associationcontrol(2) aseid(3) acsease(1) version(1)}
+
+--  may be used to identify the Association Control ASE.
+--  top level CHOICE
+ ACSEapdu ::= CHOICE {
+  aarq  AARQapdu,
+  aare  AAREapdu,
+  rlrq  RLRQapdu,
+  rlre  RLREapdu
+}
+
+AARQapdu ::= [APPLICATION 0] IMPLICIT SEQUENCE {
+  protocolversion [0] IMPLICIT BIT STRING OPTIONAL,
+  applicationcontextname          [1]  EXPLICIT OBJECT IDENTIFIER,
+  calledAPtitle                   [2]  APtitle OPTIONAL,
+  calledAEqualifier               [3]  AEqualifier OPTIONAL,
+  calledAPinvocationidentifier   [4]  EXPLICIT APinvocationidentifier OPTIONAL,
+  calledAEinvocationidentifier   [5]  EXPLICIT AEinvocationidentifier OPTIONAL,
+  callingAPtitle                  [6]  APtitle OPTIONAL,
+  callingAEqualifier              [7]  AEqualifier OPTIONAL,
+  callingAPinvocationidentifier  [8]  APinvocationidentifier OPTIONAL,
+  callingAEinvocationidentifier  [9]  AEinvocationidentifier OPTIONAL,
+  --  The following field shall not be present if only the Kernel is used.
+  senderacserequirements          [10] IMPLICIT ACSErequirements OPTIONAL,
+  --  The following field shall only be present if the Authentication functional unit is selected.
+  mechanismname                    [11] IMPLICIT Mechanismname OPTIONAL,
+  --  The following field shall only be present if the Authentication functional unit is selected.
+  callingauthenticationvalue      [12] EXPLICIT Authenticationvalue OPTIONAL,
+  applicationcontextnamelist
+    [13] IMPLICIT Applicationcontextnamelist OPTIONAL,
+  --  The above field shall only be present if the Application Context Negotiation functional unit is selected
+  implementationinformation        [29] IMPLICIT Implementationdata OPTIONAL,
+  userinformation [30] IMPLICIT Associationinformation OPTIONAL
+}
+
+
+AAREapdu ::= [APPLICATION 1] IMPLICIT SEQUENCE {
+--changed by Stefan Feuerhahn
+  protocolversion [0] IMPLICIT BIT STRING OPTIONAL,
+  applicationcontextname             [1] EXPLICIT  OBJECT IDENTIFIER,
+  result                               [2] EXPLICIT Associateresult,
+  resultsourcediagnostic             [3] EXPLICIT Associatesourcediagnostic,
+  respondingAPtitle                  [4] EXPLICIT APtitle OPTIONAL,
+  respondingAEqualifier              [5] EXPLICIT AEqualifier OPTIONAL,
+  respondingAPinvocationidentifier  [6] EXPLICIT APinvocationidentifier OPTIONAL,
+  respondingAEinvocationidentifier  [7] EXPLICIT AEinvocationidentifier OPTIONAL,
+  --  The following field shall not be present if only the Kernel is used.
+--  responderacserequirements          [8] IMPLICIT ACSErequirements OPTIONAL,
+  --  The following field shall only be present if the Authentication functional unit is selected.
+--  mechanismname                       [9] IMPLICIT Mechanismname OPTIONAL,
+  --  This following field shall only be present if the Authentication functional unit is selected.
+--  respondingauthenticationvalue
+--    [10] EXPLICIT Authenticationvalue OPTIONAL,
+  applicationcontextnamelist
+    [11] IMPLICIT Applicationcontextnamelist OPTIONAL,
+  --  The above field shall only be present if the Application Context Negotiation functional unit is selected
+  implementationinformation
+    [29] IMPLICIT Implementationdata OPTIONAL,
+  userinformation [30] IMPLICIT Associationinformation OPTIONAL
+}
+
+RLRQapdu ::= [APPLICATION 2] IMPLICIT SEQUENCE {
+  reason            [0] IMPLICIT Releaserequestreason OPTIONAL,
+  userinformation  [30] IMPLICIT Associationinformation OPTIONAL
+}
+
+RLREapdu ::= [APPLICATION 3] IMPLICIT SEQUENCE {
+  reason            [0] IMPLICIT Releaseresponsereason OPTIONAL,
+  userinformation  [30] IMPLICIT Associationinformation OPTIONAL
+}
+
+-- ABRTapdu ::= [APPLICATION 4] IMPLICIT SEQUENCE {
+--  abortsource      [0] IMPLICIT ABRTsource,
+--  abortdiagnostic  [1] IMPLICIT ABRTdiagnostic OPTIONAL,
+  --  This field shall not be present if only the Kernel is used.
+--  userinformation  [30] IMPLICIT Associationinformation OPTIONAL
+--}
+
+-- ABRTdiagnostic ::= ENUMERATED {
+--  noreasongiven(1), protocolerror(2),
+--  authenticationmechanismnamenotrecognized(3),
+--  authenticationmechanismnamerequired(4), authenticationfailure(5),
+--  authenticationrequired(6)
+--  }
+
+-- ABRTsource ::= INTEGER {acseserviceuser(0), acseserviceprovider(1)}
+
+
+ACSErequirements ::= BIT STRING {
+  authentication(0), applicationcontextnegotiation(1)
+}
+
+Applicationcontextnamelist ::= SEQUENCE OF Applicationcontextname
+
+-- Applicationcontextname ::= CHOICE {
+--    applicationcontextname OBJECT IDENTIFIER
+-- }
+
+Applicationcontextname ::= OBJECT IDENTIFIER
+
+--  Applicationentity title productions follow (not in alphabetical order)
+APtitle ::= CHOICE {
+--  aptitleform1  APtitleform1,
+  aptitleform2  APtitleform2
+}
+
+AEqualifier ::= CHOICE {
+--  aequalifierform1  AEqualifierform1,
+  aequalifierform2  AEqualifierform2
+}
+
+--  When both APtitle and AEqualifier data values are present in an AARQ or AARE APDU, both must
+--  have the same form to allow the construction of an AEtitle as discussed in CCITT Rec. X.665 |
+--  ISO/IEC 98346.
+-- APtitleform1 ::=
+--  Name
+
+--  The value assigned to APtitleform1 is The Directory Name of an applicationprocess title.
+-- AEqualifierform1 ::=
+--  RelativeDistinguishedName
+
+--  The value assigned to AEqualifierform1 is the relative distinguished name of a particular
+--  applicationentity of the applicationprocess identified by APtitleform1.
+APtitleform2 ::= OBJECT IDENTIFIER
+
+AEqualifierform2 ::= INTEGER
+
+AEtitle ::= CHOICE {
+--  aetitleform1  AEtitleform1,
+  aetitleform2  AEtitleform2
+}
+
+--  As defined in CCITT Rec. X.650 | ISO 74983, an applicationentity title is composed of an application-
+--  process title and an applicationentity qualifier.  The ACSE protocol provides for the transfer of an
+--  applicationentity title value by the transfer of its component values.  However, the following data type
+--  is provided for International Standards that reference a single syntactic structure for AE titles.
+-- AEtitleform1 ::=
+--  Name
+
+--  For access to The Directory (ITUT Rec. X.500Series | ISO/IEC 9594), an AE title has AEtitleform1.
+--  This value can be constructed from APtitleform1 and AEqualifierform1 values contained in an
+--  AARQ or AARE APDU. A discussion of forming an AEtitleform1 from APtitleform1 and AEqualifier-
+--  form1 may be found in CCITT Rec. X.665 | ISO/IEC 98346.
+AEtitleform2 ::= OBJECT IDENTIFIER
+
+--  A discussion of forming an AEtitleform2 from APtitleform2 and AEqualifierform2 may be
+--  found in CCITT Rec. X.665 | ISO/IEC 98346.
+AEinvocationidentifier ::= INTEGER
+
+APinvocationidentifier ::= INTEGER
+
+--  End of Applicationentity title productions
+Associateresult ::= INTEGER {
+  accepted(0), rejectedpermanent(1), rejectedtransient(2)}
+
+Associatesourcediagnostic ::= CHOICE {
+  acseserviceuser
+    [1] EXPLICIT INTEGER {null(0), noreasongiven(1),
+                  applicationcontextnamenotsupported(2),
+                  callingAPtitlenotrecognized(3),
+                  callingAPinvocationidentifiernotrecognized(4),
+                  callingAEqualifiernotrecognized(5),
+                  callingAEinvocationidentifiernotrecognized(6),
+                  calledAPtitlenotrecognized(7),
+                  calledAPinvocationidentifiernotrecognized(8),
+                  calledAEqualifiernotrecognized(9),
+                  calledAEinvocationidentifiernotrecognized(10),
+                  authenticationmechanismnamenotrecognized(11),
+                  authenticationmechanismnamerequired(12),
+                  authenticationfailure(13), authenticationrequired(14)}, 
+ acseserviceprovider
+    [2] EXPLICIT INTEGER {null(0), noreasongiven(1), nocommonacseversion(2)}
+}
+
+-- Associationinformation ::= SEQUENCE OF Associationinformationitem
+Associationinformation ::= SEQUENCE OF Myexternal
+
+Myexternal  ::=  [UNIVERSAL 8] IMPLICIT SEQUENCE
+{
+      directreference  OBJECT IDENTIFIER OPTIONAL,
+      indirectreference  INTEGER OPTIONAL,
+      encoding  CHOICE
+                  { singleASN1type  [0] EXPLICIT ANY,
+                   octetaligned     [1] IMPLICIT OCTET STRING,
+                   arbitrary         [2] IMPLICIT BIT STRING }
+}
+
+--Associationinformationitem ::= [UNIVERSAL 8] IMPLICIT SEQUENCE {
+--      directreference  OBJECT IDENTIFIER OPTIONAL,
+--      indirectreference  INTEGER OPTIONAL,
+--      encoding  CHOICE
+--      {
+--		singleASN1type  [0] CHOICE {
+--		  singleASN1type ANY
+--		},
+--        octetaligned     [1] IMPLICIT OCTET STRING,
+--        arbitrary         [2] IMPLICIT BIT STRING
+--	  }
+--     }
+
+--is optional:
+Authenticationvalue ::= CHOICE {
+  charstring  [0] IMPLICIT GraphicString,
+  bitstring   [1] IMPLICIT BIT STRING
+--  external    [2] IMPLICIT Myexternal,
+--   other
+--    [3] IMPLICIT SEQUENCE {othermechanismname
+--                              MECHANISMNAME.&id({ObjectSet}),
+--                            othermechanismvalue
+--                              MECHANISMNAME.&Type
+--                                ({ObjectSet}{@.othermechanismname})}
+}
+
+--  The abstract syntax of (calling/responding) authenticationvalue is determined by the authentication
+--  mechanism used during association establishment.  The authentication mechanism is either explicitly
+--  denoted by the &id field (of type OBJECT IDENTIFIER) for a mechanism belonging to the class 
+--  MECHANISMNAME, or it is known implicitly by
+--  prior agreement between the communicating partners.  If the "other" component is chosen, then 
+--  the "mechanismname" component must be present in accordance with
+--  ITUT Rec. X.680 | ISO/IEC 8824. If the value "mechanismname" occurs in the AARQapdu or the
+--  AAREapdu, then that value must be the same as the value for "othermechanismname"
+Implementationdata ::= GraphicString
+
+Mechanismname ::= OBJECT IDENTIFIER
+
+Releaserequestreason ::= INTEGER { 
+ normal (0),
+ urgent (1),
+ userdefined (30)
+}
+
+Releaseresponsereason ::= INTEGER { 
+ normal (0),
+ notfinished (1),
+ userdefined (30)
+}
+
+
+
+END
+
+-- Generated by Asnp, the ASN.1 prettyprinter of France Telecom R&D

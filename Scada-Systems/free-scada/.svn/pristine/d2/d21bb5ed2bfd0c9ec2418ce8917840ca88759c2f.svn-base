@@ -1,0 +1,29 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:ScadaShell.ViewModel;assembly=ScadaShell"
+    xmlns:vw="clr-namespace:ScadaShell.View;assembly=ScadaShell"
+    xmlns:si="clr-namespace:ScadaShell.Infrastructure;assembly=ScadaShell"
+    xmlns:kbc="clr-namespace:Kent.Boogaart.Converters;assembly=Kent.Boogaart.Converters"           
+    xmlns:kbcm="clr-namespace:Kent.Boogaart.Converters.Markup;assembly=Kent.Boogaart.Converters"   
+	xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <DataTemplate  DataType="{x:Type vm:KranViewModel}">
+
+        <Viewbox Stretch="Fill"   Name="viewbox"  >
+            <Border si:MousceClickInputBindingsEstension.AttachedCommand="{Binding Path=ShowUiCommand}" Background="Black">
+                <Canvas Width="128" Height="160" Opacity="{Binding KranOpacity}" >
+                    <Canvas  x:Name="kran" Width="128" Height="160">
+                        <Label  Content="{Binding Description}" Height="30" x:Name="label1" Width="128" Canvas.Left="0" Canvas.Top="0"  FontSize="20" Foreground="LightGray" HorizontalAlignment="Center"/>
+                        <Path Width="2" Height="59.6667" Canvas.Left="64" Canvas.Top="61.7222" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FFFFFDFD" Data="F1 M 128,120.889L 128,62.2222" StrokeThickness="2"/>
+                        <Rectangle Width="86.3333" Height="20.5556" Canvas.Left="21.3334" Canvas.Top="42.1666" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="{Binding CommandStateColor}"/>
+                        <Path Width="65" Height="79.2222" Canvas.Left="0" Canvas.Top="81.2778" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="{Binding StateColor}" Data="F1 M 128,120.889L 64,81.7778L 64,160L 128,120.889 Z " RenderTransformOrigin="0.462,-0.269"/>
+                        <Path Width="65" Height="79.2222" Canvas.Left="64" Canvas.Top="81.2778" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="{Binding StateColor}" Data="F1 M 128,120.889L 192,81.7778L 192,160L 128,120.889 Z "/>
+                    </Canvas>
+                </Canvas>
+            </Border>
+        </Viewbox>
+
+    </DataTemplate>
+</ResourceDictionary>
+    

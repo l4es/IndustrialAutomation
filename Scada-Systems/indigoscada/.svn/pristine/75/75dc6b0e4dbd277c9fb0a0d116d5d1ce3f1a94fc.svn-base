@@ -1,0 +1,22 @@
+/* XPM */
+static const char *lock_xpm[] = {
+"16 14 5 1",
+" 	c None",
+".	c Black",
+"X	c gray50",
+"o	c White",
+"O	c Yellow",
+"      .....     ",
+"     .XoooX.    ",
+"    .Xo...oX.   ",
+"    .o.XXX.o.X  ",
+"    .o.X  .o.X  ",
+"    .o.X  .o.X  ",
+"   ...........  ",
+"   .OOOOOOOOO.X ",
+"   .OXXXXXXXO.X ",
+"   .OOOOOOOOO.X ",
+"   .OXXXXXXXO.X ",
+"   .OOOOOOOOO.X ",
+"   ...........X ",
+"    XXXXXXXXXXX "};

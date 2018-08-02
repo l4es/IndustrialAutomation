@@ -1,0 +1,1027 @@
+﻿# MainWindow
+
+Compile project = Projekt compilieren
+&Find element = Element suchen
+Find &next element = Nächstes Element suchen
+Displays the program information = Zeigt Programminfomationen an
+Inspect project for possible problems = Projekt auf mögliche Probleme untersuchen
+Start Player = Player starten
+Start Debugger = Debugger starten
+HMI Editor = HMI Editor
+Flow Editor = Flow Editor
+Element name = Elementname
+Enter String to search for = Bitte Suchzeichenkette eingeben
+Could not find object! = Konnte Objekt nicht finden!
+Data flow = Datenfluss
+Synchronise inputs = Eingänge synchronisieren
+Last element again = Letztes Element wiederholen
+No valid APCP project file! = Keine gültige APCP-Projektdatei!
+Add Control = Element hinzufügen
+Add Connector = Verbinder hinzufügen
+Draw Connection = Verbindung zeichnen
+
+# Control Property Dialog
+
+Properties = Eigenschaften
+Name = Name
+Min/Max = Min/Max
+Position = Position
+Size = Größe
+Digital IN 0 = Digital IN 0
+LOW State = LOW Status
+HIGH State = HIGH Status
+Text = Text
+Foreground Colour = Vordergrundfarbe
+Choose the foreground colour = Vordergrundfarbe auswählen
+Font = Zeichensatz
+AaBbCc123 = AaBbCc123
+Description = Beschreibung
+
+Logging = Datenerfassung
+On value greater than = Bei Wert größer als
+On value smaller than = Bei Wert kleiner als
+On value between = Bei Wert zwischen
+On value set to LOW = Bei LOW-Wert
+On value set to HIGH = Bei HIGH-Wert
+On value changed = Wenn Wert sich ändert
+Event = Ereignis
+
+User Privileges = Benutzerrechte
+State of user element = Zustand des Elements
+enabled = aktiviert
+disabled = deaktiviert
+invisible = unsichtbar
+ignore = ignorieren
+None of them = Keins von diesen
+Set all = Alle setzen
+Select state privilege priority dependent = Den Status abhängig von der Rechte-Priorität setzen
+Manual Control = Manuelle Kontrolle
+Modify Parameters = Parameter verändern
+Edit Recipe = Rezept bearbeiten
+Select Recipe = Rezept auswählen
+Start Process = Prozess starten
+Stop Process = Prozess stoppen
+None of them = Keines von diesen
+User Management Panel = Benutzerverwaltungspanel
+Select visibility privilege priority dependent = Auswahl Sichtbarkeit (Rechte in Prioritätsreihenfolge)
+Log In User = Benutzer anmelden
+Data error: could not store data, the changed values may not survive the next reboot! = Daten konnten nicht gespeichert werden, die veränderten Werte könnten mit dem nächsten Neustart verloren gehen!
+
+Change Password = Passwort ändern
+Please enter your old password! = Bitte geben Sie Ihr altes Passwort ein!
+Wrong password entered!\nPlease enter your password that is currently used by you! = Falsches Passwort eingegeben! Bitte geben Sie das Passwort ein, welches Sie momentan benutzen!
+Please enter the new password twice! = Bitte geben Sie das neue Passwort zwei mal ein!
+
+Images = Bilder
+Predefined Image = Vordefiniertes Bild
+Normal Image = Normales Bild
+Selected Image = Selektiertes Bild
+Disabled Image = Deaktiviertes Bild
+Embed image into project = Bild in Projekt einbetten
+Embed images into project = Bilder in Projekt einbetten
+Could not find file, image could not be embedded into project! = Datei nicht gefunden, Bild konnte nicht in Projekt eingebettet werden!
+
+Additional / Hatch = Additional / Füllmuster
+Input / Serial/Date/Time = Input / Seriennummer/Datum/Zeit
+Input / OpenAPC Data Input = Input / OpenAPC Dateneingang
+Postprocessing / Curve = Nachbearbeitung / Biegung
+Postprocessing / Sine = Nachbearbeitung / Sinus
+Primary / Barcode = Primärelement / Barcode
+Primary / Bezier Curve = Primärelement / Bezier-Kurve
+Primary / Circle = Primärelement / Kreis
+Primary / Delay = Primärelement / Pause
+Primary / Dot = Primärelement / Punkt
+Primary / External Trigger = Primärelement / Externer Trigger
+Primary / Custom Output = Primärelement / Datenausgang
+Primary / Single Line = Primärelement / Einzelne Linie
+Primary / Motion = Primärelement / Bewegungsachsen
+Primary / Polygon = Primärelement / Polygon
+Primary / Rectangle = Primärelement / Rechteck
+Primary / Spiral = Primärelement / Spirale
+Primary / Star = Primärelement / Stern
+Primary / Text = Primärelement / Text
+Primary / Triangle = Primärelement / Dreieck
+Primary / Z-Shifter = Primärelement / Z-Verschiebung
+Gears = Getriebe
+Draw = Zeichnen
+
+Layout = Layout
+Sectors = Sektoren
+Number of Sectors = Anzahl Sektoren
+Number of Ticks = Anzahl Skalenstriche
+Startangle = Startwinkel
+Endangle = Endwinkel
+Sector = Sektor
+Choose the sectors colour = Sektorfarbe auswählen
+
+Outer Circle = Äußerer Kreis
+Inner Circle = Innerer Kreis
+Knob Border = Knopfrand
+Knob = Knopf
+Ticks = Skalenstriche
+Colours = Farben
+Choose the elements colour = Elementfarbe auswählen
+
+Digits = Ziffern
+Decimal Place Digits = Nachkommastellen
+Configuration = Konfiguration
+
+No Border = Kein Rahmen
+Sunken = Vertieft
+Raised = Erhöht
+Simple = Einfach
+Double = Doppelt
+Dotted = Gepunktet
+Short Dashes = Kurz gestrichelt
+Dots and dashes = Strichpunkt
+Long Dashes = Lang gestrichelt
+
+Mutual Exclusion = Gegenseitiger Ausschluss
+Create new Mutex = Neuen Ausschluss anlegen
+Please enter a name for the new mutex = Bitte einen Namen für den neuen Ausschluss angeben
+Enter mutex name = Name des Ausschlusses eingeben
+
+# Project Property Dialog
+
+Visual Size = Sichtbare Größe
+Control Flow Time-Out = Timeout für Kontrollfluss
+Timer Resolution = Genauigkeit Timer
+Touchscreen Support = Touchscreen-Unterstützung
+Activate = Aktivieren
+Keyboard Size Factor = Größenfaktor Keyboard
+Keyboard Font = Keyboard-Zeichensatz
+
+External applications = Externe Applikationen
+Use local Interlock Server = Interlock-Server benutzen (lokal)
+Use remote Interlock Server = Interlock-Server benutzen (Netzwerk)
+Use local, mirrored Interlock Servers = Interlock-Server benutzen (lokal, gespiegelt)
+Use remote, redundant Interlock Servers = Interlock-Server benutzen (Netzwerk, redundant)
+Interlock Server = Interlock-Server
+Map outputs to server = Outputs zum Server mappen
+Allow modification = Modifikation zulassen
+
+# interlock database
+
+Open interlock database watch window = Überwachungsfenster für Interlock-Datenbank öffnen
+Watch Interlock Database = Interlock-Datenbank überwachen
+Map outputs to server = Ausgänge zum Server übertragen
+Allow modification = Veränderung zulassen
+
+# Visual Panel
+
+Static = Statisch
+Rectangle = Rechteck
+Free Line = Linie
+Frame = Rahmen
+Ellipse = Ellipse
+Text Label = Textlabel
+Image = Bild
+
+Control = Steuerung
+Simple Button = Einfacher Schalter
+Image Button = Schalter mit Bild
+Toggle Button = Umschalter
+Horizontal Slider = Horizontaler Regler
+Vertical Slider = Vertikaler Regler
+Angular Regulator = Drehregler
+Number Field = Zahlenfeld
+Floating Number Field = Fließpunkt-Zahlenfeld
+Text Field = Textfeld
+Password Field = Passwortfeld
+Linear Regulator = Schieberegler
+Radio Button = Auswahlschalter
+Checkbox = Checkbox
+
+Display = Anzeige
+Horizontal Gauge = Horizontaler Pegel
+Vertical Gauge = Vertikaler Pegel
+Angular Meter = Rundinstrument
+LC Numeric Display = Numerisches LCD
+Linear Meter = Balkenanzeige
+
+Container = Container
+Tabbed Pane = Karteikartenreiter
+Stacked Pane = Gestapelte Panels
+Additional Pane = Zusatzpanel
+Single Panel = Einzelpanel
+
+Selected Control(s) = Ausgewählte(s) Steuerungselement(e)
+Cut = Ausschneiden
+Insert = Einfügen
+Maximize = Maximieren
+Edit = Editieren
+Delete = Löschen
+Select = Selektieren
+Previous Pane = Vorheriges Panel
+Next Pane = Nächstes Panel
+Move To Top = Nach oben
+Move To Bottom = Nach unten
+
+# Flow Control Panel
+
+Put HMI Control = HMI Steuerungselement anlegen
+
+Add Element = Element hinzufügen
+Add Macro = Makroelement hinzufügen
+
+Connectors = Anschlüsse
+Digital Input Connector = Digitaler Eingangs-Anschluss
+Digital Output Connector = Digitaler Ausgangs-Anschluss
+Numeric Input Connector = Numerischer Eingangs-Anschluss
+Numeric Output Connector = Numerischer Ausgangs-Anschluss
+Character Input Connector = Zeichen-Eingangs-Anschluss
+Character Output Connector = Zeichen-Ausgangs-Anschluss
+Binary Input Connector = Binärer Eingangs-Anschluss
+Binary Output Connector = Binärer Ausgangs-Anschluss
+
+Data Conversion = Datenkonvertierung
+Digital to Number = Digital nach numerisch
+Digital to Characters = Digital nach Zeichen
+Digital to CMD-Pair = Digital nach CMD-Paar
+CMD-Pair to Digital = CMD-Paar nach Digital
+Number to Digital = Numerisch nach digital
+Number to Bits = Numerisch nach Bitmuster
+Number to Characters = Numerisch nach Zeichen
+Number to CMD-Pair = Numerisch nach CMD-Paar
+CMD-Pair to Number = CMD-Paar nach numerisch
+Characters to Digital = Zeichen nach digital
+Characters to Number = Zeichen nach numerisch
+Characters to CMD-Pair = Zeichen nach CMD-Paar
+CMD-Pair to Characters = CMD-Paar nach Zeichen
+Mixed to Characters = Gemischt nach Zeichen
+Binary to CMD-Pair = Binär nach CMD-Paar
+CMD-Pair to Binary = CMD-Paar nach Binär
+
+Logic Operations = Logikoperationen
+Digital NOT = Digitales NICHT
+Digital NOP = Digitales NOP
+Digital (N)OR = Digitales (NICHT) ODER
+Digital X(N)OR = Digitales (NICHT) EXCLUSIV ODER
+Digital (N)AND = Digitales (NICHT) UND
+Digital Shift Register = Digitales Schieberegister
+SR Flip-Flop = RS-Flipflop
+Toggle Flip-Flop = Toggle-Flipflop
+Numeric (N)OR = Numerisches (NICHT) ODER
+Numeric NOT = Numerisches NICHT
+Numeric NOP = Numerisches NOP
+Numeric X(N)OR = Numerisches (NICHT) EXCLUSIV ODER
+Numeric (N)AND = Numerisches (NICHT) UND
+Numeric Shift Register = Numerisches Schieberegister
+Character-NOP = Zeichen-NOP
+Character Shift Register = Zeichen-Schieberegister
+Binary NOP = Binäres NOP
+Binary Shift Register = Binäres Schieberegister
+
+Mathematical = Rechenoperationen
+Numeric Multiplication = Numerische Multiplikation
+Numeric Division = Numerische Division
+Numeric Subtraction = Numerische Subtraktion
+Numeric Addition = Numerische Addition
+Compare Digital = Digitalvergleich
+Compare Numbers = Zahlenvergleich
+Compare Characters = Zeichenvergleich
+Digital Counter = Digitalzähler
+Number Counter = Nummernzähler
+Character Counter = Zeichenzähler
+Binary Counter = Binärdatenzähler
+
+Initial Flow Start = Programmfluss-Beginn
+Delay = Verzögerung
+Timer = Zeitschalter
+Time = Zeit
+Digital Triggered Gate = Getriggertes Gate (digital)
+Numeric Triggered Gate = Getriggertes Gate (numerisch)
+Character Triggered Gate = Getriggertes Gate (Zeichen)
+Binary Triggered Gate = Getriggeres Gate (binär)
+Digital Gate = Gate (digital)
+Numeric Gate = Gate (numerisch)
+Character Gate = Gate (Zeichen)
+Binary Gate = Gate (binär)
+
+Motion = Bewegung
+Laser = Laser
+Data = Daten
+
+Log Data Recorder = Logdaten-Aufzeichnung
+
+Edit Element = Element bearbeiten
+Delete Element = Element löschen
+Delete unused Connections = Unbenutzte Verbindungen löschen
+Delete Connection = Verbindung löschen
+Disconnect Input = Eingang trennen
+
+Group Elements = Elemente gruppieren
+Enter Group = Gruppe öffnen
+Leave Group = Gruppe verlassen
+Save Group = Gruppe speichern
+Load Group = Gruppe laden
+
+Extend Working Area = Arbeitsfeld vergrößern
+To Left = Nach links
+To Right = Nach rechts
+To Top = Nach oben
+To Bottom = Nach unten
+Insert Row = Horizontal einfügen
+Insert Column = Vertikal einfügen
+
+Command Name = Name des Kommandos
+Input = Eingang
+Output = Ausgang
+digital = digital
+characters = Zeichen
+numeric = Numerisch
+IOs with different data types can't be connected with each other = IOs mit unterschiedlichen Datentypen können nicht verbunden werden
+This control already exists as flow element.\nDo you really want to put it at this new position? = Das Flow-Element dieses Controls exisitert bereits im Flow Editor.\nSoll es wirklich hier her repositioniert werden?
+There is no end condition/no exit application flow object!\nYou will have no chance to stop the player regularly without that! = Es konnte keine Bedingung zum Beenden der Applikation/kein Exit Application Flow Object gefunden werden!\nEs wird deswegen nicht möglich sein, den Player regulär zu verlassen!
+Your timer resolution may be too high for your intended target platform. Consider to set the projects timer resolution to 200 msec or more. = Die Timer-Genauigkeit kann für die gewünschte Zielplattform zu hoch sein. Eventuell ist es erforderlich, einen Wert von 200 msec oder mehr einzustellen.
+Open flow connections found that are not connected with a target!\nGo to this object? = Es wurden offene Flows gefunden, die mit keinem anderen Objekt in Verbindung stehen.\nSoll dieses Objekt angezeigt werden?
+There is an image object placed in the HMI Editor that is currently invisible!\nGo to this object? = Es wurde ein Bildobjekt gefunden, das momentan unsichtbar ist!\nSoll dieses Objekt angezeigt werden?
+This mutual exclusion group is unused!\nDelete it from the list of mutual exclusions? = Diese Gruppe für gegenseitigen Ausschluss is unbenutzt.\nSoll sie aus der Liste von gegenseitigen Ausschlüssen gelöscht werden?
+The project uses a Log Output but does not has any element, that collects logging data! = Das Projekt verwendet die Datenerfassung aber besitzt kein Element, welches Daten sammelt!
+The project collects logging data but never use them! This may cause a memory overflow on your target system. At least the following elements are affected: = Das Projekt sammelt Daten, benutzt diese aber niemals! Das kann auf dem Zielsystem zu einem Speicherüberlauf führen. Mindestens diese Elemente sind betroffen: 
+No problems could be found within that project = Es konnten keine Probleme gefunden werden
+Please note: when no events are defined, this element will never send out its value! = Achtung: Wenn keine Ereignisse definiert sind kann dieses Element niemals Daten ausgeben!
+No element selected to perform this operation with! = Es ist kein Element selektiert,\nmit dem diese Operation ausgefürt werden könnte!
+
+Plug-In error: invalid type specified for element,\naborting operation! = Plug-In-Fehler: Ungültiger Elementtyp gefunden.\ndie Operation wird abgebrochen!
+Plug-In error: the default value has to be specified after the type definition,\naborting operation! = Plug-In-Fehler: der Vorgabewert darf erst nach der Typdefinition gesetzt werden,\ndie Operation wird abgebrochen!
+Plug-in call failed = Plug-In-Ausführung fehlgeschlagen
+Out of memory = Nicht genügend Speicher
+
+
+# Control Flow Element Dialogues
+
+Definition = Definition
+Data flow definition = Definition Datenfluss
+Send value at OUT 6 on event = Wert an OUT 6 senden bei Ereignis
+Send value at OUT 7 on event = Wert an OUT 7 senden bei Ereignis
+On rising edge at digital IN 1 = Bei steigender Flanke an digitalem IN 1
+On falling edge at digital IN 1 = Bei fallender Flanke an digitalem IN 1
+During value is changing = Während Wert sich ändert
+When value has changed = Wenn Wert sich geändert hat
+Text is too short! = Eingegebener Text ist zu kurz!
+Illegal data entered for = Ungültige Daten eingegeben für
+Number has to be within range = Zahlenwert muss sich in diesem Bereich bewegen:
+
+# Device Plugin panel
+
+Device = Gerät
+
+Plugged Devices = Angeschlossene Geräte
+
+Interlock Server Connection = Interlock Server Verbindung 
+
+
+# Debugger window
+
+Start/stop program flow = Programmfluss starten/stoppen
+Single Step = Einzelschritt abarbeiten
+Configure debug parameters = Debugparameter einstellen
+Stop on warning = Bei Warnung stoppen
+Display control names = Namen anzeigen
+Stopped = Gestoppt
+...stopped! = ...gestoppt!
+Active Flows = Aktive Programmflüsse
+Running = Gestartet
+Running... = Gestartet...
+Performing single step = Führe einzelnen Schritt aus
+Flow stopped at = Programmfluss gestoppt bei
+Error message returned from plug-in = Fehlermeldung vom Plug-In
+Flow looped to itself = Programmfluss koppelt auf sich selbst zurück
+Flow run timeout exceeded = Programmfluss-Timeout überschritten
+Maximum flow element execution time exceeded at = Maximale Flowelement-Ausführungszeit überschritten bei
+Incompatible binary datatype = Inkompatibler binärer Datentyp
+Unknown IO defined = Unbekannter IO verwendet
+Focus lost/value changed event at = Focus verloren/Wert geändert bei
+Data conversion error at = Datenkonvertierungsfehler bei
+Exiting application... = Beende Applikation...
+Open watch window = Überwachungsfenster öffnen
+
+
+# Debugging settings
+
+Debugging Settings = Debugger-Einstellungen
+Stop flow on events = Programmfluss stoppen bei Ereignis
+When flow loop was detected = Wenn Programmfluss auf sich selbst zurückkoppelt
+When unknown IO was defined = Wenn unbekannter IO verwendet wird
+When flow run timeout was reached = Wenn Programmfluss-Timeout überschritten wird
+When a data conversion error occurs = Bei Datenkonvertierungsfehler
+When an error occurs in plug-in = Bei Fehler in Plug-In
+When incoming binary data are not supported = Bei nicht unterstütztem Binärdatentyp
+
+# Watch window
+Watch connected outputs = Verbundene Ausgänge überwachen
+New watch element = Neues Element
+
+# HMI plug-ins
+
+Border = Rahmen
+Bottom to top = Von unten nach oben
+Top to bottom = Von oben nach unten
+Line Start = Linienanfang
+Line End = Linienende
+Circle = Kreis
+Square = Quadrat
+
+# Misc
+
+Project has to be saved before compiling.\nDo you want to save it now? = Das Projekt muss vor dem Compilieren gespeichert werden.\nSoll das Projekt jetzt abgespeichert werden?
+
+
+# Group
+
+I/O Definition = I/O Definition
+Group Definitions = Gruppen-Definitionen
+Inputs = Eingänge
+Type = Typ
+Outputs = Ausgänge
+Save group as = Gruppe speichern als
+Category = Kategorie
+
+
+# Digital converters
+
+Input Mask = Eingangs-Bitmaske
+Binary Conversion = Binärkonvertierung
+Assignment = Zuweisung
+Direct Conversion = Direkte Konvertierung
+
+
+
+# Char converters
+
+Input Character = Eingangs-Zeichenkette
+Case sensitive = Groß/Klein
+Level = Level
+Pulse = Puls
+
+
+
+# Number converters
+
+Formatted Conversion = Formatierte Konvertierung
+Input Number = Nummer Eingang
+Output Character = Ausgangs-Zeichen
+
+
+
+# Other converters
+
+Convert on clock at IN0 = Bei Clock an IN0 konvertieren
+Convert String = Formatstring
+Force Decimal Place to Dot = Kommastelle als Punkt darstellen
+
+
+
+# Logic Operations
+
+Use Clock = Clock nutzen
+Invert = Negieren
+Allow Loop = Loop erlauben
+Constant = Konstante
+
+# Misc Flow Elements
+
+Log Output = Datenerfassung
+
+
+
+#Plug-In config data
+
+Load Image = Bild laden
+Save Image = Bild speichern
+Load Text = Text Laden
+Save Text = Text Speichern
+Default Filename 1 = Standard-Dateiname 1
+Default Filename 2 = Standard-Dateiname 2
+Default Filename 3 = Standard-Dateiname 3
+Default Filename 4 = Standard-Dateiname 4
+File Format 1 = Dateiformat 1
+File Format 2 = Dateiformat 2
+File Format 3 = Dateiformat 3
+File Format 4 = Dateiformat 4
+CLK1 - load a single line of current file = CLK1 - einzelne Zeile der aktuellen Datei laden
+FILE1 - set new file for loading = FILE1 - neue Datei laden
+DATA1 - loaded data = DATA1 geladene Daten
+ERR1 - error code when loading failed = ERR1 - Fehlercode
+
+(De)Compress Data = Daten (de)komprimieren
+
+PID Controller = PID-Regler
+Default Ref Value = Sollwert (REF)
+Default P = P-Anteil
+Default I = I-Anteil
+Default D = D-Anteil
+Minimum Output = Unterer Ausganswert
+Maximum Output = Oberer Ausgangswert
+
+SET - actual value (input) = SET - Istwert
+REF - set point (reference value) = REF - Sollwert
+P - P value of controller = P - P-Anteil
+I - I value of controller = I - I-Anteil
+D - D value of controller = D - D-Anteil
+Output value = Regelwert
+
+Network Transmitter = Netzwerk-Transmitter
+Network Receiver = Netzwerk-Empfänger
+Network Client = Netzwerk-Client
+Network Server = Netzwerk-Server
+Local IP = Lokale IP
+Incoming Connections = Eingehende Verbindungen
+Username = Benutzername
+Password = Passwort
+Mode = Modus
+Resource = Ressource
+Command/Value - transmit only pairs = Kommando/Wert - nur paarweise übertragen
+Plain - transmit everything separately = Direkt - Einzelwerte senden
+Use mode of transmitter = Modus des Transmitters benutzen
+Raw - transmit separately and unformatted = Rohdaten - einzeln und unformatiert übertragen
+Raw/E5AK checksum - append XOR-checksum = Raw/E5AK Prüfsumme - XOR-Prüfsumme anhängen
+IP - host address = IP - Hostadresse
+PORT - port number = PORT - Portnummer
+RES - URL resource = RES - URL-Ressource
+GET - get the data = GET - Daten holen
+DATA - retrieved binary data = DATA - heruntergeladene Binärdaten
+TXT - retrieved plain text data = TXT - heruntergeladene Textdaten
+ERR - HTTP error/return code = ERR - HTTP Fehler/Returncode
+CMD - command value = CMD - Kommando
+DATA - payload data = DATA - Nutzdaten
+
+Clock = Uhr
+Every Second = sekündlich
+Every Minute = minütlich
+Every Hour = stündlich
+Every Day = täglich
+Second = Sekunde
+Minute = Minute
+Hour = Stunde
+Day = Tag
+Month = Monat
+Year = Jahr
+Unixtime = Unix-Zeit
+OUT0 Clock = Takt OUT0
+OUT1 Clock = Takt OUT1
+OUT2 Value = Wert OUT2
+OUT3 Value = Wert OUT3
+OUT4 Value = Wert OUT4
+OUT5 Value = Wert OUT5
+OUT6 Value = Wert OUT6
+OUT7 Format = Format OUT7
+OFFS - offset to current time = OFFS - Offset zur aktuellen Zeit
+CLK1 - configurable output clock = CLK1 - konfigurierbarer Takt
+CLK2 - configurable output clock = CLK2 - konfigurierbarer Takt
+VAL1 - configurable output time value = VAL1 konfigurierbarer Zeitwert
+FMT - formatted date/time string = FMT1 - formatierter Datums-/Zeitwert
+
+Speak = Sprache
+
+Language = Sprache
+Voice 1 = Stimme 1
+
+Voice 2 = Stimme 2
+Pitch = Ton
+Speed = Geschwindigkeit
+Word Gap = Wortabstand
+Gender = Geschlecht
+female = weiblich
+male = männlich
+
+JoyWarrior Accelerometer = JoyWarrior Beschleunigungsmesser
+
+Data Dummy = Datendummy
+
+Text Listbox = Textlistbox
+Alignment = Ausrichtung
+Align to left = Linksbündig
+Center horizontally = Zentriert
+Align to right = Rechtsbündig
+
+Analogue Clock = Analoguhr
+Hour Hand = Stundenzeiger
+Minute Hand = Minutenzeiger
+Second Hand = Sekundenzeiger
+Plain Clock = Einfache Uhr
+Plain clock w/o Minutes = Einfache Uhr ohne Minuten
+Glow clock w/o Minutes = Glimmende Uhr ohne Minuten
+
+Dialogue = Dialog
+IN4 Question = IN4 Frage
+Button 1 Text = Button 1 Text
+Button 2 Text = Button 2 Text
+Button 3 Text = Button 3 Text
+
+LCDproc Client = LCDproc-Verbindung
+Display Parameters = Displayparameter
+Off = Aus
+On = An
+Blink = blinkend
+Flash = blitzend
+Backlight = Beleuchtung
+Vertical Split Position = Vertikale Splitposition
+Scrolling Speed = Scrollgeschwindigkeit
+Text left / Bargraph right = Text links / Balkenanzeige rechts
+Bargraph left / Text Right = Balkenanzeige links / Text rechts
+Line 1 = Zeile 1
+Line 2 = Zeile 2
+Line 3 = Zeile 3
+Line 4 = Zeile 4
+
+Modbus RTU Master = Modbus RTU Master
+Modbus Addressable RTU Master = Modbus addressierbarer RTU Master
+Modbus TCP Master = Modbus TCP Master
+Modbus TCP Slave = Modbus TCP Slave
+Slave Poll Delay = Abfragepause Slave
+Access Parameters = Zugriffsparameter
+Invert byte order = Bytereihenfolge tauschen
+Invert address byte order = Adressbytereihenfolge tauschen
+Invert data byte order = Datenbytereihenfolge tauschen
+Log Communication Data = Kommunikationsdaten mitloggen
+Log Filename = Log-Dateiname
+Read/Write Coils = Coils lesen/schreiben
+Read/Write Holding Register = Holding Register lesen/schreiben
+Read Discrete Input = Diskreten Eingang lesen
+Read Input Register = Eingangsregister lesen
+Read IEEE754 Holding Register = IEEE754 Holding Register lesen
+Set Discrete Input = Eingangswert setzen
+Set Input Register = Eingangsregister setzen
+IO0 Operation Mode = IO0 Modus
+IO0 base address offset = IO0 Offset Basisadresse
+IO0 slave address = IO0 Slave-Adresse
+IO0 r/w length = IO0 Schreib-/Leselänge
+IO1 Operation Mode = IO1 Modus
+IO1 base address offset = IO1 Offset Basisadresse
+IO1 slave address = IO1 Slave-Adresse
+IO1 r/w length = IO1 Schreib-/Leselänge
+IO2 Operation Mode = IO2 Modus
+IO2 base address offset = IO2 Offset Basisadresse
+IO2 slave address = IO2 Slave-Adresse
+IO2 r/w length = IO2 Schreib-/Leselänge
+IO3 Operation Mode = IO3 Modus
+IO3 base address offset = IO3 Offset Basisadresse
+IO3 slave address = IO3 Slave-Adresse
+IO3 r/w length = IO3 Schreib-/Leselänge
+IO4 Operation Mode = IO4 Modus
+IO4 base address offset = IO4 Offset Basisadresse
+IO4 slave address = IO4 Slave-Adresse
+IO4 r/w length = IO4 Schreib-/Leselänge
+IO5 Operation Mode = IO5 Modus
+IO5 base address offset = IO5 Offset Basisadresse
+IO5 slave address = IO5 Slave-Adresse
+IO5 r/w length = IO5 Schreib-/Leselänge
+IO6 Operation Mode = IO6 Modus
+IO6 base address offset = IO6 Offset Basisadresse
+IO6 slave address = IO6 Slave-Adresse
+IO6 r/w length = IO6 Schreib-/Leselänge
+IO7 Operation Mode = IO7 Modus
+IO7 base address offset = IO7 Offset Basisadresse
+IO7 slave address = IO7 Slave-Adresse
+IO7 r/w length = IO7 Schreib-/Leselänge
+0 - output data = 0 - Daten senden
+SL - slave address = SL Adresse Slave
+AD - address offset = AD Adressoffset
+1 - output data = 1 - Daten senden
+0 - input data = 0 - Daten empfangen
+1 - input data = 1 - Daten empfangen
+
+# measurement amplifier
+
+GSV2 Amplifier = GSV2 Messverstärker
+Threshold = Schwellwert
+THRS - measurement threshold = THRS - Mess-Schwellwert
+LIM - measurement limit exceeded = LIM - Limit überschritten
+VAL - current peak value = VAL - aktueller Maximalwert
+
+# Panasonic Minas controllers
+
+Axis 1 Address = Adresse Achse 1
+Axis 2 Address = Adresse Achse 2
+Axis 3 Address = Adresse Achse 3
+Axis 4 Address = Adresse Achse 4
+Home Timeout = Home-Timeout
+MODE >0 speed, =0 stop, =-1 home, =-2..-60 indexed position = MODE >0 Geschwindigkeit, =0 Stopp, =-1 Home, =-2..-60 Indexpos.
+MODE >0 current speed, =0 has stopped, <0 drive error code = MODE >0 aktuelle Geschwindigkeit, =0 angehalten, <0 Fehlercode
+
+# IWH Robot
+IWH Robot = IWH Roboter
+CMD - robot command = CMD - Roboterkommando
+STP - stop robot = STP - Roboter anhalten
+HOM - referencing, move to home position = HOM - Referenzierung, Bewegung zur Home-Position
+R-position = R-Position
+T-position = T-Position
+Z-position = Z-Position
+State of vacuum switch = Status Vakuumschalter
+State of vacuum sensor = Status Vakuumsensor
+Robot is moving = Roboter in Bewegung
+MAP - wafer map, last SCN result = MAP - Wafermap, Result des letzten SCN-Kommandos
+
+# Mail notification
+
+E-Mail Notification = E-Mail-Benachrichtigung
+
+# File dialogue
+
+Filedialogue = Dateidialog
+
+# database plug-ins
+
+PostgreSQL Access = PostgreSQL-Zugriff
+MySQL Access = MySQL-Zugriff
+Database = Datenbank
+
+# SAM/CCI plugins
+
+CMD - command to be executed = CMD - auszuführendes Kommando
+X - command parameter = X - Kommandoparameter
+Y - command parameter = Y - Kommandoparameter
+A - command parameter for Z or angle = A - Kommandoparameter für Z oder Winkel
+NAME - command parameter = NAME - Kommandoparameter
+TXT - command parameter = TXT - Kommandoparameter
+EN - command parameter = EN - Kommandoparameter
+OK - command execution result = OK - Ergebnis der Kommandoausführung
+ERR - execution error text = ERR - Kommandofehlertext
+returned value = zurückgegebener Wert
+
+#averaging
+
+Averaging = Mittelung
+Number of samples (IN0) = Anzahl der Samples (IN0)
+Number of samples (IN2) = Anzahl der Samples (IN2)
+Number of samples (IN4) = Anzahl der Samples (IN4)
+Number of samples (IN6) = Anzahl der Samples (IN6)
+DATA - Input data to be averaged = DATA - Eingangsdaten zur Mittelwertbildung
+# - Number of samples to be used for averaging = # - Anzahl der Samples für die Mittelwertbildung
+AVG - Averaged value = AVG - Errechneter Mittelwert
+
+# AS-i
+
+AS-i Serial Interface = AS-i (seriell)
+SET - output bits 0..31 = SET - Outputbits 0..31
+SET - output bits 32..63 = SET - Outputbits 32..63
+SET - output bits 64..95 = SET - Outputbits 64..95
+GET - input bits 0..31 = GET - Inputbits 0..31
+GET - input bits 32..63 = GET - Inputbits 32..63
+GET - input bits 64..95 = GET - Inputbits 64..95
+
+# AVR NetIO
+
+AVR Net-IO Ethernet Interface = AVR Net-IO (Ethernet)
+AVR Net-IO Serial Interface = AVR Net-IO (seriell)
+SET - digital output 1 = SET - Digitalausgang 1
+SET - digital output 2 = SET - Digitalausgang 2
+SET - digital output 3 = SET - Digitalausgang 3
+GET - digital input 1 = GET - Digitaleingang 1
+GET - digital input 2 = GET - Digitaleingang 2
+GET - digital input 3 = GET - Digitaleingang 3
+GET - digital input 4 = GET - Digitaleingang 4
+GET - analogue input 1 = GET - Analogeingang 1
+GET - analogue input 2 = GET - Analogeingang 2
+GET - analogue input 3 = GET - Analogeingang 3
+GET - analogue input 4 = GET - Analogeingang 4
+
+# BeamConstruct
+
+IN2 - Dynamic text input 2 = IN2 - Eingang 2 für dynamischen Text
+IN3 - Dynamic text input 3 = IN3 - Eingang 3 für dynamischen Text
+IN4 - Dynamic text input 4 = IN4 - Eingang 4 für dynamischen Text
+CMD - Command input = CMD - Kommandoeingang
+
+# CSV 2 ctrl
+
+CSV to Control = CSV nach Steuerung
+Default Filename = Standard Dateiname
+X, Y and Parameters = X, Y und Parameter
+X, Y, Z and Parameters = X, Y, Z und Parameter
+Input Data = Eingangsdaten
+Column Separator = Spaltentrennzeichen
+Tabulator = Tabulator
+Comma (,) = Komma (,)
+Semicolon (;) = Semikolon (;)
+Colon (:) = Doppelpunkt (:)
+Space ( ) = Leerzeichen ( )
+2D (flat) = 2D (flach)
+3D (spatial) = 3D (räumlich)
+Output Data Structure = Ausgangs-Datenstruktur
+
+Off Delay = Ausschaltverzögerung
+On Delay = Einschaltverzögerung
+Output 7 Value = Wert an Ausgang 7
+Additional Parameter 1 = Zusatzparameter 1
+Additional Parameter 2 = Zusatzparameter 2
+Additional Parameter 3 = Zusatzparameter 3
+Additional Parameter 4 = Zusatzparameter 4
+Additional Parameter 5 = Zusatzparameter 5
+Additional Parameter 6 = Zusatzparameter 6
+
+CLK - Load and convert the current file = CLK - aktuelle Datei laden und konvertieren
+FILE - Set new file for loading = FILE - Neue Datei setzen
+CSV - Single CSV line to be processed immediately = CSV - Einzelne Zeile zur sofortigen Konvertierung
+CTRL - Loaded control data = CTRL - Geladene Steuerungsdaten
+ERR - Error code when loading failed = ERR - Fehlercode bei Dateifehler
+ON - Turn the tool on/off = ON - Werkzeug Ein-/Ausschalten
+PWR - Power value = PWR - Leistungswert
+FREQ - Frequency = FREQ - Frequenz
+OFFSPD - Tool off movement speed = OFFSPD - Geschwindigkeit Werkzeug aus
+ONSPD - Tool on movement speed = ONSPD - Geschwindigkeit Werkzeug ein
+PRM - Additional tool parameter = PRM - Zusatzparameter
+
+CNConstruct to Control = CNConstruct nach Steuerung
+BeamConstruct to Control = BeamConstruct nach Steuerung
+CLK - Convert the current file = CLK - Aktuelle Datei konvertieren
+FILE - Load new file = FILE - Neue Datei laden
+
+Random Generator = Zufallsgenerator
+Numeric Range = Zahlenbereich
+CLK - generate random digital value = CLK - Neuen digitalen Zufallswert erzeugen
+CLK - generate random numeric value = CLK - Neuen numerischen Zufallswert erzeugen
+RND - random digital value = RND - Digitaler Zufallswert
+RND - random numeric value = RND - Numerischer Zufallswert
+
+CSV to Number = CSV nach Zahlen
+CSV to Characters = CSV nach Zeichen
+Out 0 from CSV field = Ausgang 0 von CSV-Feld
+Out 1 from CSV field = Ausgang 1 von CSV-Feld
+Out 2 from CSV field = Ausgang 2 von CSV-Feld
+Out 3 from CSV field = Ausgang 3 von CSV-Feld
+Out 4 from CSV field = Ausgang 4 von CSV-Feld
+Out 5 from CSV field = Ausgang 5 von CSV-Feld
+Out 6 from CSV field = Ausgang 6 von CSV-Feld
+Out 7 from CSV field = Ausgang 7 von CSV-Feld
+CSV - Single CSV line to be decoded = CSV - Zu decodierdende einzelne CSV-Zeile
+D0 - value out of CSV field = D0 - Wert aus CSV-Feld
+D7 - value out of CSV field = D7 - Wert aus CSV-Feld 
+
+
+# Ctrl 2 Tool
+
+Control to Tool = Steuerung nach Werkzeug
+
+Output 5 Value = Wert an Ausgang 5
+Output 6 Value = Wert an Ausgang 6
+Control Default = Steuerung Standard
+# HPGL 2 Ctrl
+
+HPGL to Control = HPGL nach Steuerung
+HPGL Unit = HPGL-Maßeinheit
+Pen 1 (Default) = Stift 1 (Standard)
+Power = Leistung
+Frequency = Frequenz
+Off speed = Geschwindigkeit Werkzeug aus
+On speed = Geschwindigkeit Werkzeug ein
+Pen 2 = Stift 2
+Pen 3 = Stift 3
+Pen 4 = Stift 4
+Pen 5 = Stift 5
+
+# ctrl data manipulation
+
+Override Control Parameters = Steuerungsparameter überschreiben
+Rotate Control = Steuerungsparameter rotieren
+Scale/Translate Control = Steuerungsparameter skalieren/verschieben
+Speeds = Geschwindigkeiten
+Delays = Pausen
+CTRL - Control data to be converted = CTRL - zu konvertierende Steuerungsdaten
+PWR - Power override factor = PWR - Faktor für Leistungsänderung
+FREQ - Frequency override factor = FREQ - Faktor für Frequenzänderung
+SPD - Speed override factor = SPD - Faktor für Änderung der Pausen
+DEL - Delay override factor = DEL - Faktor für Änderung der Pausen
+CTRL - Converted control data = CTRL - konvertierte Steuerungsdaten
+Scale X = Skalierung X
+Scale Y = Skalierung Y
+Scale Z = Skalierung Z
+Translate X = Verschiebung X
+Translate Y = Verschiebung Y
+Translate Z = Verschiebung Z
+
+SCX - Scale factor X direction = SCX - Skalierungsfaktor X-Richtung
+SCY - Scale factor Y direction = SCY - Skalierungsfaktor Y-Richtung
+SCZ - Scale factor Z direction = SCZ - Skalierungsfaktor Z-Richtung
+TX - Translate in X direction = TX - Verschiebung in X-Richtung
+TY - Translate in Y direction = TX - Verschiebung in Y-Richtung
+TZ - Translate in Z direction = TX - Verschiebung in Z-Richtung
+Center X = Mittelpunkt X
+Center Y = Mittelpunkt Y
+Center Z = Mittelpunkt Z
+Rotation angle X axis = Rotationswinkel um X-Achse
+Rotation angle Y axis = Rotationswinkel um Y-Achse 
+Rotation angle Z axis = Rotationswinkel um Z-Achse
+CX - Rotation center X = CX - Rotationsmittelpunkt X
+CY - Rotation center Y = CY - Rotationsmittelpunkt Y
+CZ - Rotation center Z = CZ - Rotationsmittelpunkt Z
+AX - Rotation angle around X axis = AX - Rotationswinkel um X-Achse
+AY - Rotation angle around Y axis = AY - Rotationswinkel um Y-Achse
+AZ - Rotation angle around Z axis = AZ - Rotationswinkel um Z-Achse
+
+# Execute
+
+Execute Program = Programm ausführen
+CLK1 - execute predefined application = CLK1 - vordefinierte Applikation ausführen
+FILE1 - set new application and execute it = FILE1 - neue Applikation definieren und ausführen
+RET1 - return value of executed application = RET1 - Rückgabewert der Applikation
+
+# Http-Client
+
+HTTP Client = HTTP-Client
+
+# Math 1
+
+Math Calculations 1 = Mathematische Berechnungen 1
+
+# Plot2D
+
+2D Plotter = 2D-Plotter
+
+# Symbol button
+
+Symbol Button = Symbolbutton
+
+# Edge
+
+Rising/Falling Edge = Steigende/Fallende Flanke
+
+# GPS / WLAN Pos.
+
+OK - position signal valid = OK - Positionssignal gültig
+LAT - Degree of latitude = LAT - Geografische Breite
+LON - Degree of longitude = LON - Geografische Länge
+HGT - Height = HGT - Höhe
+SPD - Speed = SPD - Geschwindigkeit
+TIME - time (UTC) = - TIME - Zeit (UTC)
+QUAL - Quality of position result = QUAL - Qualität der Positionsauflösung
+
+#flow indicator
+
+Flow Indicator = Flußindikator
+Start Colour = Startfarbe
+End Colour = Endfarbe
+Border Colour = Rahmenfarbe
+Border Size = Rahmengröße
+Flow Speed = Fließgeschwindigkeit
+Flow Direction = Fließrichtung
+Number of Waves = Wellenanzahl
+Colours = Farben
+Configuration = Konfiguration
+
+# hardpipes
+Pipes = Rohre
+Horizontal (Steel) = Horizontal (Stahl)
+Vertical (Steel) = Vertikal (Stahl)
+T-Piece, top (Steel) = T-Stück, oben (Stahl)
+T-Piece, right (Steel) = T-Stück, rechts (Stahl)
+T-Piece, bottom (Steel) = T-Stück, unten (Stahl)
+T-Piece, left (Steel) = T-Stück, links (Stahl)
+Elbow, top-right (Steel) = Biegung, oben-rechts (Stahl)
+Elbow, right-bottom (Steel) = Biegung, rechts-unten (Stahl)
+Elbow, bottom-left (Steel) = Biegung, unten-links (Stahl)
+Elbow, left-up (Steel) = Biegung, links-oben (Stahl)
+Horizontal (black) = Horizontal (schwarz)
+Vertical (black) = Vertikal (schwarz)
+T-Piece, top (black) = T-Stück, oben (schwarz)
+T-Piece, right (black) = T-Stück, rechts (schwarz)
+T-Piece, bottom (black) = T-Stück, unten (schwarz)
+T-Piece, left (black) = T-Stück, links (schwarz)
+Elbow, top-right (black) = Biegung, oben-rechts (schwarz)
+Elbow, right-bottom (black) = Biegung, rechts-unten (schwarz)
+Elbow, bottom-left (black) = Biegung, unten-links (schwarz)
+Elbow, left-up (black) = Biegung, links-oben (schwarz)
+Pipe Type = Rohrtyp
+
+Control to Number = Steuerung zu Zahlenwert
+
+# Weecoboard 4M digital IO
+
+1 - output 1 = 1 - Ausgang 1
+2 - output 2 = 2 - Ausgang 2
+RD - red LED = RT - rote LED
+GN - green LED = GN - grüne LED
+
+# BeamConstruct plug-in
+
+Disable UNDO/REDO = UNDO/REDO deaktivieren
+
+# plug-in for The Hermes Standard
+
+Previous machine IP = IP der vorhergehenden Maschine
+Previous machine port = Port der vorhergehenden Maschine
+Next machine port = Port für die nachfolgenden Maschine
+Allow remote configuration changes = Externe Konfigurationsänderungen erlauben
+Own machine identifier = Bezeichner der eigenen Maschine
+
+RDY - MachineReady to previous machine = RDY - MachineReady zur vorherigen Maschine
+!RDY - RevokeMachineReady to previous machine = !RDY - RevokeMachineReady zur vorherigen Maschine
+STA - StartTransport to previous machine = STA - StartTransport zur vorherigen Maschine
+STO - StopTransport to previous machine = STO - StopTransport zur vorherigen Maschine
+AV - BoardAvailable to next machine = AV - BoardAvailable zur nächsten Maschine
+!AV - RevokeBoardAvailable to next machine = !AV - RevokeBoardAvailable zur nächsten Maschine
+TF - TransportFinished to next machine = TF - TransportFinished zur nächsten Maschine
+AV - BoardAvailable from previous machine = AV - BoardAvailable von der vorherigen Maschine
+!AV - RevokeBoardAvailable from previous machine = !AV - RevokeBoardAvailable von der vorherigen Maschine
+TF - TransportFinished from previous machine = TF - TransportFinished von der vorherigen Maschine
+RDY - MachineReady from next machine = RDY - MachineReady von der nächsten Maschine
+!RDY - RevokeMachineReady from next machine = !RDY - RevokeMachineReady von der nächsten Maschine
+STA - StartTransport from next machine = STA - StartTransport von der nächsten Maschine
+STO - StopTransport from next machine = STO - StopTransport von der nächsten Maschine
+
+# macros
+
+Steppermotor Controller = Schrittmotor-Controller
+

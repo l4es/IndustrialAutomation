@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Creating Jar" default="compile">  
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+	
+	<target name="init">
+		 <mkdir dir="build/classes"/>
+		 <mkdir dir="build/lib"/>
+		 <mkdir dir="build/jar"/>
+	</target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="src" destdir="build/classes">
+        	<classpath>
+	   			<fileset dir="lib">  
+                	<include name="*.jar" />  
+                 </fileset>  
+	   		</classpath>
+        </javac>        	
+    </target>
+
+
+    <target name="jar" depends="compile">
+    <copydir dest="build/lib" src="lib" />  
+        <jar destfile="build/jar/opc-driver.jar" compress="true">
+        	<fileset dir="build/classes" includes="br/**/*.*" />  
+        	<fileset dir="build/classes" includes="tests/*.*" />  
+            <fileset dir="build" includes="lib/*.*" />  
+        </jar>
+    </target>
+
+</project>

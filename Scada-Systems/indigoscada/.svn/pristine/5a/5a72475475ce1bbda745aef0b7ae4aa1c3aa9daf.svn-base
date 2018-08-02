@@ -1,0 +1,16 @@
+on
+	(void)
+Error in testtypeerr.c near line 18: Expected  }
+Error in testtypeerr.c near line 32: Mixed pointer operation
+Warning: in testtypeerr.c near line 32: Suspicious pointer conversion
+Error in testtypeerr.c near line 33: Incompatible types
+Warning: in testtypeerr.c near line 34: Suspicious pointer conversion
+Warning: in testtypeerr.c near line 35: Suspicious pointer conversion
+Error in testtypeerr.c near line 36: Illegal pointer operation
+Warning: in testtypeerr.c near line 37: Suspicious pointer conversion
+Error in testtypeerr.c near line 38: illegal binary operation to `%'
+Error in testtypeerr.c near line 39: Illegal cast operation
+Error in testtypeerr.c near line 41: Illegal operand
+Error in testtypeerr.c near line 42: Illegal operand
+Error in testtypeerr.c near line 43: Illegal cast operation
+Error: clean up forced

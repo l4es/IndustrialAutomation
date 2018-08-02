@@ -1,0 +1,136 @@
+
+
+PLATFORM=WIN32
+PPLATFORM=P$(PLATFORM)
+
+CFLAGS=\
+	/MDd			\
+	/W3			\
+	/GX			\
+	/Zi			\
+	/Od			\
+	/nologo			\
+	/FD			\
+	/GZ			\
+	/c			\
+	/I.			\
+	/DWIN32			\
+	/D__WIN32__		\
+	/DPLATFORM=$(PPLATFORM)	\
+	/DNO_DIRENT		\
+	/DNO_PIPE		\
+	/DNO_STAT		\
+	/DNO_UNISTD		\
+	/DNO_FCNTL		\
+	/DNO_LONG_LONG		\
+	/DNO_TERMIOS		\
+	/DNO_POSIX	\
+	/DNO_LONGLONG\
+
+
+LOCAL_OBJS=\
+	cdecl.obj\
+	eicmod.obj\
+	emitter.obj\
+	error.obj\
+	func.obj\
+	interpre.obj\
+	lexer.obj\
+	callback.obj\
+	optomizer.obj\
+	parser.obj\
+	preexpr.obj\
+	preproc.obj\
+	readline.obj\
+	stab.obj\
+	starteic.obj\
+	symbol.obj\
+	typemod.obj\
+	typesets.obj\
+	ymem.obj\
+	reset.obj\
+
+
+MAIN_OBJS=\
+	..\main\main.obj
+
+STDCLIB_OBJS=\
+	../module/stdClib/src/stdio.obj\
+	../module/stdClib/src/stdlib.obj\
+	../module/stdClib/src/string.obj\
+	../module/stdClib/src/dirent.obj\
+	../module/stdClib/src/assert.obj\
+	../module/stdClib/src/time.obj\
+	../module/stdClib/src/math.obj\
+	../module/stdClib/src/stdarg.obj\
+	../module/stdClib/src/errno.obj\
+	../module/stdClib/src/stdClib.obj\
+	../module/stdClib/src/eicfftoa.obj\
+	../module/stdClib/src/itoa.obj\
+	../module/stdClib/src/stat.obj\
+	../module/stdClib/src/unistd.obj\
+	../module/stdClib/src/fcntl.obj\
+	../module/stdClib/src/ctype.obj\
+	../module/stdClib/src/strround.obj\
+	../module/stdClib/src/signal.obj
+
+
+
+EIC_OBJS=\
+	$(LOCAL_OBJS)\
+	stdio.obj\
+	stdlib.obj\
+	string.obj\
+	dirent.obj\
+	assert.obj\
+	time.obj\
+	math.obj\
+	stdarg.obj\
+	errno.obj\
+	stdClib.obj\
+	eicfftoa.obj\
+	itoa.obj\
+	stat.obj\
+	unistd.obj\
+	fcntl.obj\
+	ctype.obj\
+	strround.obj\
+	signal.obj\
+	main.obj\
+
+
+
+all: eic.exe eic.lib
+	echo "Done EiC"
+
+eic.exe:$(LOCAL_OBJS) $(STDCLIB_OBJS) $(MAIN_OBJS)
+	cl -o eic.exe $(EIC_OBJS) $(LIBS)
+
+eic.lib:$(LOCAL_OBJS) $(STDCLIB_OBJS)
+	lib  $(EIC_OBJS) 
+	rename cdecl.lib eic.lib
+
+
+binary:
+	mkdir EiC
+	mkdir EiC\src
+	mkdir EiC\include
+	mkdir EiC\include\sys
+	mkdir EiC\examples
+	copy ..\main\examples\*.* EiC\examples
+	copy eic.exe EiC
+	copy eic.lib EiC
+	copy ..\LICENCE EiC
+	copy ..\README.WIN32 EiC
+	copy ..\include\*.* EiC\include
+        copy ..\include\sys\*.* EiC\include\sys
+
+.c.obj :
+	cl $(CFLAGS) $<
+
+clean :
+	del *.obj
+	del *.exe
+	del *.lib
+
+

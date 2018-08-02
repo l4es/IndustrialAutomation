@@ -1,0 +1,372 @@
+-------------------------------------------
+This file contains example of EiC bytecode 
+for selected statements and defintions.
+
+_N.B_, not all code examples in this file
+will be upto date.
+-------------------------------------------
+
+while(1 < q || q > 3) p = q + 3; 
+
+before peehole:
+
+   0:jmpU     6             9:ltint               
+   1:rvalint  1 0          10:jmpTint  16         
+   2:bump     1            11:rvalint  1 0        
+   3:pushint  3            12:bump     1          
+   4:addint                13:pushint  3          
+   5:stoint   0 0          14:gtint               
+   6:pushint  1            15:jmpTint  16         
+   7:bump     1            16:jmpTint  1          
+   8:rvalint  1 0          17:halt
+
+
+after peephole (compare the difference with inst 10 and 15):
+
+   0:jmpU     6             9:ltint               
+   1:rvalint  1 0          10:jmpTint  1          
+   2:bump     1            11:rvalint  1 0        
+   3:pushint  4            12:bump     1          
+   4:addint                13:pushint  3          
+   5:stoint   0 0          14:gtint               
+   6:pushint  1            15:jmpTint  1          
+   7:bump     1            16:jmpTint  1          
+   8:rvalint  1 0          17:halt
+--------------------------------------------
+
+int f(void) { if(5 > 6) return 0;}
+
+   0:pushint  0          
+   1:jmpFint  4          
+   2:pushint  0          
+   3:eicreturn           
+   4:eicreturn    
+
+-------------------------------------------
+int g(void) { return 3;}
+
+   0:pushint  3          
+   1:eicreturn           
+
+-------------------------------------------
+int ff(void) { int a[5]; return 2;}
+
+   0:checkar  2 0        
+   1:pushint  20         
+   2:massign  0 1        
+   3:rvalptr  0 1        
+   4:stoptr   1 1        
+   5:pushint  2          
+   6:jmpU     7          
+   7:fmem     0 1        
+   8:eicreturn           
+------------------------------------------- 
+int gg(void) { int a[5];}
+
+   0:checkar  2 0        
+   1:pushint  20         
+   2:massign  0 1        
+   3:rvalptr  0 1        
+   4:stoptr   1 1        
+   5:fmem     0 1        
+   6:eicreturn           
+
+---------------------------------------------
+int fff(void) {int a[5]; if(5) return 3; }  
+
+   0:checkar  2 0           6:jmpFint  9          
+   1:pushint  20            7:pushint  3          
+   2:massign  0 1           8:jmpU     9          
+   3:rvalptr  0 1           9:fmem     0 1        
+   4:stoptr   1 1          10:eicreturn           
+   5:pushint  5          
+---------------------------------------------
+int f() {if(5>6) return 2; else return 4;}
+
+   0:pushint  0          
+   1:jmpFint  5          
+   2:pushint  2          
+   3:eicreturn           
+   4:jmpU     7          
+   5:pushint  4          
+   6:eicreturn           
+   7:eicreturn     
+
+---------------------------------------------------
+int f() {if(5>6) { if(5<3) return 2;} else return 4;}
+
+
+   0:pushint  0          
+   1:jmpFint  7          
+   2:pushint  0          
+   3:jmpFint  9          
+   4:pushint  2          
+   5:eicreturn           
+   6:jmpU     9          
+   7:pushint  4          
+   8:eicreturn           
+   9:eicreturn           
+
+---------------------------------------------------
+int f(void) { int x,  y;  x = y; return 1;} 
+
+   0:checkar  3 0        
+   1:rvalint  2 1        
+   2:stoint   1 1        
+   3:pushint  1          
+   4:eicreturn           
+   0:halt                
+----------------------------------------------------- 
+int f(void) { int x[2],  y;  x[1] = y; return 1;} 
+
+   0:checkar  3 0           8:addptr2int          
+   1:pushint  8             9:bump     1          
+   2:massign  0 1          10:rvalint  2 1        
+   3:rvalptr  0 1          11:refint              
+   4:stoptr   1 1          12:pushint  1          
+   5:rvalptr  1 1          13:jmpU     14         
+   6:bump     1            14:fmem     0 1        
+   7:pushint  4            15:eicreturn           
+   0:halt                
+        (void)
+----------------------------------------------------
+void f(int a, int b) { ab_t A; A.a = a; A.b = b; return;}
+
+   0:checkar  2 0          10:bump     1          
+   1:pushint  8            11:pushint  4          
+   2:massign  0 1          12:addptr2int          
+   3:rvalptr  0 1          13:bump     1          
+   4:stoptr   1 1          14:rvalint  -2 1       
+   5:rvalptr  1 1          15:refint              
+   6:bump     1            16:jmpU     17         
+   7:rvalint  -1 1         17:fmem     0 1        
+   8:refint                18:eicreturn           
+   9:rvalptr  1 1        
+   0:halt                
+ 
+----------------------------------------------------
+before the ixa instruction
+
+int i = 2,j=2, A[10][10];
+
+EiC 5> A[i][j] = 0;
+   0:rvalptr  2 0           9:bump     1          
+   1:bump     1            10:rvalint  1 0        
+   2:pushint  40           11:multint             
+   3:bump     1            12:addptr2int          
+   4:rvalint  0 0          13:bump     1          
+   5:multint               14:pushint  0          
+   6:addptr2int            15:refint              
+   7:bump     1            16:halt                
+   8:pushint  4      
+
+--------------------------------------------------
+int A[5], i =1;
+A[i] = 0;
+   0:rvalptr  0 0           6:addptr2int          
+   1:bump     1             7:bump     1          
+   2:pushint  4             8:pushint  0          
+   3:bump     1             9:refint              
+   4:rvalint  1 0          10:halt                
+   5:multint             
+
+After the addition of ixa
+   0:rvalptr  0 0        
+   1:bump     1          
+   2:rvalint  1 0        
+   3:ixa   4             
+   4:bump     1          
+   5:pushint  0          
+   6:refint              
+   7:halt      
+
+---------------------------------------
+int i, a[5];
+
+EiC 4> a[0] = 1; 
+   0:rvalptr  1 0        
+   1:bump     1          
+   2:pushint  0          
+   3:addptr2int          
+   4:bump     1          
+   5:pushint  1          
+   6:refint              
+   7:halt  
+          
+ -----------------------
+
+
+EiC 2> int i = 1;
+
+EiC 3> "abcd"[i];
+   0:pushptr  310224     
+   1:bump     1          
+   2:rvalint  0 0        
+   3:addptr2int          
+   4:drefchar            
+   5:halt               
+
+EiC 4> i["abcd"];
+   0:pushptr  310216     
+   1:bump     1          
+   2:rvalint  0 0        
+   3:addptr2int          
+   4:drefchar            
+   5:halt    
+--------------------------
+ 
+
+
+int A, *p = &A;
+   0:rvalptr  0 0        
+   1:stoptr   2 0        
+   2:halt                
+
+ *(p+i) = 0;
+   0:rvalptr  2 0           6:addptr2int          
+   1:bump     1             7:bump     1          
+   2:rvalint  1 0           8:pushint  0          
+   3:bump     1             9:refint              
+   4:pushint  4            10:halt                
+   5:multint             
+
+ after the addition of ixa
+
+*(p+i) = 0;
+   0:rvalptr  2 0        
+   1:bump     1          
+   2:rvalint  1 0        
+   3:ixa   4             
+   4:bump     1          
+   5:pushint  0          
+   6:refint              
+   7:halt                
+ 
+--------------------------------------------------- 
+#define max(a,b)    ((a)>(b)?(a):(b))
+
+EiC 6> max(-5,7) == 7; 
+   0:pushint  0          
+   1:jmpFint  4          
+   2:pushint  -5         
+   3:jmpU     5          
+   4:pushint  7          
+   5:bump     1          
+   6:pushint  7          
+   7:eqint               
+   8:halt                
+        1
+----------------------------------------------------
+EiC 1> :listcode   
+   0:halt                
+        (void)
+
+EiC 2> "hello world"[2];
+   0:pushptr  304480     
+   1:bump     1          
+   2:pushint  2          
+   3:ixa   1  0          
+   4:drefchar            
+   5:halt                
+        108
+
+--------------------------------
+EiC 4> int i = 2;
+
+EiC 5> i["abcd"];
+   0:pushptr  310216     
+   1:bump     1          
+   2:rvalint  0 0        
+   3:addptr2int          
+   4:drefchar            
+   5:halt                
+        99 
+-------------------------
+
+==================================================================
+
+Section improve instructions for memory allocation by the addition of
+the lda (load address) instruction:
+
+void f2(void) { int a[5], b[6], c[7]; }
+
+Before lda
+
+f2 -> Func (
+        void
+        ) returning void
+   0:checkar  4 0           9:stoptr   2 1
+   1:pushint  72           10:rvalptr  1 1
+   2:massign  1 1          11:bump     1
+   3:rvalptr  1 1          12:pushint  44
+   4:stoptr   0 1          13:addptr2int
+   5:rvalptr  1 1          14:stoptr   3 1
+   6:bump 
+   7:pushint  20
+   8:addptr2int
+
+After the addition of lda
+
+f2 -> Func (
+        void
+        ) returning void
+   0:checkar  4 0           6:stoptr   1 1
+   1:pushint  72            7:lda      3  44
+   2:massign  3 1           8:stoptr   2 1
+   3:lda      3  0          9:fmem     3 1
+   4:stoptr   0 1          10:eicreturn
+   5:lda      3  20
+ 
+ 
+ ----------------------------------------
+
+void f(void)
+{
+    int a, b;
+    a = 20;
+    b = 30;
+    {
+        int c, d;
+        c = 40;
+        d = 50;
+
+    }
+    {
+        int d[5];
+        d[1] = 60;
+    }
+}
+f -> Func (
+        void
+        ) returning void
+   0:checkar  5 0           8:stoint   2 1          16:addptr2int
+   1:pushint  20            9:pushint  50           17:bump     1
+   2:massign  4 1          10:stoint   3 1          18:pushint  60
+   3:pushint  20           11:lda      4  0         19:refint
+   4:stoint   0 1          12:stoptr   2 1          20:fmem     4 1
+   5:pushint  30           13:rvalptr  2 1          21:eicreturn
+   6:stoint   1 1          14:bump     1
+   7:pushint  40           15:pushint  4
+  
+ --------------------------------------------------
+
+INITIALISATION EXAMPLES:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

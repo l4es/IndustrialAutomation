@@ -1,0 +1,26 @@
+LIBRARY unilog.dll
+;DESCRIPTION 'unilog.dll - Multipurpose logger'
+EXPORTS
+unilog_v
+unilog_l
+unilog_Open
+unilog_ReOpen
+unilog_Close
+unilog_Register
+unilog_UnRegister
+unilog_IsRegistered
+unilog_FATAL
+unilog_ERROR
+unilog_WARNING
+unilog_MESSAGE
+unilog_INFO
+unilog_NOTICE
+unilog_TRACE
+unilog_DEBUG
+
+unilog_Create
+unilog_Refresh
+unilog_Delete
+unilog_Redirect
+
+unilog_Check

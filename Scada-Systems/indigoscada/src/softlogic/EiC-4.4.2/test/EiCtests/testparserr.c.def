@@ -1,0 +1,28 @@
+on
+	(void)
+Error in testparserr.c near line 13: Invalid argument to sizeof
+Error in testparserr.c near line 14: Must have lvalue
+Error in testparserr.c near line 15: Must have pointer
+Error in testparserr.c near line 15: Invalid argument to sizeof
+Error in testparserr.c near line 21:  Redeclaration of parameter `n'
+Previously declared in: testparserr.c
+Error in testparserr.c near line 26: Misplaced break statement
+Error in testparserr.c near line 27: Misplaced continue statement
+Error in testparserr.c near line 28: Misplaced return statement
+Error in testparserr.c near line 29: Illegal structure operation
+Error in testparserr.c near line 31: Undeclared identifier func
+Error in testparserr.c near line 31: Illegal cast operation
+Error in testparserr.c near line 36: Wrong number of arguments for funcA
+Error in testparserr.c near line 45: Duplicate case in switch
+Error in testparserr.c near line 46: Must be const_expr type
+Error in testparserr.c near line 47: Must be integer type
+Error in testparserr.c near line 48: Expected  :
+Error in testparserr.c near line 50: Duplicate default in switch
+Error in testparserr.c near line 53: Void expression
+Error in testparserr.c near line 53: Undefined type for relational operation
+Error in testparserr.c near line 55: Missing while in do while statement
+Error in testparserr.c near line 55: Expected )
+Error in testparserr.c near line 57: Void expression
+Error in testparserr.c near line 58: Void expression
+Error in testparserr.c near line 61: Illegal label
+Error: clean up forced

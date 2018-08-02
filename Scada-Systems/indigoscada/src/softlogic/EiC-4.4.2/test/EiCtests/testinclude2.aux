@@ -1,0 +1,14 @@
+int i = 5;
+float x[] = {3,2,1};
+struct {int a, b ;} ab = {20,30};
+int foo() { return 22;}
+#include testinclude2a.aux
+i == 5;
+x[0] == 3;
+x[1] == 2;
+x[2] == 1;
+ab.a == 20;
+ab.b == 30;
+foo() == 22;  
+:exit
+

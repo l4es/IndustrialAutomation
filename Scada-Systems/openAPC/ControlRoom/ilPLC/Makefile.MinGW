@@ -1,0 +1,25 @@
+GCC=i686-pc-mingw32-gcc
+
+DBGFLAGS = -O2 -g0
+ifeq ($(DEBUG),1)
+DBGFLAGS = -O0 -g3 -DNOSPLASH
+endif
+ifeq ($(PROFILE),1)
+DBGFLAGS = -O2 -g3
+endif
+
+CFLAGS  = -Wall $(DBGFLAGS) -DENV_WINDOWS -D_REENTRANT -L /usr/lib -L .. -I /usr/include -I .. -I . -I../plugins -I../liboapc/
+
+LDFLAGS  = -loapc -lpthread
+
+PNAME=ilPLC.exe
+
+OBJ = main.o isconnect.o
+SRC = main.c isconnect.c
+
+all: $(OBJ)
+	$(GCC) $(CFLAGS) -o $(PNAME) $(OBJ) $(LDFLAGS)
+
+clean:
+	rm *.o
+	rm $(PNAME)

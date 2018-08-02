@@ -1,0 +1,382 @@
+on
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+Access beyond array
+Error in ::EiC:: near line 4: 
+EiC illegal storage access, file ::EiC::, line 4
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+Access beyond array
+Error in ::EiC:: near line 5: 
+EiC illegal storage access, file ::EiC::, line 5
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+	1
+	1
+	(void)
+Access beyond array
+Error in ::EiC:: near line 9: 
+EiC illegal storage access, file ::EiC::, line 9
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+Access beyond array
+Error in ::EiC:: near line 10: 
+EiC illegal storage access, file ::EiC::, line 10
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+	1
+	1
+	(void)
+Access beyond array
+Error in ::EiC:: near line 14: 
+EiC illegal storage access, file ::EiC::, line 14
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+	(void)
+	0123456789
+	01234567890123456789
+	(void)
+Access beyond array
+Error in ::EiC:: near line 19: 
+EiC illegal storage access, file ::EiC::, line 19
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+	0123456789
+	0123456789
+	0123456789
+	(void)
+	(void)
+Access beyond array
+Error in ::EiC:: near line 25: 
+EiC illegal storage access, file ::EiC::, line 25
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+	54
+	(void)
+	01234567890123456789
+Access beyond array
+Error in ::EiC:: near line 29: 
+EiC illegal storage access, file ::EiC::, line 29
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+	49
+	(void)
+	(void)
+	1
+	2
+	3
+	4
+	5
+Access beyond array
+Error in ::EiC:: near line 38: 
+EiC illegal storage access, file ::EiC::, line 38
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+Access beyond array
+Error in ::EiC:: near line 39: 
+EiC illegal storage access, file ::EiC::, line 39
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+Access beyond array
+Error in ::EiC:: near line 40: 
+EiC illegal storage access, file ::EiC::, line 40
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+Access beyond array
+Error in ::EiC:: near line 41: 
+EiC illegal storage access, file ::EiC::, line 41
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+Access beyond array
+Error in ::EiC:: near line 42: 
+EiC illegal storage access, file ::EiC::, line 42
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+READ: attempted before allowed access area
+Error in ::EiC:: near line 4: 
+EiC illegal storage access, file ::EiC::, line 4
+
+Error: clean up forced
+	104
+	0
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 7: 
+EiC illegal storage access, file ::EiC::, line 7
+
+Error: clean up forced
+	(void)
+READ: attempted before allowed access area
+Error in ::EiC:: near line 9: 
+EiC illegal storage access, file ::EiC::, line 9
+
+Error: clean up forced
+	104
+	0
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 12: 
+EiC illegal storage access, file ::EiC::, line 12
+
+Error: clean up forced
+	(void)
+	(void)
+READ: attempted before allowed access area
+Error in ::EiC:: near line 15: 
+EiC illegal storage access, file ::EiC::, line 15
+
+Error: clean up forced
+	0
+	0
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 18: 
+EiC illegal storage access, file ::EiC::, line 18
+
+Error: clean up forced
+READ: attempted before allowed access area
+Error in ::EiC:: near line 19: 
+EiC illegal storage access, file ::EiC::, line 19
+
+Error: clean up forced
+	0
+	0
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 22: 
+EiC illegal storage access, file ::EiC::, line 22
+
+Error: clean up forced
+	(void)
+	(void)
+READ: attempted before allowed access area
+Error in ::EiC:: near line 25: 
+EiC illegal storage access, file ::EiC::, line 25
+
+Error: clean up forced
+	104
+	0
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 28: 
+EiC illegal storage access, file ::EiC::, line 28
+
+Error: clean up forced
+READ: attempted before allowed access area
+Error in ::EiC:: near line 29: 
+EiC illegal storage access, file ::EiC::, line 29
+
+Error: clean up forced
+	119
+	0
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 32: 
+EiC illegal storage access, file ::EiC::, line 32
+
+Error: clean up forced
+	(void)
+	(void)
+	(void)
+	36
+	(void)
+	38
+READ: attempted before allowed access area
+Error in ::EiC:: near line 39: 
+EiC illegal storage access, file ::EiC::, line 35
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+	40
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 41: 
+EiC illegal storage access, file ::EiC::, line 35
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+	(void)
+	(void)
+	(void)
+	(void)
+	1
+	(void)
+	(void)
+	(void)
+	(void)
+	51
+READ: attempted before allowed access area
+Error in ::EiC:: near line 52: 
+EiC illegal storage access, file ::EiC::, line 49
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+	53
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 54: 
+EiC illegal storage access, file ::EiC::, line 49
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+	55
+	(void)
+	(void)
+	(void)
+READ: attempted before allowed access area
+Error in ::EiC:: near line 59: 
+EiC illegal storage access, file ::EiC::, line 59
+
+Error: clean up forced
+	0
+	0
+	0
+	0
+	0
+	0
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 66: 
+EiC illegal storage access, file ::EiC::, line 66
+
+Error: clean up forced
+	(void)
+	(void)
+	(void)
+	(void)
+	1
+	2
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 73: 
+EiC illegal storage access, file ::EiC::, line 73
+
+Error: clean up forced
+READ: attempted before allowed access area
+Error in ::EiC:: near line 74: 
+EiC illegal storage access, file ::EiC::, line 74
+
+Error: clean up forced
+	(void)
+	1
+	1
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 78: 
+EiC illegal storage access, file ::EiC::, line 78
+
+Error: clean up forced
+	(void)
+	(void)
+	(void)
+READ: attempted before allowed access area
+Error in ::EiC:: near line 82: 
+EiC illegal storage access, file ::EiC::, line 81
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+	(void)
+	(void)
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 85: 
+EiC illegal storage access, file ::EiC::, line 84
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 220: 
+EiC illegal storage access, file ::EiC::, line 68
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 221: 
+EiC illegal storage access, file ::EiC::, line 85
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 222: 
+EiC illegal storage access, file ::EiC::, line 101
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 223: 
+EiC illegal storage access, file ::EiC::, line 117
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+READ: attempted before allowed access area
+Error in ::EiC:: near line 224: 
+EiC illegal storage access, file ::EiC::, line 134
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+READ: attempted before allowed access area
+Error in ::EiC:: near line 225: 
+EiC illegal storage access, file ::EiC::, line 150
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+READ: attempted before allowed access area
+Error in ::EiC:: near line 226: 
+EiC illegal storage access, file ::EiC::, line 166
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+READ: attempted before allowed access area
+Error in ::EiC:: near line 227: 
+EiC illegal storage access, file ::EiC::, line 182
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+READ: attempted before allowed access area
+Error in ::EiC:: near line 228: 
+EiC illegal storage access, file ::EiC::, line 198
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+READ: attempted before allowed access area
+Error in ::EiC:: near line 229: 
+EiC illegal storage access, file ::EiC::, line 214
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced
+	(void)
+	0

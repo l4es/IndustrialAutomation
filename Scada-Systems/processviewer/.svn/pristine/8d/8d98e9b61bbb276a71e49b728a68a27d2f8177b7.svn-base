@@ -1,0 +1,71 @@
+object FormANsEditor: TFormANsEditor
+  Left = 243
+  Height = 398
+  Top = 174
+  Width = 340
+  BorderIcons = [biSystemMenu]
+  Caption = 'Access Names'
+  ClientHeight = 398
+  ClientWidth = 340
+  Position = poMainFormCenter
+  LCLVersion = '0.9.29'
+  object lbAccessNames: TListBox
+    Left = 8
+    Height = 382
+    Top = 8
+    Width = 206
+    Align = alClient
+    BorderSpacing.Around = 8
+    ItemHeight = 0
+    OnDblClick = btnModifyClick
+    TabOrder = 0
+  end
+  object Panel1: TPanel
+    Left = 222
+    Height = 398
+    Top = 0
+    Width = 118
+    Align = alRight
+    BevelOuter = bvNone
+    ClientHeight = 398
+    ClientWidth = 118
+    TabOrder = 1
+    object btnClose: TButton
+      Left = 6
+      Height = 30
+      Top = 8
+      Width = 100
+      Cancel = True
+      Caption = 'Close'
+      ModalResult = 1
+      TabOrder = 0
+    end
+    object btnAdd: TButton
+      Left = 6
+      Height = 30
+      Top = 71
+      Width = 100
+      Caption = 'Add...'
+      OnClick = btnAddClick
+      TabOrder = 1
+    end
+    object btnModify: TButton
+      Left = 6
+      Height = 30
+      Top = 103
+      Width = 100
+      Caption = 'Modify...'
+      OnClick = btnModifyClick
+      TabOrder = 2
+    end
+    object btnDelete: TButton
+      Left = 6
+      Height = 30
+      Top = 135
+      Width = 100
+      Caption = 'Delete'
+      OnClick = btnDeleteClick
+      TabOrder = 3
+    end
+  end
+end

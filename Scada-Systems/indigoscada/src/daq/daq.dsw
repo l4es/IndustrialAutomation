@@ -1,0 +1,875 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "Calculated"="..\drivers\Calculated\Calculated.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name fifo
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "Simulator"="..\drivers\Simulator\Simulator.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name scada
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "System"="..\drivers\System\System.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name scada
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "all"=".\all.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name gigabase
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name monitor
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Simulator
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name sqlserver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name System
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ui
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name realtimesqlserver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name fastdb
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name dspserver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name manager
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name archiver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name Calculated
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name opc_client_ae
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name opc_client_da
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name opc_client_hda
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name iec104driver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name dnp3driver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name dnp3master
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name dnp3slave
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name modbus_driver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name modbus_master
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name modbus_slave
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name iec101driver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name iec103driver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name rfc1006client
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name rfc1006driver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name opc_server_da
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name lightopc_lib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name protocol_configurator
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name opc_client_ae_driver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name opc_client_da_driver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name opc_client_hda_driver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name designer
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name designerlib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name iec61850client
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name iec61850driver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name iec61850server
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name mserver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name mqtt_client
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name mqtt_client_driver
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name opc_ua_client
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name opc_ua_server
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name rtps_mngr
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "designer"="..\hmi_designer\designer\app\designer.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name qui
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name designerlib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "designerlib"="..\hmi_designer\designer\designer\designerlib.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "dnp3driver"="..\drivers\dnp3\dnp3driver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "dnp3master"="..\drivers\dnp3\protocol\dnp3master.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "dnp3slave"="..\drivers\dnp3\protocol\dnp3slave.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "dspserver"="..\dispatchserver\dspserver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name utilities
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "fastdb"="..\fastdb\fastdb.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "fifo"="..\fifo\fifo.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "gigabase"="..\gigabase\gigabase.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "iec101driver"="..\drivers\iec101\iec101driver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "iec103driver"="..\drivers\iec103\iec103driver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ripcclient
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "iec104driver"="..\drivers\iec104\iec104driver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "iec61850client"="..\drivers\iec61850\protocol\iec61850client.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name iec61850lib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "iec61850driver"="..\drivers\iec61850\iec61850driver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "iec61850lib"="..\drivers\iec61850\protocol\iec61850lib.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "iec61850server"="..\drivers\iec61850\protocol\iec61850server.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name iec61850lib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "librtps"="..\middleware\rtps\librtps\msvc\librtps.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name pthread
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "lightopc_lib"="..\drivers\opc_server_da\lo-0.888\LightOPC\lightopc.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "manager"="..\manager\manager.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "modbus_driver"="..\drivers\modbus\modbus_driver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ripcclient
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "modbus_master"="..\drivers\modbus\protocol\modbus_master.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ripcclient
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "monitor"="..\monitor\monitor.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name scada
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name utilities
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name fifo
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ripcclient
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name librtps
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "mqtt_client"="..\drivers\mqtt\protocol\mqtt_client.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "mqtt_client_driver"="..\drivers\mqtt\mqtt_client_driver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "mserver"="..\middleware\ripc\mserver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ripcserver
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "opc_client_ae"="..\drivers\opc_client_ae\protocol\opc_client_ae.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "opc_client_ae_driver"="..\drivers\opc_client_ae\opc_client_ae_driver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "opc_client_da"="..\drivers\opc_client_da\protocol\opc_client_da.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name ripcclient
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "opc_client_da_driver"="..\drivers\opc_client_da\opc_client_da_driver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "opc_client_hda"="..\drivers\opc_client_hda\protocol\opc_client_hda.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "opc_client_hda_driver"="..\drivers\opc_client_hda\opc_client_hda_driver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "opc_server_da"="..\drivers\opc_server_da\lo-0.888\main\opc_server_da.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name lightopc_lib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "opc_ua_client"="..\drivers\opc_ua\protocol\opc_ua_client.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "opc_ua_server"="..\drivers\opc_ua\protocol\opc_ua_server.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "protocol_configurator"="..\configurator\browser\protocol_configurator.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "pthread"="..\common\pthreads-w32-2-8-0\pthread.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "qui"="..\hmi_designer\designer\uilib\qui.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "qwt"="..\ui\qwt-4.2.0\qwt.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "qwtplugin"="..\ui\qwt-4.2.0\designer\qwtplugin.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "realtimesqlserver"="..\realtimesqlserver\realtimesqlserver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name fastdb
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name utilities
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "rfc1006client"="..\drivers\rfc1006\protocol\rfc1006client.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "rfc1006driver"="..\drivers\rfc1006\rfc1006driver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ripcclient"="..\middleware\ripc\ripcclient.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ripcserver"="..\middleware\ripc\ripcserver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "rtps_mngr"="..\middleware\rtps\manager\mcvs\rtps_mngr.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name librtps
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "scada"="..\scada\scada.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name utilities
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name fastdb
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "sqlserver"="..\sqlserver\sqlserver.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name gigabase
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name utilities
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "ui"="..\UI\ui.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name utilities
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name qwt
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name qwtplugin
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name qui
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "utilities"="..\utilities\utilities.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

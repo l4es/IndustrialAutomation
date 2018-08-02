@@ -1,0 +1,23 @@
+GCC=i686-pc-mingw32-g++
+
+CCOMPILER=$(GCC) -Wall -pedantic -fPIC -Wno-unused -g0 -O2 -D_REENTRANT -DENV_WINDOWS -DMAX_INCOMING_CONNECTIONS=1 -I .  -I .. -I../../liboapc/ -I../plugins
+
+LIBS = -lws2_32 -lwinmm -L../../ -loapc
+
+EXECUTABLE=../../flowplugins/libio_jwarrior.dll
+
+LINK=$(GCC) -shared
+
+OBJECTS = libio_jwarrior.o
+
+default: $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
+	$(LINK) $(SYSLDFLAGS) $(LDFLAGS) -o $(EXECUTABLE) $(OBJECTS) $(LIBS) 
+
+%.o: %.cpp
+	$(CCOMPILER) -c $< -o $@
+
+clean:
+	rm -f $(OBJECTS) $(EXECUTABLE)
+

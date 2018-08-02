@@ -1,0 +1,7 @@
+on
+	1
+Warning: in gnu24.c near line 18: Empty function definition
+Warning: in gnu24.c near line 19: Empty function definition
+Warning: in gnu24.c near line 23: Empty function definition
+Test passed (if it compiled at all)
+	0

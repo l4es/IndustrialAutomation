@@ -1,0 +1,46 @@
+//#define RIPC_IMPLEMENTATION
+
+#include "RIPCRequest.h"
+
+const char* const RIPCRequest::opCodeNames[] = 
+{
+    "WAIT", 
+    "TIMED_WAIT", 
+    "RESET", 
+    "SIGNAL_EVENT", 
+    "SIGNAL_SEMAPHORE", 
+    "PULSE", 
+    "LOCK_MUTEX", 
+    "TIMED_LOCK_MUTEX", 
+    "UNLOCK_MUTEX", 
+    "ENQUEUE", 
+    "DEQUEUE", 
+    "BROADCAST", 
+    "TIMED_DEQUEUE", 
+    "SET_OBJECT", 
+    "GET_OBJECT", 
+    "EXCLUSIVE_LOCK", 
+    "SHARED_LOCK", 
+    "TIMED_EXCLUSIVE_LOCK", 
+    "TIMED_SHARED_LOCK", 
+    "UNLOCK", 
+    "CREATE_SEMAPHORE", 
+    "CREATE_EVENT", 
+    "CREATE_AUTO_EVENT", 
+    "CREATE_MUTEX", 
+    "CREATE_QUEUE", 
+    "CREATE_SHMEM", 
+    "CREATE_LOCK", 
+    "CREATE_BARRIER", 
+    "OPEN_SEMAPHORE", 
+    "OPEN_EVENT", 
+    "OPEN_MUTEX", 
+    "OPEN_QUEUE", 
+    "OPEN_SHMEM", 
+    "OPEN_LOCK", 
+    "OPEN_BARRIER", 
+    "CLOSE_PRIMITIVE", 
+    "CLOSE_SESSION", 
+    "SHOW_INFO", 
+    "SHUTDOWN"
+};

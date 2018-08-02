@@ -1,0 +1,5 @@
+-EiC comes with with ABSOLUTELY NO WARRANTY.
+
+1: If an error occurs during prototyping of a builtin function,
+    EiC will become unstable.
+

@@ -1,0 +1,65 @@
+CC = powerpc-eabi-gcc
+AR = powerpc-eabi-ar
+AS = powerpc-eabi-as
+LD = powerpc-eabi-ld
+
+LIB =  libeic.a
+
+PLATFORM = POWERPC 
+DEFINES = -D$(PLATFORM) -D_SEIC_ -DNO_HISTORY -DNO_ARGV -DNO_HTML -DPPCLIB -DNO_READLINE
+LIBPATH = /ppc/lib/gcc-lib/powerpc-eabi/egcs-2.91.14/nof \
+	  -L /ppc/powerpc-eabi/lib/nof -L ../module/stdClib/src
+
+CFLAGS =  -O4 -mno-eabi -mcpu=403 -mbig -fsigned-char -Wall $(DEFINES) \
+	  -I /ppc/include -I . -L . -L $(LIBPATH) 
+
+
+SRCS =  cdecl.c func.c  main.c preproc.c  symbol.c \
+        eicmod.c interpre.c optomizer.c typemod.c \
+        emitter.c parser.c stab.c typesets.c \
+        error.c lexer.c preexpr.c starteic.c ymem.c \
+        main.c
+
+
+libSRCS = $(SRCS)
+
+libOBJS = 	$(LIB)(cdecl.o)\
+		$(LIB)(func.o)\
+		$(LIB)(main.o)\
+		$(LIB)(preproc.o)\
+		$(LIB)(symbol.o)\
+		$(LIB)(eicmod.o)\
+		$(LIB)(interpre.o)\
+		$(LIB)(optomizer.o)\
+		$(LIB)(typemod.o)\
+		$(LIB)(emitter.o)\
+		$(LIB)(parser.o)\
+		$(LIB)(stab.o)\
+		$(LIB)(typesets.o)\
+		$(LIB)(error.o)\
+		$(LIB)(lexer.o)\
+		$(LIB)(preexpr.o)\
+		$(LIB)(starteic.o)\
+		$(LIB)(ymem.o)\
+		$(LIB)(main.o)\
+
+		
+all:	
+	cd ppc403 ; make
+	cd ../module/stdClib/src ; make -f makefile.ppc
+	make -f makefile.ppc seic
+
+clean:	
+	rm seic
+	rm seic.sr
+	rm libeic.a
+	rm ppc403/libppc.a
+	rm ../module/stdClib/src/libstdClib.a
+
+$(LIB): $(libOBJS)
+	
+lib::$(LIB)
+
+seic:	libeic.a 
+	$(CC) $(CFLAGS) $(OBJS) -o  seic -leic -lstdClib -lc -lm ppc403/libppc.a -leic -T ppc403/ppc.ld
+	powerpc-eabi-objcopy -v --strip-unneeded --strip-debug -O srec seic seic.sr

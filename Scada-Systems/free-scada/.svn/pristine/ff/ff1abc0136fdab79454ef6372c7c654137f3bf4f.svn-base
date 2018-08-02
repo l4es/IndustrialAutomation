@@ -1,0 +1,104 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:ScadaShell.ViewModel;assembly=ScadaShell"
+    xmlns:vw="clr-namespace:ScadaShell.View;assembly=ScadaShell"
+	xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <DataTemplate DataType="{x:Type vm:MainSchemaViewModel}">
+        <DataTemplate.Resources>
+            <ResourceDictionary Source="../View/ChannelEditView.xaml"/>
+        </DataTemplate.Resources>
+        <Viewbox Stretch="Fill">
+            <Canvas Width="640" Height="400" Background="Black">
+
+                <Path Stretch="Fill" StrokeThickness="6" StrokeLineJoin="Round" Stroke="#FFEDED10" Data="F1 M 456,176L 480,176L 480,47.9999L 456,47.9999" Height="134" Canvas.Left="453" Canvas.Top="45" Width="30"/>
+                <Path Stretch="Fill" StrokeThickness="6" StrokeLineJoin="Round" Stroke="#FFEDED10" Data="F1 M 248,48.0001L 200,48.0001L 200,176L 248,176" Height="134" Canvas.Left="197" Canvas.Top="45" Width="54"/>
+                <Path Stretch="Fill" StrokeThickness="6" StrokeLineJoin="Round" Stroke="#FFEDED10" Data="F1 M 490,112L 552,112L 552,280L 128,280" Height="174" Canvas.Left="45" Canvas.Top="109" Width="510"/>
+                <Path Stretch="Fill" StrokeThickness="6" StrokeLineJoin="Round" Stroke="#FFEDED10" Data="F1 M 328,176L 296,176" Height="6" Canvas.Left="293" Canvas.Top="173" Width="38"/>
+                <Path Stretch="Fill" StrokeThickness="6" StrokeLineJoin="Round" Stroke="#FFEDED10" Data="F1 M 408,176L 376,176" Height="6" Canvas.Left="373" Canvas.Top="173" Width="38"/>
+                <Path Stretch="Fill" StrokeThickness="6" StrokeLineJoin="Round" Stroke="#FFEDED10" Data="F1 M 200,112L 128,112" Height="6" Canvas.Left="45" Canvas.Top="109" Width="158"/>
+                <Path Stretch="Fill" StrokeThickness="6" StrokeLineJoin="Round" Stroke="#FFEDED10" Data="F1 M 328,48L 296,48" Height="6" Canvas.Left="293" Canvas.Top="45" Width="38"/>
+                <Path Stretch="Fill" StrokeThickness="6" StrokeLineJoin="Round" Stroke="#FFEDED10" Data="F1 M 408,48L 376,48" Height="6" Canvas.Left="373" Canvas.Top="45" Width="38"/>
+
+                <ContentPresenter Canvas.Left="120" Canvas.Top="65" Width="50" Height="62.5" Content="{Binding Kran1}"/>
+
+
+
+                <ContentPresenter Canvas.Left="120" Canvas.Top="234" Height="62.5" Width="50" Content="{Binding Kran2}"/>
+
+                <Viewbox Height="49" Canvas.Left="247.5" Canvas.Top="143.5" Width="49">
+                    <Canvas Width="49" Height="49">
+                        <Path Width="1" Height="25" Canvas.Left="24" Canvas.Top="8.00003" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Data="F1 M 24.5,32.5L 24.5,8.50003"/>
+                        <Rectangle Width="32.9999" Height="9" Canvas.Left="8.00003" Canvas.Top="3.05176e-005" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000"/>
+                        <Path Width="25" Height="33" Canvas.Left="0" Canvas.Top="16" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Data="F1 M 24.5,32.5L 0.5,16.5L 0.5,48.5L 24.5,32.5 Z "/>
+                        <Path Width="24.9999" Height="33" Canvas.Left="24" Canvas.Top="16" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Data="F1 M 24.5,32.5L 48.5,16.5L 48.5,48.5L 24.5,32.5 Z "/>
+                    </Canvas>
+                </Viewbox>
+
+                <Viewbox Height="33" Canvas.Left="407.5" Canvas.Top="159.5" Width="49">
+                    <Canvas Width="49" Height="33">
+                        <Path Width="24.9999" Height="33" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FF00C800" Data="F1 M 24.4999,16.5L 0.5,0.5L 0.5,32.5L 24.4999,16.5 Z "/>
+                        <Path Width="25" Height="33" Canvas.Left="24" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FF00C800" Data="F1 M 24.5,16.5L 48.5,0.5L 48.5,32.5L 24.5,16.5 Z "/>
+                    </Canvas>
+                </Viewbox>
+                <Viewbox Height="41" Canvas.Left="327.5" Canvas.Top="151.5" Width="49">
+                    <Canvas Width="49" Height="41">
+                        <Path Width="25" Height="33" Canvas.Left="0" Canvas.Top="8" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FFC0C0B3" Data="F1 M 24.5,24.5L 0.5,8.5L 0.5,40.5L 24.5,24.5 Z "/>
+                        <Path Width="25" Height="33" Canvas.Left="24" Canvas.Top="8" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FFC0C0B3" Data="F1 M 24.5,24.5L 48.5,8.5L 48.5,40.5L 24.5,24.5 Z "/>
+                        <Path Width="17" Height="25" Canvas.Left="16" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FFC0C0B3" Data="F1 M 24.5,24.5L 16.5,0.5L 32.5,0.5L 24.5,24.5 Z "/>
+                    </Canvas>
+                </Viewbox>
+
+                <Viewbox Height="49" Canvas.Left="247.5" Canvas.Top="15.5" Width="49">
+                    <Canvas Width="49" Height="49">
+                        <Path Width="1" Height="25" Canvas.Left="24" Canvas.Top="8" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Data="F1 M 24.5,32.5L 24.5,8.5"/>
+                        <Rectangle Width="32.9999" Height="9" Canvas.Left="8.00003" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000"/>
+                        <Path Width="25" Height="33" Canvas.Left="0" Canvas.Top="16" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Data="F1 M 24.5,32.5L 0.5,16.5L 0.5,48.5L 24.5,32.5 Z "/>
+                        <Path Width="25" Height="33" Canvas.Left="24" Canvas.Top="16" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Data="F1 M 24.5,32.5L 48.5,16.5L 48.5,48.5L 24.5,32.5 Z "/>
+                    </Canvas>
+                </Viewbox>
+                <Viewbox Height="33" Canvas.Left="407.5" Canvas.Top="31.5" Width="49">
+                    <Canvas Width="49" Height="33">
+                        <Path Width="24.9999" Height="33" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FF00C800" Data="F1 M 24.4999,16.5L 0.5,0.5L 0.5,32.5L 24.4999,16.5 Z "/>
+                        <Path Width="25" Height="33" Canvas.Left="24" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FF00C800" Data="F1 M 24.5,16.5L 48.5,0.5L 48.5,32.5L 24.5,16.5 Z "/>
+                    </Canvas>
+                </Viewbox>
+                <Viewbox Height="41" Canvas.Left="327.5" Canvas.Top="23.5" Width="49">
+                    <Canvas Width="49" Height="41">
+                        <Path Width="25" Height="33" Canvas.Left="-3.05176e-005" Canvas.Top="8" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FFC0C0B3" Data="F1 M 24.5,24.5L 0.499969,8.5L 0.499969,40.5L 24.5,24.5 Z "/>
+                        <Path Width="25" Height="33" Canvas.Left="24" Canvas.Top="8" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FFC0C0B3" Data="F1 M 24.5,24.5L 48.5,8.5L 48.5,40.5L 24.5,24.5 Z "/>
+                        <Path Width="17" Height="25" Canvas.Left="16" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FFC0C0B3" Data="F1 M 24.5,24.5L 16.5,0.5L 32.5,0.5L 24.5,24.5 Z "/>
+                    </Canvas>
+                </Viewbox>
+
+                <ContentPresenter Canvas.Left="247.5" Canvas.Top="2" Width="50" Height="62.5" Content="{Binding Kran4}"/>
+
+                <ContentPresenter Canvas.Left="247.5" Canvas.Top="130" Width="50" Height="62.5" Content="{Binding Kran3}"/>
+                <ContentPresenter Height="30" Width="85" Canvas.Left="10" Canvas.Top="230"  Content="{Binding Pout}"/>
+                <ContentPresenter Height="30" Width="85" Canvas.Left="10" Canvas.Top="290"  Content="{Binding Tout}"/>
+
+                <ContentPresenter Height="30" Width="85" Canvas.Left="10" Canvas.Top="65" Content="{Binding Pin}"/>
+                <ContentPresenter Height="30" Width="85" Canvas.Left="10" Canvas.Top="125" Content="{Binding Tin}"/>
+
+
+                <ContentPresenter Height="30" Width="85" Canvas.Left="197" Canvas.Top="310.5" Content="{Binding Q1}"/>
+                <ContentPresenter Height="30" Width="85" Canvas.Left="197" Canvas.Top="344.5" Content="{Binding Q2}"/>
+                <ContentPresenter Height="30" Width="85" Canvas.Left="360" Canvas.Top="310.5" Content="{Binding Q3}"/>
+                <ContentPresenter Height="30" Width="85" Canvas.Left="360" Canvas.Top="344.5" Content="{Binding Q4}"/>
+                <Path Stretch="Fill" Fill="#FFD0F30D" Stroke="Black" Data="F1 M 91,115L 62.5,98.5455L 62.5,131.454L 91,115 Z " Height="26" Canvas.Left="45" Canvas.Top="99" Width="20.5"/>
+                <Path Stretch="Fill" Fill="#FFD0F30D" Stroke="Black" Data="F1 M 91,115L 62.5,98.5455L 62.5,131.454L 91,115 Z " Height="26" Canvas.Left="42.5" Canvas.Top="267" Width="17.5" RenderTransformOrigin="0.5,0.5">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="-1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+                <ContentPresenter Height="30" Width="85" Canvas.Left="370" Canvas.Top="95"  Content="{Binding Pwork}" ContentTemplate="{StaticResource ChannelEditView}"/>                
+                <Label Canvas.Left="232" Canvas.Top="95" Width="100" Height="30" Content="Рабочий тиск" Foreground="Gray"/>
+            </Canvas>
+        </Viewbox>
+    </DataTemplate>
+</ResourceDictionary>

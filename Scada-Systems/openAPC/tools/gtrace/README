@@ -1,0 +1,4 @@
+This is a small application that does not belong to the OpenAPC package directly.
+It (ab)uses liboapc_gpsd and liboapc_jwarrior (via libjwarrior) to keep track of
+the current GPS position and the current accelerations in X- Y- and Z-direction.
+The resulting position and speed data are written into rotating trace files.

@@ -1,0 +1,495 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <General>
+      <MainUnit Value="0"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1" Active="Default">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="2">
+      <Item1>
+        <PackageName Value="TAChartLazarusPkg"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
+    </RequiredPackages>
+    <Units Count="33">
+      <Unit0>
+        <Filename Value="maker.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="maker"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="31" Y="7"/>
+        <UsageCount Value="50"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="unitmain.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitmain"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="73"/>
+        <CursorPos X="1" Y="91"/>
+        <UsageCount Value="50"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="..\ProcessViewer\unitver.pas"/>
+        <UnitName Value="UnitVer"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="14" Y="11"/>
+        <UsageCount Value="17"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\ProcessViewer\htmlcolorconversions.pas"/>
+        <UnitName Value="htmlcolorconversions"/>
+        <UsageCount Value="17"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="..\ProcessViewer\unitaccessnames.pas"/>
+        <UnitName Value="UnitAccessNames"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="101"/>
+        <CursorPos X="21" Y="107"/>
+        <UsageCount Value="17"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\ProcessViewer\unitconfig.pas"/>
+        <UnitName Value="UnitConfig"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="9" Y="49"/>
+        <UsageCount Value="17"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\ProcessViewer\unitformsconfig.pas"/>
+        <UnitName Value="UnitFormsConfig"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="202"/>
+        <CursorPos X="1" Y="219"/>
+        <UsageCount Value="17"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="..\ProcessViewer\unitiothread.pas"/>
+        <UnitName Value="unitiothread"/>
+        <UsageCount Value="17"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\ProcessViewer\unittags.pas"/>
+        <UnitName Value="unittags"/>
+        <UsageCount Value="17"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\ProcessViewer\UnitThreadLog.pas"/>
+        <UnitName Value="UnitThreadLog"/>
+        <UsageCount Value="17"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="..\ProcessViewer\UnitTimers.pas"/>
+        <UnitName Value="UnitTimers"/>
+        <UsageCount Value="17"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="..\MBTCPread\ModbusTCP.pas"/>
+        <UnitName Value="ModbusTCP"/>
+        <UsageCount Value="17"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="..\ProcessViewer\unitregulator.pas"/>
+        <UnitName Value="UnitRegulator"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="79"/>
+        <CursorPos X="26" Y="97"/>
+        <UsageCount Value="7"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="..\ProcessViewer\unitmain.pas"/>
+        <UnitName Value="UnitMain"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="22"/>
+        <CursorPos X="44" Y="25"/>
+        <UsageCount Value="7"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="..\units\unitver.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="unitver"/>
+        <UsageCount Value="50"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="..\units\htmlcolorconversions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="htmlcolorconversions"/>
+        <UsageCount Value="50"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="..\units\modbustcp.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="modbustcp"/>
+        <UsageCount Value="50"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="..\units\unitaccessnames.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitAccessNames"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="139"/>
+        <CursorPos X="3" Y="150"/>
+        <UsageCount Value="50"/>
+        <Loaded Value="True"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="..\units\unitconfig.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitConfig"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="63"/>
+        <CursorPos X="3" Y="82"/>
+        <UsageCount Value="50"/>
+        <Loaded Value="True"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="..\units\unitentervalue.pas"/>
+        <IsPartOfProject Value="True"/>
+        <HasResources Value="True"/>
+        <UnitName Value="unitentervalue"/>
+        <UsageCount Value="50"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="..\units\unitformsconfig.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitFormsConfig"/>
+        <EditorIndex Value="8"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="396"/>
+        <CursorPos X="42" Y="401"/>
+        <UsageCount Value="50"/>
+        <Loaded Value="True"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="..\units\unitiothread.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="unitiothread"/>
+        <UsageCount Value="50"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="..\units\unitmotor.pas"/>
+        <IsPartOfProject Value="True"/>
+        <HasResources Value="True"/>
+        <UnitName Value="unitmotor"/>
+        <UsageCount Value="50"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="..\units\unitregulator.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormRegulator"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UnitRegulator"/>
+        <EditorIndex Value="6"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="94"/>
+        <CursorPos X="30" Y="118"/>
+        <UsageCount Value="50"/>
+        <Loaded Value="True"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="..\units\unittags.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitTags"/>
+        <EditorIndex Value="5"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="3" Y="14"/>
+        <UsageCount Value="50"/>
+        <Loaded Value="True"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="..\units\unitthreadlog.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitThreadLog"/>
+        <EditorIndex Value="7"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="19" Y="21"/>
+        <UsageCount Value="50"/>
+        <Loaded Value="True"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="..\units\unittimers.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitTimers"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="22"/>
+        <CursorPos X="1" Y="42"/>
+        <UsageCount Value="50"/>
+        <Loaded Value="True"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="unittagdic.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="formTagDic"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unittagdic"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="500"/>
+        <CursorPos X="1" Y="519"/>
+        <UsageCount Value="49"/>
+        <Bookmarks Count="1">
+          <Item0 X="1" Y="388" ID="1"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="unitaccessnameseditor.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormANsEditor"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitaccessnameseditor"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="77"/>
+        <CursorPos X="22" Y="91"/>
+        <UsageCount Value="48"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="unitedan.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormEdAN"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="unitedan"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="25"/>
+        <CursorPos X="11" Y="46"/>
+        <UsageCount Value="45"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="C:\lazarus\fpc\2.4.0\source\packages\fcl-xml\src\dom.pp"/>
+        <UnitName Value="DOM"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="192"/>
+        <CursorPos X="34" Y="218"/>
+        <UsageCount Value="8"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1410"/>
+        <CursorPos X="1" Y="1428"/>
+        <UsageCount Value="10"/>
+      </Unit31>
+      <Unit32>
+        <Filename Value="C:\lazarus\lcl\interfaces\win32\win32proc.pp"/>
+        <UnitName Value="win32proc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1101"/>
+        <CursorPos X="30" Y="1116"/>
+        <UsageCount Value="10"/>
+      </Unit32>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="464" Column="1" TopLine="452"/>
+      </Position1>
+      <Position2>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="463" Column="1" TopLine="452"/>
+      </Position2>
+      <Position3>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="464" Column="1" TopLine="452"/>
+      </Position3>
+      <Position4>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="439" Column="17" TopLine="439"/>
+      </Position4>
+      <Position5>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="495" Column="1" TopLine="460"/>
+      </Position5>
+      <Position6>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="486" Column="13" TopLine="451"/>
+      </Position6>
+      <Position7>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="355" Column="1" TopLine="349"/>
+      </Position7>
+      <Position8>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="501" Column="1" TopLine="470"/>
+      </Position8>
+      <Position9>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="354" Column="1" TopLine="336"/>
+      </Position9>
+      <Position10>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="438" Column="31" TopLine="427"/>
+      </Position10>
+      <Position11>
+        <Filename Value="..\units\unittags.pas"/>
+        <Caret Line="47" Column="3" TopLine="37"/>
+      </Position11>
+      <Position12>
+        <Filename Value="..\units\unittags.pas"/>
+        <Caret Line="109" Column="11" TopLine="101"/>
+      </Position12>
+      <Position13>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="467" Column="1" TopLine="454"/>
+      </Position13>
+      <Position14>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="349" Column="17" TopLine="337"/>
+      </Position14>
+      <Position15>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="329" Column="23" TopLine="313"/>
+      </Position15>
+      <Position16>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="468" Column="1" TopLine="443"/>
+      </Position16>
+      <Position17>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="154" Column="15" TopLine="145"/>
+      </Position17>
+      <Position18>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="461" Column="1" TopLine="447"/>
+      </Position18>
+      <Position19>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="143" Column="14" TopLine="125"/>
+      </Position19>
+      <Position20>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="405" Column="1" TopLine="399"/>
+      </Position20>
+      <Position21>
+        <Filename Value="..\units\unittimers.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position21>
+      <Position22>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="458" Column="22" TopLine="442"/>
+      </Position22>
+      <Position23>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="408" Column="1" TopLine="401"/>
+      </Position23>
+      <Position24>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="477" Column="56" TopLine="449"/>
+      </Position24>
+      <Position25>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="345" Column="1" TopLine="344"/>
+      </Position25>
+      <Position26>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="421" Column="1" TopLine="421"/>
+      </Position26>
+      <Position27>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="510" Column="1" TopLine="475"/>
+      </Position27>
+      <Position28>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="479" Column="1" TopLine="464"/>
+      </Position28>
+      <Position29>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="513" Column="21" TopLine="484"/>
+      </Position29>
+      <Position30>
+        <Filename Value="unittagdic.pas"/>
+        <Caret Line="505" Column="13" TopLine="484"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="maker"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="..\units"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Linking>
+      <Debugging>
+        <GenerateDebugInfo Value="True"/>
+        <GenerateDwarf Value="True"/>
+        <StripSymbols Value="True"/>
+        <UseExternalDbgSyms Value="True"/>
+      </Debugging>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerMessages>
+        <UseMsgFile Value="True"/>
+      </CompilerMessages>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Watches Count="1">
+      <Item1>
+        <Expression Value="cfg.Tags.Count"/>
+      </Item1>
+    </Watches>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

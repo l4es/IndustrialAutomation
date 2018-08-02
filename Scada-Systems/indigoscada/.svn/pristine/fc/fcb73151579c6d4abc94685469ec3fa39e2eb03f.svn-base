@@ -1,0 +1,58 @@
+showSRCS::
+	@for i in $(DIRS) ; \
+	do \
+		if [ $$i != "." ]  ; then \
+			(cd $$i ;\
+			${MAKE} showSRCS) ;\
+		fi\
+	done
+all::
+	@for i in $(DIRS) ; \
+	do \
+		if [ $$i != "." ]  ; then \
+			(cd $$i ;\
+		 	${MAKE} all) ;\
+		fi\
+	done
+
+clean::
+	@for i in $(DIRS) ; \
+	do \
+		if [ $$i != "." ] ; then \
+			(cd $$i ;\
+			$(MAKE) clean) ;\
+		fi\
+	done
+
+install::
+	@for i in $(DIRS) ; \
+	do \
+		if [ $$i != "." ] ; then \
+			(cd $$i ;\
+			$(MAKE) install) ;\
+		fi\
+	done
+
+clobber::
+	@for i in $(DIRS) ; \
+	do \
+		if [ $$i != "." ] ; then \
+			(cd $$i ;\
+			$(MAKE) clobber) ;\
+		fi\
+	done
+
+headers::
+	@for i in $(DIRS) ; \
+	do \
+		if [ $$i != "." ] ; then \
+			(cd $$i ;\
+			$(MAKE) headers ) ;\
+		fi\
+	done
+
+
+
+
+
+

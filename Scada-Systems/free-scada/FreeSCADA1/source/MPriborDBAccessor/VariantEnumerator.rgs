@@ -1,0 +1,24 @@
+HKCR
+{
+	MPriborDBAccessor.VariantEnumerator.1 = s 'VariantEnumerator Class'
+	{
+		CLSID = s '{E96217AC-3BDF-4604-B6C7-DDAA50B67B8A}'
+	}
+	MPriborDBAccessor.VariantEnumerator = s 'VariantEnumerator Class'
+	{
+		CLSID = s '{E96217AC-3BDF-4604-B6C7-DDAA50B67B8A}'
+		CurVer = s 'MPriborDBAccessor.VariantEnumerator.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {E96217AC-3BDF-4604-B6C7-DDAA50B67B8A} = s 'VariantEnumerator Class'
+		{
+			ProgID = s 'MPriborDBAccessor.VariantEnumerator.1'
+			VersionIndependentProgID = s 'MPriborDBAccessor.VariantEnumerator'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{2B4525FF-0734-4D9C-9FF4-0E3B6D462702}'
+		}
+	}
+}

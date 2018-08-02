@@ -1,0 +1,106 @@
+#include <stdlib.h>
+:memdump  // turn memdump off
+char *p = "hello";
+p[-1];  // READ:attempted before allowed access area  
+p[0];   // must pass
+p[5];   // must pass 
+p[6];   // READ: attempted beyound allowed access area 
+char *q = p;
+p[-1];  // READ:attempted before allowed access area  
+p[0];   // must pass
+p[5];   // must pass 
+p[6];   // READ: attempted beyound allowed access area 
+
+int aa[2][2], *a;
+aa[-1][0];  // READ:attempted before allowed access area  
+aa[0][0];   // must pass
+aa[1][0];   // must pass 
+aa[2][0];   // READ: attempted beyound allowed access area 
+*aa[-1];  // READ:attempted before allowed access area  
+*aa[0];   // must pass
+*aa[1];   // must pass 
+*aa[2];   // READ: attempted beyound allowed access area 
+
+char *pp[] = {"hello", "world"};
+pp[0][-1]; // READ:attempted before allowed access area 
+pp[0][0];  // must pass
+pp[0][5];  // must pass
+pp[0][6];  // READ: attempted beyound allowed access area 
+pp[1][-1]; // READ: attempted beyound allowed access area
+pp[1][0];  // must pass
+pp[1][5];  // must pass
+pp[1][6];  // READ: attempted beyound allowed access area 
+
+char *mp = malloc(10);
+void foo(char *p) {p[0]; p[9];} 
+__LINE__;
+foo(mp);  // must pass
+__LINE__;
+foo(mp-1); // must fail 
+__LINE__;
+foo(mp+1); // must fail;
+free(mp);
+
+typedef struct {int x, y;} point_t; 
+point_t *pxy, pointstruct;
+pxy = &pointstruct; 1;
+void point(){ static point_t p; p.x; p.y;}
+point(); /* must pass */
+void point2(point_t *p){ p->x; p->y;} 
+point(pxy); /* must pass */
+__LINE__;
+point2(pxy-1); /* must fail */
+__LINE__;
+point2(pxy+1); /* must fail */
+__LINE__;
+
+typedef struct {int a[3], b[3];} ab_t;
+ab_t ab, *abp;
+ab.a[-1];  // Array bound violation
+ab.a[0];   // must pass
+ab.a[2];   // must pass 
+ab.a[3];   // Array bound violation  (Doesn't work yet, alignment problem)
+ab.b[-1];  // Array bound violation  (Doesn't work yet, alignment problem)
+ab.b[0];   // must pass
+ab.b[2];   // must pass 
+ab.b[3];   // Array bound violation 
+
+int i1 = 1, i2 = 2, *ip;
+int *i1_2[] = {&i1,&i2};
+
+*i1_2[0];  // must pass  
+*i1_2[1];  // must pass 
+*i1_2[2];  // READ: attempted beyound allowed access area
+*i1_2[-1]; // READ: attempted beyound allowed access area  
+
+ip = &i1; 1;
+*ip;     // must pass
+*(ip+1); // READ: attempted beyound allowed access area  
+
+
+void ff1() { int a[3],b[2]; b[-1];}
+ff1();     // READ: attempted before allowed access area
+
+void ff2() { int a[3],b[2]; b[2];}
+ff2();     // READ: attempted beyond allowed access area
+
+:exit
+
+**************************************
+
+
+int c[2][3] = { {1,2,}, {4,5,}, };
+int *v[2];
+v[0] = c[0]; v[1] = c[1];
+v[0][0]; v[1][2]; c[1][2];
+
+
+int *ip, i; ip = &i; *ip = 5; i== *ip;
+ 
+int ia1d[5]; *ia1d;
+
+
+
+
+
+

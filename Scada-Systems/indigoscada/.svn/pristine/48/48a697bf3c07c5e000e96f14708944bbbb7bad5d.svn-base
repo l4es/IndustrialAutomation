@@ -1,0 +1,769 @@
+ISO-C AND POSIX.1 header file contents.
+
+-------------------------------------------------------------------------------------------
+       ISO-C                               POSIX.1 
+-------------------------------------------------------------------------------------------
+
+assert.h    NDEBUG                   
+assert.h    assert                   
+-------------------------------------------------------------------------------------------
+
+ctype.h     isalnum                  
+ctype.h     isalpha                  
+ctype.h     iscntrl                  
+ctype.h     isdigit                  
+ctype.h     isgraph                  
+ctype.h     islower                  
+ctype.h     isprint                  
+ctype.h     ispunct                  
+ctype.h     isspace                  
+ctype.h     isupper                  
+ctype.h     isxdigit                 
+ctype.h     tolower                  
+ctype.h     toupper                  
+-------------------------------------------------------------------------------------------
+
+errno.h     EDOM                     errno.h          E2BIG                    
+errno.h     EILSEQ                   errno.h          EACCES                   
+errno.h     ERANGE                   errno.h          EAGAIN                   
+errno.h     errno		     errno.h          EBADF                    
+				     errno.h          EBUSY                    
+				     errno.h          ECHILD                   
+				     errno.h          EDEADLK                  
+				     errno.h          EEXIST                   
+				     errno.h          EFAULT                   
+				     errno.h          EFBIG                    
+				     errno.h          EINTR                    
+				     errno.h          EINVAL                   
+				     errno.h          EIO                      
+				     errno.h          EISDIR                   
+				     errno.h          EMFILE                   
+				     errno.h          EMLINK                   
+				     errno.h          ENAMETOOLONG             
+				     errno.h          ENFILE                   
+				     errno.h          ENODEV                   
+				     errno.h          ENOENT                   
+				     errno.h          ENOEXEC                  
+				     errno.h          ENOLCK                   
+				     errno.h          ENOMEM                   
+				     errno.h          ENOSPC                   
+				     errno.h          ENOSYS                   
+				     errno.h          ENOTDIR                  
+				     errno.h          ENOTEMPTY                
+				     errno.h          ENOTTY                   
+				     errno.h          ENXIO                    
+				     errno.h          EPERM                    
+				     errno.h          EPIPE                    
+				     errno.h          EROFS                    
+				     errno.h          ESPIPE                   
+				     errno.h          ESRCH                    
+				     errno.h          EXDEV                    
+-------------------------------------------------------------------------------------------
+
+float.h     DBL_DIG                  
+float.h     DBL_EPSILON              
+float.h     DBL_MANT_DIG             
+float.h     DBL_MAX                  
+float.h     DBL_MAX_10_EXP           
+float.h     DBL_MAX_EXP              
+float.h     DBL_MIN                  
+float.h     DBL_MIN_10_EXP           
+float.h     DBL_MIN_EXP              
+float.h     FLT_DIG                  
+float.h     FLT_EPSILON              
+float.h     FLT_MANT_DIG             
+float.h     FLT_MAX                  
+float.h     FLT_MAX_10_EXP           
+float.h     FLT_MAX_EXP              
+float.h     FLT_MIN                  
+float.h     FLT_MIN_10_EXP           
+float.h     FLT_MIN_EXP              
+float.h     FLT_RADIX                
+float.h     FLT_ROUNDS               
+float.h     LDBL_DIG                 
+float.h     LDBL_EPSILON             
+float.h     LDBL_MANT_DIG            
+float.h     LDBL_MAX                 
+float.h     LDBL_MAX_10_EXP          
+float.h     LDBL_MAX_EXP             
+float.h     LDBL_MIN                 
+float.h     LDBL_MIN_10_EXP          
+float.h     LDBL_MIN_EXP             
+-------------------------------------------------------------------------------------------
+
+iso646.h    and                      
+iso646.h    and_eq                   
+iso646.h    bitand                   
+iso646.h    bitor                    
+iso646.h    compl                    
+iso646.h    not                      
+iso646.h    not_eq                   
+iso646.h    or                       
+iso646.h    or_eq                    
+iso646.h    xor                      
+iso646.h    xor_eq                   
+-------------------------------------------------------------------------------------------
+
+limits.h    CHAR_BIT                 limits.h         ARG_MAX                  
+limits.h    CHAR_MAX                 limits.h         CHILD_MAX                
+limits.h    CHAR_MIN                 limits.h         LINK_MAX                 
+limits.h    INT_MAX                  limits.h         MAX_CANON                
+limits.h    INT_MIN                  limits.h         MAX_INPUT                
+limits.h    LONG_MAX                 limits.h         NAME_MAX                 
+limits.h    LONG_MIN                 limits.h         NGROUPS_MAX              
+limits.h    MB_LEN_MAX               limits.h         OPEN_MAX                 
+limits.h    SCHAR_MAX                limits.h         PIPE_BUF                 
+limits.h    SCHAR_MIN                limits.h         SSIZE_MAX                
+limits.h    SHRT_MAX                 limits.h         STREAM_MAX               
+limits.h    SHRT_MIN                 limits.h         TZNAME_MAX               
+limits.h    UCHAR_MAX                limits.h         _POSIX_ARG_MAX           
+limits.h    UINT_MAX                 limits.h         _POSIX_CHILD_MAX         
+limits.h    ULONG_MAX                limits.h         _POSIX_LINK_MAX          
+limits.h    USHRT_MAX                limits.h         _POSIX_MAX_CANON         
+				     limits.h         _POSIX_MAX_INPUT         
+				     limits.h         _POSIX_NAME_MAX          
+				     limits.h         _POSIX_NGROUPS_MAX       
+				     limits.h         _POSIX_OPEN_MAX          
+				     limits.h         _POSIX_PATH_MAX          
+				     limits.h         _POSIX_PIPE_BUF          
+				     limits.h         _POSIX_SSIZE             
+                                     limits.h         _POSIX_STREAM_MAX           
+				     limits.h         _POSIX_TZNAME_MAX        
+-------------------------------------------------------------------------------------------
+
+locale.h    LC_ALL                   
+locale.h    LC_COLLATE               
+locale.h    LC_CTYPE                 
+locale.h    LC_MONETARY              
+locale.h    LC_NUMERIC               
+locale.h    LC_TIME                  
+locale.h    NULL                     
+locale.h    lconv                    
+locale.h    localeconv               
+locale.h    setlocale                
+-------------------------------------------------------------------------------------------
+
+math.h      HUGE_VAL                 
+math.h      acos                     
+math.h      acosf                    
+math.h      acosl                    
+math.h      asin                     
+math.h      asinf                    
+math.h      asinl                    
+math.h      atan                     
+math.h      atan2                    
+math.h      atan2f                   
+math.h      atan2l                   
+math.h      atanf                    
+math.h      atanl                    
+math.h      ceil                     
+math.h      ceilf                    
+math.h      ceill                    
+math.h      cos                      
+math.h      cosf                     
+math.h      cosh                     
+math.h      coshf                    
+math.h      coshl                    
+math.h      cosl                     
+math.h      exp                      
+math.h      expf                     
+math.h      expl                     
+math.h      fabs                     
+math.h      fabsf                    
+math.h      fabsl                    
+math.h      floor                    
+math.h      floorf                   
+math.h      floorl                   
+math.h      fmod                     
+math.h      fmodf                    
+math.h      fmodl                    
+math.h      frexp                    
+math.h      frexpf                   
+math.h      frexpl                   
+math.h      ldexp                    
+math.h      ldexpf                   
+math.h      ldexpl                   
+math.h      log                      
+math.h      log10                    
+math.h      log10f                   
+math.h      log10l                   
+math.h      logf                     
+math.h      logl                     
+math.h      modf                     
+math.h      modff                    
+math.h      modfl                    
+math.h      pow                      
+math.h      powf                     
+math.h      powl                     
+math.h      sin                      
+math.h      sinf                     
+math.h      sinh                     
+math.h      sinhf                    
+math.h      sinhl                    
+math.h      sinl                     
+math.h      sqrt                     
+math.h      sqrtf                    
+math.h      sqrtl                    
+math.h      tan                      
+math.h      tanf                     
+math.h      tanh                     
+math.h      tanhf                    
+math.h      tanhl                    
+math.h      tanl                     
+-------------------------------------------------------------------------------------------
+
+setjmp.h    jmp_buf                  setjmp.h         sigjmp_buf               
+setjmp.h    longjmp                  setjmp.h         siglongjmp               
+setjmp.h    setjmp                   setjmp.h         sigsetjmp                
+-------------------------------------------------------------------------------------------
+
+signal.h    SIGABRT                  signal.h         SA_NOCLDSTOP             
+signal.h    SIGFPE                   signal.h         SIGALRM                  
+signal.h    SIGILL                   signal.h         SIGCHLD                  
+signal.h    SIGINT                   signal.h         SIGCONT                  
+signal.h    SIGSEGV                  signal.h         SIGHUP                   
+signal.h    SIGTERM                  signal.h         SIGKILL                  
+signal.h    SIG_DFL                  signal.h         SIGPIPE                  
+signal.h    SIG_ERR                  signal.h         SIGQUIT                  
+signal.h    SIG_IGN                  signal.h         SIGSTOP                  
+signal.h    raise                    signal.h         SIGTSTP                  
+signal.h    sig_atomic_t             signal.h         SIGTTIN                  
+signal.h    signal                   signal.h         SIGTTOU                  
+				     signal.h         SIGUSR1                  
+				     signal.h         SIGUSR2                  
+				     signal.h         SIG_BLOCK                
+				     signal.h         SIG_SETMASK              
+				     signal.h         SIG_UNBLOCK              
+				     signal.h         kill                     
+				     signal.h         sigaction                
+				     signal.h         sigaddset                
+				     signal.h         sigdelset                
+				     signal.h         sigemptyset              
+				     signal.h         sigfillset               
+				     signal.h         sigismember              
+				     signal.h         sigpending               
+				     signal.h         sigprocmask              
+				     signal.h         sigset_t                 
+				     signal.h         sigsuspend               
+-------------------------------------------------------------------------------------------
+
+stdarg.h    va_end                   
+stdarg.h    va_list                  
+stdarg.h    va_start                 
+-------------------------------------------------------------------------------------------
+
+stddef.h    NULL                     
+stddef.h    offsetof                 
+stddef.h    ptrdiff_t                
+stddef.h    size_t                   
+stddef.h    wchar_t                  
+-------------------------------------------------------------------------------------------
+
+stdio.h     BUFSIZ                   stdio.h          L_ctermid                
+stdio.h     EOF                      stdio.h          L_cuserid                
+stdio.h     FILE                     stdio.h          STREAM_MAX               
+stdio.h     FILENAME_MAX             stdio.h          fdopen                   
+stdio.h     FOPEN_MAX                stdio.h          fileno                   
+stdio.h     L_tmpnam                 
+stdio.h     NULL                     
+stdio.h     SEEK_CUR                 
+stdio.h     SEEK_END                 
+stdio.h     SEEK_SET                 
+stdio.h     TMP_MAX                  
+stdio.h     _IOFBF                   
+stdio.h     _IOLBF                   
+stdio.h     _IONBF                   
+stdio.h     clearerr                 
+stdio.h     fclose                   
+stdio.h     feof                     
+stdio.h     ferror                   
+stdio.h     fflush                   
+stdio.h     fgetc                    
+stdio.h     fgetpos                  
+stdio.h     fgets                    
+stdio.h     fopen                    
+stdio.h     fpos_t                   
+stdio.h     fprintf                  
+stdio.h     fputc                    
+stdio.h     fputs                    
+stdio.h     fread                    
+stdio.h     freopen                  
+stdio.h     fscanf                   
+stdio.h     fseek                    
+stdio.h     fsetpos                  
+stdio.h     ftell                    
+stdio.h     fwrite                   
+stdio.h     getc                     
+stdio.h     getchar                  
+stdio.h     gets                     
+stdio.h     perror                   
+stdio.h     printf                   
+stdio.h     putc                     
+stdio.h     putchar                  
+stdio.h     puts                     
+stdio.h     remove                   
+stdio.h     rename                   
+stdio.h     rewind                   
+stdio.h     scanf                    
+stdio.h     setbuf                   
+stdio.h     setvbuf                  
+stdio.h     size_t                   
+stdio.h     sprintf                  
+stdio.h     sscanf                   
+stdio.h     stderr                   
+stdio.h     stdin                    
+stdio.h     stdout                   
+stdio.h     tmpfile                  
+stdio.h     tmpnam                   
+stdio.h     ungetc                   
+stdio.h     vfprintf                 
+stdio.h     vprintf                  
+stdio.h     vsprintf                 
+-------------------------------------------------------------------------------------------
+
+stdlib.h    EXIT_FAILURE             
+stdlib.h    EXIT_SUCCESS             
+stdlib.h    MB_CUR_MAX               
+stdlib.h    NULL                     
+stdlib.h    RAND_MAX                 
+stdlib.h    abort                    
+stdlib.h    abs                      
+stdlib.h    atexit                   
+stdlib.h    atof                     
+stdlib.h    atoi                     
+stdlib.h    atol                     
+stdlib.h    bsearch                  
+stdlib.h    calloc                   
+stdlib.h    div                      
+stdlib.h    div_t                    
+stdlib.h    exit                     
+stdlib.h    free                     
+stdlib.h    getenv                   
+stdlib.h    labs                     
+stdlib.h    ldiv                     
+stdlib.h    ldiv_t                   
+stdlib.h    malloc                   
+stdlib.h    mblen                    
+stdlib.h    mbstowcs                 
+stdlib.h    mbtowc                   
+stdlib.h    qsort                    
+stdlib.h    rand                     
+stdlib.h    realloc                  
+stdlib.h    size_t                   
+stdlib.h    srand                    
+stdlib.h    strtod                   
+stdlib.h    strtol                   
+stdlib.h    strtoul                  
+stdlib.h    system                   
+stdlib.h    wchar_t                  
+stdlib.h    wcstombs                 
+stdlib.h    wctomb                   
+-------------------------------------------------------------------------------------------
+
+string.h    NULL                     
+string.h    memchr                   
+string.h    memcmp                   
+string.h    memcpy                   
+string.h    memmove                  
+string.h    memset                   
+string.h    size_t                   
+string.h    strcat                   
+string.h    strchr                   
+string.h    strcmp                   
+string.h    strcoll                  
+string.h    strcpy                   
+string.h    strcspn                  
+string.h    strerror                 
+string.h    strlen                   
+string.h    strncat                  
+string.h    strncmp                  
+string.h    strncpy                  
+string.h    strpbrk                  
+string.h    strrchr                  
+string.h    strspn                   
+string.h    strstr                   
+string.h    strtok                   
+string.h    strxfrm                  
+-------------------------------------------------------------------------------------------
+
+time.h      CLOCKS_PER_SEC           time.h           CLK_TCK                  
+time.h      NULL                     time.h           environ                  
+time.h      asctime                  time.h           tzset                    
+time.h      clock                    
+time.h      clock_t                  
+time.h      ctime                    
+time.h      difftime                 
+time.h      gmtime                   
+time.h      localtime                
+time.h      mktime                   
+time.h      size_t                   
+time.h      strftime                 
+time.h      time                     
+time.h      time_t                   
+time.h      tm                       
+-------------------------------------------------------------------------------------------
+
+wchar.h     NULL                     
+wchar.h     WCHAR_MAX                
+wchar.h     WCHAR_MIN                
+wchar.h     WEOF                     
+wchar.h     btowc                    
+wchar.h     fgetwc                   
+wchar.h     fgetws                   
+wchar.h     fputwc                   
+wchar.h     fputws                   
+wchar.h     fwide                    
+wchar.h     fwprintf                 
+wchar.h     fwscanf                  
+wchar.h     getwc                    
+wchar.h     getwchar                 
+wchar.h     mbrlen                   
+wchar.h     mbrtowc                  
+wchar.h     mbsinit                  
+wchar.h     mbsrtowcs                
+wchar.h     mbstate_t                
+wchar.h     putwc                    
+wchar.h     putwchar                 
+wchar.h     size_t                   
+wchar.h     swprintf                 
+wchar.h     swscanf                  
+wchar.h     ungetwc                  
+wchar.h     vfwprintf                
+wchar.h     vswprintf                
+wchar.h     vwprintf                 
+wchar.h     wchar_t                  
+wchar.h     wcrtomb                  
+wchar.h     wcscat                   
+wchar.h     wcschr                   
+wchar.h     wcscmp                   
+wchar.h     wcscoll                  
+wchar.h     wcscpy                   
+wchar.h     wcscspn                  
+wchar.h     wcsftime                 
+wchar.h     wcslen                   
+wchar.h     wcsncat                  
+wchar.h     wcsncmp                  
+wchar.h     wcsncpy                  
+wchar.h     wcspbrk                  
+wchar.h     wcsrchr                  
+wchar.h     wcsrtombs                
+wchar.h     wcsspn                   
+wchar.h     wcsstr                   
+wchar.h     wcstod                   
+wchar.h     wcstok                   
+wchar.h     wcstol                   
+wchar.h     wcstoul                  
+wchar.h     wcsxfrm                  
+wchar.h     wctob                    
+wchar.h     wint_t                   
+wchar.h     wmemchr                  
+wchar.h     wmemcmp                  
+wchar.h     wmemcpy                  
+wchar.h     wmemmove                 
+wchar.h     wmemset                  
+wchar.h     wprintf                  
+wchar.h     wscanf                   
+-------------------------------------------------------------------------------------------
+
+wctype.h    iswalnum                 
+wctype.h    iswalpha                 
+wctype.h    iswcntrl                 
+wctype.h    iswctype                 
+wctype.h    iswdigit                 
+wctype.h    iswgraph                 
+wctype.h    iswlower                 
+wctype.h    iswprint                 
+wctype.h    iswpunct                 
+wctype.h    iswspace                 
+wctype.h    iswupper                 
+wctype.h    iswxdigit                
+wctype.h    towctrans                
+wctype.h    towlower                 
+wctype.h    towupper                 
+wctype.h    wctrans                  
+wctype.h    wctrans_t                
+wctype.h    wctype                   
+wctype.h    wctype_t                 
+wctype.h    wint_t                   
+-------------------------------------------------------------------------------------------
+
+                                     dirent.h         DIR                      
+                                     dirent.h         closedir                 
+                                     dirent.h         dirent                   
+                                     dirent.h         opendir                  
+                                     dirent.h         readdir                  
+                                     dirent.h         rewinddir                
+-------------------------------------------------------------------------------------------
+
+                                     fcntl.h          FD_CLOEXEC               
+                                     fcntl.h          F_DUPFD                  
+                                     fcntl.h          F_GETFD                  
+                                     fcntl.h          F_GETFL                  
+                                     fcntl.h          F_GETLK                  
+                                     fcntl.h          F_RDLCK                  
+                                     fcntl.h          F_SETFD                  
+                                     fcntl.h          F_SETFL                  
+                                     fcntl.h          F_SETLK                  
+                                     fcntl.h          F_SETLKW                 
+                                     fcntl.h          F_UNLCK                  
+                                     fcntl.h          F_WRLCK                  
+                                     fcntl.h          O_ACCMODE                
+                                     fcntl.h          O_APPEND                 
+                                     fcntl.h          O_CREAT                  
+                                     fcntl.h          O_EXCL                   
+                                     fcntl.h          O_NOCTTY                 
+                                     fcntl.h          O_NONBLOCK               
+                                     fcntl.h          O_RDONLY                 
+                                     fcntl.h          O_RDWR                   
+                                     fcntl.h          O_TRUNC                  
+                                     fcntl.h          O_WRONLY                 
+                                     fcntl.h          creat                    
+                                     fcntl.h          fcntl                    
+                                     fcntl.h          flock                    
+                                     fcntl.h          open                     
+-------------------------------------------------------------------------------------------
+
+                                     grp.h            getgrgid                 
+                                     grp.h            getgrnam                 
+                                     grp.h            group                    
+-------------------------------------------------------------------------------------------
+
+                                     pwd.h            getpwnam                 
+                                     pwd.h            getpwuid                 
+                                     pwd.h            passwd                   
+-------------------------------------------------------------------------------------------
+
+                                     sys/stat.h       S_IRGRP                  
+                                     sys/stat.h       S_IROTH                  
+                                     sys/stat.h       S_ISBLK                  
+                                     sys/stat.h       S_ISCHR                  
+                                     sys/stat.h       S_ISDIR                  
+                                     sys/stat.h       S_ISFIFO                 
+                                     sys/stat.h       S_ISGID                  
+                                     sys/stat.h       S_ISREG                  
+                                     sys/stat.h       S_ISUID                  
+                                     sys/stat.h       S_IUSR                   
+                                     sys/stat.h       S_IWGRP                  
+                                     sys/stat.h       S_IWOTH                  
+                                     sys/stat.h       S_IWUSR                  
+                                     sys/stat.h       S_IWXG                   
+                                     sys/stat.h       S_IWXO                   
+                                     sys/stat.h       S_IWXU                   
+                                     sys/stat.h       S_IXGRP                  
+                                     sys/stat.h       S_IXOTH                  
+                                     sys/stat.h       S_IXUSR                  
+                                     sys/stat.h       chmod                    
+                                     sys/stat.h       fstat                    
+                                     sys/stat.h       mkdir                    
+                                     sys/stat.h       mkfifo                   
+                                     sys/stat.h       stat                     
+                                     sys/stat.h       stat (struct)            
+                                     sys/stat.h       umask                    
+-------------------------------------------------------------------------------------------
+                                     sys/times.h      clock_t                  
+                                     sys/times.h      times                    
+                                     sys/times.h      tms                      
+
+-------------------------------------------------------------------------------------------
+
+                                     sys/types.h      dev_t                    
+                                     sys/types.h      gid_t                    
+                                     sys/types.h      ino_t                    
+                                     sys/types.h      mode_t                   
+                                     sys/types.h      nlink_t                  
+                                     sys/types.h      off_t                    
+                                     sys/types.h      pid_t                    
+                                     sys/types.h      size_t                   
+                                     sys/types.h      ssize_t                  
+                                     sys/types.h      uid_t                    
+-------------------------------------------------------------------------------------------
+
+                                     sys/utsname.h    uname                    
+                                     sys/utsname.h    utsname                  
+-------------------------------------------------------------------------------------------
+
+                                     sys/wait.h       WEXITSTATUS              
+                                     sys/wait.h       WIFEXITED                
+                                     sys/wait.h       WIFSIGNALED              
+                                     sys/wait.h       WIFSTOPPED               
+                                     sys/wait.h       WNOHANG                  
+                                     sys/wait.h       WSTOPSIG                 
+                                     sys/wait.h       WTERMSIG                 
+                                     sys/wait.h       WUNTRACED                
+                                     sys/wait.h       wait                     
+                                     sys/wait.h       waitpid                  
+-------------------------------------------------------------------------------------------
+
+                                     termios.h        B0                       
+                                     termios.h        B110                     
+                                     termios.h        B1200                    
+                                     termios.h        B134                     
+                                     termios.h        B150                     
+                                     termios.h        B1800                    
+                                     termios.h        B19200                   
+                                     termios.h        B200                     
+                                     termios.h        B2400                    
+                                     termios.h        B300                     
+                                     termios.h        B38400                   
+                                     termios.h        B4800                    
+                                     termios.h        B50                      
+                                     termios.h        B600                     
+                                     termios.h        B75                      
+                                     termios.h        B9600                    
+                                     termios.h        BRKINT                   
+                                     termios.h        CLOCAL                   
+                                     termios.h        CREAD                    
+                                     termios.h        CS5                      
+                                     termios.h        CS6                      
+                                     termios.h        CS7                      
+                                     termios.h        CS8                      
+                                     termios.h        CSIZE                    
+                                     termios.h        CSTOPB                   
+                                     termios.h        ECHO                     
+                                     termios.h        ECHOE                    
+                                     termios.h        ECHOK                    
+                                     termios.h        ECHONL                   
+                                     termios.h        HUPCL                    
+                                     termios.h        ICANON                   
+                                     termios.h        ICRNL                    
+                                     termios.h        IEXTEN                   
+                                     termios.h        IGNBRK                   
+                                     termios.h        IGNCR                    
+                                     termios.h        IGNLCR                   
+                                     termios.h        IGNPAR                   
+                                     termios.h        INPCK                    
+                                     termios.h        ISIG                     
+                                     termios.h        ISTRIP                   
+                                     termios.h        IXOFF                    
+                                     termios.h        IXON                     
+                                     termios.h        NCCS                     
+                                     termios.h        NOFLSH                   
+                                     termios.h        OPOST                    
+                                     termios.h        PARENB                   
+                                     termios.h        PARMRK                   
+                                     termios.h        PARODD                   
+                                     termios.h        TCIFLUSH                 
+                                     termios.h        TCIOFF                   
+                                     termios.h        TCIOFLUSH                
+                                     termios.h        TCION                    
+                                     termios.h        TCOFLUSH                 
+                                     termios.h        TCSADRAIN                
+                                     termios.h        TCSAFLUSH                
+                                     termios.h        TCSANOW                  
+                                     termios.h        TOSTOP                   
+                                     termios.h        VEOF                     
+                                     termios.h        VEOL                     
+                                     termios.h        VERASE                   
+                                     termios.h        VINTR                    
+                                     termios.h        VKILL                    
+                                     termios.h        VMIN                     
+                                     termios.h        VQUIT                    
+                                     termios.h        VSTART                   
+                                     termios.h        VSTOP                    
+                                     termios.h        VSUSP                    
+                                     termios.h        VTIME                    
+                                     termios.h        cc_t                     
+                                     termios.h        cfgetispeed              
+                                     termios.h        cfgetospeed              
+                                     termios.h        cfsetispeed              
+                                     termios.h        cfsetospeed              
+                                     termios.h        speed_t                  
+                                     termios.h        tcdrain                  
+                                     termios.h        tcflag_t                 
+                                     termios.h        tcflow                   
+                                     termios.h        tcflush                  
+                                     termios.h        tcgetattr                
+                                     termios.h        tcsendbreak              
+                                     termios.h        tcsetattr                
+                                     termios.h        termios                          
+-------------------------------------------------------------------------------------------
+
+                                     unistd.h         F_OK                     
+                                     unistd.h         R_OK                     
+                                     unistd.h         SEEK_CUR                 
+                                     unistd.h         SEEK_END                 
+                                     unistd.h         SEEK_SET                 
+                                     unistd.h         STDERR_FILENO            
+                                     unistd.h         STDIN_FILENO             
+                                     unistd.h         STDOUT_FILENO            
+                                     unistd.h         W_OK                     
+                                     unistd.h         X_OK                     
+                                     unistd.h         _PC_CHOWN_RESTRICTED     
+                                     unistd.h         _PC_MAX_CANON            
+                                     unistd.h         _PC_MAX_INPUT            
+                                     unistd.h         _PC_NAME_MAX             
+                                     unistd.h         _PC_NO_TRUNC             
+                                     unistd.h         _PC_PATH_MAX             
+                                     unistd.h         _PC_PIPE_BUF             
+                                     unistd.h         _PC_VDISABLE             
+                                     unistd.h         _POSIX_CHOWN_RESTRICTED  
+                                     unistd.h         _POSIX_JOB_CONTROL       
+                                     unistd.h         _POSIX_NO_TRUNC          
+                                     unistd.h         _POSIX_SAVED_IDS         
+                                     unistd.h         _POSIX_VDISABLE          
+                                     unistd.h         _POSIX_VERSION           
+                                     unistd.h         _SC_ARG_MAX              
+                                     unistd.h         _SC_CHILD_MAX            
+                                     unistd.h         _SC_CLK_TCK              
+                                     unistd.h         _SC_JOB_CONTROL          
+                                     unistd.h         _SC_NGROUPS_MAX          
+                                     unistd.h         _SC_OPEN_MAX             
+                                     unistd.h         _SC_SAVED_IDS            
+                                     unistd.h         _SC_STREAM_MAX           
+                                     unistd.h         _SC_TZNAME_MAX           
+                                     unistd.h         _SC_VERSION              
+                                     unistd.h         _exit                    
+                                     unistd.h         access                   
+                                     unistd.h         alarm                    
+                                     unistd.h         chdir                    
+                                     unistd.h         chown                    
+                                     unistd.h         close                    
+                                     unistd.h         ctermid                  
+                                     unistd.h         cuserid                  
+                                     unistd.h         dup                      
+                                     unistd.h         dup2                     
+                                     unistd.h         execl                    
+                                     unistd.h         execle                   
+                                     unistd.h         execlp                   
+                                     unistd.h         execv                    
+                                     unistd.h         execve                   
+                                     unistd.h         execvp                   
+                                     unistd.h         fork                     
+                                     unistd.h         fpathconf                
+                                     unistd.h         getcwd                   
+                                     unistd.h         getegid                  
+                                     unistd.h         geteuid                  
+                                     unistd.h         getgid                   
+                                     unistd.h         getgroups                
+                                     unistd.h         getlogin                 
+                                     unistd.h         getpgrp                  
+                                     unistd.h         getpid                   
+                                     unistd.h         getppid                  
+                                     unistd.h         getuid                   
+                                     unistd.h         isatty                   
+                                     unistd.h         link                     
+                                     unistd.h         lseek                    
+                                     unistd.h         pathconf                 
+                                     unistd.h         pause                    
+                                     unistd.h         pipe                     
+                                     unistd.h         read                     
+                                     unistd.h         rmdir                    
+                                     unistd.h         setgid                   
+                                     unistd.h         setpgid                  
+                                     unistd.h         setsid                   
+                                     unistd.h         setuid                   
+                                     unistd.h         size_t                   
+                                     unistd.h         sleep                    
+                                     unistd.h         ssize_t                  
+                                     unistd.h         sysconf                  
+                                     unistd.h         tcgetpgrp                
+                                     unistd.h         tcsetpgrp                
+                                     unistd.h         ttyname                  
+                                     unistd.h         unlink                   
+                                     unistd.h         write                    
+-------------------------------------------------------------------------------------------
+
+                                     utime.h          utimbuf                  
+                                     utime.h          utime                    
+
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="lib/org.openscada.opc.dcom-0.5.0.jar"/>
+	<classpathentry kind="lib" path="lib/org.openscada.opc.lib-0.5.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Documents and Settings/rba/Desktop/org.openscada.utgard.opc.lib-0.4.2-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/jcifs-1.2.19.jar"/>
+	<classpathentry kind="lib" path="lib/openscada-utils.jar"/>
+	<classpathentry kind="lib" path="lib/j-interop-2.06.jar"/>
+	<classpathentry kind="lib" path="lib/j-interopdeps-1.4.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

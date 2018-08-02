@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ScadaBR</title>
+        <meta name="DESCRIPTION" content="ScadaBR Software"/>
+        <meta name="KEYWORDS" content="ScadaBR Software"/>
+        <link rel="stylesheet" href="resources/scadabr.css">
+        <link rel="icon" href="images/favicon.ico"/>
+        <link rel="shortcut icon" href="images/favicon.ico"/>
+        <script data-dojo-config="async: 1,
+                cacheBust: 1,
+                packages: [ // paths are relative to resources/dojo/dojo.js
+                { name: 'scadabr', location: '../scadabr' },
+                { name: 'dijit', location: '../dijit' }
+                ]"
+        src="resources/dojo/dojo.js"></script>
+
+        <script>
+            require(['dojo/domReady!'], function () {
+                require(["scadabr/desktop/Application"], function (Application) {
+                    var page = new Application({}, 'page');
+                    //TODO Warum geht das nicht??? 
+                    page.startup();
+                });
+            });
+        </script>
+    </head>
+    <body class="soria">
+        <style>
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                overflow:hidden;
+            }
+
+            #page {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+        <!--div id="static">
+            Some static or server-side generated content for search engines and clients with disabled JavaScript
+        </div>
+        <script>
+            document.write('<style media="all">#static { display: none; }</style>');
+        </script-->
+        <div id="page"></div>
+
+    </body>
+</html>
+

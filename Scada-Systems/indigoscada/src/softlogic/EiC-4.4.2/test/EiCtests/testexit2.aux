@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void f1()
+{
+    printf("f1\n");
+}
+void f2()
+{
+    printf("f2\n");
+}
+void f3()
+{
+    printf("f3\n");
+}
+
+void T1()
+{
+    atexit(f3);
+    atexit(f2);
+    atexit(f1);
+}
+
+
+int main()
+{
+    T1();
+    return 0;
+}
+#ifdef EiCtEsTs
+
+main();
+
+#endif
+
+

@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shmem", "shmem.vcproj", "{B8242F6C-5E6C-41A4-931B-149CD39E010D}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Debug DLL = Debug DLL
+		Release = Release
+		Release DLL = Release DLL
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{B8242F6C-5E6C-41A4-931B-149CD39E010D}.Debug.ActiveCfg = Debug|Win32
+		{B8242F6C-5E6C-41A4-931B-149CD39E010D}.Debug.Build.0 = Debug|Win32
+		{B8242F6C-5E6C-41A4-931B-149CD39E010D}.Debug DLL.ActiveCfg = Debug DLL|Win32
+		{B8242F6C-5E6C-41A4-931B-149CD39E010D}.Debug DLL.Build.0 = Debug DLL|Win32
+		{B8242F6C-5E6C-41A4-931B-149CD39E010D}.Release.ActiveCfg = Release|Win32
+		{B8242F6C-5E6C-41A4-931B-149CD39E010D}.Release.Build.0 = Release|Win32
+		{B8242F6C-5E6C-41A4-931B-149CD39E010D}.Release DLL.ActiveCfg = Release DLL|Win32
+		{B8242F6C-5E6C-41A4-931B-149CD39E010D}.Release DLL.Build.0 = Release DLL|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

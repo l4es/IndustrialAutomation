@@ -1,0 +1,277 @@
+<html><head><title> EiC's Bug Report List</title></head>
+<font size="2">
+<body bgcolor="white">
+<pre>
+	EiC's Bug list 
+
+Template bug report form
+----------------------------------------------
+REPORTER:
+PLATFORM:
+PROBLEM:
+EXAMPLE:
+POSSIBLE SOLUTION:
+TESTPROGRAM:
+STATUS: Not Fixed
+
+----------------------------------------------
+REPORTER: Martin Gonda (9/1/96)
+PROBLEM:
+	Possibly fix up pre-processor, so that illegal
+	statements which start with a hash (#) are caught.
+EXAMPLE:
+	#hello     ...would get through without an error
+POSSIBLE SOLUTION:
+TESTPROGAM:
+STATUS:	Fixed by Ed Breen
+----------------------------------------------
+REPORTER: Ed Breen
+PROBLEM: 
+	A failure to correctly process:
+
+	EiC > for(i=0;i<3;i++) { int a[5]; }
+
+EXAMPLE:
+
+   EiC 9> for(i=0;i<3;i++) { int a[5]; }
+
+   0:checkar  2 0          10:rvalint  5 0        
+   1:pushint  20           11:incint   1          
+   2:massign  12 1         12:stoint   5 0        
+   3:pushint  0            13:decint   1          
+   4:stoint   5 0          14:rvalint  5 0        
+   5:jmpU     7            15:bump     1          
+   6:rvalptr  1 1          16:pushint  3          
+   7:stoptr   0 1          17:ltint               
+   8:fmem     1 1          18:jmpTint  3          
+   9:reducear 2            19:halt                
+
+POSSIBLE SOLUTION:
+
+	The free memory instruction and the reducear instruction,
+lines 8 and 9, have been inserted too early. The resulting bytecode
+sequence should be more like:
+
+   EiC 11> {for(i=0;i<3;i++) { int a[5]; }}
+
+   0:checkar  2 0          10:stoint   5 0        
+   1:pushint  20           11:decint   1          
+   2:massign  1 1          12:rvalint  5 0        
+   3:pushint  0            13:bump     1          
+   4:stoint   5 0          14:pushint  3          
+   5:jmpU     12           15:ltint               
+   6:rvalptr  1 1          16:jmpTint  6          
+   7:stoptr   0 1          17:fmem     1 1        
+   8:rvalint  5 0          18:reducear 2          
+   9:incint   1            19:halt                
+
+The above solution forces an extra scoping level. However, this is not
+sensible for every translation unit entered at the command line.  But
+maybe, EiC could keep track of the level of statement nesting
+also. Then it could addinlocals (parser.c) at the end of each zero
+level statement, in addition to the current method of when the scoping
+level drops back to file scope?
+
+	if(S_LEVEL == 1 && Stmts == 0) 
+		addinlocals(...);
+
+TESTPROGRAM: see example
+STATUS: Fixed, as outlined in possible solution.
+----------------------------------------------
+REPORTER: Ed Breen
+PROBLEM:
+	Correct the get float/double section in the _Uscanf
+EXAMPLE:
+	for ungetting characters, for example,
+		fmt string = %f %s 
+		input = 100ergs. 
+		output = 100 rgs
+		output should be 100 ergs.
+POSSIBLE SOLUTION:
+	Solution requires 2 ungets not just 1.
+TESTPROGRAM:
+	errScanf1.c
+STATUS: Fixed by Ed Breen.
+----------------------------------------------
+REPORTER: Ed Breen
+PROBLEM:
+	Correct the problem with builtin functions
+	being prototyped when an error occurs. This problem
+	means that the user will have to restart EiC
+	to recover properly. 
+EXAMPLE:
+POSSIBLE SOLUTION:
+	It Has to do with the error recover stategy implemented when
+	the signals were added to EiC.
+TESTPOGRAM:  	
+STATUS: Fixed (hopefully)
+----------------------------------------------
+REPORTER: Ed Breen
+PROBLEM:  Does not allow redeclaration of structure specifiers:
+EXAMPLE:
+	struct Dvector { double x, y; };
+	struct Dvector { double x, y; };
+
+Error in tptr2.c near line 6: Illegal use of struct/union
+Error in tptr2.c near line 8: Expected  ; 
+
+POSSIBLE SOLUTION: ?
+TESTPROGRAM: see  example
+STATUS: Fixed by Ed Breen
+----------------------------------------------
+REPORTER: Ed Breen
+PROBLEM:  Memory leak caused when redefining an array:
+EXAMPLE:
+	int a[5];
+	int a[5];	
+item 1865 Create line 264 file cdecl.c nbytes 20
+
+POSSIBLE SOLUTION:  look at freetype.
+TESTPROGRAM: see example
+STATUS: Fixed, added routine freeArray to cdecl.c
+----------------------------------------------
+REPORTER: Ed Breen
+PROBLEM:  Memory leak caused by exit();
+EXAMPLE:
+	see file t1.c; this directory
+	#include t1.c
+	:memdump
+        (void)
+item 4436 Create line 127 file interpre.c nbytes 1200
+item 4435 Create line 41 file typemod.c nbytes 16
+
+POSSIBLE SOLUTION:
+TESTPROGRAM: see example
+STATUS: Not Fixed
+----------------------------------------------
+REPORTER:  Ed Breen
+PROBLEM:   False diagnostic
+EXAMPLE:
+	EiC 5> if (sizeof (char) * 8 == sizeof (double));
+	Warning: in ::EiC:: near line 5:  Non relational operation
+	0:pushint  1          
+	1:jmpFint  2          
+   	2:halt                
+
+POSSIBLE SOLUTION: Because sizeof (char) * 8 == sizeof (double) 
+		resolves to a constant and this might be causing the
+		problem.
+TESTPROGRAM: see example
+STATUS: Fixed, corrected bug with unsigned 
+           constant binary relational operators not
+	  converting the result to int properly.
+----------------------------------------------
+REPORTER: Ed Breen
+PROBLEM:  Parses an incorrect declaration
+EXAMPLE:
+	EiC 1> int (* foo[10])()[];
+        	(void)
+	EiC 2> :show foo
+	foo -> ARY[10]* dec_Func (void ) returning ARY[0]int 
+        	(void)
+	... // Simplification of the problem
+
+	EiC 10> int foo()[];
+        	(void)
+	EiC 11> :show foo
+	foo -> dec_Func (void ) returning ARY[0]int 
+        	(void)
+
+
+POSSIBLE SOLUTION: Check function declaration
+	code.
+TESTPROGRAM: see example
+STATUS: Fixed, added the check_decl function in
+	the decl.c module. Not an optimal solution,
+	but it catches both the above errors and
+	more.
+----------------------------------------------
+REPORTER: Ed Breen
+PROBLEM: False Ambiguous re-declaration
+EXAMPLE: 
+let t.c contain the following two lines 
+
+typedef struct { int a, b; } ab_t;
+ab_t * func(void) { ab_t * p; return p; }
+
+	EiC session
+
+EiC 2> #include t.c
+        (void)
+EiC 3> :rm ab_t
+        (void)
+EiC 4> #include t.c
+Error in t.c near line 30: Ambiguous re-declaration of `func'
+
+POSSIBLE SOLUTION:
+
+	This has something to do with the memory being freed --
+	I could make it illegal to remove the last
+	occurrence of a structure. But that would make
+	it impossible to change an existing structure. Better
+	still, handle memory aliasing in a more creative
+	way -- a big job, but probably worth it. 
+
+TESTPROGRAM:
+	see above.
+
+STATUS: Fixed by Ed Breen -- it turned out to be
+quite simple. 
+
+----------------------------------------------
+REPORTER: Ed Breen
+PROBLEM: EiC does not cast structures properly using va_args.
+EXAMPLE:
+
+typedef struct { int a, b; } ab_t;
+ab_t a = {5,5};
+
+int p(char *fmt, ...)
+{
+    ab_t x;
+    va_list ap;    
+    va_start(ap, fmt);
+    
+    x = va_arg(ap, ab_t);
+    va_end(ap);
+
+    return x.a;
+}
+
+// the following call returns garbage!
+
+p("",a);
+
+
+POSSIBLE SOLUTION:
+
+	The solution is to get the stack code to `drefptr' the pointer
+contained at the `ap' stack position, immediately before the `refmem'
+instruction. Although, this is easy to do, it upsets other existing
+code such as referencing members within an array of structures and
+structure assignments -- a rethink is in order.
+
+
+TESTPROGRAM:
+	see above
+
+STATUS: Not Fixed, but the current EiC implementation
+	flags the passing of a structure or union to
+	a variadic function as an error.
+----------------------------------------------
+
+</pre>
+
+<ADDRESS>
+<!-- ADDRESS field used for automatic automatic insertion of links -->
+</ADDRESS>
+
+</body>
+</html>
+
+
+
+
+
+
+

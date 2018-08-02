@@ -1,0 +1,6 @@
+#! /bin/sh
+
+MAJOR=`grep "GIGABASE_MAJOR_VERSION " gigabase.h | sed 's/.* //'`
+MINOR=`grep "GIGABASE_MINOR_VERSION " gigabase.h | sed 's/.* //'`
+
+echo $MAJOR.$MINOR

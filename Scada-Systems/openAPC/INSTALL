@@ -1,0 +1,95 @@
+This document describes how to build and package ControlRoom HMI/process
+control software for different target systems
+
+
+
+Building for Windows:
+---------------------
+
+In directory "ControlRoom" a VisualStudio solution "ControlRoom.sln" can be found.
+Load it and compile it as "Release" build for your desired target platform. It is
+tested and known to build smoothly with VisualStudio 2013, for other versions some
+manual changes may be necessary.
+As a precondition wxWidgets 3.0 (for x86 builds) or wxWidgets 3.1 (for x64 builds)
+is required. This is a free toolkit which can be downloaded from
+http://www.wxWidgets.org . The recommended file structure to make use of the
+compiled wxWidgets binaries and related includes as well as the ControlRoom files
+is as follows:
+
+wxWidgets-3
+    art
+    build
+    demos
+        OpenAPC -> contents of GIT / OpenSDK go here
+	        ControlRoom -> directory where ControlRoom.sln resides
+		    packaging
+            ...
+    distrib
+    ...
+
+
+Packaging for Windows:
+----------------------
+
+In directory "packaging" two scripts for NSIS Nullsoft Installer can be found:
+fullpackage.nsi for x86 builds and fullpackage64.nsi for x64 builds. The missing
+binaries and DLLs, that are required to create these packages completely, can be
+pulled out of the existing packages which are available at
+https://sourceforge.net/projects/oapc/files/
+
+
+
+Building for Linux:
+-------------------
+
+In directory "ControlRoom" a bash-script "buildall.sh" can be found. Change into
+this directory and execute the script by calling
+
+chmod 755 buildall.sh
+./buildall.sh
+
+Beside a working compiler (GCC) the script requires several additional packages
+which need to be installed in advance: wxGTK3-devel, portaudio-devel, bzip2-devel,
+mysql-libs-devel, postgresql-devel, lua-devel, readline-devel, zlib-devel.
+When some of these or some related packages are missing, compilation of some
+elements will fail, typically with some kind of "include file not found" error.
+Normally the name of the include file that is missing easily leads to the package
+that has to be installed to fulfill the dependencies.
+
+Packaging for Linux (RPM/CentOS and similar)
+--------------------------------------------
+
+In directory "packaging" a shell script "fullrpm64.sh" can be found, which copies
+all binaries (which have been built in previous step) into a suitable structure
+and then builds a RPM out of them using the spec file "controlroom64.spec". When
+you use this script for the first time, perform the following steps within this
+directory:
+
+chmod 755 fullrpm64.sh
+./fullrpm64.sh
+cp -r usr buildroot_backup/
+./fullrpm64.sh
+
+Once this is done, in future only one single call is necessary:
+
+./fullrpm64.sh
+
+Packaging for Ubuntu (DEB/Ubuntu and similar)
+---------------------------------------------
+
+In directory "packaging" a shell script "copydeb.sh" can be found, which copies
+all binaries which have been built in previous step into a suitable structure to
+let you build a DEB package out of it.
+When you use this script for the first time, perform the following steps within
+directory "packaging":
+
+chmod 755 copydeb.sh
+./copydeb.sh
+dpkg -b ControlRoom
+mv ControlRoom.deb ControlRoom-v.v-v.amd64.deb
+
+Once this was done, in future only this is necessary:
+
+./copydeb.sh
+dpkg -b ControlRoom
+mv ControlRoom.deb ControlRoom-v.v-v.amd64.deb

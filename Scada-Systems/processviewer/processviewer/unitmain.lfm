@@ -1,0 +1,75 @@
+object Form1: TForm1
+  Left = 88
+  Height = 567
+  Top = 96
+  Width = 629
+  Caption = 'Process Viewer'
+  ClientHeight = 567
+  ClientWidth = 629
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  OnResize = FormResize
+  Position = poDefaultPosOnly
+  LCLVersion = '0.9.29'
+  WindowState = wsMaximized
+  object PanelMain: TPanel
+    Left = 0
+    Height = 544
+    Top = 0
+    Width = 629
+    Align = alClient
+    BevelOuter = bvNone
+    Color = clForm
+    ParentColor = False
+    TabOrder = 0
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 544
+    Width = 629
+    Panels = <    
+      item
+        Text = 'Render time:'
+        Width = 90
+      end    
+      item
+        Text = '0'
+        Width = 50
+      end    
+      item
+        Text = 'I/O cycle time:'
+        Width = 90
+      end    
+      item
+        Text = '0'
+        Width = 80
+      end    
+      item
+        Width = 60
+      end    
+      item
+        Width = 30
+      end    
+      item
+        Text = 'Errors:'
+        Width = 50
+      end    
+      item
+        Text = '0'
+        Width = 50
+      end    
+      item
+        Alignment = taCenter
+        Text = 'DATE_TIME'
+        Width = 50
+      end>
+    SimplePanel = False
+  end
+  object Timer1: TTimer
+    Enabled = False
+    OnTimer = Timer1Timer
+    left = 36
+    top = 20
+  end
+end

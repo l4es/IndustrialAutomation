@@ -1,0 +1,694 @@
+\section{Syntax of the EiC C Grammar}
+\label{sec:Cgrammar}
+\index{syntax!C}
+
+For the purposes of comparison the syntax for the C language from
+\cite{kernighan-ritchie88} is given along side EiC's. 
+
+\newpage
+\footnotesize
+
+\begin{center}
+
+\PAIR
+{
+\T{EiC LL(1) GRAMMAR}
+}
+{
+\T{ANSI C LR GRAMMAR} 
+}
+
+\PAIR 
+{
+parse:\\
+\>  \T{:}  eic-command \\  
+\>	ext-decl \\
+\>	stmt  \\
+\>      pre-command \\
+eic-command: \\
+\>	\T{show}  id \\
+\>	option \\
+option: \T{one of}\\ 
+\>	\T{exit}  \T{listcode} \T{variables} \\ 
+\> 	\T{showline} \T{interpreter} \T{timer}
+}
+{
+
+}
+
+
+\PAIR
+{
+ext-decl:\\
+\> decl-spec f-ext-decl \\
+f-ext-decl: \\
+\> 	decl ff-ext-decl \\
+\>	\T{;} \\
+ff-ext-decl: \\
+\> 	comp-stmt \\
+\>	\T{=} initialiser fff-ext-decl \\
+\>	fff-ext-decl \\
+fff-ext-decl: \\
+\>	\T{;} \\
+\>	\T{,} init-decl-list \T{;} 
+}
+{
+ext-decl:\\
+\> 	func-def \\
+\> 	declaration \\ 
+func-def: \\
+\> decl-spec decl \underline{\U{[}decl-list\U{]}} comp-stmt \\
+\> \underline{decl \U{[}decl-list\U{]} comp-stmt}  \\
+declaration: \\
+\> 	decl-spec \U{[}init-decl-list\U{]} \T{;}
+}  	
+
+
+\PAIR
+{
+decl-spec:\\
+\>	store-class \U{[}decl-spec\U{]} \\
+\>	type-spec  \U{[}decl-spec\U{]} \\
+\> 	type-qual  \U{[}decl-spec\U{]} 
+} 
+{
+decl-spec:\\
+\>	store-class \U{[}decl-spec\U{]} \\
+\>	type-spec \U{[}decl-spec\U{]} \\
+\>	type-qual \U{[}decl-spec\U{]}
+}
+
+\PAIR
+{
+store-class:  \T{one of} \\
+\>	\T{auto} \T{register} \T{static} \\
+\>	\T{extern} \T{typedef} 
+}
+{
+store-class:  \T{one of} \\
+\>	\T{auto} \T{register} \T{static} \\
+\>	\T{extern} \T{typedef} 
+}
+
+
+\PAIR
+{
+type-qual: \T{one of} \\
+\> 	\T{const} \T{volatile} \\
+type-spec: \T{one of} \\
+\>	\T{void} \T{char} \T{short} \T{int} \\
+\>      \T{long} \T{float} \T{double}  \\
+\>	\T{signed}  \T{unsigned} struct-or-union \\
+\>	typedef-name enum-spec\\
+type-name: \\
+\>	spec-qual-list \U{[}abs-decl\U{]}\\
+typedef-name: \\
+\>	id
+}
+{
+type-qual: {\tt one of} \\
+\>	\T{const} \T{volatile} \\ 
+type-spec: \T{one of} \\
+\>	\T{void} \T{char} \T{short} \T{int} \\
+\>      \T{long} \T{float} \T{double}  \\
+\>	\T{signed}  \T{unsigned} struct-or-union \\
+\>	typedef-name enum-spec \\
+type-name: \\
+\>	spec-qual-list \U{[}abs-decl\U{]}\\
+typedef-name: \\
+\>	id
+}
+
+\PAIR
+{
+enum-spec:\\
+\>	\T{enum} f-enum-spec\\
+f-enum-spec:\\
+\>	\T{\{} enum-list \T{\}}\\
+\>	id \U{[}\T{\{} enum-list \T{\}}\U{]}\\
+enum-list:\\
+\>	enumerator \U{[}\T{,} enumerator\U{]}*\\
+enumerator:\\
+\>	id \U{[}\T{=} const-expr\U{]}
+}
+{
+enum-spec:\\
+\>	\T{enum} \U{[}id\U{]} \T{\{}enum-list\T{\}}\\
+\>	\T{enum} id\\
+enum-list:\\
+\>	enumerator\\
+\>	enum-list \T{,} enumerator\\
+enumerator:\\
+\>	id\\
+\>	id \T{=} const-expr
+}
+
+
+\PAIR 
+{
+init-decl-list: \\
+\>	init-decl\U{[}\T{,} init-decl-list\U{]}\U{*}\\
+init-decl: \\
+\>	decl \U{[}\T{=} initialiser\U{]} \\
+decl: \\  
+\>	\U{[}pointer\U{]} dir-decl \\
+pointer: \\ 
+\>	\U{[}\T{*}\U{]}\U{+}
+}
+{
+init-decl-list: \\
+\>	init-decl \\
+\>	init-decl-list \T{,} init-decl \\
+init-decl: \\
+\>	decl \\
+\>	decl \T{=} initialiser \\
+decl: \\
+\>	\U{[}pointer\U{]} dir-decl \\
+pointer: \\
+\>	\T{*} pointer 
+}
+
+
+\PAIR
+{ 
+abs-decl:\\
+\>	pointer f-abs-decl\\
+\>	dir-abs-decl\\
+f-abs-decl: \\
+\>	dir-abs-decl\\
+\>	null 
+}
+{
+abs-decl:\\
+\>	pointer\\
+\>	\U{[}pointer\U{]} dir-abs-decl
+}
+
+\PAIR
+{
+dir-abs-decl:\\
+\>	\T{(} f1-dir-ab f2-dir-abs\\
+\>       array-decl  f2-dir-abs\\
+f1-dir-abs:\\
+\>	abs-decl \T{)}\\
+\>	\U{[}par-type-list\U{]} \T{)}\\
+f2-dir-abs:\\
+\>	array-decl f2-dir-abs\\
+\>	\T{(} \U{[}par-type-list\U{]} \T{)} f2-dir-abs \\
+\>	null
+}
+{
+dir-abs-decl:\\
+\>	\T{(} abs-decl \T{)}\\
+\>	\U{[}dir-abs-decl\U{]}\T{[} \U{[}const-expr\U{]} \T{]}\\
+\>	\U{[}dir-abs-decl\U{]} \T{(} \U{[}par-type-list\U{]} \T{)}
+}
+
+
+\PAIR 
+{
+dir-decl: \\
+\>	id f-dir-decl  \\
+\>	 \T{(} decl \T{)} f-dir-decl \\ 
+f-dir-decl: \\ 
+\>	array-decl f-dir-decl \\
+\>	\T{(} ff-dir-decl f-dir-decl \\
+\>	\T{null} \\
+ff-dir-decl: \\
+\>	\U{[}parm-type-list\U{]} \T{)}
+}
+{
+dir-decl: \\
+\>	id \\
+\>	\T{(} decl \T{)} \\
+\>	dir-decl \T{[} \U{[}const-expr\U{]} \T{]} \\
+\>	dir-decl \T{(} parm-type-list \T{)} \\
+\>	{\underline{dir-decl \T{(} \U{[}ident-list\U{]} \T{)}}} 
+}
+
+\PAIR
+{
+parm-type-list: \\
+\>	parm-decl f-parm-type-list \\
+f-parm-type-list: \\
+\>	\T{,} ff-parm-type-list  \\
+\>	\T{null} \\
+ff-parm-type-list: \\
+\>	\T{...} \\
+\>	parm-type-list 
+}
+{
+parm-type-list: \\
+\>	parm-list \\
+\>	parm-list \T{,} \T{...} \\
+parm-list: \\
+\>	parm-decl \\
+\>	parm-list \T{,} parm-decl 
+}
+
+\PAIR
+{
+parm-decl: \\
+\>	decl-spec f-parm-decl \\
+f-parm-decl:\\
+\>	pointer ff-parm-decl \\
+\>      ff-parm-decl \\
+ff-parm-decl:\\
+\>      \T{(} f-parm-decl \T{)} \\
+\>	id  f-dir-decl\\
+\>      array-decl f-dir-decl \\
+\>      null \\
+array-decl: \\
+\>	\T{[} \U{[}const-expr\U{]} \T{]} 
+}
+{
+parm-decl: \\
+\>	decl-spec decl \\
+\>	decl-spec \U{[}abs-decl\U{]} 
+}
+
+
+\PAIR 
+{
+st-un-spec: \\
+\>	st-un f-st-un-spec \\
+f-st-un-spec: \\
+\>	id \U{[}\T{\{} s-decl-list \T{\}}\U{]}  \\
+\>	\T{\{} s-decl-list \T{\}} 
+}
+{
+st-un-spec: \\
+\> 	st-un \U{[}id\U{]} \T{\{} s-decl-list \T{\}}\\
+\>	st-un id
+}
+
+\PAIR
+{
+st-un: \T{one of}\\
+\>	\T{struct}  \T{union} \\
+s-decl-list: \\
+\>	\U{[}st-decl\U{]}\U{+} \\
+st-decl: \\
+\>	spec-qual-list spec-declor-list \T{;} \\
+spec-qual-list: \\
+\>	\U{[}type-spec\U{]}\U{+}\\
+\>      \U{[}type-spec\U{]}\U{+}
+}
+{
+st-un: \T{one of}\\
+\>	\T{struct} \T{union} \\
+s-decl-list: \\
+\>	st-decl \\
+\>	s-decl-list st-decl \\
+st-decl: \\
+\>	spec-qual-list spec-declor-list \T{;} \\
+spec-qual-list: \\
+\>	type-spec \U{[}spec-qual-list\U{]}\\ 
+\>      type-qual \U{[}spec-qual-list\U{]}
+}
+
+\PAIR
+{
+spec-declor-list: \\
+\>	st-declor \U{[}\T{,}spec-declor-list\U{]}\U{*} 
+}
+{
+spec-declor-list: \\
+\>	st-declor \\
+\>	spec-declor-list \T{,} st-declor 
+}
+
+\PAIR
+{
+st-declor: \\
+\>	decl f-st-declor \\
+\>	\T{:} const-expr \\
+f-st-declor: \\
+\>	\T{:} const-expr \\
+\>	\T{null} 
+}
+{
+st-declor: \\
+\>	decl \\
+\>	\underline{\U{[}decl\U{]} \T{:} const-expr }
+}
+
+\PAIR
+{
+stmt:\\
+\>	label-stmt\\
+\>	expr-stmt\\
+\>	comp-stmt\\
+\>	select-stmt\\
+\>	iter-stmt\\
+\>	jump-stmt
+}
+{
+stmt:\\
+\>	label-stmt\\
+\>	expr-stmt\\
+\>	comp-stmt\\
+\>	select-stmt\\
+\>	iter-stmt\\
+\>	jump-stmt
+}
+
+\PAIR
+{
+label-stmt:\\
+\>	\T{case} const-expr \T{:} stmt\\
+\>	\T{default} \T{:} stmt
+}
+{
+label-stmt:\\
+\>	\underline{id \T{:} stmt}\\
+\>	\T{case} const-expr \T{:} stmt\\
+\>	\T{default} \T{:} stmt
+}
+
+
+\PAIR
+{
+expr-stmt:\\
+\>	expr \T{;}\\
+comp-stmt:\\
+\>	\T{\{} \U{[}decl-list\U{]} stmt-list \T{\}}\\
+stmt-list:\\
+\>	\U{[}stmt\U{]}+	
+}
+{
+expr-stmt:\\
+\>	expr \T{;}\\
+comp-stmt:\\
+\>	\T{\{} \U{[}decl-list\U{]} stmt-list \T{\}}\\
+stmt-list:\\
+\>	\U{[}stmt\U{]}+	
+}
+
+
+
+
+\PAIR 
+{
+select-stmt:\\
+\>	\T{if} \T{(} expr \T{)} stmt \U{[}\T{else} stmt\U{]}\\
+\>	\T{switch} \T{(} expr \T{)} stmt
+}
+{
+select-stmt:\\
+\>	\T{if} \T{(} expr \T{)} stmt\\
+\>	\T{if} \T{(} expr \T{)} stmt \T{else} stmt\\
+\>	\T{switch} \T{(} expr \T{)} stmt
+}
+
+\PAIR
+{
+iter-statement:\\
+\>      \T{while} \T{(} expr \T{)} stmt\\
+\>      \T{do}  stmt \T{while} \T{(} expr \T{)} \T{;}\\
+\>      \T{for}  \T{(} \U{[}expr\U{]} \T{;} \U{[}expr\U{]} \T{;} \U{[}expr\U{]}\T{;}\T{)} stmt
+}
+{
+iter-statement:\\
+\>      \T{while} \T{(} expr \T{)} stmt\\
+\>      \T{do}  stmt \T{while} \T{(} expr \T{)} \T{;}\\
+\>      \T{for}  \T{(} \U{[}expr\U{]} \T{;} \U{[}expr\U{]} \T{;} \U{[}expr\U{]}\T{;}\T{)}stmt
+}
+
+\PAIR
+{
+jump-stmt:\\
+\>	\T{continue} \T{;}\\
+\>      \T{break} \T{;}\\
+\>	\T{return} \U{[}expr\U{]} \T{;}
+}
+{
+jump-stmt:\\
+\>	\underline{\T{goto} id \T{;}}\\
+\>	\T{continue} \T{;}\\
+\>	\T{break} \T{;}\\
+\>	\T{return} \U{[}expr\U{]} \T{;}
+}
+
+\PAIR
+{
+expr:\\
+\>	assign-expr \U{[}\T{,} assign-expr\U{]}
+}
+{
+expr:\\
+\>	assign-expr\\
+\>	expr \T{,} assign-expr
+}
+
+\PAIR
+{
+assign-expr:\\
+\>	cond-expr\U{[}assignment-op assign-expr\U{]}
+}
+{
+assign-expr:\\
+\>	cond-expr\\
+\>	unary-expr assignment-op assign-expr
+}
+
+
+
+\PAIR
+{
+assignment-op: \\
+\>     	\U{[}\T{*}, \T{/},\T{\%}, \T{+}, \T{-}, \T{\rightshift}, \T{\leftshift}, \T{\&},\T{\circumflex},\T{|}\U{]}  \T{=}
+}
+{
+assignment-op: \\
+\>     	\U{[}\T{*}, \T{/},\T{\%}, \T{+}, \T{-}, \T{\rightshift}, \T{\leftshift}, \T{\&},\T{\circumflex},\T{|}\U{]}  \T{=}
+}
+
+\PAIR
+{
+cond-expr:\\
+\>	log-or-expr \U{[}\T{?} expr \T{:} cond-expr\U{]}
+}
+{
+cond-expr:\\
+\>	log-or-expr\\
+\>	log-or-expr \T{?} expr \T{:} cond-expr
+}
+
+\PAIR
+{
+log-or-expr:\\
+\>	log-and-expr \U{[}\T{||} log-and-expr\U{]}*
+}
+{
+log-or-expr:\\
+\>	log-and-expr\\
+\>	log-or-expr \T{||} log-and-expr
+}
+
+
+
+\PAIR
+{
+log-and-expr:\\
+\>	inc-or-expr \U{[}\T{\&\&} inc-or-expr\U{]}*
+}
+{
+log-and-expr:\\
+\>	inc-or-expr\\
+\>	log-and-expr \T{\&\&} inc-or-expr
+}
+
+\PAIR
+{
+inc-or-expr:\\
+\>	xor-expr \U{[}\T{|} xor-expr\U{]}*
+}
+{
+inc-or-expr:\\
+\>	xor-expr\\
+\>	inc-or-expr \T{|} xor-expr
+}
+
+
+\PAIR
+{
+xor-expr:\\
+\>	and-expr \U{[}\T{\circumflex} and-expr\U{]}*
+}
+{
+xor-expr:\\
+\>	and-expr\\
+\>	xor-expr \T{\circumflex} and-expr
+}
+
+
+
+\PAIR
+{
+and-expr:\\
+\>	equal-expr \U{[}\T{\&} equal-expr\U{]}*
+}
+{
+and-expr:\\
+\>	equal-expr\\
+\>	and-expr \T{\&} equal-expr
+}
+\PAIR
+{
+equal-expr:\\
+\>	rel-expr \U{[}\U{[}\T{==} , \T{!=}\U{]} rel-expr\U{]}*
+}
+{
+equal-expr:\\
+\>	rel-expr\\
+\>	equal-expr \T{==} rel-expr\\
+\>	equal-expr \T{!=} rel-expr
+}
+\PAIR
+{
+rel-expr:\\
+\>         shift-expr \U{[}\U{[}\T{>},\T{<},\T{<=},\T{>=}\U{]} shift-expr\U{]}*
+}
+{
+rel-expr:\\
+\>	shift-expr\\
+\>	rel-expr \T{<} shift-expr\\
+\>	rel-expr \T{>} shift-expr\\
+\>	rel-expr \T{<=} shift-expr\\
+\>	rel-expr \T{>=} shift-expr
+}
+\PAIR
+{
+shift-expr: \\
+\>	add-expr \U{[}\U{[}\T{<<},\T{>>}\U{]} add-expr\U{]}*
+}
+{
+shift-expr: \\
+\>	add-expr\\
+\>	shift-expr \T{<<} add-expr\\
+\>	shift-expr \T{>>} add-expr
+}
+
+\PAIR
+{
+add-expr: \\
+\>	mult-expr \U{[}\U{[}\T{+},\T{-}\U{]} mult-expr\U{]}*
+}
+{
+add-expr: \\
+\>	mult-expr\\
+\>	add-expr \T{+} mult-expr\\
+\>	add-expr \T{-} mult-expr
+}
+\PAIR
+{
+mult-expr:\\
+\>	cast-expr \U{[}\U{[}\T{*},\T{/},\T{\%}\U{]} cast-expr\U{]}*
+}
+{
+mult-expr:\\
+\>	cast-expr\\
+\>	mult-expr \T{*} cast-expr\\
+\>	mult-expr \T{/} cast-expr\\
+\>	mult-expr \T{\%} cast-expr
+}
+\PAIR
+{
+cast-expr:\\
+\>	\U{[}\U{\circumflex} \T{(}\U{]}  unary-expr\\
+\>	\T{(} f-cast-expr \\
+f-cast-expr:\\
+\>	type-name \T{)} cast-expr\\
+\>	expr \T{)} r-postfix-expr
+}
+{
+cast-expr:\\
+\>	unary-expr\\
+\>	\T{(} type-name \T{)} cast-expr	
+}
+\PAIR
+{
+unary-expr:\\
+\>	postfix-expr\\
+\>	\U{[}\T{++},\T{--}\U{]}  unary-expr\\
+\>	\U{[}\T{\&}, \T{*}, \T{+}, \T{-}, \T{\~{}}, \T{!}\U{]}  cast-expr\\
+\>	\T{sizeof} \U{[}\T{(} type-name \T{)}, unary-expr\U{]}
+}
+{
+unary-expr:\\
+\>	postfix-expr\\
+\>	\U{[}\T{++},\T{--}\U{]}  unary-expr\\
+\>	\U{[}\T{\&}, \T{*}, \T{+}, \T{-}, \T{\~{}}, \T{!}\U{]} cast-expr\\
+\>	\T{sizeof} \U{[}\T{(} type-name \T{)}, unary-expr\U{]}
+}
+
+\PAIR
+{
+postfix-expr:\\
+\>	primary-expr r-postfix-expr\\
+r-postfix-expr:\\
+\>	\T{\U{[}} expr \T{\U{]}}  r-postfix-expr\\
+\>	\T{(} \U{[}arg-expr-list\U{]} \T{)}  r-postfix-expr\\
+\>	\T{.} id  r-postfix-expr\\
+\>	\T{-$>$} id r-postfix-expr\\
+\>	\T{++}  r-postfix-expr\\
+\>	\T{--}  r-postfix-expr\\
+\>	null
+}
+{
+postfix-expr:\\
+\>	primary-expr\\
+\>	postfix-expr \T{\U{[}} expr \T{\U{]}}\\
+\>	postfix-expr \T{(} \U{[}arg-expr-list\U{]} \T{)}\\
+\>	postfix-expr \T{.} id\\
+\>	postfix-expr \T{-$>$} id\\
+\>	postfix-expr \T{++}\\
+\>	postfix-expr \T{--}
+}
+\PAIR
+{
+arg-expr-list:\\
+\>	assign-expr \U{[}\T{,} assign-expr\U{]}
+}
+{
+arg-expr-list:\\
+\>	assign-expr\\
+\>	arg-expr-list \T{,} assign-expr
+}
+
+\PAIR
+{
+primary-expr:\\
+\>	id\\
+\>	constant\\
+\>	string\\
+\>	\T{(} expr \T{)}
+}
+{
+primary-expr:\\
+\>	id\\
+\>	constant\\
+\>	string\\
+\>	\T{(}expr \T{)}
+}
+\PAIR
+{
+constant:\\
+\>	int-const\\
+\>	float-const\\
+\>	char-const\\
+\>	enum-const\\
+\>	typename
+}
+{
+constant:\\
+\>	int-const\\
+\>	float-const\\
+\>	char-const\\
+\>	enum-const
+}
+
+
+\end{center}
+  

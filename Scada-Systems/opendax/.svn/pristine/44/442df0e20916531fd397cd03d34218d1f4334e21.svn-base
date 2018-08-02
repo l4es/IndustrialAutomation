@@ -1,0 +1,49 @@
+OpenDAX To do list
+
+Possibly need to allow the start_module() function to set the processes
+environment before launching the module.
+
+Need to have the start_module() function set a lesser UID for the module
+before exec()ing the process.  What UID will opendax run as??
+There is probably some 'setuid root' stuff.  I don't really want to do that
+but it may be necessary to make sure that all the modules run as the opendax
+user.
+
+Fix the dead module queue to be dynamic so that if too many modules die at
+once it won't fill up and the system can get cleaned up properly.
+
+Set up the module restarting in the scan_modules() function.
+
+Write the stop_module() function.
+
+Add this stuff to the configuration...
+
+  Global
+    Message Size??? (override the defaults that are found)
+    Starting Database and Taglist sizes as well as increments #defines as defaults
+    Network stuff (once network stuff is programmed)
+
+  Modules
+    Restart (Yes or No) whether to restart
+    Reload (HUP or KILL) What signal ro reload a module (with KILL restart is implied)
+    StdIO (Yes or No) whether to connect to the modules STDIN, STDOUT, STDERR
+    nice Set kernel priorities.
+
+Write the command structures for connecting two modules STDIO.  When the first module requests
+to connect to STDIO it's STDOUT and STDERR are connected to the others STDIN and visa versa.
+Any subsequent requests by other modules to connect will either block (???) or return error.
+
+Logging - I'm thinking that one module registers as a logger and the others ask about which
+is the logger in the library at registration.  Once the PID of the logger is known then there
+will be module-to-module messages sent for logging.  There should be different kinds of logs.
+Event, error, system etc.  It'll be similar to syslog but should be geared more toward our
+purposes.  The opendax core will probably log to syslogd.  It should handle databases,
+files, sockets (maybe) perhaps the system logger.  It ought to deal with rotation and automatic
+deletion of files/records as well.  It could even send emails on certain levels of logs.
+Well maybe there should be a messaging module for the emails.
+
+Need to write the 'on-change' message sending code.  This is fast becoming a necessary thing.
+I'll keep modules from having to constantly poll the tagbase for changes.
+
+There should be a hook for when a module reads the _status[] tag so that other parts of
+the system should update the tag with the latest info.

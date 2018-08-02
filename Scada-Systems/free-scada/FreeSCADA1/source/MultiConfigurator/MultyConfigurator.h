@@ -1,0 +1,1 @@
+// MultyConfigurator.h

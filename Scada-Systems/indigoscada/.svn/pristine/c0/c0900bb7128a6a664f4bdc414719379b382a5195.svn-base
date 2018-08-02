@@ -1,0 +1,4321 @@
+\chapter{Library support}
+\label{chp:Library}
+
+\section{Standard C libraries}
+\label{sec:StandardCLibtraries}
+\index{libraries!standard C}
+
+This section describes how the standard C library is supported by
+EiC. Note, any function, macro or type that is underlined is currently not 
+supported by EiC. 
+
+
+
+\subsection{assert.h}
+\index{assert}
+\label{sec:assert}
+
+The header files \verb+<assert.h>+ defines the following macro:
+
+\begin{Ventry2}{01234567890123456790}
+
+\item[assert]
+\index{assert}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <assert.h>
+void assert(int expression);
+\end{verbatim}
+\end{production}
+
+     If \T{expression} is false, a message is printed 
+     to \T{stderr} and abort is called to terminate execution.  However, EiC does not call
+	abort. The source file and line
+     number in the output message comes from the preprocessor macros \verb+__FILE__+ and 
+	\verb+__LINE__+. 
+	If \T{NDEBUG} is defined when \verb+<assert.h>+ is included, the assert macro is ignored.
+
+\end{Ventry2}
+
+\subsection{ctype.h}
+\index{ctype}
+\label{sec:ctype}
+
+\begin{Ventry2}{comm-switch  }
+
+
+\item[isdigit]
+\index{isdigit}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <ctype.h>
+int isdigit(int c);
+\end{verbatim}
+\end{production}
+
+
+Returns 1 if \T{c} is in the set \verb+'0' - '9'+. 
+Otherwise it returns 0.
+
+\item[isupper]
+\index{isupper}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <ctype.h>
+int isupper(int c);
+\end{verbatim}
+\end{production}
+
+
+Returns 1 if \T{c} is in the set \verb+'A' - 'Z'+.  Otherwise
+return it returns 0.
+
+\item[islower]
+\index{islower}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <ctype.h>
+int islower(int c);
+\end{verbatim}
+\end{production}
+
+
+Returns  1 if \T{c} is in the set \verb+'a' - 'z'+.  Otherwise
+returns 0.
+
+\item[isalpha]
+\index{isalpha}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <ctype.h>
+int isalpha(int c);
+\end{verbatim}
+\end{production}
+
+
+Returns a 1 if \T{c} is in the set \verb+'A' - 'Z'+ or in \verb+'a' - 'z'+. 
+Otherwise returns 0.
+
+\item[isprint]
+\index{isprint}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <ctype.h>
+int isprint(int c);
+\end{verbatim}
+\end{production}
+
+
+Returns 1 if \T{c} is a printable character.  Otherwise returns 0.
+
+\item[isalnum]
+\index{isalnum}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <ctype.h>
+int isalnum(int c);
+\end{verbatim}
+\end{production}
+
+
+Returns 1 if \T{c} is in one of the sets \verb+'a' - 'z'+, 
+\verb+'A' - 'Z'+, or \verb+'0' - '9'+.  Otherwise returns 0.
+
+\item[isspace]
+\index{isspace}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <ctype.h>
+int isspace(int c);
+\end{verbatim}
+\end{production}
+
+
+Returns 1 if \T{c} is in the set \verb+' ', '\t', '\n', '\v', '\f', or '\r'+.  
+Otherwise returns  0.
+
+\item[toupper]
+\index{toupper}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <ctype.h>
+int toupper(int c);
+\end{verbatim}
+\end{production}
+
+
+If \T{c} is a lower case alphabetic character, \T{touppper} returns its upper
+case equivalent, otherwise it returns \T{c}.
+
+\item[tolower]
+\index{tolower}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <ctype.h>
+int tolower(int c);
+\end{verbatim}
+\end{production}
+
+If \T{c} is an upper case alphabetic character, \T{tolower} returns its
+lower case equivalent, otherwise it returns \T{c}.
+
+\end{Ventry2}
+
+
+
+\subsection{errno.h}
+\index{header!errno.h}
+\label{sec:errnoh}
+
+
+The header \verb+<errno.h>+ contains manifest constants for error
+codes. The variable \T{errno} is a modifiable {\it lvalue} that has
+type \T{int}. It is set to zero on EiC startup, and it is used to
+report various runtime errors; for example:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+#include <errno.h>
+#include <assert.h>
+int main(void)
+{
+    assert(errno == 0);
+    sqrt(-3);
+    assert(errno == EDOM);
+}
+\end{verbatim}
+\end{production}
+
+
+The \verb+<errno.h>+ files declares the following macros and object.
+
+\begin{Ventry2}{01234567890123456789 }
+
+\item[EDOM]
+\index{EDOM}
+\label{item:EDOM}
+	Which stands for domain error. It occurs if an argument is
+	outside the domain of a function; for example: \verb+sqrt(-2)+.
+
+\item[ERANGE]
+\index{ERANGE}
+\label{item:ERANGE}
+	Which stands for range error and is used for reporting various
+	numerical overflow and underflow errors. It occurs if the
+	result of a \T{math.h} function (see~\SecPage{mathh}) cannot
+	be represented as a double.
+
+\item[errno]
+\index{errno}
+\label{item:ERRNO}
+	Is a modifiable {\it lvalue} with type \T{int} that may
+	or may not be a real identifiable object.
+
+\end{Ventry2}
+
+
+
+
+\subsection{float.h}
+\index{header!float.h}
+\label{sec:floath}
+
+
+In C, floating point values are represented in the normalised form:
+\[
+	x = s \times b^e \times \sum^{p}_{k=1}f_{k}\times b^{-k}, e_{\min}\leq e \leq e_{\max}
+\]
+where, 
+\begin{production}
+\begin{tabular}{ll}
+$s$ & sign ($\pm$1) \\
+$b$ & is the base or radix, typically 2, 8, 10 or 16. \\
+$e$ & the exponent, a value between a minimum $e_{\min}$ and a maximum $e_{\max}$. \\
+$p$ & precision (the number of base-$b$ digits in the significand). \\
+$f_k$ & the significant digits.
+\end{tabular}
+\end{production}
+
+The header file \verb+<float.h>+ declares the following macros:
+
+\begin{Ventry2}{01234567890123456789 }
+
+\item[FLT\_RADIX]
+\index{FLT\_RADIX}
+\label{item:FLTRADIX}
+	radix of exponent representing $b$.
+\item[FLT\_ROUNDS]
+\index{FLT\_ROUNDS}
+\label{item:FLTROUNDS}
+	Indicates the rounding mode for floats point values:\\
+	-1, undetermined\\
+	0  toward zero \\
+	1 to the nearest  \\
+	2 towards positive infinity \\
+	3 towards negative infinity
+
+\item[FLT\_DIG]
+\index{FLT\_DIG}
+\label{item:FLTDIG}
+	number of digits of precision in a \T{float}
+\item[FLT\_EPSILON]
+\index{FLT\_EPSILON}
+\label{item:FLTEPSILON}
+     smallest number x such that 1.0 + x != 1.0
+
+
+\item[FLT\_MANT\_DIG]
+\index{FLT\_MANT\_DIG}
+\label{item:FLTMANTDIG}
+	the number of {\it base-b} digits in the floating-point significand.
+
+\item[FLT\_MAX]
+\index{FLT\_MAX}
+\label{item:FLTMAX}
+     maximum floating-point number
+\item[FLT\_MAX\_10\_EXP]
+\index{FLT\_MAX\_10\_EXP}
+\label{item:FLTMAX10EXP}
+     maximum $x$ such that $10^x$ is representable
+\item[FLT\_MAX\_EXP]
+\index{FLT\_MAX\_EXP}
+\label{item:FLTMAXEXP}
+	The maximum $n$ such that $\T{FLT\_RADIX}^n-1$ is representable  
+
+\item[FLT\_MIN]
+\index{FLT\_MIN}
+\label{item:FLTMIN}
+     minimum normalised floating-point number
+\item[FLT\_MIN\_10\_EXP]
+\index{FLT\_MIN\_10\_EXP}
+\label{item:FLTMIN10EXP}
+	minimum $n$ such that $10^n$ is a normalised number.
+\item[FLT\_MIN\_EXP]
+\index{FLT\_MIN\_EXP}
+\label{item:FLTMINEXP}
+	minimum $n$ such that $b^{n-1}$ is a normalised number.
+
+\item[DBL\_DIG]
+\index{DBL\_DIG}
+\label{item:DBLDIG}
+	number of digits of precision in a \T{double}
+\item[DBL\_EPSILON]
+\index{DBL\_EPSILON}
+\label{item:DBLEPSILON}
+     smallest number x such that 1.0 + x != 1.0
+
+\item[DBL\_MANT\_DIG]
+\index{DBL\_MANT\_DIG}
+\label{item:DBMANTDIG}
+	the number of {\it base-b} digits in the floating-point significand.
+\item[DBL\_MAX]
+\index{DBL\_MAX}
+\label{item:DBLMAX}
+     maximum double floating-point number
+\item[DBL\_MAX\_10\_EXP]
+\index{DBL\_MAX\_10\_EXP}
+\label{item:DBLMAX10EXP}
+     maximum $x$ such that $10^x$ is representable
+\item[DBL\_MAX\_EXP]
+\index{DBL\_MAX\_EXP}
+\label{item:DBLMAXEXP}
+	The maximum $n$ such that $\T{FLT\_RADIX}^n-1$ is representable  
+\item[DBL\_MIN]
+\index{DBL\_MIN}
+\label{item:DBLMIN}
+     minimum normalised double floating-point number
+\item[DBL\_MIN\_10\_EXP]
+\index{DBL\_MIN\_10\_EXP}
+\label{item:DBMIN10EXP}
+	minimum $n$ such that $10^n$ is a normalised number.
+\item[DBL\_MIN\_EXP]
+\index{DBL\_MIN\_EXP}
+\label{item:DBMINEXP}
+	minimum $n$ such that $b^{n-1}$ is a normalised number.
+
+\end{Ventry2}
+
+\subsection{limits.h}
+\index{header!limits.h}
+\label{sec:limitsh}
+
+The header file \verb+<limits.h>+ declares the following macros:
+
+
+\begin{Ventry2}{01234567890123456789 }
+
+\item[CHAR\_BIT]
+\index{CHAR\_BIT}
+\label{item:CHARBIT}
+     number of bits in a char
+\item[CHAR\_MAX]
+\index{CHAR\_MAX}
+\label{item:CHARMAX}
+     maximum value of char
+\item[CHAR\_MIN]
+\index{CHAR\_MIN}
+\label{item:CHARMIN}
+     minimum value of char
+\item[INT\_MAX]
+\index{INT\_MAX}
+\label{item:INTMAX}
+     maximum value of int
+\item[INT\_MIN]
+\index{INT\_MIN}
+\label{item:INTMIN}
+     minimum value of int
+\item[LONG\_MAX]
+\index{LONG\_MAX}
+\label{item:LONGMAX}
+     maximum value of long
+\item[LONG\_MIN]
+\index{LONG\_MIN}
+\label{item:LONGMIN}
+     minimum value of long
+\item[SCHAR\_MAX]
+\index{SCHAR\_MAX}
+\label{item:SCHARMAX}
+     maximum value of signed char
+\item[SCHAR\_MIN]
+\index{SCHAR\_MIN}
+\label{item:SCHARMIN}
+     minimum value of signed char
+\item[SHRT\_MAX]
+\index{SHRT\_MAX}
+\label{item:SHRTMAX}
+     maximum value of short
+\item[SHRT\_MIN]
+\index{SHRT\_MIN}
+\label{item:SHRTMIN}
+     minimum value of short
+\item[UCHAR\_MAX]
+\index{UCHAR\_MAX}
+\label{item:UCHARMAX}
+     maximum value of unsigned char
+\item[UCHAR\_MIN]
+\index{UCHAR\_MIN}
+\label{item:UCHARMIN}
+     minimum value of unsigned char
+\item[UINT\_MAX]
+\index{UINT\_MAX}
+\label{item:UINTMAX}
+     maximum value of unsigned int
+\item[ULONG\_MAX]
+\index{ULONG\_MAX}
+\label{item:ULONGMAX}
+     maximum value of unsigned long
+\item[USHRT\_MAX]
+\index{USHRT\_MAX}
+\label{item:USHRTMAX}
+     maximum value of unsigned short
+
+
+\end{Ventry2}
+
+
+
+\subsection{math.h}
+\index{header!math.h}
+\label{sec:mathh}
+
+The header \verb+<math.h>+ declares the following macro:
+
+
+\begin{Ventry2}{01234567890123456789 }
+
+\item[HUGE\_VAL]
+\index{HUGE\_VAL}
+\label{item:HUGEVAL}
+	A positive \T{double}. The largest representable floating point value.
+	Not necessarily representable by a \T{float}.
+
+\end{Ventry2}
+
+
+
+The following functions are defined \verb+<math.h>+
+
+\begin{Ventry2}{comm-switch  }
+
+\item[atan]
+\index{atan}
+\label{item:atan}
+
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double atan(double x);
+\end{verbatim}
+\end{production}
+
+
+Returns the arc tangent of x.
+
+\item[ceil]
+\index{ceil}
+\label{item:ceil}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double ceil(double x);
+\end{verbatim}
+\end{production}
+
+
+Returns the smallest integer greater than or equal to x. The
+returned value is a double.
+
+\item[cos]
+\index{cos}
+\label{item:cos}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double cos(double x);
+\end{verbatim}
+\end{production}
+
+
+Returns the cosine of x.
+
+\item[cosh]
+\index{cosh}
+\label{item:cosh}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double cosh(double x);
+\end{verbatim}
+\end{production}
+
+
+Returns the hyperbolic cosine of x.
+
+\item[exp]
+\index{exp}
+\label{item:exp}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double exp(double x);
+\end{verbatim}
+\end{production}
+
+
+Returns the exponential function of x.
+
+\item[fabs]
+\index{fabs}
+\label{item:fabs}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double fabs(double x);
+\end{verbatim}
+\end{production}
+
+
+Returns the absolute value of x. The value returned is a
+double.
+
+\item[floor]
+\index{floor}
+\label{item:floor}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double floor(double x);
+\end{verbatim}
+\end{production}
+
+
+Returns the largest integer less than or equal to x. The
+returned value is a double.
+
+\item[sin]
+\index{sin}
+\label{item:sin}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double sin(double x);
+\end{verbatim}
+\end{production}
+
+
+Returns the sine of x.
+
+\item[sinh]
+\index{sinh}
+\label{item:sinh}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double sinh(double x);
+\end{verbatim}
+\end{production}
+
+
+Returns the hyperbolic sine of x.
+
+\item[sqrt]
+\index{sqrt}
+\label{item:sqrt}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double sqrt(double x);
+\end{verbatim}
+\end{production}
+
+
+Returns the square root of x.
+
+\item[tan]
+\index{tan}
+\label{item:tan}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double tan(double x);
+\end{verbatim}
+\end{production}
+
+
+Returns the tangent of x.
+
+\item[tanh]
+\index{tanh}
+\label{item:tanh}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double tanh(double x);
+\end{verbatim}
+\end{production}
+
+
+Returns the hyperbolic tangent of x.
+
+\item[log]
+\index{log}
+\label{item:log}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double log(double x);
+\end{verbatim}
+\end{production}
+
+
+Returns the natural logarithm of x.
+
+\item[log10]
+\index{log10}
+\label{item:log10}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double log10(double x);
+\end{verbatim}
+\end{production}
+
+
+Returns the base 10 logarithm of x.
+
+\item[pow]
+\index{pow}
+\label{item:pow}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double pow(double x, double y);
+\end{verbatim}
+\end{production}
+
+
+Returns x raised to the yth power.
+
+\item[atan2]
+\index{atan2}
+\label{item:atan2}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <math.h>
+double atan2(double x, double y);
+\end{verbatim}
+\end{production}
+
+
+Returns the arc tangent of \verb+y/x+.
+
+
+\end{Ventry2}
+
+
+
+\subsection{setjmp.h}
+\index{header!setjmp.h}
+\label{sec:setjmph}
+
+The header \verb+<setjmp.h>+ declares the following macro and type:
+
+
+\begin{Ventry2}{01234567890123456789 }
+
+\item[jmp\_buf]
+\index{jmp\_buf}
+\label{item:jmpbuf}
+     An array of type suitable for holding the information needed to restore a calling
+environment.
+
+\item[setjmp]
+\label{item:setjmp}
+\index{setjmp}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <setjmp.h>
+int setjmp(jmp_buf env);
+\end{verbatim}
+\end{production}
+
+     The \T{setjmp} macro save the calling environment in 
+     \T{env}. Zero returned from direct call; non-zero from subsequent
+     call of \T{longjmp}.
+
+\end{Ventry2}
+
+
+The following macro function is defined in \verb+<setjmp.h>+:
+
+\begin{Ventry2}{comm-switch  }
+
+\item[longjmp]
+\label{item:longjmp}
+\index{longjmp}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <setjmp.h>
+void longjmp(jmp_buf env, int val);
+\end{verbatim}
+\end{production}
+
+     Restore state saved by most recent call to \T{setjmp} using
+     information saved in \T{env}. Execution resumes as if \T{setjmp}
+     just executed and returned non-zero value \T{val}.  Also,
+     \verb+longjmp(env,0)+ is equivalent to \verb+longjmp(env,1)+. If
+     the function containing \T{setjmp} has terminated before the
+     \T{longjmp} call is made then EiC's behaviour will be undefined.
+
+\end{Ventry2}
+
+     An example usage of \T{setjmp} and \T{longjmp} is: 
+
+
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+#include <setjmp.h>
+
+jmp_buf env;
+
+void dojump() {longjmp(env,1);}
+
+void dosetjmp()
+{
+    switch(setjmp(env)) {
+       case 0: printf("setjmp return 0\n"); break;
+       case 1: printf("setjmp return 1\n"); return;
+       default: printf("error\n"); return;
+    }
+    dojump();
+}
+
+int main()
+{
+    dosetjmp();
+    printf("exit main\n");
+    return 0;
+}
+\end{verbatim}
+\end{production}
+
+Which should output:
+
+\begin{production}
+\begin{verbatim}
+setjmp return 0
+setjmp return 1
+exit main
+\end{verbatim}
+\end{production}
+
+
+
+\subsection{signal.h}
+\index{header!signal.h}
+\label{sec:signalh}
+
+The header \verb+<signal.h>+ declares the following macros:
+
+
+\begin{Ventry2}{01234567890123456789 }
+
+\item[SIGABRT]
+\index{SIGABRT}
+\label{item:SIGABRT}
+     abnormal termination
+\item[SIGFPE]
+\index{SIGFPE}
+\label{item:SIGFPE}
+     arithmetic error
+\item[SIGILL]
+\index{SIGILL}
+\label{item:SIGILL}
+     illegal function image
+\item[SIGINT]
+\index{SIGINT}
+\label{item:SIGINT}
+     interactive attention
+\item[SIGSEGV]     
+\index{SIGSEGV}
+\label{item:SIGSEGV}
+	illegal storage access
+\item[SIGTERM]
+\index{SIGTERM}
+\label{item:SIGTERM}
+     termination request sent to program
+
+
+\end{Ventry2}
+
+The header \verb+<signal.h>+ defines the following macro functions, which can be used
+to specify the action for the signal:
+
+\begin{Ventry2}{01234567890123456789 }
+
+
+\item[SIG\_DFL]
+\index{SIG\_DFL}
+\label{item:SIGDFL}
+	 specifies the default action for the particular signal. 
+\item[SIG\_IGN]
+\index{SIG\_IGN}
+\label{item:SIGIGN} specifies that the signal should be ignored. 
+
+\end{Ventry2}
+
+If a signal cannot honored its call, it returns \T{SIG\_ERR}.
+
+\begin{Ventry2}{01234567890123456789 }
+
+\item[SIG\_ERR]
+\index{SIG\_ERR}
+\label{item:SIGERR}
+This macro is used as a return value to indicate an error.
+
+\end{Ventry2}
+
+EiC also supports POSIX.1 signals (see~\SecPage{signalhPosix}).
+
+
+The following functions are defined in \verb+<signal.h>+:
+
+\begin{Ventry2}{comm-switch  }
+
+\item[signal]
+\label{item:signal}
+\index{signal}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <signal.h>
+void (*signal(int sig, void (*handler)(int)))(int);
+\end{verbatim}
+\end{production}
+
+     Install \T{handler} for subsequent signal \T{sig}. If \T{handler}
+     is \T{SIG\_DFL}, implementation-defined default behaviour is
+     used; if \T{handler} is \T{SIG\_IGN}, signal is ignored;
+     otherwise function pointed to by handler is called with argument
+     \T{sig}. signal returns the previous handler or \T{SIG\_ERR} on
+     error.  When signal \T{sig} subsequently occurs, the signal is
+     restored to its default behaviour and the \T{handler} is
+     called. If the \T{handler} returns, execution resumes where the
+     signal occurred. The initial state of the signals is
+     implementation-defined.
+
+
+     When you install a signal handler  within EiC you will most likely be overriding one of
+EiC's own internal signal handling routines:
+
+\begin{production}
+\begin{verbatim}
+
+EiC 1> #include <signal.h>
+        	(void)
+EiC 2> raise(SIGFPE);
+
+EiC maths  exception, file ::EiC::, line 2
+EiC::Reset Local Stack Pointer
+EiC: error clean up entry pt 0,1,2,3,4,
+
+\end{verbatim}
+\end{production}
+	
+
+	EiC assigns handlers for the following signals: \T{SIGBUS,
+SIGFPE, SIGILL, SIGINT, SIGSEGV, SIGUSR1}.  It does this to keep the
+flow of an EiC interactive session going. That is, it prevents your
+code from causing EiC to abort in an undignified manner. While, in
+none-interactive mode it is no big deal if you override one of EiC's
+internal signal handlers, since you are saying that you will be
+handling that signal, but in an interactive session, things are
+different. You load translation units (\SecPage{PhasesTranslation}),
+execute them, and various translation units may have no
+relationship to each other. Therefore, when you assign a new signal handler
+you should keep track of the initial one and reset it when appropriate:
+
+\begin{production}
+\begin{verbatim}
+EiC 1> #include <signal.h>
+        (void)
+EiC 2> void foo(int sig) { printf("my handle\n"); }
+        (void)
+EiC 3> void (*oldhandle)(int) = signal(SIGFPE,foo);
+        (void)
+EiC 4> raise(SIGFPE);
+SIGFPE passed
+        0
+EiC 5> signal(SIGFPE,oldhandle); // reestablish old handle
+        0x80babe8
+EiC 6> raise(SIGFPE);           
+
+EiC maths  exception, file ::EiC::, line 6
+EiC::Reset Local Stack Pointer
+EiC: error clean up entry pt 0,1,2,3,4,
+\end{verbatim}
+\end{production}
+
+\item[raise]
+\label{item:raise}
+\index{raise}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <signal.h>
+int raise(int sig);
+\end{verbatim}
+\end{production}
+
+     Send signal \T{sig} to the program. Non-zero returned if unsuccessful. 
+
+
+As an example program try \T{examples/sig1.c}
+
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+void tick(int i) { printf("tick\n"); return;}
+void tock(int i) { printf("tock\n"); return;}
+int main()
+{
+    int i = 0, cnt = 1;
+    while(1) {
+        signal(SIGINT,tick); // note you must reestablish the handler 
+        sleep(1);
+        raise(SIGINT);
+        
+        signal(SIGINT,tock);  
+        sleep(1); 
+        raise(SIGINT);
+        if(i++==cnt) 
+            break;         
+    }
+    signal(SIGINT,SIG_DFL);  // reset 
+    return 0;                               
+}
+\end{verbatim}
+\end{production}
+
+Which should out put:
+\begin{production}
+\begin{verbatim}
+%> eic examples/sig1.c
+tick
+tock
+tick
+tock
+\end{verbatim}
+\end{production}
+
+\end{Ventry2}
+
+
+
+
+\subsection{stdarg.h}
+\index{header!stdarg.h}
+\label{sec:stdargh}
+
+Defines macros that support functions with
+variable argument lists.
+
+\begin{Ventry2}{comm-switch  }
+
+\item[va\_list]
+\label{item:valist}
+\index{va\_list}
+
+	A type used to hold the information needed by the macros defined
+in \verb+<stdarg.h>+.
+
+\item[va\_start]
+\label{item:vastart}
+\index{va\_start}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdarg.h>
+void va_start(va_list ap, lastarg);
+\end{verbatim}
+\end{production}
+
+     Initialisation macro to be called once, and before any unnamed
+     argument is accessed. The argument \T{ap} must be declared as a
+     local variable, and \T{lastarg} is the last named parameter in
+     the controlling function's parameter list.
+
+\item[va\_arg]
+\label{item:vaarg}
+\index{va\_arg}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdarg.h>
+type va_arg(va_list ap, type);
+\end{verbatim}
+\end{production}
+
+     Produce a value of the type (\T{type}) and corresponding to the
+     next unnamed argument. It modifies the value of \T{ap}.
+
+\item[va\_end]
+\label{item:vaend}
+\index{va\_end}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdarg.h>
+void va_end(va_list ap);
+\end{verbatim}
+\end{production}
+
+     Must be called once, generally after all arguments have been
+processed, but definetly before function exit.
+
+\end{Ventry2}
+
+
+\subsection{stddef.h}
+\index{header!stddef.h}
+\label{sec:stddefh}
+
+The header \verb+<stddef.h>+ declares the following macros and types:
+
+
+\begin{Ventry2}{01234567890123456789 }
+
+\item[ptrdiff\_t] 
+\index{ptrdiff\_t}
+\label{item:ptrdifft}
+	An implementation defined signed integral type, which
+	represents the type of the result of subtracting two pointers.
+
+\item[size\_t] 
+\index{size\_t}
+\label{item:sizet}
+	An unsigned integral type, which is the return type
+	from the operator \T{sizeof}.
+
+\item[NULL] 
+\index{NULL}
+\label{item:NULL}
+	Implementation defined null pointer constant.
+
+\item[offsetof]  
+\index{offsetof}
+\label{item:offsetof}
+
+	\T{offsetof({\it type}, {\it member-designator})} \\
+	Expands to type \T{size\_t}, representing the offset in bytes
+	of the structure member {\it member-designator} from the start
+	of the structure {\it type}.
+
+\item[\underline{wchar\_t}]  
+\index{}
+\label{item:}
+	An integral type that can represent all values for any extended character
+	in the set supported by \T{locales}.
+
+\end{Ventry2}
+
+
+
+\subsection{stdio.h}
+\index{header!stdio.h}
+\label{sec:stdioh}
+
+\T{stdio.h} has the following types and macros defined:
+
+\begin{Ventry2}{01234567890123456789}
+
+\item[FILE]
+\label{item:FILE}
+\index{FILE}
+
+     Type which records information necessary to control a stream.
+\item[fpos\_t]
+\label{item:fpost}
+\index{fpos\_t}
+	Variable used for specification of positions within an opened file.
+\item[size\_t]
+\index{size\_t}
+	See \verb+<stddef.h>+ \SecPage{stddefh}
+\item[stdin]
+\label{item:stdin}
+\index{stdin}
+     Standard input stream. Automatically opened when a program begins
+     execution.
+\item[stdout]
+\label{item:stdout}
+\index{stdout}
+     Standard output stream. Automatically opened when a program begins
+     execution.
+\item[stderr]
+\label{item:stderr}
+\index{stderr}
+     Standard error stream. Automatically opened when a program begins
+     execution.
+\item[FILENAME\_MAX]
+\label{item:FILENAMEMAX}
+\index{FILENAME\_MAX}
+     Maximum permissible length of a file name
+\item[FOPEN\_MAX]
+\label{item:FOPENMAX}
+\index{FOPEN\_MAX}
+     Maximum number of files which may be open simultaneously.
+\item[TMP\_MAX]
+\label{item:TMPMAX}
+\index{TMP\_MAX}
+     Maximum number of temporary files during program execution.
+\item[NULL] 
+	See \verb+<stddef.h>+ \SecPage{stddefh}
+\item[\_IOFBF]
+\label{item:IOFBF}
+\index{\_IOFBF}
+\item[\_IOLBF]
+\label{item:IOLBF}
+\index{\_IOLBF} 
+\item[\_IONBF]
+\label{item:IONBF}
+\index{\_IONBF}
+	Macros used for the third argument to function \T{setvbuf}.
+\item[BUFSIZ]
+\label{item:BUFSIZ}
+\index{BUFSIZ}
+	The default buffer size used by \T{setbuf}.
+\item[EOF]
+\label{item:EOF}
+\index{EOF}
+	Macro used to indicate the end-of-file.
+\item[L\_tmpnam]
+\label{item:Ltmpnam}
+\index{L\_tmpnam}
+	Macro that expands to an intergergral constant expression, which is the size for 
+	the array of characters allocated to the default name returned by function \T{tmpnam}.
+\item[SEEK\_SET]
+\label{item:SEEKSET}
+\index{SEEK\_SET}
+\item[SEEK\_CUR]
+\label{item:SEEKCUR}
+\index{SEEK\_CUR}
+\item[SEEK\_END]
+\label{item:SEEKEND}
+\index{SEEK\_END}
+	Macros values used by \T{fseek} to locate current file seek
+position with respect to the beginning of the file, the current file
+position, or the end of the file respectively.
+
+\end{Ventry2}
+
+The following functions are defined in \T{stdio.h}
+
+
+\begin{Ventry2}{comm-switch  }
+
+\item[fopen]
+\label{item:fopen}
+\index{fopen}
+
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+FILE* fopen(const char* filename, const char* mode);
+\end{verbatim}
+\end{production}
+
+     Opens file \T{filename} and returns a pointer to an opened
+stream, or NULL on failure. The stream can be opened with \T{mode}:
+
+\begin{production}
+\begin{verbatim}
+"a"    Append. The file is created if it does not exist.
+"w"    Write. If the file exists, it is deleted first.
+"r"    Read. The file must already exist.
+"r+"   Read and write. The file must already exist. 
+"w+"   Read and write. If the file exists, it is deleted 
+       first.
+"a+"   Read and append. The file is created if it does  not 
+       exist.
+"ab"   Append binary. The file is created if it does not 
+       exist. 
+"rb"   Open binary file for reading. 
+"wb"   Write binary file. If the files exist, it gets truncated 
+       to  zero first.
+"ab+" or "a+b"  Append binary update.
+"rb+" or "r+b"  Read binary update.
+"wb+" or "w+b"  Write binary update.
+\end{verbatim}
+\end{production}
+
+
+\item[freopen]
+\index{freopen}
+\label{item:freopen}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+FILE* freopen(const char* filename, 
+              const char* mode, 
+              FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Opens file \T{filename} with the specified \T{mode} and associates with it the
+     specified \T{stream}. Returns stream or \T{NULL} on error. Usually used to change
+     files associated with \T{stdin}, \T{stdout}, \T{stderr}.
+
+\item[fflush]
+\index{fflush}
+\label{item:fflush}
+\T{Synopsis}
+
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int fflush(FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Flushes stream \T{stream}. Effect undefined for input
+     \T{stream}. Returns \T{EOF} for write error, zero
+     otherwise. \T{fflush(NULL)} flushes all output streams.
+
+\item[fclose]
+\index{fclose}
+\label{item:fclose}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int fclose(FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Closes stream \T{stream} (after flushing, if output stream). Returns \T{EOF} on
+     error, zero otherwise.
+
+\item[remove]
+\index{remove}
+\label{item:remove}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int remove(const char* filename);
+\end{verbatim}
+\end{production}
+
+     Removes file \T{filename}. Returns non-zero on failure.
+
+\item[rename]
+\index{rename}
+\label{item:rename}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int rename(const char* oldname, const char* newname);
+\end{verbatim}
+\end{production}
+
+     Changes name of file \T{oldname} to \T{newname}. Returns non-zero on failure.
+
+\item[tmpfile]
+\index{tmpfile}
+\label{item:tmpfile}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+FILE* tmpfile();
+\end{verbatim}
+\end{production}
+
+     Creates temporary file (mode "wb+") which will be removed when closed or
+     on normal program termination. Returns stream or NULL on failure.
+
+\item[tmpname]
+\index{tmpname}
+\label{item:tmpname}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+char* tmpname(char s[L_tmpnam]);
+\end{verbatim}
+\end{production}
+
+     Assigns to \T{s} and returns unique name for temporary file.
+
+\item[setvbuf]
+\index{setvbuf}
+\label{item:setvbuf}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int setvbuf(FILE* stream, char* buf, int mode, size_t size);
+\end{verbatim}
+\end{production}
+
+     Controls buffering for stream \T{stream} and can only be used
+	after the stream pointer by \T{stream} has been associated
+	initially with an open file and before any read or write
+	operations are performed. The argument \T{mode} determines how
+	\T{stream} will be buffered such as \T{\_IOLB}, \T{\_IOFBF},
+	\T{\_IONBF}.  If \T{buf} is non-NULL then setvbuf will assign
+	it as the buffer for \T{stream} otherwise \T{setvbuf} will
+	allocate one and the value at \T{size} will determine the size
+	of the buffer. 
+
+	Returns zero on success or nonzero on error.
+
+
+\item[setbuf]
+\index{setbuf}
+\label{item:setbuf}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+void setbuf(FILE* stream, char* buf);
+\end{verbatim}
+\end{production}
+
+     Controls buffering for stream \T{stream}. See also
+	\T{setvbuf}~\pageref{item:setvbuf}. 
+
+\item[fprintf]
+\index{fprintf}
+\label{item:fprintf}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int fprintf(FILE* stream, const char* format, ...);
+\end{verbatim}
+\end{production}
+
+     Converts (with format \T{format}) and writes output to stream
+     \T{stream}. Number of characters written [negative on error] is
+     returned. Between % and format conversion character:
+
+\begin{production}
+\begin{verbatim}
+Flags:
+- ........ left adjust
++ ........ always sign
+space .... outputs a space if the first character is not a 
+           sign.
+0 ........ zero pad
+# ........ Alternate form: for conversion character o, 
+           first digit will be zero, for [xX], prefix 0x 
+           or 0X to  non-zero, for [eEfgG], always decimal 
+           point, for [gG] trailing zeros not removed.
+Width:
+Period:
+Precision: 
+  for conversion character s, maximum characters to be
+  printed from the string, for [eEf], digits after decimal 
+  point, for [gG], significant digits, for an integer, 
+  minimum  number of digits to be printed.
+Length modifier:
+h ............. short or unsigned short
+l ............. long or unsigned long
+L ............. long double
+Conversions:
+d, i .......... int; signed decimal notation
+o    .......... int; unsigned octal notation
+x,X  .......... int; unsigned hexadecimal notation
+u    .......... int; unsigned decimal notation
+c    .......... int; single character
+s    .......... char* ; outputs the character of a string
+f    .......... double; [-]mmm.ddd
+e,E  .......... double; [-]m.dddddde(+|-)xx
+g,G  .......... double
+p    .......... void*; print as pointer
+n    .......... int*; number of chars written into arg
+%    .......... print %
+\end{verbatim}
+\end{production}
+Example Uses of of the format string in \T{fprintf}:
+
+\begin{verbatim}
+%3d     print in a 3 digit field, right justified
+%3.0f   print no decimal point and no fraction
+%3.1f   print 1 digit after the decimal point
+%.1f    print 1 digit after the decimal point, any width
+\end{verbatim}
+
+Between the % and the conversion character there may be a minus sign,
+to specify left adjustment of the field, and two digit strings
+separated by a period.  The first string specifies minimum field
+width, and the second string specifies the maximum number of chars
+to be printed from the string.
+
+\begin{verbatim}
+:%10s:          :hello, world:
+:%-10s:         :hello, world:
+:%20s:          :        hello, world:
+:%-20s:         :hello, world        :
+:%20.10s:       :          hello, wor:
+:%-20.10s:      :hello, wor          :
+:%.10s:         :hello, wor:
+\end{verbatim}
+
+\item[printf]
+\index{printf}
+\label{item:printf}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int printf(const char* format, ...);
+\end{verbatim}
+\end{production}
+
+     \T{printf(f, ...)} is equivalent to \T{fprintf(stdout, f, ...)}
+
+\item[sprintf]
+\index{sprintf}
+\label{item:sprintf}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int sprintf(char* s, const char* format, ...);
+\end{verbatim}
+\end{production}
+
+     Like \T{fprintf}, but output written into string \T{s}, which must be
+     large enough to hold the output, rather than to a stream. Output
+     is null terminated; that is, the null character.  Return length
+     does not include the null terminating character.
+
+\item[vfprintf]
+\index{vfprintf}
+\label{item:vfprintf}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int vfprintf(FILE* stream, const char* format, va_list arg);
+\end{verbatim}
+\end{production}
+
+     Equivalent to \T{fprintf} except that the variable argument list
+     is replaced by \T{arg}, which must have been initialised by the
+     \T{va\_start} macro and may have been used in calls to
+     \T{va\_arg}. See \verb+<stdarg.h>+
+
+\item[vprintf]
+\index{vprintf}
+\label{item:vprintf}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int vprintf(const char* format, va_list arg);
+\end{verbatim}
+\end{production}
+
+     Equivalent to \T{printf} except that the variable argument list is replaced by
+     \T{arg}, which must have been initialised by the \T{va\_start} macro and may have
+     been used in calls to \T{va\_arg}. See verb+<stdarg.h>+
+
+\item[vsprintf]
+\index{vsprintf}
+\label{item:vsprintf}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int vsprintf(char* s, const char* format, va_list arg);
+\end{verbatim}
+\end{production}
+
+     Equivalent to \T{sprintf} except that the variable argument list is replaced
+     by \T{arg}, which must have been initialised by the \T{va\_start} macro and may
+     have been used in calls to \T{va\_arg}. See \verb+<stdarg.h>+
+
+\item[fscanf]
+\index{fscanf}
+\label{item:fscanf}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int fscanf(FILE* stream, const char* format, ...);
+\end{verbatim}
+\end{production}
+
+     Performs formatted input conversion, reading from stream \T{stream} according
+     to format \T{format}. The function returns when \T{format} is fully processed.
+     Returns \T{EOF} if end-of-file or error occurs before any conversion;
+     otherwise, the number of items converted and assigned. Each of the
+     arguments following format must be a pointer. Format string may contain:
+
+\footnotesize
+\begin{verbatim}
+   o Blanks, Tabs : ignored
+   o ordinary characters : expected to match next non-white-space
+   o % : Conversion specification, consisting of %, optional assignment
+     suppression character *, optional number indicating maximum field
+     width, optional [hlL] indicating width of target, conversion
+     character.
+Conversion characters:
+d
+     decimal integer; int* parameter required
+i
+     integer; int* parameter required; decimal, octal or hex
+o
+     octal integer; int* parameter required
+u
+     unsigned decimal integer; unsigned int* parameter required
+x
+     hexadecimal integer; int* parameter required
+c
+     characters; char* parameter required; up to width; no '\0' 
+     added; no skip
+s
+     string of non-white-space; char* parameter required; '\0' added
+e,f,g
+     floating-point number; float* parameter required
+p
+     pointer value; void* parameter required
+n
+     chars read so far; int* parameter required
+[...]
+     longest non-empty string from set; char* parameter required; '\0'
+[^...]
+     longest non-empty string not from set; char* parameter 
+     required; '\0'
+%
+          literal %; no assignment
+\end{verbatim}
+\normalsize
+
+\item[scanf]
+\index{scanf}
+\label{item:scanf}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int scanf(const char* format, ...);
+\end{verbatim}
+\end{production}
+
+     \T{scanf(f, ...)} is equivalent to \T{fscanf(stdin, f, ...)}
+
+\item[sscanf]
+\index{sscanf}
+\label{item:sscanf}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int sscanf(char* s, const char* format, ...);
+\end{verbatim}
+\end{production}
+
+     Like \T{fscanf}, but input read from string \T{s}.
+
+\item[fgetc]
+\index{fgetc}
+\label{item:fgetc}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int fgetc(FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Returns next character from stream \T{stream} as an \T{unsigned}
+     \T{char}, or \T{EOF} on end-of-file or error.
+
+\item[fgets]
+\index{fgets}
+\label{item:fgets}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+char* fgets(char* s, int n, FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Reads at most the next \T{n}-1 characters from stream stream into \T{s}, stopping
+     if a newline is encountered (after copying the newline to s). s is
+     null terminated. Returns \T{s}, or \T{NULL} on end-of-file or error.
+
+\item[fputc]
+\index{fputc}
+\label{item:fputc}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int fputc(int c, FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Writes \T{c}, converted to \T{unsigned char}, to stream \T{stream}. Returns the
+     character written, or \T{EOF} on error.
+
+\item[fputs]
+\index{fputs}
+\label{item:fputs}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+char* fputs(const char* s, FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Writes \T{s}, which need not contain \verb+'\n'+ on stream stream. Returns
+     non-negative on success, \T{EOF} on error.
+
+\item[getc]
+\index{getc}
+\label{item:getc}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int getc(FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Equivalent to \T{fgetc} except that it may be a macro.
+
+\item[getchar]
+\index{getchar}
+\label{item:getchar}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int getchar();
+\end{verbatim}
+\end{production}
+
+     Equivalent to \T{getc(stdin)}.
+
+\item[gets]
+\index{gets}
+\label{item:gets}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+char* gets(char* s);
+\end{verbatim}
+\end{production}
+
+     Reads next line from \T{stdin} into \T{s}. Replaces terminating newline with \verb+'\0'+.
+     Returns \T{s}, or \T{NULL} on end-of-file or error.
+
+\item[putc]
+\index{putc}
+\label{item:putc}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int putc(int c, FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Equivalent to \T{fputc} except that it may be a macro.
+
+\item[putchar]
+\index{putchar}
+\label{item:putchar}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int putchar(int c);
+\end{verbatim}
+\end{production}
+
+     \T{putchar(c)} is equivalent to \T{putc(c, stdout)}.
+
+\item[puts]
+\index{puts}
+\label{item:puts}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int puts(const char* s);
+\end{verbatim}
+\end{production}
+
+     Writes \T{s} and a newline to \T{stdout}. Returns non-negative on success, \T{EOF} on
+     error.
+
+\item[unget]
+\index{unget}
+\label{item:unget}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int unget(int c, FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Pushes \T{c} (which must not be EOF), converted to \T{unsigned
+     char}, onto stream \T{stream} such that it will be returned by the
+     next read. Only one character of pushback is guaranteed for a
+     stream. Returns \T{c}, or \T{EOF} on error.
+
+\item[fread]
+\index{fread}
+\label{item:fread}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+size_t fread(void* ptr, 
+             size_t size, 
+             size_t nobj, 
+             FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Reads at most \T{nobj} objects of size \T{size} from stream
+     \T{stream} into \T{ptr}.  Returns the number of objects
+     read. \T{feof} and \T{ferror} must be used to determine status.
+
+\item[fwrite]
+\index{fwrite}
+\label{item:fwrite}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+size_t fwrite(const void* ptr, 
+              size_t size, 
+              size_t nobj, 
+              FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Writes to stream \T{stream}, \T{nobj} objects of size \T{size}
+     from array \T{ptr}. Returns the number of objects written (which
+     will be less than \T{nobj} on error).
+
+\item[fseek]
+\index{fseek}
+\label{item:fseek}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int fseek(FILE* stream, long offset, int origin);
+\end{verbatim}
+\end{production}
+
+     Sets file position for stream \T{stream}. For a binary file,
+     position is set to \T{offset} characters from \T{origin}, which
+     may be \T{SEEK\_SET} (beginning), \T{SEEK\_CUR} (current
+     position) or \T{SEEK\_END} (end-of-file); for a text stream,
+     \T{offset} must be zero or a value returned by \T{ftell} (in
+     which case \T{origin} must be \T{SEEK\_SET}). Returns non-zero on
+     error.
+
+\item[ftell]
+\index{ftell}
+\label{item:ftell}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+long ftell(FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Returns current file position for stream \T{stream}, or -1L on error.
+
+\item[rewind]
+\index{rewind}
+\label{item:rewind}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+void rewind(FILE* stream);
+\end{verbatim}
+\end{production}
+
+     \T{rewind(stream)} is equivalent to \T{fseek(stream, 0L, SEEK\_SET)};
+
+\item[fgetpos]
+\index{fgetpos}
+\label{item:fgetpos}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int fgetpos(FILE* stream, fpos_t* ptr);
+\end{verbatim}
+\end{production}
+
+     Assigns current position in stream stream to \T{*ptr}. Type \verb+fpos_t+ is suitable
+     for recording such values. Returns non-zero on error.
+\item[fsetpos]
+\index{fsetpos}
+\label{item:fsetpos}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int fsetpos(FILE* stream, const fpos_t* ptr);
+\end{verbatim}
+\end{production}
+
+     Sets current position of stream \T{stream} to \T{*ptr}. Returns non-zero on \T{error}.
+
+\item[clearerr]
+\index{clearerr}
+\label{item:clearerr}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+void clearerr(FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Clears the end-of-file and error indicators for stream \T{stream}.
+
+\item[feof]
+\index{feof}
+\label{item:feof}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int feof(FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Returns non-zero if end-of-file indicator for stream \T{stream} is set.
+
+\item[ferror]
+\index{ferror}
+\label{item:ferror}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int ferror(FILE* stream);
+\end{verbatim}
+\end{production}
+
+     Returns non-zero if error indicator for stream \T{stream} is set.
+
+\item[perror]
+\index{perror}
+\label{item:perror}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+void perror(const char* s);
+\end{verbatim}
+\end{production}
+
+     Prints \T{s} and implementation-defined error message corresponding to \T{errno}:
+     \verb+fprintf(stderr, "%s: %s\n", s, "error message")+\\
+     See \T{strerror}.
+
+\end{Ventry2}
+
+\subsection{stdlib.h}
+\index{header!stdlib.h}
+\label{sec:stdlibh}
+
+
+The header file \verb+<stdlib.h>+ contains the following types and macros:
+\begin{Ventry2}{012345678901234568}
+
+\item[RAND\_MAX]    Integral constant, which is the maximum value returned from \T{rand}.
+\index{RAND\_MAX}
+\item[EXIT\_FAILURE]
+\index{EXIT\_FAILURE}
+\item[EXIT\_SUCCESS]  Macros defined for successful or unsuccessful program termination.
+\index{EXIT\_SUCCESS}
+\item[size\_t] See \verb+<stddef.h>+ \SecPage{stddefh}
+\item[NULL] See \verb+<stddef.h>+ \SecPage{stddefh}
+\item[div\_t]  A structure type as returned by the \T{div} function.
+\index{div\_t}
+\item[ldiv\_t] A structure type as returned by the \T{ldiv} function.
+\index{ldiv\_t}
+\item[\underline{wchar\_t}]
+\end{Ventry2}
+
+
+The following functions are defined in the header \verb+<stdlib.h>+:
+
+\begin{Ventry2}{comm-switch  }
+
+\item[atof]
+\index{atof}
+\label{item:atof}
+\T{Synopsis}:
+
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+float atof(const char *s);
+\end{verbatim}
+\end{production}
+
+
+Converts the string of ASCII characters, which represent a decimal
+number to a float.  The string consists of optional leading spaces or
+tabs, an optional plus or minus sign \verb!(+ or -)!
+ followed by one or more decimal digits.  Returns the
+value of the ASCII number string.  The string passed to
+atof can contain a decimal point with digits to the right of
+the decimal point.  It can also take the form of a floating
+point constant.
+
+
+\item[atoi]
+\label{item:atoi}
+\index{atoi}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+int atoi(const char* s);
+\end{verbatim}
+\end{production}
+
+     Returns numerical value of \T{s}. Equivalent to 
+     \verb+(int)strtol(s,NULL,10)+.
+
+
+
+\item[atol]
+\label{item:atol}
+\index{atol}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>     
+long atol(const char* s);
+\end{verbatim}
+\end{production}
+
+     Returns numerical value of s. Equivalent to \verb+strtol(s, NULL, 10)+.
+
+\item[strtod]
+\label{item:strtod}
+\index{strtod}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+double strtod(const char* s, char** endp);
+\end{verbatim}
+\end{production}
+
+     Converts prefix of \T{s} to double, ignoring leading white
+     spaces. Stores a pointer to any unconverted suffix in *endp if
+     endp is non-NULL. In the case of overflow, \T{HUGE\_VAL} is
+     returned with the appropriate sign; for the case of underflow,
+     zero is returned. In either case, errno is set to \T{ERANGE}.
+
+
+
+\item[strtol]
+\label{item:strtol}
+\index{strtol}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+long strtol(const char* s, char** endp, int base);
+\end{verbatim}
+\end{production}
+
+     Converts prefix of \T{s} to long, ignoring leading white
+     spaces. Stores a pointer to any unconverted suffix in \T{*endp} if
+     \T{endp} is non-NULL. If base between 2 and 36, that base used; if
+     zero, leading 0X or 0x implies hexadecimal, a leading 0 implies
+     octal, otherwise a decimal conversion is used. Leading 0X or 0x
+     permitted for base 16. In the case of overflow, \T{LONG\_MAX} or
+     for the case of underflow \T{LONG\_MIN} is returned and \T{errno}
+     is set to ERANGE.
+
+\item[strtoul]
+\label{item:strtoul}
+\index{strtoul}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+unsigned long strtoul(const char* s, char** endp, int base);
+\end{verbatim}
+\end{production}
+
+     As for \T{strtol} except result is unsigned long and  in the case
+	of overflow  \T{ULONG\_MAX} is returned.
+
+\item[rand]
+\label{item:rand}
+\index{rand}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+int rand();
+\end{verbatim}
+\end{production}
+
+     Returns pseudo-random number in range 0 to \T{RAND\_MAX}.
+
+\item[srand]
+\label{item:srand}
+\index{srand}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+void srand(unsigned int seed);
+\end{verbatim}
+\end{production}
+
+     Uses \T{seed} as \T{seed} for new sequence of pseudo-random
+     numbers. The defautl initial  value for \T{seed} is 1.
+
+\item[calloc]
+\label{item:calloc}
+\index{calloc}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+void* calloc(size_t nobj, size_t size);
+\end{verbatim}
+\end{production}
+
+     Returns pointer to zero-initialised newly-allocated space for an
+     array of \T{nobj} objects each of size \T{size}, or \T{NULL} if
+     request cannot be satisfied.
+
+\item[malloc]
+\label{item:malloc}
+\index{malloc}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+void* malloc(size_t size);
+\end{verbatim}
+\end{production}
+
+     Returns pointer to uninitialised newly-allocated space for an
+     object of size \T{size}, or \T{NULL} if request cannot be
+     satisfied.
+
+\item[realloc]
+\label{item:realloc}
+\index{realloc}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+void* realloc(void* p, size_t size);
+\end{verbatim}
+\end{production}
+
+     Changes the size of the object to which \T{p} points to
+     \T{size}. Contents unchanged to minimum of old and new sizes. If
+     new size larger, new space is uninitialised. Returns pointer to
+     the new space or, if request cannot be satisfied NULL leaving p
+     unchanged.
+
+\item[free]
+\label{item:free}
+\index{free}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+void free(void* p);
+\end{verbatim}
+\end{production}
+
+     Deallocates space to which \T{p} points. If \T{p} is NULL there
+     is no effect; otherwise it must be a pointer returned by \T{calloc},
+     \T{malloc} or \T{realloc}.
+
+\item[abort]
+\label{item:abort}
+\index{abort}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+void abort();
+\end{verbatim}
+\end{production}
+
+     Causes program to terminate abnormally, as if by \T{raise(SIGABRT)}.
+
+\T{item}[exit]
+\label{item:exitC}
+\index{exit}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+void exit(int status);
+\end{verbatim}
+\end{production}
+
+     Causes normal program termination. Functions installed using
+     \T{atexit} are called in reverse order of registration. Open
+     files are flushed and open streams are closed and control is
+     returned to environment. The value of \T{status} is returned to
+     environment in an implementation-dependent manner. Zero indicates
+     successful termination and the values \T{EXIT\_SUCCESS} and
+     \T{EXIT\_FAILURE} may also be used.
+
+\item[atexit]
+\label{item:atexit}
+\index{atexit}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+int atexit(void (*fcm)(void));
+\end{verbatim}
+\end{production}
+
+     Registers \T{fcm} to be called, in reverse order, when the
+	program terminates or via a call to T{exit}.  Returns zero on
+	success else a non-zero value is returned.
+
+
+\item[system]
+\label{item:system}
+\index{system}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+int system(const char* s);
+\end{verbatim}
+\end{production}
+
+     Passes \T{s} to environment for execution. If \T{s} is \T{NULL},
+     non-zero returned if command processor exists; return value is
+     implementation-dependent if \T{s} is non-NULL.
+
+\item[getenv]
+\label{item:getenv}
+\index{getenv}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+char* getenv(const char* name);
+\end{verbatim}
+\end{production}
+
+     Returns (implementation-dependent) environment string associated with
+     \T{name}, or \T{NULL} if no such string exists.
+
+
+\item[puttenv]
+\label{item:putenv}
+\index{putenv}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+int putenv(const char* name);
+\end{verbatim}
+\end{production}
+
+	Accepts a string in the form {\it name=value} and inserts it into the
+	system environment list, and if needed replacing any previous definition.
+
+     	Returns 0 on success or -1 on error. Errors: \T{ENOMEM} insufficient space to allocate 
+	new environment.
+
+
+\item[besearch]
+\label{item:bsearch}
+\index{besearch}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+void* bsearch(const void* key, 
+              const void* base, 
+              size_t n, 
+              size_t size, 
+              int (*cmp)(const void* keyval, 
+                        const void* datum));
+\end{verbatim}
+\end{production}
+
+     Searches \T{base[0]}...\T{base[n-1]} for item matching
+     *\T{key}. Comparison function \T{cmp} must return negative if
+     first argument is less than second, zero if equal and positive if
+     greater. The n items of base must be in ascending order. Returns
+     a pointer to the matching entry or \T{NULL} if not found.
+
+\item[qsort]
+\label{item:qsort}
+\index{qsort}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+void qsort(void* base, 
+           size_t n, 
+           size_t size, 
+           int (*cmp)(const void *a1, const void * a2));
+\end{verbatim}
+\end{production}
+
+     Arranges into ascending order the array
+     \T{base[0]}...\T{base[n-1]} of objects of size size. Comparison
+     function \T{cmp} must return negative if first argument is less than
+     second, zero if equal and positive if greater.
+
+\item[abs]
+\label{item:abs}
+\index{abs}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+int abs(int n);
+\end{verbatim}
+\end{production}
+
+     Returns absolute value of \T{n}.
+
+\item[labs]
+\label{item:labs}
+\index{labs}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+long labs(long n);
+\end{verbatim}
+\end{production}
+
+     Returns absolute value of \T{n}.
+
+\item[div]
+\label{item:div}
+\index{div}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+div_t div(int num, int denom);
+\end{verbatim}
+\end{production}
+
+     Returns in fields \T{quot} and \T{rem} of structure of type
+     \T{div\_t} the quotient and remainder of num/denom respectively.
+
+\item[ldiv]
+\label{item:ldiv}
+\index{ldiv}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <stdlib.h>
+ldiv_t ldiv(long num, long denom);
+\end{verbatim}
+\end{production}
+
+     Returns in fields \T{quot} and \T{rem} of structure of type
+     \T{ldiv\_t} the quotient and remainder of num/denom respectively.
+
+
+\end{Ventry2}
+
+
+
+\subsection{string.h}
+\index{header!string.h}
+\label{sec:stringh}
+
+The header file \verb+<string.h>+ defines the following types and macros:
+\begin{Ventry2}{01234567890123456790}
+\item[size\_t] See \verb+<stddef.h>+ \SecPage{stddefh}
+\item[NULL] See \verb+<stddef.h>+ \SecPage{stddefh}
+\end{Ventry2}
+
+The following functions are defined in \verb+<string.h>+:
+
+
+\begin{Ventry2}{comm-switch  }
+
+\item[strcpy]
+\label{item:strcpy}
+\index{strcpy}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+char* strcpy(char* s, const char* ct);
+\end{verbatim}
+\end{production}
+
+     Copy \T{ct} to \T{s} including terminating null character. Returns 
+	a pointer to \T{s}.
+
+\item[strncpy]
+\label{item:strncpy}
+\index{strncpy}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+char* strncpy(char* s, const char* ct, int n);
+\end{verbatim}
+\end{production}
+
+     Copy at most \T{n} characters of \T{ct} to \T{s}. Pad with zeros
+     if \T{ct} is of length less than \T{n}. Returns a pointer to \T{s}.
+
+\item[strcat]
+\label{item:strcat}
+\index{strcat}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+char *strcat(char *s2, const char *s1);
+\end{verbatim}
+\end{production}
+
+Concatenates the string pointed to by \T{s2} to the string pointed to by
+\T{s1}.  The calling program must assure that \T{s1} has enough space for the
+concatenation.
+
+\item[strncat]
+\label{item:strncat}
+\index{strncat}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+char* strncat(char* s, const char* ct, int n);
+\end{verbatim}
+\end{production}
+
+     Concatenate at most \T{n} characters of \T{ct} to
+	\T{s}. Terminate \T{s} with the null character and returns a
+	pointer to it.
+
+\item[strcmp]
+\label{item:strcmp}
+\index{strcmp}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+int strcmp(const char* s1, const char* s2);
+\end{verbatim}
+\end{production}
+
+  Compares two strings.  The comparison stops when a \T{null}
+terminator is encountered in either of the two strings. 
+Returns a 0 if the two strings are identical, less than
+zero if \T{s2} is greater than \T{s1}, and greater than zero if \T{s1}
+is greater than \T{s2}.
+
+\item[strdup]
+\label{item:strdup}
+\index{strdup}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+char * strdup(const char* s);
+\end{verbatim}
+\end{production}
+
+      Returns a pointer to a new string which is a duplicate of the
+       string s.  Memory for the new string is obtained with
+       malloc, and can be freed with free.
+
+
+\item[strncmp]
+\label{item:strncmp}
+\index{strncmp}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+int strncmp(const char* s1, const char* s2, int n);
+\end{verbatim}
+\end{production}
+
+ Compares  two strings.  The comparison stops when a \T{null}
+terminator is encountered in either of the two strings or
+when n number of bytes are compared.  Returns a 0 if the
+two strings are identical, less than zero if \T{s2} is greater
+than \T{s1}, and greater than zero if \T{s1} is greater than \T{s2}.
+
+\item[strchr]
+\label{item:strchr}
+\index{strchr}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+char* strchr(const char* s1, int c);
+\end{verbatim}
+\end{production}
+
+     Return pointer to first occurrence of \T{c} in \T{s1}, or
+     \T{NULL} if not found.
+
+\item[strrchr]
+\label{item:strrchr}
+\index{strrchr}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+char* strrchr(const char* s1, int c);
+\end{verbatim}
+\end{production}
+
+     Return pointer to last occurrence of \T{c} in \T{s1}, or \T{NULL} if not found.
+
+\item[strspn]
+\label{item:strspn}
+\index{strspn}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+size_t strspn(const char* s1, const char* s2);
+\end{verbatim}
+\end{production}
+
+     Return length of prefix of \T{s1} consisting entirely of characters in \T{s2}.
+
+\item[strcspn]
+\label{item:strcspn}
+\index{strcspn}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+size_t strcspn(const char* s1, const char* s2);
+\end{verbatim}
+\end{production}
+
+     Return length of prefix of \T{s1} consisting entirely of
+     characters not in \T{s2}.
+
+\item[strpbrk]
+\label{item:strpbrk}
+\index{strpbrk}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+char* strpbrk(const char* s1, const char* s2);
+\end{verbatim}
+\end{production}
+
+     Return pointer to first occurrence within \T{s1} of any character of \T{s2}, or
+     \T{NULL} if not found.
+
+\item[strstr]
+\label{item:strstr}
+\index{strstr}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+char* strstr(const char* s1, const char* s2);
+\end{verbatim}
+\end{production}
+
+     Return pointer to first occurrence of \T{s2} in \T{s1}, or
+     \T{NULL} if not found.
+
+\item[strlen]
+\label{item:strlen}
+\index{strlen}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+size_t strlen(const char* s1);
+\end{verbatim}
+\end{production}
+
+     Return length of \T{s1}.
+
+\item[strerror]
+\label{item:strerror}
+\index{strerror}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+char* strerror(int n);
+\end{verbatim}
+\end{production}
+
+     Return pointer to implementation-defined string corresponding with error
+     \T{n}.
+
+\item[strtok]
+\label{item:strtok}
+\index{strtok}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+char* strtok(char* s, const char* ct);
+\end{verbatim}
+\end{production}
+
+     A sequence of calls to \T{strtok} returns tokens from \T{s}
+     delimted by a character in \T{ct}. A non-NULL \T{s} indicates the
+     first call in a sequence. Also,\T{ct} may differ on each
+     call. Returns \T{NULL} when no such token found.
+
+\item[memcpy]
+\label{item:memcpy}
+\index{memcpy}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+void* memcpy(void* dest, const void* src, int n);
+\end{verbatim}
+\end{production}
+
+     Copy \T{n} characters from \T{src} to \T{dest}. Return
+     \T{dest}. Does not work correctly if objects overlap.
+
+\item[memmove]
+\label{item:memmove}
+\index{memmove}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+void* memmove(void* dest, const void* src, int n);
+\end{verbatim}
+\end{production}
+
+     Copy \T{n} characters from \T{src} to \T{dest}. Return
+     \T{dest}. Works correctly even if objects overlap.
+
+\item[memcmp]
+\label{item:memcmp}
+\index{memcmp}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+int memcmp(const void* s1, const void* s2, int n);
+\end{verbatim}
+\end{production}
+
+     Compare first \T{n} characters of \T{s1} with \T{s2}. Return
+     negative if \T{s1} < \T{s2}, zero if \T{s1} == \T{s2}, positive
+     if \T{s1} > \T{s2}.
+
+\item[memchr]
+\label{item:memchr}
+\index{memchr}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+void* memchr(const char* s1, int c, int n);
+\end{verbatim}
+\end{production}
+
+     Return pointer to first occurrence of \T{c} in the first \T{n} characters
+     of \T{s1}, or \T{NULL} if not found.
+
+\item[memset]
+\label{item:memset}
+\index{memset}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <string.h>
+void* memset(char* s, int c, int n);
+\end{verbatim}
+\end{production}
+
+     Replace each of the first \T{n} characters of \T{s} by \T{c}. Return \T{s}.
+
+\end{Ventry2}
+
+\subsection{time.h}
+\index{header!time.h}
+\label{sec:timeh}
+
+The header \verb+<time.h>+ declares the following macros and types:
+
+
+\begin{Ventry2}{01234567890123456789 }
+
+
+\item[clock\_t]
+\index{clock\_t}
+\label{item:clockt} 
+
+An arithmetic type representing time.
+
+\item[time\_t]
+\index{time\_t}
+\label{item:timet}
+
+     An arithmetic type representing time.
+
+\item[CLOCKS\_PER\_SEC]
+\index{CLOCKS\_PER\_SEC}
+\label{item:CLOCKSPERSEC}
+
+     The number of \T{clock\_t} units per second.
+
+\item[struct tm]
+\index{struct tm}
+\label{item:struct tm}  Represents the components of calendar time:
+\begin{verbatim}
+     int tm_sec; /* seconds after the minute */
+     int tm_min; /* minutes after the hour */
+     int tm_hour; /* hours since midnight */
+     int tm_mday; /* day of the month */
+     int tm_mon; /* months since January */
+     int tm_year; /* years since 1900 */
+     int tm_wday; /* days since Sunday */
+     int tm_yday; /* days since January 1 */
+     int tm_isdst; /* Daylight Saving Time flag */
+\end{verbatim}
+
+The value of \T{tm\_isdst} is positive if Daylight saving time is in effect, zero if
+          not in effect, negative if information unavailable.
+
+\end{Ventry2}
+
+The following functions are defined in \verb+<time.h>+:
+
+
+\begin{Ventry2}{012345670123456}
+
+\item[clock]
+\label{item:clock}
+\index{clock}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <time.h>
+clock_t clock(void);
+\end{verbatim}
+\end{production}
+
+     Returns processor time used by program or -1 if not available.
+\item[time]
+\label{item:time}
+\index{time}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <time.h>
+time_t time(time_t* tp);
+\end{verbatim}
+\end{production}
+
+     Returns current calendar time or -1 if not available. If \T{tp} is non-NULL,
+     return value is also assigned to *\T{tp}.
+\item[difftime]
+\label{item:difftime}
+\index{difftime}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <time.h>
+double difftime(time_t time2, time_t time1);
+\end{verbatim}
+\end{production}
+
+     Returns the difference is seconds between \T{time2} and \T{time1}.
+\item[mktime]
+\label{item:mktime}
+\index{mktime}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <time.h>
+time_t mktime(struct tm* tp);
+\end{verbatim}
+\end{production}
+
+     Returns the local time corresponding to *\T{tp}, or -1 if it cannot be
+     represented.
+
+\item[asctime]
+\label{item:asctime}
+\index{asctime}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <time.h>
+char* asctime(const struct tm* tp);
+\end{verbatim}
+\end{production}
+
+     Returns the given time as a string of the form:
+     \verb+Sun Jan 3 14:14:13 1988\n\0+
+\item[ctime]
+\label{item:ctime}
+\index{ctime}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <time.h>
+char* ctime(const time_t* tp);
+\end{verbatim}
+\end{production}
+
+     Converts the given calendar time, \T{tp}, to a local time and
+     returns the equivalent string. Equivalent to:
+     asctime(localtime(tp))
+
+\item[gmtime]
+\label{item:gmtime}
+\index{gmtime}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <time.h>
+struct tm* gmtime(const time_t* tp);
+\end{verbatim}
+\end{production}
+
+     Returns the given calendar time converted into Coordinated Universal Time,
+     or \T{NULL} if not available.
+
+\item[localtime]
+\label{item:localtime}
+\index{localtime}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <time.h>
+struct tm* localtime(const time_t* tp);
+\end{verbatim}
+\end{production}
+
+     Returns calendar time *\T{tp} converted into local time.
+
+\item[strftime]
+\label{item:strftime}
+\index{strftime}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <time.h>
+size_t strftime(char* s, 
+                size_t smax, 
+                const char* fmt, 
+                const struct tm* tp);
+\end{verbatim}
+\end{production}
+
+     Formats *\T{tp} into s according to \T{fmt}.
+
+\item[Notes]
+
+   Local time may differ from calendar time, for example because of time
+     zone.
+
+\end{Ventry2}
+
+\section{POSIX.1 library support}
+\label{sec:Posix.1Library}
+\index{libraries!POSIX.1 support}
+
+
+Here is EiC's current implementation of the POSIX.1 library. It is by
+no means complete, but rather a strict subset. For those interested,
+the POSIX.1 environment is more formally presented by
+\cite{zlotnick91} or \cite{stevens92}.
+
+The test macro \T{\_POSIX\_SOURCE} is used and as documented in the IEEE
+POSIX.1 standard, where the programmer is required to define the
+\T{\_POSIX\_SOURCE} feature test macro to obtain the \T{POSIX.1} namespace and
+\T{POSIX.1} functionality. 
+
+This macro can be defined, at compile time \T{(-D\_POSIX\_SOURCE)} or
+by using \T{\#define} directives in the source files before any
+\T{\#include} directives:
+
+\begin{production}
+\begin{verbatim}
+#define  _POSIX_SOURCE
+#include <stdio.h>
+#include <signal.h>
+\end{verbatim}
+\end{production}
+
+It is only needed for those header shared between \T{POSIX.1} and
+\T{ISO-C}, when the \T{POSIX.1} features are to be made visible 
+(header files that are underlined are currently not supported):
+
+\footnotesize
+\begin{center}
+\label{tb:ISO-POSIX-headers}
+\begin{tabular}{|r|l|r|l|}
+\hline 
+ISO-C & POSIX.1 & IS0-C & POSIX.1\\
+\hline 
+
+\T{assert.h}     &                 & \T{stdio.h}  & \T{\underline{stdio.h}} \\
+\T{ctype.hr}     &                 & \T{stdlib.h} & \\
+                 & \T{dirent.h}    & \T{string.h} & \\
+\T{errno.h}      & \T{errno.h}     &              & \T{sys/stat.h} \\
+                 & \T{fcntl.h}     &              & \T{\underline{sys/times.h}}  \\
+\T{float.h}      &                 &              & \T{\underline{sys/utsname.h}}\\
+                 & \T{\underline{grp.h}}       &              & \T{\underline{sys/wait.h}} \\
+\T{iso646.h}     &                 &              & \T{termios.h}   \\
+\T{limits.h}     & \T{limits.h}    & \T{time.h}   &  \T{\underline{time.h}}\\
+\T{\underline{locale.h}}     &                 &              & \T{unistd.h}\\
+\T{math.h}       &                 &              &\T{\underline{utime.h}}\\
+\T{setjmp.h}     & \T{\underline{setjmp.h}}    & \T{\underline{wchar.h}}  &\\
+\T{signal.h}     & \T{signal.h}    & \T{\underline{wctype.h}} &\\
+\T{stdarg.h}     &                 &              & \\
+\T{stddef.h}     &                 &              & \\
+\hline
+\end{tabular}
+\end{center}
+\normalsize
+  
+
+\subsection{dirent.h}
+\index{header!dirent.h}
+\label{sec:direnth}
+
+The EiC header file \verb+<dirent.h>+ contains objects, types and
+functions for reading and opening directories. To make or remove
+a directory see section \SecPage{unistdh}. Also, while anyone with the
+appropriate access permissions may read a directory, only the kernel
+can write to a directory. Then \verb+<dirent.h>+ defines the following
+type and structure:
+
+\begin{Ventry2}{01234567890123456790}
+
+\item[DIR]
+\label{item:DIR}
+\index{DIR}
+	A directory stream is represented by the type \T{DIR}, which
+	is similar to the \verb+<stdio.h>+ type \T{FILE}
+	(page~\pageref{item:FILE}).
+
+\item[struct dirent]
+\label{item:struct dirent}
+\index{struct dirent}
+	While the the dirent structure is implementation dependent, it
+	will contain at least:
+
+\begin{production}
+\begin{verbatim}
+ino_t d_ino;  /* inode number of entry */
+char d_name[NAME_SIZE + 1]; /* name (null-terminated) */  
+\end{verbatim}
+\end{production}
+
+Note the size of \T{d\_name} is also implementation dependent.  The
+\T{dirent struct} specifies the structure type that is  used
+to hold information about individual directory entries, such as 
+files etc.
+
+\end{Ventry2}
+
+The following functions are defined in \verb+<dirent.h>+:
+\begin{Ventry2}{comm-switch  }
+
+\item[closedir]
+\label{item:closedir}
+\index{closedir}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h>
+#include <dirent.h>
+int closedir(DIR *dirp);
+\end{verbatim}
+\end{production}
+
+Closes the directory stream associated with \T{dirp}.  
+Returns  0  on success, or -1 on error and sets \T{errno} to
+\T{EBADF}. 
+
+\item[opendir]
+\index{opendir}
+\label{item:opendir}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h>
+#include <dirent.h>
+DIR *opendir(const char *dirname);
+\end{verbatim}
+\end{production}
+
+Opens the directory stream associated with the directory \T{dirname},
+and returns a pointer to the opened stream.  The directory will be opened such
+that, the stream pointer is positioned at the first entry in the
+directory. Returns a pointer to the directory on success, else
+\T{NULL} on error and will set
+\T{errno} to one of: \T{EACESS}, \T{EMFILE}, \T{ENOENT}, \T{ENFILE},
+\T{ENOMEM} or \T{ENOTDIR}. 
+
+
+\item[readdir]
+\index{readdir}
+\label{item:readdir}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h>
+#include <dirent.h>
+struct dirent *readdir(DIR *dirp);
+\end{verbatim}
+\end{production}
+
+Reads the next dirent structure from the stream \T{dirp}.  Returns a
+pointer to the associated \T{struct dirent}, else \T{NULL} if
+the end-of-file mark has been reached or on an error,  and  in which case 
+it sets \T{errno} to \T{EBADF}.
+
+
+\item[rewinddir]
+\index{rewinddir}
+\label{item:rewinddir}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h>
+#include <dirent.h>
+void rewinddir(DIR *dirp);
+\end{verbatim}
+\end{production}
+
+Rewinds or resets the directory stream \T{dirp} back to the
+beginning. No error codes used.
+
+\end{Ventry2}
+
+
+
+\subsection{errno.h}
+\index{header!errno.h}
+\label{sec:erronhPosix}
+
+The header file \verb+<errno.h>+ has already been discussed with
+respect to the ISO C library specifications (see~\SecPage{errnoh}). Here
+its POSIX.1 additions are report.
+
+The EiC header file \verb+<errno.h>+ defines the following extra
+macros:
+
+\begin{Ventry2}{01234567890123456789 }
+\item[E2BIG]
+\label{item:E2BIG}
+\index{E2BIG}
+	Argument list too long.
+\item[EACCES]
+\label{item:EACCES}
+\index{EACCES}
+	Permission denied.
+\item[EAGAIN]
+\label{item:EAGAIN}
+\index{EAGAIN}
+	Device or resource unavailable; try again later.
+\item[EBADF]
+\label{item:EBADF}
+\index{EBADF}
+	Bad file descriptor.
+\item[EBUSY]
+\label{item:EBUSY}
+\index{EBUSY}
+	Device or resource busy.
+\item[ECHILD]
+\label{item:ECHILD}
+\index{ECHILD}
+	No child processes.
+\item[EDEADLK]
+\label{item:DEADLK}
+\index{ECHILD}
+	Resource deadlock would result.
+\item[EEXIST]
+\label{item:EEXIST}
+\index{EEXIST}
+	File exists.
+\item[EFAULT]
+\label{item:EFAULT}
+\index{EFAULT}
+	Bad address.
+\item[EFBIG]
+\label{item:EFBIG}
+\index{EFBIG}
+	File too large.
+\item[EINTR]
+\label{item:EINTR}
+\index{EINTR}
+	Function interrupted system call.
+\item[EINVAL]
+\label{item:EINVAL}
+\index{EINVAL}
+	Invalid argument.
+\item[EIO]
+\label{item:EIO}
+\index{EIO}
+	I/O error.
+\item[EISDIR]
+\label{item:EISDIR}
+\index{EISDIR}
+	Is a directory.
+\item[EMFILE]
+\label{item:EMFILE}
+\index{EMFILE}
+	Too many open files.
+\item[EMLINK]
+\label{item:EMLINK}
+\index{EMLINK}
+	Too many links.
+\item[ENAMETOOLONG]
+\label{item:ENAMETOOLONG}
+\index{ENAMETOOLONG}
+	File name too long.
+\item[ENFILE]
+\label{item:ENFILE}
+\index{ENFILE}
+	File table overflow because of too many open files.
+\item[ENODEV]
+\label{item:ENODEV}
+\index{ENODEV}
+	No such device.
+\item[ENOENT]
+\label{item:ENOENT}
+\index{ENOENT}
+	No such file or directory.
+\item[ENOEXEC]
+\label{item:ENOEXEC}
+\index{ENOEXEC}
+	Executable format error, because file is not executable.
+\item[ENOLCK]
+\label{item:ENOLCK}
+\index{ENOLCK}
+	No record locks available.
+\item[ENOMEM]
+\label{item:ENOMEM}
+\index{ENOMEM}
+	Out of memory.
+\item[ENOSPC]
+\label{item:ENOSPC}
+\index{ENOSPC}
+	No space left on device.
+\item[ENOSYS]
+\label{item:ENOSYS}
+\index{ENOSYS}
+	Function not implemented or supported
+\item[ENOTDIR]
+\label{item:ENOTDIR}
+\index{ENOTDIR}
+	Not a directory.
+\item[ENOTEMPTY]
+\label{item:ENOTEMPTY}
+\index{ENOTEMPTY}
+	Directory not empty.
+\item[ENOTTY]
+\label{item:ENOTTY}
+\index{ENOTTY}
+	Not a typewriter or inappropriate I/O control operation.
+\item[ENXIO]
+\label{item:ENXIO}
+\index{ENXIO}
+	No such device or address.
+\item[EPERM]
+\label{item:EPERM}
+\index{EPERM}
+	Operation not permitte
+\item[EPIPE]
+\label{item:EPIPE}
+\index{EPIPE}
+	Broken pipe.
+\item[EROFS]
+\label{item:EROFS}
+\index{EROFS}
+	Read-only file system.
+\item[ESPIPE]
+\label{item:ESPIPE}
+\index{ESPIPE}
+	Illegal seek operation.
+\item[ESRCH]
+\label{item:ESRCH}
+\index{ESRCH}
+	No such process.
+\item[EXDEV]
+\label{item:EXDEV}
+\index{EXDEV}
+	Cross-device link; invalid link.
+
+\end{Ventry2}
+
+
+
+\subsection{fcntl.h}
+\index{header!fcntl.h}
+\label{sec:fcntlh}
+
+The EiC header file \verb+<fcntl.h>+ defines the following macros:
+
+\begin{Ventry2}{01234567890123456790}
+
+\item[O\_APPEND]
+\label{item:OAPPEND}
+\index{O\_APPEND}
+	If on, set offset to end-of-file before each write.
+\item[O\_CREAT]
+\label{item:OCREAT}
+\index{O\_CREAT}
+	If file does not exist, the the file is created
+	and with file attribute according to the value
+	of {\it mode}. If files does exist, then this
+	flag has no effect.
+
+\item[O\_EXCL]
+\label{item:OEXCL}
+\index{O\_EXCL}
+	Fail if file exists and if \T{O\_CREAT} is also specified.
+	Otherwise, create the file. 	
+
+\item[O\_NOCTTY]
+\label{item:ONOCTTY}
+\index{O\_NOCTTY}
+	Not used with regular files.
+	
+\item[O\_NONBLOCK]
+\label{item:ONONBLOCK}
+\index{O\_NONBLOCK}
+	Not used with regular files.
+\item[O\_RDONLY]
+\label{item:ORDONLY}
+\index{O\_RDONLY}
+	Open for read only.
+\item[O\_RDWR]
+\label{item:ORDWR}
+\index{O\_RDWR}
+
+	Open for read and write.
+\item[O\_TRUNC]
+\label{item:OTRUNC}
+\index{O\_TRUNC}
+	If the file exists, its length will be truncated to zero.
+\item[O\_WRONLY]
+\label{item:OWRONLY}
+\index{O\_WRONLY}
+	Open for write only.
+
+\item[O\_NDELAY]
+\label{item:ONDELAY}
+\index{O\_NDELAY}
+	For compatibility with System V.3. 
+
+\item[O\_BINARY]
+\label{item:OBINARY}
+\index{O\_BINARY}
+	Open file in binary mode. Added for DOS compatibility.
+\item[O\_TEXT]
+\label{item:OTEXT}
+\index{O\_TEXT}
+	Open file in text mode. Added for DOS compatibility.
+
+\end{Ventry2}
+
+The following functions are defined in \verb+<fcntl.h>+:
+\begin{Ventry2}{comm-switch  }
+
+\item[creat]
+\label{item:creat}
+\index{creat}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h>
+#include <sys/stats.h>
+#include <fcntl.h>
+int creat(const char *path,  mode_t mode);
+\end{verbatim}
+\end{production}
+
+Creates a new file or rewrites an existing one for writing,  as
+specified by \T{path}. Its access is specified by \T{mode}, 
+which maybe one or a bitwise combination of:
+\T{S\_IS[UG]ID}, \T{S\_ISVTX}, \T{S\_I[RWX](GRP|USR|OTH)}. 
+It returns a nonnegative file descriptor if
+successful, else it returns -1 and sets \T{errno} to one of:
+\T{EACCES}, \T{EEXIST}, \T{EINTR}, \T{EISDIR}, \T{EMFILE}, \T{ENAMETOOLONG}, 
+\T{ENFILE}, \T{ENOENT}, \T{ENOSPS}, \T{ENOTODIR}, or \T{EROFS}.
+  
+
+
+\item[open]
+\label{item:open}
+\index{open}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h> 
+#include <sys/stats.h> 
+#include <fcntl.h> 
+int open(const char *path, int access, ... /* mode_t mode */);
+\end{verbatim}
+\end{production}
+
+Create or open the file specified by \T{path}, with access defined by
+\T{access}, which maybe one or a bitwise combination of:
+\T{O\_APPEND}, \T{O\_CREAT}, \T{O\_EXCL}, \T{O\_NONBLOCK},  
+\T{O\_NOCTTY},  \T{O\_RDONLY}, \T{O\_RDWR} or \T{O\_WRONLY}.  
+The extra argument \T{mode} is used when creating a file with the
+access flag \T{O\_CREAT} specified. The \T{mode} maybe one or a bitwise
+combination of
+\T{S\_IS[UG]ID}, \T{S\_ISVTX}, \T{S\_I[RWX](GRP|USR|OTH)}. \T{Open} 
+returns a nonnegative file descriptor if successful, else it returns
+-1 and sets \T{errno} to one of: 
+\T{EACCES}, \T{EEXIST}, \T{EINTR}, \T{EISDIR}, \T{EMFILE}, \T{ENAMETOOLONG}, 
+\T{ENFILE}, \T{ENOENT}, \T{ENOSPS}, \T{ENOTODIR}, T{ENXIO} or \T{EROFS}.
+  
+
+
+\item[fcntl]
+\label{item:fcntl}
+\index{fcntl function}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h>
+#include <unistd.h>
+#include <fcntl.h>
+int fcntl(int filedes, int cmd, ..., /* optional int arg */);
+\end{verbatim}
+\end{production}
+
+The properties of a file can be changed via the \T{fcntl} function.
+It is used for the following five purposes:
+\begin{enumerate}
+\item Makes arg be a copy of fd, closing  fd  first  if
+                necessary, when \T{cmd} = \T{ F\_DUPFD}.
+\item Read or set file discriptor flags,  \T{cmd} = \T{F\_GETFD} or \T{F\_SETFD}.
+\item Read or set a file's status flags , \T{cmd} = \T{F\_GETFL} or \T{F\_SETFL}.
+\item Read or set the  process  ID  (or  process group) of the owner of a socket,
+        \T{cmd} = \T{F\_GETOWN} or \T{F\_SETOWN}.
+\item Read or set  record locks, \T{cmd} = \T{F\_GETL},
+ \T{F\_SETLK} or \T{SETLKW}. 
+\end{enumerate}
+
+All commands return -1 on error otherwise the return value depends on
+the input command: \T{F\_DUPFD}, a new descriptor; \T{F\_GETFD}, the
+value of the flag \T{F\_GETFL}  value of flags and \T{F\_GETOWN} 
+a positive or negative process \T{ID}.
+
+On error, sets \T{errno} to one of: \T{EACCESS}, \T{EAGAIN}, \T{EDEADLK}.
+
+\end{Ventry2}
+
+\subsection{limits.h}
+\index{header!limits.h}
+\label{sec:limitshPosix}
+
+The header \verb+<limits.h>+ declares the following POSIX.I macros:
+
+\begin{Ventry2}{01234567890123456789 }
+
+\item[ARG\_MAX]
+\index{ARG\_MAX}
+\label{item:ARGMAX}
+	maximum length of argument to the `exec' function
+\item[CHILD\_MAX]
+\index{CHILD\_MAX}
+\label{item:CHILDMAX}
+	maximum number of simultaneous processes per real user ID at any one time
+\item[LINK\_MAX]
+\index{LINK\_MAX}
+\label{item:LINKMAX}
+	number of links a file may have
+\item[MAX\_CANON]
+\index{MAX\_CANON}
+\label{item:MAXCANON}
+	size of the canonical input queue
+\item[MAX\_INPUT]
+\index{MAX\_INPUT}
+\label{item:MAXINPUT}
+	size of the type-ahead buffer
+\item[NAME\_MAX]
+\index{NAME\_MAX}
+\label{item:NAMEMAX}
+	maximum number of bytes in a file name, not including null termination.
+\item[NGROUPS\_MAX]
+\index{NGROUPS\_MAX}
+\label{item:NGROUPSMAX}
+	maximum number of supplementary group IDs that one process can have.
+\item[OPEN\_MAX]
+\index{OPEN\_MAX}
+\label{item:OPENMAX}
+	number of files that a single process can have open simultaneously
+\item[PIPE\_BUF]
+\index{PIPE\_BUF}
+\label{item:PIPEBUF}
+	maximum number of bytes written atomically to a pipe
+\item[SSIZE\_MAX]
+\index{SSIZE\_MAX}
+\label{item:SSIZEMAX}
+	largest value for object of type ssize\_t
+\item[TZNAME\_MAX]
+\index{TZNAME\_MAX}
+\label{item:TZNAMEMAX}
+	maximum bumber of bytes for the a time zone name.
+\item[\_POSIX\_ARG\_MAX]
+\index{\_POSIX\_ARG\_MAX}
+\label{item:POSIXARGMAX}
+	Maximum length of arguments to `execve', including environment.  
+\item[\_POSIX\_CHILD\_MAX]
+\index{\_POSIX\_CHILD\_MAX}
+\label{item:POSIXCHILDMAX}
+	Maximum simultaneous processes per real user ID.  
+\item[\_POSIX\_LINK\_MAX]
+\index{\_POSIX\_LINK\_MAX}
+\label{item:POSIXLINKMAX}
+	Maximum link count of a file.  
+\item[\_POSIX\_MAX\_CANON]
+\index{\_POSIX\_MAX\_CANON}
+\label{item:POSIXMAXCANON}
+	Number of bytes in a terminal canonical input queue.  
+\item[\_POSIX\_MAX\_INPUT]
+\index{\_POSIX\_MAX\_INPUT}
+\label{item:POSIXMAXINPUT}
+	Number of bytes for which space will be available in a terminal input queue.  
+\item[\_POSIX\_NAME\_MAX]
+\index{\_POSIX\_NAME\_MAX}
+\label{item:POSIXNAMEMAX}
+	Number of bytes in a filename.  
+\item[\_POSIX\_NGROUPS\_MAX]
+\index{\_POSIX\_NGROUPS\_MAX}
+\label{item:POSIXNGROUPSMAX}
+	Number of simultaneous supplementary group IDs per process.  
+\item[\_POSIX\_OPEN\_MAX]
+\index{\_POSIX\_OPEN\_MAX}
+\label{item:POSIXOPENMAX}
+	Number of files one process can have open at once.  
+\item[\_POSIX\_PATH\_MAX]
+\index{\_POSIX\_PATH\_MAX}
+\label{item:POSIXPATHMAX}
+	Number of bytes in a pathname.  
+\item[\_POSIX\_PIPE\_BUF]
+\index{\_POSIX\_PIPE\_BUF}
+\label{item:POSIXPIPEBUF}
+	Number of bytes than can be written atomically to a pipe.  
+\item[\_POSIX\_SSIZE\_MAX]
+\index{\_POSIX\_SSIZE\_MAX}
+\label{item:POSIXSSIZEMAX}
+	Largest value of a `ssize\_t'.  
+\item[\_POSIX\_STREAM\_MAX]
+\index{\_POSIX\_STREAM\_MAX}
+\label{item:POSIXSTREAMMAX}
+	Number of streams a process can have open at once.  
+\item[\_POSIX\_TZNAME\_MAX]
+\index{\_POSIX\_TZNAME\_MAX}
+\label{item:POSIXTZNAMEMAX}
+	Maximum length of a timezone name (element of `tzname').  
+\item[\_POSIX\_QLIMIT]
+\index{\_POSIX\_QLIMIT}
+\label{item:POSIXQLIMIT}
+	Maximum number of connections that can be queued on a socket.  
+\item[\_POSIX\_HIWAT]
+\index{\_POSIX\_HIWAT}
+\label{item:POSIXHIWAT}
+	Maximum number of bytes that can be buffered on a socket for send  or receive.  
+\item[\_POSIX\_UIO\_MAXIOV]
+\index{\_POSIX\_UIO\_MAXIOV}
+\label{item:POSIXUIOMAXIOV}
+	Maximum number of elements in an `iovec' array.  
+\item[\_POSIX\_TTY\_NAME\_MAX]
+\index{\_POSIX\_TTY\_NAME\_MAX}
+\label{item:POSIXTTYNAMEMAX}
+	Maximum number of characters in a tty name.  
+\item[\_POSIX\_LOGIN\_NAME\_MAX]
+\index{\_POSIX\_LOGIN\_NAME\_MAX}
+\label{item:POSIXLOGINNAMEMAX}
+	Maximum length of login name
+
+\end{Ventry2}
+
+\subsection{signal.h}
+\index{header!signal.h}
+\label{sec:signalhPosix}
+
+The header \verb+<signal.h>+ declares the following POSIX.I macros:
+
+
+\begin{Ventry2}{01234567890123456789 }
+
+
+\item[SIGALRM]
+\index{SIGALRM}
+\label{item:SIGALRM}
+	 Alarm clock. 
+
+\item[SIGCHLD]
+\index{SIGCHLD}
+\label{item:SIGCHLD}
+	 Child process terminated or stopped. 
+
+\item[SIGHUP]
+\index{SIGHUP}
+\label{item:SIGHUP}
+	 Hangup. 
+
+\item[SIGKILL]
+\index{SIGKILL}
+\label{item:SIGKILL}
+	 Kill (cannot be caught or ignored). 
+
+\item[SIGPIPE]
+\index{SIGPIPE}
+\label{item:SIGPIPE}
+	 Write on a pipe with no one to read it. 
+\item[SIGQUIT]
+\index{SIGQUIT}
+\label{item:SIGQUIT}
+	 Terminal quit signal. 
+
+\item[SIGSTOP]
+\index{SIGSTOP}
+\label{item:SIGSTOP}
+	 Stop executing (cannot be caught or ignored). 
+\item[SIGTSTP]
+\index{SIGTSTP}
+\label{item:SIGTSTP}
+	 Terminal stop signal. 
+
+\item[SIGTTIN]
+\index{SIGTTIN}
+\label{item:SIGTTIN}
+	 Background process attempting read. 
+\item[SIGTTOU]
+\index{SIGTTOU}
+\label{item:SIGTTOU}
+	 Background process attempting write. 
+
+
+\item[SIGUSR1]
+\index{SIGUSR1}
+\label{item:SIGUSR1}
+	 User-defined signal 1. 
+\item[SIGUSR2]
+\index{SIGUSR2}
+\label{item:SIGUSR2}
+	 User-defined signal 2. 
+
+
+\end{Ventry2}
+
+\subsection{sys/stat.h}
+\index{header!sys/stat.h}
+\label{sec:systath}
+
+The EiC header file \verb+<sys/stats.h>+ defines symbolic constants
+that are used when specifying the \T{mode\_t} access of files.  It
+defines the following macros and one structure specifier:
+
+\begin{Ventry2}{01234567890123456790}
+
+\item[S\_IRGRP]
+\label{item:SIRGRP}
+\index{S\_IRGRP}
+Group read permission.
+
+\item[S\_IROTH]
+\label{item:SIROTH}
+\index{S\_IROTH}
+Other read permission.
+
+\item[S\_IRUSR]
+\label{item:SIRUSR}
+\index{S\_IRUSR}
+
+Owner read permission. This is identical to the
+\T{S\_IREAD}\index{S\_IREAD} used by DOS.
+
+\item[S\_IRWXG]
+\label{item:SIRWXG}
+\index{S\_IRWXG}
+Group read, write and execute permission.\\
+\verb+S_IRWXG = S_IRGRP | S_IWGRP | SI_XGRP+
+
+\item[S\_IRWXO]
+\label{item:SIRWXO}
+\index{S\_IRWXO}
+Other read, write and  execute permission.\\
+\verb+S_IRWXO = S_IROTH | S_IWOTH | S_IXOTH+
+
+\item[S\_IRWXU]
+\label{item:SIRWXU}
+\index{S\_IRWXU}
+Owner read, write and execute permission.\\
+\verb+S_IRWXU = S_IRUSR | S_IWUSR | S_IXUSR+
+
+\item[S\_ISBLK]
+\label{item:SISBLK}
+\index{S\_ISBLK}
+
+Is block special file.
+
+\item[S\_ISCHR]
+\label{item:SISCHR}
+\index{S\_ISCHR}
+
+Is character special file.
+
+\item[S\_ISDIR]
+\label{item:SISDIR}
+\index{S\_ISDIR}
+
+Is directory.
+
+\item[S\_ISFIFO]
+\label{item:SISFIFO}
+\index{S\_ISFIFO}
+Is pipe or FIFO.
+
+\item[S\_ISGID]
+\label{item:SISGID}
+\index{S\_ISGID}
+set group id on execution 
+
+\item[S\_ISREG]
+\label{item:SISREG}
+\index{S\_ISREG}
+set user id on execution 
+
+\item[S\_IWGRP]
+\label{item:SIWGRP}
+\index{S\_IWGRP}
+Group write permission.
+
+\item[S\_IWOTH]
+\label{item:SIWOTH}
+\index{S\_IWOTH}
+Other write permission.
+
+\item[S\_IWUSR]
+\label{item:SIWUSR}
+\index{S\_IWUSR}
+
+Owner write permission. This is identical to
+\T{S\_IWRITE}\index{S\_IWRITE} used by DOS.
+
+\item[S\_IXGRP]
+\label{item:SIXGRP}
+\index{S\_IXGRP}
+Group execute permission.
+
+\item[S\_IXOTH]
+\label{item:SIXOTH}
+\index{S\_IXOTH}
+Other execute permission.
+
+\item[S\_IXUSR]
+\label{item:SIXUSR}
+\index{S\_IXUSR}
+Owner execute permission.
+
+\item[struct stat]
+\label{item:structstat}
+\index{struct stat}
+
+A file status attributes are easily collected into a structure as
+specified by \T{struct stat}, which has at least the following members:
+
+\begin{verbatim}
+mode_t  st_mode;    /* File mode */
+ino_t   st_ino;     /* File serial number */
+dev_t   st_dev;     /* File system device number */
+nlink_t st_nlink;   /* Number of links */
+uid_t   st_uid;     /* User ID of the file's owner */
+gid_t   st_gid;     /* Group ID of the file's group */
+off_t   st_size;    /* File size in bytes */
+time_t  st_atime;   /* Time of last access */
+time_t  st_mtime;   /* Time of last data modification */
+time_t  st_ctime;   /* Time of last file status change */
+
+/* ... */           /* other possible members */
+\end{verbatim}
+
+\end{Ventry2}
+
+The following functions are defined in \verb+<sys/stat.h>+:
+\begin{Ventry2}{comm-switch  }
+
+\item[chmod]
+\label{item:chmod}
+\index{chmod}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h>
+#include <sys/stat.h>
+int chmod(const char * path, mode_t mode);   
+\end{verbatim}
+\end{production}
+
+Change access permission of the file specified by \T{path} to 
+\T{mode}, which maybe one or a bitwise combination of
+\T{S\_IS[UG]ID}, \T{S\_ISVTX}, \T{S\_I[RWX](GRP|USR|OTH)}. 
+Returns zero on success or -1 on error and sets
+\T{errno} to one of: \T{EACCESS}, \T{ENAMETOOLONG},
+\T{ENOTDIR}, \T{ENOENT}, \T{EPERM} OR \T{EROFS}.
+
+
+\item[fstat]
+\label{item:fstat}
+\index{fstat}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h> 
+#include <sys/stat.h> 
+int fstat(int filedes, struct stat *buf)
+\end{verbatim}
+\end{production}
+
+Gets the open file or directory information associate with
+\T{filedes}. It stores the information in the \T{stat} structure,
+pointed to by \T{buf}. It returns zero on success,  else -1 on error and
+sets \T{errno} to \T{EBADF}.
+ 
+\item[mkdir]
+\label{item:mkdir}
+\index{mkdir}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h>
+#include <sys/stat.h>
+int mkdir(const char *path, mode_t mode) 
+\end{verbatim}
+\end{production}
+
+Creates a directory from the given path with access specified by
+\T{mode}, which maybe one or a bitwise combination of
+\T{S\_IS[UG]ID}, \T{S\_ISVTX}, \T{S\_I[RWX](GRP|USR|OTH)}.  
+Returns 0 on success, else -1 on error and then sets \T{errno} to one of:
+\T{EACCESS}, \T{ENAMETOOLONG},
+\T{ENOENT} or \T{ENOTDIR}.
+
+\item[mkfifo]
+\label{item:mkfifo}
+\index{mkfifo}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h> 
+#include <sys/stat.h> 
+int mkfifo(const char * path, mode_t mode)
+\end{verbatim}
+\end{production}
+
+Creates a FIFO name pipe with access specified by \T{mode},
+which maybe one or a bitwise combination of
+\T{S\_IS[UG]ID}, \T{S\_ISVTX}, \T{S\_I[RWX](GRP|USR|OTH)}. 
+Returns 0 on success, else -1 on error and sets
+\T{errno} to one of: \T{EACCESS}, \T{EEXIST}, \T{ENAMETOOLONG},
+\T{ENOENT}, \T{ENOSPC}, \T{ENOTDIR} or \T{EROFS}. 
+
+\item[stat]
+\label{item:stat}
+\index{stat}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h> 
+#include <sys/stat.h> 
+int stat(const char *file_name, struct stat *buf)
+\end{verbatim}
+\end{production}
+
+The same as \T{fstat} above, but is applied to a file name rather than
+an already opened file. Returns 0 on success, else -1 on error and sets
+\T{errno} to one of: \T{EACCESS}, 
+\T{ENAMETOOLONG}, \T{ENOENT} or \T{ENOTDIR}.
+
+
+\item[umask]
+\label{item:umask}
+\index{umask}
+\T{Synopsis}:
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h> 
+#include <sys/stat.h> 
+mode_t umask(mode_t cmask)
+\end{verbatim}
+\end{production}
+
+Sets the file mode creation mask for the calling process to \T{cmask}.
+Returns the previous creation mask. No error codes used.
+
+\end{Ventry2}
+
+
+\subsection{sys/types.h}
+\index{header!sys/types.h}
+\label{sec:systypesh}
+
+The EiC header file \verb+<sys/types.h>+ defines the following object
+types.
+
+
+\begin{Ventry2}{01234567890123456790}
+
+\item[dev\_t]
+\label{item:devt}
+\index{dev\_t}
+Device number (major and minor).
+
+\item[gid\_t]
+\label{item:gidt}
+\index{gid\_t}
+Group ID.	
+
+\item[ino\_t]
+\label{item:inot}
+\index{ino\_t}
+Numeric i-node value.
+
+\item[mode\_t]
+\label{item:modet}
+\index{mode\_t}
+	File type and creation mode.
+
+\item[nlink\_t]
+\label{item:nlinkt}
+\index{nlink\_t}
+	Number of links associated with a directory.
+
+\item[off\_t]
+\label{item:offt}
+\index{off\_t}
+	For recording file offset position and file sizes.
+
+\item[pid\_t]
+\label{item:pidt}
+\index{pid\_t}
+	Process ID number and process group ID>
+
+\item[size\_t]
+\index{size\_t}
+	See section \SecPage{stddefh}
+
+\item[ssize\_t]
+\label{item:ssizet}
+\index{ssize\_t}
+	POSIX byte count.
+
+\item[uid\_t]
+\label{item:uidt}
+\index{uid\_t}
+	User IDs.
+
+\end{Ventry2}
+
+
+
+\subsection{unistd.h}
+\index{header!unistd.h}
+\label{sec:unistdh}
+
+The EiC header file \verb+<unistd.h>+ defines the following macros:
+
+\begin{Ventry2}{01234567890123456790}
+
+
+\item[F\_OK]
+\label{item:FOK}
+\index{F\_OK}
+	Does file exist.
+\item[W\_OK]
+\label{item:WOK}
+\index{W\_OK}
+	Writable by caller.
+\item[R\_OK]
+\label{item:ROK}
+\index{R\_OK}
+	Readable by caller.
+\item[X\_OK]
+\label{item:XOK}
+\index{X\_OK}
+	Executable by caller.
+\item[STDIN\_FILENO]
+\label{item:STDINFILENO}
+\index{STDIN\_FILENO}
+	Standard input.
+\item[STDOUT\_FILENO]
+\label{item:STDOUTFILENO}
+\index{STDOUT\_FILENO}
+	Standard output.
+\item[STDERR\_FILENO]
+\label{item:STDERRFILENO}
+\index{STDERR\_FILENO}
+Standard error output.
+
+\end{Ventry2}
+
+The following functions are presently implemented from
+\verb+<unistd.h>+ by EiC:
+
+\begin{Ventry2}{comm-switch  }
+
+\item[access]
+\label{item:access}
+\index{access}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <unistd.h>
+int access(const char * path, int mode);
+\end{verbatim}
+\end{production}
+
+
+   Checks the file pointed to by \T{path} for accessibily according to
+   \T{mode}, using the real user ID in place of the effective user ID
+   and the real group ID in place of the effective group ID. This
+   allows a setuid process to verify that the user running it would
+   have had permission to access this file.  The \T{mode} can be
+   \T{F\_OK}, \T{R\_OK}, \T{W\_OK}, or \T{X\_OK}. Returns zero on
+success or -1 on failure and sets \T{errno} to one of:
+     EACCES, ENAMETOOLONG, ENOENT, or EROFS.
+
+
+\item[alarm]
+\label{item:alarm}
+\index{alarm}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <unistd.h>
+unsigned int alarm(unsigned int seconds);
+\end{verbatim}
+\end{production}
+
+
+\T{alarm} arranges to have a \T{SIGALRM} delivered to the process for the signal
+\T{SIGALRM} after the specified number of seconds have elapsed. If \T{seconds} is zero
+then no new alarm is schededuled. In all cases the any previous \T{alarm}s are cancelled and
+\T{return}s the number of seconds remaining  until  any  scheduled alarm was due to be delivered.
+\T{Return}s zero if there is no previously scheduled alarm. 
+
+
+\item[chdir]
+\label{item:chdir}
+\index{chdir}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <unistd.h>
+int chdir(const char * pathname);
+\end{verbatim}
+\end{production}
+
+\T{chdir} changes the current working directory to the one specified in \T{pathname}.
+Returns on success, 0 and on error returns -1 and it will set \T{errno} to one of: \T{EFAULT} 
+ \T{ENAMETOOLONG}, \T{ENOENT}, \T{ENOMEM}, \T{ENOTDIR}, \T{EACCES}, \T{ELOOP}, \T{EIO}, \T{EBADF} or \T{EACCES}
+
+\item[close]
+\label{item:close}
+\index{close}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <unistd.h>
+int close(int handle);
+\end{verbatim}
+\end{production}
+
+
+Closes the file associated with \T{handle}, which may have been
+obtained from \T{creat}, \T{open}, \T{dup}, or \T{dup2}.
+Returns 0 on success, else -1 on error and sets \T{errno}
+to one of: \T{EBADF} or \T{EINTR}.
+  
+
+\item[dup]
+\label{item:dup}
+\index{dup}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <unistd.h>
+int dup(int filedes);
+\end{verbatim}
+\end{production}
+
+Duplicates the file handle \T{filedes}. The duplicated handle will
+have the same access mode, the same file pointer and same open file or
+device as \T{filedes}. Returns the duplicated file handle, else -1 on
+error and sets \T{errno} to one of: \T{EBADF} or \T{EMFILE}.
+
+\item[dup2]
+\label{item:dup2}
+\index{dup2}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <unistd.h>
+int dup2(int oldfiledes, int newfiledes);
+\end{verbatim}
+\end{production}
+
+
+Duplicates an old file handle, \T{oldfiledes} onto an existing new
+file handle, \T{newfiledes}. The duplicated handle will have the same
+access mode, the same file pointer and same open file or device as the
+old handle.  If the file associated with the new file handle is
+already opened, it will be first closed. Returns 0 on success, else -1
+on error and sets \T{errno} to one of \T{EBADF} or \T{EMFILE}.
+
+
+\item[fork]
+\label{item:fork}
+\index{fork}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h>
+#include <unistd.h>
+pid_t fork(void);
+\end{verbatim}
+\end{production}
+
+Creates a child process, which is a copy of the parent. The child gets
+a copy of the parent's data space, heap and stack. While \T{fork}
+is called once, it will return twice: once to the parent and once to the
+child. It returns 0 to the child and returns the process \T{ID} of the
+child to the parent. Both the child and parent continue executing from
+the place in the program directly after the call. However, there is no
+guarantee which process will commence first. On error, it returns -1
+and sets \T{errno} to one of: \T{EAGAIN} or \T{ENOMEM}.
+
+\item[getcwd]
+\label{item:getcwd}
+\index{getcwd}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <unistd.h>
+char *getcwd(char *buf, size_t sz);
+\end{verbatim}
+\end{production}
+
+The \T{getcwd} function gets the current working directory's absolute
+path and copies it into the character array \T{buf}, and the length of
+\T{buf} is specified by \T{sz}. Returns on success \T{buf}, or
+\T{NULL} on error.
+
+
+\item[getpid]
+\label{item:getpid}
+\index{getpid}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h>
+#include <unistd.h>
+int getpid(void);
+\end{verbatim}
+\end{production}
+
+Returns the group ID of the calling process.  No error
+indicated or \T{errno} designators.
+
+\item[link]
+\label{item:link}
+\index{link}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <unistd.h>
+int link(const char *oldpath, const char *newpath);
+\end{verbatim}
+\end{production}
+
+Creates a link to an existing file or directory specified
+by\T{oldpath}, and give it the name \T{newpath}. It is an error if the
+newpath already exists. Note, only a superuser process can create a
+link to a directory.  Returns 0 on success, else -1 on error and sets
+\T{errno} to one of: \T{EINVAL}, \T{EPERM} or \T{ESRCH}.
+
+\item[lseek]
+\label{item:lseek}
+\index{lseek}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <sys/types.h>
+#include <unistd.h> 
+off_t lseek(int filedes, off_t offset, int whence);
+\end{verbatim}
+\end{production}
+
+Set the file descriptor's, \T{filedes}, pointer to the new position
+specified by \T{offset}, which will be measured relative to
+\T{whence}. \T{whence} can be on of:
+\T{SEEK\_SET}, \T{SEEK\_END} or \T{SEEK\_CUR}. Returns on success the 
+resulting position in number of bytes from the beginning of the file,
+else it returns -1 and sets \T{errno} to one of: \T{EBADF}, \T{EINVAL}
+or \T{ESPIPE}. Note, \verb+lseek(filedes,0,SEEK_CUR)+ will return
+the current file pointer location.
+
+\item[pause]
+\label{item:pause}
+\index{pause}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <unistd.h>
+int pause(void);
+\end{verbatim}
+\end{production}
+
+Causes the program or calling unit to sleep until a signal is received.
+\T{Return}s  -1.
+
+\item[pipe]
+\label{item:pipe}
+\index{pipe}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <unistd.h>
+int pipe(int filedes[2]);
+\end{verbatim}
+\end{production}
+
+Creates a pipe, with read and write file descriptors stored in
+filedes[0] and filedes[1] respectively. The output filedes[0] is the
+input into file filedes[1]. A call to \T{pipe} is often accompanied by
+a \T{fork}, of which the parent process will close the read end of the
+pipe, while the child process will close the write end.  Returns 0 on
+success, else -1 on error and sets
+\T{errno} to one of: \T{EMFILE} or \T{ENFILE}.
+
+\item[read]
+\label{item:read}
+\index{read}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <unistd.h>
+ssize_t read(int filedes, char *buf, size_t count);
+\end{verbatim}
+\end{production}
+
+Attempts to read \T{count} bytes from \T{filedes} and will place
+them in \T{buf}. One success, returns the number of bytes read,
+on \T{end-of-file} zero, otherwise -1 and sets \T{errno} to one of:
+\T{EACCESS}, \T{EAGAIN}, \T{EBADF}, \T{EINTR}, \T{EISDIR}, or 
+\T{EFAULT}.
+
+
+\item[rmdir]
+\label{item:rmdir}
+\index{rmdir}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <unistd.h>
+int rmdir(const char * path);
+\end{verbatim}
+\end{production}
+ 
+Removes the directory specified by \T{path}, which must be empty.
+Returns zero on success, else -1 on error and
+\T{errno} will be set to one of: \T{EBUSY}, \T{EFAULT},
+\T{ENAMETOOLONG}, \T{ENOENT}, \T{ENOMEM}, \T{ENOTDIR},
+ \T{ENOTEMPTY}, \T{EPERM } or \T{EROFS}.
+
+
+\item[sleep]
+\label{item:sleep}
+\index{sleep}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <unistd.h>
+unsigned int sleep(unsigned int sec);
+\end{verbatim}
+\end{production}
+
+Puts the current process to sleep for  \T{sec} seconds.
+or until a signal arrives which is not ignored. Returns
+the amount of time not slept. No error codes used.
+
+\item[unlink]
+\label{item:unlink}
+\index{unlink}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <unistd.h>
+int unlink(const char *fname);
+\end{verbatim}
+\end{production}
+
+Removes the link, \T{fname} from the filesystem. If it is the last
+link to the that name and no other process has the file opened, then
+the file space will also be freed. If there are no other links and any
+process still has the file opened then the file space will remain in
+existence until the last file descriptor referring to it is
+closed. Returns zero on success, else -1 and 
+\T{errno} is set to one of: \T{EACCES}, \T{EFAULT}, \T{EISDIR}, 
+\T{ENAMETOOLONG}, \T{ENOENT}, \T{ENOMEM}, \T{ENOTDIR},  \T{EPERM }, or \T{EROFS}.
+
+
+
+\item[write]
+\label{item:write}
+\index{write}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <unistd.h>
+ssize_t write(int filedes, const char *buf, size_t count);
+\end{verbatim}
+\end{production}
+       
+Writes up to \T{count} bytes to file descriptor \T{filedes} from from
+\T{buf}. Returns the number of bytes written, zero on end-of-file or
+otherwise -1 and \T{errno} will be set to one of: \T{EAGAIN}, \T{EBADF}, 
+\T{EFAULT}, \T{EINTR}, \T{EINVAL}, \T{ENOSPC} or \T{EPIPE}. 
+
+
+\end{Ventry2}
+
+
+\section{Implementation library support}
+\label{sec:ImplementationLibrary}
+\index{libraries!implementation support}
+
+In this section, those functions that are not part of ISO C or the POSIX.1
+standard are presented. These functions will typically be found
+on most UNIX system.
+
+
+
+\subsection{stdio.h}
+\index{header!stdio.h}
+\label{sec:stdiohImplementation}
+
+The EiC header file \verb+<stdio.h>+ defines the following 
+extra functions:
+
+\begin{Ventry2}{01234567890123456790}
+
+
+\item[pclose]
+\label{item:pclose}
+\index{pclose}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+int pclose( FILE *stream);
+\end{verbatim}
+\end{production}
+
+\item[popen]
+\label{item:popen}
+\index{popen}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+FILE *popen( const char *command, const char *type);
+\end{verbatim}
+\end{production}
+
+\end{Ventry2}
+
+\subsection{dirent.h}
+\index{header!dirent.h}
+\label{sec:direnthImplementation}
+
+The EiC header file \verb+<dirent.h>+ defines these extra functions:
+
+\begin{Ventry2}{01234567890123456790}
+
+\item[seekdir]
+\label{item:seekdir}
+\index{seekdir}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <dirent.h>
+void seekdir(DIR *dir, off_t offset);
+\end{verbatim}
+\end{production}
+
+\item[telldir]
+\label{item:telldir}
+\index{telldir}
+\T{Synopsis}
+\begin{production}
+\begin{verbatim}
+#include <dirent.h>
+off_t telldir(DIR *dir);
+\end{verbatim}
+\end{production}
+
+\end{Ventry2}
+
+
+
+
+
+
+
+
+
+
+
+
+

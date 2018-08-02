@@ -1,0 +1,23 @@
+
+Download and installation of binaries:
+
+- Download the file indigo-scada-binaries-day-month-year-hour-min.exe
+
+- Remove directory C:\scada, if any, of the previous release.
+
+- Run indigo-scada-binaries-day-month-year-hour-min.exe and
+
+  install in C:\ disk. Once installed, run the process C:\scada\bin\manager.exe
+
+- See C:\scada\Help\LICENSE.txt for the license that governs this software. Note that IndigoSCADA is free software, and consequently there is NO WARRANTY.
+
+- For further help see C:\scada\Help\IndigoSCADA_install_en.txt
+
+Download and installation of sources:
+
+- Download the file indigo-scada-src-day-month-year-hour-min.tar.gz
+
+- Copy the \src directory of the tarball to the C:\scada directory in order to have a
+
+  binary (run time environment) and source code (development environment) on your machine
+

@@ -1,0 +1,24 @@
+HKCR
+{
+	MPriborDBAccessor.Channel.1 = s 'Channel Class'
+	{
+		CLSID = s '{8BA58AB9-BB65-4DE6-9B27-0F09E579DA92}'
+	}
+	MPriborDBAccessor.Channel = s 'Channel Class'
+	{
+		CLSID = s '{8BA58AB9-BB65-4DE6-9B27-0F09E579DA92}'
+		CurVer = s 'MPriborDBAccessor.Channel.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {8BA58AB9-BB65-4DE6-9B27-0F09E579DA92} = s 'Channel Class'
+		{
+			ProgID = s 'MPriborDBAccessor.Channel.1'
+			VersionIndependentProgID = s 'MPriborDBAccessor.Channel'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{2B4525FF-0734-4D9C-9FF4-0E3B6D462702}'
+		}
+	}
+}

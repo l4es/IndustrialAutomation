@@ -1,0 +1,75 @@
+on
+	(void)
+Error in testerr.c near line 4: Expected ;
+Error in testerr.c near line 5: Struct/Union member declaration error
+Error in testerr.c near line 12: Too many initialisers
+Error in testerr.c near line 13: Illegal initialization: illegal address operation
+Error in testerr.c near line 24:  Redeclaration of parameter `hvd'
+Previously declared in: testerr.c
+Error in testerr.c near line 28: Struct/Union member declaration error
+Error in testerr.c near line 34: Illegal structure operation
+Error in testerr.c near line 37:  Redeclaration of parameter `a'
+Previously declared in: testerr.c
+Error in testerr.c near line 41: Unknown type 'a': possible old C type declaration
+Error in testerr.c near line 43: Expected ;
+Error in testerr.c near line 46: Misplaced return statement
+Error in testerr.c near line 49: Too many initialisers
+Preproc : error in testerr.c near line 52: Illegal macro identifier
+Preproc : error in testerr.c near line 54: unbalanced "
+Preproc : error in testerr.c near line 54: Missing "
+Preproc : error in testerr.c near line 54: failed to open include file stdio.
+Preproc : error in testerr.c near line 55: Missing >
+Preproc : error in testerr.c near line 55: failed to open include file stdio.
+Error in testerr.c near line 57: Undeclared identifier typdef
+Error in testerr.c near line 59: Undeclared identifier myint
+Error in testerr.c near line 61: Illegal cast operation
+Error in testerr.c near line 65: Re-declaration of macro TESTY
+Error in testerr.c near line 66: Unmatched #else
+Error in testerr.c near line 68: Unmatched #endif
+Error in testerr.c near line 71: Illegal label
+Preproc : error in testerr.c near line 75: unbalanced "
+Preproc : error in testerr.c near line 78: unbalanced "
+Error in testerr.c near line 83: invalid specification
+Error in testerr.c near line 94:  Redeclaration of parameter `f3args'
+Previously declared in: testerr.c
+Error in testerr.c near line 99: Illegal pointer operation
+Error in testerr.c near line 100: Illegal pointer operation
+Error in testerr.c near line 100: Illegal lvalue
+Error in testerr.c near line 102: Void expression
+Error in testerr.c near line 102: Undefined type for relational operation
+Error in testerr.c near line 104: Void expression
+Error in testerr.c near line 104: Undefined type for relational operation
+Error in testerr.c near line 109: Expected  }
+Error in testerr.c near line 113: Illegal initialization: illegal address operation
+Error in testerr.c near line 119: Illegal initialization: illegal address operation
+Error in testerr.c near line 124: Illegal return type for foo
+Error in testerr.c near line 125: Illegal return type for foo1
+Error in testerr.c near line 130: Illegal return type, expected void
+Warning: in testerr.c near line 132: Empty function definition
+Error in testerr.c near line 134: Illegal cast operation
+Error in testerr.c near line 137: Illegal unary opertion
+Error in testerr.c near line 138: Illegal unary opertion
+Error in testerr.c near line 139: Illegal unary opertion
+Error in testerr.c near line 140: Illegal unary opertion
+Error in testerr.c near line 141: Illegal assignment operation
+Error in testerr.c near line 154: Illegal assignment operation
+Error in testerr.c near line 156: Illegal assignment operation
+Error in testerr.c near line 162: Assignment loses a const qualifier
+Error in testerr.c near line 163: Assignment loses a const qualifier
+Error in testerr.c near line 168: Cast loses const qualifier
+Error in testerr.c near line 173: Assignment loses a const qualifier
+Error in testerr.c near line 178: Illegal assignment operation
+Error in testerr.c near line 187: Illegal assignment operation
+Error in testerr.c near line 197: Illegal assignment operation
+Error in testerr.c near line 198: Illegal assignment operation
+Error in testerr.c near line 206: Illegal assignment operation
+Error in testerr.c near line 208: Illegal assignment operation
+Error in testerr.c near line 214: Illegal parameter no. [1]
+Error in testerr.c near line 220: Unexpected declaration
+Error in testerr.c near line 225: Wrong number of arguments for OneParm
+Error in testerr.c near line 231: Illegal assignment operation
+Error in testerr.c near line 237: Illegal assignment operation
+Error in testerr.c near line 238: Illegal assignment operation
+Error in testerr.c near line 239: Illegal assignment operation
+Warning: in testerr.c near line 245: Suspicious pointer conversion
+Error: clean up forced

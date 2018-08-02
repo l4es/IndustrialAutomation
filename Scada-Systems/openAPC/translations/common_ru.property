@@ -1,0 +1,588 @@
+﻿# common translations used by/within all applications
+
+#units
+
+mm = мм
+nm = нм
+deg = степень
+sec = s
+msec = мs
+usec = µs
+Hz = Гц
+mm/sec = мм/s
+inc/mm = inc/мм
+steps/inc = steps/inc
+inc/mm | inc/rot = inc/мм | inc/rot
+mm/sec | deg/sec = мм/s | степень/s
+mm | deg = мм | степень
+mm|deg/sec = мм | степень/s
+% = %
+pulses = Импульсы
+
+#general
+
+Basic = Базовые данные
+3D = 3D
+Signals = Сигналы
+Polygon Delay = Полигон задержка
+Use variable polygon delay = Переменная задержка многоугольник
+unused = не используется
+off = от
+Output Number = Номер вывода
+Limits = Пределы
+Poll Delay = Задержка при опросе
+
+# Main window
+
+New project = Новый проект
+Open project = Открыть проект
+Save project = Сохранить проект
+Save project as = Сохранить проект как
+Quit = Выйти
+Undo = Отменить
+Redo = Вернуть
+OK = ОК
+Cancel = Отмена
+
+Quit application = Выйти из приложения
+Quits the application = Выход из приложения
+File = Файл
+Project settings = Настройки проекта
+About = О программе
+Help = Справка
+Credits = Кредиты
+Credits go to = Кредиты идут на
+New project = Новый проект
+Load project = Загрузить проект
+Load new project = Загрузить новый проект
+
+Check Dongle = Проверить аппаратный ключ
+
+Duplicate = Дублировать
+
+# menu bar settings
+
+Commands = Команды
+Menu bar = Строка меню
+Current shortcuts = Текущие комбинации клавиш
+New shortcut = Новая комбинация клавиш
+Currently assigned to = В настоящее время назначена для:
+Categories = Категории
+Add = Добавить
+Remove = Удалить
+Remove all = Удалить все
+
+Zoom selected element = Увеличить выбранный элемент
+Point drag mode = Режим перетаскивания точки
+Zoom into view = Приблизить
+Zoom out of view = Отодвинуть
+Show full working area = Показать всю рабочую область
+Open mark dialogue = Открыть диалог маркировки
+Drag single dot(s) = Перетащить отдельные точки
+
+# Misc
+
+Really create a new project?\nThis will delete all the existing data! = Вы действительно хотите создать новый проект?\nЭто приведет к удалению всех существующих данных!
+Really load a new project?\nThis will delete all the existing data! = Вы действительно хотите загрузить новый проект?\nЭто приведет к удалению всех существующих данных!
+Really load new data? This will delete the existing geometries, control elements and pen settings! = Вы действительно хотите загружать новые данные? Этот процесс удалит все существующие геометрии, элементы управления и настройки пера!
+Current changes have not been saved!\nSave project before exiting? = Текущие изменения не были сохранены!\nСохранить проект перед выходом?
+
+Miscellaneous = Разное
+
+Visual Grid Size = Размер визуальной сетки
+Snap To Grid = Привязать к сетке
+Background colour = Цвет фона
+3D mesh colour = 3D-сетчатый цвет
+3D support mesh colour = 3D-цвет сетки поддержки
+Choose the background colour = Выберите цвет фона
+Choose the 3D mesh colour = Выберите цвет 3D-сетки
+Choose the 3D support mesh colour = Выберите цвет сетки поддержки 3D
+
+State = Состояние
+Users = Пользователи
+User = Пользователь
+Enable User Privilege Management = Включить управление полномочиями пользователей
+User Privilege = Полномочие пользователя
+Priority = Приоритет
+Users = Пользователи
+User Data = Пользовательские данные
+Administrator = Aдминистратор
+Service = Oбслуживание
+System Operator = Системный оператор
+Login name = Имя для входа в систему
+Full name = Ф.И.О.
+Enabled = Включено
+Comment = Комментарий
+Apply = Применить
+Add new user = Добавить польз.
+Delete user = Удалить польз.
+Set password = Установить пароль
+Privilege = льгота
+
+Supervision = Надзор
+Manage users = Управлять пользователями
+Exit application = Выйти из приложения
+Edit geometry = Редактировать геометрию
+Modify settings = Изменить настройки
+Control marking = Контроль маркировки
+
+# license related
+
+License Information = Лицензионная информация
+License Error = Ошибка лицензии
+License = Лицензия
+Reset License = Сбросить лицензию
+Checking for license = Проверка на наличие лицензии
+
+Load license file = Загрузить файл лицензии
+Get a free license = Получить бесплатную лицензию
+Click here to get a full PRO license = Нажмите, чтобы получить полную лицензию типа PRO.
+You will need to enter a new license key after next application startup! Really reset the current license? = При следующем запуске приложения вам потребуется ввести новый лицензионный ключ! Вы действительно хотите сбросить текущую лицензию?
+Could not retrieve system information! = Не удалось получить информацию о системе!
+No valid license found!\n\nDo you want to get licensing information or enter a valid license key now? = Действующая лицензия не обнаружена!\n\nХотите получить лицензионную информацию или ввести действительный лицензионный ключ?
+No license key entered! = Лицензионный ключ не был введен!
+Could not store license data on disk! = Не удалось сохранить данные о лицензии на диск!
+Application is running in demo-mode, saving of data and other functions are disabled! = Приложение работает в демонстрационном режиме, сохранение данных отключено!
+The current license does not include this component,\nbecause of that the application is running in demo-mode, saving of data is disabled! = Данный компонент не включен в лицензию,\nпоэтому приложение работает в демонстрационном режиме без возможности сохранения данных!
+This product is licensed for = Владелец лицензии на данный продукт:
+Operation not possible! = Операция невозможна!
+No valid license found! = Действующая лицензия не обнаружена!
+Do you want to get a (free) license or enter a valid license key now? = Хотите получить (бесплатную) лицензию или ввести действительный лицензионный ключ?
+License Information = Лицензионная информация
+This system is deadlocked, please contact your supplier! = Эта система полностью заблокирована, свяжитесь с вашим поставщиком!
+This systems lock was damaged, please contact your supplier! = Замок этой системы поврежден, обратитесь к вашему поставщику!
+This system is locked. Please enter the password you received from your supplier in order unlock it = Эта система заблокирована. Введите пароль разблокировки, который вы получили от своего поставщика:
+Wrong password entered, system could not be unlocked. Exiting application! = Введен неверный пароль. Система не может быть выпущена, приложение прекращается!
+
+private, non-commercial usage = частное, некоммерческое использование
+educational, non-commercial usage = некоммерческое использование в образовательных целях
+commercial usage = коммерческое использование
+Load license file = Загрузить файл лицензии
+Retrieved from dongle = Источник ключа
+Retrieved online = Источник онлайн
+Retrieved from E1701 controller card = Источник контроллера E1701
+Retrieved from E1803 controller card = Источник контроллера E1803
+
+Checking dongle failed = Проверка ключа не удалось
+Dongle OK = Ключа ОК
+
+Serial Interface = Последовательный интерфейс
+Interface = Интерфейс
+Data Rate = Скорость передачи данных
+Data Bits = Биты данных
+Parity = Контроль четности
+None = Нет
+Even = Четный
+Odd = Нечетный
+Stop Bits = Стоп-биты
+Flow Control = Управление потоком
+None = Нет
+Hardware = Аппаратное обеспечение
+Xon / Xoff = Xon/Xoff
+
+
+# Scanlab RTCx
+
+Use Board Number = Используйте доску с номером
+ScanLab(R) RTC3 = ScanLab(R) RTC3
+ScanLab(R) RTC4 = ScanLab(R) RTC4
+ScanLab(R) RTC5 = ScanLab(R) RTC5
+YAG Mode 1 = YAG. Режим 1
+YAG Mode 2 = YAG. Режим 2
+YAG Mode 3 = YAG. Режим 3
+Laser Mode 4 = Лазерный режим 4
+Laser type = Тип лазера
+Analogue OUT 1 = Аналоговый ВЫВОД 1
+Analogue OUT 2 = Аналоговый ВЫВОД 2
+Analogue OUT 3 (Extension Board) = Аналоговый ВЫВОД 3 (плата расширения)
+Analogue OUT 4 (Extension Board) = Аналоговый ВЫВОД 4 (плата расширения)
+Analogue OUT 5 (Extension Board) = Аналоговый ВЫВОД 5 (плата расширения)
+Analogue OUT 6 (Extension Board) = Аналоговый ВЫВОД 6 (плата расширения)
+Power output = Выходная мощность
+Additional power output = Дополнительная выходная мощность
+2 (flat) = 2 (плоский)
+3 (spatial) = 3 (трехмерный)
+Number of axes = Число осей
+Correction file = Файл исправлений
+Firmware file = Файл с микропрограммой
+Firmware data directory = Kаталог данных с микропрограммой
+Laser signal level = Уровень лазерного сигнала
+Active LOW = Активный LOW
+Active HIGH = Активный HIGH
+SkyWriting = SkyWriting
+Timelag = Задержка
+Laser-on shift = Задержка лазера ON
+Run-in Phase = Предварительная фаза
+Run-out Phase = последующие фазы
+Stand-by frequency = Резервная частота
+Stand-by length = Резервная длина
+Field left position = Левая позиция на поле
+Field upper position = Верхняя позиция на поле
+Field size = Размер поля
+Mirror X = Отраженный X
+Mirror Y = Отраженный Y
+Mirror Z = Отраженный Z
+On-the-fly factor X = Динамический коэффициент X
+On-the-fly factor Y = Динамический коэффициент Y
+Default = По умолчанию
+Jump speed = Скорость перехода
+Mark speed = Скорость маркировки
+Laser off delay = Задержка выключения лазера
+Laser on delay = Задержка включения лазера
+Jump delay = Задержка перехода
+Mark delay = Задержка маркировки
+Dot-length = Длина долота
+Pulse width = Ширина импульса
+First pulse killer = Первый гаситель импульса
+Continuously running frequency = Частота при непрерывной работе
+Continuously running pulse width = Ширина импульса при непрерывной работе
+Waveform number = Номер формы колебаний
+Digital OUT (low byte) = Цифровой ВЫВОД (младший байт)
+Digital OUT (high byte) = Цифровой ВЫВОД (старший байт)
+Waveform number output = Вывод номера формы колебаний
+Latch output = Вывод защелки
+Master oscillator output = Вывод задающего генератора
+Laser ready input = Ввод готовности лазера
+Maximum duty cycle = Максимальная продолжительность включения
+Maximum duty cycle LASER1 = Максимальная продолжительность включения ЛАЗЕРА1
+Maximum duty cycle LASER2 = Максимальная продолжительность включения ЛАЗЕРА2
+Alarm input (9) = Ввод сигнализации (9)
+Alarm input (16) = Ввод сигнализации (16)
+Alarm input (21) = Ввод сигнализации (21)
+X - X position in mm = Позиция Х – Х в мм
+Y - Y position in mm = Позиция Y – Y в мм
+Z - Z position in mm = Позиция Z – Z в мм
+L - Laser on/off = L — вкл./выкл. лазера
+PWR - Laser power in % = PWR — мощность лазера в %
+FREQ - Laser frequency in Hz = FREQ — частота лазера в Гц
+CMD - Command = CMD — команда
+CTRL - Control data = CTRL — данные управления
+BSY - Marking active = BSY — маркировка активна
+
+# scaps USC-x
+
+Card 1 = Карта 1
+
+# Raylase RLC
+
+Pixel mode = Pежим Pixel
+Hardware Pixel Lines = Аппаратные средства Pixel Lines
+
+# scanner controller card error texts
+
+No error = Ошибки отсутствуют.
+Could not find specified file = Не удалось найти указанный файл.
+Data verification error = Ошибка проверки данных
+Number of bytes in hex file is odd = Нечетное число байтов в шестнадцатеричном файле
+Checksum error in hex file = Ошибка контрольной суммы в шестнадцатеричном файле
+System driver not found or locked by another application = Системный драйвер не обнаружен или заблокирован другим приложением.
+Program file damaged = Файл программы поврежден.
+Parameter error = Ошибка параметра
+Scanner card not found = Плата сканера не обнаружена.
+Correction file could not be loaded because the 3D option is not available = Корректирующий файл не может быть обнаружен, поскольку опция 3D недоступна.
+Initialisation of SCI failed = Не удалось инициализировать SCI.
+Initialisation of optic interface failed = Не удалось инициализировать оптический интерфейс.
+Could not load correction file = Не удалось загрузить корректирующий файл.
+Could not access scanner controller = Не удалось получить доступ к контроллеру сканера.
+
+Board could not be reset successfully = Не удалось сбросить контроллер
+Board could not be restarted successfully = Не удалось перезапустить контроллер
+Format error: file RTC5OUT.out has incorrect format = Ошибка формата: файл RTC5OUT.out имеет неправильный формат
+Not enough memory on host system = Недостаточно памяти на хост-системе
+Board is already in use by an other application = Контроллер уже используется другим приложением
+Version error: driver library, RTC version (firmware file) and HEX version (DSP program file) are not compatible = Versionsfehler: Treiberbibliothek, RTC-Version (Firmwaredatei) und HEX-Version (DSP-Programmdatei) sind nicht kompatibel
+System driver not found, access to RTC5 denied = Системный драйвер не найден, нет доступа к RTC5
+Driver error: loading of RTC5OUT.out file failed = Ошибка драйвера: Ошибка загрузки файла RTC5OUT.out
+Configuration error: DSP register initialization failed = Ошибка конфигурации: Ошибка инициализации регистра DSP
+Firmware error: loading of RTC5RBF.rbf file failed = Ошибка встроенного ПО: загрузка файла RTC5RBF.rbf не удалась
+PCI download error: loading of RTC5DAT.dat file failed = Ошибка загрузки PCI: загрузка файла RTC5DAT.dat не выполнена
+Download locked, board is busy = Загрузка заблокирована, контроллер занят
+Board not running, please perform a power-cycle = Контроллер не работает, выключите и включите питание
+Loading of RTC6DAT.dat or RTC6RBF.rbf file failed = Загрузка файла RTC6DAT.dat или RTC6RBF.rbf не выполнена
+System driver not found, access to RTC6 denied = Системный драйвер не найден, доступ к RTC6 запрещен
+Driver error: loading of RTC6OUT.out file failed = Ошибка драйвера: Ошибка загрузки файла RTC6OUT.out
+Firmware error: loading of RTC6RBF.rbf file failed = Firmwarefehler: Не удалось загрузить файл RTC6RBF.rbf.
+PCI download error: loading of RTC6DAT.dat file failed = Ошибка загрузки PCI: загрузка файла RTC6DAT.dat не удалась
+
+Stepper Motor Driver (Scannercard) = Драйвер шагового электродвигателя (плата сканера)
+IO Sync Motor Trigger (Scannercard) = Выключатель двигателя IO (плата сканера)
+Axis = Ось
+Axis 1 = Ось 1
+Axis 2 = Ось 2
+Axis 3 = Ось 3
+Axis 4 = Ось 4
+Factor = Коэффициент
+Resolution Factor = Коэффициент
+Enable Axis = Включить ось
+Axis Mode = Режим оси
+planar (mm) = плоскостной (мм)
+rotational (deg) = вращающийся (степени)
+Maximum Speed = Максимальная скорость
+Reference Timeout = Ссылка Тайм-аут
+Lazy reference switch = Медленное опорный переключатель
+Acceleration Mode = Режим ускорения
+linear = линейный
+exponential = экспоненциальный
+s-shaped = S-образный
+Deceleration Mode = Режим торможения
+Stop Deceleration = Стоп торможением
+Reference Speed = Опорная частота вращения
+Reference Speed 1 = Опорная частота вращения 1
+Reference Speed 2 = Опорная частота вращения 2
+Reference Speed 3 = Опорная частота вращения 3
+Auto-leave Limit Switch = Авто-отпуск Концевой выключатель
+Minimum Leave-Distance = Мин. расстояние после выхода
+Encoder = Кодировщик
+Encoder Factor = Коэффициент кодировщика
+Low Limit = Нижний предел
+High Limit = Верхний предел
+Acceleration = Ускорение
+Deceleration = Замедление
+Step Signal Output = Вывод ступенчатого сигнала
+Direction Signal Output = Вывод сигнала направления
+Invert Direction = Обратное направление
+Limit Switch (+) Input = Ввод ограничителя (+)
+Limit Switch (-) Input = Ввод ограничителя (-)
+No referencing = Без привязки
+To switch in negative, to switch in positive, leave in negative direction = Чтобы сменить направление на отрицательное, Чтобы сменить направление на положительное, останьтесь в отрицательном направлении
+To switch in negative, leave in positive direction = Чтобы сменить направление на отрицательное, останьтесь в положительном направлении
+To switch in negative, leave in negative direction = Чтобы сменить направление на отрицательное, останьтесь в отрицательном направлении
+To switch in negative direction = Чтобы сменить направление на отрицательное, Чтобы сменить направление на отрицательное, останьтесь в отрицательном направлении
+To switch in positive, to switch in negative, leave in positive direction = Чтобы сменить направление на положительное,
+To switch in positive, leave in negative direction = Чтобы сменить направление на положительное, останьтесь в отрицательном направлении
+To switch in positive, leave in positive direction = Чтобы сменить направление на положительное, останьтесь в положительном направлении
+To switch in positive direction = Чтобы сменить направление на положительное
+Reference Mode = Опорный режим
+Reference Signal Input = Ввод опорного сигнала
+Reference Speed (Enter) = Исходная скорость (ввести)
+Reference Speed (Leave) = Исходная скорость (оставить)
+Referenced Position = Исходное положение
+Digital Output Port = Порт цифрового вывода
+Digital Input Port = Порт цифрового ввода
+On Delay = Задержка включения
+Off Delay = Задержка выключения
+Motion start output = Выход запуска движения
+Motion done input = входное движение сделано
+Reference start output = Выход начального задания
+
+# IMS MDrive Plus Controllers
+
+Axis 1 (A) = Ось 1 (А)
+Axis 2 (B) = Ось 2 (B)
+Axis 3 (C) = Ось 3 (C)
+Axis 1 Name = Название оси 1
+Axis 2 Name = Название оси 2
+Axis 3 Name = Название оси 3
+POS - absolute position to move to = POS — абсолютная позиция для перехода
+MODE >0 speed, =0 stop, =-1 home = РЕЖИМ >0 скорость, =0 остановка, =-1 домой
+POS - current absolute axis position = POS — текущая абсолютная позиция на оси
+MODE >0 current speed, =0 has stopped = РЕЖИМ >0 текущая скорость, =0 остановился
+
+Swap X and Y = Поменять местами X и Y
+
+CTRL - Motion-synchronous control data = CTRL — синхронные по движению данные управления
+
+# ETH6608
+
+Invert Input Logic = Инвертировать логику ввода
+Generic Fiber Laser = Базовый волоконный лазер
+
+# E1701
+
+IP or serial interface = IP или последовательный интерфейс
+Ethernet password = Пароль Ethernet
+Bitmap marking mode = Режим маркировки растровых изображений
+LaserGate modulated (b/w) = LaserGate-модулированный (b/w)
+Jump'n'shoot = Прыгать и стрелять
+Analogue Voltage Range = Диапазон аналогового напряжения
+A0 Correction Factor = Поправочный коэффициент
+Gain X = Получить X
+Gain Y = Получить Y
+Slant X = Cкос X
+Slant Y = Cкос Y
+Offset X = Oфсет X
+Offset Y = Oфсет Y
+IPG (MO, Latch) = IPG (MO, задвижка)
+Use third axis = Используйте третью ось
+Use third axis (A1 as Z) = Используйте третью ось (A1 как Z)
+Use A3 as Digi Out = Используйте A3 в качестве цифрового выхода
+Field depth = Глубина поля
+Z distance = Z-разнос
+Marking on-the-fly = Марк на лету
+Mark-In-Progress output = Вывод текущей маркировки
+Invert Mark-In-Progress output = Инвертировать вывод текущей маркировки
+Wait-External-Trigger output = Вывод "ждать внешнего триггера"
+Invert Wait-External-Trigger output = Инвертировать вывод "ждать внешнего триггера"
+Invert LaserGate = Инвертировать LaserGate
+Invert LaserA = Инвертировать  LaserA
+Invert LaserB = Инвертировать  LaserB 
+Simulated = Cимулированный
+Simmer output = Simmer вывод
+Simmer = Simmer
+Simmer current = Simmer ток
+Turn MO off during jumps = Включите MO выключен во время прыжков
+Turn power off during jumps = Включите питание выключен во время прыжков
+PWM control = ШИМ-регулирования
+Referencing order = Референтный заказ
+Enable 3D = Включить 3D
+PWM value via LaserB, LP8_1, LP8_2 (JPT) = ШИМ-стоимость с помощью LaserB, LP8_1, LP8_2 (JPT)
+APD-index via DOut2, DOut3, DOut4 (IPG) = APD-индекс с помощью DOut2, DOut3, DOut4 (IPG)
+Unknown or incompatible firmware found on controller card! = На плате контроллера обнаружена неизвестная или несовместимая микропрограмма!
+Incompatible device found at given connection (no E1701A scanner controller card)! = В данном соединении обнаружено несовместимое устройство (отсутствует плата контроллера сканера E1701A)!
+Incompatible device found at given connection (no E1701D XY2/100 scanner controller card)! = В данном соединении обнаружено несовместимое устройство (отсутствует плата контроллера сканера E1701D XY2/100)!
+Incompatible device found at given connection (no E1701P plotter controller card)! = В данном соединении обнаружено несовместимое устройство (отсутствует плата контроллера плоттера E1701P)!
+Incompatible device found at given connection (no LY-001 scanner controller card)! = В данном соединении обнаружено несовместимое устройство (отсутствует плата контроллера сканера LY-001)!
+Invert Input Logic = Инвертировать логику ввода
+
+# Generic Laser Controller
+
+Response End Character = Конечный символ ответа
+CR/LF (\r\n, like Windows) = CR/LF (\r\n, как и в Windows)
+LF (\n, like Linux) = LF (\n, как и в Linux)
+Device Open Command = Команда открытия устройства
+Device Open Delay = Задержка открытия устройства
+Ready for Marking Command = Команда готовности к маркировке
+Ready for Marking Delay = Задержка готовности к маркировке
+Job Start Command = Команда начала задания
+Job Start Delay = Задержка начала задания
+Slice Start Command = Команда начала резки
+Slice Start Delay = Задержка начала резки
+Laser On Command = Команда включения лазера
+Laser Off Command = Команда выключения лазера
+Slice End Command = Команда окончания резки
+Job End Command = Команда окончания задания
+End Ready for Marking Command = Команда окончания готовности к маркировке
+Device Close Command = Команда закрытия устройства
+
+# SPI G4 controller
+
+Control waveform during process = Контроль формы импульса во время процесса
+
+# Coherent Avia controller
+
+IP = IP
+Port = Порт
+Control power during process = Контроль мощности во время процесса
+Control frequency during process = Контроль частоты во время процесса
+Current = Ток
+Current Limit = Предел тока
+Power Limit = Предел мощности
+Energy Limit = Предел энергии
+Thermatrack = Thermatrack
+Timeout = Тайм-аут
+Trigger Mode = Режим триггера
+Pulse Control = Контроль импульса
+SHG Temperature = Температура SHG
+FHG Temperature = Температура FHG
+STAT - Status messages = STAT — сообщения о состоянии
+ERR - In-process error codes = ERR — коды ошибок в ходе процесса
+
+# SPI laser controller
+
+Control Power = Контролировать мощность
+Control Waveform = Контролировать форму импульса
+
+
+# Optris temperature controller
+
+Heater = Нагреватель
+Lower temperature = Нижняя температура
+Upper temperature = Верхняя температура
+Temperature = Температура
+Thresholds = Пороги
+Generic analogue temperature = Общая температура (аналог)
+Temperature at 0 = Температура при 0
+Temperature at max = Температура при макс
+Analogue input port = Аналоговый порт
+Additional Digital Output Port = Дополнительный порт цифровой выход
+Additional Digital Output Bit = Дополнительный бит цифровой выход
+Permanent temperature control = Постоянный контроль температуры
+deg centigrade = град. Цельсия
+Stop process on temperature deviation >10% = Остановить процесс при отклонении температуры > 10 %
+L - Lower temperature = L — нижняя температура
+H - Upper temperature = H — верхняя температура
+CURR - Current temperature = CURR — текущая температура
+ON - Turn heater on/off = ON — вкл./выкл. нагреватель
+CTRL - Turn heater on/off = CTRL — вкл./выкл. нагреватель
+
+
+# image capturing
+Capture Image = Захватить изображение
+Image Capture = Захватить изображение
+
+Interface Number = Номер интерфейса
+Scale to image width = Масштабировать по ширине изображения
+Scale to image height = Масштабировать по высоте изображения
+Don't scale (use hardware resolution) = Не масштабировать (использовать аппаратное разрешение)
+Brightness = Яркость
+Contrast = Контраст
+Gamma = Гамма
+Red = Красный
+Green = Зеленый
+Blue = Синий
+Convert to greyscale = Преобразовать в градации серого
+a single grabbed frame = единственный захваченный кадр
+Show test pattern (no image capture) = Показать тестовый шаблон (нет захвата изображения)
+Show noise (no image capture) = Показать шума (нет захвата изображения)
+Rotate = Поворот
+no rotation = нет вращение
+90 deg = 90 степени
+180 deg = 180 степени
+270 deg = 270 степени
+
+# GCode output
+
+
+# general plug-in handling
+
+Question = Вопрос
+Error = Ошибка
+Warning = Предупреждение
+Definition = Определение
+Information = Информация
+Disabled = Выключено
+
+# misc plug-ins
+
+Field width = Ширина поля
+Field height = Высота поля
+Printer Parameters = Параметры принтера
+Use default settings = Используйте настройки по умолчанию
+Open printer dialogue = Открытый диалог принтера
+Line Width = Ширина линии
+Laser Maximum Current = Максимальный ток лазера
+
+No valid APCP project file or APCX compiled project! = Отсутствует действительный файл проекта APCP или скомпилированный проект APCX!
+Could not access required device! = Не удалось получить доступ к необходимому устройству!
+Could not access required connection! = Не удалось получить доступ к необходимому соединению!
+Requested feature is not supported by plug-in! = Плагин не поддерживает запрошенную функцию!
+Requested IO is not supported by plug-in! = Плагин не поддерживает запрошенный ввод-вывод!
+Could not allocate required resources! = Не удалось выделить необходимые ресурсы!
+Could not allocate enough memory! = Не удалось выделить достаточно памяти!
+Authentication failed, username/password did not match! = Аутентификация не выполнена, неверное имя пользователя или пароль!
+Conversion error, the given data have an illegal format and can't be converted! = Ошибка преобразования, недопустимый формат данных!
+Operation is still in progress, can't accept new data! = Операция еще не закончена, невозможно принять новые данные!
+Could not open file! = Не удалось открыть файл!
+Could not receive data, transfer was interrupted or timeout occured! = Не удалось принять данные, передача была прервана или исчерпан лимит времени!
+Could not transmit data, transfer was interrupted or timeout occured! = Не удалось передать данные, передача была прервана или исчерпан лимит времени!
+Protocol error, invalid data could not be handled = Ошибка протокола, невозможно обработать некорректные данные.
+Invalid input data or invalid input data format could not be handled by Plug-In = Плагин не может обработать недопустимые входные данные или недопустимый формат входных данных.
+Could not create file, saving of data failed! = Не удалось создать файл, сохранение данных не выполнено!
+Could not open file, reading of data failed! = Не удалось открыть файл, чтение данных не выполнено!
+Could not write data into file, complete saving of data failed! = Не удалось записать данные в файл, сохранение данных не выполнено!
+Could not read from file completely, loading of data failed! = Не удалось полностью прочитать файл, загрузка данных не выполнена!
+No more data available! = Больше данных нет!
+Data are out of valid range! = Данные не соответствуют допустимому диапазону!
+Function could not be executed due to missing PRO license! Do you want to upgrade now? = Функцию не удалось выполнить в связи с отсутствующей PRO-лицензией! Выполнить обновление лицензии?
+Function could not be executed due to missing PRO license! = Функцию не удалось выполнить в связи с отсутствующей PRO-лицензией!
+A DLL required to operate the hardware is missing. It is available from the vendor and should be placed in WINDOWS\system32 or WINDOWS\SysWOW64! = Файл DLL, необходимый для работы с оборудованием, отсутствует. Его можно получить у поставщика и поместить в папку WINDOWS\system32 или WINDOWS\SysWOW64!
+A shared library required to operate the hardware is missing. It is available from the vendor and possibly should be placed in /usr/lib or /usr/lib64! = Совместно используемая библиотека, необходимая для работы с оборудованием, отсутствует. Ее можно получить у поставщика и поместить по примерному пути /usr/lib или /usr/lib64!
+An unknown error occured (%d) = Произошла неизвестная ошибка (%d).
+Could not load external Plug-In! = Не удалось загрузить внешний плагин!
+Could not find required Plug-In = Не удалось обнаружить нужный плагин!
+This project file was created using the wrong version of the Application\nand may not work as expected.\nPlease load and save the project file using version = Этот файл проекта был создан не в той версии приложения\nи может работать неправильно.\nЗагрузите и сохраните файл проекта версии.
+Warning: This project file was created using the wrong version of the Application\nand may not work as expected. = Внимание! Этот файл проекта был создан не в той версии приложения\nи может работать неправильно.
+This project file was created using a newer version of the Application\nand may not work as expected.\nPlease update your software to proceed with this project file! = Этот файл проекта был создан в более новой версии приложения\nи может работать неправильно.\nОбновите версию ПО, чтобы продолжить работу с данным файлом проекта!
+
+Input Poll Cycle Time = Введите длительность цикла опроса
+Could not load required symbols, plugin seems to be corrupt! = Не удалось загрузить необходимые символы; вероятно, плагин поврежден!

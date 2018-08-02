@@ -1,0 +1,23 @@
+This library is used in OpenAPC software package, their sources are distributed in
+the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. All the information
+given here, within the interface descriptions and within the specification are subject
+to change without notice. Errors and omissions excepted.
+
+This library offers free implementations of different Industry 4.0 / Smart Factory
+functionalities influding e.g. the Hermes standard (aka "The Hermes Standard" as
+defined at https://the-hermes-standard.info) and the Smart Interface standard as
+described in section "Smart Interface" at https://openapc.com/download/manual.pdf
+
+There is a preprocessor switch defined, that decides which operating system is used:
+- ENV_LINUX
+- ENV_WINDOWS
+- ENV_EMBEDDED
+In case one implements variants for other platforms a similar switch has to be used
+to encapsulate the platform-dependent part.
+
+libsmartfactory is available in two flavours: libsmartfactory_wx ("Makefile" for
+Linux, "libsmartfactory_wx.vcxproj" for Windows Visual Studio) makes use of the XML
+functions of wxWidgets, libsmartfactory_pugixml ("MakefilePugiXML" for Linux,
+"libsmartfactory_pugixml.vcxproj" for Windows Visual Studio) is free of any
+wxWidgets-dependencies and requires PugiXML for all XML handling stuff.

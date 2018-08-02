@@ -1,0 +1,27 @@
+CCOMPILER=g++ -Wall -fPIC -Wno-unused -g3 -O0 -D_REENTRANT -DENV_QNX -DTEST_MODE -D_DEBUG -I .  -I ..  $(shell wx-config --cflags) $(shell pkg-config gtk+-2.0 --cflags)
+
+SYSLIBRARIES= -loapc -lsocket -lph
+
+LIBS = $(SYSLIBRARIES) $(shell wx-config --libs)
+
+EXECUTABLE=httptest
+
+LINK=g++ -L ..
+
+OBJECTS = libio_http_client.o
+
+default: $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
+	$(LINK) $(SYSLDFLAGS) $(LDFLAGS) -o $(EXECUTABLE) $(OBJECTS) $(LIBS)
+	cp $(EXECUTABLE) /root
+	chmod 755 /root/$(EXECUTABLE)
+
+
+%.o: %.cpp
+	$(CCOMPILER) -c $< -o $@
+
+clean:
+	rm -f $(OBJECTS) $(EXECUTABLE)
+	rm -f /root/$(EXECUTABLE)
+

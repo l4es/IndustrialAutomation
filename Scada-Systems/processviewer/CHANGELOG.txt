@@ -1,0 +1,8 @@
+14.11.2010 - v0.0.2 pre-alpha
+changes by Sergev Maslov:
+- Project sources transfered to next version of Lazarus 0.9.29 from SVN and Free Pascal 2.4.0.
+- Starting development of ProcessMaker - designer of windows and tags
+14.11.2010 - v0.0.3 pre-alpha
+- ProcessMaker:
+  - ready AccessNames editor
+  - in process Tagname Dictionary

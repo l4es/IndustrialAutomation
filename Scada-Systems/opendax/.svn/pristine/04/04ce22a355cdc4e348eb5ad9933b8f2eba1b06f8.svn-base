@@ -1,0 +1,52 @@
+\documentclass[10pt,letterpaper]{report}
+
+\usepackage[american]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage[dvips]{graphicx}
+\usepackage{float}
+\usepackage{makeidx}
+\usepackage{verbatim}
+
+
+\setlength\parskip{10pt}
+\setcounter{secnumdepth}{3}
+
+\makeatletter
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1pt\hfill \kern \z@}
+\renewcommand{\maketitle}{\begin{titlepage}%
+    \let\footnotesize\small
+    \let\footnoterule\relax
+    \parindent \z@
+    \reset@font
+    \null\vfil
+    \begin{flushleft}
+      \huge \@title
+    \end{flushleft}
+    \par
+    \hrule height 1pt
+    \par
+    \begin{flushright}
+      \LARGE \@author \par
+    \end{flushright}
+    \vskip 60\p@
+    \vfil\null
+  \end{titlepage}%
+  \setcounter{footnote}{0}%
+}
+
+\makeatother
+\makeindex
+
+\def\opendax{\textit{OpenDAX}}
+\def\modbus{\textit{Modbus}$\textsuperscript{\textregistered}$}
+\def\daxstate{\texttt{dax\_state} }
+\def\eventadd{\texttt{dax\_event\_add()}}
+\def\eventdel{\texttt{dax\_event\_del()}}
+\def\eventwait{\texttt{dax\_event\_wait()}}
+\def\eventpoll{\texttt{dax\_event\_poll()}}
+\def\eventgetfd{\texttt{dax\_event\_get\_fd()}}
+\def\eventdispatch{\texttt{dax\_event\_dispatch()}}

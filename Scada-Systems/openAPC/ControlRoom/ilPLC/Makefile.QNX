@@ -1,0 +1,19 @@
+CC      = gcc
+CFLAGS  = -Wall -g0 -O2 -DENV_QNX -D_REENTRANT -DOAPC_EXT_API="" -D_DEBUG -L /usr/lib -L .. -I /usr/include -I .. -I . -I../plugins -I../liboapc/
+
+LDFLAGS  = -lsocket -loapc
+
+PNAME=ilPLC
+
+OBJ = main.o isconnect.o
+SRC = main.c isconnect.c
+
+all: $(OBJ)
+	$(CC) $(CFLAGS) -o $(PNAME) $(OBJ) $(LDFLAGS)
+	strip $(PNAME)
+	cp $(PNAME) /usr/local/bin
+	chmod 755 /usr/local/bin/$(PNAME)
+
+clean:
+	rm *.o
+	rm $(PNAME)

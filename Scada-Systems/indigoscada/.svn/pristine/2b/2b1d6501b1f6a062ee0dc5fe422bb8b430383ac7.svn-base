@@ -1,0 +1,107 @@
+
+		INTERFACING TO EiC
+
+The make process of EiC builds all EiC's source files into two
+seperate libraries, (1) libstdClib.a, which contains the standard C
+library and (2) libeic.a, which contains the EiC interpreter
+functions. It then links these libraries against main.c in the
+EiC/main directory:
+
+With respect to linking EiC into other programs, it is essentially
+done the same way; that is, by linking against the EiC libraries
+(libeic.a and libstdClib.a) in EiC/lib. In the directory
+EiC/main/examples there is an example program called embedEiC.c that
+links to EiC. To build and run it from the EiC/main/examples directory
+simply enter (assuming EiC has been installed in /usr/local/EiC):
+
+	% gcc embedEiC.c -L/usr/local/EiC/lib -leic -lstdClib -lm  
+	% a.out
+	
+Note, the order of the libraries is important and that libeic preceeds
+libstdClib.
+
+To communicate commands to EiC from another program there are two
+functions supplied for doing this:
+
+        int EiC_run(int argc, char **argv);
+and
+	int EiC_parseString(char *command,...);
+
+The `EiC_run' function is used to run C source files. The
+`EiC_parseString' function is used to pass C or preprocessor commands
+to EiC via a string, such as:
+
+    	EiC_parseString("#include <stdio.h>");
+    	EiC_parseString("int a = 10,i;");
+    	EiC_parseString("for(i=0;i<a;i++)"
+		    	"	printf(\"%%d\\n\",i);");
+
+WARNING:
+	When passing escape characters in string arguments such as
+	`\n' or `\t' to say `printf' (as above) they must be passed
+	in as `\\n' or `\\t'. Otherwise you will get an  unbalanced 
+	quote error: 
+		Error in STRING ... :  unbalanced " 
+
+	Also, to pass  conversion characters to printf, etc, such as %d, you
+	must protect them from being interpreted by the EiC_parseString
+	fuction via %%; since EiC_parseString also takes in variable
+	arguments.
+
+At present there is no real facility for sharing data between EiC and
+other applications.  However, you can do:
+
+	int a = 5;
+	EiC_parseString("int *p = (int*)%x",&a);
+
+Also, you can pass in data to EiC via setting variables and you can
+get EiC to output data to a file. In a future release of EiC, more 
+facilities are expected to be added for sharing data between EiC and its
+embedding system.
+
+
+With respect to `EiC_run', to run the file "myfile.c"  and pass it the
+command line arguments "hello" and "world", the following sequence of
+commands would be used.
+
+	char *argv[] = {"myfile.c", "hello", "world"};
+	int  argc = sizeof(argv)/sizeof(char*);
+
+	EiC_run(argc, argv);
+
+
+Before either `EiC_run' or `EiC_parseString' can be called the
+function `init_EiC' must first be called to initiate EiC and if the
+code being translated needs to access C's runtime time library
+functions, such as printf, a call to the function `stdClib' is also
+required.  Further, the function `EiC_switches' is used to communicate
+command line arguments to EiC and will also be required to inform EiC
+the directory where its include files are located, such as
+<stdio.h>. The sequence of initiating commands would be:
+
+	init_EiC();
+    	/* add in the standard C library */
+    	stdClib();
+    	/* pass some command  switches */
+    	EiC_switches("-I/usr/local/EiC/include  -D_EiC");
+
+The `EiC_switches' function takes a string that can contain
+1 or more of EiC's command line arguments, such as those
+given via:
+
+	% eic -h
+
+Other technically related documents can be found in:
+
+	EiC/doc/tech_doc
+
+Ed Breen.
+
+
+
+
+
+
+
+
+

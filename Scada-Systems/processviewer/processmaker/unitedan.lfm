@@ -1,0 +1,160 @@
+object FormEdAN: TFormEdAN
+  Left = 243
+  Height = 327
+  Top = 174
+  Width = 384
+  BorderIcons = [biSystemMenu]
+  Caption = 'Modify Acces Name'
+  ClientHeight = 327
+  ClientWidth = 384
+  OnCreate = FormCreate
+  Position = poMainFormCenter
+  LCLVersion = '0.9.29'
+  object Panel1: TPanel
+    Left = 4
+    Height = 99
+    Top = 4
+    Width = 376
+    Align = alTop
+    BorderSpacing.Around = 4
+    BevelInner = bvRaised
+    BevelOuter = bvLowered
+    ClientHeight = 99
+    ClientWidth = 376
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 23
+      Height = 14
+      Top = 15
+      Width = 34
+      Caption = 'Access'
+      ParentColor = False
+    end
+    object edAccess: TEdit
+      Left = 76
+      Height = 21
+      Top = 12
+      Width = 172
+      OnChange = edAccessChange
+      TabOrder = 0
+      Text = 'edAccess'
+    end
+    object btnOk: TButton
+      Left = 287
+      Height = 25
+      Top = 12
+      Width = 75
+      Caption = 'OK'
+      ModalResult = 1
+      TabOrder = 1
+    end
+    object btnCancel: TButton
+      Left = 287
+      Height = 25
+      Top = 63
+      Width = 75
+      Cancel = True
+      Caption = 'Cancel'
+      ModalResult = 2
+      TabOrder = 2
+    end
+    object Label2: TLabel
+      Left = 23
+      Height = 14
+      Top = 44
+      Width = 80
+      Caption = 'I/O server type:'
+      ParentColor = False
+    end
+    object cbIOserverType: TComboBox
+      Left = 76
+      Height = 21
+      Top = 65
+      Width = 172
+      ItemHeight = 13
+      Items.Strings = (
+        'MODBUS/TCP'
+        'MODBUS/Serial'
+        'DDE'
+        'OPC DA'
+        'Wonderware SuiteLink'
+      )
+      OnChange = cbIOserverTypeChange
+      Style = csDropDownList
+      TabOrder = 3
+    end
+  end
+  object pcIOServers: TPageControl
+    Left = 4
+    Height = 165
+    Top = 107
+    Width = 376
+    ActivePage = tsMBTCP
+    Align = alClient
+    BorderSpacing.Around = 4
+    ShowTabs = False
+    TabIndex = 0
+    TabOrder = 1
+    object tsMBTCP: TTabSheet
+      Caption = 'tsMBTCP'
+      ClientHeight = 157
+      ClientWidth = 368
+      object Label3: TLabel
+        Left = 20
+        Height = 14
+        Top = 17
+        Width = 77
+        Caption = 'PLC IP address:'
+        ParentColor = False
+      end
+      object edIPaddr: TEdit
+        Left = 39
+        Height = 21
+        Top = 41
+        Width = 196
+        OnChange = edIPaddrChange
+        TabOrder = 0
+        Text = 'edIPaddr'
+      end
+    end
+    object tsMBSerial: TTabSheet
+      Caption = 'tsMBSerial'
+    end
+    object tsDDE: TTabSheet
+      Caption = 'tsDDE'
+    end
+    object tsOPC: TTabSheet
+      Caption = 'tsOPC'
+    end
+    object tsSuitelink: TTabSheet
+      Caption = 'tsSuitelink'
+    end
+  end
+  object rgWhenToAdvise: TRadioGroup
+    Left = 4
+    Height = 47
+    Top = 276
+    Width = 376
+    Align = alBottom
+    AutoFill = True
+    BorderSpacing.Around = 4
+    Caption = 'When to advise server'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.TopBottomSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 2
+    ClientHeight = 29
+    ClientWidth = 372
+    Columns = 2
+    Items.Strings = (
+      'Advise all items'
+      'Advise only active items'
+    )
+    OnClick = rgWhenToAdviseClick
+    TabOrder = 2
+  end
+end

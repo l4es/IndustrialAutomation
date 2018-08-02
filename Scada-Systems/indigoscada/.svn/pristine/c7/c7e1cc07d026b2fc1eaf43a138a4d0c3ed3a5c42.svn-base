@@ -1,0 +1,84 @@
+############################
+# Part 1: LOCAL DEFINITIONS
+
+       TOP =
+  INCLUDES =
+  WARNINGS =
+   DEFINES =
+       LIB =
+  DEP_LIBS =
+      LIBS =
+
+#############################
+# Part 2: COMMON MAKE PARAMETERS
+
+include $(TOP)/make.proj
+
+#############################
+# Part 3: LOCAL SOURCES 
+
+progSRCS = prog.c etc
+progOBJS = $(progSRCS:.c=.o)
+libOBJS = $(LIB)(prog.o) 
+
+SRCS = $(progSRCS)
+
+##############################
+# Part 4: LOCAL TARGETS  
+
+
+#### LIB.A
+$(LIB): $(libOBJS)
+	$(RUNLIBCMD)
+lib::$(LIB)
+all::$(LIB)
+install:: 
+	@if [ -f $(LIB) ]; then \
+		$(MAKE) lib ;\
+		echo $(INSTALL) $(LIB) $(LIB_DIR) ;\
+		$(INSTALL) $(LIB) $(LIB_DIR);\
+	else \
+		echo $(MAKE) $(LIB_DIR)/$(LIB);\
+		$(MAKE) $(LIB_DIR)/$(LIB) ;\
+	fi
+$(LIB_DIR)/$(LIB): $(addprefix $(LIB_DIR)/,$(libOBJS))
+	$(RUNLIBCMD)
+clobber::
+	$(RM) $(LIB_DIR)/$(LIB) $(LIB)
+clean::
+####
+
+
+####  PROG
+prog: $(progOBJS) $(LIBS)
+	$(CC) -o $@ $(progOBJS) $(ALL_LIBS)
+all:: prog
+install:: 
+	@if [ -f prog ]; then \
+		echo $(MAKE) prog ;\
+		$(MAKE) prog ;\
+		echo $(INSTALL) prog $(INSTALL_DIR) ;\
+		$(INSTALL) prog $(INSTALL_DIR) ;\
+	else \
+		echo $(MAKE) $(INSTALL_DIR)/prog;\
+		$(MAKE) $(INSTALL_DIR)/prog;\
+	fi
+$(INSTALL_DIR)/prog:$(progOBJS)
+	$(MAKE) prog
+	$(INSTALL) prog $(INSTALL_DIR)
+clobber::
+	$(RM) prog $(progOBJS) $(INSTALL_DIR)/prog
+clean::
+	$(RM) $(progOBJS)
+####
+
+
+#############################
+# Part 5: COMMON RULES and 
+#     and default Targets
+
+include $(CONFIG_DIR)/make.rules
+
+#############################
+# Part 6: DEPENDENCIES
+

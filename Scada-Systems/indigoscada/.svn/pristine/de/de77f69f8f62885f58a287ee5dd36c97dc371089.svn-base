@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=iso-8859-1">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice/5.2 (Linux)">
+	<META NAME="AUTHOR" CONTENT="">
+	<META NAME="CREATED" CONTENT="20000926;15042200">
+	<META NAME="CHANGEDBY" CONTENT="">
+	<META NAME="CHANGED" CONTENT="20000926;16464100">
+</HEAD>
+<BODY>
+<H1>How To Write A Device Driver</H1>
+<P>This document describes how to write a device driver. It is
+recommended that the source code for the Simulation and GA627 device
+be examined and used as the basis for any other device driver. Refer
+also to the <A HREF="HowToDatabase.html">database interface
+documentation</A>.</P>
+<P>Each device driver requires two class to be defined on derived
+from Driver (which provides the user interface functions) and one
+class derived from DriverInstance. There is only ever one instance of
+the Driver class but one instance of the DriverInstance class for
+each unit being controlled.</P>
+<H2>Entry Points</H2>
+<P>A device driver is built as a DLL (use the -fPIC flag) with two
+entry points of &quot;C&quot; linkage:</P>
+<P><B> Driver * GetDriverEntry(QObject * parent) </B>
+</P>
+<P>This function returns the Driver based interface object. If
+necessary a Driver interface is created. The parent object is usually
+qApp.</P>
+<P><B>void _Unload() </B>
+</P>
+<P>This function is called before the DLL is unloaded. At this point
+the Driver based class should be deleted.</P>
+<H2>The Driver Class</H2>
+<P STYLE="margin-bottom: 0in; font-weight: medium">This is the
+interface to all units of a given type, eg all GA627s. 
+</P>
+<P STYLE="margin-bottom: 0in; font-weight: medium"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>Driver(QObject *parent,const QString
+&amp;name)</B></P>
+<P STYLE="margin-bottom: 0in">The constructor is initialised with the
+parent Qobject and the driver name.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>virtual void UnitConfigure(QWidget
+*parent, const QString &amp;name, const QString &amp;receipe=&quot;(default)&quot;)</B></P>
+<P STYLE="margin-bottom: 0in"> This function is called by the user
+interface to configure a given unit. The pointer <B>parent</B><SPAN STYLE="font-weight: medium">
+is the parent widget for any dialogs, </SPAN><B>name  </B><SPAN STYLE="font-weight: medium">is
+the name of the unit to be configured and </SPAN><B>receipe</B><SPAN STYLE="font-weight: medium">
+is the name of the receipe to configure for. </SPAN>
+</P>
+<P STYLE="margin-bottom: 0in; font-weight: medium"><BR>
+</P>
+<P STYLE="margin-bottom: 0in; font-weight: medium">Usually the
+specific configuration is stored in the properties table (PROPS). The
+section key being the unit name and theitem key being the receipe. It
+is a good idea to query the database such that is no configuration
+for a given receipe is found the default receipe is returned.</P>
+<P STYLE="margin-bottom: 0in; font-weight: medium"><BR>
+</P>
+<P STYLE="margin-bottom: 0in; font-weight: medium">When a new unit is
+created (where there is no existing default configuration) the user
+should be given the option to create a set of sample points. This is
+intended to make configuration easier. The user can rename or delete
+sample points later.</P>
+<P STYLE="margin-bottom: 0in; font-weight: medium"><BR>
+</P>
+<P STYLE="margin-bottom: 0in; font-weight: medium">Sometimes the unit
+configurations have to be cached in memory to provide for a slick
+user interface.</P>
+<P STYLE="margin-bottom: 0in; font-weight: medium"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>virtual void SetTypeList(QComboBox
+*pCombo, const QString &amp;unitname)</B></P>
+<P STYLE="margin-bottom: 0in">This is called by the user interface to
+set the names of the available types of sample point supported by a
+unit. A type might be an analogue input, a unit status signal or a
+particle count input. The combo box to fill with the type list is
+passed in <B>pCombo</B><SPAN STYLE="font-weight: medium"> and the
+name of the unit is given in </SPAN><B>unitname</B><SPAN STYLE="font-weight: medium">.
+</SPAN>
+</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>virtual void GetInputList(const
+QString &amp;type, QStringList &amp;list,const QString &amp;unit,
+const QString &amp;name)</B></P>
+<P STYLE="margin-bottom: 0in">This function returns the list of
+available input identifiers. For example an analogue measuring device
+might have 16 input channels. This function would therefore return in
+<B>list</B> 01,02,... 16 when the <B>type </B>is set to (say)
+Analogue.  The name of the unit is <B>unit </B><SPAN STYLE="font-weight: medium">and
+the name of the sample point is given in </SPAN><B>name. </B><SPAN STYLE="font-weight: medium">The
+sample point configuration dialog filters any input Ids that are used
+by other sample points.</SPAN></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>virtual QWidget *
+GetSpecificConfig(QWidget *parent,const QString &amp;spname, const
+QString &amp;sptype)</B></P>
+<P STYLE="margin-bottom: 0in">This function creates and returns a
+widget to configure a sample point of a given type. Where no specific
+configuration is required then 0 is returned.</P>
+<P STYLE="margin-bottom: 0in">This mechanisim allows the ranges for
+(say) 4-20mA analogue input devices to be set. The pointer <B>parent
+</B><SPAN STYLE="font-weight: medium">is the parent to the widget,
+</SPAN><B>spname</B><SPAN STYLE="font-weight: medium"> is the name of
+the sample point and </SPAN><B>sptype </B><SPAN STYLE="font-weight: medium">is
+the sample point type.</SPAN></P>
+<P STYLE="margin-bottom: 0in; font-weight: medium">The configuration
+widget must have two slots:</P>
+<P STYLE="margin-bottom: 0in; font-weight: medium"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>	void Load(const QString &amp;s);//
+load the configuration</B></P>
+<P STYLE="margin-bottom: 0in"><B>	void Save(const QString &amp;s);//
+save the configuration</B></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in; font-weight: medium">Load is called
+after the widget is displayed. The widget should retrive any
+configuration data for the widget and display it. If no data exists
+then sensible default configuration data should be displayed and
+saved in the database. Save is called when the Apply button is
+pressed. The settings in the widget's fields should be saved to the
+properties database.</P>
+<P STYLE="margin-bottom: 0in; font-weight: medium"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>const QString &amp;GetName() const </B>
+</P>
+<P STYLE="margin-bottom: 0in">Returns the driver's name.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>virtual void GetTagList(const
+QString &amp;type, QStringList &amp;list,const QString &amp;unit,
+const QString &amp;name)</B></P>
+<P STYLE="margin-bottom: 0in">Returns the permitted tags for a given
+type for this unit. Tags are the names given to values associated
+with a sample point. Normally this is the name &quot;Value&quot;.
+However particle counters often return several counts values for one
+measurment, one for each size band. Analogue input devices (such as
+the GA627) can also track the maximum and minimum values for sampling
+period. 
+</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>static void CreateSamplePoint(const
+QString &amp;name, QStringList &amp;taglist, const QString &amp;init)</B></P>
+<P STYLE="margin-bottom: 0in">Helper function to create a sample
+point. <SPAN STYLE="font-weight: medium">The </SPAN><B>name</B><SPAN STYLE="font-weight: medium">&nbsp;variable
+gives the name of the sample point, </SPAN><B>taglist</B><SPAN STYLE="font-weight: medium">
+gives the list of tags for the sample point and </SPAN><B>init</B><SPAN STYLE="font-weight: medium">
+gives the initial specific configuration data for the sample point.</SPAN></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>virtual void Start()</B></P>
+<P STYLE="margin-bottom: 0in">This function is called by the
+monitoring application to create and start an instance of a
+DriverInstance for each enabled unit of the type controlled by the
+device driver.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>virtual void Stop()</B></P>
+<P STYLE="margin-bottom: 0in">This function is called by the
+monitoring application to halt and delete any instance of a
+DriverInstance object controlled by this driver.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>virtual void Command(const QString
+&amp;name,const QString &amp;command)</B></P>
+<P STYLE="margin-bottom: 0in">Passes a command to a named unit , or
+processes a command for a named unit.</P>
+<P STYLE="margin-bottom: 0in"> 
+</P>
+<P STYLE="margin-bottom: 0in"><B>void Trace(const QString &amp;source,
+const QString &amp;message)</B></P>
+<P STYLE="margin-bottom: 0in">Handles posting a trace message. The
+name of the function generating the message is given by <B>source</B><SPAN STYLE="font-weight: medium">.
+The text of the message is given by </SPAN><B>message</B><SPAN STYLE="font-weight: medium">.</SPAN></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<H2>class DriverInstance : public QObject 
+</H2>
+<P STYLE="margin-bottom: 0in">This class handles the control of a
+given type of hardware. Most drivers need only overload the Start and
+Stop functions and then start a thread or timer event to interface to
+the hardware.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>DriverInstance(Driver *parent, const
+QString &amp;name);</B></P>
+<P STYLE="margin-bottom: 0in">The <B>parent</B><SPAN STYLE="font-weight: medium">
+pointer indexes the owing device driver. </SPAN><B> </B><SPAN STYLE="font-weight: medium">
+The name of the unit is given by </SPAN><B>name</B><SPAN STYLE="font-weight: medium">.</SPAN></P>
+<P STYLE="margin-bottom: 0in; font-weight: medium"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>void PostList(const QString &amp;name,
+SpValueList &amp;list)</B></P>
+<P STYLE="margin-bottom: 0in">Sends a list of values to the results
+database for the sample point given in <B>name.</B></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>void PostValue(const QString &amp;name,
+const QString &amp;tag, double value)</B></P>
+<P STYLE="margin-bottom: 0in">Post the <B>value</B> to the results
+database for the  sample point <B>name</B><SPAN STYLE="font-weight: medium">
+for </SPAN><B>tag.</B></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>const QString &amp;
+FindSamplePoint(const QString &amp;unit, const QString &amp;type,
+const QString &amp;ip)</B></P>
+<P STYLE="margin-bottom: 0in">Translates the unit name, sample point
+type and input index into a sample point name. If a matching sample
+point cannot be found then Qstring::null is returned.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>void SetAllInUnit(const QString
+&amp;comment, int state)</B></P>
+<P STYLE="margin-bottom: 0in">Put all sample points associated with a
+unit into the given <B> state </B><SPAN STYLE="font-weight: medium">
+and set the current values' comments to </SPAN><B>comment</B><SPAN STYLE="font-weight: medium">.</SPAN></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>void FailUnit(const QString
+&amp;comment)</B></P>
+<P STYLE="margin-bottom: 0in">Fail the unit with the given <B>comment.
+</B><SPAN STYLE="font-weight: medium">Calls SetAllInUnit with the
+given comment and FailureLevel.</SPAN></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>void UnFailUnit(const QString
+&amp;comment) </B>
+</P>
+<P STYLE="margin-bottom: 0in">UnFail the unit with the given <B>comment.
+</B><SPAN STYLE="font-weight: medium">Calls SetAllInUnit with the
+given comment and NoneLevel(not measured).</SPAN></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>void FailSamplePoint(const QString
+&amp;name, const QString &amp;comment)</B></P>
+<P STYLE="margin-bottom: 0in">Fail the sample point <B>name</B> with
+<B>comment</B></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>void UnFailSamplePoint(const QString
+&amp;name, const QString &amp;comment)</B></P>
+<P STYLE="margin-bottom: 0in">Un-fail the sample point <B>name</B>
+with <B>comment</B></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>void SetSamplePointState(const
+QString &amp;name, const QString &amp;comment,int state)</B></P>
+<P STYLE="margin-bottom: 0in">Sets the state of a sample point <B>name
+</B><SPAN STYLE="font-weight: medium">to state.</SPAN></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>static QString FormUnitList()</B></P>
+<P STYLE="margin-bottom: 0in">Build the list of enabled units for SQL
+transaction filitering NAME IN(...)</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>static QString FormSamplePointList()</B></P>
+<P STYLE="margin-bottom: 0in">Build the list of enabled sample points
+for SQL transactions</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>void AddProp(const QString &amp;k,const
+QString &amp;v) </B>
+</P>
+<P STYLE="margin-bottom: 0in">Add a property to the global
+dictionary. This is handy for semaphores and any data shared between
+drivers.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>const QString &amp; FindProp(const
+QString &amp;s) </B>
+</P>
+<P STYLE="margin-bottom: 0in">Look for a property in the shared
+properties dictionary.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>void DelProp(const QString &amp;s)</B></P>
+<P STYLE="margin-bottom: 0in">Deletes a property in the shared
+properties dictionary</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>void Trace(const QString &amp;s)</B></P>
+<P STYLE="margin-bottom: 0in">Post a trace message from this
+interface.</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>bool InTest() </B>
+</P>
+<P STYLE="margin-bottom: 0in; font-weight: medium">Returns true is
+this unit is in test mode. When in test mode the driver tries to
+exercise a unit in a speedy and consistent manner to aid diagnosis of
+possible faults.</P>
+<P STYLE="margin-bottom: 0in; font-weight: medium"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>virtual void Start()</B></P>
+<P STYLE="margin-bottom: 0in">Start the driver for this unit control</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>virtual void Stop()</B></P>
+<P STYLE="margin-bottom: 0in">Stop the driver for this unit. 
+</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><B>virtual void Command(const QString
+&amp;,const QString &amp;)</B></P>
+<P STYLE="margin-bottom: 0in">Process a command for a named unit.
+Called the base function to ensure the default handling of some
+commands is carried out.</P>
+<P STYLE="margin-bottom: 0in"> 
+</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+</BODY>
+</HTML>

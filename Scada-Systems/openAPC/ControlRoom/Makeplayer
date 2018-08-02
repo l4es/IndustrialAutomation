@@ -1,0 +1,10 @@
+CUSTLIBRARIES= -lrt
+
+CUSTINCLUDES= -I. -I.. -I ../common/ -I ../liboapc/ -I ../plugins/ -DENV_PLAYER
+
+OBJECTS= OpenPlayerInc.o
+
+EXECUTABLE=OpenPlayer
+
+include ../make/linux_wx.mk
+

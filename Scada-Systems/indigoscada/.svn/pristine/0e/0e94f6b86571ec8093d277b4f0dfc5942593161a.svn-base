@@ -1,0 +1,25 @@
+on
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+Error in testinclude2a.aux near line 1:  Redeclaration of parameter `i'
+Previously declared in: ::EiC::
+Error in testinclude2a.aux near line 2:  Redeclaration of parameter `x'
+Previously declared in: ::EiC::
+Error in testinclude2a.aux near line 3:  Redeclaration of parameter `ab'
+Previously declared in: ::EiC::
+Error in testinclude2a.aux near line 5:  Redeclaration of parameter `foo'
+Previously declared in: ::EiC::
+Error in testinclude2a.aux near line 5: Misplaced return statement
+Error: clean up forced
+	1
+	1
+	1
+	1
+	1
+	1
+	1
+	0

@@ -1,0 +1,1084 @@
+<hmtl> <head> <title> EiC's Change log </title>
+</HEAD>
+<body bgcolor="white"> <font size=2>
+<!--Navigation Panel-->
+
+<h1>EiC's Change Log.</h1> <br>
+<pre>
+                       Significance of Changes
+
+                       *  minor change or bug fix 
+                     ***  a new feature or function
+                  ******  major change or addition
+
+</pre>
+<multicol cols=2>
+
+
+<b> Changes from 4.3.0 to 4.3.2 (next_release) </b>
+<pre>
+
+       * fixed bug with static variables in a file conflicting
+         with other variables with the same name but not within
+         the scope of the same file:
+
+	     EiC 1> #include t.c  // has static int a1;
+             EiC 2> int a1;       // no longer conflicts
+
+
+       * fixed bug as reported by Victor Eruhimov that EiC wasn't
+         explicitly casting all integral types to type pointer.
+
+       * fixed bug as reported by Steve Marthouse from vrml3d.com, 
+         that EiC's float conversion mechanism fails to execute 
+         correctly:
+
+	        float f = 0.7F;
+                assert(f == 0.7F);
+
+       * incorporated Victor Eruhimov's fix to the bug that during
+         error recovery EiC would on occassions abort due to 
+         some bad memory addressing
+
+</pre>
+
+
+<b> Changes from 4.2.8 to 4.3.0 </b>
+<pre>
+
+  ***** With the help of Al Amzeen, EiC compiles using DJGPP 
+        under win32. This provides fairly complete EiC 
+        installation, under win32.
+
+    *** Added `void EiC_setMessageDisplay(void (*)(char*))' 
+        function. The purpose of this function is to allow 
+        an embedding system to control how EiC's error and 
+        warning messages are displayed. This is done by passing
+        EiC_setMessageDisplay the function it wants used for 
+        displaying EiC's error and warning messages. The 
+        replacement function returns void and must accept a C 
+        style string. The strings passed are stack based and 
+        therefore, should either be displayed straight away or 
+        copied into a buffer space.
+
+    *** added the `getcwd' function to unistd.h. 
+        Compliance: POSIX.1
+
+    *** added SVR4 and 4.3+BSD macro extensions to termios.h
+
+    *** the win32 port of EiC now stores its include files in
+        EiC\include. The environment variable HOMEofEiC
+        doesn't need to be set if EiC is installed in 
+        C:\EiC.
+
+    *** Matt Minnis has added a `:quit' command to EiC and
+        is simply an alias to `:exit'.
+
+    *** More externally visible identifiers prefixed with
+        `EiC_'.
+
+      * fixed problem with EiC not detecting HOMEofEiC
+        environment variable under DJGPP and probably also 
+	under win32
+
+      * brought EiC/main/examples/embedEiC.c up todate:
+        changed the call to init_EiC to EiC_init_EiC and
+        the include path under win32. 
+
+      * fixed compile problems with the FreeBSD port of EiC.
+
+      * fixed one cause of segmentation violation due to certain
+        types of errors during declaration parsing.
+
+      * fixed bug with EiC's scanf function as reported by
+        Sean McTigue:
+             while(scanf("%d", &num)==1)
+	        printf("d\n", num);
+
+        getting caught in a infinite loop when illegal input is
+        entered.
+
+      * fixed problem with :gen command  outputting the
+        function call to add_builtinfunc rather than to
+        EiC_add_builtinfunc.
+
+
+</pre>
+<b> Changes from 4.2.7 to 4.2.8  (Jun 12 2000) </b>
+<pre>
+
+    *** The win32 makefile systems has had some modifications 
+               (still needs more).
+        The EiC\config\genstdio.c is now incorporated into the make system
+        and is used to generate standard header files. And EiC\main\main.c
+        is used rather than EiC\src\main.c, bringing inline more closely
+        with the Unix version.
+        
+    *** The `:clear' command now takes multiple file names delimited
+        by commas as its arguments:
+
+             :clear file[,<file>]*
+          
+    *** More name space tweaking. Most, if not all, externally visible variables 
+        and functions, are now prefixed by EiC_. This is to reduce 
+	the possibility of name conflicts between EiC source code
+	and any embedding system. 
+
+    *** EiC now supports ISO-C signal.h and the signals (SIGXXXX) defined 
+        for POSIX.1 signal.h. See EiC's library documentation 
+        for details.
+
+    *** EiC's interface to the standard C library functions fgets() 
+        and gets() have been made safe against buffer overflows 
+        when used with safe pointers.
+
+    *** Added to unistd.h the functions pause and alarm
+        compliance: SVr4, SVID, POSIX, X/OPEN, BSD 4.3
+
+    *** Added the standard ISO-C header iso646.h
+    
+      * removed limits.h and signal.h as they are now completely
+        generated via EiC/config/genstdio
+
+      * fixed EiC failure to apply the address operator to functions:
+
+         EiC 1> int foo(int x) { return x;}
+	 EiC 2> foo == &foo;  
+	         1
+      
+      * fixed typo in EiC's online :help info for the :gen command 
+
+      * fixed access violation problem, as reported by Eroukhimov, 
+        Victor, caused sometimes by an error occuring with the operational
+        type with in a selection statement.
+
+      * included missing file EiC/test/EiCtests/teststatic3.aux
+        within EiC's CVS repository.
+</pre>
+
+
+<b> Changes from 4.2.6 to 4.2.7  (May 16 2000) </b>
+<pre>
+
+    ***	A reset operator has been added. It is used to set EiC 
+        to a default internal state. All memory is freed, the 
+        contents of include files and global variables, allocated, 
+        included and declared, after the reset point, are removed. Any
+	global scalar variables declared prior to the reset point will have 
+        their previous values restored. The default reset point is equivalent
+        to starting EiC with the -N command line switch:
+
+	     EiC > :reset  // regain a previous state
+
+	It is also possible for the user to define the `reset point'
+        by using the `:reset here' command:
+
+	   EiC 1> int p = 66;
+	   EiC 2> :reset here // set reset state
+           EiC 3> p = 88;
+                  88
+	   EiC 4> :reset
+	   EiC 5> p;
+	          66
+
+        see EiC's documentation for further details and gotchas.
+
+
+      * documentation updated to reflect the `:reset' command.
+
+      * termio and termios.h files have been updated on the Linux
+        platform to conform with libc6.
+
+      * fixed problem as reported Eroukhimov, Victor that 
+        EiC's source file src/assertp.h fails to define 
+        assertp when NDEBUG is defined. 
+
+      * Applied Ken Settle's patch that corrected EiC's 
+        failure to diagnose:
+
+            EiC 1> 0 (15); //Function names cannot be constants
+
+      * Applied Kaz Kylheku's patch to rid EiC's source code
+        of many externally visible variables, by converting all 
+        object and function declarations, where possible, to static.
+        This is important as it reduces the possibility of name
+        conflicts between EiC source code and any embedding
+        system. It also removed several dead function and variable 
+        definitions.
+
+      * Further refinement to prevent name clashes between
+        private and public object and function definitions
+        between EiC functions. 
+
+</pre>
+<b> Changes from 4.2.1 to 4.2.6  (Mar 25 2000) </b>
+
+<pre>
+
+   ***  The module termios.h has been interfaced to EiC.
+        This allows for serial port programming under Unix.     
+
+   ***  The :gen command has now an extra option, `num', which
+        controls the number of multiplex callbacks generated:
+
+          :gen <include_file> [num] ["<output_file>"]
+
+        both num and output_file are optional. the 
+	default value for num is 1.
+
+      * Fixed problem reported by Sreeni R. Nair
+        with a typedef clash  between SunOS header file
+        and eicval.h
+
+      * Fixed the following bugs as reported by 
+        Victor Eroukhimov:
+
+        1, EiC fails to diagnose:
+            EiC > char a[5][];
+	2, That char a[3][] = {"abc", "def"}; causes
+           EiC to abort.
+	3, That EiC was not initialising char pointers correctly
+           during declaration:
+              EiC > char a[] = "adsf"; char *b = a;
+              EiC > b == a;
+
+      * documentation update and corrections.
+
+      * Fixed bug associated with EiC's :show command
+        causing illegal storage access when display
+        struct, union or enum tag specifiers.
+
+      * Fixed the following bugs as reported by 
+        Kaz Kylheku:
+
+        1, that EiC at times fails to parse character 
+           literals correctly:
+	     EiC > int x;
+             EiC > assert(x == '\'');
+        2, that EiC failed to assign pointers to builtin 
+           code correctly:
+	     EiC > int (*p)(const char *fmt, ...) = printf;
+	   where printf is a builtin function.	
+       3, that ULONG_MAX definition on the win32 was 
+          incorrect
+       4, that static variables declared in a file not 
+          always being hidden from clashes with other objects
+          declared with the same name but within other
+          files. 
+       5, function runEIC in starteic.c has a little transgression related
+          to the use of the setjmp macro:
+	      if ((E = setjmp(env)) == 0) {
+                  /*...*/
+              } else if (E == _Err_) {
+                }
+
+       * Applied David Ell's patch that removed 
+         hard coded directory 
+         reference in the EiC/src/Makefile. 
+
+</pre>
+
+<b> Changes from 4.2.0 to 4.2.1  (Jan 14 2000) </b>
+
+<pre>
+ ******  EiC now supports setjmp.h
+
+ ******  EiC now supports gotos and labels as specified by ANSI-C.
+
+ ****** EiC's parser can now handle LL(N) grammar, Previously it was
+         only able to parse an LL(1) type grammar. This change in
+         principle enables more easily language enhancements and
+         extentions. N is specified via the definition of MAX_TOKENS
+         in EiC/src/lexer.h and is currently set to 3.
+
+
+    ***  added the function `putenv' to stdlib.h
+         Compliance: SVID 3, POSIX, BSD 4.3
+
+    ***  added the function `strdup' to string.h
+         Compliance: SVID 3,  BSD 4.3.      
+
+    ***  Documentation updated to reflect the addition of setjmp.h, 
+         gotos, putenv and strdup.
+
+      * for the win32 port, added missing file sys/time.h
+
+      * fixed bug as reported by Victor that EiC doesn't handle error
+        recovery correctly with respect to the removal of 
+        prototypes to builtin functions.       
+
+      * Incorporated Ken Settle's patch enabling EiC to handle correctly:
+            
+            EiC 1> #define FOO int
+            EiC 2> FOO (*a)(FOO x);
+
+
+      * Fixed bug with EiC_parseString, as reported by Kester McKinney,
+        failing to allocate on occassions sufficient buffer space for 
+        passing the format string.
+
+      *  Fixed bug with EiC failing to diagnose correctly: 
+         passing indirectly an unsafe pointer to a function
+         expecting indirectly a safe pointer or vice versa:
+
+              EiC 1> char * * p;
+              EiC 2> char * *unsafe q;
+              EiC 3> void f1(char * * p) {1;}
+              EiC 4> void f2(char * *unsafe q) {1;}
+              EiC 5> f1(p);   // okay
+              EiC 6> f1(q);   // error
+              EiC 7> f2(p);   // error
+              EiC 8> f2(q);   // okay
+
+         For more information see EiC's documentation covering
+         pointers: www.pobox.com/~eic/EiC
+
+      *  Fixed bug with EiC's address, `@', operator failing to 
+         handle more  compilcated data types properly:
+
+             char *vec[] = {"hello", "world"};
+             char *p[2]  @ &vec;
+
+      *  Fixed problem related to David Binette's report of a 
+         security concern with respect to EiC's demo cgi program 
+         `uploadfile.eic.cgi'
+
+      *  Fixed bug with the definition of CLOCKS_PER_SEC on the 
+         Linux platform as reported by Derek Simkowiak.
+
+      *  Fixed several causes of EiC reporting memory violations
+         when compiling C code with errors coinciding with
+         implicit or explicit variable casts.
+
+</pre>
+<b>Changes from 4.1.2 to 4.2.0 (Aug 2 1999)</b>
+<pre>
+
+ ******  Jean-Bruno Richard has modified EiC's `:gen' command so 
+         that it now automatically handles multiplexed callbacks.
+
+    ***  The WIN32 binary distribution of EiC also includes eic.lib
+         to enable embedding eic, see file c:\eic\examples\embedEiC.c
+
+    ***  EiC/config/genstdio now also generates limit.h
+         and float.h 
+
+    ***  EiC's builtin function popen and pclose have been ported to 
+         the WIN32 platform
+      
+      *  several unused files have been removed from the distribution:
+
+               EiC/module/stdClib/src/fopen.c
+               EiC/module/stdClib/src/scanf.c
+         
+         the following files were removed as they are automatically
+         generated at compile time.
+
+               EiC/module/stdClib/src/_PLATFORM/stdio.h
+               EiC/module/stdClib/src/_PLATFORM/stdlib.h
+               EiC/module/stdClib/src/_PLATFORM/errno.h
+               EiC/module/stdClib/src/_PLATFORM/stdtypes.h
+               EiC/module/stdClib/src/_PLATFORM/limits.h
+               EiC/module/stdClib/src/_PLATFORM/float.h
+   
+      
+      *  fixed bug with EiC failing to cast result of bitwise
+         negation `~' to `unsigned int' if operand is `unsigned int' or
+         to `unsigned long' if operand is `unsigned long'
+              
+      *  fixed bug with lexical analyzer failing to handle ULONG_MAX
+         correctly.
+
+      *  corrected definition of LONG_MAX for the WIN32 platform.
+      
+      *  fixed bug with EiC/main/example/embedEiC.c
+         being platform dependent.
+
+      *  fixed Jean-Bruno Richard's report that EiC
+         was failing to implicitly dereference pointers
+         to functions when declared as structure members
+         during function calls:
+
+              EiC 1> void foo() { printf("hello\n"); }
+              EiC 2> typedef struct { void (*f)(); } Test;
+              EiC 3> Test *x, y;
+              EiC 4> x = &y; x->f = foo;
+              EiC 5> (*x->f)(); // explicit dereference old C style
+              EiC 5> x->f();    // implicit dereference new C style
+              EiC 6> y.f();     // implicit dereference new C style
+
+</pre>
+<b>Changes from 4.1.1 to 4.1.2 (Jul 18 1999)</b>
+<pre>
+    
+    *** Igloo, a port of EiC to WIN32 with  opengl support, with 
+        the NT4 glu/glut/opengl DLLs by Jean-Bruno Richard, has
+        been added to EiC/contribute directory:
+
+          www.pobox.com/~eic/EiCdist/contribute
+
+    *** the WIN32 port now looks for the environmental variable
+         HOMEofEiC 
+
+    *** readline has been ported so it works also under WIN32 using MSVC++.
+
+</pre>   
+<b>Changes from 4.1.0 to 4.1.1</b>
+<pre>
+
+      * Fixed problems with EiC binary install procedure
+
+</pre>
+<b>Changes from 4.0.1 to 4.1.0 (Jun 26 1999)</b>
+<pre>
+
+    ***  An EiC module to interface to the C-API of MySQL 
+         (3.22.22-2) is available from:
+           
+            http://www.datagrid.com/~eic/modules
+
+  ****** EiC now supports long longs:
+
+            EiC > long long a; unsigned long long b;
+
+         NOTE at this stage `unsigned long long' is simply
+         mapped to `long long'; that is, `unsigned long long'
+         is not yet properly supported and is handled as 
+         signed values. 
+
+  ****** an alien of port of EiC to the WIN32 platform has been 
+         contributed by Jean-Bruno Richard.
+ 
+  ***** Ported EiC to FreeBSD.
+  
+
+    *** The reliance on the use of the `ksh' shell in EiC's make
+         system has been removed.
+
+      * fixed bug with redeclarations of reference variables 
+         causing any immediately and previously declared 
+         variable in the same translation unit to get corrupted; 
+         example:
+
+            EiC 1> int a; int b @ &a;
+            EiC 2> double c; extern int b;
+
+            `c' will now be of type `int'.
+
+       * the platform dependent bug with `:gen' and 
+         printf's %p conversion character used for 
+         interfacing with shared variables has been fixed, 
+         by using %ld.
+
+       * fixed bug with EiC's automatic interface generation 
+         failing to handle enumeration constants properly.
+         
+       * fixed bug with EiC's automatic interface generation
+         failing to handle the return of unsafe pointers
+         correctly.
+
+
+</pre>
+<b>Changes from 4.0 to 4.0.1 (May 23 1999)</b>
+<pre>
+
+
+     *** Debian `deb' and RedHat `rpm' packages for EiC's
+         binary distribution are now available from home
+         page.
+       
+     *** updated  EiC's binary installation procedure -- corrected
+         some inconsistencies.
+     
+     *** changed the names of several files in 
+         EiC/module/cgihtml/cgi-bin to reflect a more 
+         consistent nomenclature.
+     
+       * fixed 3 bugs as reported by Larry Battraw:
+         (1) setting HOMEofEiC in EiC/main/Makefile line 13, 
+            via $(PWD)/.. fails when using bash. Changed to:
+
+            HOMEofEiC := $(shell pwd)/..
+
+         (2) Under linux the file dirent.c tries to include 
+            "direntry.h" when it really wants dirent.h:
+
+            removed inclusion of direntry.h 
+        
+         (3) In the stdClib directory, the 
+             file stdio.c defines the following on line 66:
+             static FILE * book2[FOPEN_MAX] = {stdin,stdout,stderr};
+             Gcc complains about stdin, stdout, etc. not being 
+             constants. corrected initialisation problem.
+
+       * fixed bugs with EiC's binary distribution installation 
+         procedure.
+
+       * fixed bug with EiC's automatic interface generation 
+         returning pointers from builtin code properly.
+
+       * fixed bug with EiC'c automatic interface generation not 
+         handling          typedefs correctly.
+
+
+</pre>
+<b>Changes from 3.9 to 4.0 Fri (May 17 1999)</b>
+<pre>
+
+ ******  EiC now supports callbacks. That is, it is possible for 
+         compiled code to call EiC interpreter functions.  The 
+         compiled code doesn't need to be altered. It is all 
+         handled through  EiC's interface to builtin code. The 
+         basic design  was developed and contributed to EiC by 
+         Jean-Bruno Richard.
+
+         The same builtin code can make callbacks to different
+         functions, which take different number and different 
+         types of arguments, but not to functions that take a 
+         variable  number of arguments. 
+
+         At this stage all the basic scalar types and arrays of
+         scalars are supported through the callback
+         mechanism. Updates and patches will be made available as
+         support for more data types are added.
+         
+
+ ****** Jean-Bruno Richard also initiated EiC's
+         command `:gen', which is used for automating
+         the generation of EiC interface code to
+         compiled library code:
+
+             EiC 1> #include foo.h
+             EiC 2> :gen  foo.h
+
+         The interface routines will be printed
+         to stdout, unless the optional string argument 
+         is used to redirect the output to a file:
+
+             EiC 3> :gen foo.h "foo.c"
+
+
+ ****** Mesa/Opengl has been interfaced to EiC via glut. Its
+         interface module can be found in: 
+              
+             www.pobox.com/~eic/modules
+
+         Example code is also given in the module distribution (GL).
+
+ ******* Jochen Pohl has ported EiC to NETBSD and
+         Solaris/i386. In doing so Jochen Pohl made the following 
+         changes to EiC's distribution:
+            ./Makefile
+            ./src/Makefile
+                - under NetBSD, ksh is installed as /bin/ksh, not /usr/bin/ksh.
+            ./README
+            ./config/alignment.c
+            ./src/metric.h
+            ./src/ppc403/include/metric.h
+                - renamed LITTLE_ENDIAN in EIC_LITTLE_ENDIAN to avoid conflict
+                  with system header file
+                - for i386 and sparc, use hardware name instead of operating
+                   system to define data size and alignment
+            ./config/makeconfig
+               - if shell variable PWD not set or empty, set it to `pwd`
+               - use cp -f to overwrite read only files
+            ./main/main.c
+               - define __LITTLE_ENDIAN__ as 1 or 0, depending on whether
+                 the machine is littel endian or not. Needed on some tests
+                 to get them running on both little endian and big endian
+                 machines
+               - define __LP64__ or __ILP32__, depending on whether the machine
+                 has 64 or 32 bit longs and pointers. Needed in in NetBSD
+                 header files to add (untested) support for alpha CPU.
+            ./module/stdClib/src/dirent.c:
+               - telldir() and seekdir() use long, not off_t. would make a
+                 difference on NetBSD, where off_t is long long.
+            ./src/eicval.h
+               - on NetBSD, use long instead of off_t for offval (because
+                 off_t is long long)
+            ./test/runtest
+               - use either echo -n foo or echo foo\c
+            ./test/EiCtests/teststdio.c
+               - fixed assertions (STDC requires that the return value of
+                fputs() is EOF on error and a nonnegative value otherwise)
+            ./test/eicScripts/Driver.c.def
+            ./test/eicScripts/script1.eic
+            ./test/eicScripts/script2.eic
+            ./test/eicScripts/www_eic.eic
+              - change path to eic binary to some standard value
+            ./test/posix.1/tstfilelock.c
+              - use memset() to initialize struct flock to zero.
+                necessary because under NetBSD the l_start and
+                l_len values are 64 bit, but only 32 bit can be
+                set from eic
+              - before F_GETLK, set lock type to F_WRLCK. necessary
+                because F_GETLK returns the first lock that blocks
+                the lock description pointed to by the third argument.
+                if this lock description has lock type F_UNLCK,
+                 probably no lock will be returned.
+            ./test/sniptests/bitcnt_4.c
+            ./test/sniptests/bitops.h
+              - use unsigned long instead of long to avoid infinite
+                recursion if a negative long is passed to either
+                ntbl_bitcnt() or btbl_bitcnt().
+              - fixed btbl_bitcnt() to work on big endian machines too.
+            ./test/sniptests/dbl2long.c
+              - make this test work on big endian machines (and, hopefully,
+               on LP64 machines).
+
+    *** There is now an Advanced section
+        in EiC's documentation explaining how
+        to build an EiC module, and how to perform
+        callbacks.
+
+            www.pobox.com/~eic/EiC
+
+    *** EiC web page now contains a separate section
+        for EiC modules. 
+
+            www.pobox.com/~eic/modules
+
+    ***  The parse_form_encoded function of
+         the EiC's cgihtml library module has been modified
+         to do buffered IO rather than just single byte
+         IO. This improves the speed of this
+         function for http file uploads by 2 to 3 fold.
+
+    ***  Several changes and additions have been made to
+         EiC's module MathStats.
+
+    ***  The infinite loop that one runs into by running 
+         "eic < infile" if there is no `:exit' at the end
+         of the infile has been fixed -- kindof. EiC now
+         recognises the EOF for this purpose iff the
+         Non-interactive flag `A' is used:
+
+              eic -As < infile
+         
+         Otherwise `:exit' must still be present. 
+
+
+      *  fixed bug with the address operator
+         not working with pointers:
+
+           EiC 1> int b = 22; int *a = &b;
+           EiC 2> int *c @ &a;
+           EiC 3> assert(*c == 22);
+
+      *  fixed bug with redeclaration 
+         error being reported for extern
+         definitions of variables declared
+         previously as reference variables
+         via the address `@'  operator 
+
+            EiC 1> int a; int b @ &a;
+            EiC 2> extern int b;
+
+      *  fixed bug with EiC not being reentrant
+         with respect to callback code.
+
+      *  fixed bug with EiC_parseString failing
+         if called from a translation unit,
+         which have strings that gets gabbage collected.
+         For example:
+
+         EiC > while(i++<5) printf("%d\n",func());
+
+         where func is a builtin function that
+         calls EiC_parseString. The string
+         "%d\n", would be gabbage collected after
+          the first call to EiC_parseString, and
+         before the calling translation is finished.
+ 
+
+      *  fixed bug with EiC reporting a redeclaration error
+         for macros with null token sequence when seen more 
+         than once:
+         
+             EiC 1> #define X
+             EiC 2> #define X
+
+      *  Fixed Jean-Bruno Richard's report of EiC
+         failing with the unary opertor `+' when
+         applied to constants:
+         
+                EiC 1> #define X 1
+                EiC 2> +X;
+
+       * Incorporated Tim Baker's bug fixes with respect
+         to handling declared const types within 
+         unary operations properly and EiC failing to
+         parse if-statements, if the type of the expression
+         evaluates to unsigned short int:
+
+           unsigned short a[1] = {1};
+           if (a[0])
+               a[0]--;
+
+</pre>
+<b>Changes from 3.8 to 3.9 Fri (Apr  2 1999)</b>
+<pre>
+
+ ******  Eugene Brooks has helped modify EiC so it 
+         builds without using its own headers, and
+         no longer defines its own version of the
+         stdio functions. This is designed to eliminate
+         conflicts between system code and EiC when
+         embedding EiC into other systems
+ ******  EiC no longer compiles out-of-the-box
+         under SUNOS 4.1 or less -- unless your C 
+         implementation is ISO/ANSI C compliant           
+     **  EiC now also parses `\r\n' line endings rather
+         than just the Unix style `\n'
+     **  Matt Minnis has modified EiC's show
+         routine so that it also displays a variables
+         value along with its type
+      *  fixed bug with EiC becoming unstable
+         when an error occurs during the parsing of a translation
+         unit with a prototype to a builtin function.
+         This is a fix to one of EiC's most outstanding
+         bugs :)
+      *  re-fixed bug with EiC not allowing for the
+         re-declaration of enumeration types
+      *  fixed bug with EiC's restart mechanism sometimes reporting
+         an illegal operation when initiated via
+             eic -r or eic -R
+      *  fixed bug with EiC not handling global scalar const 
+         objects properly.
+
+</pre>         
+<b>Changes from 3.7.5 to 3.8 (Feb 6 1999)</b>
+<pre>
+
+ ******  added the address specifier operator `@':
+
+            int a @ dddd;
+
+          defines `a' to be an integer whose value
+          is at address dddd. dddd must be a constant 
+          integral express. This will then, among other things,
+          allow the following type of call to be setup from 
+          outside EiC:
+          
+             double d;
+             EiC_parseString("double d @ %ld",(long)&d);
+
+          At this stage the address specifier can be applied to
+          objects or to functions that accept void arguments 
+          and which return void:
+
+             void foo(void) { puts("Hello world!\n");}
+             EiC_parseString("void foo(void) @ %ld",(long)foo);
+
+    ***  Bret Deck and Eugene Brooks have improved
+         EiC error detection mechanism for identifying array bound
+         and memory address violations.     
+    ***  technical document EiC/doc/tech_docs/typesets.doc
+         explains how object types and operators are (can be)
+         added to EiC.
+    ***  I have rationalised/cleaned-up EiC stdClib interface.
+         However, a major revision of how EiC's implements the
+         standard C library is under development.
+      *  fixed bug with EiC's interpreter not being
+         reentrant
+      *  fixed bug with EiC not handling typedef types correctly 
+         with respect to scope such as:          
+              typedef struct { char a; } c;
+              typedef struct { short c; } scs;
+      * fixed bug with EiC not determining the sizeof
+        enumeration types; that is:              
+                sizeof(<enumeration_type>)
+      * fixed bug with the use of enumeration types
+        as structure/union members
+      * fixed bug with EiC not handling pointers to
+        enumeration variables correctly.
+      * fixed bug with EiC not allowing for the
+        re declaration of enumeration types.
+      * Massaged EiC's tex documents so as LaTeX2html 
+        would do a better job in building EiC's
+        online documentation. 
+
+
+</pre>
+<b>Changes from 3.7.2 to 3.7.5 (Nov 23 1998)</b>
+<pre>
+
+  ****** added the pointer type qualifiers `safe' and 
+         `unsafe' to the EiC language. For example:
+
+                int * unsafe p;
+
+         defines `p' to be an `unsafe' pointer or a normal C type 
+         pointer, while
+
+                int * safe p;  
+
+         defines `p' to be a `safe' pointer, which is the normal 
+         EiC type pointer. 
+         Rationale: to make it easier to interface EiC to builtin 
+            library functions, which use `unsafe' pointers and take 
+            argument types such as: arrays of pointers or structures  
+            with pointer members. 
+  ****** to control the default pointer type, three pragma
+         directives have been added to the EiC language and which work 
+         on a stack principle:
+
+            #pragma  push_safeptr   /* default pointer type is safe */
+            #pragma  push_unsafeptr /* default pointer type is unsafe */
+            #pragma  pop_ptr        /* return to previous ptr type. */
+
+     *** the EiC_parseString function now accepts variable 
+         arguments:
+        
+                EiC_parseString(char *fmt, ...);
+              
+     *** the howto documentation for adding builtin 
+         functions to EiC has been upgraded to reflect
+         the usage of safe and unsafe pointer, see:
+             .../EiC/doc/tech_doc/builtin.doc
+     *** the `p' conversion character in printf now 
+         prints out in hexidecimal format.
+     *** the `p' conversion character in scanf now
+         matches a hexidecimal input sequence corresponding
+         to the output style of printf. 
+       * fixed EiC's Linux definitons of various system
+         types not being libc6 compatible; such as
+          `struct stat', `struct dirent' and `struct tm'
+       * fixed bug with the casting of integer constants
+         to pointers:
+                     int *p = (int*)dddd;
+         where dddd is a numeric integer constant.           
+       * fixed bug with EiC's `:rm' facility
+         failing to remove properly typedef definitions
+         of array types.
+
+</pre>
+<b>Changes from 3.7.1 to 3.7.2 (Aug 23 1998)</b>
+<pre>
+    
+       * fixed bug with internal signal code not being
+         GNU libc6 compatible
+     *** The PowerPC 403 port of EiC has 
+         been incorporated into the main distribution
+         of EiC.
+     *** EiC now considers it illegal for the 
+         function `main' not to return type `int'
+     *** In script mode, control is now passed
+         to a main function if it exists. This
+         makes it easier to run C programs via
+         EiC's script mode
+       * fixed bug with EiC failing to recognise
+         the ISO C additional escape-code '\?'
+
+</pre>
+<b>Changes from 3.7 to 3.7.1 </b>
+<pre>
+
+       * fixed bug with sys/stat.h for
+         SOLARIS and IRIX platforms
+       * fixed bug in readdir on the SOLARIS
+         and IRIX platforms due to safeptrs      
+
+</pre>
+<b>Changes from 3.6 to 3.7</b>
+<pre>
+        
+       * added the unistd.h function chdir
+     *** added facilities to interface with EiC
+         from other programs. 
+         See the EiC/main/README file in the source
+         distribution for more details.
+       * fixed bug with printf handling:
+           printf("%s\n",NULL);
+       * fixed bug with strtok due to 
+          safe pointers
+     *** EiC can now be compiled on a HPUX
+         platform thanks to Alf Clement.
+     *** The main distribution now has a contribution
+         section, that includes a port of EiC for the PowerPC
+         403 thanks to Larry Battraw.
+     *** Eugene Kim's upgrade of cgihtml (1.69) 
+         has been incorporated
+
+</pre>
+<b>Changes from 3.5 to 3.6 </b>
+<pre>
+
+      *** added module `xv', which
+          provides a primative interface
+          to xv.         
+        * Fixed bug in EiC's test-module
+            EiC/test/EiCtests/testinclude.c 
+        * Documentation updated to reflect
+          EiC's internet programming facility.
+        * if EiC is installed in /usr/local
+          then the environmental variable 
+          HOMEofEiC does not need to be
+          defined             
+      *** added the command line switch '-e'.
+          It is used  for debugging CGI scripts.
+          See documentation for details. 
+        * fixed bug with fgetc not returning 
+          the next character as an unsigned char
+          converted to an int
+        * fixed bug with EiC core dumping when
+          the environmental variable HOMEofEiC is 
+          not defined
+
+</pre>
+<b>Changes from 3.4 to 3.5</b>
+<pre>
+
+      *** added module `cgihtml'
+   ****** all global variables and functions declared 
+          static within an include file are now private to 
+          that file, and are only visible within the scope of
+          the include file. Therefore, in general,  their 
+          names will not clash with the names of any global 
+          variable visible from the EiC prompt or within any other 
+          include file.
+        * fixed bug with EiC becoming internally
+          unstable after passing structures/unions
+          by value to functions from scope level
+          file:
+                EiC > struct {int a, b;} ab_t;
+                ...
+                EiC > foo(ab_t); // eic is now unstable
+        * fixed bug with type conflicts generated by
+          declarations of the type:
+                int ff(char *ff);
+          and definitions of the type:
+                int ss(int ss) { return ss;}
+        * fixed bug caused by safe pointers
+          when passing structures by value
+          to functions.
+        * rationalised slightly the header
+          files in EiC/src
+
+</pre>
+<b>Changes from 3.3 to 3.4 </b>
+<pre>
+
+      *** added modules `tools' and `examples'  
+        * documentation updated
+      *** most of the example code given in
+          EiC's documentation is now included
+          in the directory:
+                 ../EiC/module/examples
+      *** the installation procedure has
+          changed; this is because `eicc' no
+          longer exists.
+   ****** EiC can run its own shell scripts of the form:
+               #!/usr/local/bin/eic -f
+               #include <stdio.h>
+               printf("Hello, world.\n");
+        * fixed bug with enum being declared extern:
+                enum rgb {RED,GREEN, BLUE};
+                extern enum rgb colour;
+                enum rgb colour = RED;
+        * fixed bug with the comma operator processing
+          syntax of the form:
+                foo(),f;
+        * fixed bug with boundary affects, due to 
+          safe pointers, in `memmove' and `strncpy'
+        * fixed bug with eic failing to cast 
+          `unsigned int' to `long' properly 
+          on platforms where sizeof(int) == sizeof(long)
+        * fixed bug with eic to pass command line 
+          arguments in double quotes properly:
+                % eic main2.c " hello  world  "
+        * fixed bugs with safe pointers when dealing with:
+                int a, b; memcpy(&a,&b,sizeof(b));
+        * fixed bug with using casts with type qualifiers:
+                (const char *)p;
+        * fixed bug with the incrementing or deincrementing
+          of arrays passed to functions:
+                void foo(char *argv[]) 
+                        ...
+                       *++argv;    //bug here
+        * fixed bug with the initialisation of char arrays
+          of the type:
+                 char buf[13] = "\0""1234456789";
+        * fixed bug with pp directives of the type: 
+                  #if !(hello)
+        * for main, argv[argc] is now set to NULL on setup. 
+        * fixed bug with the formation of a new macro during
+          an expansion that extends across multiple lines. 
+
+</pre>
+<b>Changes from 3.2 to 3.3 </b>
+<pre>
+
+      *** improved array bound checking functionality   
+        * update of EiC's documentation (still needs some work though)  
+      *** implemented the <stdlib.h> function `atexit'
+        * fixed bug with rename not removing the oldfile
+        * fixed bug with gets setting the wrong flag, preventing
+          it from working correctly with the rest of the <stdio.h> 
+          IO functions.
+      *** added the <stdio.h> function freopen
+        * fixed several bugs with EiC's <stdio.h> functions
+
+</pre>
+<b>Changes from 3.1 to 3.2</b>
+<pre>
+
+        * fixed several bugs in EiC's <string.h>
+          functions
+      *** added the switch -N to stop eic from using
+          any startup.h file when started.
+   ****** MADE EiC POINTER SAFE (alpha stage) 
+        * fixed bug with EiC repeatedly catching
+           the same SIGNAL violation
+        * fixed bug with the initialising of
+          non STR variables
+
+</pre>
+<b>Changes from 3.0 to 3.1</b>
+<pre>
+
+        * fixed defect with showMacro.
+        * corrected NULL pointer definition.
+        * fixed typo in "unsigned char" 
+        * fixed checking of function return type
+      *** added POSIX.1 functions `access' and `fcntl'
+        * convert to unsigned int for `%b'; i.e. 
+           printf("%b",15) ->  binary numbers are unsigned.
+        * fixed bug with indexing arrays of pointers with
+          the assign operator.
+        * prevented interpreter functions from masking 
+          builtin functions.
+        * fixed problem with the initialisation of a global
+          char NULL pointer:
+              char *p = NULL;
+      *** added the interpreter command ":clear"
+
+
+</pre>
+<b>Changes from 0 to 3.0</b>
+<pre>
+
+        Too many to list
+
+</pre>
+</multicol>
+
+
+<ADDRESS>
+<!-- ADDRESS field used for automatic insertion of links -->
+</ADDRESS>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

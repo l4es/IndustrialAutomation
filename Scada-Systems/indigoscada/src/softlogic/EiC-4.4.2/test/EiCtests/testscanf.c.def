@@ -1,0 +1,10 @@
+on
+	(void)
+Okay 1
+Okay 1
+count = [3]  quant = [2] units = [quarts] item = [oil]
+count = [2]  quant = [-12.8] units = [degrees] item = []
+count = [0]  quant = [-12.8] units = [] item = []
+count = [3]  quant = [10] units = [LBS] item = [dirt]
+count = [3]  quant = [100] units = [ergs] item = [energy]
+	0

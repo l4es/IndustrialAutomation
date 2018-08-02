@@ -1,0 +1,53 @@
+# -*- makefile -*-
+# Makefile for Microsoft Windows with Microsoft Visual C++ 5.0 compiler
+
+CC=cl
+# Debug version
+#CFLAGS = -c -nologo -MTd -YX -Zi -W3
+
+# Debug version using based pointers
+CFLAGS = -c -nologo -MTd -YX -Zi -W3 -DUSE_BASED_POINTERS 
+
+# Optimized verision
+#CFLAGS = -c -Ox -G6 -MT -nologo -YX -Zi -W3 
+
+# Optimized verision using based pointers
+#CFLAGS = -c -Ox -G6 -MT -nologo -YX -Zi -W3 -DUSE_BASED_POINTERS 
+
+# Optimized verision with switched off asserts
+#CFLAGS = -c -Ox -G6 -nologo -YX -Zi -W3 -DNDEBUG
+
+#LFLAGS=-MT -Zi -nologo
+LFLAGS=-MTd -Zi -nologo
+
+all: tstshmem.exe fifo.exe
+
+shmem.obj: shmem.cpp shmem.h
+	$(CC) $(CFLAGS) shmem.cpp
+
+shmemc.obj: shmemc.cpp shmem.h shmemc.h
+	$(CC) $(CFLAGS) shmemc.cpp
+
+tstshmem.obj: tstshmem.cpp shmem.h
+	$(CC) $(CFLAGS) tstshmem.cpp
+
+fifo.obj: fifo.cpp shmem.h
+	$(CC) $(CFLAGS) fifo.cpp
+
+tstshmem.exe: tstshmem.obj shmem.obj
+	$(CC) $(LFLAGS) tstshmem.obj shmem.obj
+
+fifo.exe: fifo.obj shmem.obj
+	$(CC) $(LFLAGS) fifo.obj shmem.obj
+
+clean: 
+	-del *~,*.obj,*.idb,*.pch,*.pdb,*.ilk,*.exe,*.dsp,*.dsw,*.ncb,*.opt,*.plg,*.odb
+
+
+zip: clean
+	cd ..
+	-del shmem.zip 
+	zip -r shmem.zip shmem
+
+copyzip: zip
+	copy shmem.zip a:

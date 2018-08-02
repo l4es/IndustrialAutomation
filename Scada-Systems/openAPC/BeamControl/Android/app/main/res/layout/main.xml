@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/hiddenRootLayout"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent">
+
+    <ScrollView
+        android:id="@+id/detailScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/detailLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:columnCount="2"
+                    android:rowCount="11"
+            >
+
+            <ImageView
+                android:id="@+id/detStateImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_column="0"
+                android:layout_margin="8dp"
+                android:layout_row="0"
+                android:layout_rowSpan="3"
+                android:scaleType="fitCenter"
+                android:src="@drawable/disconnected"/>
+
+            <TextView
+                android:id="@+id/detConnectionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_column="1"
+                android:layout_row="0"
+                android:text="Name"/>
+
+            <TextView
+                android:id="@+id/detStateText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:text="disconnected"/>
+            <TextView
+                android:id="@+id/detTimeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="2"
+                android:text="@string/detTimeText"
+                />
+            <TextView
+                android:id="@+id/detProjectText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="3"
+                android:text="@string/detProjectText"
+                />
+            <TextView
+                android:id="@+id/detProjectError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="4"
+                android:maxLines="2"
+                android:scrollHorizontally="false"
+                android:ellipsize="none"
+                android:text="@string/detProjectError"
+                />
+            <TextView
+                android:id="@+id/detProjectParts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="5"
+                android:text="@string/detProjectParts"
+                />
+            <TextView
+                android:id="@+id/detProjectProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="6"
+                android:text="@string/detProjectProgress"
+                />
+
+            <ProgressBar
+                android:id="@+id/detProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:minHeight="12dp"
+                android:maxHeight="18dp"
+                android:layout_column="1"
+                android:layout_row="7"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_row="8"
+                android:layout_margin="4dp"
+                />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_margin="4dp"
+                android:stretchColumns="1"
+                >
+
+                <TableRow>
+                    <TextView
+                        android:text=""/>
+
+                    <TextView
+                        android:id="@+id/textVibrate"
+                        android:layout_marginRight="4dp"
+                        android:gravity="center"
+                        android:text="Vibrate"/>
+
+                    <TextView
+                        android:id="@+id/textSound"
+                        android:gravity="center"
+                        android:text="Play sound"/>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textDisconnected"
+                        android:padding="3dip"
+                        android:text="@string/stateDisonnected"/>
+
+                    <CheckBox
+                        android:id="@+id/vibrateOfflineCB"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/soundOfflineCB"
+                        android:layout_gravity="center_horizontal"
+                        />
+                </TableRow>
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/textReadyToIdle"
+                        android:padding="3dip"
+                        android:text="@string/readyToIdle"/>
+
+                    <CheckBox
+                        android:id="@+id/vibrateIdleCB"
+                        android:layout_gravity="center_horizontal"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/soundIdleCB"
+                        android:layout_gravity="center_horizontal"
+                        />
+                </TableRow>
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/textMarkingToReady"
+                        android:padding="3dip"
+                        android:text="@string/markingToReady"/>
+
+                    <CheckBox
+                        android:id="@+id/vibrateReadyCB"
+                        android:layout_gravity="center_horizontal"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/soundReadyCB"
+                        android:layout_gravity="center_horizontal"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textPaused"
+                        android:padding="3dip"
+                        android:text="@string/statePaused"/>
+                    <CheckBox
+                        android:id="@+id/vibratePausedCB"
+                        android:layout_gravity="center_horizontal"
+                        />
+                    <CheckBox
+                        android:id="@+id/soundPausedCB"
+                        android:layout_gravity="center_horizontal"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textError"
+                        android:padding="3dip"
+                        android:text="@string/stateError"/>
+                    <CheckBox
+                        android:id="@+id/vibrateErrorCB"
+                        android:layout_gravity="center_horizontal"
+                        />
+                    <CheckBox
+                        android:id="@+id/soundErrorCB"
+                        android:layout_gravity="center_horizontal"
+                        />
+                </TableRow>
+            </TableLayout>
+
+            <ImageButton
+                android:id="@+id/deleteServerButton"
+                android:layout_width="match_parent"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_row="10"
+                android:src="@android:drawable/ic_delete"/>
+
+        </GridLayout>
+
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:id="@+id/rootLayout"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="top"
+                      android:orientation="vertical"
+            />
+    </ScrollView>
+</FrameLayout>

@@ -1,0 +1,105 @@
+on
+	(void)
+bincomp.c vs. bincomp.c
+4079 4079
+/* +++Date last modified: 05-Jul-1997 */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define NUL '\000'
+
+          Tire Width:   10.43 in
+     Sidewall Height:    7.83 in
+       Tire Diameter:   31.65 in
+       Circumference:   99.43 in
+Revolutions per mile:  637.23
+
+A tire: (265/75-16) is (31.65) inches tall and (10.43) inches wide.
+Original = "hello"
+strupr() = "HELLO"
+strlwr() = "hello"
+Original = "world"
+strupr() = "WORLD"
+strlwr() = "world"
+ DOWN
+ UP
+ FIND
+ FAST
+SAMPLES
+ 0 0, 1 2 39 0 41 42 DONE
+/* +++Date last modified: 05-Jul-1997 */
+
+/* remtab.c 12-4-91 Robert Mashlan, Public Domain
+   modified 28 mar 93 by Bob Stout
+
+   Filter for removing tabs.  All tabs in the input will be replaced
+   with spaces.  This filter takes one optional command line
+   parameter, which specifies the number spaces to replace for a tab.
+   If no size is specifies, it defaults to 8.
+
+   example usage:
+
+   remtab 6 < tabbed.c > untabbed.c
+
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define BUFSIZE 4096
+
+
+int main(int argc, char **argv )
+{
+      int tabsize = 8;
+
+      if (argc > 1)                 /* look for command line parameter */
+      {
+            if (0 == (tabsize = atoi(argv[1])))
+                  tabsize = 8;
+      }
+
+      while (1)
+      {
+            char buf[BUFSIZE];
+            int nr, i, j, pos = 0;
+
+            nr = fread(buf, 1, sizeof(buf), stdin);
+            for (i = 0; i < nr; i++)
+            {
+                  switch (buf[i])
+                  {
+                  case '\t':              /* replace tabs with spaces   */
+                        for(j = pos % tabsize; j < tabsize; ++j)
+                        {
+                              putchar(' ');
+                              ++pos;
+                        }
+                        break;
+
+                  case '\n':              /* start a new line           */
+                        pos = -1;         /* this will become 0 when... */
+
+                        /* ...we fall through to...   */
+
+                  default:
+                        putchar(buf[i]);/* send character through unchanged */
+                        ++pos;
+                  }
+            }
+            if (nr < sizeof(buf))
+                  break;
+      }
+      return 0;
+}
+L0001: 3.1415926535 897
+   6533892.0
+  14220222.0
+   7275067.0
+   6172232.0
+   8354498.0
+  10633180.0
+Key value = C8C0D892 hex, 3368081554 decimal.
+	0

@@ -1,0 +1,2060 @@
+\chapter{Introduction to EiC}
+
+{\bf E}xtensible {\bf i}nteractive {\bf C}, EiC, is a hand crafted,
+recursive--descent C interpreter. To start EiC simply enter at the
+system prompt (\T{\%}):
+\begin{quote}
+\begin{verbatim}
+% eic
+\end{verbatim}
+\end{quote}
+
+As the name implies, EiC is interactive, but see section
+\SecPage{NonInteractive} for running EiC in batch mode.  Basically the user
+enters commands, or {\it immediate statements} at the interpreter
+prompt {\tt EiC \#>}, where the hash mark represents the current line
+number; for example:
+\small
+\begin{quote}
+\begin{verbatim}
+EiC 1> #define PI  3.14159
+EiC 2> PI * strlen("Hello, World!\n");
+\end{verbatim}
+\end{quote}
+\normalsize
+
+and then EiC will respond with:
+\small
+\begin{quote}
+\begin{verbatim}
+43.98226
+\end{verbatim}
+\end{quote}
+\normalsize
+
+where {\tt strlen}, see \SecPage{stringh}, is a standard C function
+that will return the number of characters in the argument string
+\verb+"Hello, World!\n"+:
+\small
+\begin{quote}
+\begin{verbatim}
+EiC 3> strlen("Hello, World!\n");
+        14
+\end{verbatim}
+\end{quote}
+\normalsize
+In fact, virtually all of the C runtime library and a good proportion
+of the POSIX.1 libray are supported by EiC (but see \ChpPage{Library},
+for details).
+
+To exit EiC simply enter:
+
+\small
+\begin{quote}
+\begin{verbatim}
+EiC 4> :exit
+\end{verbatim}
+\end{quote}
+\normalsize
+
+EiC is a bytecode~\index{bytecode}\cite{budd87} compiler
+that generates its own internal intermediate language known as stack code,
+\index{stack code} which is a bit like the Pascal P-code system
+\cite{pemberton-daniels82}. It executes the stack code via its own internal 
+stack machine\index{stack machine}.  The intermediate code produced
+from the previous call to {\tt strlen} is:
+
+\small
+\begin{quote}
+\begin{verbatim}
+0:pushptr  245980           4:stoval                            
+1:bump     1                5:pushint  1          
+2:checkar  1 1              6:call                
+3:pushptr  398192           7:halt                
+\end{verbatim}
+\end{quote}
+\normalsize
+
+
+While the details of the stack code will not be discussed in this
+document its usage means that executed commands generally perform much
+faster than an interpreter that uses no intermediate code.
+
+\section{\label{sec:EiCvsC} EiC vs C}
+
+Because EiC is interactive it differs from C in several
+ways. In this section I will outline what is currently
+missing from EiC and how EiC differs from ISO C. 
+
+Although EiC can parse almost all of the  C programming
+language~\cite{kernighan-ritchie88} right up front it is
+best to mention what is currently lacking or different:
+\begin{enumerate}
+
+\item EiC is pointer safe\index{pointer!safe}. It detects many classes
+of memory read and write violations
+(see~\SecPage{ArrayBoundChecking}). To help in interfacing
+compiled library code to EiC, EiC uses the pointer-qualifiers
+\T{safe} and \T{unsafe}, see \SecPage{PointerPragmas}.
+
+
+\item Structure \index{structure! bit fields}\index{bit fields} bit fields 
+ are not supported.
+
+\item 
+
+While structures and unions can be returned from and passed by value to
+functions it is illegal in EiC to pass a structure
+or a union to a variadic function (that is, a function that
+takes a variable number of arguments):
+        \begin{quote}
+        \begin{verbatim}
+EiC 1> struct stag {int x; double y[5];} ss; 
+EiC 2> void foo(const char *fmt, ...);  
+EiC 3> foo("",ss);
+Error: passing a struct/union to variadic function `foo'
+        \end{verbatim}
+        \end{quote}
+
+\item The C concept of linkage\index{linkage!external} is not supported.
+        This is because EiC does not export identifiers to a linker --
+        as does a true C compiler. EiC works from the concept of a
+        single {\it translation unit}, see
+        \SecPage{translationUnit}. However, static global variables
+        remain private to the file they are declared in, see
+        \Page{item:static}
+
+
+\item EiC does not parse preprocessor numbers\index{pp numbers}, 
+        which aren't valid numeric constants; for example, {\tt
+155.6.8}, which is an extended floating point constants will cause an
+error.
+
+\item EiC supports both standard C like comments \verb+/* ... */+
+        and C++ style comments (see section~\SecPage{Comments}). Also, when
+	EiC is run in script mode (see \SecPage{ScriptMode}) it
+	treats all lines that start with `\T{\#}' and which can't be
+	interpreted as a preprocessor directive as a comment.
+
+\item  There are no default type specifiers for function return values. In EiC it is 
+        illegal to not explicitly state the return type of a function:
+
+\begin{quote}
+\begin{verbatim}
+foo() { ... }     /*   error: missing return type */
+int foo() { ... } /* correct, return type specified */ 
+\end{verbatim}
+\end{quote}
+
+\item  In addition to function definitions and declarations with 
+an empty parameter list EiC only supports prototype declarations and
+definitions:
+
+\begin{quote}
+\begin{verbatim}
+int foo(); /* Empty parameter list allowed */ 
+int f(value) int value { ... } /* Illegal: old style C */ 
+int f(int); /* Allowed, prototype declaration */ 
+int f(int value); /*Allowed, full prototype declaration */
+\end{verbatim}
+\end{quote}
+
+\item EiC does not support trigraph sequences, wide characters or  
+        wide strings: nor does it support the standard header
+        \verb+<locale.h>+.
+
+\item EiC's preprocessor lacks the \directive{line} directive.
+
+\item For convenience, EiC allows the \directive{include} directive
+        to have an extra form that permits the parsing of a {\it
+        token-sequence} in the form \verb+#include filename+; that is,
+        without enclosing double quotes or angled brackets (see
+        section \SecPage{Include}).
+
+\item Besides parsing preprocessor directives (\ChpPage{Preprocessor})
+or C statements (\ChpPage{Specifications}), EiC also parses its own
+internal house keeping language (see section \SecPage{EiCcommands}).
+House keeping commands are communicated to EiC via  lines that
+begin with a colon.
+
+\end{enumerate}
+
+\section{Running EiC}
+\label{sec:RunningEiC}
+
+To run EiC interactively just enter \T{eic} at your system
+prompt:
+\begin{quote}
+\begin{verbatim}
+% eic
+\end{verbatim}
+\end{quote}
+
+However, you also need to set the environmental variable
+\T{HOMEofEiC}\index{HOMEofEiC}, this is so that EiC knows where to find
+its include files etc.  The
+\T{HOMEofEiC} environmental variable must be set to point to the directory
+that contains the EiC include directory. For example: \T{\$HOME/EiC} or
+\T{/usr/local/EiC}.
+
+In bash, ksh or zsh use:
+\begin{quote}
+\begin{verbatim}
+% export HOMEofEiC=...
+\end{verbatim}
+\end{quote}
+
+In tcsh enter:
+\begin{quote}
+\begin{verbatim}
+% setenv HOMEofEiC ...
+\end{verbatim}
+\end{quote}
+
+where the dots represent the name of the EiC directory
+
+You may wish to include the command in one of your startup scripts
+such as the \T{.cshrc} or the \T{.bashrc} file.
+
+\subsection{EiC immediate instructions}
+\label{sec:ImmediateStatements}
+\index{immediate statement}
+\index{statement!immediate}
+
+In interactive mode the user interacts directly with the EiC
+interpreter.  He or She enters C statements, C declarations,
+preprocessor directives or EiC interpreter commands at
+EiC's command line prompt:
+
+\begin{quote}
+\begin{verbatim}
+EiC 1> 
+\end{verbatim}
+\end{quote}
+
+The number before the closing angled bracket represents the current
+line number.  
+
+As a user types out an instruction EiC is analysing the input
+character stream and is checking for matching brackets. When a
+closing bracket, either square or curved, is entered, EiC moves the
+cursor quickly to its matching opening bracket and back again. This
+can be especially helpful when entering commands with complicated and
+nested bracketing. However, EiC will produce a beep if an opening
+bracket cannot be matched to the current closing bracket.
+
+Each immediate instruction produces a type, even if the type is 
+\T{void};\index{void} as for example, C statements, declarations etc. 
+All resulting types and their values are displayed:
+
+
+\begin{quote}
+\begin{verbatim}
+EiC 1> 3*55.5;
+        166.5
+EiC 2> "hello, world!";
+        hello, world!
+EiC 3> int i;
+        (void)
+EiC 4> for(i=0;i<10;i++);
+        (void)
+EiC 5> i;
+        10
+EiC 6> struct {int a, b;} ab = { 5,3};
+        (void)
+EiC 7> ab;
+        {5,3}
+EiC 8> ab.a = 3;
+        3
+\end{verbatim}
+\end{quote}
+
+While arrays are not expanded, the EiC interpreter display routine
+considers all \T{char} pointers to be valid null-character terminated
+strings (see section~\SecPage{StringConstants}) and will display them
+as a such. However, as a safe guard against runaway sequences it 
+restricts such print outs to at most 100 characters. 
+
+
+\subsection{EiC error recovery}
+\index{error recovery}
+\label{sec:ErrorRecovery}
+
+It is possible to interrupt\index{interrupt!immediate instruction} the
+execution of any immediate instruction by pressing control C:
+
+\begin{quote}
+\begin{verbatim}
+EiC 9> while(1);  /* loop forever or until interrupted by <Ctl>C */ 
+EiC interrupted file ::EiC::, line 9
+EiC: error clean up entry pt 0
+EiC 10> 
+\end{verbatim}
+\end{quote}
+
+The information displayed between line 9 and 10 is informing that EiC
+was interrupted at line 9 in file \T{::EiC::}, which is the name of
+the interpreter's command line. The next line of information informs
+that EiC has entered automatic error recovery and garbage
+collection\index{garbage collection}, or clean up at entry pt 0. The
+various entry points are of no real concern. Instead, what is
+interesting is that all new memory allocations, data types, macro
+definition etc, will be cleaned up and removed. It is EiC's way of
+trying to set its interpreter back to the state it was before line 9
+was entered. In this case there is nothing to clean up but if on
+line 9 I had entered say \verb+#include foobar.c+, which contained
+errors, then there could have been potentially thousands of pieces of
+information to clean up.
+
+While EiC's clean up operation attempts to regain a previous state,
+it is not always 100\% successful; for example, say I have already
+included the file \T{foobar.c} then I decide to make some changes to
+it and then re-include it, but I inadvertently enter a typo, an
+error, somewhere in the file \T{foobar.c}. EiC will detect the error
+and when it is finished translating the entire unit it will trigger
+the clean up procedure. The clean up operation will then remove all
+traces of the contents of \T{foobar.c} from the interpreter and the
+resulting state will be as if it had never been entered.
+
+
+\subsection{Entering multi line commands}
+\label{sec:EditMultipleLines}
+
+EiC has a command line \index{editor!editing commands} editor where
+the user can use the delete key and the left or right arrow key to aid
+editing or one or more of the following commands:
+
+\begin{quote}
+\begin{verbatim}
+printable characters print as themselves (insert not overwrite)
+^A moves to the beginning of the line
+^B moves back a single character
+^E moves to the end of the line
+^F moves forward a single character
+^K kills from current position to the end of line
+^P moves back through history
+^N moves forward through history
+^H and DEL delete the previous character
+^D deletes the current character, or EOF if line is empty
+^L/^R redraw line in case it gets trashed
+^U kills the entire line
+^W kills last word
+<LF> and <CR> return the entire line regardless of the cursor position
+\end{verbatim}
+\end{quote}
+
+\verb+^A+ indicates that the control key is held down while simultaneously
+pressing the A key, in either upper or lower case.
+
+
+To input commands into EiC that require multiple lines of code you
+can just add the backslash `\verb \ ' character at the end of each
+line to be continued. For example:
+
+\begin{quote}
+\begin{verbatim}
+EiC 1> double sqr(double x) \
+EiC 2> {\
+EiC 3>     return x*x;\
+EiC 4> } 
+\end{verbatim}  
+\end{quote}
+
+
+However, as EiC does not supply a full screen editor,\index{editor}
+a second method for entering multi line commands is to use EiC's C
+preprocessor to include a sequence of external declarations via file
+inclusion. For example:
+
+\begin{quote}
+\begin{verbatim}
+EiC 1> #include "examples/sqr.c"
+\end{verbatim}
+\end{quote}
+
+and where the contents of {\tt examples/sqr.c} is:
+
+\begin{quote}
+\begin{verbatim}
+#include <math.h>
+double sqr(double x) 
+{
+   return x*x;
+} 
+\end{verbatim}  
+\end{quote}
+
+
+\subsection{EiC on start up}
+\label{sec:starteich}
+\index{EiC!starteic}
+
+When EiC is launched it automatically looks for a
+\T{starteic.h} file. EiC first looks for this file in the current
+working directory then if this fails, it looks in your home directory
+and finally if all else fails, it looks in EiC's system
+\T{include} directory. It is not a big deal if EiC cannot find a
+\T{starteic} file, however the purpose for this file is to allow you to 
+specify defaults on EiC start up.
+
+The default system \T{starteic.h}, stored in
+EiC's include directory should resemble:
+
+\begin{quote}
+\begin{verbatim}
+#ifndef _STARTEiCH
+#define _STARTEiCH
+
+/* ISO STUFF */
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <stdarg.h>
+#include <string.h>
+#include <math.h>
+#include <float.h>
+#include <limits.h>
+#include <errno.h>
+#include <assert.h>
+
+/* POSIX.1 STUFF */
+#include <fcntl.h>
+
+#endif /* _STARTEiCH */
+\end{verbatim}
+\end{quote}
+
+The start up procedure allows you to define local defaults within a
+given directory, your own global defaults within your home directory,
+and finally the EiC system defaults. A possible home directory
+\T{starteic.h} might look something like:
+
+\begin{quote}
+\begin{verbatim}
+/* include system headers */
+#include <starteic.h>
+
+/* standing macros */
+#define sys(x) system(#x)
+#define pwd  system("pwd");
+#define ls   system("ls");
+#define help(x)    system("man 3 " #x)
+\end{verbatim}
+\end{quote}
+
+Note, that lines beginning with {\tt `:'} are EiC command directives,
+which are explained in detail in section \SecPage{EiCcommands} and
+that the home directory \T{starteic.h} file includes
+EiC's system \T{starteic.h}. Therefore, it is assumed
+that any local \T{starteic.h} file would inturn include this
+file. 
+
+This facility can also be switched off by passing EiC the
+\T{-N}\index{command line switch!-N} command line switch on start up,
+see \SecPage{EiCCommandLineOptions}.
+
+
+\subsection{EiC command line switches}
+\label{sec:EiCCommandLineOptions}
+\index{EiC! command line options}
+
+You can also change the default behaviour of EiC on start up, by using
+one or more of EiC's command line swtiches:
+
+\begin{quote}
+\begin{verbatim}
+                EiC
+ An Extensible Interactive C interpreter
+ To start eic, type eic.
+ To exit eic, type :exit.
+
+ Usage:
+        eic  [-Ipath] [-Dname[=var]] -[hHvVcCrR]  [[file] [fileargs]]
+ Options:
+   C preprocessor directives:
+        -Ipath      search for include files in path
+        -Dname      define a symbolic name to the value 1
+        -Dname=var  define a symbolic name to the value var
+                    Note, there is no spaces allowed
+   EiC directives:
+        -h -H       causes this usage to be displayed
+        -v -V       print EiC's Log information
+        -p          showline
+        -P          show path of include files
+        -t -T       turns trace on
+        -c -C       turns timer on
+        -e          echo HTML mode
+        -r          restart EiC. Causes EiC to be re initiated
+                       from the contents of EiChist.lst file
+        -R          same as `r', but prompts the user to accept
+                       or reject each input line first
+        -s -S       run silently
+        -f          run in script mode
+        -n          no history file
+        -N          don't use any startup.h files
+        -A          Non-interactive-mode
+        file        EiC will execute `file' and then stop; for example:
+                      % eic foo.c 
+        fileargs    command line arguments, which get passed onto file
+\end{verbatim}
+\end{quote}
+
+This above listing duplicates the response of EiC to:
+\begin{quote}
+\begin{verbatim}
+% eic -h
+\end{verbatim}
+\end{quote}\index{command line switch!-h}
+
+The \T{showline} option is discussed on page~\pageref{item:showline};
+the \T{trace} option on page~\pageref{item:trace}; the preprocessor
+directives on page~\pageref{item:comm-switch}; the \T{-P} includes
+option on page~\pageref{item:includes}; the \T{-c} option on
+page~\pageref{item:timer}; the \T{-v} option on
+page~\pageref{item:verbose}; and the \T{-N} option is discussed in
+section
+\SecPage{starteich}; while the \T{-r}, \T{-R},
+\T{-n}, \T{-A}, \T{-f}, \T{file} and
+\T{fileargs} options are discussed below.
+
+\subsection{EiC history file}
+\label{sec:Historyfile}
+\index{EiC!history file}
+\index{history file}
+
+During an EiC interactive session each command line entered that does
+not cause an error is saved in a history file
+\T{EiChist.lst}\index{EiChist.lst}\index{history file!EiChist.lst} in
+the directory that EiC was launched from; that is, each unique
+directory used to launch EiC will have its own \T{EiChist.lst}
+file. The file is normally created new on each start up and the
+previous contents (if existing) are ignored. That is, unless the command line
+switch \T{-r}\index{command line switch!-r} is used:
+
+\begin{quote}
+\begin{verbatim}
+% eic -r
+\end{verbatim}
+\end{quote}
+
+The switch \T{-r} used on EiC start up informs EiC to enter its
+re-initialization mode and the commands stored in the file
+\T{EiChist.lst} will be re executed in order of occurrence. 
+The contents of the file
+\T{EiChist.lst} is then retained and used to from the start of the
+history list (discussed on page~\pageref{item:history}) of the new
+session. The main purpose for this file is to provided the user with
+an automatic method for recording an EiC session and provide a way to
+quickly recapture a previous EiC session. Thus, allowing the user to
+resume from where he or she left off.
+
+
+When re-initailizing EiC, it is not always desirable to execute every
+instruction line in the \T{EiChist.lst} file. You may wish to edit it
+first to remove or modify certain lines. To aid in this process it is
+also possible to re-initialize EiC via the uppercase
+\T{R}\index{command line switch!-R} switch. In this case the user is
+offered the opportunity to either input the current line, \T{Y}, to
+edit the current line before input, \T{E}, or to not include the
+current line \T{N}; for example (where the contents of \T{EiChist.lst}
+is \T{int a, b, c;}):
+
+\begin{quote}
+\begin{verbatim}
+% eic -R
+...
+Re Initiating EiC -- please wait.
+Re-enter [int a, b, c;] (Y/N/E)?     
+\end{verbatim}
+\end{quote}
+
+
+The history file mechanism can also be switched off by selecting
+the \T{-n}\index{command line switch!-n} command line option on start up:
+\begin{quote}
+\begin{verbatim}
+% eic -n
+\end{verbatim}
+\end{quote}
+
+While the following allows EiC to be re-initialized, it prevents
+EiC from creating a new \T{EiChist.lst} file: 
+
+\begin{quote}
+\begin{verbatim}
+% eic -rn
+\end{verbatim}
+\end{quote}
+
+The old file \T{EiChist.lst} file will be retained and used and no further
+commands will be added to the list:
+
+
+
+\subsection{EiC non-interactive mode}
+\label{sec:NonInteractive}
+\index{EiC!non-interactive mode}
+
+There are two modes for running EiC and while this document is
+primarily concerned with EiC's interactive mode, EiC can also be run
+non-interactively. For example, the following is used to execute the program
+\T{examples/hello1.c} in EiC's \T{examples} directory:
+
+\begin{quote} 
+\begin{verbatim}
+% eic examples/hello1.c
+\end{verbatim}
+\end{quote}
+
+The above command uses the \T{file} option that instructs EiC to
+load the file \T{hello1.c}, compile it into bytecode, execute it and
+then to stop.  The program, \T{hello1.c}, is assumed to be a self
+contained C program, which contains the definition of a {\tt
+main}\index{main} function. The \T{main} function is used to establish
+the start point of the program:
+
+\begin{quote} 
+\begin{verbatim}
+#include <stdio.h>
+void message(void)
+{
+    const char *s = "Hello, world!";
+    puts(s);
+}
+
+int main(void)
+{
+    message();
+    return 0;
+}
+\end{verbatim}
+\end{quote}
+
+The entire file, {\tt hello1.c}, plus all it includes is considered
+to be a single translation unit, see
+section~\SecPage{translationUnit}. Also, the default procedure for
+including \T{starteic.h} files is ignored and no \T{EiChist.lst} is
+utilized. The options for modifying EiC's non-interactive behaviour is
+limited to the command line options specified in
+section~\SecPage{EiCCommandLineOptions}.
+
+It is also possible to write programs that take command line arguments
+in the usual C way, as seen from \T{examples/main2.c}:
+
+\begin{quote} 
+\begin{verbatim}
+#include <stdio.h>
+int main(int argc, char **argv)
+{
+    while(argc--)
+        printf("%s\n",*argv++);
+    return 0;
+}
+\end{verbatim}
+\end{quote}
+
+The first parameter, which is normally called \T{argc}, holds the
+number of argument strings passed to the program and is always at
+least one. The second parameter, which is normally called
+\T{argv} is an array of unspecified size of pointers to the input  strings, 
+which the first one will be the name of the program being executed:
+
+\begin{quote} 
+\begin{verbatim}
+% eic examples/main2.c 123 hello -Dworld this.and.that
+examples/main2.c
+123
+hello
+-Dworld
+this.and.that
+\end{verbatim}
+\end{quote}
+
+
+\subsubsection{Running EiC in script mode}
+\label{sec:ScriptMode}
+\index{EiC!script mode}
+\index{scripts!EiC}
+
+In non-interactive mode EiC runs generally like a typical
+interpreter, accepting input from a complete C program. However, EiC
+can also run shell scripts non-interactively. For the following
+examples, in this section only, it will be assumed that you are in
+EiC's directory \T{../EiC/module/examples} and that
+\T{eic} is installed in \T{/usr/local/bin}.
+
+Below is an example of an EiC script, called \T{hello.eic}:
+\begin{quote} 
+\begin{verbatim}
+#!/usr/local/bin/eic -f
+
+#include <stdio.h>
+printf(" ******* Hello from EiC's script mode. ******\n");
+\end{verbatim}
+\end{quote}
+The \T{-f}\index{command line switch!-f} command-line switch, informs
+EiC to run in script mode.  In script mode, EiC will treat all lines
+beginning with \T{\#} and which cannot be interpreted as a
+preprocessor directive (see~\ChpPage{Preprocessor}) as a comment. To
+run the above script and assuming that it's executable
+(chmod~+x~hello.eic):
+
+\begin{quote}
+\begin{verbatim}
+% ./hello.eic
+ ******* Hello from EiC's script mode. ******
+%
+\end{verbatim}
+\end{quote}
+
+Another example of an EiC script is given in \T{script1.eic}:
+
+\begin{quote} 
+\begin{verbatim}
+ 1     #!/usr/local/bin/eic -f 
+ 2     #include <stdio.h>
+ 3
+ 4     // example of control of flow
+ 5     int i;
+ 6     int isqr(int x) { return x*x; }
+ 7     for(i=0;i<4;i++)
+ 8             printf("%d^2 =  %d\n",i,isqr(i));
+ 9     switch(i) {
+10             case 4: printf(" good\n\n"); break;
+11             default: printf(" bad\n\n");
+12     }
+13     // example of some file stuff;
+14     // read in some tools
+15     #include "tools/nxtString.c"
+16     FILE *fp = fopen(_Argv[0],"r");
+17     char *p;
+18     while((p=nxtString(fp)))
+19             printf("%s ",p);
+20     fclose(fp);
+21     printf("\n\n");
+22     // further example of using command line args
+23     if(_Argc) { // this is always true
+24             int k=0;
+25             printf("Processing command line arguments\n");
+26             for(k=0;k<_Argc;k++) {
+27                    printf("%s\n",_Argv[k]);
+28             }
+29    } else
+30             printf("OOPS, an internal error has occurred\n");
+\end{verbatim}
+\end{quote}
+
+An EiC shell script is interpreted from the top to the bottom. First
+the code is compiled to byetcode, in its entirety, and then run. After
+this, control will be parsed to the \T{main} function if it
+exists. However, it is not illegal to have a script that does not
+include the definition of a \T{main} function. If the EiC directive
+\T{:exit} (as discussed on pg:~\pageref{item:exit}) is present in such
+a script it will cause it to halt at the position
+\T{:exit} is encounted and nothing will happen other than having the code
+upto \T{:exit} compiled and parsed but it will not have been
+executed.  Generally, the code for a fuction is not executed until it
+is called, see line 8. Command line arguments are passed into to the
+global variables \T{\_Argc} and
+\T{\_Argv}, see lines 16 and 23 to 30. For example:
+\begin{quote} 
+\begin{verbatim}
+% script1.eic  abc 123 -DHELP
+\end{verbatim}
+\end{quote}
+Implies that:
+\begin{quote} 
+\begin{verbatim}
+_Argc = 4,                 _Argv[0] = "sript1.eic"    
+_Argv[1] = "abc"           _Argv[2] = "123"
+_Argv[3] = "-DHELP"        _Argv[4] = NULL
+\end{verbatim}
+\end{quote}
+
+
+
+To alter the behaviour of EiC during script-mode just add the
+appropriate switch to the first line of the script, as seen for \T{-f}
+on line 1 above. 
+
+
+\subsection{Embedding or linking to EiC}
+\label{sec:embedding}
+\index{EiC!embedding}
+\index{embedding EiC}
+\index{address operator}
+\index{address specifier}
+
+\input{embed.tex}
+
+\subsubsection{EiC internet programming}
+\label{sec:internet}
+\index{EiC!CGI scripts}
+\index{internet programming}
+\index{CGI!programming}
+
+It also possible to run \T{CGI}, Common Gateway Interface, scripts via
+EiC. The function \T{virtualhtml.eic.cgi} in directory
+\T{EiC/module/cgihtml/cgi-bin} is used to demonstrate this
+facility:
+
+\begin{quote}
+\begin{verbatim}
+#!/usr/local/bin/eic -f
+:-I/usr/local/EiC/include
+#include <stdio.h>
+printf("Content-type: text/html\n\n");
+printf("<html>\n"
+       "<head><title> Simple Virtual HTML </title> </head>\n"
+       "<body>\n"
+       "<h1>Virtual HTML</h1><hr>\n"
+       "Hey look, I just created this page virtually!!!\n");
+printf("<p>Date:  %s <br> Current Time: %s\n",__DATE__,__TIME__);
+printf("</body></html>\n");
+\end{verbatim}
+\end{quote}
+Move the function to your \T{cgi-bin}\index{CGI!cgi-bin} and
+run it from your browser by entering the following
+line in the browser location window and then press enter:
+\begin{quote}
+\begin{verbatim}
+http://www.your_domain/your-cgi-bin/virtualhtml.eic.cgi
+\end{verbatim}
+\end{quote}
+The output to the browser window, other than a different date and
+time, should be:
+\begin{quote}
+\begin{verbatim}
+Virtual HTML
+
+Hey look, I just created this page virtually!!! 
+
+Date: Apr 18 1998 
+Current Time: 14:25:35 
+\end{verbatim}
+\end{quote} 
+
+You would have noticed on the 2nd line of \T{virtualhtml.cgi} the
+command\newline \T{:-I/usr/local/EiC/include} (see
+page~\pageref{item:comm-switch} for details on EiC search paths).
+This is informing EiC to add the directory \T{/usr/local/EiC/include}
+to its search path and is used when looking for include files.  The
+reason this must be explicitly stated in the script is because each
+CGI script is run in its own shell, which is owned by
+\T{httpd} or
+\T{www} depending on how your webserver is setup and therefore, the
+\T{HOMEofEiC} environmental variable will not have been set (see
+\SecPage{RunningEiC}).  Note, this instruction is only needed if EiC is 
+\T{not} installed in \T{/usr/local} or \T{/usr}.
+
+
+\subsubsection{EiC debugging CGI scripts}
+\label{sec:debuggingCGI}
+\index{EiC!CGI debugging}
+\index{CGI!debugging}
+
+To help debug your C-CGI scripts, EiC provides the command line switch
+\T{-e}\index{command line switch!-e}. It, among other things, tells EiC
+to inform Netscape as early as possible that the incoming
+\T{content-type} is \T{text/plain}. This turns the browser window 
+into a simple text-like shell which enables output from EiC
+to be viewed in the usual way:
+
+\begin{quote}
+\begin{verbatim}
+#!/usr/local/bin/eic -fe 
+#include <stdio.h>
+printf("Hello, world wide web!\n");
+\end{verbatim}
+\end{quote}
+
+Now, as before, just call the above program, called \T{www1.eic.cgi},
+from Netscape via:
+
+\begin{quote}
+\begin{verbatim}
+http://www.your_domain/your-cgi-bin/www1.eic.cgi
+\end{verbatim}
+\end{quote}
+
+The output in your browser's window should be:
+\begin{quote}
+\begin{verbatim}
+Hello, world wide web!
+\end{verbatim}
+\end{quote}
+
+Note also, if there was a bug or a syntax error in the your
+cgi-script then EiC diagnostic messages would have quickly
+pin-pointed the lines of code causing the problem. All the debugging
+facilities of EiC, such as \T{trace} (see page~\pageref{item:trace})
+and array-bound checking can now be used to help debug your
+cgi-scripts and get the C part of your script running correctly and
+within the browser environment.
+
+
+\subsubsection{Running EiC interactively, non-interactively}
+\label{sec:ScriptMode2}
+
+A further method for running EiC non-interactively that is useful for
+capturing an interactive session and can be used for reporting errors
+encounted during such a session is to redirect EiC's standard input to
+come from a file. The command line switch \T{-A}\index{command line
+switch!-A} is of use here as it instructs EiC that all input from
+stdin should be treated non-interactively, such as don't bother
+performing bracket matching etc.  As this mode simulates an
+interactive session all commands must be contained on a single line
+and an explicit \T{:exit} must be used to end the session. It differs
+from EiC's script mode (as discussed above) because each line is
+compiled into bytecode and run individually; that is, each line is
+executed as it is encounted. To input commands that require multiple
+lines, use either the backslash character at the end of each line to
+continue or use file inclusion. An example of such a script is given
+in
+\T{examples/hello.lst}:
+
+\begin{quote}
+\begin{verbatim}
+#include <stdio.h>
+#define str(x)  #x
+#define xstr(x) str(x)
+#define W  world!
+printf(str(Hello) ", " xstr(W) "\n");
+:exit   // DO NOT FORGET TO EXIT
+\end{verbatim}
+\end{quote}
+
+And is run via:
+\begin{quote}
+\begin{verbatim}
+% eic -As < hello.lst
+\end{verbatim}
+\end{quote}
+
+The \T{-s}\index{command line switch!-s} switch is used to suppress
+EiC startup messages. The important point here is not to forget to
+add the exit directive,
+\T{:exit}, to finish execution. Otherwise, EiC will get caught in an
+infinite loop and you will have to use control Z to pause it and
+the shell to kill its process.
+
+\section{The EiC interpreter}
+\label{sec:EiCInterpreter}
+
+In addition to C preprocessor directives (as explained in
+\ChpPage{Preprocessor}) the user can enter three main types
+of input as given by the following
+grammar\footnote{Appendix~\ref{chp:Syntax} provides an explanation for
+the notation used to explain the EiC language}:
+
+\small
+\begin{quote}
+\bp{
+parse:\\
+\>\T{:}eic-command  parse\\  
+\>ext-decl parse\\
+\>stmt  parse \\
+\>\T{DONE}
+}
+\end{quote}
+\normalsize
+
+Note, the phases of EiC's translations are discussed in
+\SecPage{PhasesTranslation}.
+
+
+
+\subsection{EiC commands}
+\label{sec:EiCcommands}
+An interpreter directive as opposed to a C statement, a preprocessor
+directive, or an external declaration (see below) are communicated from 
+lines beginning with a colon \T{:} followed by an {\it
+eic-command} production such as:
+
+\small
+\begin{quote}
+\bp{
+eic-command: \\
+\>\T{show}  id \\
+\>\T{rm} item\U{[}\T{,}item\U{]$^*$}\\
+\>\T{clear} file-name\U{[}\T{,}file-name\U{]$^*$} \\
+\>\T{gen} header-file \U{[}num\U{]}  \U{["}outfile\U{"}\U{]} \\
+\>\T{exit}  \\
+\>\T{variables} \\
+\>\T{variables}  \U{[} type-name $|$ \T{tags} \U{]} \\
+\>\T{help} \\
+\>\T{history} \\
+\>\T{files} \U{[} file-name \U{]} \\
+\>\T{reset} \U{[} \T{here} \U{]} \\  
+\>\T{-} comm-switch \U{[} path \U{]} \\
+\>toggle \\
+comm-switch: \T{one of}\\
+\>\T{I  R  L} \\
+toggle: \\ 
+\>\T{trace} \U{[}\T{funcs}\U{]}\\
+\>\T{listcode}  \U{[}\T{linenums}\U{]}\\
+\>\U{[} \T{timer} $|$ \T{showline}  $|$ \T{interpreter}  $|$ \T{memdump} $|$ \T{verbose} $|$ \T{includes} \U{]} \\
+item: \T{one of}\\
+\>identifier  constant-expression \\
+path:\\
+\>\T{any valid directory path} \\
+file-name\\
+\>\T{the name of any included file}
+} 
+\end{quote}
+\normalsize
+
+
+For example, you exit\index{exit EiC } EiC by entering {\tt
+:exit}. Note, the keywords; that is, the terminal symbols used in the
+{\it eic-command} productions will not conflict with C identifiers,
+as the interpreter distinguishes the difference based upon context of
+use (see \SecPage{NameSpace}). The {\it eic-command's} are now
+explained:
+
+\small
+\begin{Ventry}{comm-switch }
+
+\item[show] 
+\label{item:show}
+\index{EiC command!show}
+is used to display type and other information concerning
+variable and function definitions and declarations. It also
+provides a quick way to test for the existence of a
+variable. Example: 
+
+\begin{quote}
+\begin{verbatim}
+EiC 1> float (*fval)[5];
+        (void)
+EiC 2> :show fval
+fval -> * ARY[5]float 
+\end{verbatim}
+\end{quote}
+
+
+which is read as: fval is a pointer to an array of 5 floats. When \T{show}
+is used to display a \T{structure} or \T{union} it reveals the size
+and the members also:
+
+\begin{quote}
+\begin{verbatim}
+EiC 3> struct stag {int x; double da[5];} st;
+        (void)
+EiC 4> :show st
+st -> struct: size 44 bytes
+        x -> int 
+        da -> ARY[5]double 
+\end{verbatim}
+\end{quote}
+
+If the structure or union contains nested structures or unions,
+\T{show} only expands the first level of nesting:
+
+\begin{quote}
+\begin{verbatim}
+EiC 5> struct { float v; struct stag st;} sr;
+        (void)
+EiC 6> :show sr
+sr -> struct: size 48 bytes
+        v -> float 
+        st -> struct: size 44 bytes
+                x -> int 
+                da -> ARY[5]double 
+\end{verbatim}
+\end{quote}
+ 
+
+\T{Show} can also be used to look at function declarations
+and definitions:
+
+\begin{quote}
+\begin{verbatim}
+EiC 7> int sqr(int x);
+        (void)
+EiC 8> :show sqr
+sqr -> dec_Func (
+        x: int 
+        ) returning int 
+        (void)
+\end{verbatim}
+\end{quote}
+
+This is interpreted as: \T{sqr} is a function declaration \T{dec\_Func} that
+receives an integer argument declared with name {\tt x} and returns
+an integer to its caller. The prefix \T{dec\_} implies that the body
+of the function has not yet been defined. Converting the declaration
+into a definition:
+
+\begin{quote}
+\begin{verbatim}
+EiC 9> int sqr(int x) { return x * x;}
+        (void)
+EiC 10> :show sqr
+sqr -> Func (
+        x: int 
+        ) returning int 
+        (void)
+\end{verbatim}
+\end{quote}
+
+In EiC there are basically two types of functions (see section
+\SecPage{FunctionTypes}). There are interpreter
+functions\index{function!interpreter} and there are builtin
+functions\index{function!builtin}. To distinguish these forms the
+\T{show} command adds the prefix
+\T{Builtin} to builtin functions:
+
+\begin{quote}
+\begin{verbatim}
+EiC 11> :show printf
+printf -> Builtin Func (
+        ) returning 
+\end{verbatim}
+\end{quote}
+
+Notice that the argument list is empty and the returning type is
+undefined. The above informs that while the function \T{printf}, which
+is discussed on page \pageref{item:printf}, is built
+into EiC, it has not yet been prototyped.  No builtin function can be
+called from EiC until its prototype has been processed:
+
+\begin{quote}
+\begin{verbatim}
+EiC 12> printf("hello\n");
+Error in ::EiC:: near line 12: Incorrect function usage: printf
+\end{verbatim}
+\end{quote}
+
+However, this is easily rectified by including the appropriate header
+file:
+
+\begin{quote}
+\begin{verbatim}
+EiC 13> #include <stdio.h>
+EiC 14> :show printf
+printf -> Builtin Func (
+        fmt: * const char ,
+        ...
+        ) returning int 
+\end{verbatim}
+\end{quote}
+
+Now, a call can be made to \T{printf}:
+
+\begin{quote}
+\begin{verbatim}
+EiC 15> printf("hello\n");
+hello
+        6
+\end{verbatim}
+\end{quote}
+
+The 6 is the return value from \T{printf}
+and represents the number of characters printed.
+
+The \T{show} command also helps to promote function
+documentation:\index{documentation}\index{function!documentation} as it
+displays the first comment \T{past} the line the opening {\tt \{}
+bracket of the function is on. Therefore, it provides a simple way of
+adding function usage. For example, consider the following function
+stored in \T{examples/regline.c}:
+
+\begin{quote}
+\begin{verbatim}
+void regline(float *x,float *y, int n,     
+             float *m,  float *b )
+{
+    /*  In a least square sense, find the equation:
+     * y = mx + b; Returns the slope in `m' and
+     * the offset in `b', from the data given in
+     * `y' and `x'. `n' being the size of the
+     * arrays `y' and `x'.
+     */
+     ...
+\end{verbatim}
+\end{quote}
+
+Now from EiC:
+
+\begin{quote}
+\begin{verbatim}
+EiC 16> #include examples/regline.c
+EiC 17> :show regline
+regline -> Func (
+        x: * float ,
+        y: * float ,
+        n: int ,
+        m: * float ,
+        b: * float 
+        ) returning void 
+
+    /*  In a least square sense, find the equation:
+     * y = mx + b; Returns the slope in `m' and
+     * the offset in `b', from the data given in
+     * `y' and `x'. `n' being the size of the
+     * arrays `y' and `x'.
+     */
+\end{verbatim}
+\end{quote}
+
+Because of semantic reasons the comment considered to be the
+documenting comment will be the {\it first comment} after the line
+the opening bracket of the function is on. If the first comment
+happens to start on the same line as the opening bracket it will not
+be recognised and the next comment (if it exists) will be used to form
+the documenting comment. See also the EiC command
+\T{listcode} on page \pageref{item:listcode} for further examples of
+\T{show}.
+
+\item[rm] 
+\label{item:rm}
+\index{EiC command!rm}
+        is used to remove mostly variables and functions from EiC's
+        symbol table. Example:
+
+\begin{quote}
+\begin{verbatim}
+EiC 18> :rm fval
+        (void)
+EiC 19> :show fval
+Error in ::EiC:: near line 19: Unknown identifier fval
+\end{verbatim}
+\end{quote}
+        Here the error is simply informing
+        us that the identifier {\tt fval} is no 
+        longer recognized by the interpreter.
+
+        The operand to the \T{rm} operator can also be an integral
+        {\it constant-expression} (see~\SecPage{Constants}). The value
+        of the {\it constant-expression} is used when removing
+        manually memory leaks as reported by \T{memdump}. It is an
+        error to attempt to remove a memory item that is not deemed to
+        be a memory leak or to use an invalid item number (see
+        \T{memdump} page:~\pageref{item:memdump}).
+
+
+\item[clear] 
+\label{item:clear}
+\index{EiC command!clear}
+        is used to remove the contents of entire files from EiC's
+        symbol tables and memory pool. This handy operator removes the
+        contents of an entire file before say re-including it so
+        as to avoid conflicts between variable and function changes
+        that EiC forbids. Example:
+
+\begin{quote}
+\begin{verbatim}
+EiC 1> #include "examples/sqr.c"
+        (void)
+EiC 2> :clear examples/sqr.c
+\end{verbatim}
+\end{quote}
+The {\it file-name}, operand, must match with one of the strings listed
+by the \T{:files} operator (page:~\pageref{item:files}). The \T{:clear} operator also
+excepts a comma seperated list of file names, with no white spaces intervening.
+
+\item[gen]
+\label{item:gen}
+\index{EiC command!gen}
+
+
+The \T{gen} command takes upto three arguments, \textit{header-file},
+\textit{num} and \textit{outfile}:
+
+\small
+\begin{quote}
+\T{:gen} \textit{header-file} \U{[}\textit{num}\U{]}  \U{["}\textit{outfile}\U{"}\U{]} 
+\end{quote}
+\normalsize
+
+
+The \T{gen} command is used for generating EiC interfaces to builtin
+C code. It purpose is to allow the easy interfacing of EiC to libraries
+of C, and this is covered in more detail in \SecPage{interface_ccode}.
+
+\begin{quote}
+\begin{verbatim}
+EiC > :gen foo.h
+\end{verbatim}
+\end{quote}
+
+
+The above would generate the EiC interface to the \textit{header-file}t
+\T{foo.h} to \T{stdout}. 
+
+The \textit{outfile} is used for redirecting the output from \T{:gen} to a file rather
+than \T{stdout}:
+
+\begin{quote}
+\begin{verbatim}
+EiC > :gen foo.h "foo.c"
+\end{verbatim}
+\end{quote}
+
+The above would be used to direct the output from \T{:gen} to the file
+\T{foo.c}. Note the \textit{outfile} argument must be a string; that
+is, enclosed in double quotes..
+
+The \textit{num} option is a constant integer value, and is used to control 
+the level of multiplexing callback code to generate. The default value
+for \textit{num} is 1:
+
+\begin{quote}
+\begin{verbatim}
+EiC > :gen foo.h 4 "foo.c"
+\end{verbatim}
+\end{quote}
+
+
+\item[exit]
+\label{item:exit}
+\index{EiC command!exit}
+         is used to terminate an EiC session.
+
+\item[status] 
+\label{item:status}
+\index{EiC command!status}
+        is used for inspecting the current status
+of the EiC toggle switches (see below).
+
+\item[variables] 
+\label{item:variables}
+\index{EiC command!variables}
+        \T{variables} is like the \T{show} command
+        (page~\pageref{item:show}), except rather than showing just
+        one identifier it shows groups of identifiers. However, unlike the
+        \T{show} command it does not expand structures and unions to
+        reveal their members.
+
+        Basically, there are three forms of the \T{variables}
+        command. When entered on its own it displays all the declared
+        identifiers. Generally, this will supply too much
+        information. Therefore, to limit the information produced by
+        \T{variables} it is possible to select various subsets by
+        using one of the two other forms:
+
+\begin{quote}
+\bp {
+\>      \T{variables}  \U{[} type-name $|$ \T{tags} \U{]}
+}
+\end{quote}
+
+        \begin{Ventry2}{type-name }
+        \item[type-name] The {\it type-name} specifier is discussed
+        in detail in section~\SecPage{TypeNames}. But briefly
+        it is used to display various identifier types such as, 
+        all the pointers to integers:
+
+\begin{quote}
+\begin{verbatim}
+EiC 20> int *p1, *p2, a, b,c;
+EiC 21> :variables int *
+p1 -> * int 
+p2 -> * int 
+\end{verbatim}
+\end{quote}
+        See the \T{show} command on page~\pageref{item:show} for
+        an explanation of such output.
+        
+As an example of using \T{variables} to view all the functions of
+a specified form, consider:
+
+\begin{quote}
+\begin{verbatim}
+EiC 22> int f(char * s) { return 1;}
+        (void)
+EiC 23> int foo(const char * str);
+        (void)
+EiC 24> :variables  int (char *)
+f -> Func (
+        s: * char 
+        ) returning int 
+foo -> dec_Func (
+        str: * const char 
+        ) returning int 
+system -> Builtin Func (
+        str: * const char 
+        ) returning int 
+...
+\end{verbatim}
+\end{quote}
+Note, {\it type-qualifiers} are not considered in the
+matching processing and any matching builtin function will also
+be displayed.
+
+
+\item[tags] 
+        The \T{tags} option is used to display the structure, union
+        (\SecPage{structures}) and the
+        enumeration (\SecPage{enumeration}) tags that have been
+        declared:
+\begin{quote}
+\begin{verbatim}
+EiC 25> struct stag {int x,y;};
+EiC 26> enum etag {RED,GREE, BLUE};
+EiC 27> :variables tags
+etag -> enum 
+stag -> struct: size 8 bytes
+\end{verbatim}
+\end{quote}
+        \end{Ventry2}
+        
+\item[help]
+\label{item:help}
+\index{EiC command!help}
+         is used to obtain a quick reference summary of the EiC
+        interpreter commands:
+\begin{quote}
+\scriptsize
+\begin{verbatim}
+EiC 28> :help
+-----------------------------------------------------------------------------
+EiC-COMMAND          SUMMARY DESCRIPTION
+-----------------------------------------------------------------------------
+:-I path       Append path to the include-file search list.
+:-L            List search paths.
+:-R path       Remove path from the include-file search list.
+:clear fname   Removes the contents of file fname from EiC.
+:exit          Terminates an EiC session.
+:files         Display the names of all included files.
+:files fname   Summarize the contents of the included file `fname'.
+:gen fname     Generates EiC interface of the included file `fname'.
+:gen fname "outfile" Places the interface in outfile
+:gen 4 fname   Generates EiC interface with 4 levels of multiplexing.
+:help          Display summary of EiC commands.
+:history       List the history of all input commands.
+:includes      Display path of include files when loaded.
+:interpreter   Execute input commands. By default it is on.
+:listcode      List stack code.
+:listcode linenums     List stack code with associated line numbers.
+:memdump       Show potential memory leaks.
+:rm  dddd      Remove memory item dddd, which is a constant integer value.
+:rm   f        Removes f's definition from the symbol tables.
+:show f        Shows type or  macro definition of `f'.
+:showline      Show input line after macro expansion.
+:status        Display the status of the toggle switches.
+:timer         Time in seconds of execution.
+:trace         Trace function calls and line numbers during code execution.
+:trace funcs   Trace function calls only during code execution.
+:variables     Display declared variables and interpreter-ed function names.
+:variables tags       Display the tag identifiers.
+:variables type-name  Display variables of type `type-name'.
+:verbose       Suppresses EiC's copyright and warning messages on start up.
+------------------------------------------------------------------------------
+\end{verbatim}
+\end{quote}
+\end{Ventry}
+
+
+\begin{Ventry}{comm-switch }
+\item[files]
+\label{item:files} \index{EiC command!files}
+
+      The \T{files} command is used to get a list of the names
+of all the include files currently entered into EiC:
+
+\begin{quote}
+\begin{verbatim}
+EiC 29> :files
+::EiC::
+starteic.h
+stdio.h
+stdarg.h
+math.h
+
+...
+
+fcntl.h
+sys/fcntl.h
+sys/types.h
+../doc/regline.c
+\end{verbatim}
+\end{quote}
+
+It is also possible to get a summary of the contents of any
+particular  include file:
+
+\begin{quote}
+\begin{verbatim}
+EiC 30> :files fcntl.h
+FCNTLH_ -> #define FCNTLH_
+open -> Builtin Func (
+        path: * const char ,
+        access: int ,
+        ...
+        ) returning int
+creat -> Builtin Func (
+        path: * const char ,
+        amode: usigned short
+        ) returning int
+        (void)
+
+\end{verbatim}
+\end{quote}
+
+The contents of an include file is summarised by first displaying
+the declared macros followed by the global variables (if any), which are
+in turn followed by the function definintions.
+
+\item[reset]
+\label{item:reset} \index{EiC command!reset}
+
+	The \T{reset} operator is used to set EiC to a default
+        internal state.  All allocated memory is freed, the contents
+        of all include files and global variables, included and
+        declared after the \T{reset} point, are removed. All previous
+        global scalar variables defined prior to the \T{reset} point will have
+        their values restored.
+
+	The default \T{reset} point sets EiC to the point that is
+        equivalent to starting EiC with the \T{-N} command line switch
+        (see, \SecPage{starteich}):
+
+\begin{quote}
+\begin{verbatim}
+EiC 1> :files
+::EiC::
+starteic.h
+stdio.h
+stdarg.h
+sys/stdtypes.h
+sys/stdio.h
+stdlib.h
+ ...           
+        (void)
+EiC 2> :reset
+        (void)
+EiC 3> :files
+::EiC::
+        (void)
+\end{verbatim}
+\end{quote}
+
+	It is also possible to define the \T{reset} point by using the
+	\T{here} operator:
+
+\begin{quote}
+\begin{verbatim}
+EiC 1> int p = 66;
+        (void)
+EiC 2> :reset here
+        (void)
+EiC 3> p = 88;
+        88
+EiC 4> :reset    // set the reset point to the current state.
+        (void)
+EiC 5> p;
+        66
+\end{verbatim}
+\end{quote}
+
+	However, there is no guarantee that the reset state will be
+	restored 100\%.  This is because, EiC, at this stage, will not
+	retore the contents of arrays or structure/union members to
+	their initial values. Also, if a pointer is pointing to some
+	allocated memory that was allocated before the \T{:reset here}
+	command was issued but freed before the \T{:reset} command,
+	then the behaviour of that pointer will be undefined.
+
+\item[comm-switch] 
+\label{item:comm-switch} \index{EiC command!comm-switch}
+        the {\it comm-switch\label{comm-switch}} 
+        production is analogous
+        to what is commonly known as a C program's command--line switch, which
+        is an argument usually preceded by a dash \T{-}. Comm-switches are 
+        used to modify
+        the behaviour of EiC and its preprocessor. 
+        The current valid switches are:
+
+        \begin{Ventry}{xxx}
+        \item[I]         \index{EiC command!comm-switch!I} 
+        insert the given path into the preprocessors search list. 
+                Used during file inclusion. Example:
+
+\begin{quote}
+\begin{verbatim}
+EiC 31> : -I./tests
+\end{verbatim}
+\end{quote}
+
+
+        Append the directory {\tt tests}, which is off the currently
+        working directory to the search list.
+
+        \item[R]          \index{EiC command!comm-switch!R} 
+        
+        remove the given path from the preprocessors search list.
+                Example:
+
+\begin{quote}
+\begin{verbatim}
+EiC 32> :-R ./tests
+\end{verbatim}
+\end{quote}
+
+
+        \item[L]  \index{EiC command!comm-switch!L} 
+ 
+        list the current search list. Example:
+
+\begin{quote}
+\begin{verbatim}
+EiC 33> :-L
+\end{verbatim}
+\end{quote}
+
+        The include search list is further discussed in section 
+        \SecPage{Include}.
+
+        \end{Ventry}
+
+\item[history]
+\label{item:history} \index{EiC command!history}
+
+EiC automatically records each command line as entered from the user
+in a history list. The default maximum length of the history list
+\index{history list} is set at compile time and is normally 500
+lines. Individual lines are of arbitrary length.  When the history
+list is full old lines are removed from the top while the new command
+line entries are entered from the bottom.
+
+The user can go backwards through the history list by either pressing
+the up arrow or by pressing control-p; or forward by pressing the
+down arrow or control-n. Each line of history can be re-edited and
+then re-entered by pressing the enter key, \verb+<CR>+. The entire current
+history list is seen via:
+
+\begin{quote}
+\begin{verbatim}
+EiC 34> :history
+float (*fval)[5];
+:show fval
+struct stag {int x; double da[5];} st;
+:show st
+struct { float v; struct stag st;} sr;
+:show sr
+int sqr(int x);
+...
+:history
+\end{verbatim}
+\end{quote}
+
+Note, the list has been truncated manually.
+\end{Ventry}
+\normalsize
+
+EiC has several  keywords that associate with the {\it toggle} production,
+\SecPage{EiCInterpreter}.  They are all toggle-switches \index{toggle-switch} 
+that are either turned on or off.  That is, they are turned on by
+entering their command once and turned off by reentering the same
+command:
+\begin{quote}
+\begin{verbatim}
+EiC 1> int i;
+        (void)
+EiC 2> :timer   // turn timer on
+<time taken>: 0
+EiC 3> for(i=0;i<100000;++i);
+        (void)
+<time taken>: 2.6
+EiC 4> :timer  // turn timer off
+\end{verbatim}
+\end{quote}
+
+
+The status of all the toggle-switches can be examined by using
+the EiC command \T{status} (pg:~\pageref{item:status}). 
+The toggle-switches  provide EiC with the following
+optional features:
+
+\small
+\begin{Ventry} {interpreter} 
+
+\item[trace]
+\label{item:trace} \index{EiC command!option!trace}
+
+The trace facility is a toggle-switch (see below) with an extra
+production.  If on, \T{trace}, traces the function calls and line numbers
+associated with a given translation unit and prints this information
+to the screen. Consider the following nonsensical piece of code, which
+is stored (without the line numbers) in the file
+\T{examples/testtrace.c}:
+
+\begin{quote}
+\begin{verbatim}
+ 1      int f(void)
+ 2      {   int i;
+ 3          for(i=0;i<3;++i)
+ 4              if(i>2)
+ 5                  break;
+ 6          return i;
+ 7      }
+ 8      int g(void)
+ 9      {   int k = 0,i = 2;
+10          while(i--)
+11              k += f();
+12          return k;
+13      }
+14      int main(void)
+15      {   int i = 2;
+16          do {
+17              int k = g();
+18          } while(--i);
+19          return 0;
+20      }
+\end{verbatim}
+\end{quote}
+
+Now, \T{trace} can be used to follow the sequence of program flow:
+\begin{quote}
+\begin{verbatim}
+EiC 1> #include examples/testtrace.c
+EiC 2> :trace
+EiC 3> main();
+[main] 15,17,
+[g] 9,10,11,
+[f] 3,4,3,4,3,4,3,6,
+[g] 11,10,11,
+[f] 3,4,3,4,3,4,3,6,
+[g] 11,10,12,
+[main] 17,18,17,
+[g] 9,10,11,
+[f] 3,4,3,4,3,4,3,6,
+[g] 11,10,11,
+[f] 3,4,3,4,3,4,3,6,
+[g] 11,10,12,
+[main] 17,18,19,
+[::EiC::] 
+\end{verbatim}
+\end{quote}
+
+The first line of the response tells us that control started at
+function \T{main} and then passed through lines 15 and 17 after
+which, control was passed to function \T{g}. In function \T{g},
+control passed through lines 9, 10 and 11 before entering function
+\T{f}, and so on. After leaving function \T{f}, on line 6, control was
+passed back to function \T{g} on line 11, etc. Finally, the trace
+finished when control was returned back to the EiC command line. The
+trace facility can also be used during batch mode operations via the command line switch \T{-t}\index{command line switch!-t} (see also
+\SecPage{EiCCommandLineOptions}):
+\begin{quote}
+\begin{verbatim}
+% eic -t examples/testtrace
+...
+\end{verbatim}
+\end{quote}
+
+Clearly, trace can help in debugging \index{debugging programs}
+programs: it traces the activation and steps in a sequence of code. It
+can be used to quickly locate sections of code that are causing
+crashes or blockages. However, at times, this amount of information
+can be too verbose, and therefore, the \T{trace} command has the
+optional argument \T{funcs}:
+\begin{quote}
+\bp{
+\T{trace} \U{[}\T{funcs}\U{]}
+}
+\end{quote}
+
+When the extra argument is specified, the trace facility
+prints out only the names of the functions entered:
+
+\begin{quote}
+\begin{verbatim}
+EiC 4> :trace funcs
+EiC 5> g(); 
+[g] 
+[f] 
+[g] 
+[f] 
+[g] 
+[::EiC::] 
+EiC 6> :trace  // turn trace off
+\end{verbatim}
+\end{quote}
+
+\item[listcode]
+\label{item:listcode}  \index{EiC command!option!listcode}
+\T{Listcode} will be essentially of interest to those people interested in the bytecode \index{bytecode}
+produced by EiC. If \T{listcode} is toggled on then the bytecode for
+the current command or translation unit (see
+\SecPage{translationUnit}) will be displayed, non-recursively, to the
+screen.  That is, it does not show the code for any associated
+functions. By default, \T{listcode} is off. For example:
+
+\begin{quote}
+\begin{verbatim}
+EiC 1> int i;
+EiC 2> :listcode  // toggle on
+   0:halt                
+        (void)
+EiC 3> i = 5;
+   0:pushint  5          
+   1:stoint   0 0        
+   2:halt                
+        5
+EiC 4> :listcode  // toggle off
+\end{verbatim}
+\end{quote}
+
+\T{Listcode} also affects the output produced from the EiC command
+\T{show} (see pg:~\pageref{item:show}). For example,
+ consider the \T{swap} function as stored (without the line numbers)
+in the file examples/swap.c:
+
+\begin{quote}
+\begin{verbatim}
+ 1      void swap(int *a, int *b)
+ 2      {
+ 3          /* swap the values of a and b */
+ 4          int t = *a;
+ 5          *a = *b;
+ 6          *b = t;
+ 7      }
+\end{verbatim}
+\end{quote}
+
+Now from within EiC:
+\begin{quote}
+\begin{verbatim}
+EiC 5> #include examples/swap.c
+EiC 6> :show swap
+swap -> Func (
+        a: * int ,
+        b: * int 
+        ) returning void 
+
+    /*  swap the values of a and b */
+
+EiC 7> :listcode
+   0:halt                
+        (void)
+EiC 8> :show swap
+swap -> Func (
+        a: * int ,
+        b: * int 
+        ) returning void 
+
+    /*  swap the values of a and b */
+
+   0:checkar  1 0           7:drefint             
+   1:rvalptr  -1 1          8:refint              
+   2:drefint                9:rvalptr  -2 1       
+   3:stoint   0 1          10:bump     1          
+   4:rvalptr  -1 1         11:rvalint  0 1        
+   5:bump     1            12:refint              
+   6:rvalptr  -2 1         13:eicreturn           
+\end{verbatim}
+\end{quote}
+
+\T{listcode}, like the \T{trace} command (page~\pageref{item:trace}) has
+an extra form: \verb+`listcode linenums'+. When used in this form it
+displays the associated line numbers corresponding to the
+bytecode\index{bytecode} instruction:
+
+\begin{quote}
+\begin{verbatim}
+EiC 9> :listcode linenums  // toggle linenums on 
+   9:   0:halt                
+
+        (void)
+EiC 10> :show swap
+swap -> Func (
+        a: * int ,
+        b: * int 
+        ) returning void 
+
+    /*  swap the values of a and b */
+
+   0:   0:checkar  1 0           5:   7:drefint             
+   4:   1:rvalptr  -1 1          5:   8:refint              
+   4:   2:drefint                6:   9:rvalptr  -2 1       
+   4:   3:stoint   0 1           6:  10:bump     1          
+   5:   4:rvalptr  -1 1          6:  11:rvalint  0 1        
+   5:   5:bump     1             6:  12:refint              
+   5:   6:rvalptr  -2 1          7:  13:eicreturn           
+
+  10:   0:halt                
+
+        (void)
+EiC 11> :listcode  // toggle listcode and linenums off
+\end{verbatim}
+\end{quote}
+
+Note, any line number with the value zero represents extra ``house
+keeping'' code added by the EiC interpreter.
+
+  
+
+
+\item[memdump]
+\label{item:memdump} \index{EiC command!toggle!memdump}
+EiC attempts to keep track of all memory dynamically allocated. 
+If EiC cannot find the owner of a piece of dynamic memory the
+address and how it was allocated will show up automatically if
+\T{memdump} is switched on. For example, consider the following
+useless piece of code in \T{examples/leak.c}:
+
+\begin{quote}
+\begin{verbatim}
+ 1      #include <stdlib.h>
+ 2      void leak(void)
+ 3      {
+ 4          char * s = malloc(10);
+ 5      }
+\end{verbatim}
+\end{quote}
+
+The following session provides an example of the usage of memdump:
+
+\small
+\begin{quote}
+\begin{verbatim}
+EiC 9> #include examples/leak.c
+EiC 10> :memdump   // toggle memdump on
+       (void)
+EiC 11> leak();
+       (void)
+item 3656 Create line 917 file stdlib.c nbytes 10
+\end{verbatim}
+\end{quote}
+\normalsize
+
+
+The above output informs that the memory item number 3656, which
+maybe different number during your session of length 10 bytes cannot be
+associate with an owner. That is, it is a potential leak. Also, it
+tells us that the memory was allocated from line 917 in file
+\T{stdlib.c} rather than from line 4 in file
+\T{examples/leak.c}. Strickly speaking, it is correct because if we
+were to look at line 917 in file \T{stdlib.c} we would find that this
+is where EiC does its memory allocation for the EiC interpreter.
+
+It is possible to remove leaked memory items via the
+\T{rm} command (page:~\pageref{item:rm}):
+\small
+\begin{quote}
+\begin{verbatim}
+EiC 12> :rm 3656
+       (void)
+EiC 13> 
+\end{verbatim}
+\end{quote}
+\normalsize
+
+Also, note from the following session:
+\small
+\begin{quote}
+\begin{verbatim}
+EiC 1> :memdump  // toggle memdump on
+        (void)
+EiC 2> char *s = malloc(10);
+        (void)
+item 3611 Create line 781 file stdlib.c nbytes 10
+EiC 3> free(s);
+        (void)
+\end{verbatim}
+\end{quote}
+\normalsize
+
+shows that all memory allocated dynamically in EiC is considered to be a
+potential leak -- if not freed. This is because EiC does not look at
+the memory a pointer is pointing to when assigning homes to dynamic
+memory items. Therefore, the usage of \T{memdump} should be considered
+carefully when trying to determine if a  genuine memory leak has
+occured or not. However, \T{memdump} is still useful as it  provides a
+guide to locating potential memory leaks.
+
+\item[timer]
+\label{item:timer} \index{EiC command!toggle!timer} \index{timer}
+
+if on, the execution time in seconds of a given translation unit is
+printed out.  By default, the timer is off. From the following piece
+of code I get from my 66Mhz 486 PC:
+\begin{quote}
+\begin{verbatim}
+EiC 1> int i; float f,g;
+EiC 2> :timer   // turn timer on
+EiC 3> for(i=0;i<200000;++i) f *=g;
+        (void)
+<time taken>: 8.57
+EiC 4> :timer  // turn timer off
+\end{verbatim}
+\end{quote} The \T{timer} is handy when attempting to optimise \index{optimise} 
+
+a piece of code as it measures the actual processor time used.
+
+\item[interpreter] \label{item:interpreter} \index{EiC command!toggle!interpreter}
+         if on then input commands will be
+         interpreter-ed. By default it is on.
+\item[showline]
+\label{item:showline} \index{EiC command!toggle!showline}
+
+if on then the input sequence to the
+interpreter is displayed. Useful for
+inspecting the expansion of macros. 
+By default it is off:
+
+\begin{quote}
+\begin{verbatim}
+EiC 1> #define help(s)  system("man 3 " #s)
+        (void)
+EiC 2> :showline   // toggle showline on
+        (void)
+EiC 3> help(printf);       
+system("man 3 " "printf");
+...
+EiC 4> :showline  // toggle showline off
+\end{verbatim}
+\end{quote}     
+This facility can also be turned on from the command line using the
+switch \T{-p}\index{command line switch!-p}:
+\begin{quote}
+\begin{verbatim}
+ % eic -p
+\end{verbatim}
+\end{quote}     
+
+
+\item[verbose]
+\label{item:verbose}\index{EiC command!toggle!verbose}
+
+the verbose command is essentially used when running EiC remotely, as
+it suppresses EiC's copyright and warning messages on start up. It can
+also be turned on from the command line using the switch \T{-v}\index{command line switch!-v}
+\begin{quote}
+\begin{verbatim}
+ % eic -v
+\end{verbatim}
+\end{quote}     
+
+\item[includes]
+\label{item:includes} \index{EiC command!toggle!include}
+If on, the path of include files will be displayed when loaded. This
+facility can also be turned on from the command line using 
+the \T{-P}\index{command line switch!-P} switch:
+\begin{quote}
+\begin{verbatim}
+ % eic -P
+\end{verbatim}
+\end{quote}     
+and causes EiC to reveal the paths of all the files it
+includes.
+
+\end{Ventry}
+\normalsize
+
+
+
+
+
+
+
+
+
+
+
+
+
+

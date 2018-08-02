@@ -1,0 +1,18 @@
+on
+	(void)
+Error in testerr3.c near line 4: Illegal initialisation
+Error in testerr3.c near line 12: increment of read-only variable i
+Error in testerr3.c near line 13: increment of read-only variable i
+Error in testerr3.c near line 14: decrement of read-only variable i
+Error in testerr3.c near line 15: decrement of read-only variable i
+Error in testerr3.c near line 29: Casting between safe and unsafe address
+Error in testerr3.c near line 30: Casting between safe and unsafe address
+Error in testerr3.c near line 36: Misplaced label statement
+Error in testerr3.c near line 38: Misplaced goto statement
+Error in testerr3.c near line 46: expected goto label
+Error in testerr3.c near line 49: Missing label `fooey' defined at line 48
+Error in testerr3.c near line 54: Ilegal size specified for xx
+Error in testerr3.c near line 55: Ilegal size specified for yy
+Error in testerr3.c near line 56: Illegal domain for initialisation
+Error in testerr3.c near line 56: Ilegal size specified for vv
+Error: clean up forced

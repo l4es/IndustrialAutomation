@@ -1,0 +1,32 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+   0:pushdouble  1         30:stoval                60:rvaldouble  4 0     
+   1:stodouble 4 0         31:pushint  2            61:stoval              
+   3:bump     1            33:pushdouble  0.1       63:stoval              
+   4:checkar  2 1          34:stodouble 4 0         64:pushint  2          
+   6:stoval                36:bump     1            66:pushdouble  5e+10   
+   9:pushint  2            39:stoval                69:bump     1          
+  11:pushdouble  1         41:stoval                71:rvaldouble  4 0     
+  12:stodouble 4 0         42:pushint  2            72:stoval              
+  14:bump     1            44:pushdouble  0.1       74:stoval              
+  15:checkar  2 1          45:stodouble 4 0         75:pushint  2          
+  17:stoval                47:bump     1            77:pushdouble  5       
+  20:pushint  2            50:stoval                80:bump     1          
+  22:pushdouble  1.1       52:stoval                82:rvaldouble  4 0     
+  23:stodouble 4 0         53:pushint  2            83:stoval              
+  25:bump     1            55:pushdouble  5e-10     85:stoval              
+  26:checkar  2 1          56:stodouble 4 0         86:pushint  2          
+  28:stoval                58:bump     1            88:halt                
+
+d=1
+d=1
+d=1.1
+d=0.1
+d=0.1
+d=5e-10
+d=5e+10
+d=5
+	4

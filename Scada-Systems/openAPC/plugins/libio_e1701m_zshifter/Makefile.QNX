@@ -1,0 +1,7 @@
+CUSTLIBRARIES= 
+
+CUSTINCLUDES= -I.. -DENV_BEAM
+
+CUSTOBJECTS=
+
+include ../make/plugin_qnx.mk

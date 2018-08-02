@@ -1,0 +1,33 @@
+This directory contains Eugene Eric Kim's public domain CGIHTML
+library.
+
+His web page is located at: <URL:http://www.eekim.com/>
+
+EiC versions of the Eugene's examples are given in the cgi-bin
+directory. Check that the paths are set correctly in cgi-bin/EiCpaths
+and then try:
+
+	% cd  cgi-bin
+	% source environ.vars
+	% virtualhtml.cgi
+        % test.eic.cgi
+	% query.cgi
+	
+
+To test from Netscape try:
+
+	http://your_url_address/cgi-bin/virtualhtml.cgi	
+
+Make sure you have the permission set correctly for the various
+directories and files etc:
+
+	% cd EiC/module/cgihtml
+	% chmod a+r *.c *.h
+
+
+
+
+
+
+
+

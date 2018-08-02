@@ -1,0 +1,7 @@
+on
+	(void)
+a = 1
+b = 2
+c = 3
+sizeof = 4
+	0

@@ -1,0 +1,16 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+   1:bump     1            10:eiccall               19:rvalint  4 0        
+   2:checkar  3 1          11:stoint   4 0          20:stoval              
+   4:stoval                13:bump     1            22:stoval              
+   5:pushint  5            14:checkar  4 1          23:pushint  4          
+   6:stoval                15:pushint  9            24:call                
+   7:pushint  4            16:stoval                25:halt                
+   8:stoval                17:rvalint  6 0        
+
+c = 8
+a = 9, 9 (9)
+	13

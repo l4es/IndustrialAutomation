@@ -1,0 +1,17 @@
+CC      = g++
+CFLAGS  = -Wall -g0 -O2 -DENV_QNX -D_REENTRANT -DOAPC_EXT_API="" -D_DEBUG -L /usr/lib -I .. -I ../../../
+
+LDFLAGS  = -lsocket -loapc -lph
+
+PNAME=Example1
+
+OBJ = Example1.o
+SRC = Example1.c
+
+all: $(OBJ)
+	$(CC) $(CFLAGS) -o $(PNAME) $(OBJ) $(LDFLAGS)
+	strip $(PNAME)
+
+clean:
+	rm *.o
+	rm $(PNAME)

@@ -1,0 +1,900 @@
+﻿
+# main window
+
+Security Warning = Предупреждение системы безопасности
+
+Position = Должность
+Insert Project = Вставить проект
+Import = Импорт
+Import 3D model = Импорт 3D-модели
+Import raster image = Импорт изображения
+Save project with options = Сохранить проект с выбором вариантов
+Load hardware settings = Загрузка настроек оборудования
+Load payload data = Загрузка пользовательских данных
+Save hardware settings = Сохранение настроек оборудования
+Save payload data = Сохранение данных пользователя
+Export as = Экспортировать как
+Pen settings = Настройки пера
+Save as default configuration = Сохранить как конфигурацию по умолчанию
+Load default configuration = Загрузить конфигурацию по умолчанию
+Non-Destructive = Неразрушающий
+Group = Группировать
+UnGroup = Разгруппировать
+
+Align left = Выровнять по левому краю
+Centre horizontally = Центр горизонтально
+Align right = Выровнять вправо
+Align top = Выровнять верх
+Centre vertically = Центр вертикально
+Align bottom = Выровнять нижнее
+
+Destructive = Разрушающий
+Merge = Объединить
+Split = Разделить
+Optimise = Оптимизировать
+Reduce Geometry = Сократить геометрию
+&Project = &Проект
+New = Hовый
+Group to Active Split = Группировать до активного разделения
+Group to Active Move = Группировать до активного движения
+Extrude = Экструдировать
+Edit = Редактировать
+Simulate = Моделировать
+Increment = Приращение
+Decrement = Отрицательное приращение
+Reset = Сброс
+Process = Процесс
+Simulating process = Моделирование процесса
+Estimated total process time: %f sec = Расчетная общая длительность процесса: %f с.
+Write Stand Alone Data = Запись отдельных данных
+Send Stand Alone Data = Отправка отдельных данных
+Send Named Stand Alone Data = Отправка отдельных названных данных
+Show State = Показать состояние
+
+Vision = Видимость
+Freeze Video = Остановить видео
+Start Video = Запустить видео
+False Colours = Ложные цвета
+Rainbow = Радуга
+WBGYR = WBGYR
+Interference = Интерференция
+Calibrate Camera = Калибровать камеру
+Crop Camera = Обрезать камеру
+Drop Calibration = Сбросить калибровку
+Teach Fiducial = Задать проверочную точку
+Load Fiducial = Загрузить проверочную точку
+Save Fiducial = Сохранить проверочную точку
+Drop Fiducial = Сбросить проверочную точку
+
+Delete Element(s) = Удалить элементы
+Delete Selected Point(s) = Удалить выбранные точки
+Delete Selected Line(s) = Удалить выбранные линии
+Insert Point Before = Вставить точку перед
+Insert Point After = Вставить точку после
+Edit Coordinates = Редактировать координаты
+
+No element parameters = Параметры элемента отсутствуют
+None = Нет
+none = Нет
+
+Elements = Элементы
+
+Import data = Импортировать данные
+Export as CSV data = Экспортировать данные в CSV
+Export as HPGL data = Экспортировать данные в HPGL
+CSV Export Parameters = Параметры экспорта в CSV
+HPGL Export Parameters = Параметры экспорта в HPGL
+
+Displays the program information = Отображает информацию о программе
+Standard Pen = Стандартное перо
+Imported = Импортированный
+Change position = Изменить позицию
+Rotate element = Повернуть элемент
+Scale freely = Свободно масштабировать
+Question = Вопрос
+Resize with single side = Изменить размер с одной стороны
+Scale and keep aspect ratio = Масштабировать с сохранением пропорций
+Slant element = Наклонить элемент
+
+Group Elements = Группировать элементы
+UnGroup Elements = Разгруппировать элементы
+Move To Top = Переместить наверх
+Move Up = Сдвинуть вверх
+Move Down = Сдвинуть вниз
+Move To Bottom = Переместить вниз
+Auto-Arrange 3D Meshes = Автоматически упорядочить 3D-сетки
+
+#vision fiducial/calibration panels
+Correct translation = Исправить перевод
+Correct rotation = Исправить вращение
+Recognition mode = Режим распознавания
+Fast = Быстрый
+Precise = Точный
+Delete selected keypoint = Удалить выбранную ключевую точку
+Undo keypoint deletion = Отменить удаление ключевой точки
+Recapture whole image = Повторно захватить все изображение
+Quality = Качество
+
+Camera calibration = Калибровка камеры
+Chessboard inner corners = Внутренние углы шахматной доски
+Horizontal = Горизонтальный
+Vertical = Вертикальный
+Camera adjustment = Регулировка камеры
+Try calibration = Попробовать калибровку
+Camera calibration failed! Did you really place the checkerboard correctly and specify the correct number of crossing points that are visible? = Не удалось выполнить калибровку камеры! Проверьте правильность размещения шахматной доски и укажите правильное число видимых точек пересечения.
+
+Camera modification = Модификация камеры
+Crop image = Обрезать изображение
+
+
+#draw canvas
+
+Mirror = Отразить
+Centre pt = Центр
+Centre = Центрировать
+Scale = Масштаб
+Top Left = Верхний левый
+Bottom Right = Нижний правый
+Size = Размер
+Rotation = Вращение
+Coordinates = Координаты
+Type = Тип
+Name = Название
+Layer = Слой
+Pen = Перо
+Process geometry = Геометрия процесса
+Trace data = Данные трассировки
+Reference copies = Опорные копии
+Mark loop = Цикл маркировки
+Z-Position = Позиция Z
+Characteristics = Характеристики
+Count = Количество
+Distance = Расстояние
+Repeat marks = Повторить отметки
+Skip marks = Пропустить отметки
+Skip offset = Пропустить смещение
+Number of vectors = Число позиции
+Total line length = Общая длина строки
+Process time = Время обработки
+All layers = Все слои
+Geometry = Геометрия
+Element = Элемент
+Splitted = Разделенный
+Merged = Объединенный
+Unsplittable = Не поддающийся разделению
+
+Optimising geometry = Геометрия оптимизации
+Splitting geometry = Геометрия расщепления
+Geometry Reduction Parameters = Параметры сокращения геометрии
+Processing element = Обрабатывающий элемент
+
+Could not open file! = Не удалось открыть файл!
+No valid CNCP project file! = Отсутствует допустимый файл проекта CNCP!
+No valid BEAMP/BEAMH/BEAMV project file! = Отсутствует допустимый файл проекта BEAMP/BEAMH/BEAMV!
+No valid IFF file! = Отсутствует допустимый файл IFF!
+Out of memory! = Недостаточно памяти!
+Loading failed! = Не удалось загрузить!
+
+Default layer = Слой по умолчанию
+Top layer = Верхний слой
+Bottom layer = Нижний слой
+
+Primary Element = Основной элемент
+Additional Geometry = Дополнительная геометрия
+Postprocessing Tool = Инструмент постобработки
+Element Group = Группа элементов
+Data Input = Ввод данных
+Light-Table Image = Изображение светового планшета
+Active Split Group = Активная группа разделения
+Active Move Group = Активная группа перемещения
+Sliced 3D Mesh = Разделенная на слои 3D-сетка
+Single Slice = Единичный слой
+Slices = Cлой
+Embedded Process = Встроенный процесс
+Scanner Bitmap = Изображение
+Coloured Scanner Bitmap = Цветное изображение
+Live background = Живой фон
+3D Mesh = 3D-модель
+unknown = неизвестный
+
+Switch to top view (standard) = Переключиться на вид сверху (стандартный)
+Switch to view from right = Переключиться на вид справа
+Switch to front view = Переключиться на вид спереди
+Switch to 3D view = Переключиться на трехмерный вид
+Switch to splitted view = Переключиться на вид с разделением
+
+
+#save dialogue
+
+Save which project data? = Какие данные проекта сохранить?
+Hardware and Workspace Settings = Настройки аппаратуры и рабочего пространства
+Pens (Laser and Scanner Parameters) = Перья (параметры лазера и сканера)
+Projects Elements = Элементы проектов
+Don't show this dialogue again = Больше не показывать это диалоговое окно
+
+# pen settings
+
+Append new pen = Добавить новое перо
+Delete pen = Удалить перо
+Power = Мощность
+Frequency = Частота
+To all pens = Для всех перьев
+To all heads = Для всех головок
+To pen colour = К цвету пера
+Spot size = Размер пятна
+Tool size = Размер инструмента
+Outside of Polygons = За пределами многогранников
+Centred on Vector = Отцентрован по вектору
+Inside of Polygons = Внутри многогранников
+Draw off-movements = Рисовать движения сдвига
+Use for coloured scanner-bitmaps = Использовать для цветных точечных изображений сканера
+Pen name = имя перо
+Use as default pen = Использовать как перо по умолчанию
+Use for pilot-laser = Использовать для пилотного лазера
+Pen on colour = Перо на цвете
+Pen off colour = Перо за пределами цвета
+Colour after marking = Цвет после маркировки
+Tool on delay = Задержка включения инструмента
+Tool off delay = Отмена задержки включения инструмента
+Auto-generate delays = Рассчитать задержки
+Set defaults for bitmap marking = Установить значения по умолчанию для маркировки точечного изображения
+Pulse length = Длина импульса
+First pulse = Первый импульс
+Half period = Половинный период
+Stand-by pulse width = Ширина резервного импульса
+Stand-by frequency = Резервная частота
+Waveform = Форма импульса / Индекс APD
+Wobble frequency = Частота модуляции
+Wobble amplitude = Амплитуда модуляции
+Enable sky-writing = Включить функцию sky-writing
+Activation threshold = Порог активации
+Fade-in distance = Расстояние постепенного усиления
+Fade-out distance = Расстояние постепенного затухания
+Align spot to vectors = Выравнять пятно по векторам
+Outside of polygons = За пределами многогранников
+Centred on vector = Отцентрован по вектору
+Inside of polygons = Внутри многогранников
+Do you really want to delete this pen for all heads and set default pen to elements that are using it? = Вы действительно хотите удалить это перо со всеми головками и установить перо по умолчанию для использующих его элементов?
+
+General = Общие свойства
+Custom = Пользовательский
+Scanner = Сканер
+Motion Axes = Оси движения
+Other Hardware = Прочее оборудование
+Misc = Разное
+Laser = Лазер
+Additional laser control = Дополнительный контроль лазера
+
+Smart Factory = Смарт Факторы
+Enable Smart Interface = Активировать Смарт Интерфейс
+Enable MQTT connection = Активировать MQTT-соединение
+Broker = Брокер
+Machine name = Имя машины
+Enable Hermes automatic control = Активировать Гермес автоматический контроль
+Previous machine = Предыдущая машина
+Next machine = Следующая машина
+Conveyor axis = Ось конвейера
+Move forward = Двигаться вперед
+Move backward = Двигаться назад
+TransportFinished distance = Расстояние TransportFinished
+Enable Hermes remote configuration = Включить удаленную конфигурацию Гермес
+
+The laser off delay must be longer than the laser on delay to avoid faults in laser control! = Задержка выключения лазера должна превышать задержку включения лазера, чтобы избежать сбоев в управлении лазером!
+The laser off delay should be longer than the laser on delay to avoid faults in laser control! = Задержка выключения лазера должна превышать задержку включения лазера, чтобы избежать сбоев в управлении лазером!
+The mark delay must be longer than the difference between the laser off delay and the laser on delay! = Задержка маркировки должна быть дольше разницы между задержкой выключения лазера и задержкой включения лазера!
+The "Laser" pulse length can't be bigger than the period resulting out of the &quot;General&quot; frequency! = Длина импульса «Лазера» не может превышать периода, полученного на основании «Общей» частоты!
+The stand-by pulse width can't be bigger than the period resulting out of the stand-by frequency! = Ширина резервного импульса не может превышать периода, полученного на основе резервной частоты!
+Tracking Error = Ошибка слежения
+Select type of used scanhead = Выберите тип используемой сканирующей головки
+This operation will modify the current pen settings! Really continue? = Данная операция изменит текущие настройки пера! Продолжить?
+This operation overwrites the current settings and appends new pens!\nDo you really want to proceed with it? = Данная операция перезапишет текущие настройки и добавит новые перья!\nВы действительно хотите продолжить ее выполнение?
+This operation will set the current pen to be used for the pilot laser which will disable most of its parameters and thus makes it unusable for normal marking operations. Are you really sure you want to continue with this operation? = Эта операция настраивает текущее перо для использования с пилотным лазером, отключая большинство его параметров и делая его непригодным для обычных операций маркировки. Следует ли продолжить эту операцию?
+
+Choose the pens off drawing colour = Выберите перья за пределами цвета рисования
+Choose the pens on drawing colour = Выберите перья из цвета рисования
+Set the resulting colour on the material after marking = Установите полученный цвет на материал после маркировки
+
+Do you want to place this element within the selected slice group instead at the end of the whole project? = Желаете поместить этот элемент в выбранную группу разделения на слои, а не в конец всего проекта?
+
+Auto-arranging failed, please check resulting mesh positions manually = Не удалось выполнить автовыравнивание; проверьте полученные пропорции сетки вручную.
+
+Following parameters evaluated by the wizard are no pen parameters and therefore have to be set in the related elements geometry settings manually = Следующие параметры, оцененные эксперт-программой, не являются параметрами пера и потому должны быть установлены в соответствующих настройках геометрии элементов вручную.
+
+# project/machine settings
+
+Machine settings = Настройки машины
+Preferred head usage = Предпочтительное использование головы
+Automatic = Автоматическая
+
+Working area upper left = Рабочая область вверху слева
+Editing area upper left = Редактирования область вверху слева
+Working area border = Граница рабочей области
+Editing area border = Редактирования рабочей области
+Expand = Расширить
+Move entity tree to tab pane = Переместить дерево сущности на панель вкладок
+Security = Безопасность
+Language = Язык
+Automatic = Автоматическая
+No warning message at start-up = Нет предупреждения в начале
+No license progress bar on start-up = Отсутствует индикатор выполнения лицензии при запуске
+
+Custom Dot Style = Индивидуальный стиль точек
+Polygon = Многогранник
+Spiral = Спираль
+Edges/Segments = Края/сегменты
+Outer Radius = Внешний радиус
+Inner Radius = Внутренний радиус
+Slope = Наклон
+Draw CCW = Рисовать CCW
+Inside To Outside = Изнутри наружу
+
+Scanner Controller = Контроллер сканера
+Scanhead = Головка сканера
+Motion Controller = Контроллер движения
+Z-Shifter = Инструмент смещения по оси Z
+Process Controller = Контроллер процесса
+Configure = Конфигурировать
+Initialise on startup = Инициализировать при запуске
+Home position = Главная позиция
+Pilot Laser = Пилотный лазер
+Pilot laser output = Пилотный лазер вывода
+Mark Dialogue Opened Signal = Сигнал открытия диалога маркировки
+Ready For Marking Signal = Сигнал готовности к маркировке
+Mark Dialogue Opened Signal = Сигнал открытия диалога маркировки
+Marking Active Signal = Сигнал активной маркировки
+Output Port = Порт вывода
+Invert output logic = Инвертировать логику вывода
+Always on = Всегда включен
+Correction Factor = Коэффициент корректировки
+Correction Offset = Корректирующее смещение
+Allow mark start via external signal = Разрешить запуск маркировки по внешнему сигналу
+
+Display image on manual activation only = Отображать изображение только для ручной активации
+Stop image capture on motion operations = Остановить захват изображения для операций движения
+Stop image capture during marking operations = Остановить захват изображения во время операций маркировки
+
+Custom Pen Parameter Name = Название пользовательского параметра пера
+Unit = Единица
+
+User Interface = ГИП
+Hardware = Аппаратное обеспечение
+Working Area = Рабочая область
+Pen Parameters = Параметры пера
+
+Part Counter = Счетчик деталей
+
+Choose the working area border colour = Выбрать цвет границы рабочей области
+Choose the editing area border colour = Выбрать цвет границы редактирования области
+
+No scanner controller card was configured for use from within the application, direct marking operations will not be possible! = Не была сконфигурирована плата контроллера сканера для использования из приложения, прямые операции маркировки будут невозможны!
+The output configured to control the pilot laser is already in user by the scanner controller card! Please choose an other one for proper operation. = Вывод, сконфигурированный для управления пилотным лазером, уже используется платой контроллера сканера! Выберите другой вывод для работы.
+The output configured for marking active output signal is already in user by the scanner controller card! Please choose an other one for proper operation. = Вывод, сконфигурированный для выходного сигнала активности маркировки, уже используется платой контроллера сканера! Выберите другой вывод для работы.
+The output configured for marking ready output signal is already in user by the scanner controller card! Please choose an other one for proper operation. = Вывод, сконфигурированный для выходного сигнала готовности маркировки, уже используется платой контроллера сканера! Выберите другой вывод для работы.
+Motion controller could not be accessed, additional motions not possible! = Не удалось получить доступ к контроллеру движения; дополнительные движения невозможны!
+Video controller could not be accessed, image capturing not possible! = Не удалось получить доступ к контроллеру видео; захват изображений невозможен!
+Configured scanner controller card could not be found, laser marking not possible! = Не удалось обнаружить сконфигурированную плату контроллера сканера; лазерная маркировка невозможна!
+Scanner controller card could not be accessed, laser marking not possible! = Не удалось получить доступ к плате контроллера сканера; лазерная маркировка невозможна!
+Laser controller could not be accessed, laser control not possible! = Не удалось получить доступ к контроллеру лазера; управление лазером невозможно!
+Z-Shifter could not be accessed, separate Z control not possible! = Не удалось получить доступ к инструменту сдвига по оси Z; отдельный контроль параметра Z невозможен!
+Process control plug-in could not be found! = Не удалось обнаружить плагин управления процессом!
+Process controller could not be accessed! = Не удалось получить доступ к контроллеру процесса!
+
+Motion = Движение
+Reference axis on startup = Ось координат при запуске
+Don't show warning when referencing axes = Больше не показывать это предупреждение при привязке к осям
+Axis alias = Альтернативное имя оси
+Process between slices = Обрабатывать между слоями
+
+Pen Frequency = Частота пера
+Minimum = Минимум
+Maximum = Максимум
+Logarithmic = Логарифмический
+
+Allow Unrestricted Laser On/Off Delays = Допустить неограниченные задержки включения/выключения лазера
+
+Parts Counter = Счетчик деталей
+Power down laser = Понижение мощности лазера
+sec idle timeout = тайм-аут простоя в секундах
+sec follow-up time = Последующий время в секундах
+
+Enable IOSelect-Mode = Включить режим выбора ввода-вывода
+Numbered projects directory = Каталог нумерованных проектов
+Mark process log file = Файл журнала процесса маркировки
+Card 1 Input Port = Порт ввода платы 1
+Auto-Start Marking = Автозапуск маркировки
+Attention! This option is dangerous, it lets marking start immediately and without further notice after mark-dialogue was opened! = Внимание! Эта опция опасна; она позволяет запустить маркировку немедленно и без дальнейших уведомлений после открытия диалога маркировки!
+Auto-optimise vectors on marking = Автооптимизация векторов при маркировке
+Auto-slice 3D-meshes on change = Трехмерные сетки авторазделения на слои при изменении
+Show Tab-Panes in Mark Dialogue = Показывать панели закладок в диалоге маркировки
+Custom Pen Parameter = Пользовательский параметр пера
+
+
+Paused = Приостановлен
+Running = Работает
+
+# scanner info
+
+Scanner Info = Информация сканера
+Board X Voltage = Напряжение платы X
+Board Y Voltage = Напряжение платы Y
+Board Z Voltage = Напряжение платы Z
+Temperature Galvo = Температурный гальванометр
+Article Number = Артикул
+Operating Hours = Часы работы
+Aperture = Апертура
+Wavelength = Длина волны
+Card Type = Тип платы
+Card Version = Версия платы
+Head Type = Тип головки
+Analogue Controller = Аналоговый контроллер
+
+# process info
+
+Process Info = Информация о процессе
+
+# stand alone data
+
+
+# mark dialogue
+
+Mark = Маркировать
+Mark repeatedly = Маркировать многократно
+Fast repeat = Быстрый повтор
+Mark selected elements = Маркировать выбранные элементы
+Wait for external trigger = Ожидание внешнего триггера
+Off = Выкл.
+Manual = Вручную
+Auto = Автоматически
+Parts = Детали
+Progress = Ход выполнения
+Use total projects outline = Использовать общий обзор проектов
+Use individual element outlines = Использовать обзоры индивидуальных элементов
+Use real element shapes = Использовать реальные формы элементов
+To produce = Для производства
+Slice Processing Progress = Ход разделения на слои
+Elapsed time = Истекшее время
+Estimated time = Расчетное время
+Remaining time = Остаток времени
+
+Project is not ready for marking = Проект не готов для маркировки.
+Slice Group not valid and has to be (re)sliced = Группа разделения недействительна и требует (повторного) разделения.
+Do you really want to continue and start marking? = Вы действительно желаете продолжить и начать маркировку?
+Machine is under automatic control, no manual marking operation possible! = Машина находится под автоматическим управлением, ручная маркировка невозможна!
+Machine is under automatic control, but previous machine is offline! = Машина находится под автоматическим управлением, но предыдущая машина не в сети!
+Machine is under automatic control, please ensure no working piece is located inside! = Машина находится под автоматическим управлением, убедитесь, что в машине нет рабочей детали
+Automatic control: previous machine is offline = Автоматический контроль: предыдущая машина не в сети
+Automatic control: transport from previous machine failed = Автоматический контроль: транспорт с предыдущей машины не выполнен
+Closing Hermes connections = Закрытие соединений Гермеса
+Shutdown = Неисправность
+
+Opening devices = Открытие устройств
+Next referencing of axes will be performed which causes some movement. This step should be performed only in case machine is safe and motion can be done securely. Do you really want to continue and perform referencing of axes? = Далее будет выполнена привязка осей, что вызовет некоторое движение. Этот шаг следует выполнить только в том случае, если машина находится в безопасности и движение может быть выполнено без помех. Вы действительно желаете продолжить и выполнить привязку осей?
+Desired number of parts produced, marking will be inhibited until confirmation! = Произведено желаемое число деталей; маркировка будет приостановлена вплоть до подтверждения!
+
+# raster image import
+
+Correction Red = Коррекция красный
+Correction Green = Коррекция зеленый
+Correction Blue = Коррекция синий
+Invert Output = Инвертировать вывод
+Size = Размер
+Vectorise = Векторизовать
+Noise Threshold = Порог шума
+Line Threshold = Порог линии
+Colours to elements = Цвета для элементов
+Don't create outline = Не создавать контур
+Floyd Steinberg Dithered = Размытый по Флойду-Штейнбергу
+Point cloud = Точка облака
+Assign to pen = Присвоить перу
+Overlap dots = Перекрытие точек
+Resulting size = Конечный размер
+Keep aspect ratio = Сохранить соотношение сторон
+Use as light-table image = Использовать как изображение светового планшета
+Resolution = Разрешение
+Greyscale = Градации серого
+Can't generate coloured scanner bitmap, no pens defined for use as colours! = Невозможно создать цветной растр сканера; нет перьев, заданных для использования в качестве цветов!
+
+# other plugins
+
+Draw a star = Рисовать звезду
+Star = Звезда
+Draw an open or closed polygon = Рисовать разомкнутый или замкнутый многогранник
+Draw an open or closed bezier curve = Рисовать разомкнутую или замкнутую кривую Безье
+Bezier Curve = Кривая Безье
+Modulate the geometry with a sine waveform = Модулировать геометрию при помощи синусовой формы волны
+Draw a triangle = Рисовать треугольник
+Triangle = Треугольник
+Write text at given position = Писать текст в заданной позиции
+Text = Текст
+Draw a spiral = Рисовать спираль
+Spiral = Спираль
+Draw a rectangle = Рисовать прямоугольник
+Rectangle = Прямоугольник
+Draw am open or closed polygon = Рисовать разомкнутый или замкнутый многогранник
+Polygon = Многогранник
+Draw a simple line = Рисовать простую линию
+Single Line = Единичная линия
+Set a single dot = Поставить одну точку
+Dot = Точка
+Draw a circle or a segment = Рисовать круг или сегмент
+Circle = Круг
+Create a barcode = Создать штрихкод
+Barcode = Штрихкод
+Stop processing for specified time = Прекратить обработку на заданное время
+Delay = Задержка
+Stop operation until external trigger is detected = Прекратить операцию до обнаружения внешнего триггера
+External Trigger = Внешний триггер
+Output data at the scanner controller = Выходные данные на контроллере сканера
+Custom Output = Пользовательский вывод
+Control additional motion axes = Контролировать дополнительные оси движения
+Motion = Движение
+Define fill pattern for closed polygons = Определить модель заполнения для замкнутых многогранников
+Hatch = Штриховка
+Modulate the geometry with a sinus waveform = Модулировать геометрию при помощи синусовой формы волны
+Sine Distortion = Искажение синусоиды
+Bend geometry to a round shape = Выгнуть геометрию до формы круга
+Curve Distortion = Искажение кривой
+Serial number, date and/or time input data = Входные данные: серийный номер, дата и/или время
+Serial/Date/Time = Серийный номер/дата/время
+Get data from OpenAPC plug-in's input = Получить данные со ввода плагина OpenAPC
+OpenAPC Data Input = Ввод данных OpenAPC
+Z-Shifter = Инструмент смещения по оси Z
+Control Z-position via separate Focus Shifter / Beam Expander = Контролировать позицию Z через отдельный инструмент смещения фокуса/расширитель пучка
+
+# split group
+
+The selected data are too wide for the chosen diameter of the ring, splitting not possible! = Выбранные данные слишком широки для выбранного диаметра кольца — разделение невозможно!
+The selected data are too high for the chosen diameter of the ring, splitting not possible! = Выбранные данные слишком высоки для выбранного диаметра кольца — разделение невозможно!
+
+Active Splits = Активные cплит
+Split horizontal (X, planar) = Сплит горизонтальный (X, плоский)
+Split distance = Разделенное расстояние
+Split vertical (Y, planar) = Сплит вертикальный (Y, плоский)
+Split radial = Радиальный радиальный
+Direction = Hаправление
+Horizontal = горизонтальный
+Vertical = Bертикальный
+Diameter = Диаметр
+Split angle = Сплит-угол
+Keystone correction = Коррекция трапецеидальности
+Top/Left = Верхний/левый
+Bottom/Right = Внизу/справа
+Invert motion direction = Инвертировать
+Process order = Процесс заказа
+Motion speed = Скорость движения
+Overlap splits = Перекрытие разделов
+Try split between pieces = Попробуйте разделить куски
+Rotation = Bращение
+
+Move horizontal (X, planar) = Переместить горизонтальный (X, плоский)
+Move distance = Перемещение расстояния
+Move steps = Перемещение шагов
+Move vertical (Y, planar) = Перемещение по вертикали (Y, плоское)
+Move radial = Переместить радиальный
+Move angle = Угол поворота
+Zig-zag from left = Зигзаг слева
+Zig-zag from right = Зигзаг справа
+
+Save as default = Сохранить значение по умолчанию
+
+# slice group
+
+Add element to slices = Добавить элемент к слоям
+Slice 3D Mesh = Разделить на слои 3D-сетку
+Slicing 3D Mesh to 2D Layers = Разделение 3D-сетки на слои 2D
+Creating support structures = Создание опорных структур
+Modify Slice Group = Модифицировать группу разделения на слои
+Adding elements to slice group = Добавление элементов к группе разделения на слои
+Removing old elements from slice group = Удаление старых элементов из группы разделения на слои
+Updating geometries = Обновление геометрий
+Split to tiles = Разбить на мозаику
+Tile size = Размер мозаики
+Tile skip size = Размер пропуска мозаики
+Reslice All = Повторить разделение на слои
+Model = Модель
+Slice offsets are too big for size of used 3D mesh = Срезы смещения слишком велики для размера используемой 3D-сетки
+
+Show 3D Mesh = Показать 3D-сетку
+Support structure model = Модель структуры поддержки
+Support = Поддержка
+Support Structure = Xтруктуры поддержки
+Generate support structures = Включить опорные структуры
+Distance to Model = Расстояние до модели
+Enlarge structure = Увеличить структуру
+Enclose model completely = Полностью охватить модель
+Perform single slice-motion = Выполнение одиночного среза
+Show all slices = Показать все фрагменты
+Hide hatch from view = Скрыть вывод из окна
+Slice during marking = Ломтик во время маркировки
+
+#ext trigger
+
+Expected on = Ожидается в
+
+#hatcher
+
+Line Style = Стиль линии
+Continuous = Непрерывная
+Connected Lines = Соединенные линии
+Dashed (simple) = Линейный пунктир (простой)
+Dashed (interleaved) = Линейный пунктир (перемежающийся)
+Dashed (continuous) = Линейный пунктир (непрерывный)
+Dotted = Точечный пунктир
+Dotted (Custom) = Точечный пунктир (пользовательский)
+Hatch Style = Стиль штриховки
+Lines, forward = Линии, вперед
+Lines, forward/backward = Линии, вперед/назад
+Zig-zag = Зигзаг
+Inner lines = Внутренние линии
+Outer lines straight = Наружные линии прямые
+Outer lines rounded = Наружные линии закругленные
+Hatch Angle = Угол штриховки
+Angle Offset = Угловое смещение
+Hatch Distance = Расстояние штриховки
+Hatch Offset = Смещение штриховки
+Number of Lines = Число линий
+Interleave Lines = Перемежающиеся линии
+Beam Compensation = Компенсация пучка
+Use spotsize from pen = Использовать размер пятна из пера
+Custom = Пользовательский
+From bounding box = Из ограничивающего блока
+At border = На границе
+
+#OAPC input
+
+Character Input IN%d = Ввод символа В %d
+
+#serial number
+
+Start Value = Начальное значение
+Reset at = Сбросить в:
+Reset at day = День сброса:
+Reset at date = Дата сброса:
+Reset at time = Время сброса:
+Skip count = Пропустить счет
+Numeric Base = Основание системы счисления
+Minimum Digits = Минимальные цифры
+Time Offset = Смещение времени
+Years = Лет
+Days = Дней
+Hours = Часов
+Minutes = Минут
+Format string = Строка формата
+Locale = Языковая настройка
+Sunday = Воскресенье
+Monday = Понедельник
+Tuesday = Вторник
+Wednesday = Среда
+Thursday = Четверг
+Friday = Пятница
+Saturday = Суббота
+Format string wizard = Мастер cтрока формата
+Year = год
+Month = Mесяц
+Week = Hеделя
+Day = Тег
+Hour = Час
+Minute = Mинут
+Second = Bторой
+Timezone = Часовой пояс
+Preview = Предварительный просмотр
+
+#sine
+
+Direction = Направление
+2D Horizontal (Y to X) = 2D горизонтальное (от X к Y)
+2D Vertical (X to Y) = 2D вертикальное (от X к Y)
+3D Y to Z = 3D от Y к Z
+3D Z to Y = 3D от Z к Y
+3D X to Z = 3D от X к Z
+3D Z to X = 3D от Z к X
+Wavelength = Длина волны
+Amplitude = Амплитуда
+Offset = Смещение
+
+#curve
+Alignment = Выравнивание
+Centre (X) = Центр (X)
+Left (X) = Влево (X)
+Right (X) = Вправо (X)
+Middle (Y) = Посередине (Y)
+Top (Y) = Вверх (Y)
+Bottom (Y) = Вниз (Y)
+Radius = Радиус
+Keep contained elements = Сохранить элементы внутри
+Keep elements orientation = Сохранить ориентацию элементов
+
+
+#barcode
+
+Data = Данные
+Australia Post Customer = Клиент Почты Австралии
+Australia Post Reply = Ответ Почты Австралии
+Australia Post Route = Маршрут Почты Австралии
+Australia Post Redirect = Перенаправление Почты Австралии
+Japanese Post = Почта Японии
+Korean Post = Почта Кореи
+Mode = Режим
+Error Correction = Исправление ошибок
+Token Size = Размер аппаратного ключа
+Segments = Сегменты
+Fade In Size = Размер постепенного усиления
+Force to Square = Свести к квадрату
+Merge Cells = Объединить ячейки
+Draw Cells as Dots = Рисовать ячейки как точки
+Draw Cells as Custom Dots = Рисовать ячейки как пользовательские точки
+Invert = Инвертировать
+Invert with embedded normal = Инвертировать со встроенной нормалью
+Resulting cells = Количество ячеек
+
+#bezier
+
+Dashed = Штриховой
+Bezier Style = Стиль Безье
+Closed = Замкнутый
+Open = Разомкнутый
+
+#circle
+
+Dashed (Arcs) = Штриховые (дуги)
+Dashed (Straights) = Штриховые (прямые)
+Start angle = Угол начала
+End angle = Угол окончания
+Grow = Расти
+Layered Sphere = Многослойная сфера
+Corner radius = Угловой радиус
+Nominal width = Номинальная ширина
+Nominal height = Номинальная высота
+Nominal depth = Номинальная глубина
+
+#dot
+
+Style = Стиль
+
+#laser output
+
+Digital %d (16 Bit) = Цифровой %d (16 бит)
+Digital %d (8 Bit) = Цифровой %d (8 бит)
+Analogue %d (8 Bit) = Аналоговый %d (8 бит)
+Analogue %d (10 Bit) = Аналоговый %d (10 бит)
+Analogue %d (12 Bit) = Аналоговый %d (12 бит)
+Bit %d = Бит %d
+Laserport %d (8 Bit) = Лазерный порт %d (8 бит)
+Pulse Output = Импульсный вывод
+
+#line
+
+Expand by dot = Расширять по точкам
+Remove last dot = Удалить последнюю точку
+
+#motion
+
+Enable = Включить
+Position = Позиция
+Speed = Скорость
+Relative = Относительно
+Stop Axis = Ось остановки
+Move Axis to Reference Position = Сдвинуть ось в исходное положение
+Pre-Motion Delay = Задержка перед движением
+Use Control Output = Использовать вывод управления
+
+#z-shifter
+
+Position [µm] = Позиция [мкм]
+Speed [µm/sec] = Скорость [мкм/с]
+Move Level to Home Position = Сдвинуть уровень в исходную позицию
+
+#polygon
+
+Polygon Style = Стиль многогранника
+
+#spiral
+
+Smoothing Factor = Коэффициент сглаживания
+
+#star
+
+Radius 1 = Радиус 1
+Radius 2 = Радиус 2
+Spikes = Вертикальные черты
+Angle offset = Угловое смещение
+
+#text
+
+Loading available fonts = Загрузка доступных шрифтов
+Unicode = Юникоде
+Font Type = Тип шрифта
+Laser Vector = Вектор лазера
+Font = Шрифт
+Left = Влево
+Right = Вправо
+Orientation = Ориентация
+Left to right = Слева направо
+Right to left = Справа налево
+Top to bottom = Сверху вниз
+Bottom to top = Снизу вверх
+Character spacing = Интервал
+Line spacing = Межстрочный интервал
+Kerning = Кернинг
+Arc length = Длина дуги
+Set monospaced = Установить моноширинный шрифт
+Lock size = Размер замка
+FastRect single = FastRect единичный
+FastRect double = FastRect двойной
+Roman sans single = Roman sans единичный
+Roman sans double = Roman sans двойной
+Script single = Script единичный
+Script double = Script двойной
+Script complex = Script сложный
+Times = Times
+Times bold = Times жирный
+Times italic = Times курсив
+Times bold italic = Times жирный курсив
+
+# input
+
+Custom Input = Пользовательский ввод
+Wait for input data from the scanner controller = Дождитесь данных ввода с контроллера сканера
+
+# output
+
+Custom Output = Пользовательский вывод
+Set output data at the scanner controller = Установить выходные данные на контроллере сканера
+
+# CSV data input
+
+CSV File Data Input = Ввод данных из файла CSV
+Get data from external file in CSV format = Получить данные из внешнего файла в формате CSV
+
+# CorrCorrect
+
+Load measurement table = Загрузить таблицу измерений
+Load correction file = Загрузить корректирующий файл
+Could not load correction file = Не удалось загрузить корректирующий файл.
+Save correction file = Сохранить корректирующий файл
+This overwrites your current correction table. Are you sure you want to continue? = Это приведет к записи поверх текущей таблицы корректировки. Вы уверены, что хотите продолжить?
+This overwrites your current focal correction but keeps the pincushion data intact. Are you sure you want to continue? = Это приведет к записи поверх текущей фокальной коррекции, но оставит данные по подушкообразным искажениям без изменений. Вы уверены, что хотите продолжить?
+
+Correct existing grid = Исправить существующую решетку
+Nom X = Ном. X
+Nom Y = Ном. Y
+Act X = Факт. X
+Act Y = Факт. Y
+Nominal / Measured Positions = Номинальные/измеренные позиции
+
+Generate new correction = Сформировать новое исправление
+Pincushion Distortion = Подушкообразное искажение
+X-Angle = Угол с осью X
+Y-Angle = Угол с осью Y
+Focal Correction = Фокальная коррекция
+
+Nominal position = Номинальная позиция
+Measured position = Измеренная позиция
+
+# pen parameter wizard
+
+Parameter wizard = Мастер параметров
+Frequency Range = Диапазон частот
+Power Range = Диапазон мощности
+Speed Range = Диапазон скорости
+Pulse Width Range = Диапазон ширины импульса
+Repeat Mark Range = Диапазон повтора маркировки
+Hatch distance range = Дальность действия люка
+Z-Offset Range = Диапазон смещения по оси Z
+Jump Delay Range = Диапазон задержки перехода
+Mark Delay Range = Диапазон задержки маркировки
+Laser On Delay Range = Диапазон задержки включения лазера
+Laser Off Delay Range = Диапазон задержки выключения лазера
+Grid Layout = Разметка по сетке
+As project = Как проект
+Mark Axis Values = Значения оси маркировки
+Mark Speed Information = Информация о скорости маркировки
+Mark matrix = Карта маркировки
+Matrix size = Размер карта
+Matrix dimensions = Карта измерение
+Refine this result = Уточнить этот результат
+Go back from this result = Вернуться назад от этого результата
+Use parameters for pen = Использовать параметры для пера
+
+# CorrCorrect
+

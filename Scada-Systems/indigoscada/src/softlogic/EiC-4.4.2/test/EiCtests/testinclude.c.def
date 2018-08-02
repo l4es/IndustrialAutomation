@@ -1,0 +1,52 @@
+on
+	(void)
+Warning: in testarray.c near line 38: Array of chars is too long
+Warning: in teststru.c near line 9: Function Re-definition of testKR
+Warning: in teststru.c near line 41: Function Re-definition of reflect
+Warning: in teststru.c near line 47: Function Re-definition of randpoint
+Warning: in teststru.c near line 56: Function Re-definition of testarr2
+Warning: in teststru.c near line 72: Function Re-definition of testarr
+Warning: in teststru.c near line 101: Function Re-definition of tscope
+Warning: in teststru.c near line 134: Function Re-definition of add2list
+Warning: in teststru.c near line 146: Function Re-definition of freelist
+Warning: in teststru.c near line 160: Function Re-definition of testlist
+Warning: in teststru.c near line 171: Function Re-definition of testLL
+Warning: in teststru.c near line 190: Function Re-definition of Tconst1a
+Warning: in teststru.c near line 195: Function Re-definition of Tconst1b
+Warning: in teststru.c near line 200: Function Re-definition of Tconst1
+Warning: in teststru.c near line 207: Function Re-definition of Tconst2
+Warning: in teststru.c near line 213: Function Re-definition of Tconst
+Warning: in teststru.c near line 219: Function Re-definition of Tlvalue
+Warning: in testplot.c near line 6: Function Re-definition of randg
+Warning: in testplot.c near line 16: Function Re-definition of shell
+Warning: in testplot.c near line 29: Function Re-definition of plothist
+Warning: in testplot.c near line 41: Function Re-definition of testplot
+Warning: in testarray.c near line 38: Array of chars is too long
+Warning: in testarray.c near line 50: Function Re-definition of showarray
+Warning: in stdlib.h near line 28: 2nd prototype for builtin -> div
+Warning: in stdlib.h near line 29: 2nd prototype for builtin -> ldiv
+Warning: in stdlib.h near line 31: 2nd prototype for builtin -> malloc
+Warning: in stdlib.h near line 32: 2nd prototype for builtin -> calloc
+Warning: in stdlib.h near line 33: 2nd prototype for builtin -> realloc
+Warning: in stdlib.h near line 39: 2nd prototype for builtin -> free
+Warning: in stdlib.h near line 42: 2nd prototype for builtin -> rand
+Warning: in stdlib.h near line 43: 2nd prototype for builtin -> srand
+Warning: in stdlib.h near line 44: 2nd prototype for builtin -> strtod
+Warning: in stdlib.h near line 45: 2nd prototype for builtin -> strtol
+Warning: in stdlib.h near line 48: 2nd prototype for builtin -> strtoul
+Warning: in stdlib.h near line 53: 2nd prototype for builtin -> system
+Warning: in stdlib.h near line 54: 2nd prototype for builtin -> atof
+Warning: in stdlib.h near line 55: 2nd prototype for builtin -> atoi
+Warning: in stdlib.h near line 56: 2nd prototype for builtin -> atol
+Warning: in stdlib.h near line 58: 2nd prototype for builtin -> getenv
+Warning: in stdlib.h near line 59: 2nd prototype for builtin -> putenv
+Warning: in stdlib.h near line 63: 2nd prototype for builtin -> abort
+Warning: in stdlib.h near line 86: 2nd prototype for builtin -> _itoa
+Warning: in stdlib.h near line 87: 2nd prototype for builtin -> _ltoa
+Warning: in stdlib.h near line 95: 2nd prototype for builtin -> eic_exit
+Warning: in stdlib.h near line 98: Function Re-definition of atexit
+Warning: in stdlib.h near line 107: Function Re-definition of exit
+Warning: in stdlib.h near line 127: Function Re-definition of qsort
+Warning: in stdlib.h near line 194: Function Re-definition of bsearch
+In testinclude.c, line 40: rand() == 12662 -- assert failed
+	0

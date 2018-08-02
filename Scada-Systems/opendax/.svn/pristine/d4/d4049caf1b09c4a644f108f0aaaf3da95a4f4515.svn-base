@@ -1,0 +1,87 @@
+OpenDAX (c) 2007 Phil Birkelbach
+
+OpenDAX is an Open Source Distributed Control System.
+
+At this point the code is at best, pre-alpha quality and it is not ready to be 
+installed on production systems.
+
+The system is meant to be flexible and scalable, it should utilize the 
+strength of the underlying operating system as much as possible.  The modern
+Open Source operating system kernels are fantastic pieces of software that 
+do their jobs very well.  There is no sense in duplicating any of the
+functions that they perform.
+
+With that in mind OpenDAX uses separate processes for modules.  Almost all
+of the tasks of the system are handled by these modules.  They interact with
+each other through a service that runs on each machine in the system.  Each
+module communicates with this server through the libdax library.
+
+The OpenDAX system is intended to provide many different mechanisms for 
+modules to communiate with one another.  The details haven't quite been
+worked out yet but there are a few requirements that we think must be a 
+part of the system.
+
+The system should be network transparent at the module level.
+
+The system should be able to handle all manner of datatypes, including 
+arrays and custom designed datatypes.  The data map should be dynamic, able
+to grow and shrink as the program runs.
+
+Modules should also be dynamic, able to be loaded and unloaded at runtime 
+with no requirement for any central configuration.  It should be possible
+for programs that don't even know they are modules to be used as such. 
+The server could open pipes to a program's stdin, stdout and 
+stderr file descriptors so that they can be manipulated by the DAX.  This 
+will probably have limited usefulness but it's conceivable that some
+programs could find a place.  One idea that comes to mind would be running
+mpg123 for playing alarm sounds.  No sense in writing a custom module to 
+play sounds when programs already exist to do the job.  Besides this makes
+OpenDAX a good *nix program since it allows modular software to be used
+in applications that the original designers never envisioned.
+
+One feature that the system will need that may be quite difficult is 
+redundancy.  If the system is truely distributed then it should be capable of
+losing network nodes and remain in control.  This is probably going to be
+more difficult than any other requirement.  Frankly I don't really know how to
+even begin thinking about this requirement.  It seems that some kind of 
+syncronization between logic modules and failover of I/O modules would be
+needed.  This may be more of a module design issue than a server issue
+but it must be considered throughout the design process, so that we don't
+paint ourselves into a corner.
+
+Once the server is built and the libraries are functional then all
+of the work will take place in the modules.  There would be modules for I/O.
+This I/O could be some kind of hardwired I/O, networked I/O using Modbus or
+ControlNet.  Even the PC serial or parallel port could be used as I/O.
+
+There would have to be some kind of logic modules.  These could be as simple
+as a small Lua script  or something as elaborate as a full featured ladder
+logic interpreter.
+
+Other modules would include Alarming, Logging, Trending and some kind of HMI.
+The HMI modules could be web based, X11 based or even simple text based
+HMIs written with ncurses or readline.
+
+A little note on licensing.  It is very tempting to use programs like bison to
+create logic modules or programs like glade to produce HMI modules but these
+programs will generate C code that will have to be compiled.  There is nothing
+wrong with this but it should be noted that any program that is linked with
+the GPL'd libraries of OpenDAX will have to also be distributed under the 
+terms of the GPL.  If the logic library were itself an interpreter then the
+end user program would be seen more as a configuration and would not have 
+to be distributed in source code.  This is probably okay for the vast 
+majority of the projects out there but we need to consider the end client 
+(the guy that owns the equipment we control) or we will find ourselves 
+with a piece of software and no market.
+
+Also the application developer need not be a C programmer.  Very few
+control system integrators come up from a computer science background.
+Most come from an instrument / electrical background and can learn to
+configure systems and write logic, but asking them to be low level
+C programmers is asking too much, and they will go elsewhere.
+
+The Free Software Foundation has many good resources to read regarding 
+these kinds of issues and it would be beneficial for all users of this 
+system to understand the licensing freedoms associated with the GPL.
+
+Okay enough README file stuff.  Back to coding.

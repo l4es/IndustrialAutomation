@@ -1,0 +1,16 @@
+This directory contains the python extension module for OpenDAX.
+
+To build it you can use the good 'ol python method of running
+the setup.py script...
+
+$ python setup.py build
+$ python setup.py install
+
+There is also a Makefile that automates this somewhat so
+you can also use...
+
+$ make
+$ make install
+
+The OpenDAX libraries should be installed before you try to build
+and install this extension module.

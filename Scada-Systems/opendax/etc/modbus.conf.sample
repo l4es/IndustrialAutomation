@@ -1,0 +1,140 @@
+-- modbus.conf
+
+-- Configuration file for OpenDAX Modbus module
+
+p = {}
+c = {}
+
+p.name = "RTUTest"
+p.enable = true       -- enable port for scanning
+p.devtype = "SERIAL"  -- device type SERIAL, NETWORK
+p.ipaddress = "0.0.0.0"
+p.socket = "TCP"      -- IP socket protocol to use TCP or UDP
+p.bindport = 502      -- TCP/UDP Port to use
+--p.device = "/dev/ttyS0"
+--p.device = "/dev/tty.usbserial-FT3Q9XETA"
+p.device = "/dev/tty.usbserial"
+p.type = "MASTER"       -- modbus master
+p.protocol = "RTU"      -- RTU, ASCII, TCP
+-- Slave Port ID and Register Configuration
+p.slaveid = 1           -- modbus id if type is slave
+p.holdreg = "mb_hreg"   -- tagname for the holding registers FC 3, 6, 16
+p.holdsize = 10         -- size of the holding register space for this slave
+p.inputreg = "mb_ireg"  -- tagname for the input registers FC 4
+p.inputsize = 20        -- size of the input register space for this slave
+p.coilreg = "mb_creg"   -- tagname for the coils FC 1, 5 ,15
+p.coilsize = 30         -- size of the coil space counted in bits
+p.discreg = "mb_dreg"   -- tagname for the discrete inputs FC 2 (counted in bits) 
+p.discsize = 40         -- size of the discrete inputs space (counted in bits)
+-- Serial Port Configuration
+p.baudrate = 9600 
+p.databits = 8    
+p.stopbits = 1
+p.parity = "NONE"     -- NONE, EVEN, ODD
+-- General Configuration
+p.scanrate = 1000     -- rate at which this port is scanned in mSec
+p.timeout = 1000      -- timeout period in mSec for response from slave
+p.frame = 30          -- frame time for the interbyte timeout
+p.delay = 0           -- delay between response and the next request
+p.retries = 2         -- number of times to retry the command
+p.maxfailures = 20    -- total number of consecutive timeouts before the port is restarted
+p.inhibit = 10        -- number of seconds to wait until a restart is tried
+
+portid = add_port(p)
+
+if portid then
+  -- These commands get the inputs
+  c.enable = true
+  c.mode = "CONTINUOUS"
+  c.node = 1
+  c.fcode = 4
+  c.register = 0
+  c.length = 8
+  c.tagname = "modbus_inputs"
+  c.index = 0
+  c.interval = 1
+
+  add_command(portid, c)
+
+  c.node = 2
+  c.fcode = 4
+  c.length = 4
+  c.index = 8
+
+  --add_command(portid, c)
+        
+  -- Read the configuration
+  c.node = 1
+  c.fcode = 3
+  c.register = 0
+  c.length = 10
+  c.tagname = "modbus_config"
+  c.index = 0
+  c.interval = 5
+
+  --add_command(portid, c)
+        
+  c.node = 2
+  c.fcode = 3
+  c.register = 0
+  c.length = 12
+  c.address = 30
+
+  --add_command(portid, c)
+
+  -- Get the relay status'
+  c.fcode = 1
+  c.register = 0
+  c.length = 4
+  c.address = 192
+  c.interval = 1
+
+  --add_command(portid, c)
+
+  -- Set the position of the relays
+  c.method = "CHANGE"
+  c.fcode = 5
+  c.length = 1
+  for i = 0, 3 do
+    c.register = i
+    c.address = 196 + i
+    --add_command(portid, c)
+  end
+
+  -- Output Configuration
+  c.fcode = 6
+  c.register = 7
+  c.address = 15
+
+  --add_command(portid, c)
+
+  -- Watchdog Timer
+  c.register = 8
+  c.address = 16
+
+  --add_command(portid, c)
+end
+
+p.name = "Gate"
+p.ipaddress = "192.168.15.50"
+p.bindport = 2001
+p.socket = "TCP"
+p.devtype = "NET"
+
+--portid = add_port(p)
+portid = nil 
+
+if portid then
+    -- These commands get the inputs
+  c.method = "CONTINUOUS"
+  c.node = 1
+  c.fcode = 4
+  c.register = 100
+  c.length = 4
+
+  c.address = 0
+  c.interval = 1
+
+  add_command(portid, c)
+end
+

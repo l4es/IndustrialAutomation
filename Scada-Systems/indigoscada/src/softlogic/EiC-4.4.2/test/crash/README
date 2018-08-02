@@ -1,0 +1,47 @@
+This directory is for snippets of code that are known to show
+up problems with EiC.
+
+When adding a snippet of code to this directory please read some of
+the examples given below.
+
+List of things todo:
+Snippets
+---------------
+from seebs
+ A C compiler *MUST* diagnose the line
+        static int i = 1 ? 1 : (++j);
+as a constraint violation, but at least the version we have doesn't, even
+in "maximally conforming ANSI mode".  Clearly, it is not a C compiler.)
+
+
+EiC 1> int j;
+        (void)
+EiC 2>  static int i = 1 ? 1 : (++j);
+Error in ::EiC:: near line 2: Illegal initialization: illegal address operation
+EiC 3> int i = 1 ? 1 : (++j);
+        (void)
+EiC 4> i;
+        1
+
+
+----------------
+from AJRobb@pavilion.co.uk (Andy J Robb) 
+void function(void *p) { while (*((unsigned char*)p)++); }
+
+EiC 1> void function(void *p) { while (*((unsigned char*)p)++); }
+Warning: in ::EiC:: near line 1: Possible non relational operation
+        (void)
+
+----------------
+#include <stdio.h>
+int main()
+{
+  printf ("The next president will be %X %X\n",
+    (15 - ((15+1) >> 2)) * (15*15 + 2*15 + 2),
+    2 * (15+2) * (100*15 + 4*15 + (15 >> 1)));
+  return 15;
+}
+--------------------
+
+
+

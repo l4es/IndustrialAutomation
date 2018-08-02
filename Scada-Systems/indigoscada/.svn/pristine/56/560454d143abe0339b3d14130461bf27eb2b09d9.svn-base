@@ -1,0 +1,48 @@
+on
+	(void)
+test -> #define test	hasty tasty
+sum -> #define sum(a,b)	((a) + (b))
+empty -> #define empty()	 
+empty1 -> #define empty1()	nothing
+cat -> #define cat(a,b)	a ## b
+mcat -> #define mcat(a,b)	F ## a ## b ## E
+item -> #define item(a)	# a
+order -> #define order(a,b,c)	c + a + b
+xy -> #define xy(a,b)	b + b + a + b + a
+typedef IP -> * int 
+typedef FP -> * dec_Func (
+	...
+	) returning int 
+typedef F -> dec_Func (
+	a: int 
+	) returning int 
+typedef A5 -> ARY[5]double 
+typedef A -> ARY[0]int 
+f -> dec_Func (
+	x: * dec_Func (
+		y: int ,
+		z: int 
+		) returning void ,
+	i1: int ,
+	i2: int 
+	) returning void 
+regline -> Func (
+	x: * float ,
+	y: * float ,
+	n: int ,
+	m: * float ,
+	b: * float 
+	) returning void 
+
+    /*  In a least square sense, find the equation:
+     *  y = mx + b; Returns the slope in m and
+     *  the offset in b. 
+     */
+
+f2 -> dec_Func (
+	f: int ,
+	x: int 
+	) returning * dec_Func (
+		s: * char 
+		) returning void 
+	(void)

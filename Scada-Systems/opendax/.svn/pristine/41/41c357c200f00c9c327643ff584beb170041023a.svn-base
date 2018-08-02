@@ -1,0 +1,251 @@
+\input{format.tex}
+
+\title{OpenDAX User's Manual}
+\date{June 13, 2008}
+\author{Phil Birkelbach}
+
+
+\begin{document}
+\pagenumbering{roman}
+\maketitle
+
+\begin{flushleft}
+Copyright \textcopyright 2008 - Phil Birkelbach\linebreak
+All Rights Reserved
+\end{flushleft}
+
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+\chapter{Introduction}
+OpenDAX is an open source, modular, data acquisition and control system. It is licensed under the GPL (GNU Public License) and therefore is completely free to use and modify. OpenDAX is written primarily for Free operating systems like Linux, BSD and Darwin (Mac OS X). We are making every effort to make the code as portable as possible but these are the big three that we will do development on.
+
+OpenDAX could be used for anything from controlling the air conditioner in a home to controlling an entire industrial facility. Depending on what modules are installed and run it could be used as the firmware for a dedicated Programable Logic Controller (PLC) or a Home Automation system. It could loosely be compared to DCS (Distributed Control System) or a SCADA (Supervisory Control and Data Acquisition) system. Eventually the system would be able to scale up to a several hundred thousand tag system. At this moment the code is far to immature to be used for anything that required reliability but we hope to get it to that point sooner or later. Much will depend on how many developers take up the challenge to help work on the code.
+
+DAX stands for Data Acquisition and eXchange. The system works by combining a backend program (opendax) a library (libdax) and set of modules. The opendax server handles the managing of the database, the messaging and the modules.  The database is an area of memory that holds the real time data that is used throughout the system.  It could hold the temperature or pressure of a process, the status of a switch or some command data from the Human Interface to a logic module.  Messaging (in this context) is the low level communication between modules and the server or between modules.  Actually there isn't any intermodule communication\footnote{There is nothing stopping two modules from communicating to each other with their own protocol} in the system but rather all communication is between the modules and the server and the server can act as a proxy to forward those messages to another module.
+
+The server is also reponsible for starting, stopping and managing the modules.  The modules are simply process that run as children to the server.\footnote{It is possible for other processes to start modules but the server will have much less control over them}  The server can automatically start these modules in the proper order and can also restart them if they crash.
+
+The modules do all the work and communicate with the opendax server through the libdax library. There will be modules for reading and writing to I/O points, data logging, alarming, machine interface, and logic. It will even be possible to use programs that were never written to be OpenDAX modules. These programs can be started from the OpenDAX process and have their STDIN and STDOUT piped to other modules so that they can be controlled. This will keep the OpenDAX system from having to reinvent the wheel if there is an existing program to do the work. Some examples might be using 'dc' for abitrary precision math, or mpg123 as a tone generator. Any program that you can interact with from the command line should work with OpenDAX as a module. 
+
+\chapter{Getting Started}
+\input{install.tex}
+
+\section{Configuration and Testing}
+
+Once you get OpenDAX installed on the system it might be a good idea to run the test module.  First we will have to get the server running.  Go to the configuration directory \footnote{On most systems this will be \texttt{/usr/local/etc/opendax}} and copy all of the *.conf.sample files to *.conf.\footnote{At some point in the future I hope that this task will be automated by the installation script but right now I don't want to spend the time on it.}   These are the configuration files.  The primary configuration file is opendax.conf.  This file configures the OpenDAX server as well as some defaults for all modules.
+
+Many of the individual modules will have their own configuration file as well.  Some may have many different configuration files.  Each configuration file is a Lua script.  In the simplest form the configuration file would simply be a list of assignment pairs. Like this...
+\begin{verbatim}
+daemonize = false
+statustag = "_status"
+pidfile = "/var/run/opendax.pid"
+... 
+\end{verbatim}
+
+These are just examples of the kind of information that you can find in a configuration file.  Since the OpenDAX configuration engine is based on the Lua programming language you can get very creative with how these configurations are generated.  We'll cover much more of the available configuration options later in the book when we start describing individual features.  For now the defaults that are included in the sample configurations should be sufficient for our needs.
+
+Once the configuration files are in place you should be able to run the server by typing \texttt{opendax} at the command prompt.  By default the server will send itself to the background and if everything works you should simply get a number printed to the screen indicating the PID of the server's process.
+
+To test the server installation you should run the \textit{daxtest} module.  This module should be located in the build tree where you compiled the program.  If extracted and compiled from your user directory it would be in \texttt{~/opendax.x.y/modules/test}.  Simply run the \texttt{daxtest} executable.  The module will print many messages to the screen depending on configuration and what tests are being run.  Once complete you should get a message that indicates how many tests were run and how many failed.  Hopefully the number of tests that fail is zero.
+
+Since OpenDAX is not very mature at this point please let the developers know of any tests that failed.  The \textit{opendax-devel} mailing list is the best place.
+
+At this point you may want to play around with the \textit{daxc} command line client module.  This is a command line interface to the server.  Run the module by typing \texttt{daxc} at the command line.  You'll be presented with the OpenDAX Daxc command interpreter.  Start with the help command and play.  For more information see the daxc references later in this book.
+
+Now, you should be able to start configuring your system.  You may want to restart the server, since the testing module creates thousands of tags that you will probably not want as part of your system.  Before you do that however, y
+
+\chapter{The OpenDAX Server}
+
+
+\chapter{Modules}
+Modules are where all the real work gets done on an OpenDAX system.  The server is the glue that holds all the modules together but the modules are where it all happens.  The OpenDAX distribution comes with a few included modules.  They are described in this chapter.  If you have received modules from other sources you'll have to consult the documentation that came with that module.
+
+\section{Types of Modules}
+There are several types of modules that can be used with OpenDAX some of the most common fall into a few categories.
+
+\begin{itemize}
+\item I/O Modules
+\item Logic Modules
+\item Interface Modules
+\item Recording Modules
+\end{itemize}
+
+\subsection*{I/O Modules}
+I/O Modules connect OpenDAX to the real world. These could include communication modules to retrieve information from Programable Logic Controller (PLC's) via Modbus or EthernetIP.  They could also be a way of reading the state of ports on the host computer itself, like the parallel port.  Just about any method of reading real time\footnote{The term 'real time' is somewhat arbitrary depending on time resolution required.  In this context we are talking about taking the measurements in the current time but these could be seconds old} information would qualify.
+
+\subsection*{Logic Modules}
+Logic Modules are just what the name suggests.  This is where the user would create the logic that manipulates the various tags in the system.  It could be a Lua scripting module or a Ladder Logic interpreter.  It could even be a module that was custom written in 'C' for a very specific purpose.  At the moment the only Logic module that is included in the OpenDAX distribution is the daxlua Lua scripting module.
+
+\subsection*{Human Interface Modules}
+The most common Human Interface Module would be one that displayed graphic screens that would indicate various values from the OpenDAX database and allow the user to control different parts of the process by changing values or clicking on icons.
+
+Human interfaces could also be textual interface where commands could be entered at the command line.
+
+\subsection*{Recording Modules}
+A Recording Module would probably be some kind of event recorder or data historian.
+
+\section{Generic Module Configuration}
+There are many options to be configured for each of the different modules.  For those, consult the section that describes the module that you are interested in.  There are a few options that are common to all modules and they are described here.
+
+There are three places that modules recieve configuration information.
+
+\begin{itemize}
+\item The main opendax.conf configuration file
+\item The module configuration file
+\item Command line arguments
+\end{itemize}
+
+These sources are listed in order of increasing priority.  For example, if the configuration option is set on the command line as an argument it will override that same option given in either of the two configuration files.  If it is set in the module configuration file and the opendax.conf file the module configuration file will have precedence.
+
+The main \emph{opendax.conf} configuration file is the same file that is used to configure the serverr.  It will most often contain configuration information that would be common to all modules that would be tedious to duplicate for every module in the system.  Information like what the server's IP address and port number are or what kind of event logging the system will do would be candidates for the \emph{opendax.conf} file.
+
+The module configuration file is a file that will most likely be named after the module.  For instance the configuration file for the \emph{daxlua} module is called \emph{daxlua.conf}.  These files would contain information that is specific to each module.  The \emph{daxlua} configuration contains the location of the script files to execute as an example.
+
+The common configuration options are...
+
+\begin{itemize}
+\item daemonize
+\item socketname
+\ldots not finished yet
+\end{itemize}
+
+The OpenDAX server and most of the modules use the Lua scripting language as the configuration file format.  The configuration files are actually executed within the server or modules process as a Lua script.  Generally the configuration is given by simple key/value pairs such as \ldots
+
+\begin{verbatim}
+daemonize = 1
+socketname = "/tmp/opendax"
+min_buffers = 64
+\end{verbatim}
+
+This may be sufficient for many systems but the Lua configuration system in OpenDAX is far more powerful than that.  It is also possible to import other configuration files, make decisions with \emph{if} statements, loop with \emph{for} or \emph{while}.
+
+<<insert Lua tutorial in here somewhere>>
+
+When the configuration file is read a global variable named \emph{calling\_module} is set to a string equal to the module's name.  This indicates to the configuration script which module is currently running the script.  You can use the variable to have multiple module configurations in a single file.  This makes it possible to separate configuration information based on function instead of by module.  For example, it would be easier to have all of the configurations for a set of flowmeters in a file called \emph{flowmeters.lua} and then include that file in each module that requires it.  The variable \emph{calling\_module} can then be used within that configuration file to determine whether it is configuring the modbus module or the historical logging module.
+
+Here is an example \ldots
+
+\begin{verbatim}
+--Global data that is used throughout
+flowmeters = {}
+flowmeters[1] = {}
+flowmeters[1].tagname = "FT_0101"
+flowmeters[1].description = "Inlet Flow to Plant"
+flowmeters[1].node    = 1
+flowmeters[2] = {}
+flowmeters[2].tagname = "FT_0102"
+flowmeters[2].description = "Outlet Flow from Plant"
+flowmeters[2].node    = 2
+...more flowmeters
+
+if calling_module == "modbus" then
+  for i=1,10 do
+    --use .tagname and .node to configure modbus commands
+  end
+end
+
+if calling_module == "logger" then
+  for i=1,10 do
+    --use .tagname and .description to configure the logger
+  end
+end
+
+if calling_module == "alarm" then
+  for i=1,10 do
+    --use .tagname and .description to configure the alarms
+  end
+end
+\end{verbatim}
+
+This construct gives the application developer a lot of flexibility in how he/she generates configurations for each particular application.
+
+\chapter{Command Line Client Module}
+The command line client module is called 'daxc'.  It is useful for debugging and examining or manipulating OpenDAX data in real time.  It can also be used for automating some OpenDAX tasks from a shell script.  It can be run interactively, it can read input from STDIN or a filename can be passed to it that has lists of daxc commands to execute.
+
+\section{Configuration}
+There is very little configuration that needs to be done to the daxc module.  The general configuration that is needed for all modules such as server address, ports etc are all that is really required.  There are a few extra command line options that can be used.
+
+\subparagraph*{-f, --file}
+Following '-f' or '--file' with the name of a file will cause daxc to open that file and run the commands in that file.
+
+\subparagraph*{-x, --execute}
+The execute options should be followed by a command that is to be executed by daxc.
+
+\subparagraph*{-i, --interactive}
+When the module is started with the -f or -x options the default behavior of the module is to exit when finished with those commands.  If this option is used the program will enter interactive mode after those commands are issued.
+
+\subparagraph*{-q, --quiet}
+Suppresses some output of the program while it is executing a file or a command line option.  It does nothing for interactive mode.  This is useful for running the module from shell scripts. 
+
+\section{Commands}
+
+\subsection{list}
+The \textit{list} command lists information about tags and datatypes.  If the command is given no arguments it will simply list all of the tags in the system.  If followed by the subcommand \textit{type} it will list all of the compound data types that are configured in the currently running system.  If \textit{type} is followed by the name of one of those compound data types it will list the members of the cdt and their data type.
+
+\subsection{cdt}
+\begin{verbatim}
+Usage:
+daxc>cdt name m1name m1type m1count [m2name] [m2type] [m2count] [...]
+\end{verbatim}
+The \textit{cdt} command is used to create a compound data type.  The command should be followed by the name of the new data type and then as many member triplicates as are needed to define the type.  The triplicates include the name of the cdt member the datatype of that member and the count for the member.  For example...
+
+\begin{verbatim}
+daxc>cdt newType myInt INT 1 myDint DINT 10 myBool BOOL 32
+\end{verbatim}
+
+This would create a new compound datatype with three members.  The first member a single INT named myInt the second an array of 10 DINT's named myDint and the last one is an array of 32 BOOLs named myBool.
+
+You can put as many triplicates after the name as needed to define the cdt.  The cdt cannot be redefined, once it is created that's it.  It'll be possible to delete unused types at some point but that feature is not yet implemented.
+
+\subsection{add}
+\begin{verbatim}
+Usage:
+daxc>add tagname type count
+\end{verbatim}
+
+Adds a tag to the system.  The command should be followed by the name of the new tag, the data type of the new tag and the count for the size of the tag.
+
+\subsection{read}
+\begin{verbatim}
+Usage:
+daxc>read tagname [count]
+\end{verbatim}
+
+The read command should be followed by the tag that is to be read.  At this point in time the tag should be a base data type tag.  This means that if you enter the name of a tag that resolves to a CDT, then read will fail with an error.  At some point the ability to read the entire tag will be implemented but at this point the string passed to read should resolve to a base type.  The count argument can be given if only a subset of the tags are to be read.
+
+\subsection{write}
+\begin{verbatim}
+Usage:
+daxc>write tagname value 1 [value2] [...]
+\end{verbatim}
+
+\subsection{db}
+\begin{verbatim}
+Usage:
+daxc>db tagname [count]
+\end{verbatim}
+
+\subsection{help}
+\begin{verbatim}
+Usage:
+daxc>help [command]
+\end{verbatim}
+
+The \textit{help} command followed by the name of another command will list information about using that command. Otherwise it simply prints a list of commands that help is available on.
+
+\subsection{exit}
+\begin{verbatim}
+Usage:
+daxc>exit
+\end{verbatim}
+The \textit{exit} command simply exits the daxc module.
+
+\chapter{Modbus Communications Module}
+
+\chapter{Lua Scripting Module}
+
+
+\chapter{Module Development}
+
+\end{document}

@@ -1,0 +1,30 @@
+Import('*')
+import os
+
+
+binary='libxml2'
+env['PDB']=binary+'.pdb'  #debug info on when buidling on windows
+
+#files
+files=Pattern(src_dir  = '.', includes = ['*.cpp','*.c'], 
+		excludes=['*\\*','*/*','test*.c','run*.c','xmllint.c','xmlcatalog.c']).files()
+
+if env ['PLATFORM'] == 'win32':
+	win32_build_path = os.path.join(Dir ('.').srcnode().abspath,'win32')
+	configure_command = env.Command (File ("config.h").srcnode().abspath, "", ["cd " + win32_build_path + "& cscript configure.js zlib=no iconv=no python=no ftp=no http=no"])
+	env.Alias (env ['ALIAS'], configure_command)
+else: 
+	env.Append(CPPDEFINES=['LIBXML_THREAD_ENABLED'])
+	configure_command = env.Command (File ("config.h").srcnode().abspath, "", ["cd " + Dir ('.').srcnode().abspath + "; chmod u+x configure; ./configure --without-zlib --with-threads --without-iconv --without-python --without-ftp --without-http"])
+	env.Alias (env ['ALIAS'], configure_command)
+
+env.Append(CPPDEFINES=['_CRT_SECURE_CPP_OVERLOAD_STANDARD_NAMES=1'])
+env.Append(CPPPATH=['include','include/libxml'])
+
+outputs = env.SharedLibrary(binary,files,embed_manifest=True)
+ret=[
+    outputs, 
+    Include (Pattern (src_dir='include/libxml', includes=['*.h'], sub_dir='libxml'))
+]
+Return('ret')
+

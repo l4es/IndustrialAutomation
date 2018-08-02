@@ -1,0 +1,4 @@
+on
+	(void)
+In testfloat2.c, line 31: d1 == f -- assert failed
+	0

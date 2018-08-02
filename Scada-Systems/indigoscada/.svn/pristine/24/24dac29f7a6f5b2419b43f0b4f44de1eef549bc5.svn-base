@@ -1,0 +1,34 @@
+/* XPM */
+static const char *clock_icon[] = {
+/* columns rows colors chars-per-pixel */
+"22 22 6 1",
+"  c #000000",
+". c #008080",
+"X c #808080",
+"o c #c0c0c0",
+"O c #ffffff",
+"+ c None",
+/* pixels */
+"++++++++++++++++++++++",
+"+++++++++oooo+++++++++",
+"++++++oooX..Xooo++++++",
+"+++++oXXXO..OXXXo+++++",
+"++++oXOOOO..OOOOXo++++",
+"+++oXOOOOOOOOOOOOXo+++",
+"++oXOOOOOOOOOOOOOOXo++",
+"++oXOOOOOOOOOOOOOOXo++",
+"++oXOOOOOOOOO.OOOOXo++",
+"+oXOOOOOOOOO.OOOOOOXo+",
+"+oXOOOOOOO..OOOOOOOXo+",
+"+oXOOOOOOO..OOOOOOOXo+",
+"+oXOOOOOOOOO.OOOOOOXo+",
+"++oXOOOOOOOOO.OOOOXo++",
+"++oXOOOOOOOOOO.OOOXo++",
+"++oXOOOOOOOOOOO.OOXo++",
+"+++oXOOOOOOOOOOOOXo+++",
+"++++oXOOOOOOOOOOXo++++",
+"+++++oXXXOOOOXXXo+++++",
+"++++++oooXXXXooo++++++",
+"+++++++++oooo+++++++++",
+"++++++++++++++++++++++"
+};

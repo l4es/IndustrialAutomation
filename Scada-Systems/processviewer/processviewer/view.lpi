@@ -1,0 +1,366 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <General>
+      <MainUnit Value="0"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <VersionInfo>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="2">
+      <Item1>
+        <PackageName Value="TAChartLazarusPkg"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
+    </RequiredPackages>
+    <Units Count="32">
+      <Unit0>
+        <Filename Value="view.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="view"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="15"/>
+        <UsageCount Value="170"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="unitmain.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UnitMain"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="60"/>
+        <CursorPos X="27" Y="63"/>
+        <UsageCount Value="170"/>
+        <Bookmarks Count="1">
+          <Item0 X="24" Y="580" ID="2"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="..\units\unittags.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitTags"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="106"/>
+        <CursorPos X="1" Y="123"/>
+        <UsageCount Value="170"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="..\units\unitformsconfig.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitFormsConfig"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="507"/>
+        <CursorPos X="12" Y="536"/>
+        <UsageCount Value="170"/>
+        <Bookmarks Count="2">
+          <Item0 X="13" Y="94" ID="0"/>
+          <Item1 X="32" Y="294" ID="1"/>
+        </Bookmarks>
+      </Unit3>
+      <Unit4>
+        <Filename Value="..\units\modbustcp.pas"/>
+        <UnitName Value="ModbusTCP"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="529"/>
+        <CursorPos X="21" Y="550"/>
+        <UsageCount Value="168"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\units\htmlcolorconversions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="HTMLColorConversions"/>
+        <TopLine Value="225"/>
+        <CursorPos X="30" Y="239"/>
+        <UsageCount Value="166"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\units\unitiothread.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitIOThread"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="49"/>
+        <CursorPos X="23" Y="53"/>
+        <UsageCount Value="162"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="unittagspre.pas"/>
+        <UnitName Value="UnitTagsPre"/>
+        <TopLine Value="1"/>
+        <CursorPos X="6" Y="10"/>
+        <UsageCount Value="6"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\units\unitconfig.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitConfig"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="10"/>
+        <CursorPos X="15" Y="28"/>
+        <UsageCount Value="158"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="..\units\unitaccessnames.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitAccessNames"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="127"/>
+        <CursorPos X="9" Y="151"/>
+        <UsageCount Value="158"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="C:\lazarus\lcl\lclintf.pas"/>
+        <UnitName Value="LCLIntf"/>
+        <TopLine Value="48"/>
+        <CursorPos X="26" Y="99"/>
+        <UsageCount Value="7"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="..\units\unitthreadlog.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitThreadLog"/>
+        <TopLine Value="106"/>
+        <CursorPos X="16" Y="124"/>
+        <UsageCount Value="153"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="..\units\unitregulator.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormRegulator"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UnitRegulator"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="84"/>
+        <CursorPos X="7" Y="92"/>
+        <UsageCount Value="52"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="..\units\unittimers.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitTimers"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="44"/>
+        <CursorPos X="26" Y="44"/>
+        <UsageCount Value="134"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="C:\lazarus\lcl\extctrls.pp"/>
+        <UnitName Value="ExtCtrls"/>
+        <TopLine Value="645"/>
+        <CursorPos X="3" Y="639"/>
+        <UsageCount Value="10"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="C:\lazarus\lcl\controls.pp"/>
+        <UnitName Value="Controls"/>
+        <TopLine Value="877"/>
+        <CursorPos X="5" Y="895"/>
+        <UsageCount Value="14"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="C:\lazarus\lcl\buttons.pp"/>
+        <UnitName Value="Buttons"/>
+        <TopLine Value="360"/>
+        <CursorPos X="3" Y="348"/>
+        <UsageCount Value="10"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="C:\lazarus\lcl\stdctrls.pp"/>
+        <UnitName Value="StdCtrls"/>
+        <TopLine Value="1433"/>
+        <CursorPos X="3" Y="1424"/>
+        <UsageCount Value="10"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="db\unit1.pas"/>
+        <ComponentName Value="FormID1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit1"/>
+        <TopLine Value="4"/>
+        <CursorPos X="96" Y="26"/>
+        <UsageCount Value="45"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="..\units\unitentervalue.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormEnterValue"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UnitEnterValue"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="81"/>
+        <CursorPos X="11" Y="99"/>
+        <UsageCount Value="117"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="C:\lazarus\lcl\graphics.pp"/>
+        <UnitName Value="Graphics"/>
+        <TopLine Value="1750"/>
+        <CursorPos X="20" Y="1769"/>
+        <UsageCount Value="2"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="C:\lazarus\lcl\include\winapi.inc"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="218"/>
+        <CursorPos X="1" Y="241"/>
+        <UsageCount Value="14"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="..\units\unitmotor.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormMotor"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="UnitMotor"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="68"/>
+        <CursorPos X="9" Y="92"/>
+        <UsageCount Value="67"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="C:\lazarus\fpc\2.2.4\source\rtl\inc\systemh.inc"/>
+        <TopLine Value="296"/>
+        <CursorPos X="3" Y="314"/>
+        <UsageCount Value="7"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="C:\lazarus\lcl\include\statuspanels.inc"/>
+        <TopLine Value="17"/>
+        <CursorPos X="1" Y="35"/>
+        <UsageCount Value="7"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="db\unit2.pas"/>
+        <ComponentName Value="FormID2"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit2"/>
+        <TopLine Value="1"/>
+        <CursorPos X="11" Y="7"/>
+        <UsageCount Value="13"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="C:\lazarus\lcl\forms.pp"/>
+        <UnitName Value="Forms"/>
+        <TopLine Value="51"/>
+        <CursorPos X="3" Y="69"/>
+        <UsageCount Value="9"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="C:\lazarus\lcl\include\customcheckbox.inc"/>
+        <TopLine Value="65"/>
+        <CursorPos X="1" Y="83"/>
+        <UsageCount Value="9"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="C:\lazarus\components\tachart\tasources.pas"/>
+        <UnitName Value="TASources"/>
+        <TopLine Value="1"/>
+        <CursorPos X="15" Y="18"/>
+        <UsageCount Value="11"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="C:\lazarus\components\tachart\taseries.pas"/>
+        <UnitName Value="TASeries"/>
+        <TopLine Value="22"/>
+        <CursorPos X="30" Y="40"/>
+        <UsageCount Value="10"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="C:\lazarus\components\tachart\tagraph.pas"/>
+        <UnitName Value="TAGraph"/>
+        <TopLine Value="31"/>
+        <CursorPos X="3" Y="49"/>
+        <UsageCount Value="10"/>
+      </Unit30>
+      <Unit31>
+        <Filename Value="..\units\unitver.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UnitVer"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="20" Y="5"/>
+        <UsageCount Value="22"/>
+      </Unit31>
+    </Units>
+    <JumpHistory Count="0" HistoryIndex="-1"/>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="..\units"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <UseAnsiStrings Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <SmartLinkUnit Value="True"/>
+      <Optimizations>
+        <OptimizationLevel Value="0"/>
+      </Optimizations>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <StripSymbols Value="True"/>
+        <UseExternalDbgSyms Value="True"/>
+      </Debugging>
+      <LinkSmart Value="True"/>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <CompilerMessages>
+        <UseMsgFile Value="True"/>
+      </CompilerMessages>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

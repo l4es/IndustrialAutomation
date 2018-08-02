@@ -1,0 +1,23 @@
+These libraries are used in OpenAPC software package, their sources are distributed in
+the hope that they will be useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. All the information
+given here, within the interface descriptions and within the specification are subject
+to change without notice. Errors and omissions excepted.
+
+These libraries offers different functions in a platform-independent way. They
+encapsulate common functionalities in a more general, easier to use way (like the
+network functions) or provide a standard interface to system-dependent functions
+where no general solution exists in common toolkits like wxWidgets, Qt or others (like
+the serial interface functions).
+
+There are two libraries provided: liboapc contains functions that do not depend on
+anyting else than the underlying operating system, liboapcwx depends on the wxWidgets
+toolkit.
+
+There is a preprocessor switch defined, that decides which operating system is used:
+- ENV_LINUX
+- ENV_WINDOWS
+- ENV_QNX
+In case one implements variants for other platforms a similar switch has to be used
+to encapsulate the platform-dependent part.
+

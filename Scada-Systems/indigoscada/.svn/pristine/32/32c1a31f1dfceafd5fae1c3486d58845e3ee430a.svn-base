@@ -1,0 +1,67 @@
+EiC tools:
+
+This directory will be a repository for interactive EiC routines that
+make using C interactively more pleasant. Interactive functions are
+functions that you should be able to cascaded together:
+
+		f1(f2(f3()));
+
+When dealing with functions that need to return pointers to memory you
+need to avoid creating memory leaks. There are essentially two options
+here (if you can think of more, let me know please):
+(1) they can use static memory; 
+
+	char * foo() 
+	{
+	  /* _Always add a documenting comment_
+           *    ...
+           * Returns a static char *;
+           * Therefore, don't try to free it.
+	   */
+
+	   static char *buf = NULL,*p;
+	   size_t sz;
+           ...
+	 
+           /* determine how much memory is needed
+             and then realloc */
+	    ...
+	    p = realloc(buf,sz);
+	    ...
+	    if(no_problems)
+            	return (buf=p);
+	    else 
+                return NULL
+	}
+
+or (2) they can be passed a pointer to a piece of memory:
+
+	char *foo(char * buf)
+        {
+          /* _documenting comment_
+           *  ...
+           */
+             ...
+             do_something_to_buf(buf);
+	     ...
+             if(success)
+                  return buf;
+              else
+                  return NULL;
+	} 
+                   
+
+Current contents of the tools:
+-------------------------------------------------------------
+   File                Discription
+------------------------------------------------------------
+  nxtString.c         reads strings sequential from a specified file.
+  directory.c         contains various functions for work with files.
+  nxtDirEntry.c       reads the directory entries from a specified directory
+
+
+
+
+
+
+

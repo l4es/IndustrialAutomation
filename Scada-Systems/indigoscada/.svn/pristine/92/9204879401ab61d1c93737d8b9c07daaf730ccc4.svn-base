@@ -1,0 +1,46 @@
+on
+	(void)
+Error in testerr1.c near line 5: Struct/Union member declaration error
+Error in testerr1.c near line 9: Expected ;
+Error in testerr1.c near line 11: Undeclared identifier typdef
+Error in testerr1.c near line 12: Undeclared identifier myint
+Error in testerr1.c near line 13: Illegal cast operation
+Error in testerr1.c near line 18: Declaration error
+Error in testerr1.c near line 19: Direct declarator error
+Error in testerr1.c near line 21: invalid specification
+Error in testerr1.c near line 22: Illegal storage class usage
+Error in testerr1.c near line 24: invalid specification
+Error in testerr1.c near line 25: Illegal cast operation
+Error in testerr1.c near line 26: missing { in initialisation of an array
+Warning: in testerr1.c near line 27: Array of chars is too long
+Error in testerr1.c near line 28: missing { in initialisation of an array
+Error in testerr1.c near line 29: Illegal initialisation
+Error in testerr1.c near line 30: Too many initialisers
+Error in testerr1.c near line 31: Illegal initialization: illegal address operation
+Error in testerr1.c near line 33: Illegal cast operation
+Error in testerr1.c near line 38: Parameter declaration error
+Error in testerr1.c near line 38: Missing name for Paramater 1
+Error in testerr1.c near line 39: Expected ...
+Error in testerr1.c near line 41: Struct/Union member declaration error
+Error in testerr1.c near line 47: Illegal structure operation
+Error in testerr1.c near line 51: Unknown type 'a': possible old C type declaration
+Error in testerr1.c near line 52: Expected ;
+Error in testerr1.c near line 54: Misplaced return statement
+Error in testerr1.c near line 57: Illegal storage class for parameter a
+Error in testerr1.c near line 64:  Redeclaration of parameter `funcD'
+Previously declared in: testerr1.c
+Error in testerr1.c near line 65: Illegal function definition in funcD
+Warning: in testerr1.c near line 66: Empty function definition
+Error in testerr1.c near line 69: Expected  ; 
+Error in testerr1.c near line 75: Illegal macro identifier
+Error in testerr1.c near line 77: unbalanced "
+Error in testerr1.c near line 77: Missing "
+Error in testerr1.c near line 77: failed to open include file stdio.
+Error in testerr1.c near line 78: Missing >
+Error in testerr1.c near line 78: failed to open include file stdio.
+Error in testerr1.c near line 83: Re-declaration of macro TESTY
+Error in testerr1.c near line 84: Unmatched #else
+Error in testerr1.c near line 86: Unmatched #endif
+Error in testerr1.c near line 93: unbalanced "
+Error in testerr1.c near line 96: unbalanced "
+Error: clean up forced

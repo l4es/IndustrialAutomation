@@ -1,0 +1,23 @@
+GCC=i686-pc-mingw32-g++
+
+CCOMPILER=$(GCC) -Wall -pedantic -Wno-unused -g0 -O2 -D_REENTRANT -DENV_WINDOWS -DENV_BEAM -I .  -I .. -I../liboapc/ -I../plugins
+
+LIBS = -lws2_32 -L../ -loapc
+
+EXECUTABLE=../flowplugins/libio_scanctrl_stepper.dll
+
+LINK=$(GCC) -shared
+
+OBJECTS = libio_scanctrl_stepper.o
+
+default: $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
+	$(LINK) $(SYSLDFLAGS) $(LDFLAGS) -o $(EXECUTABLE) $(OBJECTS) $(LIBS) 
+
+%.o: %.cpp
+	$(CCOMPILER) -c $< -o $@
+
+clean:
+	rm -f $(OBJECTS) $(EXECUTABLE)
+

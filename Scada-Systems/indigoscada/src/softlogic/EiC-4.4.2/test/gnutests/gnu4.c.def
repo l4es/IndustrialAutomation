@@ -1,0 +1,6 @@
+on
+	1
+Warning: in gnu4.c near line 2: Empty function definition
+Warning: in gnu4.c near line 15: Unreachable code at line 14
+Test passed (if it compiled)
+	0

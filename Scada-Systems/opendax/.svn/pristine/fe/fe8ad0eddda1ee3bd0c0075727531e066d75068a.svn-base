@@ -1,0 +1,186 @@
+\chapter{Configuration and Initialization}
+The first thing that the module code should do is read it's configuration.  It is important to note that the module will have to read some configuration even if the module itself does not have any configurable options.  This is because the libdax library will need some configuration information to help it know how to communicate with the server.
+
+There are three methods for the module to receive configuration information.  The main \textit{opendax.conf} contains configuration information for the server as well as any configuration that is common to all the modules on the local host machine.  Each module may have it's own configuration file that can be read and each module can receive configuration information passed as command line arguments.
+
+There is a precedence between these configurations.  If a configuration attribute is present on the command line it will take precedence over that same attribute given in either of the configuration files.  Likewise if an attribute exists in both of the configuration files then the module specific file will take priority.  This gives us a way to set up global default parameters for all modules such as IP address and communication port of the server in the \textit{opendax.conf} file.  Then if any of the global data needs to be different for any given module, that information can be changed in the module specific file.  Further, if the information needs to be different for any given invocation of the module that can be passed on the command line.
+
+Configuration is made up of attributes.  An example of an attribute would be the name of the local unix domain socket that the module should use to communicate to the server.  The attribute name might be \texttt{socketname} and the value \texttt{/tmp/opendax}\footnote{In fact these are the defaults for the local socket configuration}.  There are many attributes that are built into the system that will always need to be configured.  These are necessary for the basic functionality.  The \texttt{socketname} attribute is just one example.  The module developer can add as many attributes as are needed for configuring the functionality of the given module.  The libdax library contains interfaces to help the module developer with all of this.
+
+If the configuration data is more complex than simply assigning a value to an attribute the is a callback function mechanism built into the configuration system.  The configuration files in OpenDAX are nothing more than Lua scripts.  The libdax library gives the module programmer the ability to create functions that can be called from the script.  These functions are programmed in the module code just like any other Lua extension function.  The full description of how to write Lua extension functions is beyond the scope of this book, but we will give some simple examples that would help with basic configuration.
+
+\section{Initialization}
+
+The first thing that any module will have to do is allocate and initialize a \verb|dax_state|\index{dax\_state object} object.  This is simply a matter of calling the \verb|dax_init()|\index{dax\_init() function} function.  For example see the following code.
+
+\begin{verbatim}
+dax_state *ds;
+
+ds = dax_init("MyModule");
+if(ds == NULL) exit(-1);
+\end{verbatim}
+
+First we declare a pointer to a \verb|dax_state| object.  This is an opaque pointer that you program will need to maintain for it's entire lifetime.
+
+Once the pointer is declared we use the \verb|dax_init()| function to allocate it and initialize it.  The only real error that this function can really have is memory allocation failure, in which case it will return NULL.  Your module should probably log an error an exit gracefully.  The string that is passed to \verb|dax_init()| is the name of your module as it will be seen throughout the system.  It can be overridden by names gathered during the configuration process.  We'll talk about this later.
+
+Once we have initialized the \verb|dax_state| we need to allocate and initialize the configuration information in the \verb|dax_state|.  We do this with the \verb|dax_init_config()| \index{dax\_init\_config() function}function.  We'll add the following lines to our module code\ldots
+
+\begin{verbatim}
+int result;
+
+result = dax_init_config(ds, "MyModule");
+if(result) exit(result);
+\end{verbatim}
+
+The first argument to \verb|dax_init_config()| is the pointer to the \verb|dax_state| that we allocated earlier.  We will be seeing this a lot.  Just about every function in the library takes this pointer as the first argument.
+
+The second argument is the module name.  This should be the same as was passed to \verb|dax_init()|.  It is used differently in \verb|dax_init_config()|.  Here it will be used to determine the filename of the modules configuration file\footnote{This is probably not the best way to do this so we reserve the right to change it in the future}.  For most modules this should probably be the same as the module name.
+
+\section{Creating Attributes}
+Attributes\index{Attributes} are the names that are given the different options that you can create in an OpenDAX configuration.  For instance, your \textit{fooserial} module will need to know what serial port to use, what baud rate to use and the communications settings it will need.  These would be attributes that you would like for the libdax library configuration system to find for you.
+
+To add and attribute to the configuration state we use the \verb|dax_add_attribute()|\index{dax\_add\_attribute() function} function.  Here is the prototype.
+
+\begin{verbatim}
+int dax_add_attribute(dax_state *ds, char *name, char *longopt,
+                      char shortopt, int flags, char *defvalue);
+\end{verbatim}
+
+The \textit{name} argument is the name that will be used for the attribute.  It would be the left side of the attribute assignment in the configuration file.  For instance if we use \texttt{"baudrate"} for our attribute name the configuration file might look like\ldots
+
+\begin{verbatim}
+baudrate = 9600
+\end{verbatim}
+
+The \textit{longopt} argument is the long name of command line argument that would represent this attribute.  If we use \texttt{"baud-rate"} for \textit{longopt} then we might set the baud rate by the following command\ldots
+
+\begin{verbatim}
+$ fooserial --baud-rate=9600
+\end{verbatim}
+%$
+The \textit{shortopt} argument is a single character that works just like \textit{longopt}\footnote{For more information on how these two types of command line options work, refer to the documentation for the \textit{getopt} library.}
+
+The \textit{defvalue} argument is the default value that will be assigned to this attribute if it is not set by any of the three configuration mechanisms.
+
+The \textit{flags} argument is a bitwise OR {|} of the following definitions \ldots
+
+\begin{tabular}{|l|l|}
+\hline \verb|CFG_ARG_NONE| & No Arguments \\ 
+\hline \verb|CFG_ARG_REQUIRED| & Argument is required \\ 
+\hline \verb|CFG_ARG_OPTIONAL| & Argument is optional \\ 
+\hline \verb|CFG_CMDLINE| & Parse Command line \\ 
+\hline \verb|CFG_DAXCONF| & Parse opendax.conf file \\ 
+\hline \verb|CFG_MODCONF| & Parse [module].conf file \\ 
+\hline \verb|CFG_NO_VALUE| & Don't store a value, only call callback \\ 
+\hline 
+\end{tabular} 
+
+The first three flags correspond to the \textit{getopt} library's usage of command line arguments.  If there should be no arguments to the attribute then \verb|CFG_ARG_NONE| should be used.  This would come in handy if the argument is simply a flag of some kind.  The -V option to many programs simply cause the program to print it's Version number and exit, is one example of an option that would take no arguments.
+
+If an argument is required the flag \verb|CFG_ARG_REQUIRED| should be used.  The baud rate option in the above example would be pretty meaningless without a number of some kind to use as the baud rate.
+
+The \verb|CFG_ARG_OPTIONAL| flag is used for an attribute that doesn't need an argument but where one might make sense.  A verbosity option when used alone might simply increase the verbosity of the programs output slightly but passing a numerical argument would increase the verbosity by that amount.
+
+The next three flags, \verb|CFG_CMDLINE|, \verb|CFG_DAXCONF| and \verb|CFG_MODCONF| have to do with which of the three configuration sources this particular attribute could be found.  It may make sense to search for an attribute on the command line, in the \textit{opendax.conf} file and in our \textit{fooserial.conf} configuration file.  In this case we would put all three values in our \textit{flags} argument.  It may however only make sense to see command line options.  In this case we would simply use \verb|CFG_CMDLINE|. 
+
+The final flag,\verb|CFG_NO_VALUE| can also be OR'd with the others.  This is used in the special case where we are not actually interested in any value that might be passed to the attribute in a configuration file.  The configuration system has the ability to call a callback function when attributes are set in configuration files.  If this callback function is the only thing that we are interested in, we can use this flag to save a little memory.
+
+There are some attributes that are predefined for use by the libdax library.  You cannot use any of the names, long options or short options of these attributes.  These are listed in the following table.
+
+\begin{tabular}{|l|l|c|}
+\hline \textbf{name} & \textbf{longopt} & \textbf{shortopt} \\
+\hline socketname & socketname & \texttt{S} \\
+\hline serverip & serverip & \texttt{I} \\
+\hline serverport & serverport & \texttt{P} \\
+\hline server & server & \texttt{s} \\
+\hline debugtopic & topic & \texttt{T} \\
+\hline name & name & \texttt{N} \\
+\hline cachesize & cachesize & \texttt{z} \\
+\hline msgtimeout & msgtimeout & \texttt{o} \\
+\hline config\footnotemark & config & \texttt{C} \\
+\hline confdir\footnotemark[\value{footnote}] & confdir & \texttt{c} \\
+\hline 
+\end{tabular} 
+\footnotetext{These are command line only attributes}
+
+If your module tries to use any of these names or options the \verb|dax_add_attribute()| function will return an error.  This list is also subject to change.  If you want to know the absolute latest version of this list see the \textit{/lib/libopt.c} source code file in the \opendax distribution.
+
+\section{Creating Callbacks}
+\begin{verbatim}
+int dax_attr_callback(dax_state *ds, char *name,
+                      int (*attr_callback)(char *name, char *value));
+\end{verbatim}
+
+The \verb|dax_attr_callback()|\index{dax\_attr\_callback() function} function is used to add a callback function to the configuration system that will be called when this attribute is set.
+
+[[Still working on this]]
+
+\section{Writing Lua Functions}
+
+\begin{verbatim}
+int dax_set_luafunction(dax_state *ds, int (*f)(void *L), char *name);
+\end{verbatim}
+
+The \verb|dax_set_luafunction()|\index{dax\_set\_luafunction() function} function is used to set a function that can be called from your module configuration script.  This gives your module a lot of power in how it is configured.  A full explanation of writing Lua functions is beyond the scope of this book.  Review the Lua documentation for more information.
+
+[[Still working on this]] 
+
+\section{Running the Configuration}
+To execute the configuration use the following function \ldots
+\begin{verbatim}
+int dax_configure(dax_state *ds, int argc, char **argv, int flags);
+\end{verbatim}
+
+The \verb|dax_configure()|\index{dax\_configure() function} function will run the configuration.  You pass this function the \textit{argc} and \textit{argv} variables that were passed to your module in \verb|main()|.
+
+The \textit{flags} argument is a bitwise OR of \verb|CFG_CMDLINE|, \verb|CFG_DAXCONF| or \verb|CFG_MODCONF|.  These do just what you would think they would do.  Depending on which of these flags that you set the corresponding configuration mechanism will be used.  To cause the module to only read from the command line you would simply set the \verb|CFG_CMDLINE| flag. If you want either of the two configuration files to be run you would set one or both of the others.
+
+\section{Retrieving Attributes}
+
+Once we have run the configuration we use the \verb|dax_get_attr()|\index{dax\_get\_attr() function} function to retrieve the values that were set.
+
+\begin{verbatim}
+char *dax_get_attr(dax_state *ds, char *name);
+\end{verbatim}
+
+This is a very simple function that takes the \textit{name} of the attribute that you want and returns a pointer to the string.  This string is allocated within the \verb|dax_state| object and should not be modified.  If your module needs to store this string for later use you should make a copy of it\footnote{The \texttt{strdup()} function works well for this}.  The pointer will point to invalid information after the configuration has been freed.  We'll discuss freeing the configuration shortly.
+
+\section{Setting Attributes} 
+
+Setting attributes may seem silly at first glance.  After all, if we already know what the configuration options should be why would we call the system to start with.  Well, remember back at the beginning of the chapter where we discussed the fact that the library needs some information to do it's job.  You can use the \verb|dax_set_attr()|\index{dax\_set\_attr() function} function to set those outside of the configuration system.
+
+\begin{verbatim}
+int dax_set_attr(dax_state *ds, char *name, char *value);
+\end{verbatim}
+
+The prototype should be pretty self explanatory.  The \textit{name} argument should point to the name of the attribute you want to set and \textit{value} should point to the value that you want the attribute to take.
+
+It is important to note that any callbacks that are associated with this attribute will be called as well.  This may have some usefulness.  Most modules will not need to set attribute values.
+
+\section{Finishing Up}
+
+Once we are done with the configuration we can use the \verb|dax_free_config()|\index{dax\_free\_config() function} function to free the configuration memory.
+
+\begin{verbatim}
+int dax_free_config(dax_state *ds)
+\end{verbatim}
+
+This function simply takes a pointer to the \verb|dax_state| object and frees the data associated with the configuration.  There are a lot of strings that are maintained by the configuration system in the library and this is nothing more than a way to free up that memory.  If your module will need access to these configuration options and you don't want to make copies then you do not need to call this function.
+
+After calling this function any strings that you received from \verb|dax_get_attr()| will no longer be valid, so you don't want to reference those pointers any longer.
+
+\section{Module Connection}
+Before we can communicate to the server we must create a connection.
+
+There are two functions that deal with module registration.
+\begin{verbatim}
+int dax_connect(dax_state *ds)
+int dax_disconnect(dax_state *ds)
+\end{verbatim}
+
+The \verb|dax_connect()| function\index{dax\_connect() function} makes the initial connection to the server, identifies the module to the server and takes care of any other initialization issues that need to be handled.  Once the module has successfully connected it can begin doing it's job.
+
+\verb|dax_connect()| returns 0 on success and an error code on failure.
+
+The \verb|dax_disconnect()| function\index{dax\_disconnect() function} informs the server that we are through and closes the connection.  It is a bad idea to let a module die without first calling \verb|dax_disconnect()|.

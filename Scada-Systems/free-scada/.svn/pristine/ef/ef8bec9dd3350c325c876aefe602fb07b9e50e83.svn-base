@@ -1,0 +1,40 @@
+﻿<ResourceDictionary
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:ScadaShell.ViewModel;assembly=ScadaShell"
+        xmlns:vw="clr-namespace:ScadaShell.View;assembly=ScadaShell"
+        xmlns:si="clr-namespace:ScadaShell.Infrastructure;assembly=ScadaShell">
+
+    <DataTemplate  DataType="{x:Type vm:LoginViewModel}">
+
+        <StackPanel Background="Gray">
+
+            <ListView ItemsSource="{Binding Path=Users}" 
+                  SelectedItem="{Binding Path=User}"  
+                  si:VirtualKeyboard.Enabled ="True"
+                  si:VirtualKeyboard.Command="{Binding LoginCommand}"
+                  si:VirtualKeyboard.Description="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=SelectedItem}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <StackPanel Orientation="Horizontal" >
+                            <Image>
+                                <Image.Source>
+                                    <BitmapImage DecodePixelWidth="20" UriSource="pack://application:,,,/User-icon.png"/>
+                                </Image.Source>
+                            </Image>
+                            <TextBlock Text="{Binding}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Cancel"  Name="button1" Command="{Binding Path=CloseViewCommand}" Width="136" />
+            <Button Content="Login"  Name="button2"  Command="{Binding Path=LoginCommand}" Width="142" />
+        </StackPanel>-->
+        </StackPanel>
+    </DataTemplate>
+
+</ResourceDictionary>

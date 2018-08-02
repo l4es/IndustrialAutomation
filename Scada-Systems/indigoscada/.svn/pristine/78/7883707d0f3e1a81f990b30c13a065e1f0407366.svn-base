@@ -1,0 +1,48 @@
+LIBRARY         LightOPC.dll
+DESCRIPTION     'LightOPC Server DLL'
+
+EXPORTS
+;    DllGetClassObject       @1 PRIVATE
+;    DllCanUnloadNow         @2 PRIVATE
+;    DllRegisterServer       @3 PRIVATE
+;    DllUnregisterServer     @4 PRIVATE
+
+    loServerRegister
+    loServerUnregister
+    loServiceCreate
+    loServiceDestroy
+    loClientCreate
+    loClientCreate_agg
+    loAddRealTag
+    loAddRealTag_a
+    loAddRealTag_b
+    loAddRealTagW
+    loAddRealTag_aW
+    loAddRealTag_bW
+    loCacheLock
+    loCacheUnlock
+    loCacheUpdate
+    loCacheTimestamp
+    loDriverArg
+    loClientArg
+    loClientName
+    loClientChain
+    loSetState
+    loSetStateW
+    loTridLast
+    loTridWait
+    loTridOrder
+    loEnumStrInsert
+    loGetBandwidth
+
+    loPropListCreate
+    loPropListAssign
+    loPropertyAdd
+    loPropertyAddW
+    loPropertyChange
+    loPropertyRemove
+
+    lo_statperiod
+    lo_filetime_to_variant
+    lo_variant_to_filetime
+    lo_variant_changetype_array

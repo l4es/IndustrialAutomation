@@ -1,0 +1,8 @@
+on
+	(void)
+READ: attempted beyond allowed access area
+Error in ::EiC:: near line 1: 
+EiC illegal storage access, file testMemErr1.c, line 7
+
+EiC::Reset Local Stack Pointer
+Error: clean up forced

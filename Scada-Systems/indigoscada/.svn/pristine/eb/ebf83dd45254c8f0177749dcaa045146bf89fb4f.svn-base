@@ -1,0 +1,167 @@
+03-05-2011
+Development of OPC client A&E 1.10 and OPC client HDA 1.20 is under way
+
+OPC DA Client limitations:
+OPC Client OPC DA has limitations in the server browsing feature.
+To fix we propose these steps:
+1) Browsing of server upto 40000 ItemsID
+2) Choosing a subset of the ItemsID
+3) The OPC DA client adds only the subset of items select in fase 2)
+4) We need to implement the configurator, in order to load from external file (.xml or .xls)
+   only the ItemsID requested
+---------------------------------------------------------------------------
+30-07-2011
+Added driver IEC 104, it is missing the protocol implementation
+
+The configuration data for iec104driver is now in PROPS table (in columns IKEY,DVAL) 
+That data should be moved to TAGS table (column PARAMS )
+
+See #ifdef TEST_OF_IEC_104_DRIVER_IS_UNDER_WAY
+---------------------------------------------------------------------------
+06-09-2011
+
+Added driver DNP3, it is in pre alpha state
+Added driver MODBUS, it is in pre alpha state
+
+OPC HDA is in pre alpha state
+---------------------------------------------------------------------------
+16-09-2011
+Made porting to qt-win-noncommercial-msvc-3.2.1.exe
+---------------------------------------------------------------------------
+17-09-2011
+Added driver IEC 101, it is in pre alpha state
+---------------------------------------------------------------------------
+15-10-2011
+Added OPC Server DA 2.0, it is missing the interface between real time data and OPC DA server
+---------------------------------------------------------------------------
+05-02-2012
+Added IEC 103 driver, it is in pre alpha state
+DNP3 now compiles with MSVC++ 6.0
+---------------------------------------------------------------------------
+11-02-2012
+Added the field "Class ID" to OPC DA, OPC AE, OPC HDA configuration windows.
+---------------------------------------------------------------------------
+12-02-2012
+dnp3master.exe runs. It needs testing with RTU. Volunteers are welcome
+It is still missing the mapping of DNP3 data types to IEC 104 IndigoSCADA internal types
+It is still missing the Inter Process Communication between the dnp3master.exe and dnp3driver.dll
+---------------------------------------------------------------------------
+21-02-2012
+With this release the real time config database has changed.
+The table TAGS has a new column UNIT.
+It is necessary to create a new configdb.fdb
+using C:\scada\init_db\rtdbver356\configdb.sql with the following create table TAGS:
+
+--tag configuration
+create table TAGS
+(
+NAME string,
+TAG string,
+UPPERALARM real8,
+UPPERWARN real8,
+LOWERWARN real8,
+LOWERALARM real8,
+UAENABLE int4,
+UWENABLE int4,
+LWENABLE int4,
+LAENABLE int4,
+RECEIPE string,
+ENABLED int4,
+PARAMS string,
+UNIT string  
+);
+create index on TAGS.NAME;
+
+---------------------------------------------------------------------------
+12-03-2012
+MPI driver added. It is composed by mpi_master.exe and mpi_driver.dll
+It needs testing with RTU. Volunteers are welcome
+It is still missing the mapping of PLC data types to IEC 104 IndigoSCADA internal types
+It is still missing the Inter Process Communication between the mpi_master.exe and mpi_driver.dll
+---------------------------------------------------------------------------
+14-03-2012
+MPI driver renamed to RFC1006
+---------------------------------------------------------------------------
+22-03-2012
+Development of OPC serverDA 2.0 is under way: opc_server_da.exe
+---------------------------------------------------------------------------
+21-04-2012
+modbus_master.exe runs.
+It needs testing with RTU. Volunteers are welcome
+The Modbus modules are modbus_master.exe and modbus_driver.dll
+It is still missing the mapping of Modbus data types to IEC 104 IndigoSCADA internal types
+It is still missing the Inter Process Communication between the mpi_master.exe and mpi_driver.dll
+-------------------------------------------------------------------------------------------------------
+02-May-2012
+Added Real Time Publisher Subscriber (RTPS) as middleware protocol for inter process communication between SCADA processes
+-------------------------------------------------------------------------------------------------------
+05-May-2012
+Added protocol configurator, based on SQLite 3 database files
+-------------------------------------------------------------------------------------------------------
+30-05-2012
+Integration of the middleware (RTPS) with protocol processes
+Implemented configurator for opc_client_da.exe and opc_client_ae.exe
+-------------------------------------------------------------------------------------------------------
+04-06-2012
+
+--tag configuration
+create table TAGS
+(
+NAME string,
+TAG string,
+UPPERALARM real8,
+UPPERWARN real8,
+LOWERWARN real8,
+LOWERALARM real8,
+UAENABLE int4,
+UWENABLE int4,
+LWENABLE int4,
+LAENABLE int4,
+RECEIPE string,
+ENABLED int4,
+IOA int4, <----------------------------- ADDED
+PARAMS string,
+UNIT string
+);
+
+OPC client DA now is working with multiple dedicated lines
+-------------------------------------------------------------------------------------------------------
+12-06-2012
+dnp3master.exe is now connected with dnp3driver.dll through RTPS in monitoring direction
+-------------------------------------------------------------------------------------------------------
+15-07-2012
+Added pthreads-w32-2-8-0 (pthreads for Win32)
+
+Added qwt-4.2.0
+
+Added part of HMI designer
+
+Maps tab is no more visible, the code is still there
+-------------------------------------------------------------------------------------------------------
+21-07-2012
+Added all the code of HMI_designer.exe
+-------------------------------------------------------------------------------------------------------
+19-08-2012
+Added other SCADA widgets
+Added popup window on HMI widgets
+-------------------------------------------------------------------------------------------------------
+26-11-2012
+Added support for multiple HMI windows
+-------------------------------------------------------------------------------------------------------
+30-11-2012
+Removed ui\map directory
+-------------------------------------------------------------------------------------------------------
+16-03-2013
+Modbus driver has been developed at the beta level
+-------------------------------------------------------------------------------------------------------
+22-06-2013
+New repository test
+-------------------------------------------------------------------------------------------------------
+21-10-2013
+Created project directory /scada/project with all project files: .ini .db .fdb .dbs .ui
+-------------------------------------------------------------------------------------------------------
+06-07-2014
+Removed ORTE and integration of RIPC
+-------------------------------------------------------------------------------------------------------
+17-04-2018
+Added Gateway functionallity

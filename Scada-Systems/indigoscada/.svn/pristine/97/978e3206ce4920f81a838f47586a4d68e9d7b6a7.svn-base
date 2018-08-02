@@ -1,0 +1,101 @@
+
+#pragma push_unsafeptr
+
+
+"<testAassert.c>";
+#include testAassert.c
+main();
+:clear testAassert.c
+
+"<testAbinary.c>";
+#include testAbinary.c
+main();
+:clear testAbinary.c
+
+"<testMemErr1.c>";
+#include testMemErr1.c
+main();
+:clear testMemErr1.c
+
+"<testarray.c>";
+#include testarray.c
+main();
+:clear testarray.c
+
+"<testarray2.c>";
+#include testarray2.c
+main();
+:clear testarray2.c
+
+"<testarray3.c>";
+#include testarray3.c
+main();
+:clear testarray3.c
+
+"<testarray4.c>";
+#include testarray4.c
+main();
+:clear testarray4.c
+
+"<testaryptr.c>";
+#include testaryptr.c
+main();
+:clear testaryptr.c
+
+"<testassign.c>";
+#include testassign.c
+main();
+:clear testassign.c
+
+"<testcomma.c>";
+#include testcomma.c
+main();
+:clear testcomma.c
+
+"<testcond.c>";
+#include testcond.c
+main();
+:clear testcond.c
+
+
+"<testctype.c>";
+#include testctype.c
+main();
+:clear testctype.c
+
+"<testeic.c>";
+#include testeic.c
+main();
+:clear testeic.c
+
+"<testenum.c>";
+#include testenum.c
+main();
+:clear testenum.c
+
+"<testerrno.c>";
+#include testerrno.c
+main();
+:clear testerrno.c
+
+"<testescape.c>";
+#include testescape.c
+main();
+:clear testescape.c
+
+"<testexit.c>";
+#include testexit.c
+main();
+:clear testexit.c
+
+"<testextern.c>";
+#include testextern.c
+main();
+:clear testextern.c
+
+
+#include <assert.h>
+assert(sizeof(int *) < sizeof(int * safe));
+
+:exit
+

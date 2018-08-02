@@ -1,0 +1,7 @@
+
+The functions in this directory have been pilfered from lcc's test suite
+and ported to EiC by Ed Breen.
+
+The functions not beginning tst have yet to be ported.
+ 
+

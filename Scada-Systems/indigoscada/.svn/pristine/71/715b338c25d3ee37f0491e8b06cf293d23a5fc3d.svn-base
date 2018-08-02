@@ -1,0 +1,39 @@
+on
+	(void)
+arccrc16.c     BF5E
+BCD: [0][0][0][0][0][0][0][0][0][0][0][1][2][3][4][5][6][7][-8]<sign>[12]
+Value is 12345678
+BCD: [0][0][0][0][0][0][0][0][0][0][-1][15][-1][13][-1][11][-1][9][-8]<sign>[13]
+Value is -1666462598
+    Double       Length     Digits    Return
+    Argument     Argument   Argument  Value    Buffer
+    ==========================================================
+     12345.670      5          0        3      12 34 5C 
+     12345.670      5          1        4      01 23 45 6C 
+     12345.670      4          3        4      23 45 67 0C 
+     12345.678      1          2        2      56 7C 
+    -12345.000      8          2        6      00 00 12 34 50 0D 
+     -1234.560      5          3        5      00 12 34 56 0D 
+      1234.567      1          3        3      04 56 7C 
+ 1:                1
+ 2:               10
+ 3:              011
+ 4:             0100
+ 5:           0 0101
+ 6:          00 0110
+ 7:         000 0111
+ 8:        0000 1000
+ 9:      0 0000 1001
+10:     00 0000 1010
+11:    000 0000 1011
+12:   0000 0000 1100
+13: 0 0000 0000 1101
+14: 00 0000 0000 1110
+15: 000 0000 0000 1111
+16: 0000 0000 0001 0000
+The Body Mass Index for height 67 inches and weight 175 pounds is 27
+Your index is above the recommended level of 24.
+To reach that level your weight must drop to 156 pounds.
+ccard.c version 1.1.D009
+ccard.c: 38437534974933: checksum incorrect (Diners Club/Carte Blanche)
+	0

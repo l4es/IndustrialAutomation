@@ -1,0 +1,57 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: TestSvr - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\Conrad\LOCALS~1\Temp\RSP9F.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /I "D:\source\source\adroit\protdrv\UTILS\MYLIB" /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /D "_AFXDLL" /FR"Debug/" /Fp"Debug/TestSvr.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\source\source\adroit\protdrv\UTILS\mod_RSsim\testsvr\working\TestCaseMBForceMultipleCoils.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\Conrad\LOCALS~1\Temp\RSP9F.tmp" 
+Creating temporary file "C:\DOCUME~1\Conrad\LOCALS~1\Temp\RSPA0.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib wsock32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/TestSvr.pdb" /debug /machine:I386 /out:"Debug/TestSvr.exe" /pdbtype:sept 
+.\Debug\DataBuffer.obj
+.\Debug\DjSocket.obj
+.\Debug\MTransportProvider.obj
+.\Debug\StdAfx.obj
+.\Debug\TestCaseLoopbk.obj
+.\Debug\TestCaseMBReadHolding.obj
+.\Debug\TestSvr.obj
+.\Debug\TraceData.obj
+.\Debug\TestSvr.res
+.\Debug\TestCaseMBForceMultipleCoils.obj
+\source\source\adroit\protdrv\UTILS\MYLIB\Debug\MYLIB.lib
+]
+Creating command line "link.exe @C:\DOCUME~1\Conrad\LOCALS~1\Temp\RSPA0.tmp"
+<h3>Output Window</h3>
+Compiling...
+TestCaseMBForceMultipleCoils.cpp
+Linking...
+Creating temporary file "C:\DOCUME~1\Conrad\LOCALS~1\Temp\RSPA1.tmp" with contents
+[
+/nologo /o"Debug/TestSvr.bsc" 
+.\Debug\StdAfx.sbr
+.\Debug\DataBuffer.sbr
+.\Debug\DjSocket.sbr
+.\Debug\MTransportProvider.sbr
+.\Debug\TestCaseLoopbk.sbr
+.\Debug\TestCaseMBReadHolding.sbr
+.\Debug\TestSvr.sbr
+.\Debug\TraceData.sbr
+.\Debug\TestCaseMBForceMultipleCoils.sbr]
+Creating command line "bscmake.exe @C:\DOCUME~1\Conrad\LOCALS~1\Temp\RSPA1.tmp"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+TestSvr.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

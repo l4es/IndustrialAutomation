@@ -1,0 +1,47 @@
+
+PLATFORM=WIN32
+PPLATFORM=P$(PLATFORM)
+
+CFLAGS=\
+	-DWIN32			\
+	-D__WIN32__		\
+	-DPLATFORM=$(PPLATFORM)	\
+	-DNO_DIRENT		\
+	-DNO_PIPE		\
+	-DNO_STAT		\
+	-DNO_UNISTD		\
+	-DNO_FCNTL		\
+	-DNO_LONG_LONG		\
+	-DNO_TERMIOS		\
+	-DNO_POSIX	\
+	-DNO_LONGLONG\
+
+
+SYS_HEADERS = stdio.h  stdlib.h errno.h\
+              stdtypes.h float.h
+
+HEADERS = signal.h limits.h
+INCDIR = ..\include
+
+all:genstdio.exe
+	genstdio.exe
+	copy stdio.h $(INCDIR)\sys
+	copy stdlib.h $(INCDIR)\sys
+	copy errno.h $(INCDIR)\sys
+	copy stdtypes.h $(INCDIR)\sys
+	copy float.h   $(INCDIR)\sys
+	copy signal.h    $(INCDIR)
+	copy limits.h    $(INCDIR)
+
+genstdio.exe :
+	cl $(CFLAGS) -o genstdio.exe genstdio.c
+
+clean:
+	-del *.obj
+	-del *.exe
+
+.c.obj :
+	cl $(CFLAGS) $<
+
+
+

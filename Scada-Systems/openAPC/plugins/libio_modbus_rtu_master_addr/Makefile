@@ -1,0 +1,10 @@
+CUSTLIBRARIES= 
+
+CUSTINCLUDES= -I../libio_modbus_rtu_master/
+	
+CUSTOBJECTS= ../libio_modbus_rtu_master/modbus_rtu_io.o
+
+include ../linux.mk
+
+
+

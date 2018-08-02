@@ -1,0 +1,15 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+   0:checkar  1 0           9:checkar  2 1        
+   1:rvalint  4 0          10:rvalint  4 0        
+   2:incint   1            11:stoval              
+   4:decint   1            13:stoval              
+   5:stoint   0 1          14:pushint  2          
+   6:reducear 1            15:call                
+   8:bump     1          
+
+x = 1 (1)
+	10

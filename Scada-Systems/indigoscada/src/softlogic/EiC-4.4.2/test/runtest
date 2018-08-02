@@ -1,0 +1,205 @@
+#! /bin/sh
+##
+VERSION__=1.6
+
+## runtest 
+## written my Martin Gonda - CSIRO, DMS, North Ryde, Sydney, Dec 95
+##
+## This script file is intended for automating the testing of EiC,
+## particularly to see if the order of execution alters the outputs, 
+## and to perform regression/diagnostics tests when EiC has been modified.
+## 
+## History:  day/month/year
+##     EJB 10/6/96 added -s to the eic call
+##     EJB 13/7/96 correct small bug in regular expr  
+##     EJB 11/2/98 added -A to the eic call
+##     EJB 31/10/98 Fixed bug with filenames and ptr conflict
+##
+ 
+if [ x`echo -n` = x-n ]; then
+	echo_n() {
+		echo "$*\c"
+	}
+else
+	echo_n() {
+		echo -n "$*"
+	}
+fi
+
+usage='
+  echo ""
+  echo "    usage:       $0 [-h] [-g [-f]] file-spec.."
+  echo " "
+  echo "    -h           provide detailed information about regression tests, etc. "
+  echo "    <no-switch>  perform regression tests (*.c and *.def files required)"
+  echo "    -g           generate default (*.def) files "
+  echo "    -f           generate functional test files (do not list code in EiC)"
+  echo "    file-spec    list of valid files (eg. test*.c or *.def) which to process"
+  echo " "
+  exit 1;
+'
+
+help='
+  echo "     $0 V$VERSION__ "
+  echo "     ------------------------------------------------------------------"
+  echo "     written my Martin Gonda - CSIRO, DMS, North Ryde, Sydney, Dec 95"
+  echo " "
+  echo "     $0 has been written to allow the user to perform regression"
+  echo "     testing of EiC with the minimum of effort."
+  echo " "
+  echo " "
+  echo "     usage:       $0 [-h] [-g [-f]] file-spec.."
+  echo " "
+  echo " "
+  echo " -h:  You would not be reading this if you did not know what -h does ;-)"
+  echo " "
+  echo "   : When any modifications to EiC are made, $0 allows the user"
+  echo "     to perform regression tests if command line switches are omitted,"
+  echo "     but if the required filename(s) specified."
+  echo "     Both *.c and *.def filenames are valid. In the case of *.def files, "
+  echo "     the .def extension is stripped and the truncated filename is used "
+  echo "     when piping input to EiC. Otherwise, the *.c files are piped into "
+  echo "     EiC."
+  echo "     $0 then compares the newly generated output files with the .def"
+  echo "     files, and differences between them (if any) are reported."
+  echo "     If differences do occur, the user should view the appropriate .diff"
+  echo "     and .out files to locate the problem (the exact filenames will be"
+  echo "     shown in the error message). File viewer such as more and less"
+  echo "     can be used."
+  echo "   * NOTE: both the input (*.c) and default (*.def) files are required"
+  echo "     for this test."
+  echo " "
+  echo " -g: Using the -g option, followed by a regular expression specifying"
+  echo "     the relevant filenames, a series of <filename>.def files is created"
+  echo "     by automatically piping out the output from EiC as the input test"
+  echo "     files are processed. The filenames specified should be valid C files."
+  echo "     If previous .def files are present, the user is prompted whether"
+  echo "     they are to be re-written."
+  echo "   * It is up to the user to check that the output written to the .def"
+  echo "     files is valid."
+  echo " "   
+  echo " -f: The -f flag indicates that a functional test only is to be performed"
+  echo "     when the default test files (*.def) are generated."
+  echo "     This means that EiC will not produce the generated code as the input"
+  echo "     files are processed (ie. :listcode command will not be issued in EiC)."
+  echo "   * NOTE: the -f flag can only be used when the -g flag is also given."
+  echo "     For regression testing (no flags/switches specified), runtest will"
+  echo "     automatically determine whether functional testing is required by" 
+  echo "     examining the first line of the .def files."
+  echo " "   
+'
+
+StartCall='
+#	echo "#define EiCTeSt" >> runtest.in
+'
+
+action=regression
+functional=off
+
+if [ $# -eq 0 ] ; then
+  eval "$usage";
+else
+  echo " "
+  while [ $# -gt 0 ] ; do
+    case "$1" in
+      -h | -H) eval "$help" | more ; exit 1;;
+      -g | -G) action=generate;;
+      -f | -F) functional=on;;
+      -*)      echo "*** Unrecognised command switch: $1"; eval "$usage";;
+      *)       if [ $functional = on ] && [ $action = regression ] ; then
+                 echo "*** Functional test option [-f] ambiguous by itself";
+                 eval "$usage";
+               fi
+               break;; 
+    esac
+    shift
+    if [ $# -eq 0 ] ; then
+      echo "*** No file names specified !"; eval "$usage";
+    fi
+  done  
+fi
+
+case "$action" in  
+  regression)
+    while [ $# -gt 0 ] ; do
+
+      name=`expr $1 : '\(.*\)\.def' \| $1`
+      if [ $name = $1 ] ; then
+        def_fname=$1.def
+        c_fname=$1
+      else
+        def_fname=$1
+        c_fname=$name
+      fi
+
+      if [ -f $c_fname ] && [ -f $def_fname ] ; then
+        rm -f runtest.in
+        functional=`head -1 $def_fname`
+        echo "$functional" > $c_fname.out
+        if [ $functional = off ] ; then
+          echo ":listcode" > runtest.in
+        fi
+	eval "$StartCall"	
+        echo "#include $c_fname" >> runtest.in
+        echo ":exit" >> runtest.in 
+        echo_n "Performing regression test on file: $c_fname " ;
+        eic -sA -DEiCTeStS < runtest.in 2>&1| grep -vw pushptr 1>>$c_fname.out 2>&1
+        diff -w $def_fname $c_fname.out > $c_fname.diff
+        if [ -s $c_fname.diff ] ; then
+          echo "- test failed"
+          echo "*** See files $c_fname.out and $c_fname.diff for differences"  
+        else
+          echo "- test passed"
+          rm -f $c_fname.diff $c_fname.out 
+        fi 
+      else
+        echo_n "*** Cannot perform test, "
+        echo "file $def_fname or $c_fname not found"
+      fi
+      shift
+      #rm -f runtest.in
+    done
+    echo " ";;
+ 
+  generate) 
+    while [ $# -gt 0 ] ; do
+      c=y
+      if [ -f $1.def ] ; then
+        echo_n "Replace existing default file $1.def (y/n)? " ;
+        read c
+      fi
+      if [ $c = y ] ; then
+        if [ -f $1 ] ; then
+          rm -f runtest.in
+          echo "$functional" > $1.def
+          if [ $functional = off ] ; then
+            echo ":listcode" > runtest.in
+          fi
+	  eval "$StartCall"	
+          echo "#include $1" >> runtest.in
+          echo ":exit" >> runtest.in
+          echo_n "Generating default file $1.def " ;
+          eic -sA -DEiCTeStS < runtest.in 2>&1 | grep -vw pushptr 1>>$1.def 2>&1
+          echo "- done"
+        else
+          echo "*** Cannot generate $1.def, file $1 not found"
+        fi
+      else
+        echo "*** Default file $1.def not replaced"
+      fi         
+      shift;
+    done
+    echo " ";;
+
+esac
+
+rm -f runtest.in
+
+
+
+
+
+
+
+
+

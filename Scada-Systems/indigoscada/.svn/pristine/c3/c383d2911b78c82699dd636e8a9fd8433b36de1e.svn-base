@@ -1,0 +1,125 @@
+DlgEdit:v1.2:Dialog:
+Dialog {
+	ClassHeader {SelectPrinterDlg.h}
+	ClassSource {SelectPrinterDlg.cpp}
+	ClassName {SelectPrinterDlg}
+	DataHeader {SelectPrinterDlgData.h}
+	DataSource {SelectPrinterDlgData.cpp}
+	DataName {SelectPrinterDlgData}
+	WindowBaseClass {QDialog}
+	IsModal {TRUE}
+	WindowCaption {Select Printer}
+	WindowFlags {208}
+}
+WidgetLayout {
+InitialPos {-1 -1}
+Size {310 280}
+MinSize {0 0}
+MaxSize {32767 32767}
+Grid {10}
+TextTranslated {TRUE}
+
+PushButton {
+		ToggleButton {FALSE}
+		Default {TRUE}
+		AutoDefault {TRUE}
+		IsMenuButton {FALSE}
+		Text {Ok}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {10 240 100 30}
+		Name {PushButton_1}
+		Signal {[Protected]  clicked --> OkClicked  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteButton}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {FALSE}
+		IsMenuButton {FALSE}
+		Text {Cancel}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {200 240 100 30}
+		Name {PushButton_2}
+		Signal {[Protected]  clicked --> reject  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteButton}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+ListBox {
+		DragSelect {TRUE}
+		AutoScroll {TRUE}
+		ScrollBar {TRUE}
+		AutoScrollBar {TRUE}
+		BottomScrollBar {TRUE}
+		AutoBottomScrollBar {TRUE}
+		SmoothScrolling {FALSE}
+		MultiSelection {FALSE}
+		AutoUpdate {TRUE}
+		Style {51}
+		LineWidth {2}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {20 60 270 150}
+		Name {ListBox_1}
+		Variable {List}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+Label {
+		Text {Printers Available}
+		Alignment {AlignLeft|AlignVCenter|ExpandTabs}
+		AutoResize {FALSE}
+		Margin {0}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {30 20 130 30}
+		Name {Label_1}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+
+}

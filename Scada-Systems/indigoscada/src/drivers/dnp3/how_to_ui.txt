@@ -1,0 +1,2 @@
+uic dnp3_driver_configuration.ui -o dnp3driverConfigurationData.h
+uic -impl dnp3driverConfigurationData.h dnp3_driver_configuration.ui -o dnp3driverConfigurationData.cpp

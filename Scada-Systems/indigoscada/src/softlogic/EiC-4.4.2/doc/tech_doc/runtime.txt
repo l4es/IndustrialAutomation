@@ -1,0 +1,382 @@
+		EiC RUNTIME DATA MANAGEMENT AND STRUCTURES.
+
+(not finished)
+----------------------------------------------------------------------
+In EiC there are four main data areas:
+
+	1) The symbol table, which holds the names and various
+	   information concerning objects and functions.
+	2) The global stack, which holds the stored values of the
+           objects and functions.
+	3) The runtime stack, which is used during execution to perform
+	   calculations and for holding temporary results.
+	4) The local stack, which is used to hold ARs (activation
+	    records) for each function invocations and
+	    is used for the storage of automatic tempory variables.
+
+An activation record (AR) for a function in EiC looks like:
+
+  On Runtime Stack
+------------------------      i           On local stack
+| Number of parameters |      n          ----------------
+------------------------      c          | parameter -n |
+|   code position      |      r          ----------------
+------------------------      e                ...
+|   code pointer       |      a          ----------------
+------------------------      s          | parameter -2 |
+|        bsp           |      i          ----------------
+------------------------      n          | parameter -1 |
+|        lsp           |      g          ----------------
+------------------------           bsp-> |    local  0  |
+                              m          ----------------
+                              e               ....
+                              m          ----------------
+                              o          |    local  m  |
+		              r		 ----------------   ------
+			    \ y /        |              |-->| AAA|
+			     \|/         ----------------   ------
+			      -    lsp->
+
+Functions store their parameters and local variables on the local
+stack and return values are stored on the runtime stack. Parameters
+are stored with a negative offset, while local variables are stored
+with a positive offset with respect to bsp (base stack pointer). Note
+also, not all functions get allocated an AAA array (see below).
+
+The area assigned for local arrays and local structures is designated
+AAA (area assigned to aggregates). For example, the following function
+`f':
+
+void f(int x, int y) { int i, a[1], b[1],c[1]; ... }
+
+will get assigned the following AR on the local stack (assuming 4 byte
+integers):
+
+
+	 -----  \
+      -2 | y |   |
+         -----   | Parameter slots
+      -1 | x |   |
+         -----  /
+bsp -> 0 | i |
+         -----
+       1 | a |---+
+         -----   |
+       2 | * |   |       (what is this slot being used for ?)
+         -----   |
+       3 | b |-----------+
+         -----   |       |
+       4 | c |-------------------+
+         -----   |-------|-------|--------
+       5 |AAA|- >|0|0|0|0|0|0|0|0|0|0|0|0|
+         -----   -------------------------
+lsp -> 6 |   |
+          ...
+
+Note, the slots for the local variables `a', `b' and `c' simply hold
+the start locations in the AAA array, for variables `a', `b' and `c'.
+
+----------------------------------------------------------------------
+Setting up the AAA:
+
+In setting up the AAA, which is done during EiC's parsing phase, the
+following variables are used:
+
+        /* rescursive  values */
+	int bp
+	unsigned aspot
+
+On entry into a C block, recursive values get updated and on block
+exit, they return to their previous values. The following global
+variables are also used to communicate the configuration of an AR to
+various parts of the EiC interpreter during translation:
+
+        /* globals */
+	ENV->lsp
+	unsigned ASPOT
+	unsigned ADDLOCALS
+	unsigned MASPOT
+
+
+To see how these variables are used it will be useful to trace their
+values during the parsing of the function `g', given below. Their
+values will be added in comment fields at the end of selected lines
+and will represent their values at the end of passing the particular
+line.  I will be assumed from now on, that the number of bytes in an
+`int' is 4.
+
+void g(int x, int y)
+{               //ENV->lsp=bp=aspot=ADDLOCALS=ASPOT=MASPOT=0
+		//ENV->lsp=0
+    int i;      //ADLOCALS = 1
+    int a[3];            //ASPOT=12,ENV->lsp=2, ADDLOCALS = 2
+    int b[3];            //ASPOT=24,ENV->lsp=3, ADDLOCALS = 3
+    {                       //bp=3,aspot=ASPOT=24,ENV->lsp=3
+	int c;              //ENV->lsp=4, ADDLOCALS = 4
+	int d[3];           //ASPOT=36,ENV->lsp=5, ADDLOCALS = 5
+    }                    //ENV->lsp=bp=3,
+	                 //MSPOT=ASPOT=36
+	                 //ASPOT=aspot=24,ADDLOCALS=6
+    {                       //ENV->lsp=3,bp=3
+        int e;              //ENV->lsp=4, ADDLOCALS=4
+	int f[3];           //ASPOT=36,ENV->lsp=5,ADDLOCALS=5
+     }                   //ENV->lsp=bp=3
+	                 //ASPOT=24
+}       //ENV->lsp=0,bp = 0;
+        //ASPOT = 0,ADDLOCALS=6,bp =0,MSPOT=36
+
+The variable ENV->lsp (local stack pointer) keeps track of the maximum
+number of local variables active at any given line of code. On entry
+into a block, bp (the local base pointer) is used to keep track of the
+value of ENV->lsp recursively, and on block exit `ENV->lsp' is reset
+to the value in `bp', before `bp' reverts to its previous value.
+
+On block entry, `bp' is set to `ENV->lsp' (local stack pointer) and
+aspot is set to `ASPOT' (assignment spot). As the block is being
+parsed, `ASPOT' is used to keep track of the front of the growing AAA
+array. As new aggregate data gets declared their location in AAA array
+-- allowing for proper data alignment -- will be set according to the
+current `ASPOT' value.
+
+The `MSPOT' (maximum spot) variable keeps track of the maximum space
+needed for the AAA array, and is used to define the size of the AAA
+array once the entire function has been processed.  Likewise, the
+value of `ADDLOCALS' is used to keep track of the maximum number of
+variables simultaneously active for a given function, and it is used
+to define the number of local variable slots needed for each
+function's activation record. Note, that after the function had been
+processed the value stored in `ADDLOCALS' increased by 1. This is
+because the `MSPOT' value was not zero and hence an `AR' slot must be
+reserved for the pointer to the `AAA' array. The index position of the
+`AAA' is always the highest and will only be allocated if needed.
+
+
+EiC uses a worst-case size scenario for allocating local variable
+slots and for determining the size of the AAA array.  The total space
+needed by function g's arrays is 48 bytes; that is:
+
+   48 = 4 * sizeof(int [3]); /* for arrays a, b, d and f */
+
+but the MSPOT variable only increased to 36 (3 * sizeof(int
+[3])). This is because, variables `d' and `f' are not used
+simultaneously and therefore, share the same location in the AAA
+array.  Likewise the number of locals needing unique slots in the `AR'
+is 5 rather than 7, this is because `e' and `f' will share the same
+slots with variables `c' and `d' respectively.
+
+----------------------------------------------------------------------
+RETURN STRUCTURES AND UNIONS
+
+If the function returns a structure or union then parameter -1 is
+treated as a hidden variable, and it will be used to hold the address
+of were to store the result. It is upto the calling routine to
+establish this parameter and the return statement handles the copying
+of the return struct/union to the address stored at parameter -1.
+
+Example:
+
+	div_t div(int n, int d);
+
+       AR stack
+          ...
+	 -----  \
+      -3 | d |   |
+         -----   | parameter slots
+      -2 | n |   |
+         -----  /
+      -1 | * | :-----> address of return structure/union
+         -----
+bsp -> 0 | i |
+         -----
+          ...
+
+For interpreter functions, EiC handles all this, but for builtin
+functions, the interface routine must handle it.
+
+For example, consider EiC's interface routine to the
+builtin function div:
+
+val_t eic_div(void)
+{
+    /*  rem: the return type is a structure;
+     *  therefore, the first slot is used for
+     *  house keeping by EiC
+     */
+
+    val_t v;
+    static div_t d; /* create some memory */
+
+    /* skip argument -1 and start at -2 */
+    d  = div(arg(1,getargs(),int),
+	     arg(2,getargs(),int));
+
+    /* set safe */
+    v.p.sp = v.p.p = &d;
+    v.p.ep = (char*)&d + sizeof(div_t);
+
+    return v;
+}
+
+
+----------------------------------------------------------------------
+INITIALISATIONS:
+----------------------------------------------------------------------
+
+PASSING AND RETURNING STRUCTURES AND UNIONS
+
+
+The passing and the returning of structures to and from functions are
+accomplished via the use of temporary variables. To illustrate,
+the following code will be used:
+
+	typedef struct {
+	    int a;
+	    int b;
+	}ab_t;
+
+	int A(ab_t a) {	return a.a; }
+
+	ab_t B() { ab_t c = {6,6}; return c;}
+
+
+First, consider the call A(b); to pass `b' to `A' by value rather than
+by reference, the contents of `b' must be copied to a tempory
+variable, say, `_T1'.  To accomplish this, the EiC parser will generate
+the following type of sequence:
+
+	genNxtTempory();
+	copy(_T1,b)
+	call A(_T1);
+
+
+NOT FINISHED
+
+----------------------------------------------------------------------
+HANDLING TEMPORIES
+
+----------------------------------------------------------------------
+function	Description		Public Variables
+----------------------------------------------------------------------
+getTempory	Sets up tempories
+		via calls to
+		nxtTemp
+	.........................................
+
+nxtTemp		Creates and reuses	NumTemp, CurTemp
+		tempory slots in
+		EiC's	lut
+	.........................................
+
+remTempories	Searches the entire
+		lut and unlinks
+		all q_temp types
+        .........................................
+
+clearTempories
+
+
+----------------------------------------------------------------------
+
+----------------------------------------------------------------
+HOW STRUCTURES AND UNIONS ARE STORED
+
+	Note: a union is a structure whose member array
+              is just big enough to hold its largest member
+
+(summary view only)
+
+                                           
+					   
+  In EiC's symbol table                    
+ +-------------------+ 	       	       	   
+ |   char * id       |  identifier name	   
+ +-------------------+                     
+ |  value void * p   | --> to members array
+ +-------------------+
+ | struct type_expr  |
+ |+----------------+ |
+ ||  type stuff    | |
+ |+----------------+ |
+ ||  void * inf    | -----------+
+ |+----------------+ |          |
+ +-------------------+          |
+ |  val.ival (idx)   |          |
+ +-------------------+      struct_t S
+                          +--------------+
+          # of members    |   int n      |
+                          +--------------+
+       	  member names 	  |  char **id   | --> to an array of names
+		          +--------------+
+	  member types    |  ** type     + --> to an array of types
+	                  +--------------+
+	  member address  | int * offset | --> individual offsets
+	                  +--------------+       into the members
+          any tag info    |  tag(s) info |       array
+		          +------------- +
+
+--------------------------------------------------------------------
+HOW STATIC TYPES ARE HANDLED.
+
+	All global variables have there names stored in EiC's
+        symbol table, id, and have their actual values stored in the
+        global stack
+
+	% eic -Nn
+	EiC 1> int i, by, c2;         
+                             (partial view of symbol table)
+  index    global stack           sym->id  sym->val->ival
+	 +--------------+         +--------------+
+    0	 | value for i  |  	  | i     |  0   |
+         +--------------+	  +--------------+
+    1	 | value for by |  	  | by    |  1   |
+	 +--------------+	  +--------------+
+    2	 | value for c2 |  	  | c2    |  2   |
+         +--------------+	  +--------------+
+Therefore, the value for i is obtained via something like:
+
+		global_stack[sym->val->ival].val.ival;
+As an example:
+
+	% eic -Nn
+	EiC 1> int i, by, c2;
+	EiC 2> :listcode
+	EiC 3>  i,by,c2;
+	   0:rvalint  0 0   // reference the integer at offset 0 in  stack 0
+	   1:rvalint  1 0   // reference the integer at offset 1 in  stack 0
+	   2:rvalint  2 0   // reference the integer at offset 2 in  stack 0
+	   3:halt
+
+For static variables within a function, their values are also stored on
+the global stack, but they have no symbol table entry once their
+function has been compiled into byte code.
+
+	% eic
+	EiC 1> void foo() { static int i; int b; i,b;}
+	EiC 2> :listcode
+	EiC 3> :show foo
+	foo -> Func (
+		...
+		) returning void
+		   0:checkar  1 0  // check for space for 1 automatic variable
+		   1:rvalint  1 0  // reference the integer at offset 1 in stack 0
+		   2:rvalint  0 1  // reference the integer at offset 0 in stack 1
+		   3:eicreturn
+				  N.B that the offset into stack 1 is relative
+                                      to the position of bsp (see above)
+	...
+
+-----------------------------------------------------------------------------
+HOW FUNCTIONS ARE STORED
+	
+	
+
+
+
+
+
+
+
+
+
+
+

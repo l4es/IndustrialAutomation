@@ -1,0 +1,29 @@
+/* XPM */
+static const char *table_xpm[] = {
+/* width height num_colors chars_per_pixel */
+"    16    16        6            1",
+/* colors */
+". c #000000",
+"# c #ffffff",
+"a c #808000",
+"b c #c0c000",
+"c c #ffffc0",
+"d c None",
+/* pixels */
+"dddddddddddddddd",
+"dddddddddddddddd",
+"dddddddddddddddd",
+"dddddddd...ddddd",
+"ddddddd.###..ddd",
+"dddddd.##b###..d",
+"ddddd.##b######.",
+"dddd.#c###b###b.",
+"ddd.ccc######b.d",
+"dd.cc#cc##c#b.dd",
+"d.ccccc#c##b.ddd",
+"d..accccc#b.dddd",
+"ddd..acccb.ddddd",
+"ddddd..ab.dddddd",
+"ddddddd..ddddddd",
+"dddddddddddddddd"
+};

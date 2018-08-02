@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Mango - Open Source M2M - http://mango.serotoninsoftware.com
+    Copyright (C) 2006-2011 Serotonin Software Technologies Inc.
+    @author Matthew Lohbihler
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see http://www.gnu.org/licenses/.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" 
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util-4.2.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.2.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+               
+    <context:annotation-config/>
+    <context:component-scan base-package="com.serotonin,br.org.scadabr" />
+    <context:load-time-weaver/>
+    <context:spring-configured/>
+    
+    <!-- Configures the annotation-driven Spring MVC Controller programming model.
+    Note that, with Spring 3.0, this tag works in Servlet MVC only!  
+    See Spring Reference 15.12 Configuring Spring MVC
+    @ http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/mvc.html#mvc-annotation-driven-->
+    <mvc:annotation-driven />
+    
+    <mvc:resources mapping="/index.html" location="/index.html" />
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources mapping="/icons/**" location="/icons/" />
+    <mvc:resources mapping="/images/**" location="/images/" />
+    <mvc:resources mapping="/soundmanager2.swf" location="/soundmanager2.swf" />
+    <mvc:resources mapping="/favicon_small.ico" location="/favicon_small.ico" />
+    <mvc:resources mapping="/audio/**" location="/audio/" />
+
+    <!-- Without the following adapter, we'll get a "Does your handler implement a supported interface like Controller?"
+    This is because mvc:annotation-driven element doesn't declare a SimpleControllerHandlerAdapter
+    For more info 
+    See http://stackoverflow.com/questions/3896013/no-adapter-for-handler-exception 
+    See http://forum.springsource.org/showthread.php?t=48372&highlight=UrlFilenameViewController -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+    
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
+
+    <!--bean class="com.googlecode.jsonrpc4j.spring.AutoJsonRpcServiceExporter"/-->
+   
+    <!-- i18n TODO overhaul this to use userSessionContextBean ...  -->
+    <bean id="localeResolver" class="br.org.scadabr.web.i18n.LocaleResolver"/>
+  
+    <bean id="messageSource" class="br.org.scadabr.i18n.MessageSource">
+        <property name="basename">
+            <value>messages</value>
+        </property>
+    </bean>
+
+  <!--bean id="jackson2ObjectMapperFactoryBean" class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
+   <property name="featuresToEnable">
+     <array>
+       <util:constant static-field="com.fasterxml.jackson.databind.SerializationFeature.WRAP_ROOT_VALUE"/>
+       <util:constant static-field="com.fasterxml.jackson.databind.SerializationFeature.CLOSE_CLOSEABLE"/>
+       <util:constant static-field="com.fasterxml.jackson.databind.MapperFeature.USE_ANNOTATIONS"/>
+     </array>
+   </property>
+   <property name="featuresToDisable">
+     <array>
+     </array>
+   </property>
+  </bean-->  
+  
+    <!--bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper" /-->    
+
+    <!--bean id="jackson2ObjectMapperFactoryBean" class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean"
+          p:autoDetectFields="true"
+          p:autoDetectGettersSetters="true"/-->
+          <!--p:failOnEmptyBeans="false"
+          p:annotationIntrospector-ref="jaxbAnnotationIntrospector"/>--> 
+
+    <!--bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="objectMapper">
+            <bean id="jackson2ObjectMapperFactoryBean" class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean"
+                  p:autoDetectFields="true"
+                  p:autoDetectGettersSetters="true" />
+        </property>
+    </bean-->
+
+        
+    <!--bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="objectMapper" ref="scadaBrJackson2ObjectMapperFactoryBean">
+        </property>
+    </bean-->
+
+</beans>

@@ -1,0 +1,947 @@
+﻿
+# main window
+
+Security Warning = Sicherheitshinweis
+
+Position = Position
+Insert Project = Projekt einfügen
+Import = Import
+Import 3D model = 3D-Modell importieren
+Import raster image = Bild importieren
+Save project with options = Projekt mit Optionen speichern
+Load hardware settings = Hardwareeinstellungen laden
+Load payload data = Nutzdaten laden
+Save hardware settings = Hardwareeinstellungen speichern
+Save payload data = Nutzdaten speichern
+Export as = Exportieren als
+Pen settings = Stift-Einstellungen
+Save as default configuration = Als Vorgabeeinstellungen speichern
+Load default configuration = Vorgabeeinstellungen laden
+Non-Destructive = Nicht-Destruktiv
+Group = Gruppieren
+UnGroup = Gruppierung aufheben
+
+Align left = Linksbündig ausrichten
+Centre horizontally = Horizontal zentrieren
+Align right = Rechtsbündig ausrichten
+Align top = Oben ausrichten
+Centre vertically = Vertikal zentrieren
+Align bottom = Unten ausrichten
+
+Destructive = Destruktiv
+Merge = Zusammenführen
+Split = Aufsplitten
+Optimise = Optimieren
+Reduce Geometry = Geometrie reduzieren
+&Project = &Projekt
+New = Neu
+Group to Active Split = Zu aktivem Split gruppieren
+Group to Active Move = Zu aktivem Move gruppieren
+Extrude = Tiefziehen
+Edit = Bearbeiten
+Simulate = Simulieren
+Increment = Inkrementieren
+Decrement = Dekrementieren
+Reset = Zurücksetzen
+Process = Prozess
+Simulating process = Simuliere Prozessablauf
+Estimated total process time: %f sec = Erwartete Gesamtprozesszeit: %f sec
+Write Stand Alone Data = Stand-alone Daten schreiben
+Send Stand Alone Data = Stand-alone Daten senden
+Send Named Stand Alone Data = Stand-alone Daten mit Namen senden
+Show State = Status anzeigen
+
+Vision = Vision
+Freeze Video = Bild einfrieren
+Start Video = Bildeinzug starten
+False Colours = Falschfarben
+Rainbow = Regenbogen
+WBGYR = WBGGR
+Interference = Interferenz
+Calibrate Camera = Kamera kalibrieren
+Crop Camera = Kamerabild zuschneiden
+Drop Calibration = Kalibrierung löschen
+Teach Fiducial = Marke lernen
+Load Fiducial = Marke laden
+Save Fiducial = Marke speichern
+Drop Fiducial = Marke löschen
+
+Delete Element(s) = Element(e) löschen
+Delete Selected Point(s) = Ausgewählte(n) Puntk(e) löschen
+Delete Selected Line(s) = Ausgewählte Linie(n) löschen
+Insert Point Before = Punkt voransetzen
+Insert Point After = Punkt anfügen
+Edit Coordinates = Koordinaten bearbeiten
+
+No element parameters = Element ist nicht parametrisierbar
+None = Keine(r)
+none = Keine(r)
+
+Elements = Elemente
+
+Import data = Daten importieren
+Export as CSV data = CSV-Daten exportieren
+Export as HPGL data = HPGL-Daten exportieren
+CSV Export Parameters = CSV Exportparameter
+HPGL Export Parameters = HPGL Exportparameter
+
+Displays the program information = Zeigt Programminformationen an
+Standard Pen = Standardpen
+Imported = Importiert
+Change position = Position verändern
+Rotate element = Element rotieren
+Scale freely = Frei skalieren
+Question = Frage
+Resize with single side = Einseitig skalieren
+Scale and keep aspect ratio = Skalieren und Proportionen beibehalten
+Slant element = Element parallel verzerren
+
+Group Elements = Elemente gruppieren
+UnGroup Elements = Gruppierung aufheben
+Move To Top = Zum Anfang verschieben
+Ctrl-PageUp = Strg-Bild hoch
+Move Up = Hochschieben
+Ctrl-Up = Strg-hoch
+Move Down = Runterschieben
+Ctrl-Down = Strg-runter
+Move To Bottom = Ans Ende verschieben
+Ctrl-PageDown = Strg-Bild runter
+Auto-Arrange 3D Meshes = 3D Modelle automatisch anordnen
+
+#vision fiducial/calibration panels
+
+Correct translation = Korrigiere Verschiebung
+Correct rotation = Korrigiere Verdrehung
+Recognition mode = Erkennungsmodus
+Fast = Schnell
+Precise = Exakt
+Delete selected keypoint = Selektierten Schlüsselpunkt löschen
+Undo keypoint deletion = Schlüsselpunkt wiederherstellen
+Recapture whole image = Gesamtes Bild neu einziehen
+Quality = Qualität
+
+Camera calibration = Kamerakalibrierung
+Chessboard inner corners = Schachbrett, innere Kreuzungspunkte
+Horizontal = Horizontal
+Vertical = Vertikal
+Camera adjustment = Kameraeinstellungen
+Try calibration = Versuche Kalibrierung
+Camera calibration failed! Did you really place the checkerboard correctly and specify the correct number of crossing points that are visible? = Kamerakalibrierung fehlgeschlagen! Wurde das Schachbrett wirklich korrekt plaziert und die richtige Anzahl and sichbaren Kreuzungspunkten angegeben?
+
+Camera modification = Kamerabearbeitung
+Crop image = Bild zuschneiden
+
+Did you know?\nSeveral instances of this software can be controlled remotely via the Smart Interface and a smartphone-app. Do you want to check out this app now? = Schon gewusst?\nEs ist möglich, mehrere Instanzen dieser Software aus der Ferne mit Hilfe des Smart Interface und einer Smartphone-App zu kontrollieren. Diese App jetzt ausprobieren?
+
+#draw canvas
+
+Mirror = Spiegeln
+Centre pt = Mitte
+Centre = Zentrieren
+Scale = Skalieren
+Top Left = Oben Links
+Bottom Right = Unten Rechts
+Size = Größe
+Rotation = Rotation
+Coordinates = Koordinaten
+Type = Typ
+Name = Name
+Layer = Schicht
+Pen = Stift
+Process geometry = Geometrie ausführen
+Trace data = Daten nachverfolgen
+Reference copies = Referenzkopien
+Mark loop = Markierloop
+Z-Position = Z-Position
+Characteristics = Eigenschaften
+Count = Anzahl
+Distance = Abstand
+Repeat marks = Markierwiederholungen
+Skip marks = Aussetzen beim Markieren
+Skip offset = Offset beim Aussetzen
+Number of vectors = Anzahl Positionen
+Total line length = Gesamtlinienlänge
+Process time = Bearbeitungszeit
+All layers = Alle Schichten
+Geometry = Geometrie
+Element = Element
+Splitted = Aufgesplittet
+Merged = Zusammengeführt
+Unsplittable = Nicht aufsplitbar
+
+Optimising geometry = Optimiere Geometrie
+Splitting geometry = Splitte Geometrie auf
+Geometry Reduction Parameters = Parameter Geometriereduktion
+Processing element = Bearbeite Element
+
+Could not open file! = Konnte Datei nicht öffnen!
+No valid CNCP project file! = Keine gültige CNCP-Projektdatei 
+No valid BEAMP/BEAMH/BEAMV project file! = Keine gültige BEAMP/BEAMH/BEAMV-Projektdatei 
+No valid IFF file! = Kein gültiges IFF-Format!
+Out of memory! = Nicht genug Speicher vorhanden!
+Loading failed! = Laden ist fehlgeschlagen!
+
+Default layer = Vorgabeschicht
+Top layer = Obere Schicht
+Bottom layer = Untere Schicht
+
+Primary Element = Primärelement
+Additional Geometry = Zusatzgeometrie
+Postprocessing Tool = Nachbearbeitungs-Werkzeug
+Element Group = Elementgruppe
+Data Input = Dateneingabe
+Light-Table Image = Leuchttisch-Vorlage
+Active Split Group = Gruppe aktiver Teile
+Active Move Group = Gruppe aktiver Bewegungen
+Sliced 3D Mesh = Geschnittenes 3D-Modell
+Single Slice = Einzelne Schnittebene
+Slices = Schnittebenen
+Embedded Process = Eingebetteter Prozess
+Scanner Bitmap = Scannerbitmap
+Coloured Scanner Bitmap = Farbige Scannerbitmap
+Live background = Livehintergrund
+3D Mesh = 3D Modell
+unknown = unbekannt
+
+Switch to top view (standard) = Auf Ansicht von oben umschalten (Standard)
+Switch to view from right = Auf Ansicht von rechts umschalten
+Switch to front view = Auf Ansicht von vorne umschalten
+Switch to 3D view = Auf 3D-Ansicht umschalten
+Switch to splitted view = Auf gesplittete Ansicht umschalten
+
+
+#save dialogue
+
+Save which project data? = Welche Projektdaten Speichern?
+Hardware and Workspace Settings = Hardware- und Arbeitsbereicheinstellungen
+Pens (Laser and Scanner Parameters) = Stifte (Laser- und Scannerparameter)
+Projects Elements = Projekt-Elemente
+Don't show this dialogue again = Diesen Dialog nicht noch einmal anzeigen
+
+# pen settings
+
+Append new pen = Neuen Stift anfügen
+Delete pen = Stift löschen
+Power = Leistung
+Frequency = Frequenz
+To all pens = Auf alle Stifte
+To all heads = Auf alle Köpfe
+To pen colour = Auf Stiftfarbe
+Spot size = Spotgröße
+Tool size = Werkzeuggröße
+Outside of Polygons = Außenkante von Polygonen
+Centred on Vector = Zentriert auf Vektor
+Inside of Polygons = Innenkante von Polygonen
+Draw off-movements = Sprünge zeichnen
+Use for coloured scanner-bitmaps = Für farbige Scannerbitmaps verwenden
+Pen name = Stiftname
+Use as default pen = Als Vorgabestift verwenden
+Use for pilot-laser = Für Pilotlaser verwenden
+Pen on colour = Stiftfarbe Bearbeitung
+Pen off colour = Stiftfarbe Sprünge
+Colour after marking = Farbe nach dem Markieren
+Tool on delay = Werkzeugeinschaltverzögerung
+Tool off delay = Werkzeugausschaltverzögerung
+Auto-generate delays = Verzögerungen automatisch erzeugen
+Set defaults for bitmap marking = Voreinstellungen für Bitmaps
+Pulse length = Pulslänge
+First pulse = Erster Puls
+Half period = Halbperiode
+Stand-by pulse width = Stand-By Pulslänge
+Stand-by frequency = Stand-By Frequenz
+Waveform / APD-index = Wellenform / APD-Index
+Wobble frequency = Wobbelfrequenz
+Wobble amplitude = Wobbelamplitude
+Enable sky-writing = Sky-Writing aktivieren
+Activation threshold = Aktivierungsschwellwert
+Fade-in distance = Startdistanz
+Fade-out distance = Enddistanz
+Align spot to vectors = Spot an Vektoren ausrichten
+Outside of polygons = Außerhalb von Polygonen 
+Centred on vector = Zentriert auf Vektor
+Inside of polygons = Innerhalb von Polygonen
+Do you really want to delete this pen for all heads and set default pen to elements that are using it? = Soll dieser Stift wirklich für alle Köpfe gelöscht werden? Elemente, die diesen Stift verwenden, würden auf den Vorgabestift zurückgesetzt werden!
+
+General = Allgemein
+Custom = Anpassung
+Scanner = Scanner
+Motion Axes = Bewegungsachsen
+Other Hardware = Andere Hardware
+Misc = Verschiedenes
+Laser = Laser
+Additional laser control = Zusätzliche Lasersteuerung
+
+Smart Factory = Smart Factory
+Enable Smart Interface = Smart Interface aktivieren
+Enable MQTT connection = MQTT-Verbindung aktivieren
+Machine name = Maschinenname
+Enable Hermes automatic control = Hermes automatische Steuerung aktivieren
+Previous machine = Vorherige Maschine
+Next machine = Nächste Maschine
+Conveyor axis = Achse Förderband
+Move forward = Vorwärts verfahren
+Move backward = Rückwärts verfahren
+TransportFinished distance = Abstand bei TransportFinished
+Enable Hermes remote configuration = Hermes Fernkonfiguration aktivieren
+
+The laser off delay must be longer than the laser on delay to avoid faults in laser control! = Die Laser-Ausschaltverzögerung muss länger als die Einschaltverzögerung sein um Fehler in der Lasersteuerung zu vermeiden!
+The laser off delay should be longer than the laser on delay to avoid faults in laser control! = Die Laser-Ausschaltverzögerung sollte länger als die Einschaltverzögerung sein um Fehler in der Lasersteuerung zu vermeiden!
+The mark delay must be longer than the difference between the laser off delay and the laser on delay! = Die Markier-Verzögerung muss länger sein als die Differenz aus Laserausschalt- und Lasereinschaltverzögerung!
+The "Laser" pulse length can't be bigger than the period resulting out of the "General" frequency! = Die "Laser" Pulslänge kann nicht größer als die Periodendauer der unter "Allgemein" eingestellten Frequenz sein!
+The stand-by pulse width can't be bigger than the period resulting out of the stand-by frequency! = Die Stand-By Pulslänge kann nicht größer als die Periodendauer der Stand-By Frequenz sein!
+Tracking Error = Schleppverzug
+Select type of used scanhead = Verwendeter Scankopf
+This operation will modify the current pen settings! Really continue? = Diese Operation verändert die aktuellen Stifteinstellungen! Soll wirklich fortgefahren werden?
+This operation overwrites the current settings and appends new pens!\nDo you really want to proceed with it? = Diese Operation überschreibt die derzeitigen Einstellungen und fügt neue Stiftparameter an!\nSoll wirklich fortgefahren werden? 
+This operation will set the current pen to be used for the pilot laser which will disable most of its parameters and thus makes it unusable for normal marking operations. Are you really sure you want to continue with this operation? = Diese Operation konfiguriert den aktuellen Stift zur Verwendung mit dem Pilotlaser, deaktiviert dafür die meisten seiner Parameter und macht ihn deswegen für normale Markieroperationen unbrauchbar. Soll mit dieser Operation wirklich fortgefahren werden?
+
+Choose the pens off drawing colour = Stiftfarbe für Sprünge
+Choose the pens on drawing colour = Stiftfarbe für Bearbeitungsbewegungen
+Set the resulting colour on the material after marking = Resultierende Farbe auf dem Material nach der Bearbeitung
+
+Do you want to place this element within the selected slice group instead at the end of the whole project? = Soll dieses Element innerhalb der selektierten Slice-Group abgelegt werden statt es an das Ende des Projektes anzufügen?
+
+Auto-arranging failed, please check resulting mesh positions manually = Automatisches Anordnen ist fehlgeschlagen, bitte die Positionen der 3D-Modelle manuell überprüfen!
+
+Following parameters evaluated by the wizard are no pen parameters and therefore have to be set in the related elements geometry settings manually = Die folgenden mit dem Assistenten ermittelten Werte sind keine Stiftparameter und müssen deswegen jeweils manuell in den Geometrieeinstellungen jedes Elementes gesetzt werden
+
+Do you really want to set this value to all pens? This operation can't be reverted! = Soll dieser Wert wirklich für alle Stifte gesetzt werden? Diese Operation kann nicht rückgängig gemacht werden!
+Do you really want to copy the parameters of this pen to all other scanheads? This operation can't be reverted! = Sollen wirklich sämtliche Werte dieses Stiftes zu allen anderen Scanköpfen kopiert werden? Diese Operation kann nicht rückgängig gemacht werden!
+
+# project/machine settings
+
+Machine settings = Maschineneinstellungen
+Preferred head usage = Bevorzugte Kopfnutzung
+Contour = Kontur
+Hatch = Füllmuster
+Automatic = Automatisch
+
+Working area upper left = Arbeitsbereich oben links
+Editing area upper left = Editierbereich oben links
+Working area border = Rahmen des Arbeitsbereiches
+Editing area border = Rahmen des Editierbereiches
+Expand = Vergrößern
+Move entity tree to tab pane = Elementtree in Tabbed Pane verschieben
+Security = Sicherheit
+Language = Sprache
+Automatic = automatisch
+No warning message at start-up = Keine Warnung beim Programmstart
+No license progress bar on start-up = Kein Lizenz-Fortschrittsbalken beim Programmstart
+
+Custom Dot Style = Stil für angepassten Punkt
+Polygon = Polygon
+Spiral = Spirale
+Edges/Segments = Kanten/Segmente
+Outer Radius = Äußerer Radius
+Inner Radius = Innerer Radius
+Slope = Steigung
+Draw CCW = Gegen Uhrzeigersinn zeichnen
+Inside To Outside = Von innen nach außen
+
+Scanner Controller = Scannercontroller
+Scanhead = Scankopf
+Motion Controller = Motorsteuerung
+Z-Shifter = Z-Shifter
+Process Controller = Prozesssteuerung
+Configure = Konfigurieren
+Initialise on startup = Bei Programmstart initialisieren
+Home position = Position Grundstellung
+Pilot Laser = Pilotlaser
+Pilot laser output = Pilotlaserausgang
+Mark Dialogue Opened Signal = Signal "Markierdialog geöffnet"
+Ready For Marking Signal = Signal "Bereit zum Markieren"
+Mark Dialogue Opened Signal = Signal "Markierdialog geöffnet"
+Marking Active Signal = Signal "Markieren aktiv"
+Output Port = Schnittstelle
+Invert output logic = Ausgangslogik invertieren
+Always on = Immer angeschaltet lassen
+Correction Factor = Korrekturfaktor
+Correction Offset = Korrekturoffset
+Allow mark start via external signal = Erlaube Markieren über externes Startsignal
+
+Display image on manual activation only = Bild nur nach manueller Aktivierung anzeigen
+Stop image capture on motion operations = Bildeinzug bei Achsenbewegungen stoppen
+Stop image capture during marking operations = Bildeinzug während Markieroperationen stoppen
+
+Custom Pen Parameter Name = Angepasster Penparameter
+Unit = Maßeinheit
+
+User Interface = Oberfläche
+Hardware = Ansteuerung
+Working Area = Arbeitsbereich
+Pen Parameters = Stiftparameter
+
+Part Counter = Teilezähler
+
+Choose the working area border colour = Rahmenfarbe für Arbeitsbereich auswählen
+Choose the editing area border colour = Rahmenfarbe für Editierbereich auswählen
+
+No scanner controller card was configured for use from within the application, direct marking operations will not be possible! = Es wurde keine Scannerkarte zur Benutzung aus der Applikation heraus konfiguriert, direkte Markieroperationen sind nicht möglich!  
+The output configured to control the pilot laser is already in user by the scanner controller card! Please choose an other one for proper operation. = Der Ausgang, der zur Ansteuerung des Pilotlasers ausgewählt wurde, wird bereits von der Scannerkarte benutzt! Bitte wählen Sie einen anderen Ausgang.
+The output configured for marking active output signal is already in user by the scanner controller card! Please choose an other one for proper operation. = Der Ausgang, der zur Ausgabe des Signals "Markieren aktiv" ausgewählt wurde, wird bereits von der Scannerkarte benutzt! Bitte wählen Sie einen anderen Ausgang.
+The output configured for marking ready output signal is already in user by the scanner controller card! Please choose an other one for proper operation. = Der Ausgang, der zur Ausgabe des Signals "Bereit zum Markieren" ausgewählt wurde, wird bereits von der Scannerkarte benutzt! Bitte wählen Sie einen anderen Ausgang.
+Motion controller could not be accessed, additional motions not possible! = Zugriff auf Motorsteuerung war nicht erfolgreich, keine zusätzlichen Bewegungsabläufe möglich!
+Video controller could not be accessed, image capturing not possible! = Zugriff auf Videogerät war nicht erfolgreich, kein Bildeinzug möglich!
+Configured scanner controller card could not be found, laser marking not possible! = Eingestellter Scannercontroller konnte nicht gefunden werden, keine Lasermarkieroperation möglich!
+Scanner controller card could not be accessed, laser marking not possible! = Zugriff auf den Scannercontroller war nicht erfolgreicht, keine Lasermarkieroperation möglich!
+Laser controller could not be accessed, laser control not possible! = Zugriff auf den Lasercontroller war nicht erfolgreicht, keine Laseransteuerung möglich!
+Z-Shifter could not be accessed, separate Z control not possible! = Auf den Z-Shifter konnte nicht zugegriffen werden, es ist keine separate Z-Ansteuerung möglich!
+Process control plug-in could not be found! = Das Prozessteuerungs-Plug-In konnte nicht gefunden werden!
+Process controller could not be accessed! = Auf die Prozesssteuerung konnte nicht zugegriffen werden!
+
+Motion = Achsen
+Reference axis on startup = Achse bei Programmstart referenzieren
+Don't show warning when referencing axes = Keine Warning vor Referenzfahrt anzeigen
+Axis alias = Achsenalias
+Process between slices = Prozessschritte zwischen Slices
+
+Pen Frequency = Pen-Frequenz
+Minimum = Minimum
+Maximum = Maximum
+Logarithmic = logarithmisch
+
+Allow Unrestricted Laser On/Off Delays = Erlaube unbeschränkte Laserein-/ausschaltverzögerungen
+
+Parts Counter = Teilezähler
+Power down laser = Laser ausschalten
+sec idle timeout = sec Inaktivität
+sec follow-up time = sec Nachlaufzeit
+
+Enable IOSelect-Mode = Aktiviere IOSelect-Modus
+Numbered projects directory = Verzeichnis nummerierter Projekte
+Mark process log file = Logfile Markierprozess
+Card 1 Input Port = Eingangs-Port an Karte 1
+Auto-Start Marking = Markieren automatisch starten
+Attention! This option is dangerous, it lets marking start immediately and without further notice after mark-dialogue was opened! = Achtung! Diese Option ist gefährlich, damit wird eine Markieroperation sofort und ohne weitere Meldung gestartet, so bald der Markierdialog geöffnet wird!
+Auto-optimise vectors on marking = Vektoren vor dem Markieren automatisch optimieren
+Auto-slice 3D-meshes on change = 3D-Meshes bei Änderungen automatisch neu Slicen
+Show Tab-Panes in Mark Dialogue = Anzuzeigende Tabs im Markierdialog
+Custom Pen Parameter = Eigener Penparameter
+
+Paused = Angehalten
+Running = Läuft
+
+# scanner info
+
+Scanner Info = Scanner Info
+Board X Voltage = Boardspannung X
+Board Y Voltage = Boardspannung Y
+Board Z Voltage = Boardspannung Z
+Temperature Galvo = Temperatur Galvo
+Article Number = Artikelnummer
+Operating Hours = Betriebsstunden
+Aperture = Apertur
+Wavelength = Wellenlänge
+Card Type = Kartentyp
+Card Version = Kartenversion
+Head Type = Kopftyp
+Analogue Controller = Analogcontroller
+
+# process info
+
+Process Info = Prozessinformation
+
+# stand alone data
+
+Closing devices = Schließe Verbindung
+Flushing data and closing devices = Entferne Daten und schließe Verbindung
+Data storage location = Datenspeicherort
+Please specify a name for storage of data = Bitte einen Namen zum Speichern der Daten eingeben
+Send full data to all cards = Komplette Daten zu allen Karten senden
+
+# mark dialogue
+
+Mark = Markieren
+Mark repeatedly = Markiere wiederholt
+Fast repeat = Schnelle Wiederholung
+Mark selected elements = Selektierte Elemente markieren
+Wait for external trigger = Auf externen Trigger warten
+Off = Aus
+Manual = Manuell
+Auto = Automatisch
+Parts = Teile
+Progress = Fortschritt
+Use total projects outline = Gesamtumriss verwenden
+Use individual element outlines = Einzelne Elementumrisse verwenden
+Use real element shapes = Tatsächliche Elementform verwenden
+To produce = Zu produzieren
+Slice Processing Progress = Fortschritt Slicebearbeitung
+Elapsed time = Vergangene Zeit
+Estimated time = Erwartete Zeit
+Remaining time = Verbleibende Zeit
+
+Project is not ready for marking = Das Projekt ist nicht bereit zum Markieren
+Slice Group not valid and has to be (re)sliced = Slice Group muss neu Gesliced werden
+Do you really want to continue and start marking? = Wirklich fortsetzen und Markieren starten?
+Machine is under automatic control, no manual marking operation possible! = Die Maschine wird automatisch gesteuert, manuelles Markieren ist nicht möglich!
+Machine is under automatic control, but previous machine is offline! = Die Maschine wird automatisch gesteuert aber die Vorgängermaschine ist offline!
+Machine is under automatic control, please ensure no working piece is located inside! = Die Maschine wird automatisch gesteuert, stellen Sie sicher, dass sich kein Werkstück in ihr befindet!
+Automatic control: previous machine is offline = Automatische Steuerung: die Vorgängermaschine ist offline
+Automatic control: transport from previous machine failed = Automatische Steuerung: Transport von Vorgängermaschine ist fehlgeschlagen
+Closing Hermes connections = Hermes-Verbindungen werden geschlossen
+Shutdown = Herunterfahren
+
+Opening devices = Öffne Geräte
+Next referencing of axes will be performed which causes some movement. This step should be performed only in case machine is safe and motion can be done securely. Do you really want to continue and perform referencing of axes? = Die angeschlossenen Achsen sollen referenziert werden, was einen Bewegungsablauf startet. Dieser Schritt sollte nur ausgeführt werden, wenn die Maschine gesichert ist und die Bewegungen sicher ausgeführt werden können. Wollen Sie wirklich fortfahren und die Achsen referenzieren?
+Desired number of parts produced, marking will be inhibited until confirmation! = Die gewünschte Anzahl an Teilen wurde produziert, Markieren ist bis zur Bestätigung deaktiviert!
+
+# raster image import
+
+Correction Red = Korrektur Rot
+Correction Green = Korrektur Grün
+Correction Blue = Korrektur Blau
+Invert Output = Ausgabe invertieren
+Size = Größe
+Vectorise = Vektorisieren
+Noise Threshold = Schwellwert Rauschunterdrückung
+Line Threshold = Schwellwert Linie
+Colours to elements = Farben zu Elementen
+Don't create outline = Keinen Umriss erzeugen
+Floyd Steinberg Dithered = Floyd-Steinberg-Rasterung
+Point cloud = Punktwolke
+Assign to pen = Zuweisung zu Stift
+Overlap dots = Punkte überlappen
+Resulting size = Größe nach Import
+Keep aspect ratio = Seitenverhältnis beibehalten
+Use as light-table image = Als Leuchttisch-Vorlage verwenden
+Resolution = Auflösung
+Greyscale = Graustufen
+Can't generate coloured scanner bitmap, no pens defined for use as colours! = Farbige Scannerbitmap kann nicht erzeugt werden, da keine Stifte zur Verwendung als Farbe definiert wurden!
+Import Raster Image = Rasterbild
+Image Import Parameters = Bild-Importparameter
+Preprocessing raster image = Rasterbild wird vorverarbeitet
+
+# other import
+
+At least one embedded image could not be loaded successfully, the imported data may be incomplete! = Mindestens ein eingebettetes Bild konnte nicht geladen werden, die importierten Daten könnten unvollständig sein!
+This file makes use of unsupported features and therefore may be damaged after loading! = Diese Datei verwendet Features, die nicht unterstützt werden und könnte deswegen nach dem Laden beschädigt sein!
+
+# other plugins
+
+Draw a star = Einen Stern zeichnen
+Star = Stern
+Draw an open or closed polygon = Ein offenes oder geschlossenes Polygon zeichnen
+Draw an open or closed bezier curve = Eine offene oder geschlossene Bezier-Kurve zeichnen
+Bezier Curve = Bezier-Kurve
+Modulate the geometry with a sine waveform = Die Geometrie mit einer Sinuswellenform modulieren
+Draw a triangle = Dreieck zeichnen
+Triangle = Dreieck
+Write text at given position = Text an Position setzen
+Text = Text
+Draw a spiral = Spirale zeichnen
+Spiral = Spirale
+Draw a rectangle = Rechteck zeichnen
+Rectangle = Rechteck
+Draw am open or closed polygon =  Ein offenes oder geschlossenes Polygon zeichnen
+Polygon = Polygon
+Draw a simple line = Einfache Linie Zeichnen
+Single Line = Einzelne Linie
+Set a single dot = Einen einzelnen Punkt setzen
+Dot = Punkt
+Draw a circle or a segment = Kreis oder Kreissegment zeichnen
+Circle = Kreis
+Create a barcode = Barcode an Position setzen
+Barcode = Barcode
+Stop processing for specified time = Abarbeitung pausieren
+Delay = Pause
+Stop operation until external trigger is detected = Auf externen Trigger warten
+External Trigger = Externer Trigger
+Output data at the scanner controller = Daten an Scannercontroller senden
+Custom Output = Datenausgang
+Control additional motion axes = Zusätzliche Bewegungsachsen ansteuern
+Motion = Bewegungsachsen
+Define fill pattern for closed polygons = Füllmuster für geschlossene Polygone erzeugen
+Modulate the geometry with a sinus waveform = Geometrie mit einem Sinus modulieren
+Sine Distortion = Sinus-Verzerrung
+Bend geometry to a round shape = Geometrie biegen
+Curve Distortion = Biegung
+Serial number, date and/or time input data = Eingabedaten für Seriennummer, Datum und/oder Zeit
+Serial/Date/Time = Seriennummer/Datum/Zeit
+Serial numbers = Seriennummern
+Get data from OpenAPC plug-in's input = Eingabedaten von Plug-In-Eingang
+OpenAPC Data Input = OpenAPC Dateneingang
+Z-Shifter = Z-Verschiebung
+Control Z-position via separate Focus Shifter / Beam Expander = Z-Position via Focusshifter / Beamexpander steuern
+
+# split/move group
+
+The selected data are too wide for the chosen diameter of the ring, splitting not possible! = Die ausgewählten Daten sind zu breit für einen Ring mit diesem Durchmesser!
+The selected data are too high for the chosen diameter of the ring, splitting not possible! = Die ausgewählten Daten sind zu hoch für einen Ring mit diesem Durchmesser!
+
+Active Splits = Aktive Splits
+Split horizontal (X, planar) = Horizontal teilen (X, planar)
+Split distance = Teileabstand
+Split vertical (Y, planar) = Vertikal teilen (Y, planar)
+Split radial = Radial teilen
+Direction = Richtung
+Horizontal = Horizontal
+Vertical = Vertikal
+Diameter = Durchmesser
+Split angle = Teilungswinkel
+Keystone correction = Keystone-Korrektur
+Top/Left = Oben/Links
+Bottom/Right = Unten/Rechts
+Invert motion direction = Bewegung invertieren
+Process order = Abarbeitungsfolge
+Motion speed = Geschwindigkeit
+Overlap splits = Teile überlappen
+Try split between pieces = Versuche Teilung ohne Schneiden
+Rotation = Rotation
+
+Move horizontal (X, planar) = Horizontal bewegen (X, planar)
+Move distance = Abstand
+Move steps = Schritte
+Move vertical (Y, planar) = Vertikal bewegen (Y, planar)
+Move radial = Radial bewegen
+Move angle = Winkel
+Zig-zag from left = Zickzack von links
+Zig-zag from right = Zickzack von rechts
+
+Save as default = Als Vorgabe speichern
+
+
+# slice group
+
+Add element to slices = Element zu Schichten hinzufügen
+Slice 3D Mesh = 3D-Modell schneiden
+Slicing 3D Mesh to 2D Layers = Schneide 3D-Modell zu 2D-Schichten 
+Creating support structures = Erzeuge Supportstrukturen
+Modify Slice Group = Bearbeite Schichten
+Adding elements to slice group = Füge Elemente zu Schichten hinzu
+Removing old elements from slice group = Entferne alte Elemente aus geschnittenem 3D-Modell
+Updating geometries = Aktualisiere Geometrien
+Split to tiles = In Kacheln aufteilen
+Tile size = Kachelgröße
+Tile skip size = Kachelsprungweite
+Reslice All = Alles neu Slicen
+Model = Modell
+Slice offsets are too big for size of used 3D mesh = Sliceoffsets sind zu groß für das gewählte 3D-Modell
+
+Show 3D Mesh = 3D Mesh anzeigen
+Support structure model = Supportstruktur
+Support = Support
+Support Structure = Supportstruktur
+Generate support structures = Supportstrukturen erzeugen
+Distance to model = Abstand zum Modell
+Enlarge structure = Struktur vergrößern
+Enclose model completely = Modell komplett umschließen
+Perform single slice-motion = Einfache Slicebewegung ausführen
+Show all slices = Alle Schichten anzeigen
+Hide hatch from view = Füllmuster verbergen
+Slice during marking = Während Markieren schneiden
+
+#ext trigger
+
+Expected on = Ertwartet an
+
+#hatcher
+
+Line Style = Linienstil
+Continuous = Durchgängig
+Connected Lines = Verbundene Linien
+Dashed (simple) = Gestrichelt (einfach)
+Dashed (interleaved) = Gestrichelt (abwechselnd)
+Dashed (continuous) = Gestrichelt (durchgehend)
+Dotted = Gepunktet
+Dotted (Custom) = Gepunktet (angepasst)
+Hatch Style = Füllmusterstil
+Lines, forward = Linien, vorwärts
+Lines, forward/backward = Linen vor/rückwärts
+Zig-zag = Zickzack
+Inner lines = Innere Linien
+Outer lines straight = Äußere Linien gerade
+Outer lines rounded = Äußere Linien rund
+Hatch Angle = Füllmusterwinkel
+Angle Offset = Winkel-Offset
+Hatch Distance = Füllmusterabstand
+Hatch Offset = Füllmusteroffset
+Number of Lines = Linienanzahl
+Interleave Lines = Linien verschachteln
+Beam Compensation = Strahlkompensation
+Use spotsize from pen = Spotgröße von Stift verwenden
+Custom = Eigener Wert
+From bounding box = Von Hüllkörper
+At border = An Außenrand
+
+#OAPC input
+
+Character Input IN%d = Zeichenketten-Eingang Input IN%d 
+
+#serial number
+
+Start Value = Startwert
+Reset at = Zurücksetzen bei
+Reset at day = Zurücksetzen an Tag
+Reset at date = Zurücksetzen an Datum
+Reset at time = Zurücksetzen bei Zeit
+Skip count = Schrittweite
+Numeric Base = Zahlenbasis
+Minimum Digits = Anzahl Ziffern (minimum)
+Time Offset = Zeitoffset
+Years = Jahre
+Days = Tage
+Hours = Stunden
+Minutes = Minuten
+Format string = Formatstring
+Locale = Lokalisierung
+Sunday = Sonntag
+Monday = Montag
+Tuesday = Dienstag
+Wednesday = Mittwoch
+Thursday = Donnerstag
+Friday = Freitag
+Saturday = Sonntag
+Format string wizard = Formatstring-Konfigurator
+Year = Jahr
+Month = Monat
+Week = Woche
+Day = Tag
+Hour = Stunde
+Minute = Minute
+Second = Sekunde
+Timezone = Zeitzone
+Preview = Vorschau
+
+#sine
+
+Direction = Richtung
+2D Horizontal (Y to X) = 2D Horizontal (Y nach X)
+2D Vertical (X to Y) = 2D Vertical (X nach Y)
+3D Y to Z = 3D Y nach Z
+3D Z to Y = 3D Z nach Y
+3D X to Z = 3D X nach Z
+3D Z to X = 3D Z nach X
+Wavelength = Wellenlänge
+Amplitude = Amplitude
+Offset = Offset
+
+#curve
+Alignment = Ausrichtung
+Centre (X) = Mitte (X)
+Left (X) = Links (X)
+Right (X) = Rechts (X)
+Middle (Y) = Mitte (Y)
+Top (Y) = Oben (Y)
+Bottom (Y) = Unten (Y)
+Radius = Radius
+Keep contained elements = Enthaltene Elemente beibehalten
+Keep elements orientation = Elementorientierung beibehalten
+
+
+#barcode
+
+Data = Daten
+Australia Post Customer = Australische Post / Kunden
+Australia Post Reply = Australische Post / Antwort
+Australia Post Route = Australische Post / Route
+Australia Post Redirect = Australische Post / Umleitung
+Japanese Post = Japanische Post
+Korean Post = Koreanische Post
+Mode = Modus
+Error Correction = Fehlerkorrektur
+Token Size = Zeichengröße
+Segments = Segmente
+Fade In Size = Einblendbereich
+Force to Square = Quadrat erzwingen
+Merge Cells = Zellen zusammenfügen
+Draw Cells as Dots = Zellen als Punkte zeichnen
+Draw Cells as Custom Dots = Zellen als angepasste Punkte zeichnen
+Invert = Invertiert
+Invert with embedded normal = Invertiert und eingebettet
+Resulting cells = Anzahl Zellen
+
+#bezier
+
+Dashed = Gestrichelt
+Bezier Style = Bezier-Stil
+Closed = Geschlossen
+Open = Offen
+
+#circle
+
+Dashed (Arcs) = Gestrichelt (Bögen)
+Dashed (Straights) = Gestrichelt (Geraden)
+Start angle = Startwinkel
+End angle = Endwinkel
+Grow = Anstieg
+Layered Sphere = Geschichtete Kugel
+Corner radius = Eckradius
+Nominal width = Nominelle Breite
+Nominal height = Nominelle Höhe
+Nominal depth = Nominelle Tiefe
+
+#dot
+
+Style = Stil
+
+#laser output
+
+Digital %d (16 Bit) = Digital %d (16 Bit)
+Digital %d (8 Bit) = Digital %d (8 Bit)
+Analogue %d (8 Bit) = Analog %d (8 Bit)
+Analogue %d (10 Bit) = Analog %d (10 Bit)
+Analogue %d (12 Bit) = Analog %d (12 Bit)
+Bit %d = Bit %d
+Laserport %d (8 Bit) = Laserport %d (8 Bit)
+Pulse Output = Gepulste Ausgabe
+
+#line
+
+Expand by dot = Um einen Punkt erweitern
+Remove last dot = Letzten Punkt entfernen
+
+#motion
+
+Enable = Aktivieren
+Position = Position
+Speed = Geschwindigkeit
+Relative = Relativ
+Stop Axis = Achse stoppen
+Move Axis to Reference Position = Achse zu Referenzposition bewegen
+Pre-Motion Delay = Pause vor Bewegung
+Use Control Output = Control-Ausgang benutzen
+
+#z-shifter
+
+Position [µm] = Position [µm]
+Speed [µm/sec] = Geschwindigkeit [µm/sec]
+Move Level to Home Position = Ebene zu Homeposition bewegen
+
+#polygon
+
+Polygon Style = Polygonstil
+
+#spiral
+
+Smoothing Factor = Glättung
+
+#star
+
+Radius 1 = Radius 1
+Radius 2 = Radius 2
+Spikes = Strahlen
+Angle offset = Winkel-Offset
+
+#text
+
+Loading available fonts = Lade vorhandene Zeichensätze
+Unicode = Unicode
+Font Type = Fonttyp
+Laser Vector = Laservektor
+Font = Zeichensatz
+Left = linksbündig
+Right = rechtsbündig
+Orientation = Orientierung
+Left to right = Von links nach rechts
+Right to left = Von rechts nach links
+Top to bottom = Von oben nach unten
+Bottom to top = Von unten nach oben
+Character spacing = Zeichenabstand
+Line spacing = Zeilenabstand
+Kerning = Kerning
+Arc length = Bogenlänge
+Set monospaced = Konstanter Abstand
+Lock size = Größe sperren
+FastRect single = FastRect einfach
+FastRect double = FastRect doppelt
+Roman sans single = Roman ohne Serifen, einfach
+Roman sans double = Roman ohne Serifen, doppelt
+Script single = Script einfach
+Script double = Script doppelt
+Script complex = Script komplex
+Times = Times
+Times bold = Times fett
+Times italic = Times schräg
+Times bold italic = Times fett schräg
+
+# input
+
+Custom Input = Eingangsdaten
+Wait for input data from the scanner controller = Auf Eingangsdaten am Scannercontroller warten
+
+# output
+
+Custom Output = Ausgang setzen
+Set output data at the scanner controller = Daten am Ausgang des Scannercontrollers setzen
+
+# CSV data input
+
+CSV File Data Input = CSV Dateneingang
+Get data from external file in CSV format = Daten aus externer CSV-Datei beziehen
+
+# CorrCorrect
+
+Load measurement table = Meßtabelle laden
+Load correction file = Korrekturdatei laden
+Could not load correction file = Konnte Korrekturdatei nicht laden:
+Save correction file = Korrekturdatei speichern
+This overwrites your current correction table. Are you sure you want to continue? = Diese Operation überschreibt die aktuellen Korrekturwerte. Soll wirklich fortgesetzt werden?
+This overwrites your current focal correction but keeps the pincushion data intact. Are you sure you want to continue? = Diese Operation überschreibt die aktuelle Fokuskorrektur nicht aber die Korrektur der Kissenverzerrung. Soll wirklich fortgesetzt werden?
+
+Correct existing grid = Existierendes Gitter korrigieren
+Nom X = Soll-X
+Nom Y = Soll-Y
+Act X = Ist-X
+Act Y = Ist-Y
+Nominal / Measured Positions = Soll- / Ist-Positionen
+
+Generate new correction = Neue Korrektur erzeugen
+Pincushion Distortion = Kissenverzerrung
+X-Angle = X-Winkel
+Y-Angle = Y-Winkel
+Focal Correction = Fokuskorrektur
+
+Nominal position = Sollposition
+Measured position = Gemessene Position
+
+# pen parameter wizard
+
+Parameter wizard = Parameterwizard
+Frequency Range = Frequenzbereich
+Power Range = Leistungsbereich
+Speed Range = Geschwindigkeitsbereich
+Pulse Width Range = Pulsweitenbereich
+Repeat Mark Range = Markierwiederholungsbereich
+Hatch distance range = Bereich Füllmusterabstand
+Z-Offset Range = Z-Offset-Bereich
+Jump Delay Range = Bereich Sprungverzögerung
+Mark Delay Range = Bereich Markierverzögerung
+Laser On Delay Range = Bereich Lasereinschaltverzögerung
+Laser Off Delay Range = Bereich Laserausschaltverzögerung
+Grid Layout = Gittergröße
+As project = Als Project
+Mark Axis Values = Achsen beschriften
+Mark Speed Information = Geschwindigkeitswert markieren
+Mark matrix = Markiermatrix
+Matrix size = Matrixgröße
+Matrix dimensions = Matrixmaße
+Refine this result = Mit diesem Wert verfeinern
+Go back from this result = Von diesem Wert zurückgehen
+Use parameters for pen = Diese Parameter für Pen verwenden
+
+Repeat marking = Markierwiederholungen
+Hatch distance = Füllmusterabstand
+
+# CorrCorrect
+
+Open correction file = Korrekturdatei laden
+Save correction file = Korrekturdatei speichern
+Save correction file as = Korrekturdatei speichern als
+Correct Single Point = Einzelnen Punkt korrigieren
+Correct Multiple Points = Mehrere Punkte korrigieren
+Recalc Focal Correction = Fokale Korrektur neu berechnen
+Apply Spatial Correction = Räumliche Korrektur erzeugen
+Try current correction = Aktuelle Korrektur testen
+Z-Distance = Z-Abstand
+Flip X and Y = X und Y vertauschen
+Editing area size = Größe Editierbereich
+Working area size = Größe Arbeitsbereich
+Working area position = Position Arbeitsbereich
+Measurement Position = Messposition
+Expected length = Erwartete Länge
+Measured length = Gemessene Länge
+Spatial distortion correction = Korrektur räumliche Verzerrung
+BEAMP project file = BEAMP Projektdatei
+Project file for mark test = Projektdatei für Test-Markieroperation
+
+

@@ -1,0 +1,14 @@
+on
+	(void)
+audible alert (bell) BEL  \a   7
+backspace            BS   \b   8
+horizontal tab       HT   \t   9
+newline              LF   \n  10
+vertical tab         VT   \v  11
+formfeed             FF   \f  12
+carriage return      CR   \r  13
+double quote         "    \"  34
+single quote         '    \'  39
+question mark        ?    \?  63
+backslash            \    \\  92
+	0

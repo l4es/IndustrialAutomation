@@ -1,0 +1,68 @@
+\chapter{Preface}
+
+EiC was developed from a perceived need for a complete interactive 
+C interpreter -- or more correctly, an interactive bytecode C
+compiler that can also run non-interactively in 
+batch mode style. The main advantages of this latter mode is that
+EiC can compile and run C programs without leaving around 
+executables or object code and that there is no concern about
+which platform the code is run on.
+
+EiC is designed to be a production tool, it is not to be viewed 
+as a toy and is certainly one of the most complete C interpreters
+built to date. It is suitable as: an aid in teaching C, for fast
+prototype of new programs and as a research tool --- as it allows the
+user to quickly interface and experiment with user supplied, standard
+ISO C and POSIX.1 functions, via immediate statements, which are
+statements that are executed immediately.
+
+However, like EiC, this documentation is also at the beta stage; for
+example, its library section is still under development and the
+section on how to \T{e}xtend EiC, by adding new builtin
+functionality, has yet to be documented.  Therefore, any contributions
+or suggestions are certainly welcome, and can be sent to me at
+Ed.Breen@Altavista.net
+
+\section*{Copyright}
+\index{copyright}
+ 
+\begin{enumerate}
+\item
+Permission is given to make a personal copy of this material is
+given to anyone who is currently using EiC. Redistribution or the
+making of multiple copies of this document must be done only with
+explicit permission from the Copyright holder of EiC.
+
+\item
+This document and EiC is provided ``as is'' and without any express or
+implied warranties, including, without limitation, the implied
+warranties of merchantibility and fitness for a particular purpose
+
+\end{enumerate}
+
+\section*{Acknowledgements}
+
+Thanks to Martin Gonda for his contribution to EiC's error recovery
+module; Ross Leon Richardson's for permission to incorporate his
+online quick reference guide to ``The C Standard Library''. Hugues
+Talbot made early suggestions during EiC's development. EiC's type
+specifier was modeled from lcc, which is available free of charge
+\cite{fraser-hanson95}. Part of EiC's runtime library
+support were derived from the Standard C library, (C), 1992 by
+P.J. Plauger, published by Prentice-Hall and are used with permission.
+Thanks to Eugene D. Brooks III for Beta testing EiC and for motivating
+and supporting many new developments within EiC. In particular:
+pointer qualifiers, pointer pragma directives and the address
+specifier \T{@}. Thanks to Alf Clement for porting EiC to the HP
+platform. Thanks to Jochen Pohl for porting EiC to NetBSD and for
+contributing to EiC's makefile system. Jean-Bruno Richard developed
+EiC's initial `:gen' command and paved the way for getting callbacks
+to EiC from compiled code working.
+
+
+
+
+
+
+
+

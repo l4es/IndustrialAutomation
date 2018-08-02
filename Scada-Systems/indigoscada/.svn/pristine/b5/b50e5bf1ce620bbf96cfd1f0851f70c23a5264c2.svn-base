@@ -1,0 +1,143 @@
+ISO8823PRESENTATION DEFINITIONS::=
+BEGIN
+
+
+CPtype ::= SET {
+	modeselector [0] IMPLICIT Modeselector,
+	--x410modeparameters [1] IMPLICIT SET {
+	--	COMPONENTS OF ReliableTransferAPDUs.RTORQapdu
+	--} OPTIONAL,
+	--- Shall be used for X.410 mode only. Shall be bitwise
+	--- compatible with CCITT Recommendation X.4101984.
+	--- This shall be the User data parameter of the CP PPDU1)
+	normalmodeparameters [2] IMPLICIT SEQUENCE {
+		protocolversion [0] IMPLICIT Protocolversion DEFAULT {version1},
+		callingpresentationselector [1] IMPLICIT Callingpresentationselector OPTIONAL,
+		calledpresentationselector [2] IMPLICIT Calledpresentationselector OPTIONAL,
+		presentationcontextdefinitionlist [4] IMPLICIT Presentationcontextdefinitionlist OPTIONAL,
+		defaultcontextname [6] IMPLICIT Defaultcontextname OPTIONAL,
+		presentationrequirements [8] IMPLICIT Presentationrequirements OPTIONAL,
+		usersessionrequirements [9] IMPLICIT Usersessionrequirements OPTIONAL
+		-- shall not be present if equal to the Revised session
+		-- requirements parameter -- ,
+		userdata Userdata OPTIONAL
+	} OPTIONAL
+	-- Shall be used for normal mode only.
+	-- Shall be the parameters of the CP PPDU.
+}
+
+CPAPPDU ::= SET {
+	modeselector [0] IMPLICIT Modeselector,
+	--x410modeparameters [1] IMPLICIT SET {
+	--	COMPONENTS OF ReliableTransferAPDUs.RTOACapdu
+	--} OPTIONAL,
+	--- Shall be used for X.410 mode only. Shall be bitwise
+	--- compatible with CCITT Recommendation X.4101984.
+	--- This shall be the User data parameter of the CPA PPDU1)
+	normalmodeparameters [2] IMPLICIT SEQUENCE {
+		protocolversion [0] IMPLICIT Protocolversion DEFAULT {version 1},
+		respondingpresentationselector [3] IMPLICIT Respondingpresentationselector OPTIONAL,
+		presentationcontextdefinitionresultlist [5] IMPLICIT Presentationcontextdefinitionresultlist OPTIONAL,
+		presentationrequirements [8] IMPLICIT Presentationrequirements OPTIONAL,
+		usersessionrequirements [9] IMPLICIT Usersessionrequirements OPTIONAL,
+		-- shall not be present if equal to the Revised session
+		-- requirements parameter --
+		userdata Userdata OPTIONAL
+	} OPTIONAL
+	-- Shall be used for normal mode only.
+}
+
+Respondingpresentationselector ::= Presentationselector
+Presentationcontextdefinitionresultlist ::= Resultlist
+
+Resultlist ::= SEQUENCE OF SEQUENCE {
+	result [0] IMPLICIT Result,
+	transfersyntaxname [1] IMPLICIT Transfersyntaxname OPTIONAL,
+	providerreason [2] IMPLICIT INTEGER {
+		reasonnotspecified (0),
+		abstractsyntaxnotsupported (1),
+		proposedtransfersyntaxesnotsupported (2),
+		locallimitonDCSexceeded (3)
+	} OPTIONAL
+}
+
+Result ::= INTEGER {
+	acceptance (0),
+	userrejection (1),
+	providerrejection (2)
+}
+
+Modeselector ::= SET { 
+	modevalue [0] IMPLICIT INTEGER { x4101984mode (0), normalmode (1) } 
+}
+
+
+Userdata ::= CHOICE {
+	simplyencodeddata [APPLICATION 0] IMPLICIT Simplyencodeddata,
+	fullyencodeddata [APPLICATION 1] IMPLICIT Fullyencodeddata
+}
+-- Subclause 8.4 defines when each of the two alternatives shall be used.
+
+Simplyencodeddata ::= OCTET STRING
+-- See 8.4.1.
+
+Fullyencodeddata ::= SEQUENCE OF PDVlist
+-- contains one or more PDVlist values.
+-- See 8.4.2.
+
+PDVlist ::= SEQUENCE {
+	transfersyntaxname Transfersyntaxname OPTIONAL,
+	presentationcontextidentifier Presentationcontextidentifier,
+	presentationdatavalues CHOICE {
+		singleASN1type [0] ANY,
+		-- Type corresponding to presentation context identifier
+		octetaligned [1] IMPLICIT OCTET STRING,
+		arbitrary [2] IMPLICIT BIT STRING
+	}
+	-- Contains one or more presentation data values from the same
+	-- presentation context.
+	-- See 8.4.2.
+}
+
+
+Presentationcontextdefinitionlist ::= Contextlist
+
+Contextlist ::= SEQUENCE OF SEQUENCE {
+	presentationcontextidentifier Presentationcontextidentifier,
+	abstractsyntaxname Abstractsyntaxname,
+	transfersyntaxnamelist SEQUENCE OF Transfersyntaxname
+}
+
+Presentationcontextidentifier ::= INTEGER
+Abstractsyntaxname ::= OBJECT IDENTIFIER
+Transfersyntaxname ::= OBJECT IDENTIFIER
+Protocolversion ::= BIT STRING { version1 (0) }
+Callingpresentationselector ::= Presentationselector
+Calledpresentationselector ::= Presentationselector
+Presentationselector ::= OCTET STRING
+
+
+Defaultcontextname ::= SEQUENCE {
+	abstractsyntaxname [0] IMPLICIT Abstractsyntaxname,
+	transfersyntaxname [1] IMPLICIT Transfersyntaxname
+}
+
+Presentationrequirements ::= BIT STRING { contextmanagement (0), restoration (1) }
+
+Usersessionrequirements ::= BIT STRING {
+	halfduplex (0),
+	duplex (1),
+	expediteddata (2),
+	minorsynchronize (3),
+	majorsynchronize (4),
+	resynchronize (5),
+	activitymanagement (6),
+	negotiatedrelease (7),
+	capabilitydata (8),
+	exceptions (9),
+	typeddata (10),
+	symmetricsynchronize (11),
+	dataseparation (12)
+}
+
+END

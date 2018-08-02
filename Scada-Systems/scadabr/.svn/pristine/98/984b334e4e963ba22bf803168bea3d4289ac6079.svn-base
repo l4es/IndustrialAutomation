@@ -1,0 +1,148 @@
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+<title>Rose Example - Exploring Rose with a HTTP Client</title>
+</head>
+<body>
+
+<h2>Rose Example - Exploring Rose with an HTTP Client</h2>
+
+<p>As a Resource Oriented API, Rose exposes its resources through an HTTP uniform interface, so any client with an HTTP connector (like your browser) can interact with them.</p>
+
+<p>In this example, we will show how an HTTP client can interact with Rose.
+
+<p>It will cover the creation of an HTTP Retriever Data Source to poll from <a href="http://agrest.edugraf.ufsc.br/index.php/SicTransit"> Sictransit </a> resources the real time traffic conditions from a street segment of the Brazilian city of <a href="http://pt.wikipedia.org/wiki/Maca%C3%A9"> Macaé - RJ. <a></p>
+
+<h3><p>Choosing an HTTP Client:</p></h3>
+
+<p>You can use just your browser as the HTTP Client, but to facilitate the interaction you can install an extension like <a href="http://code.google.com/p/poster-extension/">Poster</a> for Mozilla Firefox, which 
+let you make custom HTTP requests.</p>
+
+<h3><p>Creating an HTTP Retriever Data Source:</p></h3>
+
+<p>
+A Data Source is something that you can acquire data from. An HTTP Retriever Data Source is a source of data that acquires its data from an HTTP Resource, acting as an HTTP client.
+</p>
+
+<p>
+The creation of a Data Source resource is done by adding a new HTTP Retriever to the collection of HTTP Retrievers.
+</p>
+
+<p>
+This is done by the Client issuing a POST request to the "/datasources/httpRetriever" resource with a HTTP retriever representation into the entity-body.
+</p>
+
+<p>
+Representations sent to Rose must be into <a href="http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.1">form encoded media-type</a>, the default media-type used by HTML forms.
+</p>
+
+<p>
+A valid HTTP retriever data source representation must contain the following parameters:
+</p>
+
+<p><b>name:</b> Any alpha-numerical value.</p>
+
+<p><b>identifier:</b> Any alpha-numerical value, data source identifiers must be unique.</p>
+
+<p><b>updatePeriod:</b> A non-negative integer greater than zero that means the polling rate in seconds.</p>
+
+<p><b>uri:</b> The Universal Resource Identifier of the resource to be polled.</p>
+
+<p><b>enabled:</b> Boolean state value indicating if the data source is enabled or disabled, a disabled data source is a data source that is not currently getting data from its source.</p>
+
+<p><b>retries:</b> A non-negative integer that indicates the number of retries that this data source will do in case there is a problem when communicating with its source.</p>
+
+<p><b>timeoutSeconds:</b> Number of seconds to wait until the next retry.</p>
+
+<p>To use Sictransit as the data source, you can choose "<a href="http://sictransit.mactran.rj.gov.br/trecho/11/detalhes">http://sictransit.mactran.rj.gov.br/trecho/11/detalhes</a>" (without the double quotes) as the uri parameter in the representation.</p>
+
+<p>This resource exposes the details of a street segment from the city of Macaé.</p>
+
+<p>An example form encoded representation of the Sictransit HTTP retriever data source above is shown below:</p>
+
+<p align="center">
+identifier=segment11&name=Segment11&url=http%3A%2F%2Fsictransit.mactran.rj.gov.br%2Ftrecho%2F11%2Fdetalhes&updatePeriod=30&timeoutSeconds=30&enabled=true&retries=2
+</p>
+
+<p>
+You can copy this representation to the the entity-body of your HTTP client, this is shown into the image below using the Poster extension.
+</p>
+
+<img alt="CreatingHttpRetrieverWithPoster" src="CreatingHttpRetriever.png">
+
+<p>
+The server on the Rose side handles the request, which can be accepted or denied by the server. If accepted, the data into the representation will be extracted and used to create a new data source.
+</p>
+
+<h3><p>Listing all the HTTP Retriever Data Sources:</p></h3>
+
+<p>Now we can check if the data source that we created previously is on the collection of data sources of that kind.</p>
+
+<p>To do that, you can access the "/datasources/httpRetriever" URI with your browser, which will make a GET request to the resource referenced by it. 
+
+<p>The result shown on the screen should be something like these:</p>
+
+<p align="center">[{"timeoutSeconds":30,"updatePeriodType":"SECONDS","enabled":true,"name":"Segment11","updatePeriods":30,"xid":"segment11","retries":2,"url":"http://sictransit.mactran.rj.gov.br/trecho/11/detalhes"}]</p>
+
+<p>This text is the representation of the HTTP Retrievers resource, its encoded into <a href="http://json.org/">JSON<a/> (JavaScript Object Notation) media-type.</p>
+
+<h3><p>Creating a Data Point:</p></h3>
+
+<p>Now we can create a Data Point for the Data Source created previously. A data point is some data that you are interested in, like the temperature of a motor or the speed of a vehicle. 
+Data Points are associated with their Data Sources, so they will have protocol specific parameters.</p>
+
+<p>
+Like the Data Source, the creation of a Data Point resource is done with a POST request to the collection of data points associated with a specific Data Source. 
+</p>
+
+<p>
+This resource is referenced by the URI "/datasource/httpRetriever/{dataSourceID}/datapoints", where {dataSourceID} is the identifier of the Data Source of the Data Points.
+</p>
+
+<p>
+A valid HTTP Retriever Data Point representation must contain the following parameters:
+</p>
+
+<p><b>name:</b> Any alpha-numerical value.
+
+<p><b>identifier:</b> Any alpha-numerical value, data point identifiers must be unique.</p>
+
+<p><b>valueRegex:</b> A String representing a Regex Pattern</p>
+
+<p><b>dataType:</b> One of those integer values: BINARY=>1, MULTISTATE=>2, NUMERIC=>3, ALPHANUMERIC=>4 or IMAGE=>5</p>
+
+<p>Using Sictransit, we are interested on the "occupation" value of the street segment. This value can be acquired from the XML representation of the street segment details resource by extracting a value from a tag.
+
+<p>The valueRegex parameter is that parsing directive, to extract the occupation value from the XML tag we can use the value below:</p>
+
+<p>.*?<ocupa.*?>(.*?)</ocupa.*?>.*?</p>
+
+<p>The occupation is a numeric value that ranges from 0 (no traffic) to 1 (very high traffic jam), so we choose 3 as our dataType value. 
+
+Our complete form-encoded Data Point representation should be:</p>
+
+<p>identifier=segment11occupation&name=Segment11occupation&valueRegex=.*%3F%3Cocupa.*%3F%3E%28.*%3F%29%3C%5C%5C%2Focupa.*%3F%3E.*%3F%3E&dataType=3&enabled=true</p>
+
+<p>
+The image below shows the creation of the occupation Data Point using Poster:
+</p>
+
+<img alt="CreatingDatapointWithPoster" src="creatingDatapoint.png">
+
+<h3><p>Monitoring a Data Point:</p></h3>
+
+<p>We can now get the last measured value of the Data Point created previously. </p>
+
+<p>To do that, you can access the "/datapoint/segment11occupation" URI with your browser, where "segment11occupation" is the identifier of the datapoint created previoulsly.</p>
+
+<p>This should return a JSON representation containing the last value of the data point indicated and the time stamp of the measurement. Something like this:</p>
+
+<p>In our example the value parameter means the occupation value of the last measurement on that street segment.</p>
+
+<p align="center">
+{"name":"segment11occupation", "value":0.732, "timestamp":"15/10/2010 20:16:23"}
+</p>
+
+</body>
+</html>

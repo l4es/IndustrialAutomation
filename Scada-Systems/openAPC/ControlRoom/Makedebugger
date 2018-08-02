@@ -1,0 +1,10 @@
+CUSTLIBRARIES= -lrt
+
+CUSTINCLUDES= -I. -I.. -I ../common/ -I ../liboapc/ -I ../plugins/ -DENV_DEBUGGER -DENV_PLAYER
+
+OBJECTS= OpenDebuggerInc.o
+
+EXECUTABLE=OpenDebugger
+
+include ../make/linux_wx.mk
+

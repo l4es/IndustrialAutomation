@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>cgihtml Documentation: What is cgihtml?</TITLE>
+<LINK HREF="cgihtml-3.html" REL=next>
+<LINK HREF="cgihtml-1.html" REL=previous>
+<LINK HREF="cgihtml.html#toc2" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="cgihtml-3.html">Next</A>
+<A HREF="cgihtml-1.html">Previous</A>
+<A HREF="cgihtml.html#toc2">Contents</A>
+<HR>
+<H2><A NAME="s2">2. What is cgihtml?</A></H2>
+
+<P>cgihtml is a collection of routines for parsing World Wide Web (WWW)
+Common Gateway Interface (CGI) input and outputting HyperText Markup
+Language (HTML).
+<P>
+<H2><A NAME="ss2.1">2.1 What are the advantages of cgihtml?</A>
+</H2>
+
+<P>cgihtml simplifies the task of parsing CGI input and producing HTML
+output.  Tasks which would normally require several lines of C can be
+reduced to just a few.
+<P>Additionally, I have attempted to include general routines which CGI
+programmers often find themselves using.  Consequently, some of the
+complexities of CGI programming are hidden.  On the other hand, if you
+want to know what's going on, source is included.
+<P>
+<H2><A NAME="ss2.2">2.2 Why C?</A>
+</H2>
+
+<P>The purpose of CGI programs is to take data and manipulate it as the
+web programmer desires.  Since CGI programs are often dealing with
+text manipulation, 
+<A HREF="http://www.perl.com/">Perl</A> or other
+scripting languages is an ideal way
+of producing CGI scripts.  (Perl programmers should check out
+Lincoln Stein's
+<A HREF="http://www-genome.wi.mit.edu/ftp/pub/software/WWW/cgi_docs.html">CGI.pm</A> or 
+<A HREF="http://www.bio.cam.ac.uk/people/brenner/">Steve Brenner's</A>
+<A HREF="http://www.bio.cam.ac.uk/web/form.html">cgi-lib.pl</A>.)
+<P>However, interpreted scripting languages tend to be relatively large.
+This rarely has a major effect on the performance of your server
+(unless you are a high-traffic site).  However, if this is a concern
+of your's, a program written in C is often several times smaller than
+the equivalent program written in Perl.  There's definitely a
+performance improvement when using CGI programs written in C, although
+the performance is not always noticeable.
+<P>Additionally, some servers (notably Netsite and Apache) have APIs so
+that CGI programs can be written as extensions to the server, rather
+than as separate programs.  This greatly improves performance, especially
+on high-traffic sites.  The best way to take advantage of these APIs is
+to write your programs in C.
+<P>Or, you might fall under one of the following categories:
+<P>
+<UL>
+<LI> You don't know Perl</LI>
+<LI> You don't like Perl</LI>
+<LI> You like C</LI>
+</UL>
+<P>In which case, you will hopefully find cgihtml useful.
+<P>
+<H2><A NAME="ss2.3">2.3 Latest changes</A>
+</H2>
+
+<P>See the CHANGES file, included in the distribution.
+<P>
+<H2><A NAME="ss2.4">2.4 Files included in this package</A>
+</H2>
+
+<P>The following files are included in this package:
+<P>
+<HR>
+<A HREF="cgihtml-3.html">Next</A>
+<A HREF="cgihtml-1.html">Previous</A>
+<A HREF="cgihtml.html#toc2">Contents</A>
+</BODY>
+</HTML>

@@ -1,0 +1,11 @@
+Run in E:\scada\src\softlogic\EiC-4.4.2
+
+to prepare eic.lib in release buil multithreaded DLL
+
+make_mt_release.bat clean
+make_mt_release.bat all
+
+to prepare eic.lib in debug buil multithreaded DLL
+
+make_mt_debug.bat clean
+make_mt_debug.bat all

@@ -1,0 +1,7 @@
+CUSTLIBRARIES= -loapc -loapcwx
+
+CUSTINCLUDES=
+	
+CUSTOBJECTS= mpWindow.o
+
+include ../qnx_wx.mk

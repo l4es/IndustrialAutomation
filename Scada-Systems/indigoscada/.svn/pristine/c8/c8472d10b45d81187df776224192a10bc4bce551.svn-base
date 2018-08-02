@@ -1,0 +1,11 @@
+on
+	(void)
+Error in testpp2.c near line 6: defined A
+Error in testpp2.c near line 8: defined B
+Error in testpp2.c near line 10: defined BB
+Error in testpp2.c near line 16: Neither BBB or BBC defined
+Error in testpp2.c near line 28: defined A
+Error in testpp2.c near line 38: This line must cause an error
+Error in testpp2.c near line 84: Neither A, AB, AC, or AD, defined 
+Error in testpp2.c near line 86: This line must cause an error
+Error: clean up forced

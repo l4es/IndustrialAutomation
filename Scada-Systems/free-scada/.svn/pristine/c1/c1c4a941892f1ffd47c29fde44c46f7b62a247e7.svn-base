@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2A7362C8-496E-4EE8-93E2-BBF73DB0E0CF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FreeSCADA.Common.Schema</RootNamespace>
+    <AssemblyName>CommonGUI</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ANIMATE_FEEDBACK</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DynamicDataDisplay, Version=0.3.0.0, Culture=neutral, PublicKeyToken=5b7d744a7263923f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdParty\D3\DynamicDataDisplay.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPython, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="IronPython.Modules, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Scripting, Version=0.9.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdParty\IronPython\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Scripting.Core, Version=0.9.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdParty\IronPython\Microsoft.Scripting.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsFormsIntegration">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdParty\wpftoolkit\WPFToolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DummyDocument.cs" />
+    <Compile Include="Infrstructure\CommandManager.cs" />
+    <Compile Include="Infrstructure\Commands.cs" />
+    <Compile Include="Infrstructure\GlobalCommands.cs" />
+    <Compile Include="Infrstructure\SubMenuCommand.cs" />
+    <Compile Include="Infrstructure\MenuCommandContext.cs" />
+    <Compile Include="Infrstructure\MRUManager.cs" />
+    <Compile Include="Infrstructure\ToolbarCommandContext.cs" />
+    <Compile Include="Gestures\AutoScroll.cs" />
+    <Compile Include="Gestures\ExponentialAnimation.cs" />
+    <Compile Include="Gestures\MapZoom.cs" />
+    <Compile Include="Gestures\Pan.cs" />
+    <Compile Include="Gestures\RectangleSelectionGesture.cs" />
+    <Compile Include="Gestures\SelectionRectVisual.cs" />
+    <Compile Include="Interfaces\IBaseManipulator.cs" />
+    <Compile Include="Interfaces\IBaseTool.cs" />
+    <Compile Include="Interfaces\IBaseUndoBuffer.cs" />
+    <Compile Include="Interfaces\IDocumentView.cs" />
+    <Compile Include="Interfaces\IObjectEditor.cs" />
+    <Compile Include="Interfaces\ISelectionManager.cs" />
+    <Compile Include="Interfaces\IUndoCommand.cs" />
+    <Compile Include="Interfaces\IWindowManager.cs" />
+    <Compile Include="PerfTimer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Actions\ActionsCollection.cs" />
+    <Compile Include="Actions\BaseAction.cs" />
+    <Compile Include="Actions\MoveAction.cs" />
+    <Compile Include="Actions\RotateAction.cs" />
+    <Compile Include="Actions\ShowAction.cs" />
+    <Compile Include="Actions\ValueAction.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SchemaElements\AnimatedImage.cs" />
+    <Compile Include="SchemaElements\ChannelDataProvider.cs" />
+    <Compile Include="SchemaElements\ChannelDataSource.cs" />
+    <Compile Include="Converters\ComposingConverter.cs" />
+    <Compile Include="Converters\RangeConverter.cs" />
+    <Compile Include="Converters\ScriptConverter.cs" />
+    <Compile Include="SchemaElements\MediaProvider.cs" />
+    <Compile Include="SchemaElements\QuadTree.cs" />
+    <Compile Include="SchemaDocument.cs" />
+    <Compile Include="SchemaElements\SolidBrushConverter.cs" />
+    <Compile Include="SchemaElements\TimeChartControl.cs" />
+    <Compile Include="SchemaElements\VirtualCanvas.cs" />
+    <Compile Include="SchemaElements\VirtualElement.cs" />
+    <Compile Include="StringResources.Designer.cs">
+      <DependentUpon>StringResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WPFShemaContainer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Archiver\Archiver.csproj">
+      <Project>{0BD3A946-E95E-46B7-A0B2-F89C2B03A5F9}</Project>
+      <Name>Archiver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{A3D91CED-553F-4433-AD67-8706E0127D8D}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StringResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StringResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\db_settings.png" />
+    <Content Include="Resources\db_table.png" />
+    <Content Include="Resources\log_error.png" />
+    <Content Include="Resources\log_info.png" />
+    <Content Include="Resources\log_warning.png" />
+    <Content Include="Resources\move_object_back.png" />
+    <Content Include="Resources\move_object_front.png" />
+    <Content Include="Resources\new_file.png" />
+    <Content Include="Resources\open_events.png" />
+    <Content Include="Resources\open_file.png" />
+    <Content Include="Resources\open_schema.png" />
+    <Content Include="Resources\refresh.png" />
+    <Content Include="Resources\run.png" />
+    <Content Include="Resources\save_file.png" />
+    <Content Include="Resources\script.png" />
+    <Content Include="Resources\script_add.png" />
+    <Content Include="Resources\script_remove.png" />
+    <Content Include="Resources\stop.png" />
+    <Content Include="Resources\tree_archiver.png" />
+    <Content Include="Resources\tree_channels.png" />
+    <Content Include="Resources\tree_plugin.png" />
+    <Content Include="Resources\tree_project.png" />
+    <Content Include="Resources\tree_rule.png" />
+    <Content Include="Resources\tree_schema.png" />
+    <Content Include="Resources\tree_schemas.png" />
+    <Content Include="Resources\tree_script.png" />
+    <Content Include="Resources\tree_scripts.png" />
+    <Content Include="Resources\tree_variable.png" />
+    <Content Include="Resources\zoom_in.png" />
+    <Content Include="Resources\zoom_out.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

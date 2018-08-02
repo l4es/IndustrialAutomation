@@ -1,0 +1,575 @@
+<HTML>
+<HEAD>
+<TITLE>Synchronized access to shared memory for i86</TITLE>
+
+<UL>
+<LI><A HREF = "#description">Description</A>
+<LI><A HREF = "#locks">Convenient locking mechanism</A>
+<LI><A HREF = "#primitives">Synchronization primitives</A>
+<LI><A HREF = "#based">Based pointers</A>
+<LI><A HREF = "#template">Application template</A>
+<LI><A HREF = "#vs">Advantages and disadvantages</A>
+<LI><A HREF = "#howto">How to use</A>
+<LI><A HREF = "#distribution">Distribution</A>
+</UL>
+
+<BODY>
+<HR>
+<H2><A NAME = "description">Description</A></H2>
+
+Class <CODE>shared_memory</CODE> provides effective and operating system 
+independent interface to shared memory. This class makes it possible for 
+several applications to access objects in shared memory. 
+This class provides methods 
+for allocation/deallocation of objects in shared memory, setting exclusive 
+or shared locks. Locks can be nested and can be used to synchronize access
+to shared objects by different threads within process as well as
+by different processes.<P>
+
+The primary idea of this class is to support effective mechanism of
+interprocess data exchange and data sharing. 
+The assumption was made that most of the time
+there are no data access conflicts between concurrent processes. 
+So class <CODE>shared_memory</CODE> was designed to optimize this 
+case: locking of an object by process without waiting. Using of special
+atomic instructions of i486 (and higher) processor <CODE>XADD</CODE> 
+and <CODE>CMPXCHG</CODE> makes it possible to avoid context
+switching for locking resource, which is not locked by other process.
+Only storage locks are supported by <CODE>shared_memory</CODE> class.
+So locking of separate objects is not possible.<P>
+
+It is possible to map shared memory section on file and use 
+it as persistent storage for objects. Transactions are not supported
+by this class. If atomicity and fault tolerance are required for
+you application, please look for 
+<A HREF = "http://www.ispras.ru/~knizhnik/goods.html">
+Generic Object Oriented Database System</A>  or
+<A HREF = "http://www.ispras.ru/~knizhnik/post.html">
+Persistent Object Storage for C++</A>.<P>
+
+As far as objects allocated in shared memory can contain references to another
+objects in shared memory, it is necessary to guaranty that
+shared memory section is mapped to the same virtual address range in 
+all application using this section. This address can be specified
+in <CODE>open()</CODE> method or, if not specified, is defined by the system.
+When section is mapped to another process address space, <CODE>open()</CODE>
+method tries to map the section to the same virtual address. If it not possible
+(for example if some other section is mapped to this address range), 
+then <CODE>open()</CODE> will fail 
+(<A HREF = "http://www.ispras.ru/~knizhnik/post.html">POST++</A>
+allows to move section to different location and adjust references, but
+it is possible only when section is used by only one application).<P>
+
+Allocation of objects in shared memory is performed by first feed
+algorithm using list of free holes with walking pointer of current position in the list. Two extra words are allocated before and after the object, making
+it possible efficient merge of subsequent holes during <CODE>free()</CODE>
+operation (constant time object deallocation).
+Once created, shared memory section can't be exceeded.
+Maximal size of section should be specified in <CODE>open()</CODE>
+parameters.<P>
+
+
+
+<H2><A NAME = "interface">Interface</A></H2>
+
+<HR>
+
+<B>
+ static shared_memory* find_storage(void* obj);
+</B><P>
+
+Given object pointer, this static methods returns pointer to
+the shared memory section, to which this object belongs. If object
+was not allocated by <CODE>shared_memory</CODE> class or section is already 
+closed, then this method returns NULL.
+
+<HR>
+
+<B>
+status lock(lock_descriptor& lck, unsigned msec = INFINITE);
+</B><P>
+
+Lock storage either in shared or exclusive mode. Lock mode is specified
+by <CODE>lock_descriptor</CODE> object provided by application.
+This object should not be deleted until <CODE>unlock()</CODE> method
+for this lock descriptor is called. Locks can be nested, so that
+calling <CODE>lock()</CODE> method twice will require two
+calls of <CODE>unlock()</CODE> to take off lock from the storage.
+It is an error to use one lock descriptor in more than one
+lock requests.<P>
+
+Optional parameter <CODE>msec</CODE> specifies value
+of timeout for waiting until lock request will be granted. 
+If timeout is expired before lock can be granted, <CODE>lock()</CODE>
+method returns <CODE>shared_memory::timeout_expired</CODE> 
+error code. If <CODE>msec</CODE> is set to 0, <CODE>lock()</CODE> will
+return immediately if lock is not possible. See section 
+<A HREF="#locks">Convenient lock mechanism</A> for alternative way of 
+setting locks.<P>
+
+Using of locks can cause deadlock problem. Consider the following
+situation: application A and B lock storage in shared mode, then
+both of them try to upgrade their lock to exclusive. But both of this locks 
+can not be granted, because of shared lock of other application. So these two
+application can't continue execution and will wait for each other forever.
+To avoid deadlocks you should use lock upgrades with care and if you know that 
+method of shared object which doesn't change the object can call
+another method which modifies the object, it is better to set exclusive
+lock in first method.<P>
+
+<HR>
+
+<B>
+status unlock(lock_descriptor& lck);
+</B></P>
+
+Take off lock previously set by <CODE>lock()</CODE> method. 
+Locks can be nested so calling <CODE>unlock()</CODE> method will not
+necessary unlock the storage. Lock descriptor, passed to 
+<CODE>unlock()</CODE> method should be the same object, as passed to 
+<CODE>lock()</CODE>.<P>
+
+<HR>
+
+<B>
+void*  allocate(size_t size, bool initialize_by_zero = true);
+</B><P>
+
+Allocate object in shared memory section. If there is not enough
+space in the storage for allocation of new object, 
+<CODE>NULL</CODE> is returned. If second parameter 
+<CODE>initialize_by_zero</CODE> is true, then object will be initialized by 
+zeros.<P>
+
+<HR>
+
+<B>
+void   free(void* ptr);
+</B><P>
+
+Deallocate specified object. Storage file can be truncated as a result of
+deallocation objects at the end of the storage.<P>
+
+
+<HR>
+
+<B>
+static void deallocate(void* obj);
+</B><P>
+
+This method does the same as previous method, but can be called without 
+pointer to <CODE>shared_memory</CODE> object. This method calls 
+<CODE>find_storage()</CODE> method to find out storage to which object belongs
+and then deallocate object's memory by <CODE>free()</CODE> method.<P>
+
+
+<HR>
+
+<B>
+status open(const char* file_name, const char* shared_name, 
+          size_t max_size, open_mode mode = read_write,
+		 void* desired_address = NULL);
+</B><P>
+Create or open shared memory section. Parameter <CODE>shared_name</CODE>
+specifies system name of the object and should not conflict
+with names of other objects in the system (events, semaphores, mutexes,...).
+More precisely, <CODE>shared_name</CODE> is used to generate
+a collection of identifiers, which are assigned to syncronizational objects
+used by class <CODE>shared_memory</CODE> and file mapping object itself.
+These identifiers are produced from <CODE>shared_name</CODE> appended
+by decimal digit (1,2,...).<P>
+
+If <CODE>file_name</CODE> parameter is not NULL, then memory section 
+is mapped on file, allowing to save data between session.
+If <CODE>file_name</CODE> parameter value is NULL, then anonymous
+memory mapping object is created with storage allocated from swap file.<P>
+
+Parameter <CODE>max_size</CODE> specifies size of created memory section.
+This parameter is used only when <CODE>open()</CODE> is called first time
+to create shared memory object. All subsequent calls to 
+<CODE>open()</CODE> by other processes will make attachment to existing
+memory object and can't change it's size. If size of mapped file
+is greater than value of <CODE>max_size</CODE>, then size of created
+section is set to the size of the file (it can't be extended in this case).
+If <CODE>max_size</CODE> is greater than size of the file, then 
+Windows will first extend file to the size of memory mapping object.
+File will be truncated to actual used size by <CODE>close()</CODE>
+method (but it is necessary to have enough free space on disk to hold
+all <CODE>max_size</CODE> bytes of mapped file).<P>
+
+Parameter <CODE>mode</CODE> can be used to choose read-only or read-write
+access mode to memory section. In both cases file is opened for read/write
+and memory object is created with all access rights. But if 
+<CODE>read_only</CODE> mode is used, the section is mapped on virtual memory 
+with read only access permnission. So any attempt to modify object in 
+section opened in <CODE>read_only</CODE> mode will cause access violation.<P>
+
+If parameter <CODE>desired_address</CODE> is not null, section will be mapped
+to specified virtual address. Otherwise system will find suitable address
+itself. To keep references between shared objects valid, it is necessary to 
+map memory section to the same virtual address in all application. 
+As far as application can map some other memory mapping objects,
+this address range can be already used. To avoid such conflict,
+you can explicitly specify address at which section should be mapped. 
+If only one memory mapping object is used in all application or 
+sizes of theses objects and order of their creating are the same in
+all applications, let system choose address for you.<P>
+
+<HR>
+
+<B>
+status flush();
+</B></P>
+Flush modified pages on disk. This method is meaningful only if 
+mapping on file is used.<P>
+
+<HR>
+
+<B>
+void   close();
+</B></P>
+
+This method will close the storage. If there are no more processes
+using this shared memory object, then it will be deallocated.
+If shared memory section is mapped on file, then before deallocation
+all modified pages will be saved on disk and then file will be truncated to
+it's actual size (used by allocated objects).<P>
+
+<HR>
+
+<B>
+char*  get_error_text(status code, char* buf, size_t buf_size) const;
+</B></P>
+
+Given status code returned by <CODE>shared_memory</CODE> method, 
+this method copies in supplied buffer text of message for this code.<P>
+
+<HR>
+
+<B>
+void   set_root_object(void* root);
+</B></P>
+
+This method stores pointer to the root object in the storage header. 
+Reference to the root object then can be extracted using 
+<CODE>get_root_object()</CODE> method in following sessions 
+(certainly if shared section is mapped on the 
+file). All other objects from the storage can be accessed by normal pointers
+from the root object.<P>
+
+Usually creating of root object is done at the moment of storage creation
+(but root can be changed in any time). Do not forget to exclusively
+lock database when performing storage initialization if several
+processes can concurrently try to open the storage.<P>
+
+<HR>
+
+<B>
+void*  get_root_object() const;
+</B></P>
+
+Extract reference to the root object in the storage. This reference
+should be previously saved by <CODE>set_root_object(void* root)</CODE>.<P>
+
+<HR>
+
+<B>
+void check_heap();
+</B></P>
+
+Check consistency of shared objects heap. This function iterates through
+all objects and holes in shared memory section and checks offset fields
+before and after each segment. Assert statement checks that values of this 
+fields are consistent. Inconsistency of heap can be caused by 
+<I>"walking pointer"</I>, writing to array element with out of range index 
+value or as a result of system (program) fault. This method should be called
+with storage locked in shared or exclusive mode.<P>
+
+<HR>
+
+
+<H2><A NAME = "locks">Convenient lock mechanism</A></H2>
+
+When using methods <CODE>lock(), unlock()</CODE> you have to keep balance of 
+lock/unlock calls and also create lock descriptor objects. But usually
+locks are used in structural way, protecting programs blocks of code.
+There are two classes, which can safe you from writing extra code and 
+reduce probability of making error: <CODE>exclusive_lock</CODE> and
+<CODE>shared_lock</CODE>. This classes set lock from constructor and
+take off lock from the destructor. So if you want to protect program block, 
+the only thing you have to do, is to create local (automatic)
+object of  <CODE>exclusive_lock</CODE> or <CODE>shared_lock</CODE> class on 
+stack. Compiler will do all other work for you, calling constructor before
+entering the block and destructor after exiting from the block.
+See example in section <A HREF = "#template">Application template</A><P>
+
+
+<H2><A NAME = "primitives">Synchronization primitives</A></H2>
+
+In addition to the storage locking mechanism, 
+there are two other synchronization primitives: 
+<CODE>semaphore</CODE> and <CODE>event</CODE>.
+These classes are defined in <A HREF = "shmem.h">shmem.h</A>, provide system 
+independent interface for synchronization operations.
+Tables below contain description of methods of these classes:<P>
+
+<TABLE BORDER ALIGN="CENTER">
+<CAPTION><B>semaphore</B>: classical Dijkstra semaphore</CAPTION>
+<TR BGCOLOR="#A0A0A0"><TH>Method</TH><TH>Description</TH></TR>
+
+<TR><TD ALIGN="LEFT">bool open(const char* name, unsigned init_value = 0);</TD>
+<TD ALIGN="LEFT">Cerate semaphore with specified global name and set it's 
+value to <CODE>init_value</CODE>. If <CODE>name</CODE> is NULL, then 
+semaphore is local within process. Method returns false if semaphore can't be 
+created.
+</TD></TR>
+
+<TR><TD ALIGN="LEFT">bool wait(unsigned msec = INFINITE)</TD>
+<TD ALIGN="LEFT">Wait for specified period of time until semaphore 
+will be signaled (value of semaphore becomes non-zero). 
+Method returns false if timeout is expired before semaphore 
+is signaled, and true otherwise</TD></TR>
+
+<TR><TD ALIGN="LEFT">void signal(unsigned inc = 1);</TD>
+<TD ALIGN="LEFT">Increment semaphore value by <CODE>inc</CODE></TD></TR>
+
+<TR><TD ALIGN="LEFT">void close();</TD>
+<TD ALIGN="LEFT">Close semaphore (this method do nothing in Unix)</TD></TR>
+</TABLE><P>
+
+
+<TABLE BORDER ALIGN="CENTER">
+<CAPTION><B>event</B>: event with manual reset</CAPTION>
+<TR BGCOLOR="#A0A0A0"><TH>Method</TH><TH>Description</TH></TR>
+
+<TR><TD ALIGN="LEFT">bool open(const char* name, bool signaled = false);</TD>
+<TD ALIGN="LEFT">Create event with specified global name and set it's state 
+to the value of <CODE>signaled</CODE> parameter. If <CODE>name</CODE> is NULL,
+then event is local within process. Method returns false if event
+can't be created.</TD></TR>
+
+<TR><TD ALIGN="LEFT">bool wait(unsigned msec = INFINITE)</TD>
+<TD ALIGN="LEFT">Wait for specified period of time until event 
+will be signaled. Method returns false if timeout is expired before event
+is switched to signaled state, and true otherwise</TD></TR>
+
+<TR><TD ALIGN="LEFT">void signal();</TD>
+<TD ALIGN="LEFT">Set the state of the event to signaled.</TD></TR>
+
+<TR><TD ALIGN="LEFT">void reset();</TD>
+<TD ALIGN="LEFT">Reset the state of the event to non-signaled.</TD></TR>
+
+<TR><TD ALIGN="LEFT">void close();</TD>
+<TD ALIGN="LEFT">Close event (this method do nothing in Unix)</TD></TR>
+</TABLE><P>
+
+There is also implementation of Posix semaphores for Unix
+based in IPC semaphores. Interface of Posix semaphores
+as well as semaphores placed in shared memory is in the
+file <A HREF="posixsem.h">posixsem.h</A> and implementation in the
+file <A HREF="posixsem.c">posixsem.c</A>. There is only one difference
+between Posix specification of method <CODE>sem_init()</CODE> and one
+defined in <A HREF="posixsem.h">posixsem.h</A>; instead of 
+<CODE>int pshared</CODE> parameter, 
+<CODE>char* name</CODE> parameter with global name of semaphore 
+is used. If <CODE>name == NULL</CODE> then semaphore is private.
+Semaphores in shared memory are implemented using
+GCC inline assembler facility and i486 <CODE>XADD, CMPXCHG</CODE> instructions.
+Non-blocking operations with such semaphore are very fast and require no 
+context switching. Their interface is similar with one in Digital Unix.<P>
+
+<H2><A NAME = "based">Based pointers</A></H2>
+
+Using of <CODE>__based()</CODE> qualifier, supported by Microsoft Visual C++
+compiler, makes it possible to map shared memory section to different virtual 
+addresses in different applications. Static pointer is used to point
+at the beginning of mapped section (so only one section can be mapped in
+each moment of time). To use this scheme, you should declare all
+reference fields of shared objects with <CODE>REF(type)</CODE> macro
+instead of <CODE>TYPE*</CODE> and compile your application with
+<CODE>-DUSE_BASED_POINTERS</CODE> option.<P>
+
+<H2><A NAME = "template">Application template</A></H2>
+
+<PRE>
+shared_memory shmem;
+class tree { 
+  public:
+    tree* left;
+    tree* right;
+    int   val;
+
+    void* operator new(size_t size) { 
+	return shmem.alloc(size);
+    }
+    void operator delete(void* p) { 
+	shmem.free(p);
+    }
+    tree(int key) { val = key; left = right = NULL; }
+};
+
+class root_object { 
+  public:
+    tree* root;
+
+    void  insert(int key) { 
+	exclusive_lock x_lock(shmem);
+	...
+    }
+    tree* search(int key) { 
+	shared_lock s_lock(shmem); 
+	...
+    }
+    void  remove(int key) { 
+	exclusive_lock x_lock(shmem);
+	...
+    }
+    void* operator new(size_t size) { 
+	return shmem.alloc(size);
+    }
+    void operator delete(void* p) { 
+	shmem.free(p);
+    }
+    root_object() { root = NULL; }
+};
+
+main()
+{
+    shared_memory::status rc;
+    root_object* root;
+    rc = shmem.open("test.odb", "test", max_size);
+    if (rc != shared_memory::ok) { 
+	shmem.get_error_text(rc, buf, sizeof buf);
+	fprintf(stderr, "Field to open file: %s\n", buf);
+	return EXIT_FAILURE;
+    } else { 
+	exclusive_lock x_lock(shmem);
+	root = (root_object*)shmem.get_root_object();
+	if (root == NULL) { 
+	    root = new root_object;
+	    shmem.set_root_object(root);
+	}
+    }
+    root->insert(0);
+    ...
+    shmem.close();
+    return EXIT_SUCCESS;
+}
+</PRE>    
+
+
+<H2><A NAME = "vs">Advantages and disadvantages</A></H2>
+
+
+<TABLE BORDER>
+<TR BGCOLOR="#A0A0A0"><TH>Advantages</TH><TH>Disadvantages</TH></TR>
+<TR><TD>
+Is very simple and can be used for various purposes
+</TD><TD>
+Requires mapping of memory segments to the same virtual address in all 
+applications.
+</TD></TR>  
+
+<TR><TD>
+Provides very fast access to shared object with almost no runtime 
+overhead.
+</TD><TD>
+It is not possible to place objects with virtual functions in shared storage.
+</TD></TR>  
+
+<TR><TD>
+Support different lock modes: shared, exclusive, nested, with timeout.
+</TD><TD>
+Has no fine grained locking facilities.
+</TD></TR>  
+
+<TR><TD>
+Provides persistence for shared objects.
+</TD><TD>
+Doesn't support transactions and fault tolerance.
+</TD></TR>  
+</TABLE><P>
+
+
+<H2><A NAME = "howto">How to use</A></H2>
+
+File <A HREF="shmem.h">shmem.h</A> contains interface and 
+<A HREF="shmem.cpp">shmem.cpp</A> - implementation of shared memory
+class.<P>
+
+Class <CODE>shared_memory</CODE> is implemented for MS-Windows-95/NT
+and Unixes for i86 platform with GCC compiler (only Linux is tested at 
+the current moment). You can compile test application 
+<A HREF="tstshmem.cpp">tstshmem.cpp</A> using GCC under Unix by
+<A HREF="makefile">makefile</A>. Under Windows you should use
+<A HREF="makefile.mvc">makefile.mvc</A> for Microsft Visual C++
+or <A HREF="makefile.bcc">makefile.mvc</A> for Borland C++. 
+This application starts N threads each of which inserts 
+10,000 elements in the tree, then searches 10 times for each element and
+then removes all inserted elements. Each insert and remove operation
+is protected by exclusive lock, while each search in tree is protected
+by shared lock. Parameter N should be specified in command line and 
+should not exceed 32. It is possible to run several <CODE>tstshmem</CODE> 
+programs simultaneously.
+Tables below contains results for some values of N:<P>
+
+<TABLE BORDER ALIGN="CENTER">
+<CAPTION>Pentium-II 233 Windows-NT</CAPTION>
+<TR BGCOLOR="#A0A0A0"><TH>Use locking</TH><TH>Processes</TH><TH>Threads per process</TH><TH>Time (sec)</TH></TR>
+<TR><TD ALIGN="CENTER">no</TD><TD ALIGN="CENTER">1</TD><TD ALIGN="CENTER">1</TD></TD><TD ALIGN="RIGHT">4.406</TD></TR>
+<TR><TD ALIGN="CENTER">yes</TD><TD ALIGN="CENTER">1</TD><TD ALIGN="CENTER">1</TD></TD><TD ALIGN="RIGHT">6.609</TD></TR>
+<TR><TD ALIGN="CENTER">yes</TD><TD ALIGN="CENTER">1</TD><TD ALIGN="CENTER">2</TD></TD><TD ALIGN="RIGHT">14.591</TD></TR>
+<TR><TD ALIGN="CENTER">yes</TD><TD ALIGN="CENTER">1</TD><TD ALIGN="CENTER">4</TD></TD><TD ALIGN="RIGHT">36.011</TD></TR>
+<TR><TD ALIGN="CENTER">yes</TD><TD ALIGN="CENTER">2</TD><TD ALIGN="CENTER">1</TD></TD><TD ALIGN="RIGHT">12.387</TD></TR>
+<TR><TD ALIGN="CENTER">yes</TD><TD ALIGN="CENTER">2</TD><TD ALIGN="CENTER">2</TD></TD><TD ALIGN="RIGHT">50.172</TD></TR>
+<TR><TD ALIGN="CENTER">yes</TD><TD ALIGN="CENTER">4</TD><TD ALIGN="CENTER">1</TD></TD><TD ALIGN="RIGHT">59.435</TD></TR>
+</TABLE><P>
+
+<TABLE BORDER ALIGN="CENTER">
+<CAPTION>Pentium-II 233 Linux</CAPTION>
+<TR BGCOLOR="#A0A0A0"><TH>Use locking</TH><TH>Processes</TH><TH>Threads per process</TH><TH>Time (sec)</TH></TR>
+<TR><TD ALIGN="CENTER">no</TD><TD ALIGN="CENTER">1</TD><TD ALIGN="CENTER">1</TD></TD><TD ALIGN="RIGHT">3.720</TD></TR>
+<TR><TD ALIGN="CENTER">yes</TD><TD ALIGN="CENTER">1</TD><TD ALIGN="CENTER">1</TD></TD><TD ALIGN="RIGHT">5.707</TD></TR>
+<TR><TD ALIGN="CENTER">yes</TD><TD ALIGN="CENTER">2</TD><TD ALIGN="CENTER">1</TD></TD><TD ALIGN="RIGHT">14.210</TD></TR>
+<TR><TD ALIGN="CENTER">yes</TD><TD ALIGN="CENTER">4</TD><TD ALIGN="CENTER">1</TD></TD><TD ALIGN="RIGHT">45.007</TD></TR>
+</TABLE><P>
+
+Test program <A HREF="fifo.cpp">fifo.cpp</A> illustrates how 
+<CODE>shared_memory</CODE> class can be used for interprocess communication.
+Also <CODE>semaphore</CODE> and <CODE>event</CODE> classes are tested in this 
+program. This program contains classical example of consumer-producer task, 
+based on FIFO queue. Any number of producers can insert elements in
+queue and any number of consumers extract them from the queue in 
+First In First Out order. To run producer you should specify in command line 
+number of messages, which producer should insert in the queue.
+After insertion of specified number of message producer will terminate.
+Consumer is started without no arguments. It tries to extract message
+from the queue during some period of time. If no messages arrive during
+this period (10 seconds) consumer terminates.<P>
+
+There is also one utility program for Unix <CODE>semstat</CODE>,
+which extends functionality of <CODE>ipcs</CODE> program and allows
+you to dump semaphore values. Source code of this utility is in 
+<A HREF="semstat.c">semstat.c</A> file.<P>
+
+
+<H2><A NAME = "distribution">Distribution</A></H2>
+
+SHMEM is freeware and is distributed in the hope to be useful. 
+Your are free to use this class in your applications and modify the sources.
+Also feel free to ask me any questions about SHMEM.
+Freeware status doesn't mean  lack of support. 
+I will do my best to fix all reported bugs and add desired functionality.
+E-mail support is always guaranteed.
+
+<HR>
+<P ALIGN="CENTER"><A HREF="http://www.ispras.ru/~knizhnik">
+<B>Look for new version at my homepage</B></A><B> | </B>
+<A HREF="mailto:knizhnik@altavista.net">
+<B>E-mail me about bugs and problems</B></A></P>
+</BODY>
+</HTML>
+
+
+
+

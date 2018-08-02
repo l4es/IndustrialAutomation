@@ -1,0 +1,84 @@
+on
+	(void)
+Error in testdeclerr.c near line 9: Expected ;
+Error in testdeclerr.c near line 10: Undeclared identifier typdef
+Error in testdeclerr.c near line 11: Undeclared identifier myint
+Error in testdeclerr.c near line 12: Illegal cast operation
+Error in testdeclerr.c near line 15:  Redeclaration of parameter `a'
+Previously declared in: testdeclerr.c
+Error in testdeclerr.c near line 17: Declaration error
+Error in testdeclerr.c near line 18: Direct declarator error
+Error in testdeclerr.c near line 20: invalid specification
+Error in testdeclerr.c near line 21: Illegal storage class usage
+Error in testdeclerr.c near line 22: invalid specification
+Error in testdeclerr.c near line 23: Illegal cast operation
+Error in testdeclerr.c near line 24: missing { in initialisation of an array
+Warning: in testdeclerr.c near line 25: Array of chars is too long
+Error in testdeclerr.c near line 26: missing { in initialisation of an array
+Error in testdeclerr.c near line 27: Illegal initialisation
+Error in testdeclerr.c near line 28: Too many initialisers
+Error in testdeclerr.c near line 29: Illegal initialization: illegal address operation
+Error in testdeclerr.c near line 31: Init decl list error
+Error in testdeclerr.c near line 32: Syntax error
+Error in testdeclerr.c near line 33: Initialisation not supported for non scalar local types
+Error in testdeclerr.c near line 36: Illegal cast operation
+Error in testdeclerr.c near line 38: Constant int expression needed
+Error in testdeclerr.c near line 39: Declarator error
+Error in testdeclerr.c near line 39:  Redeclaration of parameter `o'
+Previously declared in: testdeclerr.c
+Error in testdeclerr.c near line 40: Declarator error
+Error in testdeclerr.c near line 42: Enumeration declaration error
+Error in testdeclerr.c near line 45: Assignment must be constant
+Error in testdeclerr.c near line 46: Expected identifier in enumeration
+Error in testdeclerr.c near line 49: Constant int expression needed
+Error in testdeclerr.c near line 50: Illegal cast operation
+Error in testdeclerr.c near line 51: Duplication of identifier in struct/union
+Error in testdeclerr.c near line 51: Incomplete data type for struct/union member b
+Error in testdeclerr.c near line 53: Struct/Union list declaration error
+Error in testdeclerr.c near line 54: Struct/Union member declaration error
+Error in testdeclerr.c near line 55: Struct/Union member declaration error
+Error in testdeclerr.c near line 56: Bit fields not supported
+Error in testdeclerr.c near line 57: Bit fields not supported
+Error in testdeclerr.c near line 57: Struct/Union member declaration error
+Error in testdeclerr.c near line 59: Parameter declaration error
+Error in testdeclerr.c near line 59: Incomplete data type for struct/union member funcA
+Error in testdeclerr.c near line 60: invalid specification
+Error in testdeclerr.c near line 61: Expected ...
+Error in testdeclerr.c near line 62:  Redeclaration of parameter `funcB'
+Previously declared in: testdeclerr.c
+Error in testdeclerr.c near line 63:  Redeclaration of parameter `funcB'
+Previously declared in: testdeclerr.c
+Error in testdeclerr.c near line 65: Struct/Union member declaration error
+Error in testdeclerr.c near line 71: Illegal structure operation
+Error in testdeclerr.c near line 75: Unknown type 'a': possible old C type declaration
+Error in testdeclerr.c near line 76: Expected ;
+Error in testdeclerr.c near line 78: Misplaced return statement
+Error in testdeclerr.c near line 82: Illegal storage class for parameter a
+Error in testdeclerr.c near line 89:  Redeclaration of parameter `funcD'
+Previously declared in: testdeclerr.c
+Error in testdeclerr.c near line 90: Illegal function definition in funcD
+Warning: in testdeclerr.c near line 91: Empty function definition
+Error in testdeclerr.c near line 94: Expected  ; 
+Error in testdeclerr.c near line 96: Illegal return type for funcE
+Error in testdeclerr.c near line 99:  Redeclaration of parameter `f2'
+Previously declared in: testdeclerr.c
+Error in testdeclerr.c near line 107: Cannot apply & to a register variable
+Error in testdeclerr.c near line 120:  Redeclaration of parameter `x'
+Previously declared in: testdeclerr.c
+Error in testdeclerr.c near line 132: Illegal initialization: illegal address operation
+Error in testdeclerr.c near line 132: Illegal initialization: illegal address operation
+Error in testdeclerr.c near line 132: Illegal initialization: illegal address operation
+Error in testdeclerr.c near line 145: Illegal cast operation
+Error in testdeclerr.c near line 146: Illegal cast operation
+Error in testdeclerr.c near line 147: Illegal cast operation
+Error in testdeclerr.c near line 148: Illegal cast operation
+Error in testdeclerr.c near line 162: Illegal cast operation
+Error in testdeclerr.c near line 163: Illegal assignment operation
+Error in testdeclerr.c near line 164: Illegal assignment operation
+Error in testdeclerr.c near line 165: Illegal assignment operation
+Error in testdeclerr.c near line 172:  Redeclaration of parameter `XX'
+Previously declared in: testdeclerr.c
+Error in testdeclerr.c near line 175: Missing name for Paramater 2
+Error in testdeclerr.c near line 180: extraneous identifier `f'
+Error in testdeclerr.c near line 186: Illegal return type for abc33
+Error: clean up forced

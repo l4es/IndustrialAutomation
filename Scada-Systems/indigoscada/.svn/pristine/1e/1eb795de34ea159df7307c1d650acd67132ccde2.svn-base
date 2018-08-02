@@ -1,0 +1,26 @@
+/* XPM */
+static const char *keysilver_xpm[] = {
+/* width height num_colors chars_per_pixel */
+"    31    15        4            1",
+/* colors */
+". c #000000",
+"# c #7f7f7f",
+"a c #bfbfbf",
+"b c None",
+/* pixels */
+"bbbbb.....bbbbbbbbbbbbbbbbbbbbb",
+"bbb..babab..bbbbbbbbbbbbbbbbbbb",
+"bb.ababababa.bbbbbbbbbbbbbbbbbb",
+"b.abababababa.bb..bbbbbbbbbbbbb",
+"#.bababababab.b.b.bbbbbbbbbbbbb",
+".ba...abababaa..a..............",
+".a.###.ababaaaaaaababababababa.",
+".b.bbb.bababaaaaaaaaaaaaaaaaaa.",
+".a.bbb.ababaaaaaaaaaaaaaaaaaa.b",
+".ba...abababaa...............bb",
+"#.bababababaa.#.#..####...#.bbb",
+"#.abababababa.##..#....##..bbbb",
+"##.ababababa.bb##b####bb##bbbbb",
+"b##..babab..bbbbbbbbbbbbbbbbbbb",
+"bb###.....#bbbbbbbbbbbbbbbbbbbb"
+};

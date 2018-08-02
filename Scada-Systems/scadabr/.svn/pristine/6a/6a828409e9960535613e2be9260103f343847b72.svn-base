@@ -1,0 +1,15 @@
+<html>
+<body>
+
+<head> 
+<title>Rose Examples</title>
+</head>
+
+<h1>Rose Examples</h1>
+
+<p>With Rose installed you can give your first steps towards using it's resources.</p>
+
+<p>Starting <a href="HTTPClient.html">with an example of how to use HTTP Retriever Data Sources</a> </p>
+
+</body>
+</html>

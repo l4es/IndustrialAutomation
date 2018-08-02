@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="DLL Unicode Debug|Win32">
+      <Configuration>DLL Unicode Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL Unicode Debug|x64">
+      <Configuration>DLL Unicode Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL Unicode Release|Win32">
+      <Configuration>DLL Unicode Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="DLL Unicode Release|x64">
+      <Configuration>DLL Unicode Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|Win32">
+      <Configuration>Template</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|x64">
+      <Configuration>Template</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\common\oapcBinHead.cpp" />
+    <ClCompile Include="..\common\oapcMutexLocker.cpp" />
+    <ClCompile Include="..\common\oapcResourceBundle.cpp" />
+    <ClCompile Include="asprintf.cpp" />
+    <ClCompile Include="BasePanel.cpp" />
+    <ClCompile Include="ChangePwdDlg.cpp" />
+    <ClCompile Include="DlgUsers.cpp" />
+    <ClCompile Include="ExternalIOLib.cpp" />
+    <ClCompile Include="ExternalIOLibs.cpp" />
+    <ClCompile Include="flowBinGate.cpp" />
+    <ClCompile Include="flowBinTrigGate.cpp" />
+    <ClCompile Include="flowCharGate.cpp" />
+    <ClCompile Include="flowCharTrigGate.cpp" />
+    <ClCompile Include="flowConnection.cpp" />
+    <ClCompile Include="flowConverter.cpp" />
+    <ClCompile Include="flowConverter2Pair.cpp" />
+    <ClCompile Include="flowConverterBin2Pair.cpp" />
+    <ClCompile Include="flowConverterChar2Digi.cpp" />
+    <ClCompile Include="flowConverterChar2Num.cpp" />
+    <ClCompile Include="flowConverterChar2Pair.cpp" />
+    <ClCompile Include="flowConverterDigi2Char.cpp" />
+    <ClCompile Include="flowConverterDigi2Num.cpp" />
+    <ClCompile Include="flowConverterDigi2Pair.cpp" />
+    <ClCompile Include="flowConverterMixed2Char.cpp" />
+    <ClCompile Include="flowConverterNum2Bits.cpp" />
+    <ClCompile Include="flowConverterNum2Char.cpp" />
+    <ClCompile Include="flowConverterNum2Digi.cpp" />
+    <ClCompile Include="flowConverterNum2Pair.cpp" />
+    <ClCompile Include="flowConverterPair2.cpp" />
+    <ClCompile Include="flowConverterPair2Bin.cpp" />
+    <ClCompile Include="flowConverterPair2Char.cpp" />
+    <ClCompile Include="flowConverterPair2Digi.cpp" />
+    <ClCompile Include="flowConverterPair2Num.cpp" />
+    <ClCompile Include="FlowDataController.cpp" />
+    <ClCompile Include="flowDelay.cpp" />
+    <ClCompile Include="flowDigiGate.cpp" />
+    <ClCompile Include="flowDigiTrigGate.cpp" />
+    <ClCompile Include="FlowDispatcherThread.cpp" />
+    <ClCompile Include="flowExternalIOLib.cpp" />
+    <ClCompile Include="flowGroup.cpp" />
+    <ClCompile Include="flowISConnect.cpp" />
+    <ClCompile Include="flowLog.cpp" />
+    <ClCompile Include="flowLogic.cpp" />
+    <ClCompile Include="flowLogicBinNOP.cpp" />
+    <ClCompile Include="flowLogicBinShift.cpp" />
+    <ClCompile Include="flowLogicCharNOP.cpp" />
+    <ClCompile Include="flowLogicCharShift.cpp" />
+    <ClCompile Include="flowLogicDigiConcat.cpp" />
+    <ClCompile Include="flowLogicDigiNOP.cpp" />
+    <ClCompile Include="flowLogicDigiNOT.cpp" />
+    <ClCompile Include="flowLogicDigiRSFF.cpp" />
+    <ClCompile Include="flowLogicDigiShift.cpp" />
+    <ClCompile Include="flowLogicDigiTFF.cpp" />
+    <ClCompile Include="flowLogicNumConcat.cpp" />
+    <ClCompile Include="flowLogicNumNOP.cpp" />
+    <ClCompile Include="flowLogicNumNOT.cpp" />
+    <ClCompile Include="flowLogicNumShift.cpp" />
+    <ClCompile Include="flowLogInUser.cpp" />
+    <ClCompile Include="flowLogRecorder.cpp" />
+    <ClCompile Include="flowMathBinCtr.cpp" />
+    <ClCompile Include="flowMathCharCmp.cpp" />
+    <ClCompile Include="flowMathCharCtr.cpp" />
+    <ClCompile Include="flowMathDigiCmp.cpp" />
+    <ClCompile Include="flowMathDigiCtr.cpp" />
+    <ClCompile Include="flowMathNumCmp.cpp" />
+    <ClCompile Include="flowMathNumCtr.cpp" />
+    <ClCompile Include="flowNumGate.cpp" />
+    <ClCompile Include="flowNumTrigGate.cpp" />
+    <ClCompile Include="flowObject.cpp" />
+    <ClCompile Include="flowStart.cpp" />
+    <ClCompile Include="flowStop.cpp" />
+    <ClCompile Include="flowTimer.cpp" />
+    <ClCompile Include="flowWalkerPool.cpp" />
+    <ClCompile Include="flowWalkerThread.cpp" />
+    <ClCompile Include="globals.cpp" />
+    <ClCompile Include="hmiAdditionalPane.cpp" />
+    <ClCompile Include="hmiAngularMeter.cpp" />
+    <ClCompile Include="hmiAngularRegulator.cpp" />
+    <ClCompile Include="HMICanvas.cpp" />
+    <ClCompile Include="hmiExternalIOLib.cpp" />
+    <ClCompile Include="hmiFloatField.cpp" />
+    <ClCompile Include="hmiHGauge.cpp" />
+    <ClCompile Include="hmiHSlider.cpp" />
+    <ClCompile Include="hmiImage.cpp" />
+    <ClCompile Include="hmiImageButton.cpp" />
+    <ClCompile Include="hmiLCDNumber.cpp" />
+    <ClCompile Include="hmiLine.cpp" />
+    <ClCompile Include="hmiMutex.cpp" />
+    <ClCompile Include="hmiNumField.cpp" />
+    <ClCompile Include="hmiObject.cpp" />
+    <ClCompile Include="hmiPrimitive.cpp" />
+    <ClCompile Include="hmiRadioButton.cpp" />
+    <ClCompile Include="hmiSimpleButton.cpp" />
+    <ClCompile Include="hmiSinglePanel.cpp" />
+    <ClCompile Include="hmiSpecialPanel.cpp" />
+    <ClCompile Include="hmiStackedPane.cpp" />
+    <ClCompile Include="hmiTabbedPane.cpp" />
+    <ClCompile Include="hmiTextField.cpp" />
+    <ClCompile Include="hmiTextLabel.cpp" />
+    <ClCompile Include="hmiToggleButton.cpp" />
+    <ClCompile Include="hmiToggleImageButton.cpp" />
+    <ClCompile Include="hmiUserMgmntPanel.cpp" />
+    <ClCompile Include="hmiVGauge.cpp" />
+    <ClCompile Include="hmiVSlider.cpp" />
+    <ClCompile Include="IOElementDefinition.cpp" />
+    <ClCompile Include="kwxCtrl\AngularMeter.cpp" />
+    <ClCompile Include="kwxCtrl\AngularRegulator.cpp" />
+    <ClCompile Include="kwxCtrl\LCDWindow.cpp" />
+    <ClCompile Include="LogDataCtrl.cpp" />
+    <ClCompile Include="LogDefPanel.cpp" />
+    <ClCompile Include="oapcNoSpaceCtrl.cpp" />
+    <ClCompile Include="oapcSpinCtrl.cpp" />
+    <ClCompile Include="ObjectList.cpp" />
+    <ClCompile Include="OSKeyboard.cpp" />
+    <ClCompile Include="OSNumpad.cpp" />
+    <ClCompile Include="PCompiler.cpp" />
+    <ClCompile Include="PlayerMainApp.cpp" />
+    <ClCompile Include="PrivilegePanel.cpp" />
+    <ClCompile Include="UserData.cpp" />
+    <ClCompile Include="UserList.cpp" />
+    <ClCompile Include="wxFlatNotebook\renderer.cpp" />
+    <ClCompile Include="wxFlatNotebook\wxFlatNotebook.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>ControlRoom Player</ProjectName>
+    <SccProjectName />
+    <SccLocalPath />
+    <ProjectGuid>{033040CF-6710-4690-8527-431FA60A6A4F}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug|Win32'">
+    <OutDir>.\vc_mswuddll\</OutDir>
+    <IntDir>.\vc_mswuddll\OpenPlayer\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release|Win32'">
+    <OutDir>.\vc_mswudll\</OutDir>
+    <IntDir>.\vc_mswudll\ControlRoomPlayer\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>.\vc_mswudll\</OutDir>
+    <IntDir>.\vc_mswudll\ControlRoomPlayer\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level4</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AdditionalIncludeDirectories>.;..;..\..\..\lib\vc_dll\mswud;..\..\..\include;../common;..\plugins\;../liboapc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>G_RES;wxDEBUG_LEVEL=0;WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;WXUSINGDLL;_WINDOWS;NOPCH;ENV_WINDOWS;ENV_PLAYER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\vc_mswuddll\OpenPlayer\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\vc_mswuddll\OpenPlayer\wxTestPlayer.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\vc_mswuddll\OpenPlayer\</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswuddll\ControlRoom Player.pdb</ProgramDataBaseFileName>
+      <AdditionalOptions> /EHsc </AdditionalOptions>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\vc_mswuddll\wxTestPlayer.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>.\..\..\lib\vc_dll\mswud;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;__WXMSW__;__WXDEBUG__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswuddll\wxTestPlayer.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>OpenPlayer.exe</OutputFile>
+      <AdditionalLibraryDirectories>../liboapc/Debug/;..\..\..\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wxbase28ud_net.lib;wxmsw28ud_core.lib;wxbase28ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;liboapc.lib;hid.lib;setupapi.lib;winmm.lib;comctl32.lib;rpcrt4.lib;wsock32.lib;odbc32.lib;liboapcwx.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug|x64'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level4</WarningLevel>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AdditionalIncludeDirectories>.;..;../../..\lib\vc_x64_dll\mswud;../..\..\include;../common;..\plugins\;../liboapc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>G_RES;wxDEBUG_LEVEL=0;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;WXUSINGDLL;_WINDOWS;NOPCH;ENV_WINDOWS;ENV_PLAYER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\vc_mswuddll\OpenPlayer\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\vc_mswuddll\OpenPlayer\wxTestPlayer.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\vc_mswuddll\OpenPlayer\</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswuddll\ControlRoom Player.pdb</ProgramDataBaseFileName>
+      <AdditionalOptions> /EHsc </AdditionalOptions>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>WIN32;_DEBUG;__WXMSW__;__WXDEBUG__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\vc_mswuddll\wxTestPlayer.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>.\..\..\lib\vc_dll\mswud;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;__WXMSW__;__WXDEBUG__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswuddll\wxTestPlayer.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>OpenPlayer.exe</OutputFile>
+      <AdditionalLibraryDirectories>../liboapc/Debug/;..\..\..\lib\vc_x64_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wxbase31ud_net.lib;wxmsw31ud_core.lib;wxbase31ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;liboapc.lib;hid.lib;setupapi.lib;wsock32.lib;liboapcwx.lib;Iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level4</WarningLevel>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AdditionalIncludeDirectories>.;..;../../..\lib\vc_dll\mswu;..\..\..\lib\vc_dll\mswu;..\..\..\include;../common;..\plugins\;../liboapc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>G_RES;wxDEBUG_LEVEL=0;NDEBUG;NDEBUG;_CRT_SECURE_NO_WARNINGS;WIN32;__WXMSW__;WXUSINGDLL;_WINDOWS;NOPCH;ENV_WINDOWS;ENV_PLAYER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\vc_mswudll\ControlRoomPlayer\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\vc_mswudll\ControlRoomPlayer\wxTestPlayer.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\vc_mswudll\ControlRoomPlayer\</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswudll\ControlRoom Player.pdb</ProgramDataBaseFileName>
+      <AdditionalOptions> /EHsc </AdditionalOptions>
+      <ExceptionHandling>false</ExceptionHandling>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\vc_mswudll\wxTestPlayer.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>.\..\..\lib\vc_dll\mswu;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>__WXMSW__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswudll\wxTestPlayer.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>Release/OpenPlayer.exe</OutputFile>
+      <AdditionalLibraryDirectories>..\liboapc\Release;..\..\..\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wxbase30u_net.lib;wxbase30u_xml.lib;wxmsw30u_xrc.lib;wxmsw30u_adv.lib;wxmsw30u_core.lib;wxbase30u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;liboapc.lib;wsock32.lib;liboapcwx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release|x64'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level4</WarningLevel>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AdditionalIncludeDirectories>.;..;../../..\lib\vc_x64_dll\mswu;..\..\..\lib\vc_x64_dll\mswu;..\..\..\include;../common;..\plugins\;../liboapc\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>G_RES;wxDEBUG_LEVEL=0;NDEBUG;_CRT_SECURE_NO_WARNINGS;WIN32;__WXMSW__;WXUSINGDLL;_WINDOWS;NOPCH;ENV_WINDOWS;ENV_PLAYER;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\vc_mswudll\ControlRoomPlayer\</AssemblerListingLocation>
+      <BrowseInformation>true</BrowseInformation>
+      <PrecompiledHeaderOutputFile>.\vc_mswudll\ControlRoomPlayer\wxTestPlayer.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\vc_mswudll\ControlRoomPlayer\</ObjectFileName>
+      <ProgramDataBaseFileName>vc_mswudll\ControlRoom Player.pdb</ProgramDataBaseFileName>
+      <AdditionalOptions> /EHsc </AdditionalOptions>
+      <ExceptionHandling>false</ExceptionHandling>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>WIN32;__WXMSW__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\vc_mswudll\wxTestPlayer.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>.\..\..\lib\vc_dll\mswu;.\..\..\include;.;.\..\..\samples;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>__WXMSW__;_UNICODE;WXUSINGDLL;_WINDOWS;NOPCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\vc_mswudll\wxTestPlayer.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>Release/OpenPlayer.exe</OutputFile>
+      <AdditionalLibraryDirectories>..\liboapc\Release;..\..\..\lib\vc_x64_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wxbase31u_net.lib;wxbase31u_xml.lib;wxmsw31u_xrc.lib;wxmsw31u_adv.lib;wxmsw31u_core.lib;wxbase31u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;liboapc.lib;wsock32.lib;liboapcwx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'">
+    <Link>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Windows Kits\8.1\Lib\winv6.3\um\x64;</AdditionalLibraryDirectories>
+    </Link>
+    <ClCompile>
+      <PreprocessorDefinitions>G_RES;wxDEBUG_LEVEL=0;</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;..;</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>G_RES;wxDEBUG_LEVEL=0;</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.;..;</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

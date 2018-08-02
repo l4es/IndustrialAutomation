@@ -1,0 +1,24 @@
+HKCR
+{
+	MPriborDBAccessor.Users.1 = s 'Users Class'
+	{
+		CLSID = s '{29D47C35-712C-47B5-A619-650577DB607C}'
+	}
+	MPriborDBAccessor.Users = s 'Users Class'
+	{
+		CLSID = s '{29D47C35-712C-47B5-A619-650577DB607C}'
+		CurVer = s 'MPriborDBAccessor.Users.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {29D47C35-712C-47B5-A619-650577DB607C} = s 'Users Class'
+		{
+			ProgID = s 'MPriborDBAccessor.Users.1'
+			VersionIndependentProgID = s 'MPriborDBAccessor.Users'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{2B4525FF-0734-4D9C-9FF4-0E3B6D462702}'
+		}
+	}
+}

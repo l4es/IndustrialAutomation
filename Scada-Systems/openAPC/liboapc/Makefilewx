@@ -1,0 +1,36 @@
+DBGFLAGS = -O2 -g0
+ifeq ($(DEBUG),1)
+DBGFLAGS = -O0 -g3 -DNOSPLASH
+endif
+ifeq ($(PROFILE),1)
+DBGFLAGS = -O2 -g3
+endif
+
+CFLAGS = $(shell wx-config --cflags)
+LFLAGS = -Wl,-whole-archive \
+	$(shell wx-config --libs) \
+	-Wl,-no-whole-archive
+
+CCOMPILER=libtool --mode=compile g++ -Wall -fPIC -shared -fvisibility=hidden -shared -Wno-unused -Wno-unused-local-typedefs $(DBGFLAGS) -DOAPC_EXT_EXPORTS -D_REENTRANT -DENV_LINUX -I.  -I.. -I ../plugins/ $(CFLAGS)
+
+EXECUTABLE=liboapcwx.la
+
+LINK=libtool --mode=link g++ -shared -fvisibility=hidden -shared -export-symbols-regex 'oapc_' -rpath /usr/lib
+
+OBJECTS = liboapcwxInc.lo
+
+default: $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
+	$(LINK) $(SYSLDFLAGS) $(LDFLAGS) -o $(EXECUTABLE) $(OBJECTS)
+	cp -ax .libs/liboapcwx.so* ../
+	sudo cp -ax .libs/liboapcwx.so* /usr/lib/ &
+	sudo cp -ax .libs/liboapcwx.so* /usr/lib64/ &
+
+%.lo: %.cpp
+	$(CCOMPILER) -c $< -o $@
+
+clean:
+	rm -f $(OBJECTS) $(EXECUTABLE)
+
+

@@ -1,0 +1,36 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:ScadaShell.ViewModel;assembly=ScadaShell"
+    xmlns:vw="clr-namespace:ScadaShell.View;assembly=ScadaShell"
+    xmlns:si="clr-namespace:ScadaShell.Infrastructure;assembly=ScadaShell"
+    xmlns:kbc="clr-namespace:Kent.Boogaart.Converters;assembly=Kent.Boogaart.Converters"           
+    xmlns:kbcm="clr-namespace:Kent.Boogaart.Converters.Markup;assembly=Kent.Boogaart.Converters"   
+	xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <DataTemplate x:Key="ChannelEditView">
+        <Label x:Name="inputBox"
+        si:VirtualKeyboard.Enabled ="True"
+        BorderBrush="{Binding Color}"
+        BorderThickness="1"
+        Foreground="{Binding Color}" 
+        Background="Black"
+        HorizontalAlignment="Stretch">
+
+            <si:VirtualKeyboard.Command>
+                <Binding Path="SetValueCommand"/>
+            </si:VirtualKeyboard.Command>
+
+
+            <Label.Content>
+                <MultiBinding>
+                    <MultiBinding.Converter>
+                        <kbc:FormatConverter  FormatString="{}{0} {1:#0.##}"/>
+                    </MultiBinding.Converter>
+                    <Binding Path="Description"/>
+                    <Binding Path="Value"/>
+                </MultiBinding>
+            </Label.Content>
+        </Label>
+    </DataTemplate>
+</ResourceDictionary>

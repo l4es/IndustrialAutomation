@@ -1,0 +1,613 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Developer Studio">
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1">
+<TITLE>MODBUS RTU, TCP/IP and Allen Bradley DF1 Simulator (Embedded Intelligence Limited)</TITLE>
+</HEAD>
+<BODY background="images\portA.gif">
+<a name="Top"></a>
+<H1>MODBUS RTU, TCP/IP and Allen Bradley DF1 PLC Simulator</H1>
+<p>Use the back button in your browser to aid navigation.<br/>
+Homepage: <a href="http://www.plcsimulator.org">www.plcsimulator.org</a></p>
+<p><b>Contents:</b>
+<UL>
+	<LI><A HREF="#Overview">Overview</a>
+	<LI><A HREF="#Running">Running the program</a>
+	<LI><A HREF="#Ethernet Setup">Ethernet Setup</a>
+	<LI><A HREF="#RS-232 Setup">RS-232 Setup</a>
+	<UL>
+	   <LI><A HREF="#RS232C diagram">...RS232 Wiring</a>
+	   <LI><A HREF="#RS232C hints">...RS232 Hints</a>
+	</UL>
+	<LI><A HREF="#Protocols">Protocols</a>
+	<LI><A HREF="#Animation">Animation</a>
+	<LI><A HREF="#Juice Plant">Juice Plant</a>
+	<LI><A HREF="#Script Automation">Script Automation</a>
+	<LI><A HREF="#Hotkeys">Hotkeys & UI</a>
+	<LI><A HREF="#More">F.A.Q.</a>
+	<UL>
+		<LI><A HREF="#Links">Links</a>
+	</UL>
+	<LI><A HREF="#Notices">Notices.</a>
+</UL>
+</p>
+<HR>
+<!------------------------------------- Overview ------------------------------------->
+<a name="Overview"></a>
+<H2>Overview</H2>
+<p>This simulator was originally designed to allow testing of MODBUS master devices, as such it also allows
+itself to use as a "virtual" PLC for training.
+</p>
+<p>Setting up the simulation for use will cover it's configuration for different applications in detail. The
+first point we come to however is which <A HREF="#Media Types">media type</A> the simulation should use.
+</p>
+<h3>Purpose & features</h3>
+<p>This simulator was written to allow the testing of a MODBUS RTU serial driver
+without having to get 255 little MODBUS PLCs into one office. It is not, by any
+means, a full implementation of the protocol; it implements only the common functions
+used in MODBUS and other protocols supported here.</p>
+<p align="center"><IMG SRC="images\toolbar.gif" ALT="Easy access to the important features" BORDER=0>
+</p>
+<p>It surpasses the limitations in other programs we have found in the
+past by:</p>
+<ul>
+  <li>Simulate more than one RTU at once. (register values shared for all RTUs).</li>
+  <li>Allows editing and display of all the registers.</li>
+  <li>Allow scanning of registers not actually in the display.</li>
+  <li>Running on &gt;1 comm ports (You have to run two copies of the program.). You need to run the
+    first copy; then, when you run it again, it defaults to use the next free RS-232 port, alternately launch copies using <a href="#Hotkeys">command-line options</a>.</li>
+  <li>A way of disabling just certain stations. (Just click on the boxes at the bottom.)</li>
+  <li>Load and save values you type into each register (the file is saved in the same folder) as well
+	as simulate changes in the values. Hotkey &lt;CTRL&gt;-L =Load and &lt;CTRL&gt;-A for sAve.</li>
+  <li>You can specify the MODBUS PDU length (Protocol Data Unit) to simulate RTU's with different internal
+telegram buffer sizes. Hotkey &lt;CTRL&gt;-M</li>
+  <li>Display values in different formats hex/dec etc.</li>
+  <li>Specify responsiveness of the simulator to simulate slow hardware. Hotkey &lt;CTRL&gt;-S .</li>
+  <li>Simulate certain types of comms errors that would be hard to do in a &quot;lab&quot;
+situation.</li>
+  <li>A basic comms debugger showing request/response. Hotkey : &lt;CTRL&gt;-C.</li>
+  <li>Emulation to simulate MODBUS MOSCAD RTU on MODBUS. Hotkey &lt;CTRL&gt;-S or &lt;CTRL&gt;-M . </li>
+  <li>Simulate noisy comms lines. Hotkey &lt;CTRL&gt;-N. </li>
+  <li>It does check the CRC of all messages.</li>
+  <li>It does handle noisy comms properly.</li>
+  <li>Almost totally <b>free</b>, just mail the author for a key (or compile your own).</li>
+</ul>
+<h3>Not supported</h3>
+<ul>
+  <li>MODBUS ASCII protocol support :-(.</li>
+  <li>This application is not intended as a full implementation of MODBUS RTU nor TCP/IP nor Allen-Bradley DF1,
+    it is not commercially supported and no liability is held for any damage or application changes made as
+    a result of it's use.</li>
+</ul>
+<HR>
+<!----------------------------------- Running ---------------------------------------->
+<a name="Running"></a>
+<h2>Running this program</h2>
+<p>This is not a full feature list, just the basics, which most will get in 5 minutes anyway.</p>
+<ul>
+  <li>Launch the application, &quot;mod_rssim.exe&quot; and it should open the 1st free (RS-232 by default)port,
+    select the desired protocol (if Ethernet, no serial port is used/needed), and then
+    click on the <b>Port Settings..."</b> button to change any settings. Settings are saved
+    to Windows<FONT SIZE="-1"><SUP>TM</SUP></FONT> registry.
+  <li><i>Serial protocols:</i>Hook up a cable (just a 2,3 and 7 crossed ,4,5 looped, and 6,8,20 looped should be fine,
+    hardware handshaking is not my strong side), but there is some support there.<BR>
+    <i>Ethernet:</i>U must have an Ethernet adapter or loop-back adapter installed.</li>
+  <li>The boxes at the bottom work like indicators to show which stations are active; the gray
+    outline of each box will change colour (they turn off after five seconds), and clicking them
+    disables each station (only 60 are shown). The green background turns red to show a disabled
+    station. Disabled stations will still show activity, but the sim. will just not respond back.</li>
+  <li>Double-click on the list-view over a register, to edit it's value, double-clicking on
+    digital I/O just toggle them.</li>
+  <li>Switch between the Hex and Decimal views. (addresses also come in hex, this is still being tested.)</li>
+  <li>For mouse-haters like me, a list of <A HREF="#Hotkeys">Hotkeys</a> is provided.</li>
+
+  <BR><b><i>Some advanced options:</b></i>
+  <li>New option for starting with all devices offline added.</li>
+  <li><b>Load</b> will not work unless you have saved first.</li>
+  <li><b>Save</b> will save all the register values to a flat binary file (don't edit it, I can't)
+    called 'modbus.dat', (ABDATA.DAT if using the DF1 protocol) in the current folder. This is nice
+    to allow you to fill the registers with values, and then come back latter to the same setup.
+    Comms will be slow and may time out during load/save, since they are interlocked.</li>
+  <li>Click on <b>Animation Settings...</b> to change the colour of the indicators at the bottom,
+    and set up some simulation data.</li>
+  <li><b>Zero values</b> will clear all values (also the digitals become 0).</li>
+  <li>The &quot;responsiveness&quot; setting changes the delay in the program before it responds to a valid request.</li>
+  <li>Report any problems after trying for at least a day to figure out what U got wrong :-)</li>
+</ul>
+<HR>
+<!------------------------------- Ethernet Setup ------------------------------------->
+<a name="Ethernet setup"></a>
+<H2>Modbus Ethernet Setup</H2>
+<p align="center"><IMG SRC="images\shot2.gif" ALT="?" BORDER=0>
+</p>
+<UL>
+  <li><b>Local IP</b> <i>Not settable,</i> the local IP or computer name.</li>
+  <li><b>Remote IP</b> <i>Not settable,</i> the remote IP or computer name of the 1st connected socket.</li>
+  <li><b># Server connections</b> The number of sockets the server will listen on.</li>
+  <li><b>Port (502)</b> The port number to listen on.</li>
+  <li><b>Station ID</b> Modbus station ID.</li>
+  <li><b>Responsiveness</b> Delay in milliseconds after receiving a request, before the simulator will send a response, this setting allows simulation of turn-around time on a slower card/NOE.</li>
+</UL>
+<p><b>Note:</b> If the station indicator button for a station is off, the simulator will not respond to data requests for that station ID, even though the client is connected.</p>
+<HR>
+<!-------------------------------- RS232 Setup --------------------------------------->
+<a name="RS-232 Setup"></a>
+<H2>RS-232 Setup</H2>
+<p align="center"><IMG SRC="images\shot1.gif" ALT="?" BORDER=0>
+</p>
+<p>All the settings here should just explain themselves, 
+<ul>
+  <li><b>Port</b> if a * appears next to the port, and it is not the current port, that port is in use by another application.
+  <li><b>Baud rate</b> , it is possible to select a baud rate not supported by your UART, typically nothing over 115K except if you have the hardware.
+  <li><b>parity, data and stop bits</b> The modbus default is 8E1, and 8N1 on some newer devices.
+  <li><b>RTS control</b> this allows U to tell the driver the RTS line must be: always on, off or toggle, which is the default setting.
+  <li><b>Responsiveness</b> default = 0. A delay in milliseconds (approximate to within 20) that is instituted before sending a response to any valid or invalid frame.
+  <li><b>Load register values...</b> like it says.
+  <li><b>Units are off..</b> this puts all stations as off-line initially, so U have to turn each one on.
+  <li><b>Perform MOSCAD checks</b> this one helps testing for a Motorola MOSCAD/Mostrac radio-telemetry unit, then just rejects all requests which would just 
+    end up reading "empty" data from one of those units, and returns a exception code to warn the master.
+</ul>
+</p>
+<BR>
+<a name="RS232C diagram"></a>
+<H4>RS232 Wiring</H4>
+<p>
+Use this layout below to translate 9-25-pin connectors on your PC and DTE equipment.</p>
+<PRE>
+<b>9 pin	25 pin	Signal name</b>
+1	8	CD (Carrier detect)
+2	3	RX (Receive Data)
+3	2	TX (Transmit Data)
+4	20	DTR (Data Terminal Ready)
+5	7	SG (Signal Ground)
+6	6	DSR (Data Set Ready)
+7	4	RTS (Request to Send)
+8	5	CTS (Clear to Send)
+9	22	RI (Ring Indicator)
+</PRE>
+<p>A 9-pin wiring diagram looks like this...</p>
+<PRE>
+3----------3
+2----------2
+5----------5
+</PRE>
+<p>The handshake control lines can also be </i>looped</i> back. This is easiest done by 
+putting a blob of solder between 2 adjacent pins or using a very short piece of insulated 
+wire between the 2 pins that must be looped. Translate the pin #s below for a 9-pin connector.
+<PRE>
+4+
+ |
+5+
+
+6 +
+  |
+8 +
+  |
+20+
+</PRE>
+<BR>
+
+<a name="RS232C hints"></a>
+<H4>RS 232 hints</H4>
+<p>When in a RS-232 protocol, (P.S. nothing stops you using 422/485 via a converter) the comms screen
+shows a running dump of stuff sent/received. use the <i>show timestamps</i> tick-box to show timing information.</p>
+<p>This screen now also shown the 3 incoming modem control line states, both through 3 indicators, and then also in the
+list-box view whenever a line-state changes.</p>
+<p>Loops are sometimes needed by the device, for instance DTR output normally drives the DSR/DTR input on a device (your
+ modem if it is an older one with millions of lights has it) modems are DCE (Data communication equipment), and this 
+ means the pins do not correspond to the pin convention above, but in fact are opposite.</p>
+<p>Using a modem with this simulator does work, and even 232/485 converters. The slave (receiving) side of a dial-up will not 
+auto-answer however, U need to put the modem into auto-answer and suppress the modem connect messages yourself using AT codes.
+</p>
+<HR>
+<!-------------------------------- Protocols --------------------------------------->
+<a name="Protocols"></a>
+<H2>Protocols</H2>
+<p>Allows you to configure parameters for a specific protocol, the parameters that
+can be changed differ per protocol, so some values shown may not have relevance. This
+section goes on to explain what the parameters mean and what affect that have.</p>
+
+<a name="ProtocolsModbus"></a>
+<H4>MODBUS Protocol</H4>
+<p align="center"><IMG SRC="images\advmbus.gif" ALT="?" BORDER=0>
+</p>
+<p>Settings for Ethernet and RTU protocols.</p>
+<UL>
+  <li><b>Upper register limits</b> Highest register or I/O number the simulator will allow. Reading/writing registers/bits above this address give an Exception response</li>
+  <li><b>PDU (data portion) size</b> Max length of the data in a message frame.</li>
+  <li><b>Perform MOSCAD (row/table) checks</b> If this means nothing to U, do not use it.</li>
+  <li><b>Modify coils/regs. before responding</b> Allows the returned register value in telegrams that return the current register contents to either reflect the new values, or not in the responses.</li>
+  <li><b>Disable writing of coils/regs</b> .</li>
+</UL>
+<a name="ProtocolsDF1Master"></a>
+<H4>Allen Bradley DF1</H4>
+<p>This protocol has no settings actually, all PLC files (0-250) all have 255 words!)</p>
+<UL>
+  <li><b>PDU (data portion) size</b> Max length of the data in a message frame.</li>
+</UL>
+<p> </p>
+<a name="ProtocolsJoy"></a>
+<H4>JOY SCC386 Protocol</H4>
+<p>This protocol is here just for me, leave alone.</p>
+<p align="center"><IMG SRC="images\joyshot.gif" ALT="?" BORDER=0>
+</p>
+<p>This dialog allows settings for the DF1 Master simulation, which emulates a Joy Mining Machinery device
+<ul>
+	<li><b>Destination station</b> you!
+	<li><b>Source station</b> this get placed into the source field of all messages sent
+	<li><b>#Files/Shields</b> this is the number of roof supports.
+	<li><b>Between Trans...</b> delay in milliseconds between 2 messages.
+	<li><b>SCC timeout</b> time in milliseconds before the sim times out and tries the next transaction.
+	<li><b>Issue read/ write</b> at least one of these must be on to be useful.
+	<li><b>SCC will run animation...</b> the sim simulates the movement of the machine cutter head.
+
+</ul>
+<HR>
+<!-------------------------------- Animation ----------------------------------------->
+<a name="Animation"></a>
+<H2>Animation</H2>
+<p align="center"><IMG SRC="images\anim.GIF" ALT="?" BORDER=0>
+</p>
+<HR>
+<!-------------------------------- Juice Plant --------------------------------------->
+<a name="Juice Plant"></a>
+<H2>Juice Plant</H2>
+<p>Select the correct <A HREF="#Animation">animation settings</A> to enable the <i>Juice Plant</i>.
+</p>
+<p>The <i>juice plant</i> diagnostic dialog is shown below</p>
+<p align="center"><IMG SRC="images\juice.GIF" ALT="?" BORDER=0>
+<HR>
+<!--------------------------------- Script Automation -------------------------------->
+<a name="Script Automation"></a>
+<H2>Script Automation</H2>
+<p>
+The simulator can be automated from a script, the simulator uses the Microsoft Script Host,
+only the VB language is currently selectable. </p>
+<p>The primary function of a script is to allow emulation of normal PLC activity. Activity can be based on
+SCADA/HMI controls, and be in the form of a response action, or be totally autonomous. To enable the execution
+of a script, type in the name of the script VBS file in the space provided in the "Training" settings dialog.
+Typical to this kind of scripting, some automation functions have been provided.
+</p>
+<p><b><font color="#008000">Script function reference:</font></b></p>
+<UL>
+	<LI><b><font color="#0000FF">GetRegisterValue (REG_TYPE as long , ADDRESS as long) As int</font></b><BR>
+		   Returns the current value in the modbus/AB register specified.<BR>
+		   REG_TYPE = register type 0=input, 1=output,2=analog in, 3=holding reg. 4=extended reg. (For AB, this is the file #.)<BR>
+		   ADDRESS = register or I/O point number (Zero always corresponds to the first item.)<BR>
+		   <i>E.g.</i> 0 is similar to 40001 if REG_TYPE is 3<BR>
+		   <i>E.g.</i> 63 would be 64th output coil if REG_TYPE=1<BR>
+
+	<LI><b><font color="#0000FF">SetRegisterValue (REG_TYPE as long, ADDRESS as long, REGISTERVALUE as long) As none</b></font><BR>
+		   Set the value in the modbus/AB register specified.<BR>
+		   REG_TYPE = register type 0=input, 1=output,2=analog in, 3=holding reg. 4=extended reg. (For AB, this is the file #.)<BR>
+		   ADDRESS = register or I/O point number (Zero always corresponds to the first item.)<BR>
+		   &nbsp;&nbsp;&nbsp;<i>E.g.</i> 0 is similar to 40001 if REG_TYPE is 3<BR>
+		   &nbsp;&nbsp;&nbsp;<i>E.g.</i> 63 would be 64th output coil if REG_TYPE=1<BR>
+		   REGISTERVALUE = register value, permitted range (-32767 to +32767) other values are clipped, and thus undefined<BR>
+
+	<LI><b><font color="#0000FF">DisableStation (STATIONID as int) none</b></font><BR>
+	       Disable a modbus slave station. This function can be used to take the station out of the ring,
+	       as if it was not present in the system/network<BR>
+	       STATIONID = modbus station number (valid values 0 to 255; 0 = broadcast station)<BR>
+
+	<LI><b><font color="#0000FF">EnableStation (STATIONID as int) None</b></font><BR>
+	       Enable a modbus slave station. This function can be used to restore a station to the ring. see DisableStation<BR>
+	       STATIONID = modbus station number (valid values 0 to 255; 0 = broadcast station)<BR>
+
+	<LI><b><font color="#0000FF">DisplayAbout( ) None</b></font><BR>
+	       Display the application about box, the script is suspended until the "About" window is closed by the user.<BR>
+
+	<LI><b><font color="#0000FF">GetLastRunTime( ) As long</b></font><BR>
+	       Return the duration in milliseconds that it took for the last execution of the script. This value will be -1
+	       on the first script execution, or if the scrip fails to execute to completion without errors.<BR>
+
+	<LI><b><font color="#0000FF">StationEnabled (STATIONID as int) As long</b></font><BR>
+	       Return the enable state of the station (0=disabled, 1=enabled)<BR>
+
+	<LI><b><font color="#0000FF">TransmitRegisters (STATIONSRC as int, STATIONDEST as int, REG_TYPE as long, ADDRESS as long, REGISTERS as long) As long</b></font><BR>
+		   Sends a value to the desired slave PLC (Simulation must be in and support master mode.)<BR>
+		   Currently not supported on MODBUS.<BR>
+		   STATIONSRC = Allen-Bradley Source station (ignored for modbus protocol).<BR>
+		   STATIONDEST = Destination or target station ID register type 0=input, 1=output,2=analog in, 3=holding reg. 4=extended reg. (For AB, this is the file #)<BR>
+		   REG_TYPE = register type 0=input, 1=output,2=analog in, 3=holding reg. 4=extended reg. (For AB, this is the file #)<BR>
+		   ADDRESS = register or I/O point number (Zero always corresponds to the first item.)<BR>
+		   &nbsp;&nbsp;&nbsp;<i>E.g.</i> 0 is similar to 40001 if REG_TYPE is 3<BR>
+		   &nbsp;&nbsp;&nbsp;<i>E.g.</i> 63 would be 64th output coil if REG_TYPE=1<BR>
+		   REGISTERS = Number of registers to transmit, protocol specific framing or <A HREF="#PDU">PDU</a> limits are not tested before sending.<BR>
+
+	<LI><b><font color="#0000FF">AddDebugString (STATIONID as string) As None</b></font><BR>
+	       Sends text to the communications debugger, the text will appear with a double hash ## in front of it.<BR>
+	<LI><b><font color="#0000FF">TransactionBusy () As long</b></font><BR>
+	       Returns TRUE if this simulation device supports master-mode, and is not busy with a transaction at this time.<BR>
+</UL>
+<p><b><font color="#008000">Sample script code:</font></b></p>
+<!---------     ---------->
+<TABLE width="500" border=0 >
+<TR>
+<TD width="30">&nbsp;
+</TD>
+<TD width="400" bgcolor="#008080">
+<!---- SAMPLE SCRIPT ----->
+<PRE>
+dim x
+dim n
+dim runtime
+dim station
+
+n=0
+for n=0 to 240
+   x = getregistervalue(3,n)
+   SetRegisterValue 3, n, x+1
+next
+runtime = Getlastruntime
+SetRegisterValue 3, 241, runtime
+
+if (StationEnabled (station)) then
+   Disablestation station
+else
+   enablestation station
+end if
+
+SetRegisterValue 3, 242, station
+
+station = station + 1
+if station > 12 then station = 0
+</PRE>
+</TD>
+</TR>
+</TABLE>
+<p>The above sample illustrates how to increment a few registers, and
+also turn the communication for the 1st 12 stations on and off continuously. The script runs on every
+animation update.
+</p>
+<HR>
+<!------------------------------------- TERMINOLOGY SUB-SECTION ----------------------------------->
+<a name="Media Types"></a>
+<H4>Media Types</H4>
+<p>Media types relate to the physical layers used for any communication process. An example media type
+could be a telephone line. Humans popularly use air as a media type; whales use sea-water.
+computing devices typically use a copper conductor as a media.
+Just in the same way that the amount of air (distance) between two participants and it's temperature etc.
+affects the kind of communication that can take place, a physical media type must be clearly defined.</p>
+<p>
+Device manufacturers typically will refer to a copper conductor of a certain maximum length and thickness,
+and then go on to describe other electrical properties of it. So the kind of wire used is important, but
+the colour is not directly important.<BR>
+In some cases a media type variations can also be so clearly defined, that even though 2 media look the same,
+they are not. Ethernet 10 base-T is a good example of this kind of case. It even defines transmission rates of
+10 million and 100 million bits per second. In addition, because Ethernet is so well defined as a media type of
+it's own, converters to other physical media such as fibre or radio are popular, and elevate it to the status
+of a protocol. (To be true Ethernet is a protocol, but still referred to as a general media type.)<BR>
+<BR>
+The simulator supports 2 media types: <A HREF="#RS-232 Setup">Serial</A> and <a HREF="#Ethernet Setup">Ethernet</a>.
+</p>
+<a name="PDU"></a>
+<H4>PDU - Protocol Data Unit</H4>
+<p>A protocol data unit is that part of a protocol message or frame that contains the data. Data in 99% of protocols
+is not simply send without some kind of mechanism to format the data, explain what data it is, and ensure data integrity
+and/or security. In total these mechanisms make up a message frame. The message frame contains the data, and since a
+message frame cannot be of infinite length, so too, the data is restricted. The restriction thus becomes
+the maximum amount of data transmittable in one packet, and will differ as the maximum message or frame length changes.</p>
+<p>DF1 specifies a PDU of 234 , 223 bytes if over IP : for SLC5/03 or 5/04<BR>
+for the SLC 5/01 or 5/02 only 82 bytes (equivalent to 41 words)</p>
+<HR>
+<!--------------------------------- Hotkeys ------------------------------------------>
+<a name=Hotkeys>
+<h2>Hotkeys ,UI and Launch</h2></a>
+<p> I will try to keep this a full Hotkey and GUI (or <b>U</b>ser-<b>I</b>nterface) listing.</p>
+<h3>Hotkeys</h3>
+<UL>
+	<LI>&lt;CTRL&gt;-A = Save register values
+	<LI>&lt;CTRL&gt;-B = About box
+	<LI>&lt;CTRL&gt;-C = Toggle display registers/comms debugger mode
+	<LI>&lt;CTRL&gt;-E = Erase, clears all register values
+	<LI>&lt;CTRL&gt;-J = inJect error, injects a char on the RS232 protocol used
+	<LI>&lt;CTRL&gt;-L = Load (opposite of save)
+	<LI>&lt;CTRL&gt;-M = Open emulation settings dialog for the current protocol
+	<LI>&lt;CTRL&gt;-N = Noise, opens noise settings dialog (RS232 protocols only)
+	<LI>&lt;CTRL&gt;-S = Settings, opens dialog for current protocols's settings 
+	<LI>&lt;CTRL&gt;-T = Transparency, toggles to the next alpha-blend level 1=opaque,
+	                     2=semi see-thru, 3=very see-thru, this is more a fancy feature 
+						 that is useful in that the program becomes transparent, so you can sometimes superimpose it over another program
+	<LI>F1 = Help, opens the help file U are looking at now in your browser.
+</UL>
+
+<h3>GUI</h3>
+<UL>
+	<LI>Double-click - on the list/grid of registers will edit or in the case of a bit, toggle the register.
+	<LI>Single-click - on any station ID tickbox at the bottom of the window enables or disables comms to that station.
+	<LI>Drag - the window borders to make the display smaller.
+	<LI>Right-click Title-bar - pop-up menu for the GUI options in RS-SIM.
+	<p align="center"><IMG SRC="images\toolbar.gif" ALT="The title-bar and toolbar, and important features are grouped near the top of the display" BORDER=0>
+</p>
+	Toolbar area indicators: From top-left we have:
+	<UL>
+		<LI>A status indication string 
+		<LI>2 LEDs, there show TX and RX of data respectively.
+		<LI>Toolbar
+		<LI>Next: Radio selection for toggling the address column in HEX or Decimal format
+		<LI>The currently shown area/file or register type can be selected.
+		<LI>A little green LED which is on if the training simulation mode is active.
+		<LI>Data formatting selection, so specify presentation of data displayed.
+		<LI>The current <i>Prot</i>ocol can be selected here. when changing protocol, 
+		   the currently running protocol engine stops, and a new one starts up.
+		<LI>The modbus clone button: Only use this one on modbus, it does the word-swap 
+		correction for proper presentation of values in a clone PLC. This mainly affects 
+		the display of 32-bit float values.
+	</UL>
+	Along the bottom:
+	<UL>
+		<LI>All these green boxes: they are actually toggle-buttons, making them red disables the 
+		associated station, the border animates briefly when a station is accessed as well to show
+		activity on that node.
+		<LI>T button,  this opens up the <A HREF="#Juice Plant">training simulation</A>, which was developed in-house kind of, 
+		it simulates a water-tank, a inflow and outflow valve, and a heater, which attempts to heat 
+		the water depending on it's volume. It's an attempt to make the simulation more real.
+		<LI>Comms button, this toggles to the communications breakdown or comms log screen, 
+		which is useful to help interpret the protocol.
+    </UL>
+</UL>
+<h3>Launching: Command-line Interface</h3>
+<p>This option was added to make it possible to run 2 simulators on different ports or protocols at the same time without using the rule of launch-> configure, launch ->configure, repeat until you get tired of clicking. </p>
+<p><PRE>
+<b>mod_rssim modtcp:512</b>
+.. will select modbus TCP/IP and port 512 (note how the port number follows the modtcp parameter)
+<b>mod_rssim modrtu </b>
+will select RTU mode, you can also add a serial port setting
+<b>mod_rssim port:com3 baud=38400 rts=on</b>
+will select com3, and use RTS on, the serial options are the same as for the mode command. rts can be <b>on off hs</b> or <b>tg</b>
+but normally modbus devices use the 1st 2 forms.</p>
+<p>The available protocols are <b>modrtu modtcp abslave abmaster</b> </PRE></p>
+<p>For examples of the format, simply type "mode ?" in a command-prompt</p>
+<p><PRE>More examples are:
+<b>mod_rssim port:com2</b><br>
+just change the comm port number by itself leave all other settings
+<b>mod_rssim 19200,n,e,8,p</b><br>
+use the older DOS parameter set which have a 'p' at the end.</PRE>
+</p>
+<p>It's not advisable (nor necessary) to have multiple TCP simulator sessions, since the concept of memory block separation is described in the <A HREF="#Protocols">Modbus Advanced Emulation Settings</a> screen.</p> Settings changed from the command-line take effect for any future sessions of the simulator that get launched without parameters too.
+<p>&nbsp</p>
+<HR>
+<!--------------------------------- More (... F.A.Q.) -------------------------------->
+<a name=More>
+<h2>F.A.Q. More info.</h2></a>
+<ul>
+  <li><b>Q:&nbsp;</b>What is a MODBUS RTU? <BR>
+    <b>A:</b>&nbsp;It's a PLC, if that does not
+    make sense, visit <a href="http:\\www.modicon.com">www.modicon.com</a> .</li>
+  <li><b>Q:&nbsp;</b>Where do I get the protocol? <BR>
+    <b>A:</b>&nbsp;Visit www.modicon.com, and search for PI-MBUS 300.</li>
+  <li><b>Q:</b>&nbsp;How do I do XYZ? <BR>
+    <b>A:</b>&nbsp;Some program features are not documented at this time, look around.</li>
+  <li><b>Q:</b>&nbsp;MODBUS function 5 returns the old value<BR>
+  <b>A:</b>&nbsp;There is however one variation on the MODBUS documentation, for function force single coil 0x05 -the simulator
+    responds with the value before modifying the actual coil, not after modifying the coil. This was wrong, but
+    was easiest to implement, and there is now a setting for this. (See Emulation settings - Hotkey &lt;CTRL&gt;-M)</li>
+  <li><b>Q:</b>&nbsp;Where is the help file?<BR>
+  <b>A:</b>&nbsp;The help-file is all in HTML, all images and the text are stored in the program, and placed into the current working folder. 
+     Editing them will have no affect without re-compiling the simulator.</li>
+  <li><b>Using Matlab driver?</b> The Matlab driver starts at address 1, not 40001, so Holding registers 1,2,3 in Matlab are modbus registers 1,2,3.
+     </li>
+  <li><b>Questions/problems :</b> see website <a href="http://www.plcsimulator.org">http://www.plcsimulator.org</a>.</li>
+</ul>
+<a name=Links>
+<H4>Links</H4>
+<UL>
+   <LI><a href="http://www.plcsimulator.org">My project homepage</a>
+   <LI><a href="http://www.modicon.com">www.modicon.com</a>
+   <LI><a href="http://www.schneider-electric.com">www.schneider-electric.com</a>
+   <LI><a href="http://www.control.com">www.control.com</a>
+   <LI><a href="http://www.modbus.org">www.modbus.org</a>
+   <LI><a href="http://www.adroit.co.za">www.adroit.co.za</a>
+   <LI><a href="http://www.codeguru.com\network\mod_rssim.html">My Codeguru project article</a>
+   <LI>Source Code <a href="http://sourceforge.net/projects/modrssim/">My Sourceforge project source</a>
+</UL>
+<BR>
+<H4>Versions</H4>
+<ul type=square>
+   <li>2.3b    xx/xx/xx   CDB Initial rev submitted to site
+<li>2.4     22/07/02   CDB Fixed and support Fn 10h and 15h (Write multiple 
+                            register/extended registers)
+<li>2.5     28/07/02   CDB conditional compilation macros _COMMS_DEBUGGING and
+                            _UI_DEBUGGING added, specify in build options to enable 
+                            more debugg'n messages. Display of data and addresses 
+                            format is selectable now.
+<li>2.6     29/07/02   CDB Reading digital I/O showed me a bug where the
+                            CMODCommsProcessor was reading the wrong address, see 
+                            UnPackField()
+<li>2.8     07/08/02   CDB Web-link to modicon.com. Tooltips added. Also allow 
+                            64K registers instead of 9999 (10K) uses more RAM now.
+                            Window "stay-on-top" added.
+<li>2.9     14/08/02   CDB Tooltips work in all dialogs except value edit dialog.
+                            This dialog still has some bugs in it.
+<li>3.1     27/10/02   CDB Devices can all start "off", regsiters can load at start-up.
+                            EasterEgg added to "About" box.
+<li>3.2     02/11/02   HF : (Hirofumi Fudoudou) Hirofumi Fudoudou's changes added
+                            CDB : Easter-credits updated
+<li>3.3     08/11/02   submitted by HF : Integrated transparency index bitmap fixes. PLC write 
+                            address returned in telegram corrected too.
+<li>3.4     11/11/02   CDB : Function 05 (write single coil) is now supported and tested.
+<li>3.4a    12/11/02   CDB : remember the register area type between load-ups
+<li>3.4b    21/11/02   CDB : Can now set upper limit to # registers.
+<li>3.4c    25/11/02   CDB : Write multiple coils 0F is supported now, # registers 
+                                  per req. is settable too.
+<li>3.4d    27/11/02   CDB : RTS can now be set for enable/dis/h-shake/toggle.
+<li>3.5     18/12/02   CDB +AP : Renamed the MODCommsProcessor class to CMODCommsProcessor
+                            (Álvaro Palma) Fixed the read-ahead length calculation. 
+                 20/01/03   CDB focus rectangle for the tick-boxes added, tab order here fixed too.
+<li>3.6     23/01/03   CDB Keyboard only friendly hotkeys added to get to the other dialogs.
+                            [duplicate toolbar]
+<li>4.0     22/03/03   CDB station activity indicators all accessible now, comms analyser 
+                            screen added. CMicroTick over-painting of parent Wnd by 1 pixel fixed.
+                            Class headder files tidied up. Registers list redraw &CPU load when 
+                            doing writes reduced.
+<li>4.1     24/03/03   CDB Option so that coils modify before the response is sent- see eMulation 
+                            dialog
+<li>4.2     02/04/03   CDB Emulations settings 'tick boxes' update the comms class, new tick 
+                            for disallowing writes to PLC memory.
+<li>4.3     04/04/03   CDB If scrolling thru stations, the comms engine was fetching the wrong 
+                            station enabled tickbox to see if it was enabled.
+<li>4.4     11/04/03   CDB dialog can now be re-sized, thanks to CResizer class by Dmitry Kochin 
+                            &lt;dco@mail.ru&gt;
+<li>5.0     02/05/03   CDB Merged Ethernet TCP functions into the sim/ Added training simulation.
+<li>5.1     05/05/03   CDB Splash screen- Training sim bugs sorted out.
+<li>5.2     XX/XX/XX   CDB Added tooltips support for diabled controls to trainer dialog 
+                            Ray Almog [almog@notes.iet.co.il] from - http://www.codeguru.com/controls/tooltip_for_disabled_control.shtml
+<li>5.3     15/05/03   CDB Icon for application changes from Modbus Ethernet to Serial.
+                            &lt;ENTER&gt; key trapped in main dialog.
+<li>6.0     20/05/03   CDB Allen-Bradley DF1 protocol added
+<li>6.1     09/06/03   CDB BCC and CRC option on Allen-Bradley added
+<li>6.2     24/06/03   CDB Modbus RS232 disabled station stations no longer respond as it should be.
+<li>6.3     06/07/03   CDB debugger screen data was not hex coded correctly, Eth. message frame trans # bytes are handled correctly too.
+                            fault reported by BMG  
+<li>6.4     28/08/03   CDB When funny chars come in on serial, we sometimes had crashes, if port settings are invalid, there 
+                            is now a warning messagebox!
+<li>6.5     08/09/03   Time license + : Patrick SOFORCADA fixed length calc. for force multiple coils - patrick.saforcada@ineo.com/ calculate
+<li>6.6     08/10/03   CDB Help updated, Joy protocol seriously tweaked, new setup dialog for joy
+<li>6.7     16/10/03   CDB Modbus Ethernet - COMMS screen error message if station ID not active.
+<li>6.7 Submitted to submit@codeguru.com on 21/10/03
+<li>6.8     26/10/03   CDB Splash is now "programmed" in text-format, About text changed a bit+ mouse cursor over links fixed.
+<li>6.9     06/12/03   CDB still need to check out write multiple coils when writting 16. modem status + lights added, HTML help text updated.
+<li>7.0     14/12/03   CDB cleaned up include statements; multiple stations have seperate modbus RTU registers. 
+                            write multiple coils fixed; Ctrl-J injects random char.
+<li>7.1     06/08/04   CDB Digital items now display with a darker background when "on" '1' to make them easier to spot.
+                            requested by Canada customer
+<li>7.2     30/10/04   CDB you can now specify a # of bits that is not a multiple of 16 for modbus coils and relays (in fact any bit-area)
+<li>7.4     22/01/07   CDB Write multiple coils wrote one too many, fixed. (reported by nilsfenner@web.de)
+<li>7.4b               Write single coil was dividing the returned coil address by 2, fixed now too
+__TEST_INJECTMSG macro added to allow testing of any message
+<li><b>branch</b>
+<li>7.3     30/09/05   CDB Creep fix: Script engine/parser was persisting the script text all of the time
+<li>7.4     16/02/06   CDB ASCII/text display mode to allow string debugging; e-mail address changed
+<li>7.5     25/03/06   CDB When TCP/IP requests Queue up too quickly, the simulator now processes them all instead of just the first one,
+comments tidied a little; modbus TCP/IP can also simulate some errors now.
+<li>7.6     11/04/06   CDB script run interval is more intuitive now.
+<li><b>merge</b>
+<li>7.7     22/07/07   CDB merged branched code, added HTML output GUI feature; disabled the ERROR-simulation function for now.
+Nag-screen no longer 'spams' and locks the UI.
+<li>7.8     09/09/07   CDB - floating-point editing values in the table "never really worked", was displaying 0 and putting 0 in.
+telegram Data to have spaces between bytes 00 00 00 = (seems to be in now)
+<li>7.9     03/02/08   Baud Rate is 57600 not 64800 (Ken Robbins)
+
+<li>8.0     10/2/08 - started CSV importer for Vinay Kumar
+<li>8.1     28/3/08 - improved debugging msgs for VB script scriptlet errors
+<li>8.2     05/05/08 - CDB : Added RS232 Modbus support for function 16 Write mask holding register
+<li>8.3                CDB , ExistFile() moved from csvreader.cpp into mylib.lib
+<li>8.4     15/06/08 - CDB __TEST_INJECTMSG macro removed now that I have a integration-test app. Adding commandline support
+for Leendert in't Veld . Demo interval increased from 30 to 45 minutes.
+<li>8.5     17/06/08 - CDB Toggling channel closed then opening a dialog raised an exception, reported by Steve Bardsley. fixed.
+Help text updated to show command-line stuff from rev 8.04
+<li>8.6     26/06/08 - CDB released a debug build by mistake. Fixed ASSERTion in the animation dialog. Fixed Easter-egg scroller only
+showling first 11 lines of text.
+<li>8.7     30/06/08 - CDB Added RTS indication on serial modbus protocol title-bar text R-en/R-tg...
+</ul>
+<HR>
+<a name=Notices>
+<p><b>Notices</b><BR>Allen-Bradley is a trademark of Rockwell Corporation USA; MODBUS of Modicon USA (owned by Schneider Automation France now); JOY is a trademark of Joy Mining Machinery UK; Windows is a trademark of Microsoft Corporation USA.<br>
+Every attempt to ensure accuracy has <b>not</b> been taken by the author to ensure no accidental damage or injury intentional or otherwise. Reasonable corrections are welcomed.</p>
+<p><font size="1">This page was developed using TextPad &quot;http://www.textpad.com/
+&quot;, do not edit it with anything else on fear of death.</font>
+</p>
+<p align="right">Z&aring;PHo&ETH;</p>
+</BODY>
+</HTML>

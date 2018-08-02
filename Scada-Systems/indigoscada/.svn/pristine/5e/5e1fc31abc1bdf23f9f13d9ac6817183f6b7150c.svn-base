@@ -1,0 +1,14 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+   0:pushint  1             7:rvalint  4 0        
+   1:stoint   5 0           8:stoval              
+   3:bump     1            10:stoval              
+   4:checkar  3 1          11:pushint  3          
+   5:rvalint  5 0          12:call                
+   6:stoval                13:halt                
+
+a = 1, b = 1
+	13

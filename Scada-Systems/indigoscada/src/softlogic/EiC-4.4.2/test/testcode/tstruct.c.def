@@ -1,0 +1,45 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+   0:rvalptr  4 0          31:addptr2int            62:stoval              
+   1:bump     1            32:bump     1            63:rvalptr  4 0        
+   2:pushint  1            33:pushint  4            64:bump     1          
+   3:refint                34:addptr2int            65:pushint  20         
+   4:rvalptr  4 0          35:bump     1            66:addptr2int          
+   5:bump     1            36:pushint  5            67:bump     1          
+   6:pushint  8            37:refint                68:pushint  12         
+   7:addptr2int            38:rvalptr  4 0          69:addptr2int          
+   8:bump     1            39:bump     1            70:drefint             
+   9:pushdouble  2         40:pushint  20           71:stoval              
+  10:reffloat              41:addptr2int            72:rvalptr  4 0        
+  11:rvalptr  4 0          42:bump     1            73:bump     1          
+  12:bump     1            43:pushint  6            74:pushint  12         
+  13:pushint  12           44:refint                75:addptr2int          
+  15:bump     1            46:bump     1            77:stoval              
+  16:pushdouble  3         47:checkar  7 1          78:rvalptr  4 0        
+  17:refdouble             48:rvalptr  4 0          79:bump     1          
+  18:rvalptr  4 0          49:bump     1            80:pushint  8          
+  19:bump     1            50:pushint  20           81:addptr2int          
+  20:pushint  20           51:addptr2int            82:dreffloat           
+  21:addptr2int            52:drefint               83:stoval              
+  22:bump     1            53:stoval                84:rvalptr  4 0        
+  23:pushint  12           54:rvalptr  4 0          85:drefint             
+  24:addptr2int            55:bump     1            86:stoval              
+  26:pushint  4            57:addptr2int            88:stoval              
+  27:refint                58:bump     1            89:pushint  7          
+  28:rvalptr  4 0          59:pushint  4            90:call                
+  29:bump     1            60:addptr2int            91:halt                
+  30:pushint  20           61:drefint             
+
+struct st st =
+{
+   int i;      /* 1 */
+   float f;    /* 2.000000 */
+   double d;   /* 3 */
+   ...int i1;  /* 4 */
+   ...int i2;  /* 5 */
+   ...int i3;  /* 6 */
+};
+	165

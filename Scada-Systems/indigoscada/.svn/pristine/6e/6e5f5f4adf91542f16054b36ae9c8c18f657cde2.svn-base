@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="addressspace.h" />
+    <ClInclude Include="addressspace_init.h" />
+    <ClInclude Include="browseservice.h" />
+    <ClInclude Include="general_header.h" />
+    <ClInclude Include="mytrace.h" />
+    <ClInclude Include="readservice.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ansicservermain.c" />
+    <ClCompile Include="browsenext.c" />
+    <ClCompile Include="browseservice.c" />
+    <ClCompile Include="init_variables_of_addressspace.c" />
+    <ClCompile Include="readservice.c" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,32 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+Error in tbool.c near line 1: Undeclared identifier bool
+Error in tbool.c near line 3: Undeclared identifier string
+Error in tbool.c near line 5: Undeclared identifier TRUE
+Error in tbool.c near line 9: Undeclared identifier t
+Error in tbool.c near line 10: Undeclared identifier t
+Error in tbool.c near line 12: Undeclared identifier s
+   1:stoint   4 0          31:stoval                61:rvalint  4 0        
+   2:jmpU     15           32:pushint  1            62:stoval              
+   5:checkar  2 1          35:bump     1            65:pushint  2          
+   6:stoval                36:checkar  2 1          66:call                
+   8:stoval                38:stoval                68:jmpTint  74         
+  10:call                  40:stoval                70:incint   1          
+  11:rvalint  4 0          41:pushint  2            71:stoint   4 0        
+  12:incint   1            42:call                  72:decint   1          
+  13:stoint   4 0          43:pushint  0            73:jmpTint  74         
+  14:decint   1            44:jmpFint  58           74:jmpFint  87         
+  15:rvalint  4 0          45:rvalint  4 0          75:rvalint  4 0        
+  16:bump     1            46:incint   1            76:bump     1          
+  17:pushint  10           47:stoint   4 0          77:pushint  1          
+  18:ltint                 48:decint   1            78:neint               
+  19:jmpTint  3            49:jmpFint  58           79:jmpFint  87         
+  22:rvalint  4 0          52:bump     1            82:checkar  1 1        
+  25:decint   1            55:stoval                85:pushint  1          
+  26:jmpFint  34           56:pushint  1            86:call                
+  29:checkar  1 1          59:bump     1          
+
+Error: clean up forced

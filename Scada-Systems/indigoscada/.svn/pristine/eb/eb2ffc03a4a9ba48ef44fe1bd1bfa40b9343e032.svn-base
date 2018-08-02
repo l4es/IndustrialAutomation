@@ -1,0 +1,21 @@
+on
+	(void)
+	--- EiC test signed values ---
+char c; short s; int i; long l;  float f; double d;
+
+c = -6 s = 0 i = 5 l = -100 f = 2.600000 d = 0.900000 :->
+c = -6 s = 0 i = 5 l = -100 f = 2.6 d = 0.9
+
+-c  = 6 :-> -c = 6
+~s  = -1 :-> ~s = -1
+f * c = -15.599999  :-> f * c = -15.6
+f / d = 2.888889  :-> f / d = 2.88889
+l / f = -38.461540  :-> l / f = -38.4615
+i << 2 = 20 :-> i << 2 = 20
+	--- EiC test unsigned values ---
+unsigned char uc; short unsigned us; unsigned ui; unsigned long ul;
+
+uc = 0 us = 0  ui = 0  ul = 0:->
+uc = 0 us = 0  ui = 0 ul = 0
+
+	0

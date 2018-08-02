@@ -1,0 +1,15 @@
+ORTE 0.3.2
+
+ *  -------------------------------------------------------------------  
+ *                                ORTE                                 
+ *                      Open Real-Time Ethernet                       
+ *                                                                    
+ *                      Copyright (C) 2001-2006                       
+ *  Department of Control Engineering FEE CTU Prague, Czech Republic  
+ *                      http://dce.felk.cvut.cz                       
+ *                      http://www.ocera.org                          
+ *                                                                    
+ *  Author: 		 Petr Smolik	petr.smolik@wo.cz             
+ *  Advisor: 		 Pavel Pisa                                   
+ *  Project Responsible: Zdenek Hanzalek                              
+ *  --------------------------------------------------------------------

@@ -1,0 +1,36 @@
+#############################################
+# This file is for over riding previous 
+# parameter settings.  Any parameters
+# assigned in this file will over ride
+# the corresponding parameters in:
+#
+#    $(CONFIG_DIR)/$(PLATFORM)/make.params
+#
+# This is useful for adding memory debuggers
+# etc; for example:
+#
+#            CC = checkergcc
+#
+# will over ride the previous assignment:
+#
+#	     CC = gcc
+#
+#############################################
+#MAKE = make
+
+#CC = cc
+#STD_CFLAGS = -Xc -g 
+#STD_CFLAGS = -ansi -pedantic -g -fsigned-char -Wall 
+#INCLUDE_FLAGS =
+
+#CC = gcc -DDMALLOCH 
+
+#CC = /usr/local/gnu/bin/gcc
+
+#CC = checkergcc
+
+
+
+
+
+

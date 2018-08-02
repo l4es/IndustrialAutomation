@@ -1,0 +1,43 @@
+all::
+headers::
+clean::
+	$(RM) core *~ 
+	
+clobber::clean
+
+.c.o:
+	$(CC) $(CFLAGS) -c $<
+
+
+.c.a:
+	$(CC) $(CFLAGS) -c $<
+	$(AR) $(ARFLAGS) $@ $*.o
+	$(RM) $*.o
+
+showdep:
+	@for i in $(SRCS) ; \
+	do \
+		$(CC) -c -MM $(CFLAGS) $$i ; \
+	done
+showAlldep:
+	@for i in $(SRCS) ; \
+	do \
+		$(CC) -c -M $(CFLAGS) $$i ; \
+	done
+
+
+showSRCS::
+	@for i in $(SRCS) ; \
+	do \
+		echo $$i ; \
+	done
+
+
+
+
+
+
+
+
+
+

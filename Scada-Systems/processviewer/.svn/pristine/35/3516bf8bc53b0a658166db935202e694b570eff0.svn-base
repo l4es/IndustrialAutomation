@@ -1,0 +1,528 @@
+object FormRegulator: TFormRegulator
+  Left = 846
+  Height = 650
+  Top = 45
+  Width = 160
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsNone
+  Caption = 'Regulator'
+  ClientHeight = 650
+  ClientWidth = 160
+  OnClose = FormClose
+  OnCreate = FormCreate
+  LCLVersion = '0.9.29'
+  object panComment: TPanel
+    Left = 0
+    Height = 30
+    Top = 0
+    Width = 160
+    Align = alTop
+    BevelOuter = bvNone
+    Caption = 'panComment'
+    Color = clBlue
+    Font.Color = clWhite
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 58
+    Top = 592
+    Width = 160
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 58
+    ClientWidth = 160
+    TabOrder = 1
+    object btnClose: TButton
+      Left = 4
+      Height = 32
+      Top = 16
+      Width = 150
+      Caption = 'CLOSE'
+      Font.Height = -16
+      Font.Style = [fsBold]
+      OnClick = btnCloseClick
+      ParentFont = False
+      TabOrder = 0
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 562
+    Top = 30
+    Width = 66
+    Align = alLeft
+    BevelOuter = bvNone
+    ClientHeight = 562
+    ClientWidth = 66
+    TabOrder = 2
+    object ShapeActSp: TShape
+      Left = 11
+      Height = 449
+      Top = 30
+      Width = 10
+      Anchors = [akLeft, akBottom]
+      Brush.Color = clLime
+      Pen.Color = clLime
+    end
+    object ShapePV: TShape
+      Left = 21
+      Height = 449
+      Top = 30
+      Width = 10
+      Anchors = [akLeft, akBottom]
+      Brush.Color = clBlue
+      Pen.Color = clBlue
+    end
+    object ShapeActSp2: TShape
+      Left = 31
+      Height = 449
+      Top = 30
+      Width = 10
+      Anchors = [akLeft, akBottom]
+      Brush.Color = clLime
+      Pen.Color = clLime
+    end
+    object ShapeOutp: TShape
+      Left = 41
+      Height = 449
+      Top = 30
+      Width = 10
+      Anchors = [akLeft, akBottom]
+      Brush.Color = clBlack
+    end
+    object lineHiHi: TShape
+      Left = 0
+      Height = 4
+      Top = 475
+      Width = 10
+      Brush.Color = clRed
+      Pen.Color = clRed
+    end
+    object lineLoLo: TShape
+      Left = 0
+      Height = 4
+      Top = 475
+      Width = 10
+      Brush.Color = clRed
+      Pen.Color = clRed
+    end
+    object panName: TPanel
+      Left = 0
+      Height = 30
+      Top = 0
+      Width = 66
+      Align = alTop
+      BevelOuter = bvNone
+      Caption = 'panName'
+      Color = clGray
+      Font.Color = clWhite
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 0
+    end
+    object Panel4: TPanel
+      Left = 0
+      Height = 83
+      Top = 479
+      Width = 66
+      Align = alBottom
+      BevelOuter = bvNone
+      ClientHeight = 83
+      ClientWidth = 66
+      Color = clGray
+      ParentColor = False
+      TabOrder = 1
+      object btnAutoMan: TToggleBox
+        Left = 4
+        Height = 24
+        Top = 14
+        Width = 60
+        Caption = 'AUTO'
+        OnClick = btnAutoManClick
+        TabOrder = 0
+      end
+      object btnExtSpOpSp: TToggleBox
+        Left = 4
+        Height = 24
+        Top = 39
+        Width = 60
+        Caption = 'OSP'
+        OnClick = btnExtSpOpSpClick
+        TabOrder = 1
+      end
+    end
+  end
+  object Panel3: TPanel
+    Left = 66
+    Height = 562
+    Top = 30
+    Width = 94
+    Align = alClient
+    BevelOuter = bvNone
+    ClientHeight = 562
+    ClientWidth = 94
+    Color = clGray
+    ParentColor = False
+    TabOrder = 3
+    object Label1: TLabel
+      Left = 6
+      Height = 18
+      Top = 6
+      Width = 16
+      Caption = 'PV'
+      Font.Color = clAqua
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object labPV: TLabel
+      Left = 46
+      Height = 18
+      Top = 6
+      Width = 39
+      Caption = '0000.0'
+      Font.Color = clAqua
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object lab1: TLabel
+      Left = 6
+      Height = 18
+      Top = 34
+      Width = 26
+      Caption = 'HiSc'
+      Font.Color = 14803425
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object labHiSc: TLabel
+      Left = 46
+      Height = 18
+      Top = 34
+      Width = 39
+      Caption = '0000.0'
+      Font.Color = 14803425
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object lab2: TLabel
+      Left = 6
+      Height = 18
+      Top = 54
+      Width = 28
+      Caption = 'LoSc'
+      Font.Color = 14803425
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object labLoSc: TLabel
+      Left = 46
+      Height = 18
+      Top = 54
+      Width = 39
+      Caption = '0000.0'
+      Font.Color = 14803425
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object bevOpSp: TShape
+      Left = 4
+      Height = 23
+      Top = 79
+      Width = 84
+      Brush.Color = 9803157
+      Pen.Color = clGray
+    end
+    object lab3: TLabel
+      Left = 6
+      Height = 18
+      Top = 82
+      Width = 34
+      Caption = 'OpSp'
+      Font.Color = clWhite
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object labOpSp: TLabel
+      Left = 46
+      Height = 18
+      Top = 82
+      Width = 39
+      Caption = '0000.0'
+      Font.Color = 14803425
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object bevExSp: TShape
+      Left = 4
+      Height = 23
+      Top = 102
+      Width = 84
+      Brush.Color = 9803157
+      Pen.Color = clGray
+    end
+    object labExSp: TLabel
+      Left = 46
+      Height = 18
+      Top = 103
+      Width = 39
+      Caption = '0000.0'
+      Font.Color = 14803425
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object lab4: TLabel
+      Left = 6
+      Height = 18
+      Top = 103
+      Width = 29
+      Caption = 'ExSp'
+      Font.Color = clWhite
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object bevHiHi: TShape
+      Left = 4
+      Height = 23
+      Top = 135
+      Width = 84
+      Brush.Color = 9803157
+      Pen.Color = clGray
+    end
+    object lab5: TLabel
+      Left = 6
+      Height = 18
+      Top = 138
+      Width = 25
+      Caption = 'HiHi'
+      Font.Color = clWhite
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+      OnClick = labHiHiClick
+    end
+    object labHiHi: TLabel
+      Left = 46
+      Height = 18
+      Top = 138
+      Width = 39
+      Caption = '0000.0'
+      Font.Color = 14803425
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+      OnClick = labHiHiClick
+    end
+    object bevLoLo: TShape
+      Left = 4
+      Height = 23
+      Top = 208
+      Width = 84
+      Brush.Color = 9803157
+      Pen.Color = clGray
+    end
+    object lab6: TLabel
+      Left = 6
+      Height = 18
+      Top = 210
+      Width = 29
+      Caption = 'LoLo'
+      Font.Color = clWhite
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+      OnClick = labLoLoClick
+    end
+    object labLoLo: TLabel
+      Left = 46
+      Height = 18
+      Top = 210
+      Width = 39
+      Caption = '0000.0'
+      Font.Color = 14803425
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+      OnClick = labLoLoClick
+    end
+    object labUnits: TLabel
+      Left = 34
+      Height = 18
+      Top = 238
+      Width = 30
+      Caption = 'Units'
+      Font.Color = clWhite
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object Shape1: TShape
+      Left = 4
+      Height = 3
+      Top = 265
+      Width = 100
+      Brush.Color = clSilver
+      Pen.Color = clGray
+    end
+    object bevOutp: TShape
+      Left = 4
+      Height = 29
+      Top = 277
+      Width = 84
+      Brush.Color = 9803157
+      Pen.Color = clGray
+    end
+    object lab33: TLabel
+      Left = 6
+      Height = 16
+      Top = 282
+      Width = 31
+      Caption = 'Outp.'
+      Font.Color = clWhite
+      Font.Height = -12
+      ParentColor = False
+      ParentFont = False
+    end
+    object labOutp: TLabel
+      Left = 44
+      Height = 18
+      Top = 282
+      Width = 39
+      Caption = '0000.0'
+      Font.Color = 14803425
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object labUnits1: TLabel
+      Left = 46
+      Height = 18
+      Top = 362
+      Width = 12
+      Caption = '%'
+      Font.Color = clWhite
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object lab34: TLabel
+      Left = 6
+      Height = 18
+      Top = 310
+      Width = 28
+      Caption = 'High'
+      Font.Color = clWhite
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object labOutp1: TLabel
+      Left = 54
+      Height = 18
+      Top = 310
+      Width = 18
+      Caption = '0.0'
+      Font.Color = 14803425
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object lab35: TLabel
+      Left = 6
+      Height = 18
+      Top = 334
+      Width = 24
+      Caption = 'Low'
+      Font.Color = clWhite
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object labOutp2: TLabel
+      Left = 54
+      Height = 18
+      Top = 334
+      Width = 18
+      Caption = '0.0'
+      Font.Color = 14803425
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object lab7: TLabel
+      Left = 6
+      Height = 18
+      Top = 162
+      Width = 28
+      Caption = 'High'
+      Font.Color = clWhite
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object labHiHi1: TLabel
+      Left = 46
+      Height = 18
+      Top = 162
+      Width = 18
+      Caption = '0.0'
+      Font.Color = 14803425
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object lab8: TLabel
+      Left = 6
+      Height = 18
+      Top = 182
+      Width = 24
+      Caption = 'Low'
+      Font.Color = clWhite
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object labHiHi2: TLabel
+      Left = 46
+      Height = 18
+      Top = 182
+      Width = 18
+      Caption = '0.0'
+      Font.Color = 14803425
+      Font.Height = -13
+      ParentColor = False
+      ParentFont = False
+    end
+    object labForce: TLabel
+      Left = 4
+      Height = 16
+      Top = 394
+      Width = 80
+      Caption = 'FORCE ACTIVE'
+      Font.Color = clPurple
+      Font.Height = -12
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 1500
+    OnTimer = Timer1Timer
+    left = 112
+    top = 528
+  end
+end

@@ -1,0 +1,3745 @@
+
+\chapter{EiC's C Specifications }
+\label{chp:Specifications}
+
+EiC has been hand coded.  Its parsing method is LL(N) and its
+grammar was derived from the LR grammar presented in Appendix A of
+\cite{kernighan-ritchie88}.  Here the EiC programming
+language and specifications is given as this will, hopefully, allow
+for future developments. The syntax notation used when specifying the
+grammar for the EiC and C language is described in section
+\SecPage{SyntaxNotation}.
+
+\section{Phases of translation}
+\index{phases of translation}
+\label{sec:PhasesTranslation}
+
+The input program text is translated by EiC in logically successive phases:
+
+\begin{enumerate}
+\item  Program lines ending in {\tt $\backslash$} are extended onto the next line.
+\item  Comments are stripped out and are replaced by a single space.
+\item  The input sequence is then tokenized and any  
+       embedded EiC commands  will be carried out inplace and in sequence
+       of occurrence. For example:
+        \begin{quote}
+        \begin{verbatim}
+                #define foo  xx
+                :show foo
+        \end{verbatim}
+        \end{quote}
+        The preprocessor {\tt \#define} directive will be processed
+        before the EiC command {\tt show}, which will be processed
+        before the macro {\tt foo} is expanded. The above EiC show command 
+        will result in:
+        \begin{quote}
+        \begin{verbatim}
+                foo -> #define foo  xx
+        \end{verbatim}
+        \end{quote}
+        which is how EiC specifies that foo is a macro 
+        (see the \T{show} command on page~\pageref{item:show}).
+
+\item  Any preprocessor directives are next obeyed and macros will be
+        expanded.
+
+\item  Escape sequences, character constants and string constants
+       are next recognized and adjacent string constants separated
+        only by white space are concatenated together.
+
+\item  The tokenized input sequence is next translated into byte-code to
+        be executed either directly or to be stored as function code
+        for linkage to other translation units.
+
+\end{enumerate}  
+
+
+\section{Translation units}
+\index{translation unit}
+\label{sec:translationUnit}
+
+In C, a translation unit consists of one or more definitions or
+declarations. In EiC, a unit of input at the EiC command line prompt
+is consider to be a translation unit. It may consist of one or more
+declarations, function definition or immediate statements. Include
+files and all they include are generally considered to be part of the
+same translation unit. Unless an error has occurred during
+translation, all translation units will cause execution to occur --
+even if the execution consist solely of a single {\tt halt} byte-code
+instruction.
+
+Because EiC can run interactively its definition of a translation unit
+is weaker than that given for ISO C. With implications that all
+identifiers defined at level `file scope' with either explicit or
+implicit external scope are visible to other translation units and
+hence from the EiC command line.
+
+When EiC is used to run programs; such as
+\T{foo.c}:
+        \begin{quote}
+        \begin{verbatim}
+                % eic foo.c
+        \end{verbatim}
+        \end{quote}
+
+foo must contain the definition of a {\tt main}
+\index{main} function, which is used to establish the start point of the
+program. The entire file, {\tt foo.c}, plus all it includes is
+considered to be a single translation unit.
+
+In EiC, program modules are linked/brought \index{linkage} together
+to form a larger unit using the preprocessor {\tt \#include} directive
+(section \SecPage{Include}). See also running EiC
+non-interactively~\SecPage{NonInteractive}.
+
+
+\section{Tokens}
+\label{sec:Tokens}
+\index{token}
+
+A token is a sequence of non-white characters having a collective
+meaning.  The characters separating the tokens are collectively know
+as white space\index{white space}, which is composed from: spaces,
+tabs, newlines, form feed and or comments.  In general, there is a set
+of strings in the input for which the same token is produced, as shown
+in Table~\ref{tb:token}:
+
+\begin{table}[ht]
+\begin{center}
+\label{tb:token}
+\caption{Token examples}
+\begin{tabular}{l|l}
+\hline 
+Token            &   string \\
+\hline 
+\T{for-sym}       &   for  \\
+\T{if-sym}        &   if \\
+\T{float-const}   & 0.5, 1.0E-20, 1e-3, etc \\
+\T{char-const}    & 'a', 'z', '$\backslash$377', etc \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+EiC recognizes five major
+groups of tokens: identifiers (usually abbreviated to id), keywords,
+constants (character, string and numeric), operators and punctuation
+marks.
+
+White space is usually stripped out of the input stream. However, if
+the input is coming from the keyboard then the newline character is
+significant and is replaced by the terminal {\tt DONE}. This is
+equivalent to the end of file mark, {\tt EOF}, when reading input from
+a file.
+
+\section{Identifiers}
+\label{sec:Identifiers}
+\index{identifier}
+
+An identifier is a name that is formed from a sequence of
+letters, digits and underscores. The first character of an
+identifier must be a letter or an underscore character.  In
+EiC, syntax is case sensitive and therefore, upper and lower case
+letters are different. There is no restriction on the length of an
+identifier.
+
+\begin{production}
+\bp{
+id:\\
+\>   letter \U{[}letter, digit, \T{\_}\U{]}$^{*}$ \\
+\>   \T{\_} \U{[}letter, digit, \T{\_}\U{]}$^{*}$ \\
+letter: \T{one of}\\
+\>      \T{a b c d e f g h i j k l m n o p q r s t u v w z y z}\\
+\>      \T{A B C D E F G H I J K L M N O P Q R S T U V W Z Y Z} \\
+digit: \T{one of} \\
+\>      \T{0 1 2 3 4 5 6 7 8 9} 
+}
+\end{production}
+
+
+\subsection{Identifier restrictions}
+\index{identifier restrictions}
+\label{sec:identifierRestrictions}
+
+The following restrictions are placed on identifier names.
+
+\begin{enumerate}
+
+\item An identifier name cannot be the same as a keyword (\SecPage{Keywords}).
+
+\item All library function identifier names are reserved at all times.
+
+\item All identifiers that begin with an underscore should be 
+        considered reserved. 
+
+\item All identifiers that begin with \T{EiC\_} or \T{eic\_} are considered
+	reserved for EiC's future developments. 
+
+\item All identifiers beginning with {\tt is}, {\tt to}, {\tt mem}, or 
+        {\tt str} and followed by another lower case letter are
+        considered reserved for ISO C future library
+        implementations.
+
+\item While there is no restriction on the length of an identifier name in EiC,
+       ISO C only requires that the first six
+        characters of each identifier be unique.
+\end{enumerate}
+
+Note, only the first restriction is enforced by EiC -- like most other C
+implementations. Therefore, it is up-to the programmer to enforce and
+beware of these other rules and limitations.
+
+
+\section{Scope Rules}
+\label{sec:ScopeRules}
+\index{scope}
+
+Scope rules determine how references to non-local names are handled
+and the visibility of local names. In EiC, like ISO C and many other
+languages such as Pascal and Ada the lexical
+scope\index{scope!lexical} rule is used. That is, the declaration of a
+name is handled simply by examing the program text. The scope of an
+identifier relates to the portion of program text in which the
+identifier is active.  The same identifier may be used at different
+scope levels for different purposes. The scope of a variable lasts
+until the end of the block in which it is declared in.  In EiC,
+blocks\index{blocks} are delimited by  braces \T{\{} and \T{\}},
+and have the general form:
+\begin{production}
+\bp{
+\T{\{} {\it declaration-list}$_{op}$ {\it statements}$_{op}$ \T{\}}
+}
+\end{production}
+
+Blocks may appear as translation units or anywhere {\it statements}
+can.  Delimiters ensure that one block is either totally separate from
+another block or is totally nested within another block. Therefore, it
+is a simple matter to assign a scope level to a block and to the
+identifiers assigned with it. For example: the scope level outside any
+block or function parameter--type--list is 1. From the listing below,
+the identifier {\tt x} declared on line 1 is outside any block;
+therefore, EiC will automatically assign it to level `file scope',
+1. This variable is active only on those lines that end with
+\verb+/* scope level 1 */+. This is because it gets masked by the 
+identifier \T{x} declared on line 5 and is active only on the lines
+ending with \verb+/* scope level 2 */+. The \T{x} identifier declared
+on line 5 is also masked by the next identifier \T{x} declared on line
+8. This latter identifier is active only at scope level 3. In
+contrast, identifier \T{y} declared on line 1 is active or visible
+from the location of its declaration to the end of the listing.
+
+\begin{production}
+\begin{verbatim}
+ 1      int x,y;        /* scope level 1 */
+ 2      ...             /* scope level 1 */
+ 3      int foo(void)   /* scope level 1, parmater list at level 2 */   
+ 4      {               /* scope level 2 */
+ 5          float x;    /* scope level 2 */
+ 6          ...         /* scope level 2 */
+ 7          {           /* scope level 3 */
+ 8              int x;  /* scope level 3 */
+ 9              ...     /* scope level 3 */
+10          }           /* scope level 2 */
+11          ...         /* scope level 2 */
+12      }               /* scope level 1 */
+13     ...             /* scope level 1 */
+\end{verbatim}
+\end{production}
+
+Thus, a block can be seen as a form of a name-less, parameter-less
+function. However, functions, unlike blocks, can not be nested.
+
+Note: macro definitions are scope less. Macros are always visible and
+can never be masked by another identifier or macro. However, a macro
+can mask an identifier.
+
+
+\section{Name Space}
+\label{sec:NameSpace}
+\index{name space}
+
+In C, identifiers are grouped into at least four name spaces:
+{\bf 1)} variables names, {\bf 2)} structure, union and enumeration
+tag names, {\bf 3)} labels for goto\index{goto} statements and {\bf 4)}
+structures and unions have their own area for member names.  However,
+functions don't have a separate name space for parameters or local
+variables; these variables are handled using scope rules. Also, the
+same identifier can exist in different name spaces without causing
+conflicts as shown by the following:
+
+\begin{production}
+\begin{verbatim}
+struct node {
+    int node;
+} node;
+
+node:
+    goto node;
+\end{verbatim}
+\end{production}
+
+The first occurrence of the identifier \T{node} is entered into the
+tag-name space. The second occurrence is entered into the
+structure-member name space for the structure node, which in turn is
+entered into the variable-name space. The fourth occurence of \T{node} is
+entered into name space for labels.
+
+Also, in EiC, there is a separate name space for EiC command
+identifiers. Having a separate name space for EiC command names allows
+the use of these names to be overloaded as identifiers for objects and
+functions:
+\begin{production}
+\begin{verbatim}
+EiC > int show;
+        (void)
+EiC > :show show
+show -> int 
+        (void)
+\end{verbatim}
+\end{production}
+
+Hence, the eic-command {\tt show} does not get confused with the identifier {\tt show}.
+
+\section{Comments}
+\index{comments}
+\label{sec:Comments}
+
+Under standard conditions, EiC just allows two styles of comments: the
+traditional ISO C style comment \T{/*\ldots*/} plus the C++ style of
+comments.  A sequence of characters in the input stream beginning with
+\T{/*} and ending with \T{*/} or beginning with
+\T{//} and ending at the end of the current source line constitutes a
+comment in EiC. The traditional style of comment \T{/*\ldots*/}
+cannot be nested but because the \T{//} is not recognized inside the
+traditional comment, nesting can be indirectly achieved via:
+\small
+\begin{quote}
+\begin{verbatim}
+/*
+    int any;   // this number will hold anything
+    ...
+*/
+\end{verbatim}
+\end{quote}
+\normalsize
+
+However, the \verb+#if 0 ... #endif+ construct is often a more
+preferable way of disabling large sections of code from being
+translated.
+
+EiC strips out all standard comments automatically from the input
+stream before preprocessing and they are replaced by a single space
+character; for example
+\T{a/*~a~comment~*/b} will be replaced by \T{a~b}.  Comments are not
+recognized within quotation marks; that is, a string literal (see
+\SecPage{StringConstants}); nor within character literals (see
+\SecPage{CharacterConstants}). However, both string and character
+literals can occur within a comment.
+
+Also, when EiC is run in script mode (see \SecPage{ScriptMode}) it
+treats all lines that start with `\T{\#}' and which can't be
+interpreted as a preprocessor directive as a comment.
+
+
+
+\section{Keywords}
+\label{sec:Keywords}
+
+The following identifiers are reserved:
+\footnotesize
+\begin{center}
+\begin{tabular}{llll}
+  \T{auto} &   \T{break} &  \T{case} & \T{char} \\
+  \T{const} &   \T{continue} &  \T{default} & \T{do} \\
+  \T{double} &   \T{else} &  \T{enum} & \T{extern} \\
+  \T{float} &   \T{for} &  \T{goto} & \T{if}\\ 
+  \T{int} & \T{long} &   \T{register} &  \T{return}\\ 
+  \T{short} & \T{safe} & \T{signed} &   \T{sizeof} \\
+  \T{static} & \T{struct} & \T{switch} &   \T{typedef} \\ 
+  \T{union}  & \T{unsafe} &  \T{unsigned} &  \T{void}\\ 
+  \T{volatile} & \T{while}   &\T{\_\_eiclongjmp} &\T{\_\_eicsetjmp} 
+\end{tabular}
+\end{center}
+\normalsize
+
+\section{Constants}
+\label{sec:Constants}
+\index{constants}
+
+The following constants are recognized by EiC:
+
+\begin{production}
+\bp{
+constant:\\
+\>      int-const\\
+\>      float-const\\
+\>      char-const\\
+\>      string-const
+}       
+\end{production}
+
+Also, the value of a numeric constant is always positive. Any minus
+sign present is not considered part of the constant: it is part of an
+unary expression and not of the constant itself.  Below are
+descriptions and the syntax for the various literal classes recognized
+by EiC.
+
+\subsection{Integer Constants}
+\index{constants!integer}
+\label{sec:IntegerConstants}
+
+An integer constant consists of a sequence of {\it digit} types. If
+the sequence begins with zero then the input number is expected to be
+in hexadecimal or octal format depending on whether the next input
+character is the letter
+\T{x}, \T{X} or a digit. Hexadecimal numbers also include the
+letters \T{a} or \T{A} to \T{f} or \T{F}.
+
+Immediately following the numeric part of an integer literal can be
+the optional integer suffix, which consists of \T{u} or \T{U} to
+indicate that the number is unsigned and/or \T{l} or \T{L} to indicate
+that the number is long. 
+
+The type of an integer literal whether it is \T{long} or
+\T{unsigned} will depend on its form and suffix. Unless otherwise
+specified, if an \T{int} can represent the value of the original type
+then it will be converted to an \T{int}; A decimal constant whose
+value exceeds the largest signed machine integer is taken to be
+\T{long} or \T{unsigned long}, which ever fits first. Likewise,
+ an octal or hex constant that exceeds the largest signed machine
+integer is likewise taken as an \T{unsigned int}, a \T{long} or
+an \T{unsigned long}, which ever fits first.
+
+
+\begin{production}
+\bp{
+int-const:\\
+\>      nonzero-digit digit$^*$ \U{[}int-suffix\U{]}\\
+\>      \T{0} hex-octal-const \U{[}int-suffix\U{]}\\
+hex-octal-const:\\
+\>      hex-const\\
+\>      octal-const\\
+octal-const:\\
+\>      octal-digit$^*$
+}
+\end{production}
+\begin{production}
+\bp{
+hex-const:\\
+\>      \U{[}\T{x}, \T{X}\U{]} hex-digit$^*$ \\
+int-suffix:\\
+\>      long-suffix \U{[}unsigned-suffix\U{]} \\
+\>      unsigned-suffix \T{[}long-suffix\U{]} \\
+long-suffix: \T{one of}\\
+\>      \T{l L}
+}
+\end{production}
+\begin{production}
+\bp{
+unsigned-suffix: \T{one of}\\
+\>      \T{u U}\\
+hex-digit: \T{one of}\\
+\>       digit \T{A B C D E F a b c d e f}\\
+octal-digit: \T{one of}\\
+\>      \T{0 1 2 3 4 5 6 7}\\
+nonzero-digit: \T{one of}\\
+\>      \T{1 2 3 4 5 6 7 8 9}\\
+digit: \T{one of}\\
+\>      \T{0 1 2 3 4 5 6 7 8 9} 
+}
+\end{production}
+
+The limits on integer constants are stored in the header file
+\T{limits.h}
+
+
+\subsection{Floating Point Constants}
+\label{sec:FloatingPointConstants}
+\index{constants!floating point}
+A floating--point constant may consist of a decimal point, an exponent
+or both. A {\it float-suffix} can be used to specify the type of the
+constant:
+\T{f} or \T{F} for \T{float}; \T{l} or \T{L} for \T{long double}, which in EiC is identical 
+to \T{double}. Unless specified, a floating-point constant will be of type \T{double}:
+
+
+\bp{
+float-const:\\
+\>      digit-seq f-float-const\\
+\>      \T{.} digit-seq \U{[}exp\U{]} \U{[}float-suffix\U{]}\\
+f-float-const:\\
+\>      \T{.} \U{[}digit-seq\U{]} \U{[}exp\U{]} \U{[}float-suffix\U{]}\\
+\>      exp \U{[}float-suffix\U{]}\\
+\>      float-suffix \\
+float-suffix: \T{one of}\\
+\>      \T{f F l L}\\
+exp:\\
+\>      \U{[}\T{e}, \T{E}\U{]} \U{[}sign\U{]} digit-seq \\
+sign: \T{one of}\\
+\>      \T{+ -}\\
+digit-seq:\\    
+\>      \U{[}digit\U{]}$^+$
+}
+
+
+The floating point limits are stored in the header \T{float.h}.
+
+\subsection{Character Constants}
+\index{constants!character}
+\index{escape code mechanism}
+\label{sec:CharacterConstants}
+Character constants are represented by one or more characters 
+enclosed in single quotes; such as, \T{'$\backslash$n'} or
+\T{'n'}. Character constants are of type \T{int}. 
+The value of a single character constant is its ASCII value; for
+example, \T{'A'} == 65 and \T{'B'} == 66. The following set of control
+characters is recognized:
+
+\begin{quote}
+\begin{tabular}{llll}
+new line          &  $\backslash$n  & backslash &  $\backslash$$\backslash$\\
+horizontal tab    &  $\backslash$t  & question mark & $\backslash$? \\
+veritcal tab      &  $\backslash$v  & single quote  & $\backslash$\T{'} \\
+backspace         &  $\backslash$b  & double quote  & $\backslash$\T{''} \\
+carriage return   &  $\backslash$r  & octal number  & $\backslash${\it 000} \\
+fromfeed          &  $\backslash$f  & hex number    & $\backslash$x{\it hh} \\
+bell              &  $\backslash$a  & hex number    & $\backslash$X{\it hh}
+\end{tabular} 
+\end{quote}  
+
+As seen from the above table, octal and hexidecimal numbers can also be used
+to form character constants; for example, \T{'$\backslash$377'} ==
+\T{'$\backslash$xff'} == -1:
+
+\bp{
+char-const:\\
+\> \T{'}c-char$^+$\T{'}\\
+c-char:\\
+\> \T{any character other than a single quote or backslash}\\
+\> escape-sequence\\
+escape-sequence: \T{one of}\\
+\>   \T{$\backslash$n $\backslash$t $\backslash$b $\backslash$r $\backslash$f $\backslash$v} \\
+\>   \T{$\backslash$$\backslash$ $\backslash$' $\backslash$'' $\backslash$a $\backslash$? $\backslash${\it 0}}\\ 
+\>   \T{$\backslash${\it 00} $\backslash${\it 000} $\backslash${\it xh} $\backslash${\it xhh} 
+      $\backslash${\it xhhh}}\\
+\>   \T{$\backslash${\it Xh} $\backslash${\it Xhh} $\backslash${\it Xhhh}}\\
+h:\\
+\> hex-digit\\
+0:\\
+\> octal-digit
+ }
+
+
+\begin{warning}
+ISO C allows for an extended character set or a wide character
+\index{character wide} set; that is, characters that cannot be represented by
+the \T{char} type. EiC does
+not recognize this set of characters. 
+\end{warning}
+
+\subsection{String Constants}
+\index{constants!string}
+\index{string constant}
+\label{sec:StringConstants}
+
+A string constant is possibly a zero length array of characters
+enclosed in double quotes.  Its type and storage is initially
+\T{static char []} that eventually gets cast to
+\T{char *} and unless it is used as an argument to the \T{sizeof} operator\index{sizeof operator}. 
+Its syntax is:
+
+\begin{production}
+\bp{
+string-const:\\
+\>      \T{"}\U{[}s-char\U{]}$^*$\T{"}\\
+s-char:\\
+\>      \T{any character except the double quote, backslash or newline}\\
+\>      escape-sequence
+}
+\end{production}
+
+The double quote, backslash or newline characters are included into
+string constants by using the escape code mechanism:
+\begin{quote}
+        \T{printf("\%s  \%s","hello","$\backslash$"hello$\backslash$"");}
+\end{quote}
+ prints:
+\begin{quote}
+        \T{hello  "hello"}
+\end{quote}
+ 
+Adjacent string constants separated only by white space are
+concatenated prior to parsing; this is a handy feature as it makes it
+easy to construct formated output with added efficiency of just a
+single function call:
+\begin{verbatim}
+      puts("this is line 1\n"
+           "this is line 2");
+\end{verbatim}
+
+A string can also be
+ continued via  the use of the backslash character \T{$\backslash$}:
+\begin{production}
+\begin{verbatim}
+puts("this is line 1 \
+      this is also line 1");
+\end{verbatim}
+\end{production}
+
+The output from the above call to \T{puts} shows that the backslash
+and the newline characters are ignored but that the whitespace on the
+continuation line is not:
+
+\begin{production}
+\begin{verbatim}
+this is line 1       this is also line 1
+\end{verbatim}
+\end{production}
+
+
+String constants are stored in a null terminated sequential block of
+characters as seen for the string ``Hello, world!'':\\
+
+\begin{production}
+\cell{H}\cell{e}\cell{l}\cell{l}\cell{o}\cell{,}\cell{\ }\cell{w}\cell{o}\cell{r}\cell{l}\cell{d}\cell{!}\cell{0}
+\end{production}
+
+String constants  can be fed into the \T{sizeof} operator,
+\index{sizeof operator} which will return the number of characters spaces
+assigned to the array; For example 
+\T{sizeof("Hello,~world!");}  returns 14 and not 13 the number of characters in the array.
+ String constants can be used to initialize an array\index{initialize
+string} of characters or pointers to characters:
+
+\begin{production}
+\begin{verbatim}
+char str[] = "this is an array of characters";
+char *pstr = "this is a pointer to an array of characters";
+\end{verbatim}
+\end{production}
+
+Note: \T{sizeof(str)} = 31, while \T{sizeof(pstr)} = 4, which is the
+size of a pointer on my system at the time of writing this document.
+
+\begin{warning}
+
+{\bf Wide strings}: EiC does not recognize \T{wide
+strings}\index{string wide}; that is, a string constants prefixed with
+the letter \T{L}.
+
+\end{warning}
+
+
+\section{External declaration}
+\label{sec:ExternalDeclaration}
+\index{external!declaration}
+
+In the following sections the notion for a definition and a
+declaration\index{definition vs declaration} will be presented.  As a
+word of introduction, a definition is a declaration that reserves
+storage for a given C object -- otherwise the declaration is just a
+reference symbol.
+
+C's external declaration {\it ext-decl} consists of a sequence of
+external declarations that can be either a C declaration, {\it
+declaration}, or a function definition, {\it func-def}; that is:
+
+\begin{quote} \bp  {
+ext-decl:\\
+\>      declaration \\
+\>      func-def 
+}
+\end{quote}
+ The discussion of function definitions will be deferred till \SecPage{FunctionDeclarations}.
+
+\section{Declarations}
+\label{sec:Declaration}
+\index{declaration}
+
+EiC's syntax for the C declaration has the form:
+\begin{quote} \bp  {
+decl:\\
+\>      decl-spec \U{[} init-decl-list \U{]} \\
+decl-spec:\\
+\>      storage-class \U{[} decl-spec \U{]} \\
+\>      type-spec \U{[} decl-spec \U{]} \\
+\>      type-qual \U{[} decl-spec \U{]} \\
+init-decl-list:\\
+\>      init-decl \U{[} , init-decl-list \U{]}$^*$\\
+init-decl:\\
+\>  declarator \U{[} = initialiser \U{]} 
+}
+\end{quote}
+
+
+
+A C declaration {\it decl} begins with one or more specifiers, {\it
+decl-spec}, in any order and is normally followed by the optional
+initial declarator list {\it init-decl-list}. For example, consider
+the following declaration for the identifier {\tt cd}:
+
+\begin{quote}
+        $\underbrace{\overbrace{\tt extern}^{storage-class}\ \overbrace{\tt long\ int\ unsigned}^{type-spec}\ \overbrace{\tt const}^{type-qual}}_{decl-spec} \underbrace{\overbrace{\tt cd[2]}^{declarator} = \overbrace{\{25,55\}}^{initialiser}}_{init-decl-list}\ $\U{;}
+
+\end{quote}
+
+Because of the vast number of data types, constructors and semantics
+associated with a C declaration, declarations are by far the most
+difficult part of the C programming language to parse. Furthermore, a
+re-declaration of an identifier is NOT illegal as long as both
+declarations remain compatible:
+
+\begin{quote}
+\begin{verbatim}
+int i,i;                  // okay, compatible declarations
+extern float a[], a[10];  // okay, 2nd declaration adds more info
+int i; float i;           // error: Ambiguous re-declaration for i
+\end{verbatim}
+\end{quote}
+
+However, according to ISO standards, the re-definition of a function
+is illegal.  If EiC was to adopt this recommendation, as is, EiC
+users would have to laboriously remove all the function definitions
+from the scope of the EiC interpreter (see~\Sec{EiCcommands},
+\Page{item:rm}) before re-including a source file after each editing
+task. For example, consider the source file \T{foobar.c}, which contains
+only the function definitions for
+\T{foo1} and \T{foo2}:
+\begin{quote}
+\begin{verbatim}
+EiC> #include foobar.c  // first time
+EiC> :rm foo1, foo2  // Now, remove foo1 and foo2 from EiC
+EiC> #include foobar.c  // Next, include foobar.c a 2nd time
+\end{verbatim}
+\end{quote}
+
+This is obviously problematic, since all the functions defined in
+\T{foobar.c} must be specified for their removal.  Therefore, if all
+function definitions remain compatible (i.e., have the same name,
+return the same type and accept the same arguments) EiC will simply
+warn about each functions redefinition:
+
+\begin{quote}
+\begin{verbatim}
+EiC> #include foobar.c // first time
+EiC> #include foobar.c // 2nd time
+Warning: in foobar.c near line 5:  Function Re-definition of foo1
+Warning: in foobar.c near line 20: Function Re-definition of foo2
+\end{verbatim}
+\end{quote}
+
+Note, that with the preprocessor directive \T{\#include}, the file
+name was not surrounded by quotes or angled brackets, see
+\SecPage{Include} for an explanation.
+
+
+\section{Type specifiers}
+\label{sec:TypeSpecifiers}
+\index{type specifier}
+The C language provides a large number of built in types. Type
+specifiers attribute various properties to a C object. There are the
+following basic data types:
+\begin{production}
+\bp {
+type-spec: \T{one of} \\
+\>      \T{void} \T{char} \T{short} \T{int} \\
+\>      \T{long} \T{float} \T{double}  \\
+\>      \T{signed}  \T{unsigned} \\
+\>      enum-spec\\
+\>      struct-or-union \\
+\>      typedef-name 
+}
+\end{production}
+
+\subsection{char, short, int and long specifiers}
+The \T{char, short, int and long} specifiers form 
+what are known as the integral types\index{integral type}.
+A \T{char} or \T{short} may be used in place of an integer
+and in all cases they will be automatically cast to an integer.
+
+The integral types all have essentially different word lengths and
+they are signed types; that is, their values by default will range
+from negative to positive. The \T{int} specifier in particular is very
+rubbery. It size can vary in number of bytes and this length will be
+machine specific. The Table below provides some basic information
+regarding EiC integral types:
+
+\footnotesize
+\begin{center}
+\label{tb:integralTypes}
+\begin{tabular}{|l|c|c|l|}
+\hline 
+Type Specifier &   length in bytes &  Range  & Example\\
+\hline 
+\T{char}  &   1  &  -128 to 127  &  \T{char x;}\\
+\T{unsigned char} & 1 & 0 to 255 & \T{unsigned char x;} \\
+\T{short} &   2  &  -32768 to 32767 & \T{short x;} or \T{short int x;} \\
+\T{unsigned short} & 2 & 0 to 65535 & \T{unsigned short x;} \\
+\T{int}   &   4  &  -2147483648 to 2147483647 & \T{int x;} \\
+\T{unsigned int} & 4 & 0 to 4294967295 & \T{unsigned x;} \\
+\T{long}  &   4  &  -2147483648 to 2147483647 & \T{long x;} or \T{long int x;} \\
+\T{unsigned long} & 4 & 0 to 4294967295 & \T{unsigned long x;} \\
+\hline
+\end{tabular}
+\end{center}
+\normalsize
+Fortunately these limits are specified in the standard C library
+header file \T{"limits.h"}
+\index{limits.h} (see \SecPage{limitsh}):
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+#include <limits.h>
+int main(void)
+{
+   printf(" CHAR_MIN = %12d,  CHAR_MAX = %12d\n", CHAR_MIN,CHAR_MAX);
+   printf(" SHRT_MIN = %12d,  SHRT_MAX = %12d\n", SHRT_MIN,SHRT_MAX);
+   printf("  INT_MIN = %12d,   INT_MAX = %12d\n",  INT_MIN, INT_MAX);
+   printf(" LONG_MIN = %12ld, LONG_MAX = %12ld\n",LONG_MIN,LONG_MAX);
+   printf("UCHAR_MAX = %12d\n",UCHAR_MAX);
+   printf("USHRT_MAX = %12d\n",USHRT_MAX);
+   printf(" UINT_MAX = %12u\n", UINT_MAX);
+   printf(" LONG_MAX = %12d\n", LONG_MAX);
+   return 0;
+}
+\end{verbatim}  
+\end{production}
+
+\subsection{The enum type specifier}
+\label{sec:enumeration}
+The enumeration specifier allows for the definition of a set of
+constant integer values to be easily associated with a set of
+names. The syntax for the enumeration specifier is:
+\begin{production}
+\bp{
+enum-spec:\\
+\>      \T{enum} \U{[}id\U{]} \T{\{}enum-list\T{\}}\\
+\>      \T{enum} id\\
+enum-list:\\
+\>      enumerator\\
+\>      enum-list \T{,} enumerator\\
+enumerator:\\
+\>      id\\
+\>      id \T{=} const-expr
+}
+\end{production}
+ and from which it is easy to see a similarity with the structure or
+union specifier (see: \SecPage{structures}):
+
+\begin{production}
+\begin{verbatim}
+enum  {RED, GREEN, BLUE};
+\end{verbatim}
+\end{production}
+
+The enumeration specifier associates the manifest constants \T{ RED,
+GREEN} and \T{BLUE} with the values \T{0, 1}, and \T{2}
+respectively. They are automatically assigned values sequentially
+starting from zero. The intention here is to make more readable and
+more easy to produce code than via the preprocessor
+\directive{define} directive ({\SecPage{Define}}):
+\begin{production}
+\begin{verbatim}
+#define  RED     0
+#define  GREEN   1
+#define  BLUE    2
+\end{verbatim}
+\end{production}
+
+There is also the optional enumeration tag name and enumeration variables:
+\begin{quote}
+        ${\tt enum}\ \overbrace{\tt rgb}^{tag-name}\ \overbrace{\T{\{RED,\ GREEN,\ BLUE\}}}^{constants}\ \overbrace{\T{colour1,\ colour2}}^{variables}; $
+\end{quote}
+ where the intention is that the tag name will be used to define new
+variables and the variables will only be assigned the values \T{RED,
+GREEN,} or \T{BLUE}:
+\begin{production}
+\begin{verbatim}
+enum rgb mycolour, yourcolour;
+mycolour = RED;
+yourcolour = BLUE;
+\end{verbatim}
+\end{production}
+ It is also possible to initialize the enumeration constants to
+predefined values using a constant expression of integral type:
+\begin{production}
+\begin{verbatim} 
+enum { RED, GREEN = 13, BLUE };
+\end{verbatim}
+\end{production}
+ Now, \T{RED} will be assigned 0, \T{GREEN} 13 and \T{BLUE} 14.
+
+In EiC the enumeration constants are treated as normal integer
+constant and enumeration variables are treated as plain
+integers. Further, EiC performs no type checking to prevent
+enumerated types and integers types from mixing. Anywhere an integer
+expression can be used an enumeration constant or enumeration
+variable can also be used.
+
+
+Enumeration tag names occupy a different name space than do normal
+variable names. Therefore, such identifiers can be used at the same
+scope level for other objects without causing conflicts -- although
+such practices lead to obscure code it is legal:
+\begin{production}
+\begin{verbatim}
+enum rgb mycolour, yourcolour;
+int rgb;  /* okay, different name space */
+\end{verbatim}
+\end{production}
+
+At the same scope level, enumeration constant and variables names must
+all be unique and an enumeration constant or variables within an inner
+block can mask declarations defined in outer blocks:
+
+\begin{production}
+\begin{verbatim}
+...
+int RED = 5;
+{
+    enum {RED = 0, GREEN, BLUE};
+    assert(RED == 0};
+}
+assert(RED == 5);
+\end{verbatim}
+\end{production}
+
+
+\subsection{float and double specifiers}
+\label{sec:float}
+\index{float}\index{double}
+The specifiers \T{float} and \T{double} form the floating point
+objects. ISO C supports three types of floating point objects:
+\T{float}, \T{double} and \T{long double}\index{long double}. EiC
+handles \T{long double}s as ordinary \T{double}s. 
+
+The \T{float} specifier is a single-precision floating point number,
+while the
+\T{double} specifier is a double-precision floating point number. Floating
+point objects are always signed and they have fractional and exponent
+parts. Scientific notation for floating types is used: 2.22e5
+represents the value 222000, where the `e' or `E' notation indicates
+how many positions to move the decimal point left or right depending on
+the sign of the exponent; for example, 2.22e-5 represents the number
+0.000022. All floating point values are stored in normalized form. For
+example, 0.000123 wastes three zeros on the left of the number that
+has no meaning except to indicate the position of the decimal
+point. Normalizing this number gives 1.23e-4 and can be represent by
+M~$\times$~$b^k$, where M represents the mantissa or significand,
+$b^k$ the exponent and $b$ the radix. However, in C a more
+extensive model is used to represent normalized floating point values (see
+section~\SecPage{floath}).
+
+The floating point equivalent to \T{"limits.h"} is the standard C
+header file \T{"float.h"}, which provides for all the values that
+characterize the floating-point types. But as a quick, but non-exhaustive,
+summary: in EiC the floating point objects have the following
+specification:
+
+\small
+\begin{center}
+\label{tb:floatTypes}
+\begin{tabular}{|l|c|c|l|}
+\hline 
+Type Specifier &   length in bytes &  Range   & Example\\
+\hline 
+\T{float}  &   4  &  1.175494E-38 to 3.402823E+38  &  \T{float x;}\\
+\T{double} & 8 & 2.225074E-308 to  1.797693E+308 & \T{double x;} \\
+\T{long double} & 8 & 2.225074E-308 to  1.797693E+308 & \T{long double x;} \\
+\hline
+\end{tabular}
+\end{center}
+\normalsize
+and can be verified via the following code:
+\begin{production}
+\begin{verbatim}
+#include <stdio.h>
+#include <float.h>
+int main(void)
+{
+   printf(" FLT_MIN = %E,  FLT_MAX = %E\n",FLT_MIN, FLT_MAX);
+   printf(" DBL_MIN = %E,  DBL_MAX = %E\n",DBL_MIN, DBL_MAX);
+   printf("LDBL_MIN = %E, LDBL_MAX = %E\n",LDBL_MIN,LDBL_MAX);
+   return 0;
+}       
+\end{verbatim}
+\end{production}
+
+
+\subsection{Pointer types}
+\label{sec:pointer}
+\index{pointer type}
+
+Syntax:
+
+\begin{production}
+\bp {
+pointer:\\
+\>      \T{*}  \U{[}pointer-qual-list \U{]} \\
+\> 	\T{*}  \U{[}pointer-qual-list \U{]}  pointer \\
+
+pointer-qual-list: \\
+\>      type-qual-list  \U{[} pointer-qual \U{]}\\
+\>      pointer-qual \U{[} type-qual-list \U{]} \\
+type-qual-list: \\
+\>      type-qual \\
+\>      type-qual-list type-qual \\
+pointer-qual: \T{one of} \\
+\>      \T{safe} \T{unsafe} \\
+type-qual: \T{one of} \\
+\>      \T{volatile} \T{const} 
+}
+\end{production}
+
+Addresses that are stored in memory are called pointers and the
+general concept is simple: a pointer is an integral value containing
+the address of some other object. It specifies the memory location
+where the data associated with the object can be found. Some people
+claim that once you have mastered pointers you have mastered C; this
+is clearly an oversimplification, but does highlight the importance of
+understanding pointers. The declaration:
+\begin{production}
+\begin{verbatim}
+int *p;   /* p is a pointer to an integer */
+
+\end{verbatim}
+\end{production}
+ declares \T{p} to be a pointer to an integer. 
+
+When working with object addresses, the two important operators are:
+the address operator \T{\&} and the indirection operator \T{*}. They are the
+inverse of each other; that is:
+
+\begin{production}
+\begin{verbatim}        
+assert(p == *&p);
+\end{verbatim}
+\end{production}
+
+ As seen above, the indirection operator when used in a declaration
+specifies that the identifier is a pointer. The number of \T{*} used
+in a declaration determines the level of indirection; for example, to
+declare a pointer to a pointer to an int, the token \T{*}, must be
+used twice (in EiC, there is no limit to the number of indirections
+that can be applied):
+\begin{production}
+\begin{verbatim}
+int **q;
+\end{verbatim}
+\end{production}
+ The \T{\&} can be applied to only
+variables and array elements. If
+\T{x} is an integer then we can assign the address of \T{x}
+to \T{p}:
+\begin{production}
+\begin{verbatim}
+p = &x;
+\end{verbatim}
+\end{production}
+ Now the indirection operator can be used to obtain the value stored at
+\T{x}, via \T{p}:
+\begin{production}
+\begin{verbatim}
+assert(*p == x);
+\end{verbatim}
+\end{production}
+
+In general, if \T{p} points to object \T{x} then \T{*p} can appear
+anywhere it is legal for object \T{x} to appear.
+
+\subsection{Pointer Qualifiers}
+\label{sec:pointerQualifer}
+\index{pointer!qualifier}
+\index{pointer!safe}
+\index{pointer!unsafe}
+
+EiC has \T{safe} and \T{unsafe} pointer qualifiers. Pointer qualifiers
+are designed to allow the creation of interface routines to embedded C
+code, which accept as arguments: arrays of pointers or structures that
+have pointer members. For example:
+
+\begin{quote}
+\begin{verbatim}
+int * safe p;
+\end{verbatim}
+\end{quote}
+ defines \T{p} to be a \T{safe} pointer and is the standard
+pointer type in EiC. The default pointer-qualifier type can be
+controlled by the use of EiC's \T{\#pragma} 
+directive, see  \SecPage{PointerPragmas}. The following:
+
+\begin{quote}
+\begin{verbatim}
+int * unsafe p;
+\end{verbatim}
+\end{quote}
+ defines \T{p} to be an \T{unsafe} pointer, which is the standard
+pointer type in C. 
+
+
+In EiC, all pointers are handled as \T{safe} much like all floats are
+handled as \T{doubles} and \T{chars} are handled as \T{ints}. Safe
+pointers are stored with lower and upper bound information that
+specify a range of legal values, see also
+\SecPage{ArrayBoundChecking}.  Thus, the storage requirement is
+obviously greater for a \T{safe} pointer than an unsafe pointer.
+
+The following rules apply to EiC pointers. It is illegal to cast
+between \T{safe} an \T{unsafe} pointer addresses:
+
+\begin{quote}
+\begin{verbatim}
+EiC 1> int * * safe p;
+EiC 2> int * * unsafe q;
+EiC 3> p = q;
+Error in ::EiC:: near line 3: Casting between safe and unsafe address
+\end{verbatim}
+\end{quote}
+
+This is because the storage requirement of a \T{safe} pointer is
+different to that required for an \T{unsafe} pointer. In C, casts are
+freely allowed between any object pointer and a
+\T{void} pointer. For example:
+
+\begin{quote}
+\begin{verbatim}
+EiC 1> int ***p, **d; void *q; 
+EiC 2> p = q;
+EiC 3> p = d;
+Warning: in ::EiC:: near line 3: Suspicious pointer conversion
+\end{verbatim}
+\end{quote}
+
+Therefore, it is legal to cast an \T{usafe} or a \T{safe} pointer to
+and from any \T{void} pointer. However, the bounds of a \T{safe}
+pointer will be lost via casting it to an \T{unsafe} pointer and back
+again. It is also legal to make casts between a \T{safe} and an
+\T{unsafe} pointer:
+
+\begin{quote}
+\begin{verbatim}
+EiC 1> int * safe p; 
+EiC 2> int * unsafe q; 
+EiC 3> p = q;
+\end{verbatim}
+\end{quote}
+ 
+A \T{safe} pointer is converted to an \T{unsafe} pointer by discarding
+the additional safe-pointer information and this is done when the
+\T{unsafe} pointer is written to memory. Likewise, an
+\T{unsafe} pointer is converted to a \T{safe} pointer by setting
+the safe pointer's lower and upper bound values to zero and infinity
+repectively. Note, casting an \T{unsafe} pointer to a \T{safe} pointer
+does not create a \T{safe} pointer.
+
+\subsubsection{Pointer Pragmas}
+\label{sec:PointerPragmas}
+\index{pointer!pragma}
+
+The default pointer type qualifier can be controlled via the use of
+three pragmas that work on a stack principle:
+
+\begin{quote}
+\begin{verbatim}
+#pragma  push_safeptr   // default pointer type will be safe 
+#pragma  push_unsafeptr // default pointer type will be unsafe
+#pragma  pop_ptr        // return to previous pointer type 
+\end{verbatim}
+\end{quote}
+
+The default pointer state in EiC is safe; for example:
+
+\begin{quote}
+\begin{verbatim}
+EiC 1> int *p;                  // defines a safe pointer
+EiC 2> #pragma push_unsafeptr
+EiC 3> int *q                   // defines an unsafe pointer
+EiC 4> #pragma pop_ptr          // return to previous pointer state
+\end{verbatim}
+\end{quote}
+
+\subsubsection{Pointer Arithmetic}
+\label{sec:PointerArithmetic}
+\index{pointer!arithmetic}
+
+If object \T{x} is of size \T{s} in bytes then adding or subtracting
+the integral value \T{i} to \T{p} (i.e., \T{p = p $\pm$ i}) causes
+\T{i $\times$ s} to be added or subtracted to or from the value stored
+at \T{p}.
+
+The relationship between arrays
+and pointers are easily seen via an example:
+\begin{production}
+\begin{verbatim}
+int *p, a[100];
+p = &a[0];    /* point to the beginning of the block */
+assert(*(p+20) == a[20]);
+\end{verbatim}
+\end{production}
+
+Note: In C, if the resulting pointer, {\tt p+x}, points outside the
+bounds of a legal array, except for the first location beyond the end
+of the array, the result is undefined. However, it is also legal for a
+pointer to point to \T{NULL}.
+
+It is common to use the increment,\T{++}, or deincrement, \T{--},
+operator on pointers for skipping through the values of an array
+sequentially:
+\begin{production}
+\begin{verbatim}
+...
+p = &a[0];
+for(i=0;i<sizeof(a)/sizeof(int);++i)
+    *p++ = i * i;
+assert(a[2] == 4);
+\end{verbatim}
+\end{production}
+
+Note, while there is no array bounds\index{array bounds} checking in C
+and the behaviour of addressing values beyond the limits of an array
+is strickly undefined, EiC attempts to be pointer\index{pointer!safe}
+safe (see section~\SecPage{ArrayBoundChecking}). 
+
+
+The difference between two pointers, of the same class, will result in
+an integral value that represents the number of objects between the
+two address:
+\begin{production}
+\begin{verbatim}
+assert((p+1)-p == 1);
+\end{verbatim}
+\end{production}
+ In EiC, as for ISO C, the difference is represented as the signed
+integral type \T{ptrdiff\_t} defined in \T{stddef.h}
+(section~\SecPage{stddefh}). It is illegal to add or multiple two
+pointers together. An integral value can be subtracted from or added
+to a pointer but it is illegal to subtract a pointer from an integral
+value:
+\begin{production} 
+\begin{verbatim}
+...
+int *p, *q;
+p+20;     /* okay: results in the address of the 21st object*/
+20+p;     /* okay: results in an address */
+p - 10;   /* okay: results in an address */
+p - q;    /* okay: results in an integer */
+p * q;    /* error: incompatible types */
+p+q;      /* error: incompatible types */
+10 - p;   /* error: incompatible types */
+\end{verbatim}
+\end{production}
+ Certain conversions are permitted. Pointers can be assigned to pointers
+of a different class, but without an explicit cast, EiC will issue a
+warning and a pointer can be cast explicitly to an integral
+value:
+\begin{production}
+\begin{verbatim}
+int *p; char * c;
+...
+p = c;  /* warning: Suspicious pointer conversion */
+p = (int *)c;  /* okay */
+printf("%p %ld",p, (long)p);  
+\end{verbatim}
+\end{production}
+
+Any pointer can be compared with the integral value
+0\index{pointer!NULL} and without the use of a cast:
+\begin{production}
+\begin{verbatim}
+#define NULL 0
+...
+if(p == NULL)
+   ...
+\end{verbatim}
+\end{production}
+
+\subsection{Void types}
+\label{sec:void}
+\index{void type}
+
+The concept of no value, or no argument, is expressed through the use
+of the \T{void} specifier. For example, a function that returns no
+value and receives no arguments would be declared as:
+\begin{production}
+\begin{verbatim}
+void f(void) { printf("Hello, world!\n");}
+\end{verbatim}
+\end{production}
+
+
+Also, in EiC, as for ISO C, there exists the \T{void}
+pointer\index{pointer!void}. A \T{void} pointer is a generic
+pointer\index{pointer!generic} and any pointer to any object may be
+converted to a \T{void} pointer without a cast:
+\begin{production}
+\begin{verbatim}
+int *p; void * q;
+q = p;  /* okay */
+\end{verbatim}
+\end{production}
+ In EiC, pointers may be assigned to and from \T{void} pointers and
+may be compared to them without the use of an explicit cast. 
+
+ 
+\subsection{Array types}
+\label{sec:ArrayTypes}
+\index{arrays}
+ 
+An array is a sequences of objects of the same type. For example, an
+array of 10 floats is defined as:
+
+\begin{production}
+\begin{verbatim}
+float ar[10];
+\end{verbatim}
+\end{production}
+
+where the array begins with index zero and its elements are referenced
+via a primary expression: \T{ar[0]}, \T{ar[1]}, \ldots,
+\T{ar[9]} and the subscripts must be of an integral type. 
+Further, arrays cannot be constructed from \T{void} types or functions.
+
+EiC supports multidimensional arrays and there is no artificial limit
+on the number of dimensions that can be used nor on the physical size
+of an array. Array sizes are only limited by the amount of memory
+available. Multidimensional arrays are declared as arrays of arrays
+(which should not be confused with an array of pointers to arrays):
+
+\begin{production}
+\begin{verbatim}
+int a3d[3][5][10];
+\end{verbatim}
+\end{production}
+
+The array \T{a3d} contains 3 planes of 5 rows of 10 columns of
+integers. Its type is an array of 3 arrays of 5 arrays of 10 integers.
+Array elements are stored in a block of consecutive storage in
+row-major form\index{row-major order} and the last subscript varies
+the fastest.
+
+It is useful to remember that array names are effectively treated as
+pointer constants except when used as an operand to the sizeof
+operator: \T{a3d} will evaluate to the address of the first element of
+the array -- with type pointer to an array of 5 arrays of 10 integers;
+\T{a3d[i]} will evaluate to the address of the first element in
+\T{ith} plane -- with type pointer to array of 10 integers;
+\T{a3d[i][j]} will evaluate to the address of the first element in the
+\T{jth} row of the \T{ith} plane -- with type pointer to integer; and
+\T{a3d[i][j][k]} will evaluate to the \T{kth} element in the \T{jth}
+row of the \T{ith} plane -- with type integer.
+
+The \T{sizeof} operator when applied to an array returns the size of
+the entire array in bytes and not the size of a pointer:
+
+\begin{production}
+\begin{verbatim}
+assert(sizeof a3d == 3 * 5 * 10 * sizeof(int));
+assert(sizeof a3d[0] == 5 * 10 * sizeof(int));
+assert(sizeof a3d[0][0] == 10 * sizeof(int));
+assert(sizeof a3d[0][0][0] == sizeof(int));
+\end{verbatim}
+\end{production}
+
+In general, to obtain the address of individual elements within an
+array the address operator \T{\&} is used and \T{\&a3d[i][j][k]} will
+evaluate to the address of the \T{kth} element in the \T{jth} row of
+the \T{ith} plane.
+
+In EiC, \T{X[y]} is identical to \T{y[X]}. This is because the
+expression \T{X[y]} is identical to \T{*(X+y)}, which is identical to \T{*(y+X)}:
+
+\begin{production}
+\begin{verbatim}
+assert(a3d[2] == 2[a3d]);
+\end{verbatim}
+\end{production}
+
+Extending this notation to the next dimension shows that
+\T{X[y][z]} is identical to \T{*(*(X+y)+z)} and so forth.
+
+\subsubsection{Incomplete Arrays}
+\label{sec:IncompleteArrays}
+\index{array!incomplete}
+
+In C, an incomplete array is an array whose size is not defined. It can only
+be referred to and only the first dimension may be missing. It size
+must be completed by a definition or by initialization:
+
+\begin{production}
+\begin{verbatim}
+extern int a[];   /* declaration */
+int a[5];         /* definition */
+int A[][2] = { {0,1}, {1,2}, {2,3} };
+int B[]    = { 0,1,2,3,4,5,6,7,8,9}; 
+\end{verbatim}
+\end{production}
+
+Note, for 32-bit integers, \T{sizeof(A) = 24},
+\T{sizeof(A)/sizeof(int) = 6},
+\T{sizeof(B) = 40} and \T{sizeof(B)/sizeof(int) = 10}.
+
+
+\subsubsection{Array Bound Checking}
+\label{sec:ArrayBoundChecking}
+\index{pointer!safe}
+\index{array!checking}
+
+
+EiC is pointer safe. This means EiC catches most array bound
+violations; for example:
+
+\begin{production}
+\begin{verbatim}
+EiC 1> int a[10], *p, i;
+EiC 2> a[10];  
+READ: attempted beyond allowed access area
+...
+EiC 3> p = &a[5];
+EiC 4> p[-5];
+EiC 5> p[-6];
+READ: attempted before allowed access area
+...
+EiC 6> p[4];
+EiC 7> p[5];
+READ: attempted beyond allowed access area
+...
+EiC 8> *(p+100);
+READ: attempted beyond allowed access area
+...
+EiC 9> p = malloc(5*sizeof(int));
+EiC 10> *(p+100);
+READ: attempted beyond allowed access area
+...
+EiC 11> for(i=0;i<100;i++) *p++ = i;
+WRITE: attempted beyond allowed access area
+\end{verbatim}
+\end{production}
+
+EiC does this through inheritance. When arrays are allocated
+or memory is allocated by malloc etc, the size of the allocated
+piece of memory is known and retained. This information is
+passed along during assignments etc. For example,
+in the assignment \verb+ p = &a[5]+, \T{p} not only gets assigned
+the address of \T{a[5]}, it also inherits \T{a}'s range.
+
+To detect array bound violations as efficiently as possible, EiC does
+not concern it self with the values held or produced by pointers, it
+worries about address values only when pointers are either referenced or
+dereferenced:
+
+\begin{production}
+\begin{verbatim}
+EiC 1> int a, *p;
+EiC 2> p = &a;
+EiC 3> (p+10);    // okay, no problems
+EiC 4> *(p+10);   // but just try to read or write to the address
+READ: attempted beyond allowed access area
+...
+\end{verbatim}
+\end{production}
+
+
+\subsection{Structures and Unions}
+\label{sec:structures}
+\index{struct} \index{union}
+
+A structure is an instance of a sequence of  named data types
+collected into a template -- analogous to a Pascal record. A union is
+a data type that is similar to a structure but at most will contain
+only on member of its aggregation -- it is handy for declaring a
+variable that may contain different types at different
+times. Structures and unions provide the way of extending the number
+of data types available.
+
+Syntax: \begin{quote} \bp {
+st-un-spec: \\
+\>      st-un \U{[}id\U{]} \T{\{} s-decl-list \T{\}}\\
+\>      st-un id\\
+st-un: \T{one of}\\
+\>      \T{struct} \T{union} \\
+s-decl-list: \\
+\>      st-decl \\
+\>      s-decl-list st-decl \\
+st-decl: \\
+\>      spec-qual-list spec-declor-list \T{;} \\
+spec-qual-list: \\
+\>      type-spec \U{[}spec-qual-list\U{]}\\ 
+\>      type-qual \U{[}spec-qual-list\U{]} \\
+spec-declor-list: \\
+\>      st-declor \\
+\>      spec-declor-list \T{,} st-declor \\
+st-declor: \\
+\>      decl \\
+\>      \underline{\U{[}decl\U{]} \T{:} const-expr }
+}
+\end{quote}
+
+The underlined section in the above syntax, indicates that EiC does
+not support structure bit fields. The identifier, {\it id}, in the
+structure or union specifier {\it st-un-spec} is the tag name for the
+structure or union and each tag name must be unique. The scope of the
+tag will extend to the end of the block in which it is defined (see
+\SecPage{ScopeRules}). Note, tag names exist in a different name space
+from other variables.  In ISO C, identifiers are grouped into at
+least four name spaces: 1) variables names, 2) structure, union and
+enumeration tag names, 3) labels for goto statements and 4)
+structures and unions have their own area for member names. See
+\SecPage{NameSpace} for further information.
+
+\begin{quote}
+        $\overbrace{\tt struct}^{st-un}\ \overbrace{\tt stag}^{id}\
+\{\overbrace{\T{int\ x;}}^{s-decl-list}\}\
+\overbrace{\T{s1,s2}}^{variables}; $
+\end{quote}
+
+The above definition declares a structure template, which contains
+just one member of type integer named {\tt x}. Members can be any
+object type, including other structures or unions, but they can't be
+functions.  A given member name may appear only once in any given
+structure or union. The above declaration also defines two variables
+{\tt s1} and {\tt s2} and the type specifier {\tt struct stag}.
+
+The type specifier {\tt struct stag} can now be used to declare
+further variables:
+\begin{production}
+\begin{verbatim}
+struct stag a, b, *c;
+\end{verbatim}
+\end{production}
+ where {\tt a} and {\tt b} are structure variables; and {\tt c} is a
+pointer to a structure of type {\tt struct stag}.
+
+If the production {\it st-un id} is used without the preceding
+\{ {\it st-decl-list} \}:
+\begin{production}
+\begin{verbatim}
+struct node;
+\end{verbatim}
+\end{production}
+ an incomplete type is specified. A structure or union may not contain
+a member of incomplete type; that is an object of unknown size, but
+they can contain pointers to incomplete types; one advantage of this
+is in forward referencing -- when for example, creating linked lists:
+
+\begin{production}
+\begin{verbatim}
+struct node {
+    int a;
+    struct node * next;
+};
+\end{verbatim}
+\end{production}
+
+A structure or a union without a tag will form a unique type that
+can only be used in context of its declaration (however, see also the
+discussion below concerning structure and union compatibility):
+
+\begin{production}
+\begin{verbatim}
+struct {
+    struct node *list;
+    int count;
+} head;
+\end{verbatim}
+\end{production}
+
+Although {\tt typedef} names will be discussed in detail in
+\SecPage{TypedefName} they are of interest here because they 
+provide a handy way to form structure or union type specifiers:
+
+\begin{production}
+\begin{verbatim}
+typedef struct node {
+    int a;
+    struct node * next;
+} node;
+\end{verbatim}
+\end{production}
+
+The {\it typedef-name} {\tt node} may appear anywhere the type specifier
+{\tt struct node} can.  Note, the first occurrence of the identifier
+node is entered into the tag-name space while the third is entered
+into the common variable name space. As these identifies exist in
+different name spaces they cause no conflicts (because context can be
+used to disambiguate their proper usage):
+
+\begin{production}
+\begin{verbatim}
+        struct node a;
+        node b;
+\end{verbatim}
+\end{production}
+ The above variables {\tt a} and {\tt b} are of the same type.
+
+\subsubsection{Structure and Union compatibility}
+\label{sec:StructureCompatability}
+\index{compatible!structures!unions}
+
+Generally, each declaration for a structure or union type specifier
+creates a new type, which is not compatible with any other type
+specifier. For example, in ISO C, the following variables {\tt x} and
+{\tt y} are different:
+
+\begin{production}
+\begin{verbatim}
+        struct {int x, y;} x;
+        struct {int x, y;} y;
+\end{verbatim}
+\end{production}
+
+This means that, in ISO C, the following is illegal:
+
+\begin{production}
+\begin{verbatim}
+        struct {int x, y;} x;
+        struct {int x, y;} x;  // error: re declaration of variable `x'.
+\end{verbatim}
+\end{production}
+
+Because EiC is interactive, it needs to be more flexible than this, so
+it defines that two structures or unions to be compatible if they have
+the same type specifier or if they contain the same number of members 
+of the same type, with the same names and in the same order. Hence,
+the re-declaration of variable {\tt x} is not considered an error by
+EiC, and from the example before the last, the variables {\tt x} and
+{\tt y} are considered to be compatible. This definition is comparable
+to the ISO C definition for compatibility of structures or unions
+declared in separate source files.
+
+\subsubsection{Structure and Union assignment}
+\index{assignment!structures!unions}
+
+Structures and unions can form modifiable lvalue expressions (if they
+have not been defined as constants or have members which have a {\tt const}
+qualifier); that is, they can appear on the left-hand side of an
+assignment:
+\begin{production}
+\begin{verbatim}
+...
+typedef struct { int a, b;} ab_t;
+ab_t a1, b1;
+const ab_t  a;
+a = a1;    // error: Illegal assignment operation
+a1 = b1;   // okay: copy the contents of b1 into a1, but b1 and a1 
+           // must be compatible
+...
+\end{verbatim}
+\end{production}
+
+\subsubsection{Initialization of Structures}
+\index{initialize!structures}
+\index{structure!initialization}
+\label{sec:InitStruct}
+
+The members of a structure can be initialized from the members of a
+compatible structure, \verb+ ab_t c = a1+, or from a brace inclosed
+list of constant expression initializers in order of the members:
+\verb+ ab_t c = {5,10}+.  If there are fewer initializers than members,
+then the trailing members will be initialized to zero: \verb+ ab_t c = {5}+, 
+is equivalent to \verb+ ab_t c = {5,0}+.
+
+An array of structures can be initialized:
+
+\begin{production}
+\begin{verbatim}
+int f() {return 1;}
+int i1 = 1,i2 = 2,i3 = 3;
+struct {
+    int *v;
+    int (*p)();
+}arg[3] = { {&i1,f}, {&i2,f}, {&i3,f}};
+\end{verbatim}
+\end{production}
+ The inner sets of braces in this instance could have been
+dropped. However, the intention is clearer if they are retained.
+
+
+\subsubsection{Initialization of Unions}
+\index{initialize!unions}
+\index{union!initialization}
+\label{sec:InitUnion}
+
+A union can be initialized from another compatible union or by a
+constant expression but the constant expression initializer must be
+brace-enclosed and be compatible with the first member of the union.
+\begin{production}
+\begin{verbatim}
+union {
+    char a;
+    int b;
+    float c;
+}un[3] = { {'a'}, {'b'}, {'c'}};
+assert(un[0].a == 'a' && un[1].a == 'b' && un[2].a == 'c');
+\end{verbatim}
+\end{production}
+
+Note, that assigning to one element of a union makes all other
+elements have undefined values.
+
+
+\subsubsection{Structure and Union member access}
+
+The members of a structure or union are referred to by the selection
+operators {\tt .} and \verb+->+, which is a minus sign followed by
+$>$; for example:
+
+\begin{production}
+\begin{verbatim}
+struct {int a,b;} a, *b;
+b = &a;    // address operation
+a.a  = 5; 
+assert(b->a == a.a);
+\end{verbatim}
+\end{production}
+
+The operators {\tt .} and \verb+->+ connects the structure name to a
+particular member and it is an error to reference a member
+of a structure or union that does not appear in the template of the
+structure or union.
+
+Since {\tt b} is a pointer to a structure the dereferenced type is
+a structure:
+\begin{production}
+\begin{verbatim}
+assert(b->a == (*b).a);
+\end{verbatim}
+\end{production}
+
+Structures and unions can be returned from functions:
+
+\begin{production}
+\begin{verbatim}
+EiC 1> typedef struct {int a;} a_t; 
+EiC 2> a_t f(void) { a_t a  = {5}; return a;}
+EiC 3> f().a;
+        5
+EiC 4> f().a = 5;
+Error in ::EiC:: near line 4: Illegal assignment operation
+\end{verbatim}
+\end{production}
+ However, as can be seen from the previous example, they are not
+lvalues since they cannot appear on the left hand side of an
+assignment operator. Generally, {\tt a.y} will form an lvalue if {\tt
+a} is an lvalue and {\tt y} is not an array identifier.  A conditional
+operator, a comma operator or even an assignment operator can be used
+to produce a structure or union that is not an lvalue; for example:
+
+\begin{production}
+\begin{verbatim}
+EiC 1> int i = 2; struct {int a;} a = {15}, b = {69};
+
+EiC 2> (i,b).a;  // comma operator
+        69
+EiC 3> (i,b).a = 6; 
+Error in ::EiC:: near line 3: Illegal assignment operation
+
+EiC 4> (i == 2 ? a:b).a;  // conditional operator 
+        15
+EiC 5> (i == 2 ? a:b).a = 5;  
+Error in ::EiC:: near line 5: Illegal assignment operation
+
+EiC 6> (a=b).a;         // assignment operator
+        69
+EiC 7> (a=b).a = 5;          
+Error in ::EiC:: near line 7: Illegal assignment operation
+\end{verbatim}
+\end{production}
+
+\subsubsection{Structures and Unions as parameters}
+\label{sec:StructParm}
+\index{parameter !structures !unions}
+
+Structures and unions are passed as arguments to functions by value:
+\begin{production}
+\begin{verbatim}
+EiC 1> #include <assert.h>
+EiC 2> typedef struct {int a;} a_t; 
+EiC 3> int f(a_t a) { a.a++; return a.a;}
+EiC 4> a_t a = {5};
+EiC 5> assert(f(a) == a.a + 1);
+\end{verbatim}
+\end{production}
+
+However, it is generally more expedient, because a copy of the object
+does not have to be created, and more commonly practiced to pass
+structures and unions to functions by reference using a pointer:
+
+\begin{production}
+\begin{verbatim}
+EiC 6> :rm f  // remove f, before re declaration of new type
+EiC 7> int f(a_t *a) { return a->a;} 
+EiC 8> assert(f(&a) == a.a);
+\end{verbatim}
+\end{production}
+
+\subsubsection{Structure and Union layout}
+\label{StructureUnionLayout}
+\index{structure!layout!alignment}
+\index{union!layout!alignment}
+
+The members of a structure have addresses offset from the beginning of
+the structure that increase in order of declaration. The members of a
+union all begin at offset 0. Hence, the size of a union is equal to
+the size of its largest member. The address of a structure or a union
+coincides with the address of the first member:
+\begin{production}
+\begin{verbatim}
+EiC 1> #include <assert.h>
+EiC 2> struct {char a; double x;} a; 
+EiC 3> char *p = (char *)&a;
+EiC 4> assert(*p == a.a);
+\end{verbatim}
+\end{production}
+
+Often padding may appear between the members. This is know as the
+alignment problem; for example:
+
+\begin{production}
+\begin{verbatim}
+EiC 5> sizeof(a);
+        12
+EiC 6> sizeof(char) + sizeof(double);
+        9
+\end{verbatim}
+\end{production}
+
+This occurs because on my system doubles must be aligned so that
+their address is a multiple of 4. On other systems this maybe 1, 8,
+etc.  Padding can occur anywhere except at the beginning of a
+structure.  In EiC, the padding occurs between consecutive members.
+The alignment of a union or a structure is equal to the maximum
+alignment of its members.
+
+\subsection{Typedef-name specifier}
+\index{Typedef-name}
+\label{sec:TypedefName}
+The {\it typedef-name} facility introduces synonyms for other type specifiers. It
+defines identifiers for types.
+
+Syntax:
+
+\begin{quote}
+\bp {
+typedef-name: \\
+\>      id
+}
+\end{quote}
+
+Declaring an identifier as a type allows that identifier to be used
+anywhere the original {\it type-specifier} could. However, it can't be
+mixed with other {\it type-specifiers}:
+
+\begin{quote}
+\begin{verbatim}
+typedef float A[3]; // A is an array of 3 floats
+typedef int  B[];   // B is an array of int
+A *pa;              // pa is a pointer to an array of 3 floats
+B *p[2];            // p is a 2-element array of pointers to
+                    //   arrays of int of unspecified size
+\end{verbatim}
+\end{quote}
+
+A {\it typedef-name} can be masked by the redefinition of its 
+identifier at a higher scope level and on scope reentry the original
+{\it typedef-name} will again be visible:
+\begin{quote}
+\begin{verbatim}
+typedef short S;
+...
+{
+    char *S;   // new definition for S okay
+    ...
+}
+\end{verbatim}
+\end{quote}
+
+It is illegal to mix a {\it typedef-name} with other type specifiers:
+\begin{quote}
+\begin{verbatim}
+typedef char string[80];
+unsigned string a;      // error: invalid type specification
+\end{verbatim}
+\end{quote}
+
+{\it Typedef-names} can be used to specify the return type of
+a function:
+\begin{quote}
+\begin{verbatim}
+EiC 1> typedef short (*S)(int x, int y);  
+EiC 2> S f(void);
+EiC 3> :show f
+f -> dec_Func (
+        void 
+        ) returning * dec_Func (
+                x: int ,
+                y: int 
+                ) returning short 
+\end{verbatim}
+\end{quote}
+
+The above shows that \T{f} is a prototype declaration for a function
+that has a \T{void} parameter and returns a pointer to a function that
+returns a \T{short} integer and has two integer parameters named \T{x}
+and \T{y}.
+
+
+\section{Storage Class}
+\index{variable!storage class}
+\label{sec:StorageClass}
+Syntax:
+\begin{quote} \bp  {
+store-class: {\tt one of}\\
+\>      {\tt auto extern register static typedef}
+}
+\end{quote}
+
+In EiC, as for ISO C, it is expected, but not compulsory, that the
+storage class of an object precedes other forms of {\it declaration
+specifiers}. Each object can have only one storage class specifier
+and with the exception of the storage class \T{typedef}, it
+ determines an identifier's scope\index{variable!scope} or
+ extent\index{variable!extent}(\SecPage{ScopeRules}) and linkage.
+
+\small
+\begin{Ventry}{typedef}
+\item[auto]
+\label{item:auto}
+\index{auto storage class}
+        Automatic objects are local to the block that they are
+ declared in. All objects declared within a block have by default
+ automatic storage class unless otherwise specified.  It is an
+ error to declare a variable automatic outside a block -- at the
+ level of the function definition -- and redundant to do so within
+ a block.
+\begin{quote}
+\begin{verbatim}
+auto int i; // error: Illegal storage class usage
+{
+    auto int i;   // okay 
+}
+\end{verbatim}
+\end{quote}
+
+\item[register]
+\label{item:register}
+\index{register storage class} 
+Automatic objects can be declared as a \T{register}, with the
+intention of being stored for fast access, but unlike the
+\T{auto} storage class, they can be  used in parameters declarations.
+However, as EiC's virtual machine is stack based and not register
+based, declaring an automatic object to have storage class
+\T{register} -- although allowed -- has no real meaning. According 
+to ISO standards it is illegal to take the address of a register
+object and thus EiC enforces this rule:
+\begin{quote}
+\begin{verbatim}
+{
+    register int i, *p;
+    p = &i;       // error: cannot apply & to a register 
+}
+\end{verbatim}
+\end{quote}
+
+\item[extern]
+\label{item:extern}
+\index{extern storage class} 
+When used within a block, \T{extern} specifies that the storage for
+the object is specified elsewhere and if no external declaration is
+visible its linkage will be external. Otherwise, in ISO C, the object
+will have no linkage and be unique to the block it is declared in, but
+in EiC it will still be treated as an external object and which is not
+private to the block it is declared in. As an example of how the storage
+class \T{extern} can be used in both ISO C and EiC, consider the
+following program:
+\begin{quote}
+\begin{verbatim}
+#include <assert.h>
+int i = 5;
+void T()
+{   extern int i,j;   // Note, forward declaration of j
+    i = 7;
+    j = 10;
+}
+int j = 3;
+int main(void)
+{   assert(i == 5);
+    assert(j == 3);
+    T();
+    assert(i == 7);
+    assert(j == 10);
+    return 0;
+}
+\end{verbatim}
+\end{quote}
+
+Also, as much as possible, EiC attempts to follow ISO recommendations
+and therefore the initialization of an extern variable is allowed:
+\begin{quote}
+\begin{verbatim}
+extern int x = 5;   // okay
+\end{verbatim}
+\end{quote}
+ This forces the reference of \T{x} into a true definition. In EiC if no
+subsequent defining occurrence appears for an external variable, it to
+becomes the defining occurrence to that object.
+
+\item[static]
+\label{item:static}
+\index{static storage class} 
+Static objects may appear in declarations local or external to blocks.
+When used in the declaration of functions or global variables,
+\T{static} means that these identifiers will not be exported outside
+the current linkage unit or block in which they are declared.  Hence,
+all global variables and functions declared static within an include
+file are private to that file, and are only visible within the scope
+of that file. Therefore, in general, their names will not clash with
+the names of any global variable visible from the EiC interpreter.
+For example, consider the following program in \T{f1.c}:
+
+\begin{quote}
+\begin{verbatim}
+#include <assert.h>
+int p = 7;                                                  
+#include f2.c
+int main()
+{
+    setp(33);
+    assert(getp() == 33);
+    assert(p == 7);
+    return 0;
+}
+\end{verbatim}
+\end{quote}
+ where the contents of \T{f2.c} are:
+\begin{quote}
+\begin{verbatim}
+/* private methods and data */
+static int p;                
+/* public methods and data */
+void setp(int x) { p = x;}   
+int getp() { return p;}      
+\end{verbatim}
+\end{quote}
+
+From the example just given, it is seen that the object \T{int p;} in
+file \T{f2.c} does not confict with the same object \T{int p;}
+previously defined in \T{f1.c}. This is because they are in different
+storage classes, see \SecPage{DefaultStorageClass} for further details
+on class conflicts.
+
+With respect to automatic objects, defining a local object to be
+static also has meaning; as such objects retain their values across
+exit from and reentry to functions and blocks:
+\begin{quote}
+\begin{verbatim}
+EiC> int i = 10;  // global variable
+EiC> int f(void) { static int i = 1; return i++;}
+EiC> while(i--) printf("%d",f());
+\end{verbatim}
+\end{quote}
+results in the output: \T{12345678910}. 
+
+\item[typedef]
+\label{item:typedef}
+\index{typedef storage class}
+
+A typedef declaration, attributes a type to an identifier and
+thereafter, this {\it typedef-name} may appear anywhere the same type
+specifier may have appeared; see section \SecPage{TypedefName}.
+
+
+\end{Ventry}
+\normalsize
+
+
+\section{Default storage class and class conflicts}
+\index{variable!default storage class}
+\label{sec:DefaultStorageClass}
+
+In ISO, if no storage class is specified for an object or function
+then the appropriate storage class will be determined from the current
+scope level. For all variables and functions declared at level file,
+their default storage class is \T{extern}. Wthin a block the default
+class for objects is
+\T{auto}, for function prototypes it is \T{extern} and parameters,
+while having extent within the block belonging to a function, have no
+storage class.
+
+Because in EiC the concept of linkage is different than that of a true
+compiler, there are no default storage specifiers. Within blocks,
+objects definition remain private unless specified \T{extern},
+function declarations are exported to the outer most level and
+parameters are treated as specified for ISO C. Otherwise, all storage
+classes must be explicity stated.
+
+The following table shows what EiC deems appropriate with respect to
+the storage class of the same object \T{int i} declared in two
+different files, and where file \T{f1.c} includes \T{f2.c} after the
+declaration of object \T{int i}:
+
+\begin{quote}
+\begin{verbatim}
+// file f1.c 
+int i;
+#include f2.c;
+// end f1.c 
+
+// file f2.c
+int i;
+// end f2.c
+\end{verbatim}
+\end{quote}
+
+A conflict between the same object or function difinitions declared in
+different files will generate an error, if it induces a condition
+where (1) a single object or function is owned by two files or (2) a public
+object or function, projects into the scope of a private object or
+function.  Function prototypes (declarations) are handled more loosely
+and can be mutliply defined in different files. The following table is
+used to demonstrate the various conditions that can occur and equally
+applies to object and function definitions:
+
+
+\begin{center}
+\begin{tabular}{|c|r|c|c|c|}
+\hline
+	&        &          & \T{f2.c}            &          \\
+\hline
+         &       & int i;   &  static int i;  & extern int i; \\
+\hline
+  f1.c       & int i; &  error   &  okay           & okay        \\
+\hline
+     & static int i; & error & okay &  error \\
+\hline
+       & extern int i; & okay   & okay & okay \\
+\hline
+\end{tabular}
+\end{center}
+
+
+In the third row of the above table, the object \T{int i} with no
+specified storage class is held constant in file \T{f1.c}, while it is
+varied for three different instances of file \T{f2.c}. When the object
+has no specified storage class in either file, it is consider an error
+because it is introducing a condition of a single object having two
+owners and this is not allowed.  When it is declared in \T{f2.c} as
+\T{static}, there are no problems, because EiC sees two distinct
+variables, a private object owned by file \T{f2.c}, and a public
+object owned by file \T{f1.c}. When the object in file \T{f2.c} is
+declared \T{extern}, this is also allowed, because file \T{f2.c} is
+explicity stating that it does not own the object -- so there can be
+no conflict.  The other rows are interpreted in similar ways. Note
+however, that when the object is declared \T{static} in file \T{f1.c}
+but has no declared storage class in file \T{f2.c} is also error. This
+is because the public object in file
+\T{f2.c} is visible within file \T{f1.c} and hence is inducing
+a situation in that there is two objects of the same type within 
+the same scope, and this in not allowed either.
+
+If \T{f2.c} had been included into \T{f1.c} before the declaration of
+the object \T{int i}, the roles of \T{f1.c} and
+\T{f2.c} in the above table would be have been reversed.
+
+
+\section{Type qualifiers}
+\index{variable!type qualifier}
+\label{sec:Typequalifiers}
+
+Syntax:
+\begin{quote} \bp  {
+type-qual: \T{one of} \\
+\>      \T{const} \T{volatile} 
+}
+\end{quote}
+ Type qualifiers are used to specify extra information about a type and
+may appear with any type specifier.
+
+\small
+\begin{Ventry}{typedef}
+\item[const]
+\label{item:const}
+\index{const} The \T{const} qualifier is used to specify that a
+type is constant and therefore its value is not to be modified
+after initialization:
+
+\begin{production}
+\begin{verbatim}
+EiC 1> const int a = 5;
+        (void)
+EiC 2> a = 6;
+Error in ::EiC:: near line 2: Illegal assignment operation
+\end{verbatim}
+\end{production}
+
+The variable qualified with \T{const} forms a non modifiable lvalue.
+With respect to simple assignments, the left operand cannot have a
+\T{const} qualifier. If the left and right operands are both 
+pointers, the type pointed to by the left operand must be compatiable
+with the right operand and also have all the same qualifiers.
+Therefore, you can't assign \T{int const *} to \T{int *} without a
+cast:
+
+\begin{production}
+\begin{verbatim}
+EiC 3> const int *p;
+        (void)
+EiC 4> int * q;
+        (void)
+EiC 5> q = p;
+Error in ::EiC:: near line 5: Assignment loses a const qualifier
+\end{verbatim}
+\end{production}
+
+
+Futher, when dealing with pointers, you have the opportunity to
+either declare the pointer constant, or what the pointer is pointing
+to as constant; for example:
+
+\begin{production}
+\begin{verbatim}
+EiC 1> int  a, * const p = &a;
+EiC 2> const int *q = &a;
+EiC 3> :show p
+p -> const * int 
+EiC 4> :show q
+q -> * const int 
+\end{verbatim}
+\end{production}
+
+In the former case, \T{p} is a constant pointer to an interger. This
+means that \T{p} can't change in value, but the value of what it is
+pointing to can. In the latter case, \T{q} is a pointer to a constant
+integer.  This means that \T{q}'s value can change but not the value
+it is pointing to. The following helps to highlight the various
+restrictions imposed by the \T{const} qualifier on \T{p} and \T{q}:
+
+\begin{production}
+\begin{verbatim}
+EiC 5> *p = 33;
+        33
+EiC 6> *q = 44;
+Error in ::EiC:: near line 6: Illegal assignment operation
+EiC 7> p = q;
+Error in ::EiC:: near line 7: Illegal assignment operation
+EiC 8> q = p;
+        4a024
+\end{verbatim}
+\end{production}
+
+\item[volatile]
+\label{item:volatile}
+\index{volatile} The \T{volatile} qualifier can appear with
+\T{const} and it  is used to inform the compiler that the specified object may have it's  value changed from external sources. 
+In EiC, the \T{volatile} keyword is simply ignored.
+
+\end{Ventry}
+\normalsize
+
+
+\section{Variable declaration placement}
+\label{sec:VariablePlacement}
+\index{variable!placement}
+
+In EiC, you must declare all variables at the beginning of a block or
+at any position outside a function block.
+
+Syntax:
+
+\begin{quote}
+\bp  { 
+\>   \U{\{} declaration-list$_{opt}$   statement-list$_{opt}$ \U{\}}  
+}
+\end{quote}
+
+\section{Function declarations}
+\label{sec:FunctionDeclarations}
+\index{function!declaration}
+
+In this section I will first present a quick overview  to function
+usage in EiC before looking at the details.
+
+EiC attempts to be type safe; therefore,
+in order for EiC to check the validity of a function call during
+compilation, it is important that the function prototype be available.
+In EiC, the prototype form can be extracted from either the function
+definition or declaration. Hence, all function declarations must be in
+prototype form\index{function!prototype form}; that is, provide the
+name of the function, the types of its parameters and the return type
+of the function.
+
+The two following prototypes are considered equivalent: 
+
+\begin{quote}
+\begin{verbatim}
+        int swap(int *, int *);    /* prototype declaration */ 
+        int swap(int *a, int *b);  /* full prototype declaration */ 
+\end{verbatim}
+\end{quote}
+
+The latter form is referred to as a declaration in full prototype
+form, because it includes the parameter names. However, for convenience
+and to increase backward compatibility, EiC, allows one type of
+non-prototype declaration:
+
+\begin{quote}
+\begin{verbatim}
+        void f();   /* allowable non-prototype declaration */ 
+\end{verbatim}
+\end{quote}
+
+The above declaration will be compatible with other prototype
+declarations and definitions if: it matches the return type; the
+arguments declared in the prototype form will not be subject to
+typical argument conversions, such as \T{float} to \T{double}; and the
+prototype form does not declare a variadic function:
+
+\begin{production}
+\begin{verbatim}
+EiC 1> int round(double x) { if(x>0) return x+0.5; else return x-0.5;} 
+EiC 2> int sum(int x, int y) { return x + y;}
+EiC 3> int foo(float var) { return var;}
+EiC 4> int (*pf)();    // declare a function pointer
+EiC 5> pf = round;    
+EiC 6> pf = sum;      
+EiC 7> pf = foo;       
+Warning: in ::EiC:: near line 7: Suspicious pointer conversion
+\end{verbatim}
+\end{production}
+
+EiC deems the assignment on line 7 to be suspicious, because the function
+\T{foo} accepts an argument of type \T{float}, and because all 
+floating point values passed via \T{pf} will be automatically cast to
+type \T{double}. Also, as seen above, allowing a function declaration
+to take no variables is different from declaring it to take
+\T{void}. In the latter case, it implies that the function will accept
+no arguments; in the former case, it means that the function will
+accept any number of arguments, which do not undergo automatic
+conversion. The advantage of the former is obvious when working with a
+function pointer that may point to various other types of functions --
+although it does have limitations.
+
+As already stated, before any function can be called from another
+function, EiC must have either processed the function's definition or
+the prototype form of the function. This is because there are no
+implicit parameters in EiC,
+EiC carries out strict variable type checking and it verifies all
+parameter types being passed between functions; for example:
+
+\begin{quote}
+\begin{verbatim}
+#include <stdio.h>
+void f() { g(); }    /* error: unknown identifier g */
+void g() { printf("Hello, world!\n"); }
+\end{verbatim}
+\end{quote}
+
+To fix this, two alternatives are possible: 1) place {\tt g}'s
+definition before {\tt f}'s, or 2) add {\tt g}'s prototype either
+before {\tt f}'s definition or within {\tt f}:
+\begin{quote}
+\begin{verbatim}
+#include <stdio.h>
+void g(void);   
+void f() { g(); }    /* okay, g is now known */
+void f2() {void g(); g();}  /* okay */ 
+void g() { printf("Hello, world!\n"); }
+\end{verbatim}
+\end{quote}
+
+Choice 1 is okay here, but would fail if the two functions were
+mutually recursive; therefore, choice 2 is the more general. However,
+in EiC there are no private declarations for functions, as function
+{\tt f2} is implying. In EiC the above definition for {\tt f2} is
+identical to:
+
+\begin{quote}
+\begin{verbatim}
+void f2() {extern void g(); g();}  /* okay */
+\end{verbatim}
+\end{quote}
+
+Hence, all function declarations within a function are exported to
+the level of a function definition. 
+
+\section{Function types}
+\label{sec:FunctionTypes}
+\index{function!types}
+
+In EiC, there are basically two types of functions: 1) interpreter
+functions\index{function!interpreter}, such as those supplied by the
+user and 2) builtin functions\index{function!builtin}, which get linked
+into EiC at compile time.  Naturally, builtin functions run a lot
+faster than interpreter functions.  All builtin functions must be
+prototyped, via including the appropriate header file, before they are
+used, and as discussed with respect to the EiC \T{show} command on
+page~\pageref{item:show}.
+
+Although, EiC attempts to make these two forms as invisible to the
+user as possible, EiC uses its own runtime stack for processing
+information and therefore, there is only one restriction on what can
+be passed to a function: you can't pass a structure or union by value
+to either a builtin function or to an interpreter function as part of
+the optional argument list in a variadic function call (see below).
+
+
+\section{Function definition}
+\label{sec:FunctionDefinition}
+\index{function!definition}
+
+EiC has a more limited view of a function definition, {\it func-def}, 
+and function declaration than specified by the ISO C standard. The
+ISO C grammar for a function definition is:
+\begin{quote}
+\bp{
+func-def: \\
+\> decl-spec decl \underline{\U{[}decl-list\U{]}} comp-stmt \\
+\> \underline{decl \U{[}decl-list\U{]} comp-stmt}}  
+\end{quote}
+
+The parts of the above grammar that have been underlined are not included
+in EiC's grammar. This means that EiC does not recognize the old
+style of C function definition and that all function declaration must
+explicitly state their return type, which of course may be \T{void}. For
+example:
+
+\begin{quote}
+        {\tt EiC> double sqr(double x) \{ return x*x;\} }       
+\end{quote}
+defines the function {\tt sqr} to take a double for an argument and to
+return a double to its caller.  Unlike  C, all
+function definitions must explicitly specify their return type:
+\begin{quote}
+\begin{verbatim}
+product(int x, int y)   /* error: implicit return type */
+{
+    return x * y;
+} 
+\end{verbatim}
+\end{quote}
+ The correct definition is:
+\begin{quote}
+\begin{verbatim}
+int product(int x, int y)   /* explicit return type */
+{
+    return x * y;
+} 
+\end{verbatim}
+\end{quote}
+ Currently,  C allows for the old C style and the new C style
+function definitions. With EiC and C++ the old style is not
+supported; that is, only the {\it parameter-type-list} is parsed:
+\begin{quote}
+\begin{verbatim}
+int product(x, y)   /* error: old C style */
+int x, y;
+{
+    return x * y;
+} 
+\end{verbatim}
+\end{quote}
+ The correct definition is:
+\begin{quote}
+\begin{verbatim}
+int product(int x, int y)   /* New C style, parameter-type-list */
+{
+    return x * y;
+} 
+\end{verbatim}
+\end{quote}
+
+
+\section{Function parameter type list}
+\label{sec:FunctionParameterList}
+\index{function!parameter type list}
+The {\it parameter-type-list} that appears in function definitions and
+declarations has the following syntax:
+
+\begin{production}
+\bp {
+parm-type-list: \\
+\>      parm-list \\
+\>      parm-list \T{,} \T{...} \\
+parm-list: \\
+\>      parm-decl \\
+\>      parm-list \T{,} parm-decl \\
+parm-decl: \\
+\>      decl-spec decl \\
+\>      decl-spec \U{[}abs-decl\U{]} 
+}
+\end{production}
+
+The {\it parameter-type-list}, is a list of parameter declarations
+separated by commas. A parameter declaration must be in prototype
+syntax: declaring the type of the object and optionally its name.  If
+the parameter list ends with a set of three ellipses, $\ldots$, then
+the function may accept any number of parameters of any type:
+\begin{quote}
+\begin{verbatim}
+        int printf(const char * fmt, ...);  /* variadic prototype */
+\end{verbatim}
+\end{quote}
+
+However, note that for variadic~\index{function!variadic} function
+declarations and definitions, there must exist at least one named
+parameter, and in EiC it is illegal to pass a structure or union by
+value as part of the option argument list to a variadic function.
+
+In EiC, as in ISO C, parameters are at the same scope level as the
+identifiers declared just after the beginning of the compound
+statement in the function definition. Therefore, it is illegal for a
+parameter name to be redeclared in the opening compound statement (but
+within inner blocks it is allowed):
+
+\begin{production}
+\begin{verbatim}
+int f(int n)
+{
+    int n;         /* error: re declaration of parameter `n' */
+    ...
+    {
+        int n;     /* okay here */
+        ...
+    }
+}
+\end{verbatim}
+\end{production}
+
+If a parameter is declared to be an array of type {\tt x}, it will
+automatically be cast to be a pointer to type {\tt x}. If a parameter is
+declared to be a function returning type {\tt x}, it will be cast to be a
+pointer to a function returning type {\tt x}. The following are all
+legal parameter and function definitions:
+
+\begin{production}
+\begin{verbatim}
+int h(int (*x)(void)) { return (*x)();}  /* traditional */
+int g(int (*f)(void)) { return f();}     /* hybrid style */
+int f(int g2(void)) { return g2();}      /* modern style */
+\end{verbatim}
+\end{production}
+ 
+
+\section{Function return type}
+\label{sec:FunctionReturnType}
+\index{function!return type}
+
+Functions in EiC, like in C and C++, may return any type, a
+structure, a union, a pointer, etc. However, a function may not return
+an array, another function or an lvalue; that is, a function call
+cannot appear on the left side in an assignment expression
+
+\begin{quote}
+\begin{verbatim}
+        f() = x;        /* an illegal assignment expression */
+\end{verbatim}
+\end{quote}
+
+The return type of a function is governed by its return statement. 
+
+\begin{quote}
+{\small
+\begin{verbatim}
+        #include <stdio.h>
+        typedef struct { int a,b; }ab_t;
+
+        ab_t * f(void) {
+                static ab_t ab = {222,333};
+                return &ab;
+        }
+        ab_t g(void) {
+                static ab_t ab = {444,555};
+                return ab;
+        }
+        int main(void) {
+                printf("%d %d %d %d\n", 
+                        f()->a,f()->b,
+                        g().a,g().b);
+                return 0;
+        }
+\end{verbatim}
+}
+\end{quote}
+
+The return value, if possible, will be cast to agree with the return
+type, otherwise an error will be flagged.  In C, a return statement
+with no expression causes control to be returned to the caller, but no
+useful value. In EiC, a function that does not return \T{void}, will
+return the last value on the stack, but without the explicit return
+statement, the result will most likely be garbage:
+\begin{quote}
+\begin{verbatim}
+int s1(int x, int y)     { x + y;}  /* okay  */
+int s2(float x, float y) { x + y;}  /* will return garbage */
+int s3(float x, float y) { (int)(x + y);}  /* okay */
+int s4(float x, float y) { return x + y;} /* correct */
+\end{verbatim}
+\end{quote}
+
+
+Because the first three functions do not use an explicit return
+statement, EiC will issue a warning against their use.  
+
+The return type must be in agreement with the return type of the
+function.  If a function has been declared to return type \T{void},
+it is an error to attempt to return any value.
+\begin{quote}
+\begin{verbatim}
+void f() { return 2;} /* error: illegal cast operation */
+\end{verbatim}
+\end{quote}
+
+According to ISO C, the returning of a \T{void} statement must
+be tolerated:
+
+\begin{quote}
+\begin{verbatim}
+void f() { return ;} /*okay, empty statement evaluates to void*/
+\end{verbatim}
+\end{quote}
+
+It is legal in ISO C for a parameter and or the return type to be a
+declaration:
+
+\begin{quote}
+\begin{verbatim}
+void sparm(struct s { int a, b;} ab)
+{
+    printf(" a = %d, b = %d\n", ab.a, ab.b);
+}
+
+struct {int a, b;} srtn()
+{
+    static struct {int a, b;} x;
+    return x;
+}
+\end{verbatim}
+\end{quote}
+
+
+Although the above functions are legal, it's best to avoid 
+writing such obscure code.
+
+\subsection{Function flow-of-control analysis}
+\label{sec:FlowOfAnalysis}
+\index{flow-of-control analysis}
+
+After EiC has compiled a function into bytecodes\index{bytecode}, it
+performs a flow-of-control analysis to check that control does not
+reach the end of non-void functions -- as well as other checks, such
+as looking for unreachable code:
+
+\begin{quote}
+\begin{verbatim}
+int f(int a)
+{
+    switch(a) {
+      case 1: return 1;
+              a = 5;        /* warning: unreachable code */
+      case 2: return 2;
+      case 3: return 3;
+    }
+} /* warning: control reaches end of non-void function `f'*/
+\end{verbatim}
+\end{quote}
+
+In the example given above, if the \T{switch} statement
+(see~\SecPage{SwitchStatement}) had a \T{default} label, which
+returned control to the caller then control would not have been
+detected to reach the end of the function.
+
+\section{Type names}
+\label{sec:TypeNames}
+\index{type names}
+
+Syntax:
+\begin{production}
+\bp{
+type-name: \\
+\>      spec-qual-list \U{[}abs-decl\U{]}\\
+abs-decl:\\
+\>      pointer\\
+\>      \U{[}pointer\U{]} dir-abs-decl\\
+dir-abs-decl:\\
+\>      \T{(} abs-decl \T{)}\\
+\>      \U{[}dir-abs-decl\U{]}\T{[} \U{[}const-expr\U{]} \T{]}\\
+\>      \U{[}dir-abs-decl\U{]} \T{(} \U{[}par-type-list\U{]} \T{)}
+}
+\end{production}
+
+
+A type name is a declaration without an identifier. It represents an
+abstract data type\index{abstract declaration}. \T{Type names} are
+used to specify various types. For example, in a unary expression,
+(\SecPage{UnaryExpression}), when
+\T{1)} type casting an object or function into another object or
+function:
+\begin{production}
+\begin{verbatim}
+EiC 1> -1;
+        -1
+EiC 2> (unsigned)-1;
+        4294967295
+\end{verbatim}
+\end{production}
+ or \T{2)} as the operand to the \T{sizeof} operator:
+\begin{production}
+\begin{verbatim}
+EiC 3> sizeof(struct {int x, y;});
+        8
+\end{verbatim}
+\end{production}
+
+The following lists various example of typenames:
+
+\small
+\begin{center}
+\begin{tabular}{ll}
+short int   &  a short integer \\
+double *    &  a pointer to a double  \\   
+float [5]   &  an array of 5 floats\\
+int  ()     &  a function returning int\\
+int (*)()   &  a pointer to a function returning int\\
+int  (char *) & a function taking a char pointer and returning an int
+\end{tabular}
+\end{center}
+\normalsize
+
+
+\T{Type names} are also used by the EiC interpreter for displaying
+various identifiers associate with a given type, see the EiC
+\T{variables} command page~\pageref{item:variables}.
+\T{Type names} are always enclosed in parentheses except when
+used as an operand to the EiC \T{variables} operator.
+ 
+
+\section{The address specifier operator \T{@}}
+\label{sec:address_specifier}
+\index{reference type}
+\index{address specifier}
+\index{address operator}
+
+In EiC, the address of where a variable is located can be specified
+via the address operator \T{@}:
+
+\begin{production}
+\begin{verbatim}
+     float f @ dddd; 
+\end{verbatim}
+\end{production}
+
+Defines \T{f} to be a variable of type \T{float} and which is stored
+at memory location \T{dddd}, where \T{dddd} must be an integral
+constant. If \T{dddd} is not a valid address within the scope of EiC, then
+\T{f} is undefined.
+
+The constant address \T{dddd} is not simply an address conjured by the
+user. Its purpose is to enable access to data, or even functions,
+defined in compiled code. 
+
+When applied to function definitions, the limitation at this stage is
+the function must take void arguments and return void:
+
+\begin{production}
+\begin{verbatim}
+     void foo(void) @ dddd; 
+\end{verbatim}
+\end{production}
+
+Defines \T{foo} to be a builtin function located at address
+\T{dddd}. For further examples see discussions on
+embedding EiC \SecPage{embedding}.
+
+\section{Statements}
+\label{sec:statements}
+\index{statement}
+
+EiC supports all the usual C statements.
+
+Syntax:
+
+\begin{production}
+\bp
+{
+stmt:\\
+\>      comp-stmt\\
+\>      label-stmt\\
+\>      select-stmt\\
+\>      iter-stmt\\
+\>      jump-stmt\\
+\>      expr-stmt\\
+}
+\end{production}
+
+\subsection{Compound-statement}
+\label{sec:CompoundStatement}
+\index{statement!compound}
+\index{compound!statement}
+
+A compound statement is used to form a block\index{block} of code that
+has a different scope level, see \SecPage{ScopeRules}, than its
+environment and it has the form:
+
+\begin{production}
+\bp
+{
+comp-stmt:\\
+\>      \T{\{} \U{[}decl-list\U{]} \U{[} stmt-list \U{]}\T{\}}\\
+stmt-list:\\
+\>      \U{[}stmt\U{]}+ 
+}
+\end{production}
+
+Any variable declared in a compound statement is local to that
+block. If an identifier declared outside the block is the same as one
+declared in the block, the inner declaration will mask the outer. All
+identifiers defined in a block must be unique.  Initialization of
+local variables must be explicit and will be performed each time the
+block is entered. Initialization of local \T{static} variables occurs
+once and at compile time, see storage class
+\SecPage{StorageClass}. A compound statement can appear anywhere 
+a normal C statement can and it does not require a terminating
+semi-colon.
+
+
+
+\subsection{Label Statement}
+\label{sec:LabelStatement}
+\index{statement!label}
+\index{statement!switch}
+
+The label statement is used to mark a position in the code where
+control can jump to; either by a \T{goto}\index{goto} or a
+\T{switch}\index{switch statement} statement.
+
+Syntax:
+\begin{production}
+\bp
+{
+label-stmt:\\
+\>      id \T{:} stmt\\
+\>      \T{case} const-expr \T{:} stmt\\
+\>      \T{default} \T{:} stmt
+}
+\end{production}
+
+The {\it id} label is used to specify the target for the goto jump
+statement, see: \SecPage{JumpStatements}, and are used exclusively
+within the scope of a function. Labels  also have their  own
+name space, so label {\it id} values can only potentially conflict with other 
+label values. No two labels within the same scope can be equal.
+
+The \T{case}\index{switch!case} and the \T{default}
+\index{switch!default} statements are used exclusively within the
+\T{switch} statement, see section \SecPage{SwitchStatement}.
+
+\subsection{Selection Statements}
+\label{sec:SelectionStatements}
+\index{selection statement}
+\index{statement!selection}
+
+Program flow can be altered by using one of the selection
+statements:
+
+\begin{production}
+\bp
+{
+select-stmt:\\
+\>      \T{if} \T{(} expr \T{)} stmt\\
+\>      \T{if} \T{(} expr \T{)} stmt \T{else} stmt\\
+\>      \T{switch} \T{(} expr \T{)} stmt
+}
+\end{production}
+
+
+\subsubsection{If-else statement}
+\label{sec:IfElseStatement}
+\index{if statement}
+\index{statement!if}
+
+The {\it expr} in the \T{if} statement must be of arithmetic
+or pointer type. If statements are normally used to form two 
+way decision statements:
+
+\begin{production}
+\bp {
+\>      \T{if} \T{(} expr \T{)} stmt$_1$ \\ 
+\>       \U{[}\T{else} stmt$_2$\ \U{]}  
+}
+\end{production}
+
+If the value of {\it expr} evaluates to be non zero then program
+control will pass to {\it stmt$_1$}, else if the optional \T{else}
+statement is present and {\it expr} evaluates to zero then control
+will pass to {\it stmt$_2$}. Otherwise, control will pass to the first
+statement beyond the \T{if} statement. \T{If-else} statements are often
+nested so as to form a multi-way branch statement:
+
+\begin{production}
+\begin{verbatim}
+if(x  == 1) printf("A");
+else if(x == 2) printf("B");
+else printf("C");
+\end{verbatim}
+\end{production}
+
+\subsubsection{Switch Statement}
+\label{sec:SwitchStatement}
+\index{switch statement}
+\index{statement!switch}
+
+The \T{switch} statement is C's formal multi way decision statement:
+
+\begin{production}
+\bp{
+\T{switch}\U{(} expr \U{) \{}\\
+\>    \T{case} const-expr$_1$\T{:}   stmt$_1$\T{;} \\
+\>    \U{[ }\T{case} const-expr$_2$\T{:}   stmt$_2$\T{; }\U{]}\\
+\>    \U{[ }\T{default:} stmt$_3$\T{; }\U{]}\\
+\U{\}}
+}
+\end{production}
+
+It evaluates the {\it expr}, which must have integral type, and it
+compares the value against each of the \T{case} {\it const-expr},
+which are constant integral expressions that get \T{cast} to the
+same type as {\it expr}. If a match is found, control is passed to
+that branch in the body of the \T{switch} statement. If no match is
+found, and there exists a \T{default} statement, then control is
+passed to it. Otherwise, none of the statements in the body of
+the \T{switch} will be evaluated.
+
+No two \T{case} {\it const-expr} can be the same. The body
+of the \T{switch} statement, as shown above, is usually a compound
+statement, but it maybe just a single statement. Note also, the
+\T{default} statement and the \T{case} {\it const-expr} can occur in 
+any order and that there is no limit on the number of \T{case}
+{\it const-expr} that can be used.
+
+One feature of C's is that switches don't break automatically before
+each case {\it const-expr}.  The \T{break} or \T{return} statements
+are therefore, often used to terminate execution of a \T{switch}
+statement. After termination, by either a \T{break} statement or
+completion of the last statement in the body of the \T{switch},
+control is passed to the next C statement beyond the \T{switch}.
+
+\begin{production}
+\begin{verbatim}
+switch(x) {
+   default: printf("X");
+   case  1: printf("A"); 
+            break; 
+   case  2: printf("B");
+   case  3: printf("C");
+   case  4: printf("D");
+   case  5: printf("E");
+}
+printf("F");            
+\end{verbatim}
+\end{production}
+
+A value of \T{x} equal to 1, entered above, causes \T{AF} to be
+printed. A value of 3 causes \T{CDEF} to be printed, and any value not
+in the set \T{[1,2,3,4,5]}, causes \T{XAF} to be printed.
+
+
+\subsection{Iteration Statements}
+\label{sec:IterationStatements}
+\index{iteration statement}
+\index{statement!iteration}
+
+C provides just three basic kinds of loops:
+
+\begin{production}
+\bp
+{
+iter-statement:\\
+\>      \T{while} \T{(} expr \T{)} stmt\\
+\>      \T{do}  stmt \T{while} \T{(} expr \T{)} \T{;}\\
+\>      \T{for}  \T{(} \U{[}expr$_1$\U{]} \T{;} \U{[}expr$_2$\U{]} \T{;} \U{[}expr$_3$\U{]}\T{;}\T{)} stmt
+}
+\end{production}
+
+The conditional {\it expr} in each iteration statement must be of
+arithmetic or pointer type. With respect to the \T{for} loop, the
+conditional statement is {\it expr$_2$}, which is also optional.
+
+\subsubsection{While Statement}
+\label{sec:WhileStatement}
+\index{while statement}
+\index{statement while}
+
+
+The purpose of the \T{while} statement is to repeatedly execute a
+statement until the conditional {\it expression} evaluates to zero:
+
+\begin{production}
+\begin{verbatim}
+int x = 10;
+while( x ) {
+   printf("x = %d\n",x);
+   x = x - 1;
+}       
+\end{verbatim}
+\end{production}
+
+\subsubsection{Do \ldots While Statement}
+\label{sec:DoWhileStatement}
+\index{do while statement}
+\index{statement do\ldots while}
+
+In the \T{while} loop, the conditional {\it expression} is evaluated
+before each iteration but in the \T{do\ldots while} loop it is
+evaluated after each loop
+
+\begin{production}
+\begin{verbatim}
+int x = 10;
+do {
+   printf("x = %d\n",x);
+   x = x - 1;
+} while ( x );  
+\end{verbatim}
+\end{production}
+
+\subsubsection{For Statement}
+\label{sec:ForStatement}
+\index{for statement}
+\index{statement for}
+
+The most ubiquitous loop in C would have to be the \T{for} loop:
+\begin{production}
+\bp
+{
+\T{for}  \T{(} \U{[}expr$_1$\U{]} \T{;} \U{[}expr$_2$\U{]} \T{;} \U{[}expr$_3$\U{]}\T{;}\T{)} stmt
+}
+\end{production}
+
+Where the expressions separated by semicolons can be loosely defined
+as:
+
+\begin{Ventry2}{{\it expr$_1$}}
+\item[{\it expr$_1$}] is usually an assignment expression.
+\item[{\it expr$_2$}] is a conditional  expression.
+\item[{\it expr$_3$}] usually some form of update or modification rule.
+\end{Ventry2}
+
+For example:
+
+\begin{production}
+\begin{verbatim}
+for(x = 10; x > 0; x = x - 1)
+     printf("x = %d\n",x);
+\end{verbatim}
+\end{production}
+
+Which is equivalent to the above \T{while} statement; that is:
+
+\begin{production}
+\bp {
+expr$_1$\T{;}\\
+\T{while} \T{(} expr$_2$ \T{) \{}\\
+\>       stmt\T{;}\\
+\>       expr$_3$\T{;}\\
+\T{\}}
+}
+\end{production}
+
+
+When the conditional expression is left out of the
+\T{for} loop it will iterate forever or until control is transfered
+out of the loop by one of several forms of {\it jump} statements.
+
+\subsection{Jump Statements}
+\label{sec:JumpStatements}
+\index{jump statement}
+\index{statement!jump}
+\index{continue}
+\index{break}
+\index{return}
+
+\begin{production}
+\bp{
+jump-stmt:\\
+\>      \T{goto} id \T{;}\\
+\>      \T{continue} \T{;}\\
+\>      \T{break} \T{;}\\
+\>      \T{return} \U{[}expr\U{]} \T{;}
+}
+\end{production}
+
+The \T{goto} jump statement is used to redirect program flow to the target identifier,
+which must be a label, see: \SecPage{LabelStatement}.   The \T{continue} and the
+\T{break} statements may appear only in an {\it iteration} statement.
+While the \T{return} statement can appear anywhere within the
+body of a  function.
+
+\subsubsection{Continue Statement}
+\label{sec:ContinueStatement}
+\index{statement!continue}
+\index{continue!statement}
+In an iteration loop the \T{continue} statement forces the start of
+the next iteration or {\it loop-continuation} of the inner most
+\T{while}, \T{do\ldots while} or \T{for} loop. In a \T{for} loop, the
+next iteration resumes only after evaluation of the current
+iteration {\it expr$_3$}:
+
+\begin{production}
+\begin{verbatim}
+for(x = 10; x > 0; x = x - 1) {
+     if(x > 5)  
+        continue;
+     printf("x = %d\n",x);
+}
+\end{verbatim}
+\end{production}
+
+Only allows the numbers 5,4,3,2 and 1 to be printed out.
+
+\subsubsection{Break Statement}
+\label{sec:BreakStatement}
+\index{statement!break}
+\index{break!statement}
+
+The \T{break} statement causes termination of the innermost \T{while},
+\T{do\ldots while} or \T{for} loop and it passes control to the statement
+immediately following the \T{while},
+\T{do\ldots while} or \T{for} loop, see also \SecPage{SwitchStatement}.
+
+\subsubsection{Return Statement}
+\label{sec:ReturnStatement}
+\index{statement!return}
+\index{return!statement}
+
+The \T{return} statement is used to return control from the current
+function back to the calling function. If an expression follows the
+\T{return} its value is returned also to the caller. When control
+reaches the end of a function, which has no \T{return}, it forces 
+a return to the caller, see also \SecPage{FunctionReturnType}.
+ 
+
+\subsection{Expression Statement}
+\label{sec:ExpressionStatement}
+\index{statement!expression}
+\index{expression!statement}
+
+Most C statements form an expression, and C has a particularly rich
+set of expression \T{operators}\index{operator}, which are the symbols
+that are used to represent operations. A missing expression is called
+a \T{null} statement\index{statement null}, and has type \T{void}. In
+this section, the C operators are discussed along with their
+\T{precedence}\index{precedence}.
+
+\subsubsection{Precedence, Associativity and nomenclature}
+\label{sec:Precedence}
+\index{associativity}
+
+In C, each \T{operator} has a precedence level, a rule of
+associativity; that is, order of evaluation and \T{operand} count.
+Precedence refers to the priority used to decide on how to associate
+operands with operators, while associativity refers to the order
+of evaluation of a succession of operators of a given type; that is,
+either from left-to-right or from right-to-left.
+
+
+To summarise, the C operators are listed in decreasing order of
+precedence (where LR and RL are used to designate left-to-right or
+from right-to-left associativity):
+
+\begin{production}
+\begin{verbatim}
+      Token                        Associates      Expression type
+identifiers, literals                 na              primary
+f(...) a[k] -> . ++  --               LR              postfix
+! ~ ++ -- - + * & sizeof              RL              unary         
+( type-name )                         RL              cast
+* / %                                 LR              multication
++ -                                   LR              addition  
+<< >>                                 LR              shift       
+< <= > >=                             LR              relational       
+== !=                                 LR              equality       
+&                                     LR              AND       
+^                                     LR              XOR
+|                                     LR              inclusive OR
+&&                                    LR              logical AND       
+||                                    LR              logical OR       
+? :                                   RL              Conditional       
+= += -= *= /= %= &= ^= |= <<= >>=     RL              Assignment       
+,                                     LR              Comma       
+\end{verbatim}
+\end{production}
+
+Below is a brief classification of the operators supported by
+EiC.
+
+
+\subsubsection{Primary expressions}
+\label{sec:PrimaryExpression}
+\index{primary expression}
+\index{expression!primary}
+
+Syntax:
+
+\begin{production}
+\bp {
+primary-expr:\\
+\>      id\\
+\>      constant\\
+\>      string\\
+\>      \T{(}expr \T{)}
+}
+\end{production}
+
+
+Identifiers, numeric constants, string literals, and parenthesised
+expressions are all primary expressions.  The various constant types
+and string literals are discussed in section \SecPage{Constants}.  The
+value of an identifier {\it id} is determined from its declaration as
+explained in section \SecPage{Declaration}. If the identifiers type
+represents an object, as opposed to a function, it will form an
+lvalue. If its type is not qualified with \T{const}
+(\SecPage{ConstantExpression}) and in the case of a structure or union
+it does not contain any members qualified with \T{const}, then the
+lvalue will be modifiable. A parenthesised expression consists of any
+expression surrounded by left and right parenthesis.
+
+\subsubsection{Postfix expressions}
+\label{sec:PostfixExpression}
+\index{postfix expression}
+\index{expression!postfix}
+The {\it postfix expressions} group from left-to-right and they are
+typically used to form function calls, subscripting and for
+structure and union member selection:
+
+\begin{production}
+\bp {
+postfix-expr:\\
+\>      primary-expr\\
+\>      postfix-expr \T{\U{[}} expr \T{\U{]}}\\
+\>      postfix-expr \T{(} \U{[}arg-expr-list\U{]} \T{)}\\
+\>      postfix-expr \T{.} id\\
+\>      postfix-expr \T{-$>$} id\\
+\>      postfix-expr \T{++}\\
+\>      postfix-expr \T{--}
+}
+\end{production}
+
+\begin{production}
+\begin{Ventry3}{0123456}
+\item[\T{()}]     funcname\T{()} Function call.
+\item[\T{[]}]     The array operator. See section \SecPage{ArrayTypes}. 
+                  The value in the bracket is used as an index into the array.
+\item[\T{.}]      The struct or union address operator, see \SecPage{structures}.
+\item[\T{-$>$}]   The struct or union indirect selection operator. see \SecPage{structures}.
+\item[\T{++}]     
+The postfix increment operator, \verb!y = x++!, will assign
+\T{x} to \T{y} and \\ then increment \T{x} by one. \T{x} must  be an
+lvalue.
+                 
+
+\item[\T{--}]     
+
+The postfix deincrement operator, \verb+y = x--+,  will assign 
+\T{x} to \T{y} and \\ then deincrement \T{x} by one. \T{x} must be an
+lvalue.
+
+\end{Ventry3}
+\end{production}
+
+
+\subsubsection{Unary expressions}
+\label{sec:UnaryExpression}
+\index{unary expression}
+\index{expression!unary}
+The {\it unary-expressions} group right-to-left. 
+
+\begin{production}
+\bp{
+unary-expr:\\
+\>      postfix-expr\\
+\>      \U{[}\T{++},\T{--}\U{]}  unary-expr\\
+\>      \U{[}\T{\&}, \T{*}, \T{+}, \T{-}, \T{\~{}}, \T{!}\U{]} cast-expr\\
+\>      \T{sizeof} \U{[}\T{(} type-name \T{)}, unary-expr\U{]}
+}
+\end{production}
+
+\begin{production}
+\begin{Ventry3}{0123456}
+\item[*]        The indirection operator yields the type of its operand, which
+        must be a pointer. The resulting type is either an object or a
+        function designator depending upon the pointer type.
+
+\item[\&]       The address operator yields  the address of its operand, which
+        must be an \T{lvalue} or a function name. The result is a
+        pointer to an object or a function. When the operand is an
+        array of type {\it T} the result is a pointer to an array of
+        {\it T}. The address operator is the inverse of \T{*}; that is,
+         \verb+x= *&x+.
+
+\item[+] The unary plus operator serves no real purpose other than
+        complementing the negation operator \T{-}. However, its
+        operand must be of arithmetic type.
+        
+\item[-]        The negation operator reverses the sign of its operand,
+        which be of arithmetic type. The resulting type is also
+        arithmetic. The negative of an unsigned value {\it x} results
+        in an unsigned value, which is computed by subtracting {\it x} from
+        its largest promoted value and adding one. 
+
+\item[!]        The logical not operator, yields the logical negation of
+        its operand. If the operand is zero, it results in one and
+        vise-a-versa. The operand can have arithmetic or pointer type
+        but the result will be of integer type.
+
+\item[\~{}]     The one's complement operator, 
+        whose operand must be of integral type. The bits of the
+        operand are complemented; that is, every one bit becomes zero
+        and every zero bit becomes one. If the operand is signed, the
+        operator complements the bits after promoting the operand to
+        its unsigned type.
+
+\item[++]       The unary increment operator results in a value
+        which is one greater than its operand, which must be an
+        \T{lvalue} and leaves the operand incremented also. The
+        operand maybe any arithmetic or pointer type. The result will
+        be same as its operand but it will not be an \T{lvalue}.
+
+\item[\T{--}]   The unary deincrement operator is the same as the unary 
+                increment operator expect the result and the operand is
+        deincremented by 1.
+
+\item[sizeof()]  The \T{sizeof}\index{sizeof} operator returns the size
+        in bytes of its operand, which must be a {\it type-name}
+        (\SecPage{TypeNames}) surrounded by parentheses:
+        \verb+sizeof(int)+; or a {\it unary-expression}:
+        \verb+sizeof a+, where \T{a} is a variable.
+
+        The return type is an the unsigned integral constant
+        \T{size\_t} as defined in \verb+<stddef.h>+
+        (\SecPage{stddefh}).  The \T{sizeof(char)} is always 1, while
+        the \T{sizeof} a structure or union results in the size of the
+        structure or union in terms of bytes (see Structure and Union
+        Layout, page~\pageref{StructureUnionLayout}).
+ 
+\end{Ventry3}
+\end{production}
+
+\subsubsection{Cast expression}
+\label{sec:CastExpression}
+\index{cast expression}
+\index{expression!cast}
+
+A cast expression is either a {\it unary expression} or a {\it
+type-name} enclosed in parentheses followed by a {\it cast
+expression}.
+
+Syntax:
+
+\begin{production}
+\bp {
+cast-expr:\\
+\>      unary-expr\\
+\>      \T{(} type-name \T{)} cast-expr 
+}
+\end{production}
+
+{\it Cast expressions} can be used for type conversions. They are used
+to cast on type into another.  That is, the following {\it
+cast-expression} operand is converted to the specified
+\T{name-type}, see also \SecPage{TypeNames}.
+
+\subsubsection{Multiplication expressions}
+\label{sec:MultExpression}
+\index{multiplication expression}
+\index{expression!multiplication}
+
+The multiplication operators group left-to-right.
+
+\begin{production}
+\bp{
+mult-expr:\\
+\>      cast-expr\\
+\>      mult-expr \T{*} cast-expr\\
+\>      mult-expr \T{/} cast-expr\\
+\>      mult-expr \T{\%} cast-expr
+}
+\end{production}
+
+
+\begin{production}
+\begin{Ventry3}{0123456}
+\item[*]        The multiplication operator yields the product of two
+                adjacent operands. The operands must have arithmetic type.
+\item[/]        The division operator yields the quotient of the left
+                operand divided by the right.  The operands must have
+                arithmetic type.
+\item[\%]       The modulo\index{modulo} operator yields the remainder 
+                of the left operand divided by the right. The operands
+                must have integral type.
+\end{Ventry3}
+\end{production}
+
+If the right hand operand for either the division or the modulo operator
+is zero then the result is undefined.
+
+
+
+
+
+\subsubsection{Additive expressions}
+\label{sec:AddExpression}
+\index{additive expression}
+\index{expression!additive}
+
+The additive operators group left-to-right. 
+
+\begin{production}
+\bp{
+add-expr: \\
+\>      mult-expr\\
+\>      add-expr \T{+} mult-expr\\
+\>      add-expr \T{-} mult-expr
+}
+\end{production}
+
+\begin{production}
+\begin{Ventry3}{0123456}
+\item[+]  The algebraic addition of two adjacent operands, yielding a
+           sum.  If one operator is a pointer then the other must have
+           integral type and the result will be an address which is
+           offset from the address operand by the number of objects
+           determined from the non address operand. Otherwise, both
+           operands must have arithmetic type.
+
+\item[-] The algebraic difference, which subtracts the right operand from 
+          the left. If the left operand is an address operator and if
+          the right operand is another address operator, which must be
+          of the same type, then the result is a \T{ptrdiff\_t} as defined
+          in \verb+<stddef.h>+ (\SecPage{stddefh}) and will
+          represent the number of objects between them -- the result
+          will be undefined if they do not point within the same
+          array. If the right operand is an integral value then the
+          same rules apply as for addition. Otherwise, both operands
+          must have arithmetic type.
+\end{Ventry3}
+\end{production}
+
+See also section \SecPage{PointerArithmetic}.
+
+
+\subsubsection{Shift expressions}
+\label{sec:ShiftExpression}
+\index{shift expression}
+\index{expression!shift}
+
+The shift operators group left-to-right, and they yield the left
+operand arithmetically shifted left or right by the number of bit
+positions determined from the right operand. Both operand must
+have integral type:
+
+\begin{production}
+\bp{
+shift-expr: \\
+\>      add-expr\\
+\>      shift-expr \T{<<} add-expr\\
+\>      shift-expr \T{>>} add-expr
+}
+\end{production}
+
+\begin{production}
+\begin{Ventry3}{0123456}
+\item[$<<$] The shift left operator.  With each shift, a zero is 
+            inserted at the lowest bit that has been displaced.
+\item[$>>$] The right shift operator. With each shift operation, if the 
+        left operand is an unsigned number, then zeros bits as shifted
+        into the highest bits, else if the left operand is signed the
+        sign bit remains the same -- this may vary depending upon the
+        implementation used to build EiC. Excess bits shifted too far
+        are conceded to fall off the end.
+\end{Ventry3}
+\end{production}
+
+        
+
+\subsubsection{Relational expressions}
+\label{sec:RelationalExpression}
+\index{relational expression}
+\index{expression!relational}
+
+The relational operators group left-to-right. They perform a numeric
+comparison of two operands yielding either 1 or 0. The operands can be
+both of arithmetic type or of pointer type.
+
+\begin{production}
+\bp{
+rel-expr:\\
+\>      shift-expr\\
+\>      rel-expr \T{<} shift-expr \\
+\>      rel-expr \T{>} shift-expr\\
+\>      rel-expr \T{<=} shift-expr\\
+\>      rel-expr \T{>=} shift-expr
+}
+\end{production}
+
+\subsubsection{Equality expressions}
+\label{sec:EqualityExpression}
+\index{equality expression}
+\index{expression!equality}
+
+The equality operators group left-to-right. The same rules apply as
+for the {\it relational expressions}, with the addition that address
+operators can be compared with the value zero, or to a \T{void}
+pointer.
+
+
+\begin{production}
+\bp{
+equal-expr:\\
+\>      rel-expr\\
+\>      equal-expr \T{==} rel-expr\\
+\>      equal-expr \T{!=} rel-expr
+}
+
+\end{production}
+
+
+\begin{production}
+\begin{Ventry3}{0123456}
+\item[==] Yields 1 if the left operand is equal to the right otherwise
+        0.
+\item[!=] Yields 1 if the left operand does not equal the right otherwise
+        0.
+\end{Ventry3}
+\end{production}
+
+
+\subsubsection{Bitwise expressions}
+\label{sec:BitwiseExpression}
+\index{bitwise expression}
+\index{expression!bitwise}
+
+The bitwise operators group left-to-right. They perform logical
+operations on the  bits of their operands.
+
+\begin{production}
+\bp{
+inc-or-expr:\\
+\>      xor-expr\\
+\>      inc-or-expr \T{|} xor-expr \\
+xor-expr:\\
+\>      and-expr\\
+\>      xor-expr \T{\circumflex} and-expr \\
+and-expr:\\
+\>      equal-expr\\
+\>      and-expr \T{\&} equal-expr
+}
+\end{production}
+
+
+\begin{production}
+\begin{Ventry3}{0123456}
+\item[\T{|}]  Bitwise inclusive OR.
+\item[\circumflex] Bitwise exclusive OR.
+\item[\&] Bitwise AND.
+\end{Ventry3}
+\end{production}
+
+\subsubsection{Logical expressions}
+\label{sec:LogicalExpression}
+\index{logical expression}
+\index{expression!logical}
+
+The logical operators group from left-to-right. The logical operators
+test for ones and zeros and generates either a 1 or a 0. In both cases,
+short circuit logic is used; that is, the second operand of the
+logical operators is evaluated only if necessary.
+
+\begin{production}
+\bp{
+log-or-expr:\\
+\>      log-and-expr\\
+\>      log-or-expr \T{||} log-and-expr\\
+log-and-expr:\\
+\>      inc-or-expr\\
+\>      log-and-expr \T{\&\&} inc-or-expr
+}
+\end{production}
+
+\begin{production}
+\begin{Ventry3}{0123456}
+\item[\T{||}]  Logical OR. If either operand yields 1, it yields 1, otherwise
+        it evaluates to 0.  A sequence of logical-or expressions will
+        be evaluated from left-to-right until the first one yields
+        1. The remaining expressions are guaranteed not to be
+        evaluated.
+
+\item[\&\&] Logical AND. If either operand yields 0, it yields 0, otherwise
+        it evaluates to 1. A sequence of logical-and expressions will
+        be evaluated from left-to-right until the first one yields
+        zero. The remaining expressions are guaranteed not to be
+        evaluated.
+\end{Ventry3}
+\end{production}
+
+
+\subsubsection{Conditional expressions}
+\label{sec:ConditionalExpression}
+\index{conditional expression}
+\index{expression!conditional}
+
+Syntax:
+
+\begin{production}
+\bp{
+cond-expr:\\
+\>      log-or-expr\\
+\>      log-or-expr \T{?} expr \T{:} cond-expr
+}
+\end{production}
+
+The conditional operator is a type of \T{if\ldots else} statement, see
+\SecPage{SelectionStatements}, that can be used to form an \T{rvalue}.
+
+\begin{production}
+\begin{verbatim}
+if(a == 5)
+    printf("a = 5\n");
+else
+    printf("a != 5\n");
+\end{verbatim}
+\end{production}
+
+Is equivalent to:
+
+\begin{production}
+\begin{verbatim}
+a == 5 ? printf("a = 5\n") :  printf("a != 5\n");
+\end{verbatim}
+\end{production}
+
+However, unlike a selection statement, the result can form an
+\T{rvalue}:
+
+\begin{production}
+\begin{verbatim}
+x = (a==5) ? 20 : 30;
+\end{verbatim}
+\end{production}
+
+With the conditional expression, if the value of the left most operand
+evaluates to none zero then the second operand is evaluated else the
+third operand is. The result of this \T{ternary}
+\index{ternary expression}\index{expression!ternary} operator depends
+on the types of the second and third operands and will be cast to a
+common type. The result will inherit the qualifiers from both the second and
+third operands. If both arms are arithmetic the result is arithmetic.
+If they are structures or unions of compatible types the result is a
+structure or union of that type. If they are pointers they must be
+compatible and the result is a pointer. If one is a pointer and the
+other is zero then the result will be a compatible pointer. If one operand
+is a \T{void *} then the other must be a pointer or zero and the result
+will be a \T{void *}.
+
+\subsubsection{Assignment expressions}
+\label{sec:AssignmentExpression}
+\index{assignment expression}
+\index{expression!assignment}
+
+\begin{production}
+\bp{
+assignment-op: \\
+\>       \T{=}\\
+\>      \U{[}\T{*}, \T{/},\T{\%}, \T{+}, \T{-}, \T{\rightshift}, \T{\leftshift}, \T{\&},\T{\circumflex},\T{|}\U{]}  \T{=}
+}
+\end{production}
+
+
+The assignment expression groups from right-to-left and never forms an
+\T{lvalue}. All but one of the assignment operators have the form
+\verb+ var op= exp+, where \T{op} is a compound assignment operator.
+The resulting type is always same as the left operand.  The left
+operand must be a modifiable \T{lvalue} and will be evaluated only
+once. Also, any number of assignment operators may appear in an
+expression:
+
+\begin{production}
+\begin{verbatim}
+        a = b = c = d; 
+\end{verbatim}
+\end{production}
+
+
+\begin{production}
+\begin{Ventry3}{0123456}
+\item[=]   
+Assign the value of the right operand to the left operand.  Both
+operands can be arithmetic or both can be structures or unions of the
+same type. It is illegal to assign a value of a pointer to
+\T{const X} to an object of type pointer to \T{X} without an 
+explicit cast.
+
+\item[*=]  
+Assigns the product of the right and left operands to the left operand.
+\item[/=]  
+Assigns the division of the left operand by the right to the left operand.  
+\item[\%]  
+Assigns the remainder of the division of the left operand by the right
+to the left operand.
+\item[+=] 
+Assigns the sum of right and left operands to the left. 
+\item[-=] 
+Assigns the difference between the left and right operand to
+the left operand..
+\item[\leftshift =] 
+Assigns the result of shifting the left operand left the number of
+bits specified by the right operand to the left operand.
+\item[\rightshift=]
+Assigns the result of shifting the left operand right the number of
+bits specified by the right operand to the left operand.
+\item[\&=] 
+Assigns the bitwise \T{and} of the left and right operands to
+the left operand.
+ 
+\item[\circumflex =]
+Assigns the bitwise exclusive \T{or} of the left and right operands to
+the left operand.
+\item[\T{|}=] 
+Assigns the bitwise \T{or} of the left and right operands to
+the left operand.
+\end{Ventry3}
+\end{production}
+ 
+
+
+
+\subsubsection{Constant expressions}
+\label{sec:ConstantExpression}
+\index{constant expression}
+\index{expression!constant}
+
+A constant expression must be able to be evaluated at compile time. 
+
+Syntax:
+
+\begin{production}
+\bp{
+const-expr:\\
+\>      cond-expr
+}
+\end{production}
+
+
+Constant expression are required to form constant initializer
+expressions, enumeration constants, array bounds and for case labels.
+A constant expression may not contain an assignment, increment,
+decrement, function call or a comma expressions unless contained as the
+operand to the \T{sizeof} operator.
+
+If the expression is to be \T{integral} its operands must be of
+integral type or a enumeration constant. Floating point constants can
+only appear if they are explicitly cast to an integral type or as an
+operand to the \T{sizeof} operator.
+
+The address constant expression used in intializations can be formed
+from the null pointer; from the address of a static or external object
+or function; or via casts.
+

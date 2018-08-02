@@ -1,0 +1,990 @@
+  cgihtml Documentation
+  Eugene Eric Kim, eekim@eekim.com
+  v1.69, March 18, 1998
+
+  Documentation for cgihtml, a set of CGI and HTML routines written in
+  C.
+  ______________________________________________________________________
+
+  Table of Contents
+
+
+  1. Introduction
+
+     1.1 Where to Find cgihtml
+
+  2. What is cgihtml?
+
+     2.1 What are the advantages of cgihtml?
+     2.2 Why C?
+     2.3 Latest changes
+     2.4 Files included in this package
+
+  3. Installation
+
+     3.1 Requirements
+     3.2 Obtaining and unpacking the distribution
+     3.3 Compiling the library
+        3.3.1 Makefile variables
+        3.3.2 Compiling for Win32
+        3.3.3 Configuring File Uploadn
+        3.3.4 Compiling and Installing
+     3.4 Porting
+
+  4. Using cgihtml
+
+     4.1 Basic programming structure
+     4.2 Compiling your program
+
+  5. Routines
+
+     5.1 cgi-lib.h
+        5.1.1 Library Variables
+        5.1.2 Library functions
+     5.2 html-lib.h
+        5.2.1 Library functions
+     5.3 cgi-llist.h
+        5.3.1 Library variables
+        5.3.2 Library functions
+     5.4 string-lib.h
+        5.4.1 Library functions
+
+  6. Example programs
+
+     6.1 test.cgi
+     6.2 query-results
+     6.3 mail.cgi
+     6.4 index-sample.cgi
+     6.5 ignore.cgi
+
+  7. Miscellaneous
+
+     7.1 Release notes
+     7.2 Future releases
+     7.3 Credits
+
+
+  ______________________________________________________________________
+
+  11..  IInnttrroodduuccttiioonn
+
+  This documentation is also available at
+  <http://www.eekim.com/software/cgihtml/cgihtml.html>
+
+  Documentation last updated: March 18, 1998
+
+
+  11..11..  WWhheerree ttoo FFiinndd ccggiihhttmmll
+
+  You can download cgihtml (gzipped, UNIX compressed, or PKZipped) from
+  one of the following sites:
+
+
+     eeeekkiimm..ccoomm
+        <ftp://ftp.eekim.com/users/eekim/cgihtml/>
+
+     HHaarrvvaarrdd CCoommppuutteerr SSoocciieettyy
+        <ftp://hcs.harvard.edu/pub/web/tools/cgihtml/>
+
+     KKeeiitthh BBuunnggee''ss IIoowwaa SSttaattee mmiirrrroorr ssiittee
+        <ftp://aged.brenton.iastate.edu/>
+
+  Useful information about cgihtml is available at the cgihtml home page
+  <http://www.eekim.com/software/cgihtml/>, located at
+  <http://www.eekim.com/software/cgihtml/>.
+
+
+  22..  WWhhaatt iiss ccggiihhttmmll??
+
+  cgihtml is a collection of routines for parsing World Wide Web (WWW)
+  Common Gateway Interface (CGI) input and outputting HyperText Markup
+  Language (HTML).
+
+
+  22..11..  WWhhaatt aarree tthhee aaddvvaannttaaggeess ooff ccggiihhttmmll??
+
+  cgihtml simplifies the task of parsing CGI input and producing HTML
+  output.  Tasks which would normally require several lines of C can be
+  reduced to just a few.
+
+  Additionally, I have attempted to include general routines which CGI
+  programmers often find themselves using.  Consequently, some of the
+  complexities of CGI programming are hidden.  On the other hand, if you
+  want to know what's going on, source is included.
+
+
+  22..22..  WWhhyy CC??
+
+  The purpose of CGI programs is to take data and manipulate it as the
+  web programmer desires.  Since CGI programs are often dealing with
+  text manipulation, Perl or other scripting languages is an ideal way
+  of producing CGI scripts.  (Perl programmers should check out Lincoln
+  Stein's CGI.pm <http://www-
+  genome.wi.mit.edu/ftp/pub/software/WWW/cgi_docs.html> or Steve
+  Brenner's cgi-lib.pl <http://www.bio.cam.ac.uk/web/form.html>.)
+
+  However, interpreted scripting languages tend to be relatively large.
+  This rarely has a major effect on the performance of your server
+  (unless you are a high-traffic site).  However, if this is a concern
+  of your's, a program written in C is often several times smaller than
+  the equivalent program written in Perl.  There's definitely a
+  performance improvement when using CGI programs written in C, although
+  the performance is not always noticeable.
+  Additionally, some servers (notably Netsite and Apache) have APIs so
+  that CGI programs can be written as extensions to the server, rather
+  than as separate programs.  This greatly improves performance,
+  especially on high-traffic sites.  The best way to take advantage of
+  these APIs is to write your programs in C.
+
+  Or, you might fall under one of the following categories:
+
+
+  +o  You don't know Perl
+
+  +o  You don't like Perl
+
+  +o  You like C
+
+  In which case, you will hopefully find cgihtml useful.
+
+
+  22..33..  LLaatteesstt cchhaannggeess
+
+  See the CHANGES file, included in the distribution.
+
+
+  22..44..  FFiilleess iinncclluuddeedd iinn tthhiiss ppaacckkaaggee
+
+  The following files are included in this package:
+
+
+  33..  IInnssttaallllaattiioonn
+
+  33..11..  RReeqquuiirreemmeennttss
+
+  cgihtml was written for Unix machines in C, although it has been
+  successfully ported to Windows 95 and NT, VMS, OS-9, and other
+  operating systems.  All you need is a C compiler, and you should be
+  set.
+
+  By default, cgihtml assumes that the CGI source code goes in the cgi-
+  src directory and the binaries in the cgi-bin directory.
+
+
+  33..22..  OObbttaaiinniinngg aanndd uunnppaacckkiinngg tthhee ddiissttrriibbuuttiioonn
+
+  You may find cgihtml.tar.gz at
+  <ftp://ftp.eekim.com/users/eekim/cgihtml/>
+
+  To unpack the distribution, you must first gunzip it (using the GNU
+  gzip utility) and then untar it.  Copy the distribution into your CGI
+  source directory, and try the following command:
+
+
+
+       % gzip -dc cgihtml.tar.gz | tar xvf -
+
+
+
+
+  cgihtml is also available in UNIX compressed (.Z) and PKZipped (.zip)
+  format.
+
+
+  33..33..  CCoommppiilliinngg tthhee lliibbrraarryy
+
+  To compile the library, examine the Makefiles in the cgihtml and
+  examples directories, and make sure you are satisfied with the
+  variables.
+  33..33..11..  MMaakkeeffiillee vvaarriiaabblleess
+
+  INSTALLDIR in cgihtml's Makefile should point to your CGI source
+  directory, while INSTALLDIR in your examples directory should point to
+  your server's CGI binary directory.
+
+
+  33..33..22..  CCoommppiilliinngg ffoorr WWiinn3322
+
+  If you're compiling for Win32 (ie. Windows 95/NT), make sure to
+  uncomment the line with -DWINDOWS.
+
+
+  33..33..33..  CCoonnffiigguurriinngg FFiillee UUppllooaaddnn
+
+  By default, the file upload directory is set to /tmp.  To change this
+  value, uncomment #-DUPLOADDIR='"/tmp"' in the Makefile and replace
+  /tmp with the directory of your choice.  Make sure that whichever
+  directory you choose is surrounded by both the single and double
+  quotes, ie: '"/foo/bar"'.
+
+
+  33..33..44..  CCoommppiilliinngg aanndd IInnssttaalllliinngg
+
+  When you are satisfied with the Makefiles, type:
+
+
+
+       % make cgihtml.a
+
+
+
+
+  This will produce the file cgihtml.a.  To compile the library as well
+  as all of the example programs, type:
+
+
+
+       % make all
+
+
+
+
+  To install the library and examples, type:
+
+
+
+       % make install
+
+
+
+
+  If you want to compile and/or install the example programs separately,
+  change to the examples subdirectory and use make there.
+
+
+  33..44..  PPoorrttiinngg
+
+  While compiling the libraries on various Unix machines, you may have
+  trouble with the "ranlib" command.  If you system doesn't seem to have
+  this command, you most likely don't need.  Set the RANLIB variable in
+  the Makefile to "true".
+
+  If you're compiling for Win32, make sure you use the -DWINDOWS
+  directive when compiling.
+
+  If you are compiling for DOS/16-bit Windows, VMS, or OS-9, you will
+  need to change the filenames to support your OS.
+
+
+  44..  UUssiinngg ccggiihhttmmll
+
+  44..11..  BBaassiicc pprrooggrraammmmiinngg ssttrruuccttuurree
+
+  There are standard initialization things that you will want to do when
+  using this library.  The following template should give you some idea
+  of how to properly use this library.
+
+
+  ______________________________________________________________________
+  /* template using cgihtml.a library */
+
+  #include <stdio.h>    /* standard io functions */
+  #include "cgi-lib.h"  /* CGI-related routines */
+  #include "html-lib.h" /* HTML-related routines */
+
+  int main()
+  {
+    llist entries;  /* define a linked list; this is where the entries */
+                    /* are stored.                                     */
+
+  /* parse the form data and add it to the list */
+    read_cgi_input(&entries);
+
+  /* The data is now in a very usable form.  To search the list entries  */
+  /* by name, call the function:                                         */
+  /*      cgi_val(entries, "nameofentry")                                */
+  /* which returns a pointer to the value associated with "nameofentry". */
+
+    html_header();           /* print HTML MIME header */
+    html_begin("Output");    /* send appropriate HTML headers with title */
+                             /*   <title>Output</title>                  */
+
+  /* display whatever data you wish here, probably with printf() */
+
+    html_end();   /* send appropriate HTML end footers (</body> </html>) */
+    list_clear(&entries);     /* free up the pointers in the linked list */
+    return 0;
+  }
+  ______________________________________________________________________
+
+
+
+
+  44..22..  CCoommppiilliinngg yyoouurr pprrooggrraamm
+
+
+  To compile your program with the library, include the file cgihtml.a
+  when linking your object files.  For example, if your main object file
+  is program.cgi.o, the following should work successfully:
+
+
+
+       cc -o program.cgi program.cgi.o cgihtml.a
+
+
+
+
+
+
+
+
+  55..  RRoouuttiinneess
+
+  55..11..  ccggii--lliibb..hh
+
+  55..11..11..  LLiibbrraarryy VVaarriiaabblleess
+
+  cgi-lib.h defines constants for the standard CGI environment
+  variables.  For instance, the value of the environment variable
+  QUERY_STRING is stored in the constant QUERY_STRING in cgi-lib.h.
+  Here is a list of the constants:
+
+
+  +o  SERVER_SOFTWARE
+
+  +o  SERVER_NAME
+
+  +o  GATEWAY_INTERFACE
+
+  +o  SERVER_PROTOCOL
+
+  +o  SERVER_PORT
+
+  +o  REQUEST_METHOD
+
+  +o  PATH_INFO
+
+  +o  PATH_TRANSLATED
+
+  +o  SCRIPT_NAME
+
+  +o  QUERY_STRING
+
+  +o  REMOTE_HOST
+
+  +o  REMOTE_ADDR
+
+  +o  AUTH_TYPE
+
+  +o  REMOTE_USER
+
+  +o  REMOTE_IDENT
+
+  +o  CONTENT_TYPE
+
+  +o  CONTENT_LENGTH
+
+  +o  HTTP_USER_AGENT
+
+
+  55..11..22..  LLiibbrraarryy ffuunnccttiioonnss
+
+
+  sshhoorrtt aacccceepptt__iimmaaggee(());;
+
+  accept_image() determines whether the browser will accept pictures.
+  It does so by checking the HTTP_ACCEPT environment variable for an
+  image MIME type.  It returns a 1 if the browser will accept graphics,
+  a 0 otherwise.
+
+  vvooiidd uunneessccaappee__uurrll(());;
+
+  unescape_url() converts escaped URI values into their character form.
+  read_cgi_input() calls this function.  You will rarely if ever need to
+  access this function directly but it is made available in case you do.
+
+
+  iinntt rreeaadd__ccggii__iinnppuutt((lllliisstt **eennttrriieess));;
+
+  This routine parses the raw CGI data passed from the browser to the
+  server and adds each associated name and value to the linked list
+  entries.  It will parse information transmitted using both the GET and
+  POST method.  If it receives no information, it will return a 0,
+  otherwise it returns the number of entries returned.  If it receives a
+  badly encoded string, it will return -1.
+
+  If you run your CGI program that calls read_cgi_input() from the
+  command line, this function will start an interactive mode so you can
+  directly input the CGI input string.  Note that this string must be
+  properly encoded.
+
+  read_cgi_input() also handles HTTP file upload correctly.  The file
+  will be uploaded to the directory defined by UPLOADDIR in cgi-lib.h
+  (/tmp by default).
+
+  cchhaarr** ccggii__vvaall((lllliisstt ll,, cchhaarr **nnaammee));;
+
+  cgi_val() searches the linked list for the value of the entry named
+  name and returns the value if it finds it.  If it cannot find an entry
+  with name name, it returns NULL.
+
+  cchhaarr**** ccggii__vvaall__mmuullttii((lllliisstt ll,, cchhaarr **nnaammee));;
+
+  Same as cgi_val() except will return multiple values with the same
+  name to an array of strings.  Will return NULL if it cannot find an
+  entry with name name
+
+  cchhaarr** ccggii__nnaammee((lllliisstt ll,, cchhaarr **vvaalluuee));;
+
+  Same as cgi_val() except searches for value with specified name.
+
+  cchhaarr**** ccggii__nnaammee__mmuullttii((lllliisstt ll,, cchhaarr **vvaalluuee));;
+
+  Analogous to cgi_multi_val().
+
+  iinntt ppaarrssee__ccooookkiieess((lllliisstt **eennttrriieess));;
+
+  Parses the environment variable HTTP_COOKIE for cookies.  Returns the
+  number of cookies parsed, zero if there are none.
+
+  vvooiidd pprriinntt__ccggii__eennvv(());;
+
+  Pretty prints the environment variables defined in cgi-lib.h.  Prints
+  "(null)" if the variables are empty.
+
+  vvooiidd pprriinntt__eennttrriieess((lllliisstt ll));;
+
+  This is a generic routine which will iterate through the linked list
+  and print each name and associated value in HTML form.  It uses the
+  <dl> list format to display the list.
+
+  cchhaarr** eessccaappee__iinnppuutt((cchhaarr **ssttrr));;
+
+  escape_input() "escapes" shell metacharacters in the string.  It
+  precedes all non-alphanumeric characters with a backslash.  C routines
+  including system() and popen() open up a Bourne shell process before
+  running.  If you do not escape shell metacharacters in the input
+  (prefix metacharacters with a backslash), then malicious users may be
+  able to take advantage of your system.
+
+  sshhoorrtt iiss__ffoorrmm__eemmppttyy((lllliisstt ll));;
+
+
+  is_form_empty() checks to see whether no names or values were
+  submitted.  Note that this is different from submitting a blank form.
+
+  sshhoorrtt iiss__ffiieelldd__eexxiissttss((lllliisstt ll,,cchhaarr **ssttrr));;
+
+  Checks to see whether a field actually exists.  Equivalent to checking
+  whether cgi_val() returns "" or NULL.  If it returns "", the field
+  exists but is empty; if it returns NULL, the field does not exist.
+
+  sshhoorrtt iiss__ffiieelldd__eemmppttyy((lllliisstt ll,,cchhaarr **ssttrr));;
+
+  Returns 1 (true) if either the field does not exist or the field does
+  exist but is empty.
+
+
+  55..22..  hhttmmll--lliibb..hh
+
+
+
+  55..22..11..  LLiibbrraarryy ffuunnccttiioonnss
+
+
+  vvooiidd hhttmmll__hheeaaddeerr(());;
+
+  html_header() prints a MIME compliant header which should precede the
+  output of any HTML document from a CGI script.  It simply prints to
+  STDOUT:
+
+
+
+       Content-Type: text/html
+
+
+
+
+  and a blank line.
+
+  vvooiidd mmiimmee__hheeaaddeerr((cchhaarr **mmiimmee));;
+
+  Allows you to print any MIME header.  For example, if you are about to
+  send a GIF image to the standard output from your C CGI program,
+  precede your program with:
+
+
+  ______________________________________________________________________
+  mime_header("image/gif");
+  /* now you can send your GIF file to stdout */
+  ______________________________________________________________________
+
+
+
+  mime_header() simply prints Content-Type: followed by your specified
+  MIME header and a blank line.
+
+  vvooiidd nnpphh__hheeaaddeerr((cchhaarr **ssttaattuuss));;
+
+  Sends a standard HTTP header for direct communication with the client
+  using no parse header.  status is the status code followed by the
+  status message.  For instance, to send a "No Content" header, you
+  could use:
+
+
+
+
+
+
+  ______________________________________________________________________
+  nph_header("204 No Content");
+  html_header();
+  ______________________________________________________________________
+
+
+
+  which would send:
+
+
+
+       HTTP/1.0 204 No Content
+       Server: CGI using cgihtml
+       Content-Type: text/html
+
+
+
+
+  nph_header() does not send a blank line after printing the headers, so
+  you must follow it with either another header or a blank line.  Also,
+  scripts using this function must have "nph-" preceding their
+  filenames.
+
+  vvooiidd sshhooww__hhttmmll__ppaaggee((cchhaarr **lloocc));;
+
+  Sends a "Location: " header.  loc is the location of the HTML file you
+  wish sent to the browser.  For example, if you want to send the root
+  index file from the CGI program:
+
+
+  ______________________________________________________________________
+  show_html_page("/index.html");
+  ______________________________________________________________________
+
+
+
+  vvooiidd ssttaattuuss((cchhaarr **ssttaattuuss));;
+
+  Sends an HTTP Status header.  status is a status code followed by a
+  status message.  For instance, to send a status code of 302 (temporary
+  redirection) followed by a location header:
+
+
+  ______________________________________________________________________
+  status("302 Temporarily Moved");
+  show_html_page("http://hcs.harvard.edu/");
+  ______________________________________________________________________
+
+
+
+  status() does not print a blank line following the header, so you must
+  follow it with either another function which does output a blank line
+  or an explicit printf("\r\n");.
+
+  vvooiidd pprraaggmmaa((cchhaarr **mmssgg));;
+
+  Sends an HTTP Pragma header.  Most commonly used to tell the browser
+  not to cache the document, ie.:
+
+
+  ______________________________________________________________________
+  pragma("No-cache");
+  html_header();
+  ______________________________________________________________________
+
+
+  As with status(), pragma() does not print a blank line folowing the
+  header.
+
+  vvooiidd sseett__ccooookkiiee((cchhaarr **nnaammee,, cchhaarr **vvaalluuee,, cchhaarr **eexxppiirreess,, cchhaarr **ppaatthh,,
+  cchhaarr **ddoommaaiinn,, sshhoorrtt sseeccuurree));;
+
+  Sets a cookie using the values given in the parameters.
+
+  vvooiidd hhttmmll__bbeeggiinn((cchhaarr **ttiittllee));;
+
+  html_begin() sends somewhat standard HTML tags which should generally
+  be at the top of every HTML file.  It will send:
+
+
+
+       <html> <head>
+       <title>title</title>
+       </head>
+       <body>
+
+
+
+
+  vvooiidd hhttmmll__eenndd(());;
+
+  html_end() is the complement to html_begin(), sending the following
+  HTML:
+
+
+
+       </body> </html>
+
+
+
+
+  Note that neither html_begin() nor html_end() are necessary for your
+  CGI scripts to output HTML, but they are good style, and I encourage
+  use of these routines.
+
+  vvooiidd hh11((cchhaarr **hheeaaddeerr));;
+
+  Surrounds header with appropriate headline tags.  Defined for h1() to
+  h6().
+
+  vvooiidd hhiiddddeenn((cchhaarr **nnaammee,, cchhaarr **vvaalluuee));;
+
+  Prints a hidden form field with name name and value value.
+
+
+  55..33..  ccggii--lllliisstt..hh
+
+  For most scripts, with the exception of list_end(), you will most
+  likely never have to use any of the link list routines available,
+  since cgi-lib.h handles most common linked list manipulation almost
+  transparently.  However, you may sometimes want to manipulate the
+  information directly or perform special functions on each entry, in
+  which case these routines may be useful.
+
+
+  55..33..11..  LLiibbrraarryy vvaarriiaabblleess
+
+
+
+
+
+
+  ______________________________________________________________________
+  typedef struct {
+    char *name;
+    char *value;
+  } entrytype;
+
+  typedef struct _node {
+    entrytype entry;
+    struct _node* next;
+  } node;
+
+  typedef struct {
+    node* head;
+  } llist;
+  ______________________________________________________________________
+
+
+
+
+  55..33..22..  LLiibbrraarryy ffuunnccttiioonnss
+
+
+  vvooiidd lliisstt__ccrreeaattee((lllliisstt **ll));;
+
+  list_create() creates and initializes the list, and it should be
+  called at the beginning of every CGI script using this library.
+
+  nnooddee** lliisstt__nneexxtt((nnooddee** ww));;
+
+  list_next() returns the next node on the list.
+
+  sshhoorrtt oonn__lliisstt((lllliisstt **ll,, nnooddee** ww));;
+
+  on_list() returns a 1 if the node w is on the linked list l;
+  otherwise, it returns a 0.
+
+  sshhoorrtt oonn__lliisstt__ddeebbuugg((lllliisstt **ll,, nnooddee** ww));;
+
+  The previous routine makes the assumption that my linked list routines
+  are bug-free, a possibly bad assumption.  If you are using linked list
+  routines and on_list() isn't returning the correct value, try using
+  on_list_debug() which makes no assumptions, is almost definitely
+  reliable, but is a little slower than the other routine.
+
+  vvooiidd lliisstt__ttrraavveerrssee((lllliisstt **ll,, vvooiidd ((**vviissiitt))((eennttrryyttyyppee iitteemm))));;
+
+  list_traverse() lets you pass a pointer to a function which will
+  manipulate each entry on the list.
+
+  To use, you must create a function that will take as its argument a
+  variable of type entrytype.  For example, if you wanted to write your
+  own print_entries() function, you could do the following:
+
+
+  ______________________________________________________________________
+  void print_element(entrytype item);
+  {
+    printf("%s = %s\n",item.name,item.value);
+  }
+
+  void print_entries(llist entries);
+  {
+    list_traverse(&stuff, print_element);
+  }
+  ______________________________________________________________________
+
+  nnooddee** lliisstt__iinnssaafftteerr((lllliisstt** ll,, nnooddee** ww,, eennttrryyttyyppee iitteemm));;
+
+  list_insafter() adds the entry item after the node w and returns the
+  pointer to the newly created node.  I didn't bother writing a function
+  to insert before a node since my CGI functions don't need one.
+
+  vvooiidd lliisstt__cclleeaarr((lllliisstt** ll));;
+
+  This routine frees up the memory used by the linked list after you are
+  finished with it.  It is imperative that you call this function at the
+  end of every program which calls read_cgi_input().
+
+
+  55..44..  ssttrriinngg--lliibb..hh
+
+  55..44..11..  LLiibbrraarryy ffuunnccttiioonnss
+
+
+  cchhaarr** nneewwssttrr((cchhaarr **ssttrr));;
+
+  newstr() allocates memory and returns a copy of str.  Use this
+  function to correctly allocate memory and copy strings.
+
+  cchhaarr** ssuubbssttrr((cchhaarr **ssttrr,, iinntt ooffffsseett,, iinntt lleenn));;
+
+  Analogous to the Perl substr function.  Finds the substring of str at
+  an offset of offset and of length len.  A negative offset will start
+  the substring from the end of the string.
+
+  cchhaarr** rreeppllaaccee__llttggtt((cchhaarr **ssttrr));;
+
+  Replaces all instances of < and > in str with &lt; and &gt;.
+
+  cchhaarr** lloowweerr__ccaassee((cchhaarr **bbuuffffeerr));;
+
+  Converts a string from upper to lower case.
+
+
+  66..  EExxaammppllee pprrooggrraammss
+
+  66..11..  tteesstt..ccggii
+
+  test.cgi is a simple test program.  It will display the CGI
+  environment, and if there is any input, it will parse and display
+  those values as well.
+
+
+  66..22..  qquueerryy--rreessuullttss
+
+  This is a generic forms parser which is useful for testing purposes.
+  It will parse both GET and POST forms successfully.  Simply call it as
+  the form "action", and it will return all of the names and associated
+  values entered by the user.
+
+  query-results also works from the command line.  For instance, if you
+  run query-results from the command line, you will see:
+
+
+
+
+
+
+
+
+
+
+  Content-type: text/html
+
+  <html> <head>
+  <title>Query Results</title>
+  </head>
+
+  <body>
+
+  --- cgihtml Interactive Mode ---
+  Enter CGI input string.  Remember to encode appropriate characters.
+  Press ENTER when done:
+
+
+
+
+  Suppose you enter the input string:
+
+
+
+       name=eugene&age=21
+
+
+
+
+  Then query-results will return:
+
+
+
+        Input string: name=eugene&age=21
+       String length: 18
+       --- end cgihtml Interactive Mode ---
+
+       <h1>Query results</h1>
+       <dl>
+         <dt> <b>name</b>
+         <dd> eugene
+         <dt> <b>age</b>
+         <dd> 21
+       </dl>
+       </body> </html>
+
+
+
+
+  This feature is extremely useful if you are debugging code.  query-
+  results will also handle file upload properly and transparently.  It
+  will save the file to the directory defined by UPLOADDIR (/tmp by
+  default).
+
+
+  66..33..  mmaaiill..ccggii
+
+  This is a generic comments program which will parse the form, check to
+  see if the intended recipient is a valid recipient, and send the e-
+  mail if so.
+
+  You will want to edit two things in the source file: WEBADMIN and
+  AUTH.  WEBADMIN is the complete e-mail address to which the comments
+  should be sent by default.  AUTH is the exact location of the
+  authorization file.
+
+  The authorization file is simple a text file with a list of valid e-
+  mail recipients.  Users will only be able to use this program to send
+  e-mail to those listed in the authorization file.  Your file might
+  look like this:
+
+       web@www.company.com
+       jschmoe@www.company.com
+
+
+
+
+  In the above case, you would only be able to send e-mail to
+  web@www.company.com and jschmoe@www.company.com.  Make sure you
+  include the value of WEBADMIN in your authorization file.
+
+  The following are valid variables in your form:
+
+
+  +o  to
+
+  +o  name
+
+  +o  email
+
+  +o  subject
+
+  +o  content
+
+  If there is no to variable defined in the form, the mail will be sent
+  to WEBADMIN by default.  mail.cgi will reject empty forms.
+
+  mail.cgi adds a "X-Sender:" header on each message so recipients know
+  that the message was sent by this program and not by a regular mail
+  client.
+
+
+  66..44..  iinnddeexx--ssaammppllee..ccggii
+
+  Imagemaps have become increasingly popular to use on home pages.
+  Unfortunately, imagemaps are not lynx friendly; if you forget to
+  include some sort of text index as well, lynx users will not be able
+  to access any of your subpages.
+
+  You can circumvent this problem by using a CGI program as your home
+  page rather than an HTML page (or by using server-side includes).
+  This CGI program will determine whether your browser is a graphics or
+  text-browser.  If it is a text-browser, it will send a text HTML file,
+  otherwise it will send a graphics HTML file.
+
+  You will need to create two HTML files: a graphical and a text one.
+  Place the names of these files in the macros: TEXT_PAGE and
+  IMAGE_PAGE.
+
+
+  66..55..  iiggnnoorree..ccggii
+
+  Sends a status code of 204, signifying no content.  If you use
+  imagemaps, you can set "default" to /cgi-bin/ignore.cgi.  Whenever
+  someone clicks on a part of the picture which is undefined, the server
+  will just ignore the request.
+
+
+  77..  MMiisscceellllaanneeoouuss
+
+  77..11..  RReelleeaassee nnootteess
+
+  I periodically enhance this library, and I welcome any comments or
+  suggestions.  Please e-mail them to eekim@eekim.com.
+
+  This library is e-mail ware.  Please send me e-mail if you use this
+  library; I'd really like to hear your comments.  Although I do not
+  require it, I would appreciate attribution if you use my code.
+
+
+  77..22..  FFuuttuurree rreelleeaasseess
+
+  This library is nearing its final release.  I hope to include FastCGI
+  support, and API support (for Apache, Netscape, and Microsoft
+  servers).  I may also attempt to port it to the Macintosh, and I want
+  to improve generally portability.  I will most likely rewrite the API
+  in the next major release.  Finally, I'd like to improve the
+  robustness and fix all the bugs.
+
+  If you have any suggestions, I'd like to hear them.  Feel free to e-
+  mail me at eekim@eekim.com
+
+
+  77..33..  CCrreeddiittss
+
+
+  Thanks to the countless people who have sent me suggestions and
+  comments.  You may contact me via e-mail at eekim@eekim.com.  My web
+  page is located at  <http://www.eekim.com/>.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+CCOMPILER=g++ -Wall -pedantic -fPIC -Wno-unused -g3 -O0 -D_REENTRANT -DENV_LINUX -DTEST_MODE -D_DEBUG -I.  -I.. -I/usr/local/include $(shell wx-config --cflags)
+
+SYSLIBRARIES= -L.. -loapc -lpthread -lgps
+
+LIBS = $(SYSLIBRARIES) $(shell wx-config --libs)
+
+EXECUTABLE=gpsdtest
+
+LINK=g++
+
+OBJECTS = libio_gpsd.o
+
+default: $(EXECUTABLE)
+
+$(EXECUTABLE): $(OBJECTS)
+	$(LINK) $(SYSLDFLAGS) $(LDFLAGS) -o $(EXECUTABLE) $(OBJECTS) $(LIBS)
+
+
+%.o: %.cpp
+	$(CCOMPILER) -c $< -o $@
+
+clean:
+	rm -f $(OBJECTS) $(EXECUTABLE)
+

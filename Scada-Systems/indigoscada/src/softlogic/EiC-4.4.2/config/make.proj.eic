@@ -1,0 +1,25 @@
+#######################################
+# EiC project parameters
+
+          TOP_DIR = $(HOME)/compilers/EiC
+      INSTALL_DIR = $(HOME)/bin
+      INCLUDE_DIR = $(TOP_DIR)/include
+          LIB_DIR = $(TOP_DIR)/lib
+      PRJ_DEFINES = '-DHOMEofEiC="$(TOP_DIR)"' 
+           CHANGE = $(TOP_DIR)/config/change 
+      STD_DEFINES = -D$(PLATFORM) $(PRJ_DEFINES)
+       ALLDEFINES = $(DEFINES) $(STD_DEFINES)
+           CFLAGS = $(STD_CFLAGS) $(WARNINGS) $(INCLUDES) $(ALLDEFINES)
+	DUMMY_STR = This file is a dummy target. Please don't remove.
+     DUMMY_TARGET = echo "$(DUMMY_STR)" > $@ 
+	 ALL_LIBS = $(LIBS) 
+
+
+
+
+
+
+
+
+
+

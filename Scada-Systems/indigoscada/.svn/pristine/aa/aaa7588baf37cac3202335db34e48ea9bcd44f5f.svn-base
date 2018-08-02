@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AnsiCSampleServer", "AnsiCSample\AnsiCSampleServer_VS2013.vcxproj", "{E4D57717-9246-481D-B4EA-D054B0EDD463}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6568CB26-97E7-43D1-A434-B68F6C9ADAC6} = {6568CB26-97E7-43D1-A434-B68F6C9ADAC6}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AnsiCStack", "Stack\AnsiCStack_VS2013.vcxproj", "{6568CB26-97E7-43D1-A434-B68F6C9ADAC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4D57717-9246-481D-B4EA-D054B0EDD463}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E4D57717-9246-481D-B4EA-D054B0EDD463}.Debug|Win32.Build.0 = Debug|Win32
+		{E4D57717-9246-481D-B4EA-D054B0EDD463}.Release|Win32.ActiveCfg = Release|Win32
+		{E4D57717-9246-481D-B4EA-D054B0EDD463}.Release|Win32.Build.0 = Release|Win32
+		{6568CB26-97E7-43D1-A434-B68F6C9ADAC6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6568CB26-97E7-43D1-A434-B68F6C9ADAC6}.Debug|Win32.Build.0 = Debug|Win32
+		{6568CB26-97E7-43D1-A434-B68F6C9ADAC6}.Release|Win32.ActiveCfg = Release|Win32
+		{6568CB26-97E7-43D1-A434-B68F6C9ADAC6}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

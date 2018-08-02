@@ -1,0 +1,739 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "atlres.h"
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_PRIMITIVES TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_EMPTY
+    SEPARATOR
+    BUTTON      ID_POLYLINE
+    BUTTON      ID_RECTANGLE
+    BUTTON      ID_ELIPSE
+    BUTTON      ID_IMAGE
+    BUTTON      ID_TEXT
+    SEPARATOR
+    BUTTON      ID_BUTTON
+    BUTTON      ID_INPUT
+    SEPARATOR
+    BUTTON      ID_SOUND
+    BUTTON      ID_GRAPH
+END
+
+IDR_ACTIONS TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_ADD_ACTION
+    BUTTON      ID_DEL_ACTION
+END
+
+IDR_VARIABLES TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_ADD_VARIABLE
+    BUTTON      ID_DEL_VARIABLE
+END
+
+IDR_ALIGN TOOLBAR  16, 16
+BEGIN
+    BUTTON      ID_BACK
+    BUTTON      ID_FRONT
+    BUTTON      ID_SELECT
+    BUTTON      ID_USE_GRID
+END
+
+IDR_MAINFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_PRIMITIVES          BITMAP                  "res\\toolbar1.bmp"
+IDR_ACTIONS             BITMAP                  "res\\actions.bmp"
+IDR_VARIABLES           BITMAP                  "res\\bmp00001.bmp"
+IDB_ICONS               BITMAP                  "res\\bitmap2.bmp"
+IDR_ALIGN               BITMAP                  "res\\bmp00002.bmp"
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "&New project\tCtrl+N",        ID_FILE_NEW
+        MENUITEM SEPARATOR
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save As...",                  ID_FILE_SAVEAS
+    END
+    POPUP "Edit"
+    BEGIN
+        MENUITEM "Move to back",                32815
+        MENUITEM "Move to front",               32816
+        MENUITEM SEPARATOR
+        MENUITEM "Select by name...",           ID_SELECT
+        MENUITEM SEPARATOR
+        MENUITEM "Toggle grid",                 ID_USE_GRID
+        MENUITEM SEPARATOR
+        MENUITEM "Copy",                        ID_COPY
+        MENUITEM "Cut",                         ID_CUT
+        MENUITEM "Paste",                       ID_PASTE
+    END
+    POPUP "View"
+    BEGIN
+        MENUITEM "Standart bar",                ID_VIEW_TOOLBAR
+        MENUITEM "Status bar",                  ID_VIEW_STATUS_BAR
+        MENUITEM "Primitives",                  ID_VIEW_PRIMITIVES
+        MENUITEM "Properties bar",              ID_VIEW_PROPERTY
+    END
+    POPUP "Project"
+    BEGIN
+        MENUITEM "Images...",                   ID_IMAGES
+        MENUITEM "Sounds...",                   ID_SOUNDS
+        POPUP "Circuit"
+        BEGIN
+            MENUITEM "New...",                      ID_NEW_SCHEMA
+            MENUITEM "Configure active...",         ID_SETTING_CURRENT
+            MENUITEM "Remove active",               ID_DELETE_SCHEMA
+        END
+        MENUITEM "Global variables...",         ID_VARIABLES
+        MENUITEM "Configure project...",        32806
+    END
+    POPUP "Help"
+    BEGIN
+        MENUITEM "About...",                    ID_APP_ABOUT
+        MENUITEM "Help",                        ID_HELP
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PROJECT_IMAGES DIALOGEX 0, 0, 330, 198
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Project's Images"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LISTBOX         IDC_IMAGE_LIST,7,7,153,184,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_PREVIEW,"Static",SS_BLACKFRAME,166,7,157,97
+    PUSHBUTTON      "Load from file",IDC_LOAD_FROM_FILE,166,135,75,14
+    PUSHBUTTON      "Rename",IDC_RENAME,166,156,75,14
+    PUSHBUTTON      "Remove",IDC_DELETE,166,177,75,14
+    DEFPUSHBUTTON   "OK",IDOK,278,177,45,14
+    RTEXT           "Static",IDC_WIDTH,204,115,37,10,SS_SUNKEN
+    RTEXT           "Static",IDC_HEIGHT,278,115,37,10,SS_SUNKEN
+    GROUPBOX        "Image size",IDC_GROUP,166,104,157,25
+    LTEXT           "Width:",IDC_STATIC_W,173,115,22,8
+    LTEXT           "Height:",IDC_STATIC_H,247,115,24,8
+END
+
+IDD_INPUT_BOX DIALOGEX 0, 0, 186, 57
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,7,17,172,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,36,36,50,14
+    PUSHBUTTON      "ŒÚÏÂÌ‡",IDCANCEL,98,36,50,14
+    LTEXT           "Static",IDC_VARIABLE_NAME,7,7,172,8
+END
+
+IDD_SCHEMAS DIALOGEX 0, 0, 158, 18
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_SCHEMAS,33,2,118,67,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Circuits:",IDC_STATIC,3,4,30,10
+END
+
+IDD_SCHEMA_SETTINGS DIALOGEX 0, 0, 229, 187
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Circuit Settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_SCHEMA_NAME,98,7,124,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_FIXED_SIZE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,98,25,16,10
+    EDITTEXT        IDC_WIDTH,98,51,47,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_HEIGHT,98,68,47,12,ES_AUTOHSCROLL
+    CONTROL         "",IDC_IMAGE_BACKGRD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,98,89,22,8
+    COMBOBOX        IDC_IMAGE_NAMES,98,113,118,67,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_STRETCH_IMAGE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,98,130,16,8
+    LTEXT           "Name:",IDC_STATIC,7,12,22,8
+    LTEXT           "Width:",IDC_STATIC,12,55,22,8
+    LTEXT           "Height:",IDC_STATIC,12,72,24,8
+    LTEXT           "Image:",IDC_STATIC,12,117,24,8
+    GROUPBOX        "Size",IDC_STATIC,7,40,143,44
+    LTEXT           "Fixed size:",IDC_STATIC,7,26,35,8
+    LTEXT           "Use a image as background",IDC_STATIC,7,88,88,8
+    GROUPBOX        "Background image",IDC_STATIC,7,102,215,40
+    LTEXT           "Stretch:",IDC_STATIC,12,129,27,8
+    LTEXT           "Background color:",IDC_STATIC,7,150,58,8
+    DEFPUSHBUTTON   "OK",IDOK,53,166,54,14
+    PUSHBUTTON      "Cancel",IDCANCEL,122,166,54,14
+    LTEXT           "",IDC_COLOR_BGD,100,148,52,12,0,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "...",IDC_BROWSE_COLOR,152,148,16,12
+END
+
+IDD_VARIABLE_DIALOG DIALOGEX 0, 0, 298, 174
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Variables"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_VARIABLE_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_SORTASCENDING | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,7,284,142
+    PUSHBUTTON      "Add",IDC_ADD_VAR,7,154,54,14
+    PUSHBUTTON      "Remove",IDC_DEL_VAR,66,154,54,14
+    PUSHBUTTON      "Change",IDC_CHANGE_VAR,125,154,54,14
+    DEFPUSHBUTTON   "OK",IDOK,237,154,54,14
+END
+
+IDD_SIMLPE_VARIABLE DIALOGEX 0, 0, 167, 79
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Simple Variable"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_NAME_SIMPLE_VARIABLE,72,7,88,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_TYPE_VARIABLE,72,24,88,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_VALUE_SIMPLE_VARIABLE,72,41,88,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,22,58,54,14
+    PUSHBUTTON      "Cancel",IDCANCEL,91,58,54,14
+    LTEXT           "Name:",IDC_STATIC,7,10,22,8
+    LTEXT           "Value:",IDC_STATIC,7,44,21,8
+    LTEXT           "Type:",IDC_STATIC,7,27,20,8
+END
+
+IDD_OPC_VARIABLE DIALOGEX 0, 0, 226, 135
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Œ–— Variable"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_NAME_OPC_VARIABLE,68,7,151,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_TYPE_VARIABLE,68,24,88,44,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_NAME_COMPUTER,68,56,132,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BROWSE_COMPUTER,200,56,13,12
+    COMBOBOX        IDC_NAME_SERVER,68,72,146,56,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_NAME_CHANNEL,68,88,132,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BROWSE_CHANNEL,200,88,13,12
+    DEFPUSHBUTTON   "OK",IDOK,102,114,54,14
+    PUSHBUTTON      "Cancel",IDCANCEL,165,114,54,14
+    LTEXT           "Name:",IDC_STATIC,6,9,22,8
+    LTEXT           "Type:",IDC_STATIC,6,27,20,8
+    GROUPBOX        "Œ–— Server",IDC_GROUP,7,44,212,64
+    LTEXT           "Host:",IDC_STATIC,12,60,18,8
+    LTEXT           "Œ–— name:",IDC_STATIC,12,76,37,8
+    LTEXT           "Channel:",IDC_STATIC,12,92,30,8
+END
+
+IDD_SELECT_CHANNEL DIALOGEX 0, 0, 186, 140
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,4,124,50,12
+    PUSHBUTTON      "Cancel",IDCANCEL,132,124,50,12
+    CONTROL         "",IDC_TREE_CHANNEL,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | TVS_TRACKSELECT | WS_BORDER | WS_TABSTOP,4,4,176,112,WS_EX_CLIENTEDGE | WS_EX_RIGHT
+END
+
+IDD_PROJECT_SETTINGS DIALOGEX 0, 0, 213, 89
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Project Settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_NAMES,99,28,102,54,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_INTERVAL_OPC,99,50,43,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,41,69,54,14
+    PUSHBUTTON      "Cancel",IDCANCEL,119,69,54,14
+    LTEXT           "OPC refresh interval (sec)",IDC_STATIC,7,52,84,8
+    GROUPBOX        "Autoload circuit",IDC_STATIC,7,7,199,40
+    CONTROL         "No",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,12,18,38,10
+    CONTROL         "Use circuit:",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,12,30,51,10
+END
+
+IDD_DELETE_SCHEMA DIALOGEX 0, 0, 148, 49
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Remove circuit"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,8,28,44,12
+    PUSHBUTTON      "Cancel",IDCANCEL,96,28,42,12
+    COMBOBOX        IDC_COMBO_NAMES,72,8,66,55,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Circuit name:",IDC_STATIC,9,12,43,8
+END
+
+IDD_OBJECTS DIALOGEX 0, 0, 140, 196
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select Object"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,175,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,83,175,50,14
+    LISTBOX         IDC_LIST_OBJECTS,7,18,126,150,LBS_SORT | LBS_MULTIPLESEL | LBS_HASSTRINGS | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Objects list:",IDC_STATIC,7,6,39,8
+END
+
+IDD_PROJECT_SOUNDS DIALOGEX 0, 0, 248, 198
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Project's Sounds"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LISTBOX         IDC_IMAGE_LIST,7,7,153,184,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Load from file",IDC_LOAD_FROM_FILE,166,7,75,14
+    PUSHBUTTON      "Rename",IDC_RENAME,166,26,75,14
+    PUSHBUTTON      "Remove",IDC_DELETE,166,45,75,14
+    DEFPUSHBUTTON   "OK",IDOK,196,177,45,14
+    PUSHBUTTON      "Play",IDC_PLAY,166,69,75,14
+    PUSHBUTTON      "Stop",IDC_STOP,166,88,75,14
+END
+
+IDD_IMPORT_OPC_CHANNELS DIALOGEX 0, 0, 226, 98
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Import OPC channels"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_VARIABLE_PREFIX,68,7,151,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NAME_COMPUTER,68,37,132,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_BROWSE_COMPUTER,200,37,13,12
+    COMBOBOX        IDC_NAME_SERVER,68,53,146,53,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,102,77,54,14
+    PUSHBUTTON      "ŒÚÏÂÌ‡",IDCANCEL,165,77,54,14
+    LTEXT           "Variable prefix:",-1,6,9,50,8
+    GROUPBOX        "Œ–— Server",IDC_GROUP,7,25,212,47
+    LTEXT           "Host:",-1,12,41,18,8
+    LTEXT           "OP— name:",-1,12,57,37,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_PROJECT_IMAGES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 323
+        VERTGUIDE, 160
+        VERTGUIDE, 166
+        VERTGUIDE, 173
+        VERTGUIDE, 241
+        VERTGUIDE, 247
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 191
+        HORZGUIDE, 104
+        HORZGUIDE, 123
+        HORZGUIDE, 129
+        HORZGUIDE, 149
+        HORZGUIDE, 170
+    END
+
+    IDD_INPUT_BOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 50
+        HORZGUIDE, 15
+        HORZGUIDE, 17
+    END
+
+    IDD_SCHEMAS, DIALOG
+    BEGIN
+        RIGHTMARGIN, 151
+        BOTTOMMARGIN, 14
+    END
+
+    IDD_SCHEMA_SETTINGS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 222
+        VERTGUIDE, 12
+        VERTGUIDE, 98
+        VERTGUIDE, 150
+        VERTGUIDE, 216
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 180
+        HORZGUIDE, 20
+        HORZGUIDE, 25
+        HORZGUIDE, 35
+        HORZGUIDE, 40
+        HORZGUIDE, 51
+        HORZGUIDE, 63
+        HORZGUIDE, 68
+        HORZGUIDE, 80
+        HORZGUIDE, 89
+        HORZGUIDE, 97
+        HORZGUIDE, 102
+        HORZGUIDE, 113
+        HORZGUIDE, 125
+        HORZGUIDE, 130
+        HORZGUIDE, 138
+        HORZGUIDE, 142
+        HORZGUIDE, 147
+        HORZGUIDE, 159
+        HORZGUIDE, 166
+    END
+
+    IDD_VARIABLE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 291
+        VERTGUIDE, 61
+        VERTGUIDE, 66
+        VERTGUIDE, 120
+        VERTGUIDE, 125
+        VERTGUIDE, 237
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 168
+        HORZGUIDE, 149
+        HORZGUIDE, 154
+    END
+
+    IDD_SIMLPE_VARIABLE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 160
+        VERTGUIDE, 72
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+        HORZGUIDE, 19
+        HORZGUIDE, 24
+        HORZGUIDE, 36
+        HORZGUIDE, 41
+        HORZGUIDE, 53
+        HORZGUIDE, 58
+    END
+
+    IDD_OPC_VARIABLE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 219
+        VERTGUIDE, 68
+        VERTGUIDE, 156
+        VERTGUIDE, 200
+        VERTGUIDE, 213
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 128
+        HORZGUIDE, 19
+        HORZGUIDE, 36
+        HORZGUIDE, 68
+        HORZGUIDE, 100
+        HORZGUIDE, 114
+    END
+
+    IDD_SELECT_CHANNEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 133
+    END
+
+    IDD_PROJECT_SETTINGS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 206
+        VERTGUIDE, 12
+        VERTGUIDE, 99
+        VERTGUIDE, 142
+        VERTGUIDE, 201
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 82
+        HORZGUIDE, 18
+        HORZGUIDE, 28
+        HORZGUIDE, 40
+        HORZGUIDE, 50
+        HORZGUIDE, 62
+        HORZGUIDE, 69
+    END
+
+    IDD_DELETE_SCHEMA, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 141
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 42
+    END
+
+    IDD_OBJECTS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 133
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 189
+    END
+
+    IDD_PROJECT_SOUNDS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 241
+        VERTGUIDE, 160
+        VERTGUIDE, 166
+        VERTGUIDE, 241
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 191
+        HORZGUIDE, 21
+        HORZGUIDE, 26
+        HORZGUIDE, 40
+        HORZGUIDE, 45
+        HORZGUIDE, 69
+        HORZGUIDE, 83
+        HORZGUIDE, 88
+    END
+
+    IDD_IMPORT_OPC_CHANNELS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 219
+        VERTGUIDE, 68
+        VERTGUIDE, 156
+        VERTGUIDE, 200
+        VERTGUIDE, 213
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 91
+        HORZGUIDE, 19
+        HORZGUIDE, 25
+        HORZGUIDE, 72
+        HORZGUIDE, 77
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\Designer.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""atlres.h""\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""Designer.rc2""\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "Symbolic Circuit Designer"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Create new project\nNew project"
+    ID_FILE_OPEN            "Open project\nOpen..."
+    ID_FILE_CLOSE           "Close project\nClose"
+    ID_FILE_SAVE            "Save current project\nSave"
+    ID_FILE_SAVE_AS         "Save project in new file\nSave as..."
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Show about information\nAbout"
+    ID_APP_EXIT             "Quit the program\nExit"
+    ID_HELP                 "Show help"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
+    ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
+    ID_WINDOW_CASCADE       "Arrange windows so they overlap\nCascade Windows"
+    ID_WINDOW_TILE_HORZ     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_TILE_VERT     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Toggle toolbar\nToggle toolbar"
+    ID_VIEW_STATUS_BAR      "Toggle status bar\nToggle status bar"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_SCSIZE          "Change the window size"
+    ATL_IDS_SCMOVE          "Change the window position"
+    ATL_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    ATL_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    ATL_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    ATL_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    ATL_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_SCRESTORE       "Restore the window to normal size"
+    ATL_IDS_SCTASKLIST      "Activate Task List"
+    ATL_IDS_MDICHILD        "Activate this window"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_MRU_FILE        "Open this document"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_ADD_ACTION           "\nAdd Action"
+    ID_DEL_ACTION           "\nRemove Action"
+    ID_IMAGE                "\nImage"
+    ID_IMAGES               "All Images"
+    ID_NEW_SCHEMA           "Create new circuit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_SETTING_CURRENT      "Configure circuit"
+    ID_VARIABLES            "Global project variables"
+    ID_ADD_VARIABLE         "\nAdd"
+    ID_DEL_VARIABLE         "\nRemove"
+    32806                   "Configure project"
+    ID_DELETE_SCHEMA        "Remove current circuit"
+    ID_TEXT                 "\nText"
+    ID_BUTTON               "\nButton"
+    ID_INPUT                "\nEdit"
+    ID_BACK                 "Moves object to back\nMove to back"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FRONT                "Moves object to front\nMove to front"
+    ID_SELECT               "Selects object by name\nSelect by name"
+    ID_FILE_SAVEAS          "Save project as..."
+    ID_SOUND                "\nSound"
+    ID_SOUNDS               "All Sounds"
+    ID_USE_GRID             "Toggle grid\nToggle grid"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_PROPERTY        "Toggle propeties window\nToggle properties"
+    ID_POLYLINE             "\nPolyline"
+    ID_RECTANGLE            "\nRectangle"
+    ID_ELIPSE               "\nEllipse"
+    ID_VIEW_PRIMITIVES      "Toggle primitives bar\nToggle primitives"
+    ID_EMPTY                "\nEmpty"
+END
+
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "Designer.rc2"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

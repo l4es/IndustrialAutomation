@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd" 
+        version="2.0">
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>1.2</jsp-version>
+    <description>
+        Custom tag library for dijit widgets
+    </description>
+    <short-name>dijit</short-name>
+
+    <tag>
+        <name>dateTextBox</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.DateTextBoxTag</tag-class>
+        <description>
+            Writes a input tag for dijit/form/DateTextBox.
+        </description>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>id</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>timestamp</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>i18nLabel</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>i18nTitle</name>
+        </attribute>
+    </tag>
+  
+      
+    <tag>
+        <name>textarea</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.TextareaTag</tag-class>
+        <description>
+            Writes a input tag for dijit/form/Textarea.
+        </description>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>id</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>text</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>i18nLabel</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>i18nTitle</name>
+        </attribute>
+    </tag>
+    
+    <tag>
+        <name>numberSpinner</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.NumberSpinnerTag</tag-class>
+        <description>
+            Writes a input tag for dijit/form/Spinner.
+        </description>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>number</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>id</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>i18nLabel</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>i18nTitle</name>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>textBox</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.TextBoxTag</tag-class>
+        <description>
+            Writes a input tag for dijit/form/TextBox.
+        </description>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>id</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>type</name>
+        </attribute>
+        <attribute>
+            <name>i18nLabel</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>i18nTitle</name>
+        </attribute>
+    </tag>
+    
+    <tag>
+        <name>checkBox</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.CheckBoxTag</tag-class>
+        <description>
+            Writes a input tag for dijit/form/TextBox.
+        </description>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>checked</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>id</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>i18nLabel</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>i18nTitle</name>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>validationTextBox</name>
+        <description>
+            Writes a input tag for dijit/form/ValidatingTextBox.
+        </description>
+        <tag-class>br.org.scadabr.web.taglib.dijit.ValidationTextBoxTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>id</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>i18nLabel</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>i18nTitle</name>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>loginTextBox</name>
+        <description>
+            Writes initially a input tag for dijit/form/TextBox or if binding errors exists a dijit/form/ValidatingTextBox. 
+            To assist the browser filling in the username ad password.
+        </description>
+        <tag-class>br.org.scadabr.web.taglib.dijit.LoginTextBoxTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <description>Path to property for data binding</description>
+            <name>path</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>id</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>i18nLabel</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>i18nTitle</name>
+        </attribute>
+        <body-content>empty</body-content>
+        <dynamic-attributes>true</dynamic-attributes>
+    </tag>
+    <tag>
+        <name>button</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.ButtonTag</tag-class>
+        <description>
+            Writes a button tag for dijit/form/Button.
+        </description>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>id</name>
+        </attribute>
+        <attribute>
+            <name>type</name>
+        </attribute>
+        <attribute>
+            <name>name</name>
+        </attribute>
+        <attribute>
+            <name>iconClass</name>
+        </attribute>
+        <attribute>
+            <name>i18nLabel</name>
+        </attribute>
+        <attribute>
+            <name>i18nTitle</name>
+        </attribute>
+        <attribute>
+            <name>disabled</name>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>toolbar</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.ToolbarTag</tag-class>
+        <description>
+            Writes a div tag for dijit/Toolbar.
+        </description>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>id</name>
+        </attribute>
+    </tag>
+    <tag>
+        <name>toolbarSeparator</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.ToolbarSeparatorTag</tag-class>
+        <description>
+            Writes a span tag for dijit/ToolbarSeparator.
+        </description>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>id</name>
+        </attribute>
+    </tag>
+    <tag>
+        <name>headlineLayoutContainer</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.HeadlineLayoutContainerTag</tag-class>
+        <description>
+            Writes a div tag for dijit/layout/LayoutContainer design: 'headline'.
+        </description>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>id</name>
+        </attribute>
+    </tag>
+    <tag>
+        <name>sidebarLayoutContainer</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.SidebarContainerTag</tag-class>
+        <description>
+            Writes a div tag for dijit/layout/LayoutContainer design: 'sidebar'.
+        </description>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>id</name>
+        </attribute>
+    </tag>
+    <tag>
+        <name>headlineBorderContainer</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.HeadlineBorderContainerTag</tag-class>
+        <description>
+            Writes a div tag for dijit/layout/BorderContainer design: 'headline'.
+        </description>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>id</name>
+        </attribute>
+        <attribute>
+            <name>gutters</name>
+        </attribute>
+        <attribute>
+            <name>liveSplitters</name>
+        </attribute>
+    </tag>
+    <tag>
+        <name>sidebarBorderContainer</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.SidebarBorderContainerTag</tag-class>
+        <description>
+            Writes a div tag for dijit/layout/BorderContainer design: 'sidebar'.
+        </description>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>id</name>
+        </attribute>
+        <attribute>
+            <name>gutters</name>
+        </attribute>
+        <attribute>
+            <name>liveSplitters</name>
+        </attribute>
+    </tag>
+    <tag>
+        <name>topContentPane</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.TopContentPaneTag</tag-class>
+        <description>
+            Writes a div tag for dijit/layout/ContentPane region: 'top'.
+        </description>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>id</name>
+        </attribute>
+        <attribute>
+            <name>splitter</name>
+        </attribute>
+    </tag>
+    <tag>
+        <name>centerContentPane</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.CenterContentPaneTag</tag-class>
+        <description>
+            Writes a div tag for dijit/layout/ContentPane region: 'center'.
+        </description>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>id</name>
+        </attribute>
+        <attribute>
+            <name>splitter</name>
+        </attribute>
+    </tag>
+    <tag>
+        <name>bottomContentPane</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.BottomContentPaneTag</tag-class>
+        <description>
+            Writes a div tag for dijit/layout/ContentPane region: 'bottom'.
+        </description>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>id</name>
+        </attribute>
+        <attribute>
+            <name>splitter</name>
+        </attribute>
+    </tag>
+    <tag>
+        <name>leftContentPane</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.LeftContentPaneTag</tag-class>
+        <description>
+            Writes a div tag for dijit/layout/ContentPane region: 'left'.
+        </description>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>id</name>
+        </attribute>
+        <attribute>
+            <name>splitter</name>
+        </attribute>
+    </tag>
+    <tag>
+        <name>rightContentPane</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.RightContentPaneTag</tag-class>
+        <description>
+            Writes a div tag for dijit/layout/ContentPane region: 'right'.
+        </description>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>id</name>
+        </attribute>
+        <attribute>
+            <name>splitter</name>
+        </attribute>
+    </tag>
+    
+    <tag>
+        <name>form</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.FormTag</tag-class>
+        <description>
+            Writes a form tag for dijit/form/Form.
+        </description>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>id</name>
+        </attribute>
+        <attribute>
+            <name>action</name>
+        </attribute>
+        <attribute>
+            <name>method</name>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>Renders an HTML 'select' element. Supports databinding to the selected option.</description>
+        <name>select</name>
+        <tag-class>br.org.scadabr.web.taglib.dijit.SelectTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>i18nLabel</name>
+        </attribute>
+        <attribute>
+            <name>i18nTitle</name>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>name</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>selectedValue</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>items</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>HTML Standard Attribute</description>
+            <name>id</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+</taglib>

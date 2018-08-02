@@ -1,0 +1,4 @@
+#!/home/edb/bin/eic -f
+int printf(char *fmt,...); // prototype for printf
+printf("hello, world wide web!\n");
+

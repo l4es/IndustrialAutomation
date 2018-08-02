@@ -1,0 +1,53 @@
+
+                           FreeSCADA Project
+                    --------------------------------
+                    What's new in the latest version
+                    --------------------------------
+
+
+[+] New
+[-] Fixed error
+[*] Changes
+
+---------------------------------------------------------------------------
+0.07 beta
+---------------------------------------------------------------------------
+[-] Fixed problem with corrupted values on OPC callback notification. 
+    Started from now OPC variables should receive its values correctly
+    and on time.
+[*] CRT and ATL libraries were switched to its dynamic versions.
+[*] Fixed a bunch of compilation warnings, about 30% were potential errors.
+[+] Added crash reporter feature.
+
+---------------------------------------------------------------------------
+0.06 beta
+---------------------------------------------------------------------------
+[-] Fixed problem with image names saving. Fixed Image switching action.
+
+---------------------------------------------------------------------------
+0.05 beta
+---------------------------------------------------------------------------
+[-] Fixed multithreading synchronization issue on OPC data retrieving.
+
+[-] Fixed problem with strings truncation during serialization from/to 
+    a project file. The project should be created from scratch.
+
+---------------------------------------------------------------------------
+0.04 beta
+---------------------------------------------------------------------------
+[+] New feature for variables importing from the designer project to 
+    The multiconfigurator database was added. (implemented by Alex)
+
+[-] The problem with image loading have fixed. (fixed by Alex)
+
+[-] The sizing action now works fine. (fixed by Alex)
+
+[-] A few problems with the Archiver(threads synchronization) and OPC
+    browsing from all projects have been fixed. (fixed by Alex)
+
+[-] Added workaround for importing channels from Matrikon OPC Simulation 
+    server. (added by Michael)
+
+[-] Small visual fixes in Global Variables dialog. (added by Michael)
+
+[-] The crash in the Visualizer with some OPC servers was fixed. (fixed by Michael)

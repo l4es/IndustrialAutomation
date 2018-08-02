@@ -1,0 +1,30 @@
+on
+	(void)
+Error in testsclass1.aux near line 1:  Redeclaration of parameter `a1'
+Previously declared in: testsclass.c
+Error in testsclass1.aux near line 4:  Redeclaration of parameter `a4'
+Previously declared in: testsclass.c
+Error in testsclass1.aux near line 6:  Redeclaration of parameter `a6'
+Previously declared in: testsclass.c
+a10 -> int 
+private to testsclass.c: a11 -> int 
+a1 -> int 
+a2 -> int 
+a3 -> int 
+private to testsclass.c: a4 -> int 
+private to testsclass.c: a5 -> int 
+private to testsclass.c: a6 -> int 
+a7 -> int 
+a8 -> int 
+a9 -> int 
+private to testsclass1.aux: a10 -> int 
+private to testsclass1.aux: a11 -> int 
+a1 -> int 
+private to testsclass1.aux: a2 -> int 
+a4 -> int 
+a4 -> Identifier 
+private to testsclass1.aux: a5 -> int 
+a6 -> int 
+a6 -> Identifier 
+private to testsclass1.aux: a8 -> int 
+Error: clean up forced

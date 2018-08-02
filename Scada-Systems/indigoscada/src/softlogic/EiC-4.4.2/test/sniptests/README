@@ -1,0 +1,125 @@
+The files in this directory have been ported to EiC
+from:
+
+	THE SNIPPETS Jul 97 EDITION
+	===========================
+
+  Amalloc.C    any  Multi-dimensional array allocation (limited to <64K on PC)
+  Ansiflen.C   any  ANSI-compliant file size function in C and C++
+  Arccrc16.C   any  Compute CRC's using ARC, LZH algorithm
++ Bcdd.C       any  BCD math (to/from double) functions
++ Bcdd.Doc     n/a  Manual pages for BCDD.C functions
++ Bcdl.C       any  BCD math (to/from long) functions
+  Bincomp.C    any  Binary file comparison utility
+  Bitcnt_1.C   any  Count bits in a number (fast, clever)
+  Bitcnt_2.C   any  Count bits in a number (fascinating)
+  Bitcnt_3.C   any  Count bits in a number (table look-up)
+  Bitcnt_4.C   any  Count bits in a number (recursive table look-up)
+  Bitfiles.C   any  Read/write bit files
+  Bitops.H     any  Prototypes, plus macros to set, clear, and test bits
+  Bitops.How   any  How the BitXxx() macros in BITOPS.H work
+  Bitstrng.C   any  Print binary formatted strings
+  Bodymass.C   any  Calculate ideal weight for your height
+  Bstr_I.C     any  Convert binary string to int
+  C_Cmnt.C     any  Extract C comments (handles trigraphs)
+  Ccard.C      any  Credit card validation functions
+  Ccard.H      any  Header file for credit card validation functions
+  Ccardplv.H   any  Patch level include file for credit card validation
+  Checksum.C   any  Calculate checksum
+  Combin.C     any  Compute combinations without overflow
+* Crc.H        any  Header file for SNIPPETS CRC and checksum functions
+  Crc.Hpp      any  Header for multiple CRC calculation class
+* Crc_16F.C    any  Fast 16-bit CRC
+* Crc_32.C     any  Table lookup 32-bit CRC
+  Cubic.C      any  Solve cubic equations
+  Datetime.H   any  Header for other time and date functions
+  Daynum.C     any  Return statistics about a given date
+  Dbl2Long.C   any  Rounds doubles to longs
+  Dblround.C   any  Rounds a double to nearest whole number
+  Dblround.How any  How DBLROUND.C works
+* Dow.C        any  Return day of the week for any date
+  Easter.C     any  Determine the date of Easter in any given year
+  Eng.C        any  Convert floating point value to engineering notation
+  Err_Exit.C   any  Print formatted error message to stderr and exit
+  Errors.H     any  Header file for SNIPPETS formatted error handlers
+  Etphi.C      any  Compute Euler's Totient function (phi)
+* Extkword.H   DON  Correct extended keywords syntax
+* Factoryl.C   any  Factorial, combinations, permutations
+  Fcompare.C   any  Compare 2 files for equality
+  Fibo.C       any  Return any term in the Fibonacci series
+* Filnames.H   DOS  Header file for file name processing functions below
+  Fmtmoney.C   any  Format US dollar amounts into text strings
+  Fraction.C   any  Convert a real number to an integer ratio
+* Hash.C       any  Hash table management
+  Hash.H       any  Header for hash table functions
+  Head.C       any  Unix head work-alike
+  Ipow.C       any  Raise a number to an integer power
+  Ispow2.C     any  Is a number an integral power of 2?
+  Isqrt.C      any  Integer square root
+  Jdn_L.C      any  Long integer Julian Day Number computation
++ L2Roman.C    any  Convert long integers to roman numerals
++ Logscale.C   any  Fast logarithmic integer scaling function
+  Match.Doc    any  Documentation for Match.C
+  Match.C      any  Portable source including optional test code
+  Match.H      any  Header file
++ Mathstat.C   any  Statistical functions in C and C++
++ Mathstat.H   any  Header file for statistical functions in C and C++
+  Filecat.H    any  Header for FILECAT.c and MAXLINE.C
+* Maxline.C    any  Returns the length of the longest line in text file
+  Memmem.C     any  Like strstr(), but for non-text buffers
+  Fmemmem.C    DOS  Like memmem() above, but for large DOS buffers
+  Minmax.H     any  Macros & typesafe C++ templates for min() and max()
+  Moon_Age.C   any  Determine the phase of the moon for any given date
++ Parity.H     any  Header for PARITY.C
++ Parity.C     any  Compute parity for any integral type
++ Parity.H     any  Header for PARITY.C
+  Parstime.C   any  Parse a time string
+  Pbmsrch.C    any  Pratt-Boyer-Moore string search
+  Phonetic.H   any  Header for all phonetic comparison functions
+  Pi.H         any  Useful definitions using PI
+  Rad2Deg.C    any  Convert radians <=> degrees
+  Rand1.C      any  Random number generator
+  Rdxcnvrt.C   any  Convert between number bases
+* Regkey.H     any  Header file for REGIT.C and CHKREG.C
+  Regit.C      any  Generate registration key
+* Regkey.H     any  Header file for REGIT.C and CHKREG.C
+  Remtab.C     any  Convert tabs to spaces
+  Rg_Rand.C    any  Minimal random number generator
+  Rnd_Div.C    any  Integer division with rounding
++ Roman2L.C    any  Convert roman numerals to long integers
+  Round.H      any  Rounding macros
+  Dblround.How any  How DBLROUND.C works
+* Ruleline.C   any  Create various styles of text ruler lines
+  Scaldate.C   any  Scalar ("Julian") date functions
+  Cal.C        any  Calendar using Scaldate.C
+  Scaldate.H   any  Scalar ("Julian") date header
+  Skiplist.C   any  Demonstration of skip lists
+  Snip_Str.H   any  Header file for SNIPPETS string functions
+  Pluraltx.How any  How the plural text macros in SNIP_STR.H work
+  Snipfile.H   any  Header for portable file functions
+* Snipmath.H   any  Header file for SNIPPETS math functions
+  Sniptype.H   any  Common include file for SNIPPETS data types and macros
+  Snparray.H   any  Header for multi-dimentional array functions
+  Soundex.C    any  Standard English soundex
++ Spigot.C     any  Calculate PI to ~1,000 digits using integer math
+  Sstrdel.C    any  Delete multiple substrings from a string
+  Stptok.C     any  Improved tokenizing function
+  Sstrdel.C    any  Delete multiple substrings from a string
+* Strdel.C     any  Delete a section of a string
+* Strdelch.C   any  Delete specific character(s) in a string
+  Strdup.C     any  Portable strdup()
+  Stristr.C    any  Case-insensitive strstr() work-alike
+  Strrev.C     any  Reverse a string in place using XOR swapping
+  Strrpbrk.C   any  Like ANSI/ISO strpbrk(), but searches from end of string
+  Strupr.C     any  Portable strupr() strlwr()
+  Tiresize.C   any  Calculate English dimensions for standard metric tire sizes
+  Trim.C       any  Trim leading, trailing, & embedded spaces
+  Strtrim.C    DOS  Trim blanks from a string
+  Vfname.H     any  Configuration header file for Vfname.C
+  Vfname.C     any  Validate legal file names - DOS defaults but configurable
+  Vfname.H     any  Configuration header file for Vfname.C
+  W_Wrap.C     any  C functions
+  W_Wrap.H     any  C header w/ prototypes and enum'ed constants          
+
+
+

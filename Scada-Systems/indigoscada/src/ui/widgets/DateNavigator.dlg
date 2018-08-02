@@ -1,0 +1,90 @@
+DlgEdit:v1.2:Dialog:
+Dialog {
+	ClassHeader {DateNavigator.h}
+	ClassSource {DateNavigator.cpp}
+	ClassName {DateNavigator}
+	DataHeader {DateNavigatorData.h}
+	DataSource {DateNavigatorData.cpp}
+	DataName {DateNavigatorData}
+	WindowBaseClass {QDialog}
+	IsModal {TRUE}
+	WindowCaption {Select Date}
+	WindowFlags {20480}
+}
+WidgetLayout {
+InitialPos {-1 -1}
+Size {190 200}
+MinSize {190 200}
+MaxSize {190 200}
+Grid {10}
+TextTranslated {TRUE}
+
+User {
+		UserClassHeader {datenav.h}
+		UserClassName {dateNav}
+		Rect {10 10 170 150}
+		Name {User_1}
+		Variable {TheDate}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {StrongFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {FALSE}
+		IsMenuButton {FALSE}
+		Text {Ok}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {10 170 70 20}
+		Name {PushButton_1}
+		Signal {[Protected]  clicked --> accept  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {FALSE}
+		IsMenuButton {FALSE}
+		Text {Cancel}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {110 170 70 20}
+		Name {PushButton_2}
+		Signal {[Protected]  clicked --> reject  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+
+}

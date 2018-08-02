@@ -1,0 +1,45 @@
+This file contains overall information concerning EiC's distribution. 
+It is by no means complete.
+
+---------------------------
+Files       	Description
+README      	Contains information on how to compile the EiC
+            	source code distribution, how to port EiC
+            	to different platforms and how to build a toy
+		version of EiC.
+
+README.BIN  	Discusses how to install a binary distribution of
+            	EiC
+
+Maintenance     Discusses issues on how to maintain EiC via CVS and
+                how to produce a binary distribution
+
+Change.html         EiC's change log
+Distribution.html   Information on what each EiC distribution should 
+		    contain
+Distribution.txt    Text version of Distribution.html
+LICENCE             EiC's copyright licence
+Buglist.html        EiC's bug list. Not heavily used nor is it as 
+                    upto date as EiC's change log
+----------------------------
+Directories    Description
+
+src            Contains the source code for the EiC interpreter
+module         Contains various source code modules. For example,
+               EiC's implementation of the standard C library is
+	       in module/stdClib
+test           Contains EiC's regression test suite
+doc            Contains EiC's documentation
+doc/tech_doc   Contains EiC's technical information
+main           Contains the main.c and instructions on how to
+               embed EiC into other systems.
+config         Contains scripts for configuring EiC for
+               various platforms
+include        Contains EiC system include files; such as:
+               <stdio.h> etc
+
+
+--------------------------------------------------------------------------
+Ed.Breen
+
+

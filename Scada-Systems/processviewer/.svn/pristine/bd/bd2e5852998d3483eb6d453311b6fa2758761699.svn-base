@@ -1,0 +1,151 @@
+object FormID2: TFormID2
+  Left = 288
+  Height = 606
+  Top = 107
+  Width = 803
+  Align = alClient
+  Caption = 'Form2'
+  ClientHeight = 606
+  ClientWidth = 803
+  Color = clBlack
+  Font.Color = clWhite
+  LCLVersion = '0.9.28.2'
+  object Panel1: TPanel
+    Left = 0
+    Height = 142
+    Top = 464
+    Width = 803
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 142
+    ClientWidth = 803
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 20
+      Height = 18
+      Top = 20
+      Width = 97
+      Caption = 'TEPm_30230303'
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 129
+      Height = 18
+      Top = 20
+      Width = 41
+      Caption = 'Label2'
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 232
+      Height = 18
+      Top = 20
+      Width = 41
+      Caption = 'Label3'
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object Button1: TButton
+      Left = 704
+      Height = 33
+      Top = 100
+      Width = 91
+      Caption = 'PROCESS'
+      Font.Height = -13
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+    end
+  end
+  object Chart1: TChart
+    Left = 0
+    Height = 464
+    Top = 0
+    Width = 677
+    AllowZoom = False
+    AxisList = <    
+      item
+        Alignment = calLeft
+        Grid.Color = clSilver
+        Offset = 0
+        Scale = 1
+        TickColor = clSilver
+        Title.Font.Color = clWhite
+        Title.Font.Orientation = 900
+      end    
+      item
+        Alignment = calBottom
+        Grid.Color = clSilver
+        Offset = 0
+        Scale = 1
+        TickColor = clSilver
+        Title.Font.Color = clWhite
+      end>
+    BackColor = clBlack
+    Foot.Brush.Color = clBtnFace
+    Foot.Font.Color = clBlue
+    Foot.Frame.Color = clSilver
+    Frame.Color = clSilver
+    Legend.Font.Color = clWhite
+    Legend.Frame.Color = clSilver
+    Title.Brush.Color = clBtnFace
+    Title.Font.Color = clBlue
+    Title.Frame.Color = clSilver
+    Title.Text.Strings = (
+      'TAChart'
+    )
+    Align = alClient
+    Color = clBlack
+    ParentColor = False
+    object Chart1LineSeries1: TLineSeries
+      Title = 'TEPm_30230303'
+      LinePen.Color = clLime
+      SeriesColor = clLime
+    end
+  end
+  object Panel2: TPanel
+    Left = 677
+    Height = 464
+    Top = 0
+    Width = 126
+    Align = alRight
+    BevelOuter = bvNone
+    ClientHeight = 464
+    ClientWidth = 126
+    TabOrder = 2
+    object Button2: TButton
+      Left = 11
+      Height = 32
+      Top = 56
+      Width = 99
+      Caption = 'C.W.Set'
+      Font.Height = -13
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+    end
+    object Panel3: TPanel
+      Left = 11
+      Height = 32
+      Top = 12
+      Width = 99
+      Caption = 'H.W.Set #1'
+      Font.Height = -13
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 1
+    end
+  end
+end

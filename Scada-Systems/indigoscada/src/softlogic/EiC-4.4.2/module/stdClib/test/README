@@ -1,0 +1,23 @@
+
+In directory Ptests is the test suite by P.J. Plauger 
+from his book the Standard C library that I have put together.
+
+
+	* EiC's standard C library implementation 
+          passes  P.J. Plaugers test suite for:
+
+		 <stdio.h>  <math.h>   <float.h> <limits.h>
+                 <string.h> <stdarg.h> <time.h>  <assert.h>
+                 <errno.h>
+ 
+           allowing for what EiC doesn't support 
+           (wide characters and functional implementations 
+               for the ctype.h macros) 
+           it then passes Plaugers's test suite for:
+
+                <stdlib.h>  <stddef.h>  <ctype.h>
+           
+           EiC still does not yet support:
+
+               <setjmp.h> <locale.h> <signal.h> 
+                 

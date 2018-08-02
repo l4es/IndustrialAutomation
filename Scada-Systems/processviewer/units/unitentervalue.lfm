@@ -1,0 +1,239 @@
+object FormEnterValue: TFormEnterValue
+  Left = 175
+  Height = 385
+  Top = 175
+  Width = 384
+  BorderIcons = [biSystemMenu]
+  Caption = 'Enter Value'
+  ClientHeight = 385
+  ClientWidth = 384
+  Position = poDefaultPosOnly
+  LCLVersion = '0.9.28.2'
+  object Panel1: TPanel
+    Left = 0
+    Height = 120
+    Top = 0
+    Width = 384
+    Align = alTop
+    BevelInner = bvRaised
+    BevelOuter = bvLowered
+    ClientHeight = 120
+    ClientWidth = 384
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 15
+      Height = 16
+      Top = 10
+      Width = 57
+      Caption = 'Tag name:'
+      ParentColor = False
+    end
+    object LabTag: TLabel
+      Left = 84
+      Height = 16
+      Top = 10
+      Width = 40
+      Caption = 'LabTag'
+      ParentColor = False
+    end
+    object LabComment: TLabel
+      Left = 15
+      Height = 16
+      Top = 52
+      Width = 74
+      Caption = 'LabComment'
+      ParentColor = False
+    end
+    object Label2: TLabel
+      Left = 220
+      Height = 16
+      Top = 10
+      Width = 31
+      Caption = 'Units:'
+      ParentColor = False
+    end
+    object LabUnits: TLabel
+      Left = 260
+      Height = 16
+      Top = 10
+      Width = 47
+      Caption = 'LabUnits'
+      ParentColor = False
+    end
+    object Lab3: TLabel
+      Left = 15
+      Height = 16
+      Top = 31
+      Width = 59
+      Caption = 'Low range:'
+      ParentColor = False
+    end
+    object Lab4: TLabel
+      Left = 220
+      Height = 16
+      Top = 31
+      Width = 63
+      Caption = 'High range:'
+      ParentColor = False
+    end
+    object LabLow: TLabel
+      Left = 84
+      Height = 16
+      Top = 31
+      Width = 42
+      Caption = 'LabLow'
+      ParentColor = False
+    end
+    object LabHigh: TLabel
+      Left = 296
+      Height = 16
+      Top = 31
+      Width = 46
+      Caption = 'LabHigh'
+      ParentColor = False
+    end
+    object Label3: TLabel
+      Left = 15
+      Height = 16
+      Top = 87
+      Width = 33
+      Caption = 'Value:'
+      ParentColor = False
+    end
+    object EditValue: TEdit
+      Left = 60
+      Height = 23
+      Top = 84
+      Width = 196
+      OnKeyPress = EditValueKeyPress
+      TabOrder = 0
+      Text = 'EditValue'
+    end
+    object btnSet: TButton
+      Left = 268
+      Height = 25
+      Top = 82
+      Width = 83
+      Caption = 'Set'
+      OnClick = btnSetClick
+      TabOrder = 1
+    end
+  end
+  object btn0: TButton
+    Left = 12
+    Height = 49
+    Top = 324
+    Width = 75
+    Caption = '0'
+    OnClick = btn0Click
+    TabOrder = 1
+  end
+  object btn1: TButton
+    Left = 12
+    Height = 49
+    Top = 260
+    Width = 75
+    Caption = '1'
+    OnClick = btn0Click
+    TabOrder = 2
+  end
+  object btn2: TButton
+    Left = 104
+    Height = 49
+    Top = 260
+    Width = 75
+    Caption = '2'
+    OnClick = btn0Click
+    TabOrder = 3
+  end
+  object btn3: TButton
+    Left = 192
+    Height = 49
+    Top = 260
+    Width = 75
+    Caption = '3'
+    OnClick = btn0Click
+    TabOrder = 4
+  end
+  object btn4: TButton
+    Left = 12
+    Height = 49
+    Top = 196
+    Width = 75
+    Caption = '4'
+    OnClick = btn0Click
+    TabOrder = 5
+  end
+  object btn5: TButton
+    Left = 104
+    Height = 49
+    Top = 196
+    Width = 75
+    Caption = '5'
+    OnClick = btn0Click
+    TabOrder = 6
+  end
+  object btn6: TButton
+    Left = 192
+    Height = 49
+    Top = 196
+    Width = 75
+    Caption = '6'
+    OnClick = btn0Click
+    TabOrder = 7
+  end
+  object btn7: TButton
+    Left = 12
+    Height = 49
+    Top = 136
+    Width = 75
+    Caption = '7'
+    OnClick = btn0Click
+    TabOrder = 8
+  end
+  object btn8: TButton
+    Left = 104
+    Height = 49
+    Top = 136
+    Width = 75
+    Caption = '8'
+    OnClick = btn0Click
+    TabOrder = 9
+  end
+  object btn9: TButton
+    Left = 192
+    Height = 49
+    Top = 136
+    Width = 75
+    Caption = '9'
+    OnClick = btn0Click
+    TabOrder = 10
+  end
+  object btnDot: TButton
+    Left = 104
+    Height = 49
+    Top = 324
+    Width = 75
+    Caption = '.'
+    OnClick = btnDotClick
+    TabOrder = 11
+  end
+  object BtnPlusMinus: TButton
+    Left = 192
+    Height = 49
+    Top = 324
+    Width = 75
+    Caption = '+/-'
+    OnClick = BtnPlusMinusClick
+    TabOrder = 12
+  end
+  object btnBackspace: TButton
+    Left = 280
+    Height = 49
+    Top = 136
+    Width = 99
+    Caption = '<- BACKSPACE'
+    OnClick = btnBackspaceClick
+    TabOrder = 13
+  end
+end

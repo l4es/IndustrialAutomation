@@ -1,0 +1,104 @@
+Here is an impromptu thing I just banged out. The burden of verifying the
+applicant's answers rests on you.
+
+
+1.      What are the possible declaration type signatures for the function
+        main? Answer by writing example declarations of each.
+
+2.      What is undefined behavior?
+
+3.      What is implementation-defined behavior?
+
+4.      How many bits are in an object of char type?
+
+5.      What is a sequence point?
+
+6.      What is wrong with the statement
+
+                a[i] = i++;     ?
+
+7.      Why is it perilous, in general, to cast a pointer to char to a pointer
+        to integer?
+
+8.      Name as many uses of the void pointer type as you can.
+
+9.      What four mistakes are made in the following complete program?
+
+                #include <stdio.h>
+
+                void main() {
+                        char *p = malloc(10);
+                        long x = 3;
+
+                        printf("%d %p\n", x, p);
+                        return 0;
+                }
+
+10.     What is wrong with this type declaration:
+
+                typedef int (* foo[10])()[];
+
+11.     What is the output of the following complete program?
+
+                #include <stdio.h>
+
+                main() {
+                        static char *p;
+                        long x = (long) p;
+
+                        printf("%ld\n",x);
+                        return 0;
+                }
+                        
+12.     Why is the first of these statements legal, yet the second isn't?
+
+                int x = 3, y;
+
+                y = (x++ == --x);
+
+                y = x++ && x++;
+
+13.     What is the output of the following complete program?
+
+                #include <stdio.h>
+
+                int main() {
+                        int pref = 0;
+                        char *p[] = { "Hello", "there", "world" };
+                        char **q = p;
+
+                        printf("%s %s %s!\n", q++, q++, q++);
+
+                        return 0;
+                }
+
+14.     What is the purpose of the   size_t   type?
+
+15.     What is the effect of the following program?
+
+                #include <stdio.h>
+
+                char *dayofwk(int n) {
+                        char day[][4] = {
+                                "Mon","Tue","Wed","Thu","Fri","Sat","Sun";
+                        }
+                
+                        return day[n];
+                }
+
+                main()
+
+                {
+                        puts(day[3]);
+
+                        return 0;
+                }
+
+
+It's a simple test, and by no means exhaustive of someone's C knowledge!
+But there are just enough snags to catch people who don't really know C.
+
+
+
+
+

@@ -1,0 +1,273 @@
+-------------------------------------------------------------
+		   __THE EiC BINARY DISTRIBUTION__
+
+				  by
+
+			       Ed Breen
+-------------------------------------------------------------
+Contents:
+
+	COPYRIGHT
+	BINARY DISTRIBUTIONS
+	INSTALLATION NOTES
+	BRIEF INTRODUCTION
+	REPORTING BUGS 
+	MAJOR KNOWN BUGS
+	APPENDIX
+		BUILDING THE BINARY DISTRIBUTION
+
+-------------------------------------------------------------
+COPYRIGHT
+
+	Please refer to the LICENCE document provided
+with this distribution. To proceed beyond this point,
+is to agree with the licence agreement.
+
+-------------------------------------------------------------
+BUGS OR QUESTIONS CAN BE DIRECTED TO:
+
+A Bug Report form is located at:
+ 
+	http://pobox.com/~eic
+
+General questions to:
+
+	Ed.Breen@Altavista.net
+
+-------------------------------------------------------------
+BINARY DISTRIBUTIONS
+
+The following PLATFORM distributions are available:
+
+
+EiC has been ported to: Linux, Solaris, Sun OS, DEC OSF, SGI IRIX,
+    HPUX, Solaris/i386, and NetBSD
+
+There also exist an alien port of EiC to the PowerPC 403 by
+Larry Battraw.
+  
+Its source code is available as well as pre-compiled binaries for the
+following platforms:
+
+	Releases version VERSION
+
+	EiC_LINUX_VERSION.tgz      i486 Linux (elf)
+	EiC_SOLARIS_VERSION.tgz    SUN SPARC SOLARIS 2.x
+	EiC_SUNOS_VERSION.tgz      SUN OS 4.1.x
+	EiC_OSF1_VERSION.tgz       DEC ALPHA  OSF 3.x and 4.x
+	EiC_IRIX_VERSION.tgz       SGI IRIX 6.x
+
+
+Each distribution contains a binary executable of eicc, documentation,
+licence, and EiC's set of include files.
+
+Hard copies of the documentation, if desired, can be obtained on
+request.
+
+--------------------------------------------------------------
+INSTALLATION NOTES
+
+        IMPORTANT:
+        
+        If EiC is not installed in /usr/local/EiC, or /usr/EiC, 
+        you will need to explicity set were EiC's home directory
+        is as follows:
+                To be able to run EiC properly you will now need to set the 
+                environmental variable HOMEofEiC.
+
+                The HOMEofEiC environmental variable must be set to
+                point to the directory that contains the EiC include 
+                directory. For example: $HOME/EiC
+
+                In bash, ksh or zsh use:
+                        $ export HOMEofEiC=...
+                In tcsh enter:
+                        $ setenv HOMEofEiC ...
+                where the dots represent the name of the EiC directory
+
+                You may wish to include the command in one
+                of your startup scripts such as the .cshrc or the
+                .bashrc file.
+
+        Also the HOMEofEiC environmental variable overrides automatic
+        detection of directories /usr/local/EiC and /usr/EiC. Inturn
+        /usr/local/EiC overrides /usr/EiC
+
+To install a BINARY distribution, first untar the appropriate PLATFORM
+distribution:
+
+        if using GNU tar
+        % tar xvzf EiC_PLATFORM_3_7_2.tgz
+
+        else
+        % gunzip EiC_PLATFORM_3_7_2.tgz
+        % tar xvf EiC_PLATFORM_3_7_2.tar
+
+Now change to the directory EiC's directory:
+
+        % cd EiC
+
+EiC is configured so that its home directory is the EiC directory that
+it un-tarred into.  It uses this directory to hold its implementation
+files and directories. However, during the installation procedure, the
+install procedure will setup a link used for launching eicc, in the
+directory specified by the macro definition INSTALL_DIR in the file
+EiC/Makefile. By default, this directory will be ${HOME}/bin -- but
+this is easily changed. Before installing EiC, first check what the
+installation procedure will do, from the EiC directory enter (see the
+Makefile for more details):
+
+        % make -n installBinary
+
+If you wish to change the install directory; for example, say to
+/usr/local/bin, then enter:
+
+        % make INSTALL_DIR=/usr/local/bin installBinary
+
+However, if, as by default, you are installing a local version in your
+home bin directory, then just enter:
+
+        % make installBinary
+
+Now set HOMEofEiC (the example given is for tsch):
+
+        % setenv HOMEofEiC $PWD
+        % rehash
+
+or
+        % export HOMEofEiC=$PWD
+
+Now run eic and when you want to exit just enter :exit
+
+        % eic
+
+-------------------------------------------------------------------------
+BRIEF INTRODUCTION
+
+To run EiC, enter:
+
+        % eic
+
+In interactive mode, the user enters commands, or immediate
+statements, at the interpreter prompt EiC #>; for example:
+
+EiC 1> #include <string.h>
+        (void)
+EiC 2> #define PI 3.14159
+        (void)
+EiC 3> PI * strlen("Hello, World!\n"); 
+        43.98226
+
+The function `strlen' is a standard C function, which returns the
+number of characters in the argument string, which happens to be in
+this instance: "Hello, World!\n"; for example:
+
+EiC 4> strlen("Hello, World!\n");
+        14
+
+To exit  EiC, simply enter:
+
+EiC 5> :exit
+
+Note the colon:
+
+While EiC is an interactive C interpreter it can also be run in batch
+mode:
+
+        % eic foo.c
+
+For Futher information refer to EiC's documentation `EiC.ps'
+
+----------------------------------------------------------------
+REPORTING BUGS 
+
+If you have need and wish to report a bug, use the following template,
+follow the example given below and email it to the email address given
+at the bottom of this document:
+
+        REPORTER:
+        PLATFORM:
+        PROBLEM:
+        EXAMPLE:
+        POSSIBLE SOLUTION:
+        TESTPROGRAM:
+        STATUS: Not Fixed
+
+
+However, before reporting any bug, and if possible, check that the
+problem does not exist if the same source code is compiled and run
+using your normal C/C++ compiler. If you have decided that you have
+found a real bug, then the following example will help in preparing
+your report (but don't worry if you can't suggest a possible solution):
+
+  
+        REPORTER: Ed Breen
+        PLATFORM: Linux
+        PROBLEM: EiC does not cast structures properly via va_args.
+        EXAMPLE:
+
+        #include <stdarg.h>
+        #include <stdio.h>
+
+        typedef struct { int a, b; } ab_t;
+        ab_t a = {5,5};
+
+        int p(char *fmt, ...)
+        {
+            ab_t x;
+            va_list ap;    
+            va_start(ap, fmt);
+    
+            x = va_arg(ap, ab_t);
+            va_end(ap);
+
+            return x.a;
+        }
+
+
+        int main(void)
+        {
+            // the following call returns garbage!!!
+            printf("5 = %d\n",p("",a));
+            return 0;
+        }
+
+        POSSIBLE SOLUTION:
+
+        The solution is to get the stack code to `drefptr' the pointer
+contained at the `ap' stack position, immediately before the `refmem'
+instruction. Although, this is easy to do, it upsets other existing
+code such as referencing members within an array of structures and
+structure assignments -- a rethink is in order.
+
+
+        TESTPROGRAM:
+                see above
+
+        STATUS: Not Fixed, but the current EiC implementation
+                flags the passing of a structure or union to
+                a variadic function, such as shown above, as an error.
+
+
+mail bug report to eic_free@geocities.com
+
+--------------------------------------------------------------------
+MAJOR KNOWN BUGS
+
+	(none at the moment)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,70 @@
+DlgEdit:v1.2:Dialog:
+Dialog {
+	ClassHeader {CalculatedInput.h}
+	ClassSource {CalculatedInput.cpp}
+	ClassName {CalculatedInput}
+	DataHeader {CalculatedInputData.h}
+	DataSource {CalculatedInputData.cpp}
+	DataName {CalculatedInputData}
+	WindowBaseClass {QFrame}
+	WindowFlags {16}
+}
+WidgetLayout {
+InitialPos {-1 -1}
+Size {440 90}
+MinSize {0 0}
+MaxSize {32767 32767}
+Grid {10}
+TextTranslated {TRUE}
+
+PushButton {
+		ToggleButton {FALSE}
+		Default {FALSE}
+		AutoDefault {FALSE}
+		IsMenuButton {FALSE}
+		Text {Expression...}
+		AutoRepeat {FALSE}
+		AutoResize {FALSE}
+		Rect {330 50 100 30}
+		Name {PushButton_4}
+		Signal {[Protected]  clicked --> Expression  ()}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {TabFocus}
+		BackgroundMode {PaletteButton}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+Label {
+		Text {}
+		Alignment {AlignLeft|AlignVCenter|ExpandTabs}
+		AutoResize {FALSE}
+		Margin {0}
+		Style {49}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {10 10 420 30}
+		Name {Label_5}
+		Variable {Expr}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {SameFont}
+		PalettePropagation {SameFont}
+}
+
+}

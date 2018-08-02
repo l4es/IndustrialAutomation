@@ -1,0 +1,25 @@
+on
+	(void)
+Warning: in testarray.c near line 38: Array of chars is too long
+0 0 0 0 0 0 :-> 0 0 0 0 0 0 
+1 2 3 4 5 6 :-> 1 2 3 4 5 6 
+1 2 0 4 5 0 :-> 1 2 0 4 5 0 
+1 2 4 5 0 0 :-> 1 2 4 5 0 0 
+14 :-> 14
+[Hello, world!] :-> [Hello, world!]
+5 :-> 5
+Edmond :-> Edmond
+Claire :-> Claire
+Sarah :-> Sarah
+Alexandra :-> Alexandra
+Georgia :-> Georgia
+1 2 3 4 5 0 :-> 1 2 3 4 5 0
+1 0 2 0 3 0 :-> 1 0 2 0 3 0
+1 2 3 4 5 6 7 0 :-> 1 2 3 4 5 6 7 0
+abc :-> abc
+120  :-> 120
+450  :-> 450
+1245 :-> 1245
+2, 2, 5 :-> 2, 2, 5
+::TooLo:00000::Me000:Yes00 :-> ::TooLo:00000::Me000:Yes00
+	0

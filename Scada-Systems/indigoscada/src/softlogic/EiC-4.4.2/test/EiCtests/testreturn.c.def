@@ -1,0 +1,6 @@
+on
+	(void)
+Warning: in testreturn.c near line 13: Possible dangling pointer
+Warning: in testreturn.c near line 20: Possible dangling pointer
+This file should generate 2 dangling pointer warnings
+	0

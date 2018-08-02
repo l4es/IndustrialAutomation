@@ -1,0 +1,145 @@
+object Form1: TForm1
+  Left = 243
+  Height = 583
+  Top = 174
+  Width = 752
+  Caption = 'ProcessMaker'
+  ClientHeight = 583
+  ClientWidth = 752
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  Position = poDefaultPosOnly
+  LCLVersion = '0.9.29'
+  WindowState = wsMaximized
+  object Panel1: TPanel
+    Left = 0
+    Height = 36
+    Top = 0
+    Width = 752
+    Align = alTop
+    BevelInner = bvRaised
+    BevelOuter = bvLowered
+    TabOrder = 0
+  end
+  object Panel2: TPanel
+    Left = 0
+    Height = 547
+    Top = 36
+    Width = 138
+    Align = alLeft
+    BevelInner = bvRaised
+    BevelOuter = bvLowered
+    Caption = 'Panel2'
+    ClientHeight = 547
+    ClientWidth = 138
+    TabOrder = 1
+    object Panel3: TPanel
+      Left = 2
+      Height = 351
+      Top = 2
+      Width = 134
+      Align = alClient
+      BevelOuter = bvNone
+      Caption = 'Panel3'
+      ClientHeight = 351
+      ClientWidth = 134
+      TabOrder = 0
+      object lbWindows: TCheckListBox
+        Left = 0
+        Height = 335
+        Top = 16
+        Width = 134
+        Align = alClient
+        ItemHeight = 0
+        OnClickCheck = lbWindowsClickCheck
+        OnDblClick = lbWindowsDblClick
+        TabOrder = 0
+      end
+      object Label1: TLabel
+        Left = 0
+        Height = 16
+        Top = 0
+        Width = 134
+        Align = alTop
+        Alignment = taCenter
+        Caption = 'Windows'
+        Color = clGray
+        Font.Color = clWhite
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
+    end
+    object Panel4: TPanel
+      Left = 2
+      Height = 187
+      Top = 358
+      Width = 134
+      Align = alBottom
+      BevelOuter = bvNone
+      Caption = 'Panel3'
+      ClientHeight = 187
+      ClientWidth = 134
+      TabOrder = 1
+      object Label2: TLabel
+        Left = 0
+        Height = 16
+        Top = 0
+        Width = 134
+        Align = alTop
+        Alignment = taCenter
+        Caption = 'Tools'
+        Color = clGray
+        Font.Color = clWhite
+        ParentColor = False
+        ParentFont = False
+        Transparent = False
+      end
+      object lbTools: TListBox
+        Left = 0
+        Height = 171
+        Top = 16
+        Width = 134
+        Align = alClient
+        Items.Strings = (
+          'Access Names'
+          'Tagname Dictionary'
+        )
+        ItemHeight = 15
+        OnDblClick = lbToolsDblClick
+        TabOrder = 0
+      end
+    end
+    object Splitter2: TSplitter
+      Cursor = crVSplit
+      Left = 2
+      Height = 5
+      Top = 353
+      Width = 134
+      Align = alBottom
+      ResizeAnchor = akBottom
+    end
+  end
+  object PanelMain: TPanel
+    Left = 143
+    Height = 547
+    Top = 36
+    Width = 609
+    Align = alClient
+    BevelOuter = bvNone
+    TabOrder = 2
+  end
+  object Splitter1: TSplitter
+    Left = 138
+    Height = 547
+    Top = 36
+    Width = 5
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = Timer1Timer
+    left = 236
+    top = 60
+  end
+end

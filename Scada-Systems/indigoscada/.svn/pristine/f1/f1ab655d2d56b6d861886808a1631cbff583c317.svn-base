@@ -1,0 +1,81 @@
+E:\scada\src_v\hmi_designer\qwt-4.2.0>msvc-qmake vc
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0>REM Batch file to make all Makefiles or all Visual Studio project files
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0>REM (*.dsp for MSVC-6.0 or *.vcproj for MSVC-7.0) for Qwt with qmake.
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0>REM
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0>REM BUG: the designer plugin *.dsp file may not work; the Makefile does.
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0>REM
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0>REM To make Makefiles, type: msvc-qmake
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0>REM To make project files type: msvc-qmake vc
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0>REM For the Qwt library:
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0>qmake -t vclib qwt.pro
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0>REM For the examples:
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0>cd examples
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples>cd bode
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\bode>qmake -t vcapp bode.pro
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\bode>cd ..\cpuplot
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\cpuplot>qmake -t vcapp cpuplot.pro
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\cpuplot>cd ..\curvdemo1
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\curvdemo1>qmake -t vcapp curvdemo1.pro
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\curvdemo1>cd ..\curvdemo2
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\curvdemo2>qmake -t vcapp curvdemo2.pro
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\curvdemo2>cd ..\data_plot
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\data_plot>qmake -t vcapp data_plot.pro
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\data_plot>cd ..\dials
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\dials>qmake -t vcapp dials.pro
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\dials>cd ..\event_filter
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\event_filter>qmake -t vcapp event_filter.pro
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\event_filter>cd ..\radio
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\radio>qmake -t vcapp radio.pro
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\radio>cd ..\realtime_plot
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\realtime_plot>qmake -t vcapp realtime_plot.pro
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\realtime_plot>cd ..\simple_plot
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\simple_plot>qmake -t vcapp simple_plot.pro
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\simple_plot>cd ..\sliders
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\sliders>qmake -t vcapp sliders.pro
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\examples\sliders>cd ..\..
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0>REM For the designer plugin:
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0>cd designer
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\designer>qmake -t vclib qwtplugin
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0\designer>cd ..
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0>REM EOF
+
+E:\scada\src_v\hmi_designer\qwt-4.2.0>

@@ -1,0 +1,417 @@
+Contents:
+
+	MAINTAINING A VARIANT OF EiC via CVS
+	BUILDING A BINARY DISTRIBUTION
+	COMMITTING EiC to CVS
+
+--------------------------------------------------------------------
+MAINTAINING A VARIANT OF EiC via CVS
+
+If you have or intend to be modifying EiC's source distribution for
+your own personal needs, but also want your distribution to be kept up
+to date with EiC's public distribution, then one way to do this is to
+use CVS. With CVS you can keep track of several versions of EiC
+simultaneously and it will allow you to merge different versions
+together. Thereby, incorporating changes from one version into
+another.
+
+For details on using CVS please refer to:
+
+	Version Management with CVS by Per Cederqvist
+
+     	http://www.loria.fr/~molli/cvs/doc/cvs_toc.html
+
+Most Linux distribution come with CVS, but if you need to install CVS,
+it can be obtained from:
+
+    	http://www.cyclic.com/cyclic-pages/cvsdev.html
+
+
+The following will show you how to maintain your personal distribution
+of EiC so that you can easily incorporate new features or bug fixes
+from the latest official release of EiC into your own version. Also,
+you are advised to read all of the this section prior to starting.
+
+In the following it will be assumed that your EiC source directory
+contains only EiC source files. Therefore, before starting make sure
+your EiC directory has been clobbered:
+
+
+	% cd  $HOMEofEiC       // PATH_TO_THE_EiC_DIRECTORY 
+	% cd doc; make clobber; cd .. ; make clobber
+
+	The clobber directive is more severe than a clean, as it
+        removes everything that clean does plus targets and installed
+        files.
+
+First place a copy of the public version of EiC under CVS control
+using the following cvs command:
+
+	cvs import -m"Message" <Dir> <Vendor-Tag> <Release-Tag>
+
+
+Message     A string that specifies some information about the current
+            operation. If you do not give it, CVS will prompt you by
+            opening up an editor according to $CVSEDITOR or $EDITOR
+            and which can be quite slow and annoying at times.
+
+Dir         The directory where the current source will be stored in
+	    the CVS repository. 
+
+Vendor-Tag  The tag for the entire branch. This tag will be used
+	    to identify the Vendor's copy of the source (the public version
+	    of EiC), rather than your personal version.
+          
+Release-Tag The Release-Tag is  used to identify the files at the
+            leaves, of the Vendor's branch, created each time you execute 
+	    an import.
+
+
+For example, lets say you are starting from EiC version 3.7:
+
+	% cvs import -m"import of EiC 3.7"  EiC EiC_dist V_3_7
+
+This command will create a branch with number 1.1.1, and which is the
+CVS branch number for the Vendor's branch. The above command will also
+place a copy of EiC's source distribution in the directory
+$CVSROOT/EiC.  It will label the Vendor's branch as `EiC_dist' and
+assign it the release tag `V_3_7'.
+
+
+Before you start working with any code in the repository you must
+first check out a working copy from the repository.  To make sure
+everything worked and to check out the latest version from the
+repository do the following:
+
+	% cd ..
+	% mv EiC EiC.orig
+	% cvs checkout EiC
+	% ls -R EiC
+		
+Note: you have checked out the latest revision on the `main trunk' of
+the EiC repository and not the code on the Vendor's branch `EiC_dist', although
+at this stage they are identical. This means you should have a copy of
+the main trunk of the EiC repository, and all commits will be
+committed to the main trunk and not to the Vendor's branch.
+
+Now, examine the status of a file, such as the starteic.c file, by
+using the CVS status subcommand:
+	
+	% cd EiC/src
+	% cvs status -v starteic.c
+
+===================================================================
+File: starteic.c        Status: Up-to-date
+
+   Working revision:    1.1.1.1 Sat Jun 20 07:37:46 1998
+   Repository revision: 1.1.1.1 /usr/local/cvsroot/EiC/src/starteic.c,v
+   Sticky Tag:          (none)
+   Sticky Date:         (none)
+   Sticky Options:      (none)
+
+   Existing Tags:
+        V_3_7                           (revision: 1.1.1.1)
+        EiC_dist                        (branch: 1.1.1)
+
+
+This tells us that we are working with revision 1.1.1.1, which also
+coincides with the revision version 1.1.1.1 with tag V_3_7. While it
+it is not clear from the above information, but this is also revision
+1.1 on the main trunk.
+
+If you already have a modified copy of EiC then just copy your files
+over the top of the files in this EiC directory. However, to simulate
+changes that you may make to the EiC source files, and for this
+example, I will just edit `starteic.c' and change:
+
+	"EiC V3.7 - Copyright (c) 1995 to 1998,"
+to 
+	"myEiC V3.7 - Copyright (c) 1995 to 1998,"
+
+
+Next, commit the changes via:
+
+	% cvs commit -m"update of EiC" starteic.c
+	Checking in starteic.c;
+	/usr/local/cvsroot/EiC/src/starteic.c,v  <--  starteic.c
+	new revision: 1.2; previous revision: 1.1
+	done                    
+
+If I had not specified the file `starteic.c', then the commit command
+would have worked recursively on all files within this directory and
+its subdirectories. It is also a good idea to use `cvs -n update'
+before making a commit, as this will inform you, without making any
+changes, what changes will occur, and will give you the opportunity to
+make appropriate changes as needed; such as adding any new files and
+directories.
+
+Now the CVS repository for EiC will look something like this:
+
+
+                +-----+    +-----+
+ main trunk --> | 1.1 |--->| 1.2 |            
+    (1)         +-----+    +-----+
+                    \
+                     \+---------+
+  Vendor's branch --> | 1.1.1.1 |
+        (1.1.1)       +---------+
+        EiC_dist                .
+                               / \
+                                |
+                             tag V_3_7  
+
+
+Note, only file starteic.c will have the revision number 1.2, all the
+rest will have revision number 1.1.1.1, which is also  1.1. 
+
+When a new version of EiC is released, and for this example I will use
+version 3.7.1, the first thing to do is to make sure you have
+committed your working revision of EiC to CVS (see examples
+above). Then untar the new release of EiC into some temporary
+directory:
+
+	% cd /tmp   
+	% tar xvzf EiCsrc_3_7_1.tgz  
+	% cd EiC
+	% cvs import -m"update EiC V3.7.1" EiC EiC_dist V_3_7_1
+
+The above import command is almost identical to the previous import
+command, with the only difference being that a new release tag is
+being specified, V_3_7_1.
+
+After the above, the repository will look like:
+
+
+                +-----+    +-----+
+ main trunk --> | 1.1 |--->| 1.2 |            
+    (1)         +-----+    +-----+
+                    \
+                     \+---------+     +---------+
+  Vendor's branch --> | 1.1.1.1 | --->| 1.1.1.2 |
+        (1.1.1)       +---------+     +---------+
+        EiC_dist                .               . 
+                               / \             / \
+                                |               |
+                             tag V_3_7      tag V_3_7_1
+
+
+Any files in the Vendor's branch that have changed between version 3.7
+and 3.7.1 will have the revision number 1.1.1.2 else their revision
+number will remain at 1.1.1.1. If there are any files in the main
+trunk that have local changes then CVS will warn that you must merge
+the changes into the main trunk, and for this example, CVS reports:
+
+
+	1 conflicts created by this import.
+	Use the following command to help the merge:
+
+        	cvs checkout -jEiC_dist:yesterday -jEiC_dist EiC
+ 
+
+The above report is warning that not only are changes detected between
+the main trunk and the Vendor's branch, but some of these changes also
+conflict. This means that the same lines of code have been altered
+between the Vendor's source and the main trunk source. To resolve
+these difference first change to your local working EiC directory:
+
+	% cd $HOMEofEiC
+
+After you have commited your working version to the main trunk of
+the repository for EiC, you may also want to tag your current revision:
+
+	% cvs tag TAGNAME
+
+This will allow you to retrieve this revision via: 
+
+	% cvs checkout -r TAGNAME EiC
+
+Next, you must merge all changes on the Vendor's branch into your
+local working copy of EiC (this command only affects the working
+copy):
+
+	% cvs update -d -j EiC_dist
+
+Any conflicts that result from the merge must now be resolved. To find
+all the files with conflicts use the command:
+
+	% cvs -n commit
+
+The only conflict in this example is with file starteic.c (note, the
+original working copy will be saved in file `.#starteic.c.1.2') and
+within starteic.c the conflict is revealed as:
+
+	<<<<<<< starteic.c
+	"myEiC V3.7 - Copyright (c) 1995 to 1998,"
+	=======
+	"EiC V3.7.1 - Copyright (c) 1995 to 1998,"
+	>>>>>>> 1.1.1.2
+
+CVS delimits conflicting sections with <<<<<<<<, ===== and
+>>>>>>. Thus, preventing code with conflicts from being compiled. To
+resolve this conflict, change the above 5 lines into:
+
+	"my"
+	"EiC V3.7.1 - Copyright (c) 1995 to 1998,"
+
+This will also prevent future conflicts with this section of code.
+
+Now, from the EiC home directory commit the whole source tree:
+
+	% cvs commit -m"merged with EiC V3.7.1" 
+
+
+The EiC repository will now look like:
+
+
+                +-----+    +-----+    +-----+
+ main trunk --> | 1.1 |--->| 1.2 |--->| 1.3 |           
+    (1)         +-----+    +-----+    +-----+
+                    \
+                     \+---------+     +---------+
+  Vendor's branch --> | 1.1.1.1 | --->| 1.1.1.2 |
+        (1.1.1)       +---------+     +---------+
+        EiC_dist                .               . 
+                               / \             / \
+                                |               |
+                             tag V_3_7      tag V_3_7_1
+
+
+At this stage you should have the latest changes of EiC incorporated
+into your local version of EiC.
+
+
+TIPS:
+	Keep a backup of your CVS repository.
+	This way, if you get confused and stuff up your
+	CVS repository you can always replace it with
+	the backed up version. 
+
+	Use CVS tags to keep track of various revisions 
+	of your local source.
+
+	Work methodically with CVS. If need be,
+	create a check list that you work through.
+	Below in section `COMMITTING EiC to CVS' are the
+	steps that I go through each time I make 
+	a new commit of EiC.
+
+	More CVS information can be found at:
+	
+		http://www.loria.fr/~molli/cvs-index.html
+
+--------------------------------------------------------------------
+BUILDING THE BINARY DISTRIBUTION
+
+	(*) Change to EiC's top directory and run 
+
+		% config/makeconfig
+
+	    This ensures that the appropriate platform
+	    information has been set.
+
+	(*) Edit the main Makefile to set EiC's
+            version number, EiC_NUM, to that obtained from
+
+		% eic -v
+
+	    If adding a new module to the binary source 
+	    distribution update the variables MODULES 
+            BINTREE and possibly PUB_DIRS in the top 
+	    Makefile.
+
+	(*)  Edit the README.BIN file to reflect
+	     the appropriate version and any new
+             platforms.
+
+	(*)  Change to the documentation directory
+             and make install
+	     
+	     % cd doc
+             % make install	
+	     % cd ..
+
+	(*) To construct the binary distribution: 
+	        
+		% make binary
+
+
+	(*) Now test the binary distribution:
+
+		 % tar xvzf  EiC_PLATFORM.#.#.tgz
+
+	     Inspect the README file
+		
+		 % more EiC/README
+
+	     Follow the instruction for installing EiC.
+	     If needed repeat previous steps until
+	     all is okay. Then 
+
+		% cd EiC/main
+		% make -n installBinary
+		% make installBinary
+		% cd ../..
+		
+		
+	     Test it:
+	
+		% cd test/EiCtests
+		% eictester t*.c
+
+	     Clean up:
+
+		% cd ../../EiC/main
+		% make clobber
+		% cd ../..
+		% rm -rf EiC
+		
+
+	(*)  % make install
+
+	(*) Also, up date EiC's web page to reflect the
+            new distributions.
+
+
+------------------------------------------------------------------
+COMMITTING EIC to CVS
+
+(1) Change directory to EiC's home directory
+
+(2) make clobber
+
+(3) make install      // Fix code, so that gcc
+		      // does not give any warnings
+
+(4) cd test           // run test procedures 
+
+(5) test.sh           // make sure all tests modules pass
+                      // if not understand why
+(5a) cd EiCtests
+(6) ../runsent *.c    // check manually all the *.snt files
+                      // and that they are correct
+(7) rm *.snt
+
+(8) cd ..
+
+(9) make clobber     // check that Lib and include directories
+                     //  are empty. If not, find out why.
+
+(10) cvs -n update > /tmp/list
+
+	* from the information that goes to screen 
+          check for errors
+	* now check the contents of the file /tmp/list 
+	  and if needed, take the appropriate actions
+	* repeat step 10 until no warnings exist etc
+	
+(11) cvs commit -m"UPDATE of EiC " 
+       
+(12) If needed now add a tag:
+
+	* cvs tag V3_0
+
+
+
+
+
+

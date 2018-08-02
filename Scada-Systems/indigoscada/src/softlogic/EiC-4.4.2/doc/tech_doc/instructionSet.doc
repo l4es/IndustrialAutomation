@@ -1,0 +1,435 @@
+
+	EiC's Stack Code (EiC): 
+
+This is start of the document that will out line EiC's runtime
+instruction set.
+
+
+EXPLANATION OF REGISTERS
+
+	ToP          stack top;
+     	p            program counter;
+     	InSt         Instruction set
+    
+	env->lsp     Local stack top
+
+
+REPRESENTATIONS:
+	
+	chars and shorts are handled as ints
+	floats are handled as doubles
+
+
+INSTRUCTION SET:
+
+	each instruction is represented by 
+the following data structure. 
+
+	typedef struct {
+    		unsigned opcode;
+    		val_t  val;
+    		int ext;
+    		unsigned short line;
+	}InsT_t;
+
+
+Each instruction can contain upto 4 related values:
+
+	opcode: the instruction
+	   val: an optional value
+           ext: optional extra information 
+          line: line number that the instruction
+                was generated from (used for listing
+	        and debugging purposes).
+
+
+The format of any given instruction specifies which
+components of the instruction set is required for that
+operation, for example:
+
+Format:
+
+	opcode val ext
+
+specifies that above 3 elements are required
+to carry out the specified instruction.
+
+
+---------------------------------------------------
+Instruction: addTYPE                                         
+
+Fromat:
+		opcode 
+
+Deincrement the stack top and then arithmetically ADD the two top most
+objects, both of the same TYPE, on the runtime stack together and
+leave the result on the top of the runtime stack:
+
+#define addTYPE(x)   ToP--; STK[ToP].v.x += STK[ToP+1].v.x
+ 
+
+where x can be of types:
+
+	double, int, long, uint or ulong
+
+Specific opcodes:
+
+	adddouble, addint, addlong, adduint, addulong,
+
+----------------------------------------------------
+Instruction: andTYPE
+
+Format:
+		opcode
+
+Deincrement the stack top and then perform a Binary (bitwise) AND on
+the two top most objects, both of same TYPE, on the runtime stack
+together and leave the result on the top of the runtime stack:
+
+#define andTYPE(x)  ToP--; STK[ToP].v.x = STK[ToP].v.x & STK[ToP+1].v.x
+
+where x can be of types:
+
+	int, long, uint or ulong.
+
+Specific stack instructions:
+
+	andint, andlong, anduint, andulong
+
+-------------------------------------------------------
+Instruction: addptr2int:
+
+Format:
+		opcode
+	
+Deincrement the stack top and then add pointer to an integer
+and leave the resulting pointer on the stack top:
+
+ToP--; STK[ToP].v.p.p = (char *) STK[ToP].v.p.p + STK[ToP + 1].v.ival;
+
+
+-------------------------------------------------------
+Instruction: addint2ptr
+
+Format:
+		opcode
+
+Deincrement the stack top and then add an integer and 
+a pointer value together and leave the result on the stack
+top:
+
+ToP--; STK[ToP].v.p.p = STK[ToP].v.ival + (char *) STK[ToP+1].v.p.p;
+
+--------------------------------------------------------
+Instruction: assigntype:
+
+Format:
+		opcode	val
+
+Assign an object TYPE to the object on the top of the
+local stack: 
+
+#define assignTYPE	 env->LAR[env->lsp-1].type = InSt[p].val.p.p
+
+Specific opcode:
+
+			assigntype	
+---------------------------------------------------------
+Instruction: borTYPE						
+
+Format:
+		opcode 
+
+Deincrement the stack top and then perform a binary (bitwise) OR
+operation on the two top objects, of TYPE, on the runtime stack and
+leave the result on the top of the runtime stack.
+						
+#define borTYPE(x)  ToP--; STK[ToP].v.x = STK[ToP].v.x | STK[ToP+1].v.x
+
+where x can be:
+
+	int, long, uint or ulong.
+
+Specific opcodes:
+
+	borint, borlong, boruint, borulong
+
+----------------------------------------------------------
+Instruction: call
+
+Format:
+
+	opcode
+
+call the builtin function pointer'd to by
+STK[ToP-1].v.vfunc. Place the number of
+arguments being passed to the function on the
+top of the stack. On return deincrement the
+top of the stack and leave any returned value on 
+the stack top
+
+Specific opcode:
+
+	call
+
+----------------------------------------------------------
+
+char2double
+char2int
+char2ptr
+checkar
+checkar2
+compint
+complong
+compuint
+compulong
+decdouble
+decint
+declong
+decptr
+decuint
+deculong
+divdouble
+divint
+divlong
+divptr
+divuint
+divulong
+double2char
+double2float
+double2int
+double2long
+drefchar
+drefdouble
+dreffloat
+drefint
+dreflong
+drefptr
+drefshort
+drefuchar
+drefuint
+drefulong
+drefuptr
+drefushort
+dupdown
+dupval
+eiccall
+eicreturn
+empty
+endfunc
+eqdouble
+eqint
+eqlong
+eqptr
+equint
+equlong
+fmem
+gedouble
+geint
+gelong
+geptr
+geuint
+geulong
+gtdouble
+gtint
+gtlong
+gtptr
+gtuint
+gtulong
+incdouble
+incint
+inclong
+incptr
+incuint
+inculong
+int2double
+int2long
+int2ptr
+int2uchar
+int2ushort
+ixa
+jmpFdbl
+jmpFint
+jmpFlng
+jmpFptr
+jmpTdbl
+jmpTint
+jmpTlng
+jmpTptr
+jmptab
+jmpu
+landdouble
+landint
+landlong
+landptr
+lda
+ledouble
+leint
+lelong
+leptr
+leuint
+leulong
+long2char
+long2double
+long2int
+long2ptr
+lordouble
+lorint
+lorlong
+lorptr
+loruint
+lorulong
+lshtint
+lshtlong
+lshtuint
+lshtulong
+ltdouble
+ltint
+ltlong
+ltptr
+ltuint
+ltulong
+lval
+massign
+----------------------------------------------------------------
+instruction: minit
+
+Format:
+		opcode val ext
+
+	memory copy or initialisation command; Copy
+`ext' bytes from location val.p.p to the address held
+on the top of the stack.
+
+
+	memcpy(STK[ToP].v.p.p,InSt[p].val.p.p, InSt[p].ext); 
+
+
+Specific opcode:
+	
+	minit
+
+----------------------------------------------------------------
+
+
+modint
+modlong
+moduint
+modulong
+mset
+multdouble
+multint
+multlong
+multuint
+multulong
+nedouble
+negdouble
+negint
+neglong
+neguchar
+neguint
+negulong
+neint
+nelong
+neptr
+neuint
+neulong
+notdouble
+notint
+notlong
+notptr
+notuint
+notulong
+ptr2int
+ptr2long
+pushdouble
+pushint
+pushlong
+pushptr
+pushuint
+pushulong
+pushval
+reducear
+refchar
+refdouble
+reffloat
+refint
+reflong
+refmem
+refptr
+refshort
+refuint
+refulong
+refuptr
+rshtint
+rshtlong
+rshtuint
+rshtulong
+rvalchar
+rvaldouble
+rvalfloat
+rvalint
+rvallong
+rvalptr
+rvalshort
+rvaluchar
+rvaluint
+rvalulong
+rvaluptr
+rvalushort
+
+---------------------------------------------------
+Instruction: stoTYPE
+
+Format:
+
+	opcode val ext
+
+
+	store the data type at the top of the
+stack into the data stack defined by the 
+instruction ext at index position defined
+by the ivalue of the instruction value.
+
+
+#define stoTYPE(x)   AR[InSt[p].ext][InSt[p].val.ival].v.x =STK[ToP].v.x
+
+where x can be of type
+
+	char, short , int, uint, long, float, double, safe pointer
+	unsafe pointer and val.
+
+specific instructions:
+
+	stochar, stodouble, stofloat, stoint, stolong, stoptr, stoshort, stouint
+	stoulong, stouptr, stoval
+----------------------------------------------------
+
+
+subdouble
+subint
+sublong
+subptr
+subptrint
+subuint
+subulong
+uint2char
+uint2double
+uint2long
+uint2ptr
+ulong2char
+ulong2double
+ulong2int
+ulong2ptr
+xorint
+xorlong
+xoruint
+xorulong
+
+
+
+
+
+
+
+

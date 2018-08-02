@@ -1,0 +1,225 @@
+G:\scada\src\softlogic\EiC-4.4.2>make all
+
+G:\scada\src\softlogic\EiC-4.4.2>cd config 
+
+G:\scada\src\softlogic\EiC-4.4.2\config>nmake -f makefile.w32  
+	cl  -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG -o genstdio.exe genstdio.c
+genstdio.c
+Microsoft (R) Incremental Linker Version 6.00.8447
+Copyright (C) Microsoft Corp 1992-1998. All rights reserved.
+
+/out:genstdio.exe 
+/out:genstdio.exe 
+genstdio.obj 
+	genstdio.exe
+need to check string.h
+need to check time.h
+	copy stdio.h ..\include\sys
+        1 file copiati.
+	copy stdlib.h ..\include\sys
+        1 file copiati.
+	copy errno.h ..\include\sys
+        1 file copiati.
+	copy stdtypes.h ..\include\sys
+        1 file copiati.
+	copy float.h   ..\include\sys
+        1 file copiati.
+	copy signal.h    ..\include
+        1 file copiati.
+	copy limits.h    ..\include
+        1 file copiati.
+
+G:\scada\src\softlogic\EiC-4.4.2\config>cd .. 
+
+G:\scada\src\softlogic\EiC-4.4.2>cd src 
+
+G:\scada\src\softlogic\EiC-4.4.2\src>nmake -f makefile.w32  
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG cdecl.c
+cdecl.c
+cdecl.c(269) : warning C4761: integral size mismatch in argument; conversion supplied
+cdecl.c(297) : warning C4761: integral size mismatch in argument; conversion supplied
+cdecl.c(343) : warning C4761: integral size mismatch in argument; conversion supplied
+cdecl.c(231) : warning C4761: integral size mismatch in argument; conversion supplied
+cdecl.c(241) : warning C4761: integral size mismatch in argument; conversion supplied
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG eicmod.c
+eicmod.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG emitter.c
+emitter.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG error.c
+error.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG func.c
+func.c
+func.c(335) : warning C4550: expression evaluates to a function which is missing an argument list
+func.c(280) : warning C4761: integral size mismatch in argument; conversion supplied
+func.c(283) : warning C4761: integral size mismatch in argument; conversion supplied
+func.c(285) : warning C4761: integral size mismatch in argument; conversion supplied
+func.c(287) : warning C4761: integral size mismatch in argument; conversion supplied
+func.c(289) : warning C4761: integral size mismatch in argument; conversion supplied
+func.c(294) : warning C4761: integral size mismatch in argument; conversion supplied
+func.c(296) : warning C4761: integral size mismatch in argument; conversion supplied
+func.c(301) : warning C4761: integral size mismatch in argument; conversion supplied
+func.c(303) : warning C4761: integral size mismatch in argument; conversion supplied
+func.c(307) : warning C4761: integral size mismatch in argument; conversion supplied
+func.c(309) : warning C4761: integral size mismatch in argument; conversion supplied
+func.c(313) : warning C4761: integral size mismatch in argument; conversion supplied
+func.c(314) : warning C4761: integral size mismatch in argument; conversion supplied
+func.c(318) : warning C4761: integral size mismatch in argument; conversion supplied
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG interpre.c
+interpre.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG lexer.c
+lexer.c
+lexer.c(194) : warning C4761: integral size mismatch in argument; conversion supplied
+lexer.c(198) : warning C4761: integral size mismatch in argument; conversion supplied
+lexer.c(213) : warning C4761: integral size mismatch in argument; conversion supplied
+lexer.c(299) : warning C4761: integral size mismatch in argument; conversion supplied
+lexer.c(300) : warning C4761: integral size mismatch in argument; conversion supplied
+lexer.c(360) : warning C4761: integral size mismatch in argument; conversion supplied
+lexer.c(373) : warning C4761: integral size mismatch in argument; conversion supplied
+lexer.c(427) : warning C4761: integral size mismatch in argument; conversion supplied
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG callback.c
+callback.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG optomizer.c
+optomizer.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG parser.c
+parser.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG preexpr.c
+preexpr.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG preproc.c
+preproc.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG readline.c
+readline.c
+readline.c(296) : warning C4761: integral size mismatch in argument; conversion supplied
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG stab.c
+stab.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG starteic.c
+starteic.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG symbol.c
+symbol.c
+symbol.c(85) : warning C4761: integral size mismatch in argument; conversion supplied
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG typemod.c
+typemod.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG typesets.c
+typesets.c
+typesets.c(1249) : warning C4113: 'void (__cdecl *)()' differs in parameter lists from 'void (__cdecl *)(int ,struct token_t *,struct token_t *)'
+typesets.c(2305) : warning C4113: 'void (__cdecl *)()' differs in parameter lists from 'void (__cdecl *)(unsigned int ,struct token_t *,struct token_t *)'
+typesets.c(2306) : warning C4113: 'void (__cdecl *)()' differs in parameter lists from 'void (__cdecl *)(unsigned int ,struct token_t *,struct token_t *)'
+typesets.c(2307) : warning C4113: 'void (__cdecl *)()' differs in parameter lists from 'void (__cdecl *)(unsigned int ,struct token_t *,struct token_t *)'
+typesets.c(2308) : warning C4113: 'void (__cdecl *)()' differs in parameter lists from 'void (__cdecl *)(unsigned int ,struct token_t *,struct token_t *)'
+typesets.c(2309) : warning C4113: 'void (__cdecl *)()' differs in parameter lists from 'void (__cdecl *)(unsigned int ,struct token_t *,struct token_t *)'
+typesets.c(2310) : warning C4113: 'void (__cdecl *)()' differs in parameter lists from 'void (__cdecl *)(unsigned int ,struct token_t *,struct token_t *)'
+typesets.c(2314) : warning C4113: 'void (__cdecl *)()' differs in parameter lists from 'void (__cdecl *)(unsigned int ,struct token_t *,struct token_t *)'
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ymem.c
+ymem.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG reset.c
+reset.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/stdio.c
+stdio.c
+../module/stdClib/src/stdio.c(1127) : warning C4700: local variable 'v' used without having been initialized
+../module/stdClib/src/stdio.c(1134) : warning C4700: local variable 'v' used without having been initialized
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/stdlib.c
+stdlib.c
+../module/stdClib/src/stdlib.c(98) : warning C4700: local variable 'v' used without having been initialized
+../module/stdClib/src/stdlib.c(258) : warning C4700: local variable 'v' used without having been initialized
+../module/stdClib/src/stdlib.c(317) : warning C4700: local variable 'v' used without having been initialized
+../module/stdClib/src/stdlib.c(333) : warning C4700: local variable 'v' used without having been initialized
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/string.c
+string.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/dirent.c
+dirent.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/assert.c
+assert.c
+../module/stdClib/src/assert.c(32) : warning C4113: 'union VaL (__cdecl *)()' differs in parameter lists from 'union VaL (__cdecl *)(void )'
+../module/stdClib/src/assert.c(24) : warning C4700: local variable 'v' used without having been initialized
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/time.c
+time.c
+../module/stdClib/src/time.c(112) : warning C4113: 'union VaL (__cdecl *)()' differs in parameter lists from 'union VaL (__cdecl *)(void )'
+../module/stdClib/src/time.c(113) : warning C4113: 'union VaL (__cdecl *)()' differs in parameter lists from 'union VaL (__cdecl *)(void )'
+../module/stdClib/src/time.c(114) : warning C4113: 'union VaL (__cdecl *)()' differs in parameter lists from 'union VaL (__cdecl *)(void )'
+../module/stdClib/src/time.c(115) : warning C4113: 'union VaL (__cdecl *)()' differs in parameter lists from 'union VaL (__cdecl *)(void )'
+../module/stdClib/src/time.c(116) : warning C4113: 'union VaL (__cdecl *)()' differs in parameter lists from 'union VaL (__cdecl *)(void )'
+../module/stdClib/src/time.c(117) : warning C4113: 'union VaL (__cdecl *)()' differs in parameter lists from 'union VaL (__cdecl *)(void )'
+../module/stdClib/src/time.c(118) : warning C4113: 'union VaL (__cdecl *)()' differs in parameter lists from 'union VaL (__cdecl *)(void )'
+../module/stdClib/src/time.c(119) : warning C4113: 'union VaL (__cdecl *)()' differs in parameter lists from 'union VaL (__cdecl *)(void )'
+../module/stdClib/src/time.c(120) : warning C4113: 'union VaL (__cdecl *)()' differs in parameter lists from 'union VaL (__cdecl *)(void )'
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/math.c
+math.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/stdarg.c
+stdarg.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/errno.c
+errno.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/stdClib.c
+stdClib.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/eicfftoa.c
+eicfftoa.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/itoa.c
+itoa.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/stat.c
+stat.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/unistd.c
+unistd.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/fcntl.c
+fcntl.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/ctype.c
+ctype.c
+../module/stdClib/src/ctype.h(11) : warning C4068: unknown pragma
+../module/stdClib/src/ctype.h(51) : warning C4068: unknown pragma
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/strround.c
+strround.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ../module/stdClib/src/signal.c
+signal.c
+	cl  -c			 -I.			 -DWIN32			 -D__WIN32__		 -DPLATFORM=PWIN32	 -DNO_DIRENT		 -DNO_PIPE		 -DNO_STAT		 -DNO_UNISTD		 -DNO_FCNTL		 -DNO_LONG_LONG		 -DNO_TERMIOS		 -DNO_POSIX	 -DNO_LONGLONG ..\main\main.c
+main.c
+	cl -o eic.exe   cdecl.obj eicmod.obj emitter.obj error.obj func.obj interpre.obj lexer.obj callback.obj optomizer.obj parser.obj preexpr.obj preproc.obj readline.obj stab.obj starteic.obj symbol.obj typemod.obj typesets.obj ymem.obj reset.obj stdio.obj stdlib.obj string.obj dirent.obj assert.obj time.obj math.obj stdarg.obj errno.obj stdClib.obj eicfftoa.obj itoa.obj stat.obj unistd.obj fcntl.obj ctype.obj strround.obj signal.obj main.obj 
+Microsoft (R) Incremental Linker Version 6.00.8447
+Copyright (C) Microsoft Corp 1992-1998. All rights reserved.
+
+/out:cdecl.exe 
+/out:eic.exe 
+cdecl.obj 
+eicmod.obj 
+emitter.obj 
+error.obj 
+func.obj 
+interpre.obj 
+lexer.obj 
+callback.obj 
+optomizer.obj 
+parser.obj 
+preexpr.obj 
+preproc.obj 
+readline.obj 
+stab.obj 
+starteic.obj 
+symbol.obj 
+typemod.obj 
+typesets.obj 
+ymem.obj 
+reset.obj 
+stdio.obj 
+stdlib.obj 
+string.obj 
+dirent.obj 
+assert.obj 
+time.obj 
+math.obj 
+stdarg.obj 
+errno.obj 
+stdClib.obj 
+eicfftoa.obj 
+itoa.obj 
+stat.obj 
+unistd.obj 
+fcntl.obj 
+ctype.obj 
+strround.obj 
+signal.obj 
+main.obj 
+	lib    cdecl.obj eicmod.obj emitter.obj error.obj func.obj interpre.obj lexer.obj callback.obj optomizer.obj parser.obj preexpr.obj preproc.obj readline.obj stab.obj starteic.obj symbol.obj typemod.obj typesets.obj ymem.obj reset.obj stdio.obj stdlib.obj string.obj dirent.obj assert.obj time.obj math.obj stdarg.obj errno.obj stdClib.obj eicfftoa.obj itoa.obj stat.obj unistd.obj fcntl.obj ctype.obj strround.obj signal.obj main.obj
+Microsoft (R) Library Manager Version 6.00.8447
+Copyright (C) Microsoft Corp 1992-1998. All rights reserved.
+
+	rename cdecl.lib eic.lib
+	echo "Done EiC"
+"Done EiC"
+
+G:\scada\src\softlogic\EiC-4.4.2\src>cd .. 

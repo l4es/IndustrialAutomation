@@ -1,0 +1,64 @@
+\section{Installation}
+
+First, download OpenDAX. See the download page on the www.opendax.org website for details on how to get the source code.  Right now the only distribution format is a Gzipped Tar file.  You can unzip this file with the following command \ldots
+
+\verb|tar -xzvf opendax-0.4|
+
+This will unarchive the file and put it in the ./opendax-0.4 directory.  The version number may be different.  0.4 was the version as of this writing.
+
+You can also download the program from the Subversion repository with this command \ldots
+
+\begin{verbatim}
+svn co https://opendax.svn.sourceforge.net/svnroot/opendax opendax
+\end{verbatim}
+The subversion username is \texttt{guest} and the password is blank.
+
+If you get the source code from the Subversion repository you will have to run the bootstrap.sh file in the root directory of the package to set up autoconf and automake. Otherwise you should be able to simply run...
+
+\begin{verbatim}
+  cd opendax-0.4
+  ./configure
+  make
+  sudo make install 
+\end{verbatim} 
+
+This should install the program on most operating systems but since \opendax is still in the early development stage it is likely that there will be problems. Please help us figure out how to get autoconf and automake to work properly on the type of system that you are using.
+
+OpenDAX has two library dependencies at this point. The readline library is used by the daxc command line module. If not there, daxc should still compile but with reduced functionality.
+
+The second dependency is Lua Version 5.1. Lua libraries will likely be a problem. All the modules and the opendax server itself use Lua as the configuration file language.
+
+One of the problems with the lua libraries is that different distributions will install the libraries with different names for the libraries and header files. The configure script tries to figure out where they are but you might have to help to get configure to find them.
+
+Configure will look for libraries in the ld search path with these names, liblua, liblua51 and liblua5.1. If your distribution has another name for the libraries please let us know.
+
+Configure will look for the header files, lua.h, luaxlib.h and lualib.h in the directories lua/ lua51/, lua5.1/ and in the normal include directories. If it doesn't find any of these there will likely be compile time errors.
+
+\subsection{Mac OS X}
+Download the source code file from www.lua.org and uncompress the file somewhere on your hard disk. At the time of this writing the lastet version was 5.1.4.
+\begin{verbatim}
+  tar -xzvf lua-5.1.4.tar.gz
+\end{verbatim}
+
+Then it's a simple matter of...
+\begin{verbatim}
+  cd lua-5.1.4
+  make macosx
+  sudo make install
+\end{verbatim}
+
+This is the easiest way that I have found to satisfy the Lua library requirements on OS X. This statically links the library but it's tiny so that should not be too much of an issue. This is good enough for development at this point.
+
+The readline library should already be installed with OS X and should not cause a problem.
+
+If you downloaded the program from the Subversion repository you may have to modify the \emph{bootstrap.sh} file.  OS X renamed the \emph{libtoolize} program for some reason.  In OSX this program is named \emph{glibtoolize}.  Make sure this line in \emph{bootstrap.sh} is correct or you will get errors.  If you downloaded the distribution file you do not have to worry about the \emph{bootstrap.sh} file at all.
+\subsection{Ubuntu Linux}
+
+Install the following packages...
+\begin{verbatim}
+  sudo apt-get install liblua5.1-0-dev lua5.1 lua5.1-doc
+\end{verbatim}
+Lua depends on libreadline as well so once these packages are installed all of the OpenDAX dependencies should be met. This was last tried on Ubuntu 9.10.
+\subsection{FreeBSD}
+
+I have had trouble getting the Lua dependencies met with FreeBSD. I can get the libraries installed and configure finds them but the linker does not find them when make is run for some reason. I don't know that much about FreeBSD and frankly I don't use it so I had little motivation to work out the problems. I'd love it if someone could figure it out and drop me a line so that I can include those notes here. 

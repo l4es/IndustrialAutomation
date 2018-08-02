@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Modbus RTU Simulator Help</TITLE>
+<META NAME="Generator" CONTENT="TextPad 4.0">
+<META NAME="Author" CONTENT="Conrad Braam">
+<META NAME="Keywords" CONTENT="drivers">
+<META NAME="Description" CONTENT="Modbus RTU Simulator Help">
+</HEAD>
+
+<BODY>
+<CENTER><H3><FONT COLOR="#AOAO99">MODBUS Serial RTU Simulator Help
+</FONT></H3></CENTER><HR>
+
+<h3>Purpose & features</h3>
+
+<p>This simulator was written to allow the testing of a MODBUS RTU serial driver
+without having to get 255 little MODBUS PLCs into one office. It is not, by any
+means, a full implementation of the protocol; it implements only the common functions
+used in MODBUS.</p>
+
+<p>It surpasses the limitations in other programs we have found in the
+past by:</p>
+
+<ul>
+  <li>Simulate more than one RTU at once. (register values shared for all RTUs).</li>
+  <li>Allows editing and display of all the registers.</li>
+  <li>Allow scanning of registers not actually in the display.</li>
+  <li>Running on &gt;1 comm ports (You have to run two copies of the program.). You need to run the
+    first copy; then, when you run it again, it defaults to use the next free RS-232 port.
+    All copies will use the same settings though.</li>
+  <li>A way of disabling just certain stations. (Just click on the boxes at the bottom.)</li>
+  <li>Load and save values you type into each register (the file is saved in the same folder) as well
+	as simulate changes in the values. Hotkey &lt;CTRL&gt;-L =Load and &lt;CTRL&gt;-A for sAve.</li>
+  <li>You can specify the PDU length (Protocol Data Unit) to simulate RTU's with different internal
+telegram buffer sizes. Hotkey &lt;CTRL&gt;-M</li>
+  <li>Display values in different formats hex/dec etc.</li>
+  <li>Specify responsiveness of the simulator to simulate slow hardware. Hotkey &lt;CTRL&gt;-S .</li>
+  <li>Simulate certain types of comms errors that would be hard to do in a &quot;lab&quot;
+situation.</li>
+  <li>A basic comms debugger showing request/response. Hotkey : &lt;CTRL&gt;-C.</li>
+  <li>Emulation to simulate MOSCAD RTU on modbus. Hotkey &lt;CTRL&gt;-S or &lt;CTRL&gt;-M . </li>
+  <li>Simulate noisy comms lines. Hotkey &lt;CTRL&gt;-N. </li>
+</ul>
+
+<h3>Not supported</h3>
+<ul>
+  <li>ASCII protocol support.</li>
+  <li>This application is not intended as a full implementation of MODBUS, it is not commercially supported
+    and no liability is held for any damage or application changes made as a result of it's use.</li>
+</ul>
+
+<h3>Running this program</h3>
+<p>This is not a full feature list, just the basics, which most will get in 5 minutes anyway.</p>
+
+<ul>
+  <li>Launch the app, &quot;mod_rssim.exe&quot; and it should open the 1st free RS-232 port,
+    click on the <b>Port Settings..."</b> button to change any settings. Settings are saved
+    to Windows<FONT SIZE="-1"><SUP>TM</SUP></FONT> registry.
+  <li>Hook up a cable (just a 2,3 and 7 crossed ,4,5 looped, and 6,8,20 looped should be fine,
+    hardware handshaking is not my strong side), but there is some support there.</li>
+  <li>The boxes at the bottom work like indicators to show which stations are active; the gray
+    outline of each box will change color (they turn off after five seconds), and clicking them
+    disables each station (only 60 are shown). The green background turns red to show a disabled
+    station. Disabled stations will still show activity, but the sim. will just not respond back.</li>
+  <li>Double-click on the list-view over a register, to edit it's value, double-clicking on
+    digital I/O just toggle them.</li>
+  <li>Switch between the Hex and Decimal views. (adddresses also come in hex, this is beta.)</li>
+
+  <BR><b><i>Some advanced options:</b></i>
+  <li>New option for starting with all devices offline added.</li>
+  <li><b>Load</b> will not work unless you have saved first.</li>
+  <li><b>Save</b> will save all the register values to a flat binary file (don't edit it, I can't)
+    called 'modbus.dat', in the current folder. This is nice to allow you to fill the registers with
+    values, and then come back latter to the same setup.</li>
+  <li>Click on <b>Animation Settings...</b> to change the color of the indicators at the bottom,
+    and set up some simulation data.</li>
+  <li><b>Zero values</b> will clear all values (also the digitals become 0).</li>
+  <li>The &quot;responsiveness&quot; setting changes the delay in the program before it responds to a valid request.</li>
+  <li>Report any problems after trying for at least a day to figure out what U got wrong :-)</li>
+</ul>
+
+<a name=More><h3>FAQ /More</h3></a>
+
+<ul>
+  <li><b>Q:&nbsp;</b>What is a MODBUS RTU? <BR><b>A:</b>&nbsp;It's a PLC, if that does not
+    make sense, visit www.modicon.com.</li>
+  <li>Some features are not documented at this time, look around.</li>
+  <li>There is however one variation on the MODBUS documentation, for function force single coil 0x05 -the simulator
+    responds with the value before modifying the actual coil, not after modifying the coil. This was wrong, but
+    was easiest to implement, and there is now a setting for this. (See Emulation settings - Hotkey &lt;CTRL&gt;-M)</li>
+  <li>We also have an Ethernet TCP/IP version of this program (it is an earlier and less fancy version).</li>
+  <li>Visit the place I work, <a href="http://www.adroitscada.com" target="new">http://www.adroitscada.com</a>, or
+    mail me at <a href="mailto:conradb@adroit.co.za">conradb@adroit.co.za</a>.</li>
+</ul>
+
+<HR>
+<p><font size="1">This page was developed using TextPad &quot;http://www.textpad.com/
+&quot;, do not edit on fear of death.</font>
+</p>
+<p align="right">Z&aring;PHo&ETH;</p>
+
+</BODY>
+</HTML>

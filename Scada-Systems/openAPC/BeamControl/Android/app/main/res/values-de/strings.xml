@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ <string name="app_name">BeamControl / Smart Interface</string>
+
+ <string name="prefs">Einstellungen</string>
+ <string name="really_exit_app">Die Applikation wirklich beenden?</string>
+ <string name="really_delete_conn">Diese Verbindung mit all ihren Einstellungen wirklich vollständig löschen?</string>
+ <string name="ok">OK</string>
+ <string name="no">Nein</string>    
+ <string name="exit">Beenden</string>
+ <string name="delete">Löschen</string>
+ <string name="about">Über</string>
+ <string name="cancel">Abbrechen</string>
+ <string name="host">IP/Hostname</string>
+ <string name="enter_ip_text">Bitte die IP der neu hinzuzufügenden Verbindung eingeben</string>
+
+ <string name="prefsTextSize">Schriftgröße</string>
+ <string name="prefsTextSizeText">Textgröße - größere Texte sind leichter lesbar, benötigen aber auch mehr Platz</string>
+ <string name="prefsScreenLight">Bildschirmhelligkeit / Standby</string>
+ <string name="prefsScreenLightText">Legt das Verhalten des Bildschirmes fest, wenn das Gerät in den Standby-Modus wechselt (erfordert einen Neustart der Applikation)</string>
+ <string name="prefsTheme">Oberflächendesign</string>
+ <string name="prefsThemeText">Das Aussehen der Oberfläche (erfordert einen Neustart der Applikation)</string>
+
+ <string name="detProjectText">Projekt:</string>
+ <string name="detProjectError">Fehler:</string>
+ <string name="detProjectParts">Teile:</string>
+ <string name="detProjectProgress">Baufortschritt:</string>
+ <string name="detTimeText">Letzte Aktualisierung:</string>
+
+ <string name="stateDisonnected">Verbindung unterbrochen</string>
+ <string name="stateReady">Fertig</string>
+ <string name="stateIdle">Leerlauf</string>
+ <string name="stateMarking">Markiert</string>
+ <string name="stateError">Fehler</string>
+ <string name="statePaused">Pausiert</string>
+ <string name="stateUnknown">unbekannt</string>
+
+ <string name="readyToIdle">Wechsel von "Fertig" zu "Leerlauf"</string>
+ <string name="markingToReady">Wechsel von "Markiert" zu "Fertig"</string> 
+</resources>

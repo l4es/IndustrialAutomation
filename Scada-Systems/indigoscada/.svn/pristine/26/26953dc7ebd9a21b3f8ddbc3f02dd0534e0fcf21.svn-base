@@ -1,0 +1,66 @@
+on
+	(void)
+2013 (base 10) = 2202120 (base 3)
+strdel("helloworld", 0, 2) => "lloworld"
+strdelch("eo", "helloworld") => "hllwrld"
+Warning: in c_cmnt.c near line 156: Flow reaches end of non-void function `main'
+/* +++Date last modified: 05-Jul-1997 */
+/* Extract comments from a C program source file.
+**
+** This program acts as a filter to copy comments in a C source
+** file to the output.  Each comment includes the starting and
+** ending delimiters and is followed by a newline.
+**
+** Three #ifdef options are defined:
+**   INHIBIT_TRIGRAPHS prevents recognition of trigraphs, which
+**      can affect detection of escaped characters,
+**      i.e., ??/" is an escaped quote.
+**   TRANSLATE_TRIGRAPHS causes the output to have trigraphs
+**      converted to the normal C characters.
+**   CPP_MODE causes "//" to start a comment.
+** The default for these symbols is undefined, resulting in
+** operation on strict ANSI source, except as noted below.
+**
+** What makes this program interesting is that comment detection
+** should be inhibited within strings and character constants.
+**
+** Note: The name of a header following #include can, under ANSI,
+** contain any sequence of characters, except \n and the closing
+** > or ".  This program doesn't inhibit comment, string, or character
+** constant detection within the header name, as an ANSI parser must.
+**
+** Written by and contributed to the public domain by
+** Thad Smith III,   Boulder, CO,  October 1990.
+*/
+/* default: recognize trigraphs */
+/* get char with trigraph xlate */
+/* get comment char w/ t.g. xlate */
+/* default: no comment t.g. xlate */
+/*
+**  get next source character or EOF
+*/
+/* boolean: convert trigraphs */
+/* next 3 characters */
+/* shift in next source character */
+/* perform trigraph substitution */
+/* no substitution */
+/* don't process trigraphs */
+/* previous character      */
+/* current input character */
+/* prime the pump */
+/* get first char */
+/* in non-comment area */
+/* possible start of comment */
+/* process comment */
+/* copy comment to stdout */
+/*  '//' comment */
+/* test current char */
+/* start of string */
+/* start of (possibly multi-byte) char constant */
+/* save delimiter */
+/* scan through character constant,
+                                          ** discarding escape chars
+                                          */
+"DougFunny" backwards is "ynnuFguoD"
+etphi(11) = 10
+	0

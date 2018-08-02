@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibJPEG", "LibJPEG.vcproj", "{E63DF9E7-321F-4CB7-A62F-26986C1E7B4E}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{E63DF9E7-321F-4CB7-A62F-26986C1E7B4E}.Debug.ActiveCfg = Debug|Win32
+		{E63DF9E7-321F-4CB7-A62F-26986C1E7B4E}.Debug.Build.0 = Debug|Win32
+		{E63DF9E7-321F-4CB7-A62F-26986C1E7B4E}.Release.ActiveCfg = Release|Win32
+		{E63DF9E7-321F-4CB7-A62F-26986C1E7B4E}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

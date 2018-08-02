@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>cgihtml Documentation</TITLE>
+<LINK HREF="cgihtml-1.html" REL=next>
+
+
+</HEAD>
+<BODY>
+<A HREF="cgihtml-1.html">Next</A>
+Previous
+Contents
+<HR>
+<H1>cgihtml Documentation</H1>
+
+<H2>Eugene Eric Kim, <CODE>eekim@eekim.com</CODE></H2>v1.69, March 18, 1998
+<P><HR>
+<EM>Documentation for cgihtml, a set of CGI and HTML routines written in C.</EM>
+<HR>
+<P>
+<H2><A NAME="toc1">1.</A> <A HREF="cgihtml-1.html">Introduction</A></H2>
+
+<UL>
+<LI><A HREF="cgihtml-1.html#ss1.1">1.1 Where to Find cgihtml</A>
+</UL>
+<P>
+<H2><A NAME="toc2">2.</A> <A HREF="cgihtml-2.html">What is cgihtml?</A></H2>
+
+<UL>
+<LI><A HREF="cgihtml-2.html#ss2.1">2.1 What are the advantages of cgihtml?</A>
+<LI><A HREF="cgihtml-2.html#ss2.2">2.2 Why C?</A>
+<LI><A HREF="cgihtml-2.html#ss2.3">2.3 Latest changes</A>
+<LI><A HREF="cgihtml-2.html#ss2.4">2.4 Files included in this package</A>
+</UL>
+<P>
+<H2><A NAME="toc3">3.</A> <A HREF="cgihtml-3.html">Installation</A></H2>
+
+<UL>
+<LI><A HREF="cgihtml-3.html#ss3.1">3.1 Requirements</A>
+<LI><A HREF="cgihtml-3.html#ss3.2">3.2 Obtaining and unpacking the distribution</A>
+<LI><A HREF="cgihtml-3.html#ss3.3">3.3 Compiling the library</A>
+<LI><A HREF="cgihtml-3.html#ss3.4">3.4 Porting</A>
+</UL>
+<P>
+<H2><A NAME="toc4">4.</A> <A HREF="cgihtml-4.html">Using cgihtml</A></H2>
+
+<UL>
+<LI><A HREF="cgihtml-4.html#ss4.1">4.1 Basic programming structure</A>
+<LI><A HREF="cgihtml-4.html#ss4.2">4.2 Compiling your program</A>
+</UL>
+<P>
+<H2><A NAME="toc5">5.</A> <A HREF="cgihtml-5.html">Routines</A></H2>
+
+<UL>
+<LI><A HREF="cgihtml-5.html#ss5.1">5.1 cgi-lib.h</A>
+<LI><A HREF="cgihtml-5.html#ss5.2">5.2 html-lib.h</A>
+<LI><A HREF="cgihtml-5.html#ss5.3">5.3 cgi-llist.h</A>
+<LI><A HREF="cgihtml-5.html#ss5.4">5.4 string-lib.h</A>
+</UL>
+<P>
+<H2><A NAME="toc6">6.</A> <A HREF="cgihtml-6.html">Example programs</A></H2>
+
+<UL>
+<LI><A HREF="cgihtml-6.html#ss6.1">6.1 test.cgi</A>
+<LI><A HREF="cgihtml-6.html#ss6.2">6.2 query-results</A>
+<LI><A HREF="cgihtml-6.html#ss6.3">6.3 mail.cgi</A>
+<LI><A HREF="cgihtml-6.html#ss6.4">6.4 index-sample.cgi</A>
+<LI><A HREF="cgihtml-6.html#ss6.5">6.5 ignore.cgi</A>
+</UL>
+<P>
+<H2><A NAME="toc7">7.</A> <A HREF="cgihtml-7.html">Miscellaneous</A></H2>
+
+<UL>
+<LI><A HREF="cgihtml-7.html#ss7.1">7.1 Release notes</A>
+<LI><A HREF="cgihtml-7.html#ss7.2">7.2 Future releases</A>
+<LI><A HREF="cgihtml-7.html#ss7.3">7.3 Credits</A>
+</UL>
+<HR>
+<A HREF="cgihtml-1.html">Next</A>
+Previous
+Contents
+</BODY>
+</HTML>

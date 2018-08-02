@@ -1,0 +1,92 @@
+# Light OPC Server development library
+#
+# Copyright (c) 2001  Timofei Bondarenko
+#
+# Makefile for MinGW/gcc
+#
+#############################################################
+
+CCDIR    =d:/tools/mingw
+#PTHRDIR  =../../tools/pthreads
+#PTHRFLAG =-I$(PTHRDIR)/include -DLO_USE_PTHREADS=1
+#PTHRLIB  =$(PTHRDIR)/lib/libpthreadGC.a
+ULOGINCL =../unilog
+ULOGLIB  =../unilog
+OPCDIR 	 =d:/Program\ Files/Common\ Files/OPC\ Foundation/Include
+#INCLUDES  = -I$(CCDIR)/include
+INCLUDES  =-I$(ULOGINCL) -I$(OPCDIR) $(PTHRFLAG) \
+-idirafter ./fake-inc 
+
+# The ./fake-inc can be excluded on w32api-1.5 and later.
+
+#OPTS=-DNONAMELESSUNION
+# Bug in gcc prior v3.1 - members of a nameless unions in "C" have zero 
+# offset relatively to containing struct. So we used -xc++ here.
+#
+# Uncomment the next line for gcc v2.95.3-7
+#GCC_FLAGS =-xc++ -fvtable-thunks=2 
+
+# Uncomment the next line for gcc v3.1
+GCC_FLAGS =-fno-exceptions -xc++
+#-fno-enforce-eh-specs -mno-align-stringops 
+#-falign-functions=1 -falign-loops=1 -falign-labels=1 -falign-jumps=1 
+
+# -DUSE_LOG=-1 will remove any references to unilog.dll
+
+CFLAGS_DEBUG=-O2 -mcpu=i486 -pipe $(GCC_FLAGS) -DUSE_LOG=ll_DEBUG 
+# Yes! I've tried out them all. The fastest code on P4 gave:
+# -Os i686 gcc2.95;  -O2 i486 gcc3.2.2
+ULOPTS   =-DUL_PUBLIC=__declspec(dllimport)
+CFLAGS   =-mthreads $(CFLAGS_DEBUG) $(ULOPTS)
+#-Wall -Wno-parentheses
+
+# Uncomment one choice:
+#SUBSYSTEM=-Wl,--subsystem,windows
+SUBSYSTEM=-Wl,--subsystem,console
+
+LIBS =-L$(ULOGLIB) -lunilog -ladvapi32 -lole32 -loleaut32 -luuid \
+$(PTHRLIB) -lstdc++
+# On gcc3.2 -lsupc++ may gaves some gain over -lstdc++
+
+CC=gcc
+LD=gcc
+
+.SUFFIXES: .rc .lib .def .dll
+
+DLL = lightopc.dll
+IMPLIB = libightopc.a
+TEST =lopcsamp.exe lopcsamd.dll
+ALLTARG = $(DLL) $(IMPLIB) lightopc.lib $(TEST)
+
+############################################################
+# Objects & common rules
+O=o
+include objects.mk
+
+test: lopcsamp.exe lopcsamd.dll
+
+.def.lib:
+	lib /MACHINE:i386 /DEF:$<
+
+
+$(DLL) $(IMPLIB): 	$(OBJS)
+	$(LD) -shared -o$(DLL) -Wl,--out-implib=$(IMPLIB) \
+lightopc.def $^ $(LIBS) -s \
+-Wl,-M > lightopc.map
+#	strip $(DLL)
+
+proff: sample.cpp $(OBJS0)
+	gcc -pg -fvtable-thunks=2 $(INCLUDE) $^ $(LIBS)
+
+lopcsamd.dll: sample.$(O) $(IMPLIB)
+	$(LD) -shared -o $@ lopcsamg.def $^ $(LIBS) -s \
+-Wl,-M > lopcsamd.map
+# GNU ld doesn't understand 'PRIVATE'
+#	strip $@
+
+lopcsamp.exe: sample.$(O) $(IMPLIB)
+	$(CC) $(SUBSYSTEM) -o $@ $^ $(LIBS) -s \
+-Wl,-M > lopcsamp.map
+#	strip $@
+
+####################### the end ###########################

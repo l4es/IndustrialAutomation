@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibTIFF", "LibTIFF.vcproj", "{EDC3A873-B793-429C-947C-30F2A0E72A91}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{EDC3A873-B793-429C-947C-30F2A0E72A91}.Debug.ActiveCfg = Debug|Win32
+		{EDC3A873-B793-429C-947C-30F2A0E72A91}.Debug.Build.0 = Debug|Win32
+		{EDC3A873-B793-429C-947C-30F2A0E72A91}.Release.ActiveCfg = Release|Win32
+		{EDC3A873-B793-429C-947C-30F2A0E72A91}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

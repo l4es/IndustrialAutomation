@@ -1,0 +1,62 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+Error in tcast.c near line 1: Undeclared identifier bool
+Error in tcast.c near line 4: Undeclared identifier string
+Error in tcast.c near line 6: Illegal cast operation
+Error in tcast.c near line 7: Undeclared identifier string
+Error in tcast.c near line 8: Illegal cast operation
+Error in tcast.c near line 9: Undeclared identifier string
+Error in tcast.c near line 11: Illegal cast operation
+Error in tcast.c near line 12: Undeclared identifier string
+Error in tcast.c near line 13: Illegal cast operation
+Error in tcast.c near line 14: Undeclared identifier string
+Error in tcast.c near line 16: Illegal cast operation
+Error in tcast.c near line 17: Undeclared identifier string
+Error in tcast.c near line 18: Illegal cast operation
+Error in tcast.c near line 19: Undeclared identifier string
+Error in tcast.c near line 21: Undeclared identifier b
+Error in tcast.c near line 29: Illegal cast operation
+Error in tcast.c near line 32: Undeclared identifier b
+Error in tcast.c near line 38: Illegal floating point operation
+Error in tcast.c near line 41: Undeclared identifier b
+Error in tcast.c near line 42: Undeclared identifier s
+Error in tcast.c near line 43: Illegal cast operation
+Error in tcast.c near line 44: Undeclared identifier s
+Error in tcast.c near line 45: Illegal cast operation
+Error in tcast.c near line 46: Undeclared identifier s
+Error in tcast.c near line 47: Illegal cast operation
+Error in tcast.c near line 48: Undeclared identifier s
+   2:checkar  2 1          68:stoval               134:pushint  2          
+   3:stoval                69:pushint  2           135:call                
+   5:stoval                71:pushint  11          137:stofloat 5 0        
+   9:bump     1            75:checkar  2 1         141:rvalfloat  5 0      
+  10:checkar  2 1          76:rvalint  4 0         142:stoval              
+  13:stoval                79:stoval               145:pushint  2          
+  14:pushint  2            80:pushint  2           146:call                
+  17:bump     1            83:stoint   4 0         149:checkar  2 1        
+  21:stoval                87:rvalint  4 0         153:pushint  2          
+  22:pushint  2            88:stoval               154:call                
+  25:bump     1            91:pushint  2           157:checkar  2 1        
+  26:checkar  2 1          92:call                 158:stoval              
+  30:pushint  2            96:bump     1           162:call                
+  36:stoval               102:pushint  2           168:stoval              
+  38:stoval               104:stofloat 5 0         170:call                
+  43:bump     1           109:stoval               175:stoval              
+  45:stoval               111:stoval               177:stoval              
+  47:stoval               113:call                 179:call                
+  49:call                 115:stofloat 5 0         181:bump     1          
+  52:bump     1           118:checkar  2 1         184:stoval              
+  53:checkar  2 1         119:rvalfloat  5 0       185:pushdouble  0       
+  54:rvalint  4 0         120:stoval               186:stoval              
+  57:stoval               123:pushint  2           189:pushdouble  0       
+  58:pushint  2           124:call                 190:stoval              
+  59:call                 125:pushdouble  11.3     191:pushdouble  0       
+  60:pushint  10          126:stofloat 5 0         192:stoval              
+  63:bump     1           129:checkar  2 1         195:pushint  6          
+  64:checkar  2 1         130:rvalfloat  5 0       196:call                
+  65:rvalint  4 0         131:stoval               197:halt                
+
+Error: clean up forced

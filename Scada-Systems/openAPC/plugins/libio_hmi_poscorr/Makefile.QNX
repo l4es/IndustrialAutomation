@@ -1,0 +1,7 @@
+CUSTLIBRARIES= -loapcwx
+
+CUSTINCLUDES=
+	
+CUSTOBJECTS=
+
+include ../qnx_wx.mk

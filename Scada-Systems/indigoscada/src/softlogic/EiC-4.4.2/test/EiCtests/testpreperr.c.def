@@ -1,0 +1,24 @@
+on
+	(void)
+Preproc : error in testpreperr.c near line 11: failed to open include file #include
+Preproc : error in testpreperr.c near line 12: empty '#if' directive
+Preproc : error in testpreperr.c near line 14: unbalanced '
+Preproc : error in testpreperr.c near line 16: Illegal macro identifier
+Preproc : error in testpreperr.c near line 17: undefined or invalid # directive
+Preproc : error in testpreperr.c near line 20: empty '#define' directive
+Preproc : error in testpreperr.c near line 24: Illegal macro identifier
+Preproc : error in testpreperr.c near line 26: unbalanced "
+Preproc : error in testpreperr.c near line 26: Missing "
+Preproc : error in testpreperr.c near line 26: failed to open include file stdio.
+Preproc : error in testpreperr.c near line 27: Missing >
+Preproc : error in testpreperr.c near line 27: failed to open include file stdio.
+Preproc : error in testpreperr.c near line 32: Re-declaration of macro TESTY
+Preproc : error in testpreperr.c near line 39: macro definition begins with ##
+Preproc : error in testpreperr.c near line 40: macro definition ends with ##
+Preproc : error in testpreperr.c near line 40: macro definition ends with ##
+Preproc : error in testpreperr.c near line 42: unbalanced "
+Error in testpreperr.c near line 42: String literal error
+Error in testpreperr.c near line 45: unbalanced "
+Error in testpreperr.c near line 47: undefined or invalid # directive
+Error in testpreperr.c near line 62: unterminated `#if' conditional
+Error: clean up forced

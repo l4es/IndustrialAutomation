@@ -1,0 +1,27 @@
+/* XPM */
+static const char *action_exit[] = {
+/* width height ncolors chars_per_pixel */
+"16 16 4 1",
+/* colors */
+"  c #000000",
+". c #757575",
+"X c #303030",
+"o c None",
+/* pixels */
+"oooooooooooooooo",
+"oooooooooooooooo",
+"ooooooo  ooooooo",
+"ooooooo  ooooooo",
+"oooo oo  oo oooo",
+"oooX  o  o  Xooo",
+"oo.  oo  oo  .oo",
+"ooX .oo  oo. Xoo",
+"oo  ooo  ooo  oo",
+"oo  ooo  ooo  oo",
+"ooX .oo  oo. Xoo",
+"oo.  oooooo  .oo",
+"oooX  .oo.  Xooo",
+"ooooX      Xoooo",
+"ooooo.X  X.ooooo",
+"oooooooooooooooo"
+};

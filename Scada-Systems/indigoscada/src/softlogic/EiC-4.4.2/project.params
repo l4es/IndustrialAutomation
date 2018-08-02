@@ -1,0 +1,26 @@
+#######################################
+# 	EiC project parameters
+#
+#  After changing the contents of this file you must
+#  also setup the project top
+#  configuration via:
+#     % makeconfig  config_dir proj_dir platform  
+
+      INSTALL_DIR = $(HOME)/bin
+      INCLUDE_DIR = $(TOP_DIR)/include
+          LIB_DIR = $(TOP_DIR)/lib
+      PRJ_DEFINES = 
+      STD_DEFINES = -D$(PLATFORM) $(PRJ_DEFINES)
+       ALLDEFINES = $(DEFINES) $(STD_DEFINES)
+           CFLAGS = $(STD_CFLAGS) $(WARNINGS) $(INCLUDES) $(ALLDEFINES)
+	DUMMY_STR = This file is a dummy target. Please don't remove.
+     DUMMY_TARGET = echo "$(DUMMY_STR)" > $@
+	 ALL_LIBS = $(LIBS)
+
+###########################################
+# Platform and configuration stuff is added
+# automatically below this point by 
+# the makeconfig program.
+
+
+

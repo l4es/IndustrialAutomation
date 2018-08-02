@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+ android:id="@+id/presfLayout"
+ android:layout_width="fill_parent"
+ android:layout_height="fill_parent"
+ >
+ <ListPreference
+  android:title="@string/prefsTextSize"
+  android:summary="@string/prefsTextSizeText"
+  android:key="textSize"
+  android:defaultValue="1"
+  android:entries="@array/prefsTextSizeEntries"
+  android:entryValues="@array/prefsTextSizeValues"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  />
+ <ListPreference
+  android:title="@string/prefsScreenLight"
+  android:summary="@string/prefsScreenLightText"
+  android:key="screenLight"
+  android:defaultValue="2"
+  android:entries="@array/prefsScreenLightEntries"
+  android:entryValues="@array/prefsScreenLightValues"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  />
+ <ListPreference
+  android:title="@string/prefsTheme"
+  android:summary="@string/prefsThemeText"
+  android:key="theme"
+  android:defaultValue="1"
+  android:entries="@array/prefsThemeEntries"
+  android:entryValues="@array/prefsThemeValues"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+  />
+</PreferenceScreen>

@@ -1,0 +1,156 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+main -> Func (
+	void 
+	) returning int 
+
+    /*     printf ("f %% g = %2g ( 3)\n", f%g);*/
+
+   0:checkar  5 0         173:stoval               346:rvalfloat  2 1      
+   1:pushval              174:pushint  2           347:bump     1          
+   2:stoint   0 1         175:call                 348:rvalfloat  3 1      
+   4:stoint   1 1         177:bump     1           350:stoval              
+   6:stofloat 2 1         179:rvalint  0 1         352:stoval              
+   7:pushval              180:bump     1           353:pushint  2          
+   8:stofloat 3 1         181:rvalint  1 1         354:call                
+  10:bump     1           183:stoval               356:bump     1          
+  12:rvalint  1 1         185:stoval               358:rvalfloat  2 1      
+  13:stoval               186:pushint  2           359:bump     1          
+  14:rvalint  0 1         187:call                 360:rvalfloat  3 1      
+  18:pushint  3           191:rvalint  0 1         364:stoval              
+  19:call                 192:bump     1           365:pushint  2          
+  22:checkar  2 1         195:stoval               368:bump     1          
+  24:bump     1           197:stoval               370:rvalfloat  2 1      
+  25:rvalint  1 1         198:pushint  2           371:bump     1          
+  26:addint               199:call                 372:rvalfloat  3 1      
+  30:pushint  2           203:rvalint  0 1         376:stoval              
+  31:call                 204:bump     1           377:pushint  2          
+  34:checkar  2 1         207:stoval               380:bump     1          
+  36:bump     1           209:stoval               382:rvalfloat  2 1      
+  37:rvalint  1 1         210:pushint  2           383:bump     1          
+  38:subint               211:call                 384:rvalfloat  3 1      
+  42:pushint  2           215:rvalint  0 1         388:stoval              
+  43:call                 216:bump     1           389:pushint  2          
+  45:bump     1           218:geint                391:pushint  1          
+  46:checkar  2 1         219:stoval               392:stochar 4 1         
+  48:bump     1           221:stoval               394:bump     1          
+  49:rvalint  1 1         222:pushint  2           395:checkar  2 1        
+  50:multint              223:call                 396:rvalchar  4 1       
+  53:stoval               226:checkar  2 1         399:incint   1          
+  54:pushint  2           227:rvalint  0 1         400:stoval              
+  57:bump     1           230:gtint                403:pushint  2          
+  58:checkar  2 1         231:stoval               404:call                
+  60:bump     1           233:stoval               406:bump     1          
+  61:rvalint  1 1         234:pushint  2           407:checkar  2 1        
+  62:divint               235:call                 408:rvalchar  4 1       
+  65:stoval               238:checkar  3 1         411:incint   1          
+  66:pushint  2           239:rvalfloat  3 1       412:stoval              
+  69:bump     1           242:stoval               415:pushint  2          
+  72:bump     1           245:pushint  3           418:bump     1          
+  73:rvalint  1 1         246:call                 419:checkar  2 1        
+  75:stoval               248:bump     1           421:stoval              
+  77:stoval               250:rvalfloat  2 1       423:stoval              
+  78:pushint  2           251:bump     1           424:pushint  2          
+  79:call                 252:rvalfloat  3 1       425:call                
+  81:bump     1           254:stoval               427:stochar 4 1         
+  83:rvalint  0 1         256:stoval               429:bump     1          
+  84:bump     1           257:pushint  2           430:checkar  2 1        
+  85:rvalint  1 1         258:call                 431:rvalchar  4 1       
+  87:stoval               260:bump     1           433:stochar 4 1         
+  89:stoval               262:rvalfloat  2 1       435:stoval              
+  91:call                 264:rvalfloat  3 1       437:stoval              
+  93:bump     1           266:stoval               439:call                
+  95:rvalint  0 1         268:stoval               441:stoint   0 1        
+  97:rvalint  1 1         270:call                 443:bump     1          
+  99:stoval               272:bump     1           445:rvalchar  4 1       
+ 101:stoval               274:rvalfloat  2 1       447:stochar 4 1         
+ 102:pushint  2           275:bump     1           448:decint   1          
+ 103:call                 276:rvalfloat  3 1       449:stoval              
+ 105:bump     1           278:stoval               451:stoval              
+ 107:rvalint  0 1         280:stoval               453:call                
+ 108:bump     1           281:pushint  2           454:rvalchar  4 1       
+ 109:rvalint  1 1         282:call                 455:stoint   0 1        
+ 111:stoval               284:bump     1           457:bump     1          
+ 113:stoval               286:rvalfloat  2 1       459:rvalchar  4 1       
+ 114:pushint  2           287:bump     1           460:stoval              
+ 117:bump     1           290:stoval               463:pushint  2          
+ 119:rvalint  0 1         292:stoval               465:pushint  126        
+ 120:jmpFint  123         293:pushint  2           466:stochar 4 1         
+ 123:stoval               296:bump     1           469:checkar  2 1        
+ 125:stoval               298:rvalfloat  2 1       471:incint   1          
+ 126:pushint  2           299:jmpFdbl  302         472:stochar 4 1         
+ 127:call                 300:rvalfloat  3 1       473:decint   1          
+ 131:rvalint  0 1         304:stoval               477:pushint  2          
+ 132:jmpTint  135         305:pushint  2           478:call                
+ 135:stoval               308:bump     1           481:checkar  2 1        
+ 137:stoval               310:rvalfloat  2 1       483:incint   1          
+ 138:pushint  2           311:jmpTdbl  314         484:stochar 4 1         
+ 139:call                 312:rvalfloat  3 1       485:decint   1          
+ 143:rvalint  0 1         316:stoval               489:pushint  2          
+ 144:bump     1           317:pushint  2           490:call                
+ 147:stoval               320:bump     1           493:checkar  2 1        
+ 149:stoval               322:rvalfloat  2 1       495:incint   1          
+ 150:pushint  2           323:bump     1           496:stochar 4 1         
+ 151:call                 324:rvalfloat  3 1       497:decint   1          
+ 155:rvalint  0 1         328:stoval               501:pushint  2          
+ 156:bump     1           329:pushint  2           502:call                
+ 159:stoval               332:bump     1           505:checkar  2 1        
+ 161:stoval               334:rvalfloat  2 1       507:incint   1          
+ 162:pushint  2           335:bump     1           508:stochar 4 1         
+ 163:call                 336:rvalfloat  3 1       509:decint   1          
+ 167:rvalint  0 1         340:stoval               513:pushint  2          
+ 168:bump     1           341:pushint  2           514:call                
+ 169:rvalint  1 1         342:call                 515:pushint  0          
+ 171:stoval               344:bump     1          
+
+   1:bump     1          
+   2:pushint  0          
+   3:eiccall             
+   4:halt                
+
+a = 7 (7), b = 4 (4)
+a + b = 11 (11)
+a - b =  3 ( 3)
+a * b = 28 (28)
+a / b =  1 ( 1)
+a % b =  3 ( 3)
+a & b =  4 ( 4)
+a | b =  7 ( 7)
+a ^ b =  3 ( 3)
+a &&b =  1 ( 1)
+a ||b =  1 ( 1)
+a <<b = 112 (112)
+a >>b =  0 ( 0)
+a < b =  0 ( 0)
+a <=b =  0 ( 0)
+a ==b =  0 ( 0)
+a !=b =  1 ( 1)
+a >=b =  1 ( 1)
+a > b =  1 ( 1)
+f = 7.000000 (7.00000), g = 4.000000 (4.00000)
+f + g = 11 (11)
+f - g =  3 ( 3)
+f * g = 28 (28)
+f / g = 1.75 (1.75)
+f &&g = 1 (1)
+f ||g = 1 (1)
+f < g =  0 ( 0)
+f <=g =  0 ( 0)
+f ==g =  0 ( 0)
+f !=g =  1 ( 1)
+f >=g =  1 ( 1)
+f > g =  1 ( 1)
+c = +1 (+1)
+c = +0 (+0)
+c = -1 (-1)
+c = -1 (-1)
+c = +0 (+0)
+c = +1 (+1)
+c = +126 (+126)
+c = +127 (+127)
+c = -128 (-128)
+c = -127 (-127)
+	(void)

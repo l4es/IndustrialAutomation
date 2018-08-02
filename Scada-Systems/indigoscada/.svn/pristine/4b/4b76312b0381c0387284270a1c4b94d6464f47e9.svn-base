@@ -1,0 +1,3 @@
+:-I/usr/local/EiC/include
+:-I/usr/local/EiC/module
+:-I/usr/local/EiC/module/cgihtml

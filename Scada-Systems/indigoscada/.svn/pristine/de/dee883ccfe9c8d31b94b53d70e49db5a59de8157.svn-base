@@ -1,0 +1,382 @@
+ ----------------------------------
+	EiC BUILD INSTRUCTIONS 
+	
+		by
+
+	     Ed Breen
+
+ ---------TABLE-of-CONTENTS--------- 
+
+1. INTRODUCTION:
+2. INSTALLING EIC FROM THE SOURCE DISTRIBUTION:
+        Step 1
+        Step 2 
+        Step 3
+        Step 4
+        Step 5 
+	Step 6
+3  BUILDING A TOY VERSION OF EiC
+4. EXPLANATION OF NON-PORTABLE MACROS USED:
+        $(addprefix PREFIX,NAMES...)    (from GNU info Make)
+5. TROUBLE SHOOTING:
+6. PORTING EiC TO OTHER PLATFORMS
+
+ --END-of-TABLE-of-CONTENTS---------
+
+ ------------------------------------
+- INTRODUCTION:
+
+	EiC's distribution plus binaries require approximately 4
+	Mbytes of disk space. To build EiC, you will need GNU make and
+	gcc 2.6.3 or later. However, if you don't have GNU make then
+	the section on 'explanation of non-portable macros' may help
+	you over come this limitation.
+
+
+ -------------------------------------------
+- INSTALLING EiC FORM THE SOURCE DISTRIBUTION:
+
+	There are just six easy steps to installing EiC.  Please read
+	all six steps before starting at step 1.
+
+-- Step 1
+
+	Untar the distribution. It will automatically unpack itself
+	into a subdirectory off the current directory. This
+	subdirectory will be named EiC and will be referred to as the
+	top EiC directory or the HOMEofEiC.
+	
+	If you use GNU tar, then:
+		% tar -xvzf EiC.tar.gz
+	else
+		% gunzip EiC.tar.gz 
+		% tar -xvf EiC.tar.gz
+
+-- Step 2 
+
+	If you haven't already done so, then:
+
+		% cd EiC
+-- Step 3
+
+	This step looks worse than it really is. You shouldn't have to
+	do anything, other than setting the directory where EiC will
+	be installed.
+	
+	In the project parameter file:
+
+		/EiC/project.params
+
+	you will need to set EiC's installation directory; this is
+	where the EiC binary will be placed, via:
+	
+		INSTALL_DIR = $(HOME)/bin
+
+	By default, it points to 'bin', which is assumed to be just
+	off your home directory and within your search path. If you
+	don't have a bin directory, make it or just change the
+	assignment to point to any other directory that is in your
+	search PATH, and that you have write access to.
+
+	The rest of this step can now be skipped over and only if things
+	fail, after step 4, will you need to refer to the rest of step
+	3.
+ 
+	Now, you will need to:
+
+		a) set the EiC project parameters,  and
+		b) check the appropriate platform parameters are
+		   set according to your site.
+
+	Hopefully, the default settings will do.  However, if you are
+	uncertain about what to do, with respect to what the various
+	parameters mean or platform types, then consult the DATA
+	DICTIONARY section in the file:
+	
+		EiC/config/GuideLines.make.
+
+	Now check the parameter settings in the file:
+
+		EiC/config/$(PLATFORM)/make.params
+
+	where $(PLATFORM) is the platform type that you are going
+	to compile EiC for. Check the directory EiC/config
+	for the platforms supported. They are indicated by
+	directories with names starting with '_'; for example,
+        _LINUX, _SOLARIS, _SUNOS, etc. 
+
+	If you find any parameter setting in the platform make.params
+	file that are not to your liking, then you have can override
+	these settings by placing a corresponding  parameter in
+	the file: 
+
+		EiC/override.params
+
+	The main purpose of the override.params file is to
+	allow for any peculiarities that are unique
+	to any particular site. More information on this
+	file can be found in the file itself.
+	
+
+-- Step 4
+
+	From EiC's top directory type the following command:
+		
+		% config/makeconfig
+
+	makeconfig will use its default procedures to determine your
+	operating system, and other configuration settings. It will
+	attempt to produce the file:
+		
+		 EiC/make.proj
+
+	that will contain the correct configuration setup for the EiC
+	project Makefiles within your environment. To get more
+	infomation about makeconfig type:
+		
+		% config/makeconfig -h
+
+-- Step 5 
+
+	If makeconfig was successful, then from the EiC top directory,
+	type:
+ 
+		% make install
+		% make clean
+		% rehash
+		% cd test
+		% test.sh       // run EiC's test procedures
+
+
+	You will have to also set the environmental variable
+	HOMEofEiC to point to directory where EiC is
+	installed. See README.BIN for further information on
+	HOMEofEiC.
+
+	Hopefully everythings goes to plan -- if not, see the section
+	on trouble shooting below.
+
+
+-- Step 6
+	 To make the documentation then
+		
+		% cd EiC/doc
+		% make install
+
+
+- BUILDING A TOY VERSION OF EiC
+
+	To build a version of the EiC interpreter
+	that does not include EiC's runtime library
+	then change to EiC's src directory
+
+		% cd EiC/src
+		% make -f makefile.seic 
+		% rm *.o
+
+	This will produce the binary `seic'. It
+	is the starting point for experimenting
+	with EiC.
+	
+- EXPLANATION OF NON-PORTABLE MACROS USED:
+
+-- $(addprefix PREFIX,NAMES...)    (from GNU info Make)
+		
+	The argument NAMES is regarded as a series of names, separated
+        by whitespace; PREFIX is used as a unit.  The value of PREFIX
+        is prepended to the front of each individual name and the
+        resulting larger names are concatenated with single spaces
+        between them.  For example,
+
+          	$(addprefix src/,foo bar)
+
+     	produces the result `src/foo src/bar'.
+
+- TROUBLE SHOOTING:
+
+	If the compiler complains about duplicate definitions
+	of standard C funtions, then make sure you are using
+	gcc 2.6.3 or later, via:
+
+		% gcc -v
+	
+	If the installation procedure completely fails, then
+	check that make is being initiated correctly in each
+	subdirectly. You may need to set the SHELL variable in the
+	top level make file (../EiC/Makefile):
+
+		SHELL = /bin/ksh
+
+
+	If you don't have a ksh shell, then you may have to 
+	do most things by hand:
+
+		% cd EiC
+		% config/makeconfig
+		% make install    // let it fail
+		% cd module/stdClib/src
+		% make headers
+		% cd ../../../src 
+		% make headers
+		% cd ../module/stdClib/src
+		% make install
+		% cd ../../../src
+		% make install
+		% cd ../main
+		% make install
+	
+	Check that you aren't installing EiC for a platform it
+	doesn't know about (see porting EiC to other platforms below).
+	
+	If everything compiles, without errors, and your system reports
+	after typing:
+
+		% eic
+		eic: Command not found
+	
+	Then check your search path and the directory where EiC
+	was installed. Or maybe just enter
+	
+		% rehash
+
+
+	Read all of step 3.
+
+
+-------------------------------------------------
+- PORTING EiC TO OTHER PLATFORMS
+
+This part of the documentation explains how to port EiC to a new
+platform. It is also assumed that the following steps will be
+performed on the new platform.  The following outlines the steps I
+took to port EiC to a Dec Alpha.
+
+-- Porting the EiC interpreter
+
+	First get the platform name 
+	via `uname'.
+
+	At the system prompt:
+
+	% uname
+	OSF1
+
+	Therefore, the DEC alpha platform name is:
+	
+		OSF1
+
+	Now change to the directory EiC/config and
+	create the appropriate platform directory.
+
+		% cd EiC/config
+		% mkdir _OSF1 
+
+	Note the leading underscore. Now pick one of the existing
+	platforms that you feel is compatible with the new
+	platform and copy over its `make.params' file.
+	For example:
+
+		% cp _LINUX/make.params _OSF1
+	
+	Now edit the copy of make.params, to reflect to the new OS, in
+	particular change the PLATFORM designation.
+
+	Next, check for data alignment, pointer size and
+	byte ordering, by compiling and running 
+        `alignment' in EiC/config:
+
+		% gcc alignment.c
+		% a.out
+		#define EIC_LITTLE_ENDIAN 1
+		{1, 1}, /* char */
+		{2, 2}, /* short */
+		{4, 4}, /* int */
+		{8, 8}, /* long */
+		{4, 4}, /* float */
+		{8, 8}, /* double */
+		{8, 8}, /* pointer */
+		{0, 1}, /* struct*/
+
+		% rm a.out
+
+	Now you need to inform EiC about this by
+	adding the following structure to the 
+	EiC source file `EiC/src/metric.h': 
+
+	/* Dec Alpha */
+	#ifdef _OSF1
+	#define EIC_LITTLE_ENDIAN  1
+	short metric[8][2] = { /* size, alignment pairs */
+       		{1, 1}, /* char */
+		{2, 2}, /* short */
+		{4, 4}, /* int */
+		{8, 8}, /* long */
+		{4, 4}, /* float */
+		{8, 8}, /* double */
+		{8, 8}, /* pointer */
+		{0, 1}, /* struct*/
+	};
+	#endif
+	
+	Now inform the makefile system of the new platform.
+	In the directory EiC type:
+
+	<EiC> % config/makeconfig
+	TOP_DIR = /home/edb/compilers/EiC
+	CONFIG_DIR = /home/edb/compilers/EiC/config
+	platform = _OSF1
+
+	This completes the porting of the EiC
+	interpeter and the Makefile system to the new
+	platform. Now the fun begins -- we have to
+	port EiC's runtime library.
+
+-- Porting the runtime library.
+
+	Change to the directory EiC/module/stdClib/src and
+	add  the appropriate patform directory:
+
+	<EiC/.../src> mkdir _OSF1
+
+	Copy the contents of an already established
+	platform to this directory:
+
+	<EiC/.../src> cp -r _LINUX/* _OSF1
+
+	Now each header file in this directory must be
+	made compatible with the platform header files in
+	`/usr/include'. Also the file "fcntl.h" needs to be
+	addressed. However, you don't have to worry about
+
+		stdio.h
+		stdlib.h
+		errno.h
+		stdtypes.h
+                limits.h
+	        float.h
+                signal.h
+                termdefs.h
+
+	As these files get automaticly constructed by EiC's build
+	process during installation, by the EiC/config/genstdio.c
+	program. As this document is usually as not as up todate as
+	the gentstdio.c file you should also check it for any other .h
+	files it may now be generating. To do this, just look at the
+	contents of the main() function.
+		
+	 To help with this process of generating header files, I used
+         gcc and grep; for example, when inspecting termios.h:
+	
+	</usr/include> gcc -D_POSIX_SOURCE -E termios.h | less
+
+
+
+
+
+
+
+
+
+
+
+

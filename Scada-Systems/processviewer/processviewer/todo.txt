@@ -1,0 +1,11 @@
+- чтение бита регистра (40007.0, 40007.1)
+- запись бита регистра (40007.0, 40007.1)
+- OnClick.ActionType:String;//-ActionScript
+- линия
+- полигон
+- DDE драйвер (а под Linux?)
+- Alarms
+- Expression вместо тэгов, разбор свойств тэгов (.Value, .MinEU, ..)
+- тренды
+- ObjectSize
+- Location

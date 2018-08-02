@@ -1,0 +1,453 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "atlres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "Export to Excel...",          ID_EXPORT_EXCEL
+        MENUITEM "Print preview...",            32779
+        MENUITEM "Print...\tCtrl+P",            ID_FILE_PRINT
+        MENUITEM SEPARATOR
+        MENUITEM "Exit",                        ID_APP_EXIT
+    END
+    POPUP "View"
+    BEGIN
+        MENUITEM "Toolbar",                     ID_VIEW_TOOLBAR
+        MENUITEM "Status bar",                  ID_VIEW_STATUS_BAR
+        MENUITEM "OPC channels",                ID_VIEW_CHANNELS
+        MENUITEM SEPARATOR
+        MENUITEM "Trend detail...",             ID_GRAPH_PARAM
+    END
+    POPUP "Help"
+    BEGIN
+        MENUITEM "About...",                    ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_LIMITS_VIEW DIALOGEX 0, 0, 155, 111
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_VISIBLE
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "",IDC_FROM_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,23,30,60,15
+    CONTROL         "",IDC_FROM_TIME,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,97,30,48,15
+    CONTROL         "",IDC_TO_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,23,63,60,15
+    CONTROL         "",IDC_TO_TIME,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,97,63,48,15
+    LTEXT           "Date:",IDC_STATIC,23,22,19,8
+    LTEXT           "Time:",IDC_STATIC_FROM_TIME,97,22,18,8
+    LTEXT           "Date:",IDC_STATIC,23,55,19,8
+    LTEXT           "Time:",IDC_STATIC_TO_TIME,97,55,18,8
+    LTEXT           "From",IDC_STATIC,13,16,17,8
+    LTEXT           "To",IDC_STATIC,13,49,9,8
+    LTEXT           "Static",IDC_STATIC_HOR_LINE1,32,21,113,1,0,WS_EX_STATICEDGE
+    LTEXT           "Static",IDC_STATIC_HOR_LINE2,25,54,120,1,0,WS_EX_STATICEDGE
+    GROUPBOX        "Data limits",IDC_STATIC_GROUP,3,7,149,78
+    PUSHBUTTON      "Calculate",IDC_UPDATE,3,90,149,14
+END
+
+IDD_GRAPHIC_DLG DIALOGEX 0, 0, 202, 94
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Детализация графика"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_POINTS,118,7,77,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SPIN1,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,190,7,11,14
+    COMBOBOX        IDC_COMBO_METHOD,118,30,77,44,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_DEGREE,118,49,77,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN2,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,190,49,11,14
+    DEFPUSHBUTTON   "OK",IDOK,33,73,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,97,73,50,14
+    LTEXT           "Count of approximation points",IDC_STATIC,7,11,98,8
+    LTEXT           "Approximation level",IDC_STATIC,7,55,64,8
+    LTEXT           "Approximation method",IDC_STATIC,7,34,73,8
+END
+
+IDD_EXPORT_TO_EXCEL DIALOGEX 0, 0, 328, 143
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Экспорт в Excel"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_FROM_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,192,30,60,15
+    CONTROL         "",IDC_FROM_TIME,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,266,30,48,15
+    CONTROL         "",IDC_TO_DATE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,192,63,60,15
+    CONTROL         "",IDC_TO_TIME,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,266,63,48,15
+    EDITTEXT        IDC_FILENAME,176,100,128,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_FILESELECT,304,100,17,14
+    DEFPUSHBUTTON   "Export",IDOK,176,122,68,14
+    PUSHBUTTON      "Cancel",IDCANCEL,253,122,68,14
+    CONTROL         "",IDC_CHANNEL_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,15,162,121
+    LTEXT           "Date:",IDC_STATIC_DATE_FROM,192,22,19,8
+    LTEXT           "Time:",IDC_STATIC_FROM_TIME,266,22,18,8
+    LTEXT           "Date:",IDC_STATIC_DATE_TO,192,55,19,8
+    LTEXT           "Time:",IDC_STATIC_TO_TIME,266,55,18,8
+    GROUPBOX        "Export interval",IDC_STATIC_GROUP,176,7,145,78
+    LTEXT           "From",IDC_STATIC_FROM,182,16,17,8
+    LTEXT           "To",IDC_STATIC_TO,182,49,9,8
+    LTEXT           "Static",IDC_STATIC_HOR_LINE1,199,21,115,1,0,WS_EX_STATICEDGE
+    LTEXT           "Static",IDC_STATIC_HOR_LINE2,194,54,120,1,0,WS_EX_STATICEDGE
+    LTEXT           "File name:",IDC_STATIC_FILE,176,91,34,8
+    LTEXT           "Channels:",IDC_STATIC,7,7,33,8
+END
+
+IDD_EXPORT_THREAD DIALOGEX 0, 0, 194, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Экспорт в Excel"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Stop",IDCANCEL,71,40,50,14
+    CONTROL         "",IDC_PROGRESS1,"msctls_progress32",WS_BORDER | 0x1,7,22,180,14
+    LTEXT           "Total values:",IDC_STATIC,7,7,42,8
+    LTEXT           "Static",IDC_TOTAL,65,7,19,8
+    LTEXT           "Remain:",IDC_STATIC,109,7,27,8
+    LTEXT           "Static",IDC_LEFT,149,7,19,8
+END
+
+IDD_EVENTS_VIEW DIALOGEX 0, 0, 276, 224
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    CONTROL         "All events",IDC_ALL_EVENTS,"Button",BS_AUTORADIOBUTTON | BS_FLAT | WS_GROUP,7,10,79,10
+    CONTROL         "Filter",IDC_FILTER_EVENTS,"Button",BS_AUTORADIOBUTTON | BS_FLAT,104,10,32,10
+    COMBOBOX        IDC_EVENT_TYPES,147,7,122,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_EVENTS,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,25,262,190
+END
+
+IDD_LOGIN DIALOGEX 0, 0, 186, 80
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST | WS_EX_TOOLWINDOW
+CAPTION "Login"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_SERVER,63,7,101,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_USER,63,24,116,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PASSWORD,63,41,116,12,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,35,59,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,101,59,50,14
+    PUSHBUTTON      "...",IDC_BUTTON2,164,7,15,12,NOT WS_TABSTOP
+    LTEXT           "User",IDC_STATIC,7,28,16,8
+    LTEXT           "Password",IDC_STATIC,7,45,32,8
+    LTEXT           "OPC Server",IDC_STATIC,7,11,26,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_LIMITS_VIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 152
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 104
+        HORZGUIDE, 85
+        HORZGUIDE, 90
+    END
+
+    IDD_GRAPHIC_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 195
+        VERTGUIDE, 118
+        VERTGUIDE, 184
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 87
+        HORZGUIDE, 21
+        HORZGUIDE, 42
+        HORZGUIDE, 63
+    END
+
+    IDD_EXPORT_TO_EXCEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 321
+        VERTGUIDE, 169
+        VERTGUIDE, 176
+        VERTGUIDE, 304
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 136
+        HORZGUIDE, 15
+        HORZGUIDE, 85
+        HORZGUIDE, 91
+        HORZGUIDE, 99
+        HORZGUIDE, 114
+        HORZGUIDE, 136
+    END
+
+    IDD_EXPORT_THREAD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 187
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+
+    IDD_EVENTS_VIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 269
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 217
+        HORZGUIDE, 19
+        HORZGUIDE, 25
+    END
+
+    IDD_LOGIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        VERTGUIDE, 63
+        VERTGUIDE, 164
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 73
+        HORZGUIDE, 19
+        HORZGUIDE, 24
+        HORZGUIDE, 36
+        HORZGUIDE, 42
+        HORZGUIDE, 53
+        HORZGUIDE, 59
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_PRINT
+    BUTTON      ID_PRINT_PREVIEW
+    BUTTON      ID_APP_ABOUT
+END
+
+IDR_PREVIEW1 TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_PRINT
+    BUTTON      ID_APP_ABOUT
+    BUTTON      ID_PRED
+    BUTTON      ID_NEXT
+    BUTTON      ID_CLOSE_PREVIEW
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+IDR_PREVIEW1            BITMAP                  "res\\preview1.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\GRAPH01.ICO"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REPORT
+//
+
+IDR_CHANNEL             REPORT                  "Reports\\Channel.rep"
+IDR_EVENTS              REPORT                  "Reports\\Events.rep"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_TAB,         ID_NEXT_PANE,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
+    ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
+    ID_WINDOW_CASCADE       "Arrange windows so they overlap\nCascade Windows"
+    ID_WINDOW_TILE_HORZ     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_TILE_VERT     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_SCSIZE          "Change the window size"
+    ATL_IDS_SCMOVE          "Change the window position"
+    ATL_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    ATL_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    ATL_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    ATL_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    ATL_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_SCRESTORE       "Restore the window to normal size"
+    ATL_IDS_SCTASKLIST      "Activate Task List"
+    ATL_IDS_MDICHILD        "Activate this window"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_MRU_FILE        "Open this document"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_CHANNELS        "Toggle channel's view\nToggle channel's view"
+END
+
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""atlres.h""\r\n"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""ReportGenerator.rc2""\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "ReportGenerator.rc2"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

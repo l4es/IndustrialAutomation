@@ -1,0 +1,58 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17.11.2014, 22:39:59
+    Author     : aploese
+*/
+
+
+.dsIcon,
+.dsAddIcon,
+.dsEditIcon,
+.dsCopyIcon,
+.dsDeleteIcon,
+.dsStartIcon,
+.dsStopIcon,
+.dsRunningIcon,
+.dsErrorIcon,
+.dsStoppedIcon{
+    background-image: url('dataSourceIcons.png');
+    width: 16px;
+    height: 16px;
+}
+
+.plIcon,
+.plAddIcon,
+.plEditIcon,
+.plCopyIcon,
+.plDeleteIcon,
+.plStartIcon,
+.plStopIcon,
+.plRunningIcon,
+.plErrorIcon,
+.plStoppedIcon{
+    background-image: url('pointLocatorIcons.png');
+    width: 16px;
+    height: 16px;
+}
+
+.commonSaveIcon{
+    background-image: url('commonIcons.png');
+    width: 16px;
+    height: 16px;
+}
+
+.commonSaveIcon .dsIcon, .plIcon{ background-position: 0; }
+.dsAddIcon, .plAddIcon{ background-position: -16px; }
+.dsEditIcon, .plEditIcon{ background-position: -32px; }
+.dsCopyIcon, .plCopyIcon{ background-position: -48px; }
+.dsDeleteIcon, .plDeleteIcon{ background-position: -64px; }
+.dsStartIcon, .plStartIcon{ background-position: -80px; }
+.dsStopIcon, .plStopIcon{ background-position: -96px; }
+.dsRunningIcon, .plRunningIcon{ background-position: -112px; }
+.dsErrorIcon, .plErrorIcon{ background-position: -128px; }
+.dsStoppedIcon, .plStoppedIcon{ background-position: -144px; }
+

@@ -1,0 +1,11 @@
+#Thu Dec 13 17:34:08 BRST 2012
+eclipse.preferences.version=1
+encoding//src/br/ufsc/edugraf/rose/Configuracoes.java=UTF-8
+encoding//src/br/ufsc/edugraf/rose/Rose.java=UTF-8
+encoding//src/br/ufsc/edugraf/rose/modelo/HTTPRetrieverDataPoint.java=UTF-8
+encoding//src/br/ufsc/edugraf/rose/modelo/HTTPRetrieverDataSource.java=UTF-8
+encoding//src/br/ufsc/edugraf/rose/recursos/RecursoDataPointsDeUmDataSourceHTTPRetriever.java=UTF-8
+encoding//src/br/ufsc/edugraf/rose/recursos/RecursoDataPointsDeUmDataSourceModbusSerial.java=UTF-8
+encoding//src/br/ufsc/edugraf/rose/recursos/RecursoDataSourceHTTPRetriever.java=UTF-8
+encoding//src/br/ufsc/edugraf/rose/recursos/RecursoDataSourcesHTTPRetriever.java=UTF-8
+encoding//src/br/ufsc/edugraf/rose/recursos/RecursoUltimaLeituraDeUmDataPoint.java=UTF-8

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<resources> 
+ <string-array name="prefsTextSizeEntries">         
+  <item>Small</item> 
+  <item>Medium</item> 
+  <item>Large</item> 
+ </string-array>    
+ <string-array name="prefsTextSizeValues">         
+  <item>1</item> 
+  <item>2</item> 
+  <item>3</item> 
+ </string-array> 
+ <string-array name="prefsScreenLightEntries">
+  <item>Turn Off</item> 
+  <item>Dim</item> 
+  <item>Full brightness</item> 
+ </string-array>    
+ <string-array name="prefsScreenLightValues">         
+  <item>1</item> 
+  <item>2</item> 
+  <item>3</item> 
+ </string-array>
+ <string-array name="prefsThemeEntries">
+  <item>System default</item>
+  <item>Light</item>
+  <item>Dark</item>
+ </string-array>
+ <string-array name="prefsThemeValues">
+  <item>1</item>
+  <item>2</item>
+  <item>3</item>
+ </string-array>
+</resources>

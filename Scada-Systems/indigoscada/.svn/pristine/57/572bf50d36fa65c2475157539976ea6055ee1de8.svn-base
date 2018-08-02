@@ -1,0 +1,30 @@
+/* XPM */
+static const char *column_xpm[] = {
+/* width height num_colors chars_per_pixel */
+"    16    16        7            1",
+/* colors */
+". c #000000",
+"# c #c0c0c0",
+"a c #ffffff",
+"b c #808080",
+"c c #ffa858",
+"d c #ffdca8",
+"e c None",
+/* pixels */
+"eeeeeeeee..eeeee",
+"eeeeeeeee.#..eee",
+"eeee...ee.a##..e",
+"eee.dd.ee.a#a##.",
+"ee.dd.....#b###.",
+"..ddddddcd.a#b#.",
+".dddd......##a#.",
+".ddddcc.e.a#b##.",
+".dddddd.e.a#a##.",
+"..cccc.ee.#b###.",
+"ee.....ee.aa#b#.",
+"eeeeeeeee.b##a#.",
+"eeeeeeeee..#b##.",
+"eeeeeeeeeee..##.",
+"eeeeeeeeeeeee...",
+"eeeeeeeeeeeeeee."
+};

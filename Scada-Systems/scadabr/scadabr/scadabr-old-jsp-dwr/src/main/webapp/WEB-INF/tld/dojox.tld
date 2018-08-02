@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>1.2</jsp-version>
+  <description>Custom tag library for the dojox widgets</description>
+  <short-name>dojox</short-name>
+  <tag>
+    <name>timeSpinner</name>
+    <tag-class>br.org.scadabr.web.taglib.dojox.TimeSpinnerTag</tag-class>
+    <description>
+            Writes a input tag for dijit/form/DateTextBox.
+        </description>
+    <body-content>empty</body-content>
+    <attribute>
+      <description>HTML Standard Attribute</description>
+      <name>id</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description>HTML Standard Attribute</description>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <description>HTML Standard Attribute</description>
+      <name>timestamp</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>i18nLabel</name>
+      <required>true</required>
+    </attribute>
+    <attribute>
+      <name>i18nTitle</name>
+    </attribute>
+  </tag>
+  <tag>
+    <name>tableContainer</name>
+    <tag-class>br.org.scadabr.web.taglib.dojox.TableContainerTag</tag-class>
+    <description>
+            Writes a div tag for dojox/layout/TableContainer.
+        </description>
+    <body-content>JSP</body-content>
+    <attribute>
+      <name>id</name>
+    </attribute>
+    <attribute>
+      <name>style</name>
+    </attribute>
+    <attribute>
+      <name>cols</name>
+      <required>true</required>
+    </attribute>
+  </tag>
+  <tag>
+    <name>contentPane</name>
+    <tag-class>br.org.scadabr.web.taglib.dojox.ContentPaneTag</tag-class>
+    <description>
+            ParseOnLoad is disabled.
+            This can execute scripts whenn set("href", ) is called.
+            Writes a div tag for dojox/layout/ContentPane.
+        </description>
+    <body-content>JSP</body-content>
+    <attribute>
+      <name>id</name>
+    </attribute>
+    <attribute>
+      <name>splitter</name>
+    </attribute>
+  </tag>
+  <tag>
+    <name>centerContentPane</name>
+    <tag-class>br.org.scadabr.web.taglib.dojox.CenterContentPaneTag</tag-class>
+    <description>
+            ParseOnLoad is disabled.
+            This can execute scripts whenn set("href", ) is called.
+            Writes a div tag for dojox/layout/ContentPane region: 'center'.
+        </description>
+    <body-content>JSP</body-content>
+    <attribute>
+      <name>id</name>
+    </attribute>
+    <attribute>
+      <name>splitter</name>
+    </attribute>
+  </tag>
+</taglib>

@@ -1,0 +1,45 @@
+#include <string.h>
+char str1[] = "0123456789", str2[] = "01234567890123456789";
+
+memcpy(str1,str2,20),1;   /* must fail */ 
+memcpy(str2,str1,20),1;   /* must fail */ 
+memcpy(str1,str1,10),1;   /* must pass */
+memcpy(str2,str2,20),1;   /* must pass */
+
+memmove(str1,str2,20),1;   /* must fail */ 
+memmove(str2,str1,20),1;   /* must fail */ 
+memmove(str1,str1,11),1;   /* must pass */
+memmove(str2,str2,21),1;   /* must pass */
+
+strncpy(str1,str2,12);   /* must fail */ 
+
+strncpy(str1,str1,11);   /* must pass */
+strncpy(str2,str2,21);   /* must pass */
+
+strcpy(str1,str2);   /* must fail */ 
+strcpy(str2,str1);   /* must pass */ 
+strcpy(str1,str1);   /* must pass */
+strcpy(str2,str2);   /* must pass */
+
+//str1[5] ='\0';  strcat(str1,str1);  /* this line is brokeb */
+str1[6] = '\0'; strcat(str1,str1); /* must fail */
+str1[6] = '6'; // reset string
+
+str2[10] = '\0'; strncat(str2,str2,10);  /* must pass*/
+str2[11] = '\0'; strncat(str2,str2,10);  /* must fail*/
+str2[11] = '1';  // reset string
+
+char c; short s; int i; long l; float f; double b;
+memcpy(&c,&c,sizeof(c)); 1; // must pass
+memcpy(&s,&s,sizeof(s)); 2; // must pass
+memcpy(&i,&i,sizeof(i)); 3; // must pass
+memcpy(&f,&f,sizeof(f)); 4; // must pass
+memcpy(&b,&b,sizeof(b)); 5;// must pass
+memcpy(&c,&c,sizeof(c)+1); 6;  // must fail
+memcpy(&s,&s,sizeof(s)+1); 7; // must fail
+memcpy(&i,&i,sizeof(i)+1); 8; // must fail
+memcpy(&f,&f,sizeof(f)+1); 9; // must fail
+memcpy(&b,&b,sizeof(b)+1); 10; // must fail
+
+:exit
+

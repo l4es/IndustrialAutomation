@@ -1,0 +1,5 @@
+int i = 5*2;
+float x[] = {3*2,2*2,1*2};
+struct {int a, b ;} ab = {2*20,2*30};
+
+int foo() { return 22*2;}

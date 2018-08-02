@@ -1,0 +1,643 @@
+﻿# common translations used by/within all applications
+
+#units
+
+mm = mm
+nm = nm
+deg = Grad
+sec = s
+msec = ms
+usec = µs
+Hz = Hz
+mm/sec = mm/s
+inc/mm = inc/mm
+steps/inc = steps/inc
+inc/mm | inc/rot = inc/mm | inc/rot
+mm/sec | deg/sec = mm/s | Grad/s
+mm | deg = mm | Grad
+mm|deg/sec = mm | Grad/s
+% = %
+pulses = Pulse
+
+
+#general
+
+Basic = Allgemein
+3D = 3D
+Signals = Signale
+Polygon Delay = Polygonverzögerung
+Use variable polygon delay = Variable Polygonverzögerung verwenden
+unused = unbenutzt
+off = aus
+Output Number = Pinnummer
+Limits = Grenzwerte
+Poll Delay = Abfragepause
+
+# Main window
+
+New project = Neues Projekt
+Open project = Projekt laden
+Save project = Projekt speichern
+Save project as = Projekt speichern als
+Quit = Beenden
+Undo = Rückgängig machen
+Redo = Wiederherstellen
+OK = OK
+Cancel = Abbrechen
+
+Quit application = Applikation beenden
+Quits the application = Beendet die Applikation
+File = Datei
+Project settings = Projekteinstellungen
+About = Über
+Help = Hilfe
+Credits = Danksagung
+Credits go to = Dank geht an
+New project = Neues Projekt
+Load project = Projekt laden
+Load new project = Neues Projekt laden
+
+Check Dongle = Dongle überprüfen
+
+Duplicate = Duplizieren
+
+# menu bar settings
+
+Commands = Kommandos
+Menu bar = Menü
+Current shortcuts = Aktuelle Abkürzungen
+New shortcut = Neue Abkürzung
+Currently assigned to = Derzeit zugewiesen zu
+Categories = Kategorien
+Add = Hinzufügen
+Remove = Entfernen
+Remove all = Alle entfernen
+
+Zoom selected element = Auf selektiertes Element zoomen
+Point drag mode = Punktbearbeitungsmodus
+Zoom into view = In Ansicht hineinzoomen
+Zoom out of view = Aus Ansicht herauszoomen
+Show full working area = Gesamten Arbeitsbereich anzeigen
+Open mark dialogue = Markierdialog öffnen
+Drag single dot(s) = Einzelne(n) Punkt(e) verschieben
+
+# Misc
+
+Really create a new project?\nThis will delete all the existing data! = Soll wirklich ein neues Projekt erzeugt werden?\nDieser Vorgang würde alle bestehenden Daten löschen!
+Really load a new project?\nThis will delete all the existing data! = Soll wirklich ein neues Projekt geladen werden?\nDieser Vorgang würde alle bestehenden Daten löschen!
+Really load new data? This will delete the existing geometries, control elements and pen settings! = Sollen wirklich neue Daten geladen werden? Dieser Vorgang würde alle bestehenden Geometrien, Steuerelemente und Stifteinstellungen löschen!
+Current changes have not been saved!\nSave project before exiting? = Die letzten Änderungen sind noch nicht gespeichert worden.\nSoll das Projekt vor dem Beenden gesichert werden?
+
+Miscellaneous = Verschiedenes
+
+Visual Grid Size = Raster
+Snap To Grid = An Raster ausrichten
+Background colour = Hintergrundfarbe
+3D mesh colour = Farbe 3D Modell
+3D support mesh colour = Farbe Supportstrukturen
+Choose the background colour = Hintergrundfarbe auswählen
+Choose the 3D mesh colour = Farbe des 3D Modells auswählen
+Choose the 3D support mesh colour = Farbe der 3D Supportstrukturen auswählen
+
+State = Status
+Users = Benutzer
+User = Benutzer
+Enable User Privilege Management = Benutzerrechteverwaltung aktivieren
+User Privilege = Benutzerrecht
+Priority = Priorität
+Users = Benutzer
+User Data = Benutzerdaten
+Administrator = Administrator
+Service = Service
+System Operator = Bediener
+Login name = Anmeldename
+Full name = Voller Name
+Enabled = Aktiviert
+Comment = Kommentar
+Apply = Anwenden
+Add new user = Benutzer hinzufügen
+Delete user = Benutzer löschen
+Set password = Passwort setzen
+Privilege = Benutzerrecht
+
+Supervision = Oberaufsicht
+Manage users = Benutzer verwalten
+Exit application = Applikation beenden
+Edit geometry = Geometrien bearbeiten
+Modify settings = Einstellungen ändern
+Control marking = Markieren steuern
+
+# license related
+
+License Information = Lizenzinformation
+License Error = Lizensierungsfehler
+License = Lizenz
+Reset License = Lizenz löschen
+Checking for license = Suche Lizenz
+
+Load license file = Lizenzdatei laden
+Get a free license = Eine kostenlose Lizenz erhalten
+Click here to get a full PRO license = Hier klicken um eine PRO-Vollversion zu erhalten
+You will need to enter a new license key after next application startup! Really reset the current license? = Nach dem nächsten Programmstart würde ein neuer Lizenzkey benötigt werden! Soll die aktuelle Lizenz also wirklich gelöscht werden?
+Could not retrieve system information! = Benötigte Systeminformationen konnten nicht ermittelt werden!
+No valid license found!\n\nDo you want to get licensing information or enter a valid license key now? = Keine gültige Lizenz gefunden!\n\nWollen Sie Lizensierungsinformationen erhalten oder einen gültigen Lizenzkey eingeben? 
+No license key entered! = Es wurde Kein Lizenzschlüssel eingegeben!
+Could not store license data on disk! = Die Lizenzdaten konnten nicht gespeichert werden!
+Application is running in demo-mode, saving of data and other functions are disabled! = Die Applikation arbeitet im Demomodus, das Speichern von Daten und andere Funktionen sind deaktiviert!
+The current license does not include this component,\nbecause of that the application is running in demo-mode, saving of data is disabled! = Die benutzte Lizenz beinhaltet diese Softwarekomponente nicht,\ndie Applikation arbeitet deswegen im Demomodus, das Speichern von Daten ist deaktiviert!
+This product is licensed for = Dieses Produkt ist lizensiert für
+Operation not possible! = Operation ist nicht möglich!
+No valid license found! = Keine gültige Lizenz gefunden!
+Do you want to get a (free) license or enter a valid license key now? = Wollen Sie eine (kostenlose) Lizenz erhalten oder einen Lizenzschlüssel eingeben?
+License Information = Lizenzinformation
+This system is deadlocked, please contact your supplier! = Dieses System ist vollständig gesperrt, bitte setzen Sie sich mit Ihrem Lieferanten in Verbindung!
+This systems lock was damaged, please contact your supplier! = Die Sperre dieses Systems wurde beschädigt, bitte setzen Sie sich mit Ihrem Lieferanten in Verbindung!
+This system is locked. Please enter the password you received from your supplier in order unlock it = Dieses System ist gesperrt. Bitte geben Sie das Entsperrpasswort ein, welches Sie von Ihrem Lieferanten erhalten haben:
+Wrong password entered, system could not be unlocked. Exiting application! = Das eingegebene Passwort ist falsch. Das System konnte nicht freigegeben werden, die Applikation wird beendet!
+
+private, non-commercial usage = private, nichtkommerzielle Nutzung
+educational, non-commercial usage = Bildungszwecke (nichtkommerziell)
+commercial usage = kommerzielle Nutzung
+Load license file = Lizenzdatei laden
+Retrieved from dongle = Von Dongle bezogen
+Retrieved online = Online bezogen
+Retrieved from E1701 controller card = Von E1701 Controllerkarte bezogen
+Retrieved from E1803 controller card = Von E1803 Controllerkarte bezogen
+
+Checking dongle failed = Dongleübeprüfung fehlgeschlagen
+Dongle OK = Dongle in Ordnung
+
+Serial Interface = Serielle Schnittstelle
+Interface = Schnittstelle
+Data Rate = Übertragungsrate
+Data Bits = Datenbits
+Parity = Parität
+None = Keine
+Even = Gerade
+Odd = Ungerade
+Stop Bits = Stoppbits
+Flow Control = Flusssteuerung
+None = Keine
+Hardware = Hardware
+Xon / Xoff = Xon / Xoff
+
+# Scanlab RTCx
+
+Use Board Number = Verwende Karte mit Nummer
+ScanLab(R) RTC3 = ScanLab(R) RTC3
+ScanLab(R) RTC4 = ScanLab(R) RTC4
+ScanLab(R) RTC5 = ScanLab(R) RTC5
+YAG Mode 1 = YAG Modus 1
+YAG Mode 2 = YAG Modus 2
+YAG Mode 3 = YAG Modus 3
+Laser Mode 4 = Lasermodus 4
+Laser type = Lasertyp
+Analogue OUT 1 = Analogausgang 1
+Analogue OUT 2 = Analogausgang 2 
+Analogue OUT 3 (Extension Board) = Analogausgang 3 (Erweiterungsboard)
+Analogue OUT 4 (Extension Board) = Analogausgang 4 (Erweiterungsboard)
+Analogue OUT 5 (Extension Board) = Analogausgang 5 (Erweiterungsboard)
+Analogue OUT 6 (Extension Board) = Analogausgang 6 (Erweiterungsboard)
+Power output = Leistungsausgang
+Additional power output = Zusätzlicher Leistungsausgang
+2 (flat) = 2 (eben)
+3 (spatial) = 3 (räumlich)
+Number of axes = Anzahl der Achsen
+Correction file = Korrekturdatei
+Firmware file = Firmwaredatei
+Firmware data directory = Firmware Datenverzeichnis
+Laser signal level = Lasersignalpegel
+Active LOW = Aktiv-LOW
+Active HIGH = Akitv-HIGH
+SkyWriting = SkyWriting
+Timelag = Verzögerung
+Laser-on shift = Laser-Ein Verzug
+Run-in Phase = Vorlaufphase
+Run-out Phase = Nachlaufphase
+Stand-by frequency = Stand-By-Frequenz
+Stand-by length = Stand-By-Länge
+Field left position = Feld linke Position
+Field upper position = Feld obere Position
+Field size = Größe Arbeitsbereich
+Mirror X = Spiegelung X
+Mirror Y = Spiegelung Y
+Mirror Z = Spiegelung Z
+On-the-fly factor X = On-the-fly-Faktor X
+On-the-fly factor Y = On-the-fly-Faktor Y 
+Default = Voreingestellt
+Jump speed = Sprunggeschwindigkeit
+Mark speed = Markiergeschwindigkeit
+Laser off delay = Laserausschaltverzögerung
+Laser on delay = Lasereinschaltverzögerung
+Jump delay = Sprungverzögerung
+Mark delay = Markierverzögerung
+Dot-length = Punktlänge
+Pulse width = Pulsweite
+First pulse killer = Unterdrückung erster Puls
+Continuously running frequency = Ständige Frequenz
+Continuously running pulse width = Ständige Pulsweite
+Waveform number = Nummer der Wellenform
+Digital OUT (low byte) = Digitalausgang (unteres Byte)
+Digital OUT (high byte) = Digitalausgang (oberes Byte)
+Waveform number output = Ausgabe Wellenformnummer
+Latch output = Latch-Ausgang
+Master oscillator output = Masteroszillator-Ausgang
+Laser ready input = Eingang Laser bereit
+Maximum duty cycle = Maximales Tastverhältnis
+Maximum duty cycle LASER1 = Maximales Tastverhältnis LASER1
+Maximum duty cycle LASER2 = Maximales Tastverhältnis LASER2
+Alarm input (9) = Alarmeingang (9)
+Alarm input (16) = Alarmeingang (16)
+Alarm input (21) = Alarmeingang (21)
+X - X position in mm = X - X-Position in mm
+Y - Y position in mm = Y - Y-Position in mm
+Z - Z position in mm = Z - Z-Position in mm
+L - Laser on/off = L - Laser ein/aus
+PWR - Laser power in % = PWR - Laserleistung in %
+FREQ - Laser frequency in Hz = FREQ - Laserfrequenz in Hz
+CMD - Command = CMD - Kommando
+CTRL - Control data = CTRL - Steuerungsdaten
+BSY - Marking active = BSY - Markiervorgang aktiv
+
+# scaps USC-x
+
+Card 1 = Karte 1
+
+# Raylase RLC
+
+Pixel mode = Pixelmodus
+Hardware Pixel Lines = Hardware-Pixellinien
+
+# scanner controller card error texts
+
+No error = Kein Fehler
+Could not find specified file = Angegeben Datei konnte nicht gefunden werden 
+Data verification error = Fehler bei der Verifizierung der Daten
+Number of bytes in hex file is odd = Ungültige Länge der Hex-Datei
+Checksum error in hex file = Prüfsummenfehler in der Hex-Datei
+System driver not found or locked by another application = Treiber konnte nicht gefunden werden oder wird von anderer Anwendung benutzt
+Program file damaged = Programmdatei ist beschädigt 
+Parameter error = Parameterfehler
+Scanner card not found = Scannerkarte konnte nicht gefunden werden
+Correction file could not be loaded because the 3D option is not available = Korrekturdatei konnte nicht geladen werden da keine 3D-Option vorhanden ist 
+Initialisation of SCI failed = Initialisierung des SCI ist fehlgeschlagen 
+Initialisation of optic interface failed = Initialisierung des Optic-Interfaces ist fehlgeschlagen
+Could not load correction file = Konnte Korrekturdatei nicht laden
+Could not access scanner controller = Konnte nicht auf Scannerkarte zugreifen
+
+Board could not be reset successfully = Das Board konnte nicht zurückgesetzt werden
+Board could not be restarted successfully = Das Board konnte nicht neu gestartet werden
+Format error: file RTC5OUT.out has incorrect format = Formatfehler: die Datei RTC5OUT.out hat ein falsches Format
+Not enough memory on host system = Nicht genug Speicher auf dem Hostsystem vorhanden
+Board is already in use by an other application = Das Board wird bereits von einer anderen Anwendung benutzt
+Version error: driver library, RTC version (firmware file) and HEX version (DSP program file) are not compatible = Versionsfehler: Treiberbibliothek, RTC-Version (Firmwaredatei) und HEX-Version (DSP-Programmdatei) sind nicht kompatibel
+System driver not found, access to RTC5 denied = Systemtreiber nicht gefunden, kein Zugriff auf RTC5
+Driver error: loading of RTC5OUT.out file failed = Treiberfehler: Laden der Datei RTC5OUT.out fehlgeschlagen
+Configuration error: DSP register initialization failed = Konfigurationsfehler: DSP Registerinitialisierung fehlgeschlagen
+Firmware error: loading of RTC5RBF.rbf file failed = Firmwarefehler: Laden der Datei RTC5RBF.rbf fehlgeschlagen
+PCI download error: loading of RTC5DAT.dat file failed = PCI Downloadfehler: Laden der Datei RTC5DAT.dat fehlgeschlagen
+Download locked, board is busy = Download gesperrt, das Board ist beschäftigt
+Board not running, please perform a power-cycle = Das Board läuft nicht, bitte Spannung aus- und einschalten
+Loading of RTC6DAT.dat or RTC6RBF.rbf file failed = Laden der Datei RTC6DAT.dat oder RTC6RBF.rbf fehlgeschlagen
+System driver not found, access to RTC6 denied = Kein Systemtreiber gefunden, Zugriff auf RTC6 verweigert
+Driver error: loading of RTC6OUT.out file failed = Treiberfehler: Laden der Datei RTC6OUT.out fehlgeschlagen
+Firmware error: loading of RTC6RBF.rbf file failed = Firmwarefehler: Laden der Datei RTC6RBF.rbf fehlgeschlagen
+PCI download error: loading of RTC6DAT.dat file failed = PCI Downloadfehler: Laden der Datei RTC6DAT.dat fehlgeschlagen
+
+Stepper Motor Driver (Parport) = Schrittmotortreiber (Parport)
+Stepper Motor Driver (Scannercard) = Schrittmotortreiber (Scannerkarte)
+IO Sync Motor Trigger (Scannercard) = IO-getriggerter Motor (Scannerkarte)
+Axis = Achse
+Axis 1 = Achse 1
+Axis 2 = Achse 2
+Axis 3 = Achse 3
+Axis 4 = Achse 4
+Factor = Faktor
+Resolution Factor = Faktor
+Enable Axis = Achse aktivieren
+Axis Mode = Achsenmodus
+planar (mm) = planar (mm)
+rotational (deg) = rotierend (Grad)
+Maximum Speed = Maximalgeschwindigkeit
+Reference Timeout = Zeitlimit Referenzfahrt
+Lazy reference switch = Träger Referenzschalter
+Acceleration Mode = Beschleunigungsmodus
+linear = linear
+exponential = exponentiell
+s-shaped = S-förmig
+Deceleration Mode = Abbremsmodus
+Stop Deceleration = Stopp-Verzögerung
+Reference Speed = Referenziergeschwindigkeit
+Reference Speed 1 = Referenziergeschwindigkeit 1
+Reference Speed 2 = Referenziergeschwindigkeit 2
+Reference Speed 3 = Referenziergeschwindigkeit 3
+Auto-leave Limit Switch = Endschalter automatisch verlassen
+Minimum Leave-Distance = Mindestabstand nach Verlassen
+Encoder = Encoder
+Encoder Factor = Encoderfaktor
+Low Limit = Unteres Limit
+High Limit = Oberes Limit
+Acceleration = Beschleunigung
+Deceleration = Verlangsamung
+Step Signal Output = Ausgang Step-Signal
+Direction Signal Output = Ausgang Richtungssignal
+Invert Direction = Richtung invertieren
+Limit Switch (+) Input = Eingang Endschalter (+)
+Limit Switch (-) Input = Eingang Endschalter (-)
+No referencing = Keine Referenzierung
+To switch in negative, to switch in positive, leave in negative direction = Auf Schalter in negativer Richtung, auf Schalter in positiver Richtung, verlassen in negativer Richtung
+To switch in negative, leave in positive direction = Auf Schalter in negativer Richtung, verlassen in positiver Richtung
+To switch in negative, leave in negative direction = Auf Schalter in negativer Richtung, verlassen in negativer Richtung
+To switch in negative direction = Auf Schalter in negativer Richtung
+To switch in positive, to switch in negative, leave in positive direction = Auf Schalter in positiver Richtung, auf Schalter in negativer Richtung, verlassen in positiver Richtung
+To switch in positive, leave in negative direction = Auf Schalter in positiver Richtung, verlassen in negativer Richtung
+To switch in positive, leave in positive direction = Auf Schalter in positiver Richtung, verlassen in positiver Richtung
+To switch in positive direction = Auf Schalter in positiver Richtung
+Reference Mode = Referenziermodus
+Reference Signal Input = Eingang Referenzschalter
+Reference Speed (Enter) = Referenziergeschwindigkeit (Befahren)
+Reference Speed (Leave) = Referenziergeschwindigkeit (Verlassen)
+Referenced Position = Referenzierte Position
+Digital Output Port = Digitale Ausgangsschnittstelle
+Digital Input Port = Digitale Eingangsschnittstelle
+On Delay = Einschaltverzögerung
+Off Delay = Ausschaltverzögerung
+Motion start output = Ausgang Bewegungsstart
+Motion done input = Eingang Bewegungsende
+Reference start output = Ausgang Referenzierung
+
+
+# IMS MDrive Plus Controllers
+
+Axis 1 (A) = Achse 1 (A)
+Axis 2 (B) = Achse 2 (B)
+Axis 3 (C) = Achse 3 (C)
+Axis 1 Name = Name Achse 1
+Axis 2 Name = Name Achse 2
+Axis 3 Name = Name Achse 3
+POS - absolute position to move to = POS - absolute Zielposition
+MODE >0 speed, =0 stop, =-1 home = MODE >0 Geschwindigkeit, =0 Stopp, =-1 Home
+POS - current absolute axis position = POS - aktuelle Absolutposition
+MODE >0 current speed, =0 has stopped = MODE >0 aktuelle Geschwindigkeit, =0 gestoppt
+
+Swap X and Y = X und Y tauschen
+
+CTRL - Motion-synchronous control data = Bewegungssynchrone Steuerungsdaten
+
+# ETH6608
+
+Invert Input Logic = Invertiere Eingangslogik
+Generic Fiber Laser = Generischer Fiberlaser
+Scanner output = Scannerausgang
+Analogue = Analogausgang
+XY2/100 = XY2/100
+both = beide
+splitted, Z analogue = geteilt, Z analog
+Analogue Z-Range = Analoger Z-Bereich
+Full range (-5..5V) = Voller Bereich (-5..5V)
+Lower range (-5..0V) = Unterer Bereich (-5..0V)
+Upper range (0..5V) = Oberer Bereich (0..5V)
+8 Bit Laserport = 8 Bit Laserport
+Analogue OUT = Analogue OUT
+
+
+# E1701
+
+IP or serial interface = IP oder serielle Schnittstelle
+Ethernet password = Ethernet-Passwort
+Bitmap marking mode = Bitmap-Markiermodus
+LaserGate modulated (b/w) = LaserGate-moduliert (b/w)
+Jump'n'shoot = Sprung und Schuss
+Analogue Voltage Range = Analoger Spannungsbereich
+A0 Correction Factor = A0 Korrekturfaktor
+Gain X = Skalierung X
+Gain Y = Skalierung Y
+Slant X = Neigung X
+Slant Y = Neigung Y
+Offset X = Verschiebung X
+Offset Y = Verschiebung Y
+IPG (MO, Latch) = IPG (MO, Latch)
+Use third axis = Dritte Achse verwenden
+Enable 3D field correction = 3D Feldkorrektur aktivieren
+Use third axis (A1 as Z) = Dritte Achse verwenden (A1 als Z)
+Use A3 as Digi Out = A3 als Digitalausgang verwenden
+Field depth = Feldtiefe
+Z distance = Z-Abstand
+Marking on-the-fly = On-the-fly markieren
+Mark-In-Progress output = Ausgang "Markieren aktiv"
+Invert Mark-In-Progress output = Ausgang "Markieren aktiv" invertieren
+Invert LaserGate = LaserGate invertieren
+Wait-External-Trigger output = Ausgang "Warte auf externen Trigger"
+Invert Wait-External-Trigger output = Ausgang "Warte auf externen Trigger" invertieren
+Invert LaserA = LaserA invertieren
+Invert LaserB = LaserB invertieren
+Simulated = Simuliert
+Simmer output = Simmerausgang
+Simmer = Simmer
+Simmer current = Simmerstrom
+Turn MO off during jumps = MO während Sprüngen ausschalten
+Turn power off during jumps = Leistung während Sprüngen ausschalten
+PWM control = PWM-Steuerung
+Referencing order = Referenzierreihenfolge
+Enable 3D = 3D aktivieren
+PWM value via LaserB, LP8_1, LP8_2 (JPT) = Pulsweitenwert über LaserB, LP8_1, LP8_2 (JPT)
+APD-index via DOut2, DOut3, DOut4 (IPG) = APD-Index über DOut2, DOut3, DOut4 (IPG)
+Unknown or incompatible firmware found on controller card! = Unbekannte oder inkompatible Firmwareversion gefunden!
+Outdated firmware found on controller card, please update to newer version! = Veraltete Firmwareversion gefunden, bitte auf eine neuere Version aktualisieren!
+Incompatible device found at given connection (no E1701A scanner controller card)! = Inkompatibles Gerät gefunden (kein E1701A Scannercontroller)!
+Incompatible device found at given connection (no E1701D XY2/100 scanner controller card)! = Inkompatibles Gerät gefunden (kein E1701D XY2/100 Scannercontroller)!
+Incompatible device found at given connection (no E1701P plotter controller card)! = Inkompatibles Gerät gefunden (kein E1701P Plottercontroller)!
+Incompatible device found at given connection (no LY-001 scanner controller card)! = Inkompatibles Gerät gefunden (kein LY-001 Scannercontroller)!
+Invert Input Logic = Invertiere Eingangslogik (Öffner)
+Could not establish connection to scanner card = Keine Verbindung zum Scannercontroller!
+Could not find or open specified (correction) file = Die angegebene (Korrektur-)Datei konnte nicht gefunden werden!
+Data transmission error, connection seems to be broken = Datenübertragungsfehler, die Verbindung scheint unterbrochen zu sein!
+Incompatible device found at given connection (no E1701A scanner controller card)! = Inkompatibles Gerät an angegebener Schnittstelle gefunden (keine E1701A Scannerkarte)
+Incompatible device found at given connection (no E1701D XY2/100 scanner controller card)! = Inkompatibles Gerät an angegebener Schnittstelle gefunden (keine E1701D XY2/100 Scannerkarte)
+Laser is not ready for operation = Laser ist nicht bereit
+Laser temperature out of valid range = Lasertemperatur ist außerhalb des zulässigen Bereiches
+Laser back reflection too high = Die zum Laser zurückreflektierte Leistung ist zu hoch
+Laser master oscillator failure = Fehler im Laser Masteroszillator
+Laser command buffer overflow = Überlauf im Laser-Kommandospeicher
+Laser overheat = Übertemperatur im Laser
+Laser pulse width too long = Laser-Pulsweite ist zu lang
+Laser pulse width too short = Laser-Pulsweite ist zu kurz
+Laser power supply is out of valid range = Laser-Stromversorgung ist außerhalb des zulässigen Bereiches
+Laser high pulse energy = Hohe Laser-Pulsenergie
+Laser power supply failure detected = Fehler in Laser-Stromversorgung
+Laser duty cycle too high = Laser Tastverhältnis zu hoch
+Laser low temperature = Laser auf niedriger Temperatur
+Laser GND leakage = Laser GND Leckage
+Pilot laser alarm = Pilolaser-Alarm
+Laser critical error = Kritischer Laserfehler
+Laser fiber interlock active = Laser Fiber-Interlock ist aktiv
+Laser high average power error = Hohe Laser-Durchschnittsleistung
+
+Given filename is illegal for usage on controller = Der angegebene Dateiname ist für die Verwendung auf dem Controller ungeeignet
+Laser is in alarm state = Laser ist in Alarmstatus
+Controller is not ready to accept data = Controller ist nicht bereit für Datenempfang
+In-Polygon Stop Angle = In-Polygon Stoppwinkel
+
+# Generic Laser Controller
+
+Response End Character = Endezeichen einer Antwort
+CR/LF (\r\n, like Windows) = CR/LF (\r\n, wie Windows)
+LF (\n, like Linux) = LF (\n, wie Linux)
+Device Open Command = Kommando beim Öffnen des Gerätes
+Device Open Delay = Pause nach Öffnen des Gerätes
+Ready for Marking Command = Kommando bei Markierbereitschaft
+Ready for Marking Delay = Pause nach Markierbereitschaft
+Job Start Command = Kommando beim Jobstart
+Job Start Delay = Pause nach Jobstart-Kommando
+Slice Start Command = Kommando vor Sliceanfang
+Slice Start Delay = Pause vor Sliceanfang
+Laser On Command = Kommando für Laser ein
+Laser Off Command = Kommando für Laser aus
+Slice End Command = Kommando nach Sliceende
+Job End Command = Kommando bei Jobende
+End Ready for Marking Command = Kommando nach Markierbereitschaft
+Device Close Command = Kommando vor Schließen des Gerätes
+
+# SPI G4 controller
+
+Control waveform during process = Waveform während Prozess steuern
+
+# Coherent Avia controller
+
+IP = IP
+Port = Portnummer
+Control power during process = Leistungsteuerung während Prozess
+Control frequency during process = Frequenzsteuerung während Prozess
+Current = Strom
+Current Limit = Strombegrenzung
+Power Limit = Leistungsgrenze
+Energy Limit = Energiegrenze
+Thermatrack = Thermatrack
+Timeout = Zeitlimit
+Trigger Mode = Triggermodus
+Pulse Control = Pulssteuerung
+SHG Temperature = SHG-Temperatur
+FHG Temperature = FHG-Temperatur
+STAT - Status messages = STAT - Statusnachrichten
+ERR - In-process error codes = ERR - Prozessfehler-Codes
+
+# SPI laser controller
+
+Control Power = Leistung steuern
+Control Waveform = Wellenform steuern
+
+
+# Optris temperature controller amd gerentic analogue input
+
+Heater = Heizung
+Lower temperature = Untere Temperatur
+Upper temperature = Obere Temperatur
+Temperature = Temperatur
+Thresholds = Schwellwerte
+Generic analogue temperature = Generische Temperatur (analog)
+Temperature at 0 = Temperatur bei 0
+Temperature at max = Temperatur bei Maximalwert
+Analogue input port = Analogeingang
+Additional Digital Output Port = Zusätzlicher Digitalausgangs-Port
+Additional Digital Output Bit = Zusätzliches Digitalausgangs-Bit
+Permanent temperature control = Permanente Temperaturüberwachung
+deg centigrade = °C
+Stop process on temperature deviation >10% = Prozess bei Temperautabweichung >10% anhalten
+L - Lower temperature = L - Untere Temperatur
+H - Upper temperature = H - Obere Temperatur
+CURR - Current temperature = CURR - Aktuelle Temperatur
+ON - Turn heater on/off = ON - Heizung an/aus
+CTRL - Turn heater on/off = CTRL - Heizung an/aus
+
+
+# image capturing
+Capture Image = Bildeinzug
+Image Capture = Bildeinzug
+
+Interface Number = Videoschnittstelle
+Scale to image width = Skaliere auf Bildbreite
+Scale to image height = Skaliere auf Bildhöhe
+Don't scale (use hardware resolution) = Nicht skalieren (Hardwareauflösung verwenden)
+Brightness = Helligkeit
+Contrast = Kontrast
+Gamma = Gamma
+Red = Rot
+Green = Grün
+Blue = Blau
+Convert to greyscale = Zu Graustufen konvertieren
+a single grabbed frame = ein einzelnes Bild
+Show test pattern (no image capture) = Testmuster anzeigen (kein Bildeinzug)
+Show noise (no image capture) = Rauschen anzeigen (kein Bildeinzug)
+Rotate = Rotieren
+no rotation = keine Rotation
+90 deg = 90 Grad
+180 deg = 180 Grad
+270 deg = 270 Grad
+
+# GCode output
+
+Custom initialisation commands = Eigene Initialisierungskommandos
+Custom laser-on commands = Eigene Laser-An-Kommandos
+Custom laser-off commands = Eigene Laser-Aus-Kommandos
+Custom command between slices = Eigenes Kommando zwischen Slices
+Move Z-axis before slice = Z-Achse vor nächstem Slice bewegen
+CRLF after every command = CRLF nach jedem Kommando
+Jump mode = Sprungmodus
+Include custom M7xx laser commands = Spezielle M7xx Laserkommandos verwenden
+Fastest (G00) = Schnellstmöglich (G00)
+Variable (jump speed) = Variabel (Sprunggeschwindigkeit)
+
+
+# general plug-in handling
+
+Question = Frage
+Error = Fehler
+Warning = Warnung
+Definition = Definition
+Information = Information
+Disabled = Deaktiviert
+
+# misc plug-ins
+
+Field width = Breite Arbeitsbereich
+Field height = Höhe Arbeitsbereich
+Printer Parameters = Druckereinstellungen
+Use default settings = Voreinstellungen verwenden
+Open printer dialogue = Druckdialog öffnen
+Line Width = Linienbreite
+Laser Maximum Current = Maximaler Laserstrom
+
+No valid APCP project file or APCX compiled project! = Keine gültige APCP-Projektdatei und kein gültiges, compiliertes APCX-Projekt!
+Could not access required device! = Kann nicht auf benötigtes Device zugreifen!
+Could not access required connection! = Kann nicht auf benötigte Verbindung zugreifen!
+Requested feature is not supported by plug-in! = Benötigtes Feature wird von Plug-in nicht unterstützt!
+Requested IO is not supported by plug-in! = Benötigter IO wird von Plug-in nicht unterstützt!
+Could not allocate required resources! = Benötigte Ressourcen konnten nicht alloziiert werden!
+Could not allocate enough memory! = Es konnte nicht genug Speicher alloziiert werden!
+Authentication failed, username/password did not match! = Die Authentifizierung ist fehlgeschlagen, Benutzername/Passwort stimmen nicht überein!
+Conversion error, the given data have an illegal format and can't be converted! = Konvertierungsfehler, die übergebenen Daten haben ein ungültiges Format und können deswegen nicht umgewandelt werden!
+Operation is still in progress, can't accept new data! = Operation läuft noch, es können keine neuen Daten angenommen werden!
+Could not open file! = Konnte Datei nicht öffnen!
+Could not receive data, transfer was interrupted or timeout occured! = Daten konnten nicht oder nicht vollständig empfangen werden!
+Could not transmit data, transfer was interrupted or timeout occured! = Daten konnten nicht oder nicht vollständig gesendet werden!
+Protocol error, invalid data could not be handled = Protokollfehler, ungültige Daten konnten nicht verarbeitet werden
+Invalid input data or invalid input data format could not be handled by Plug-In = Ungültige Eingangsdaten oder ungültiges Eingangsdatenformat, Bearbeitung durch das Plug-In nicht möglich
+Could not create file, saving of data failed! = Konnte Datei nicht anlegen, Speichern der Daten nicht möglich!
+Could not open file, reading of data failed! = Konnte Datei nicht öffnen, Lesen der Daten nicht möglich!
+Could not write data into file, complete saving of data failed! = Schreiben von Daten in Datei nicht möglich, Schreibvorgang abgebrochen!
+Could not read from file completely, loading of data failed! = Lesen von Daten aus Datei nicht möglich, Ladevorgang abgebrochen!
+No more data available! = Keine weiteren Daten verfügbar!
+Data are out of valid range! = Daten liegen außerhalb des gültigen Bereiches!
+Function could not be executed due to missing PRO license! Do you want to upgrade now? = Die Funktion konnte auf Grund einer fehlenden PRO-Lizenz nicht ausgeführt werden! Jetzt upgraden?
+Function could not be executed due to missing PRO license! = Die Funktion konnte auf Grund einer fehlenden PRO-Lizenz nicht ausgeführt werden!
+A DLL required to operate the hardware is missing. It is available from the vendor and should be placed in WINDOWS\system32 or WINDOWS\SysWOW64! = Eine DLL, welche für den Betrieb der Hardware benötigt wird, fehlt. Diese wird vom Hersteller bereitgestellt und sollte in WINDOWS\system32 oder WINDOWS\SysWOW64 abgelegt werden!
+A shared library required to operate the hardware is missing. It is available from the vendor and possibly should be placed in /usr/lib or /usr/lib64! = Eine Shared Library, welche für den Betrieb der Hardware benötigt wird, fehlt. Diese wird vom Hersteller bereitgestellt und sollte möglicherweise in /usr/lib oder /usr/lib64 abgelegt werden!
+An unknown error occured (%d) = Es ist ein unbekannter Fehler aufgetreten (%d)
+Could not load external Plug-In! = Externes Plug-In konnte nicht geladen werden!
+Could not find required Plug-In = Kann benötigtes Plug-In nicht finden
+This project file was created using the wrong version of the Application\nand may not work as expected.\nPlease load and save the project file using version = Diese Projektdatei wurde mit einer falschen Softwareversion erstellt\und dürfte deswegen nicht so funktionieren wie erwartet.\nBitte laden und speichern Sie die Projektdatei erneut mit Version
+Warning: This project file was created using the wrong version of the Application\nand may not work as expected. = Warnung: Diese Projektdatei wurde mit einer falschen Softwareversion erstellt\und dürfte deswegen nicht so funktionieren wie erwartet.
+This project file was created using a newer version of the Application\nand may not work as expected.\nPlease update your software to proceed with this project file! = Diese Projektdatei wurde mit einer neueren Softwareversion erstellt\nund dürfte deswegen nicht so funktionieren wie erwartet.\nBitte updaten Sie Ihre Software um diese Projektdatei zu benutzen!
+
+Input Poll Cycle Time = Abrufzeit Eingänge
+Could not load required symbols, plugin seems to be corrupt! = Benötigte Symbole konnten nicht geladen werden, das Plugin scheint defekt zu sein!

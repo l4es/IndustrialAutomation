@@ -1,0 +1,11 @@
+on
+	(void)
+shep = 4 :-> shep = 4
+shep = 13 :-> shep = 13
+colour = 0
+RGB = 5
+Ed = 1, CLAIRE = 2, SARAH = 1, ALEX 2, GEORGIA = 3
+RED = 0,GREEN = 13,BLUE = 14 :-> RED = 0,GREEN = 13,BLUE = 14  
+CHAR = 0,INT = 1,DOUBLE = 2 :-> CHAR = 0,INT = 1,DOUBLE = 2 
+Two
+	0

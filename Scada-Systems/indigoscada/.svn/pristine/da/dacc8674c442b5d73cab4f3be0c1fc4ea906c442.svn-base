@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>cgihtml Documentation: Miscellaneous</TITLE>
+<LINK HREF="cgihtml-6.html" REL=previous>
+<LINK HREF="cgihtml.html#toc7" REL=contents>
+</HEAD>
+<BODY>
+Next
+<A HREF="cgihtml-6.html">Previous</A>
+<A HREF="cgihtml.html#toc7">Contents</A>
+<HR>
+<H2><A NAME="s7">7. Miscellaneous</A></H2>
+
+<H2><A NAME="ss7.1">7.1 Release notes</A>
+</H2>
+
+<P>I periodically enhance this library, and I welcome any comments or
+suggestions.  Please e-mail them to
+<A HREF="mailto:eekim@eekim.com">eekim@eekim.com</A>.
+<P>This library is e-mail ware.  Please send me e-mail if you use this
+library; I'd really like to hear your comments.  Although I do not
+require it, I would appreciate attribution if you use my code.
+<P>
+<H2><A NAME="ss7.2">7.2 Future releases</A>
+</H2>
+
+<P>This library is nearing its final release.  I hope to include FastCGI
+support, and API support (for Apache, Netscape, and Microsoft
+servers).  I may also attempt to port it to the Macintosh, and I want
+to improve generally portability.  I will most likely rewrite the API
+in the next major release.  Finally, I'd like to improve the
+robustness and fix all the bugs.
+<P>If you have any suggestions, I'd like to hear them.  Feel free to
+e-mail me at
+<A HREF="mailto:eekim@eekim.com">eekim@eekim.com</A><P>
+<H2><A NAME="ss7.3">7.3 Credits</A>
+</H2>
+
+<P>
+<P>Thanks to the countless people who have sent me suggestions and
+comments.  You may contact me via e-mail at
+<A HREF="mailto:eekim@eekim.com">eekim@eekim.com</A>.
+My web page is located at 
+<A HREF="http://www.eekim.com/">http://www.eekim.com/</A>.
+<P>
+<HR>
+Next
+<A HREF="cgihtml-6.html">Previous</A>
+<A HREF="cgihtml.html#toc7">Contents</A>
+</BODY>
+</HTML>

@@ -1,0 +1,9 @@
+This file lists the tests that need to be added so that we don't forget.
+
+Still need a read/write test to make sure that data gets transfered back and forth
+to the server correctly.  It needs to test all the different datatypes, corner cases
+for arrays and CDTs.
+
+Test that a very large amount of data will transfer correctly.  Enough that multiple messages will be required.
+
+

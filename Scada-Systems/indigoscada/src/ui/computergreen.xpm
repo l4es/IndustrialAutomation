@@ -1,0 +1,31 @@
+/* XPM */
+static const char *computergreen_xpm[] = {
+/* width height num_colors chars_per_pixel */
+"    16    16        8            1",
+/* colors */
+". c #000000",
+"# c #008000",
+"a c #808000",
+"b c #808080",
+"c c #c0c0c0",
+"d c #00ff00",
+"e c #ffff00",
+"f c none",
+/* pixels */
+".fffffffffffffff",
+".fffffbbbbbbbbff",
+".ffffbcccccccb.f",
+".fffbffffffcbb.f",
+".faabf.....cbb.f",
+"..aebf.d##bcbb.f",
+"bbaebf.###bcbb.f",
+"ccaebf.bbbbcbb.f",
+"ffaabfccccccb.bb",
+"ffffb........bc.",
+"fffbccccccccbcb.",
+"fffb.b.b.b.b.bb.",
+"ffb.c.c.c.c.c..f",
+"fbffffffffffc.ff",
+"f............fff",
+"ffffffffffffffff"
+};

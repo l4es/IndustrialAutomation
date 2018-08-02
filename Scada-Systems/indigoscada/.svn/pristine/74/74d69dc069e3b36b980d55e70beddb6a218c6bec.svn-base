@@ -1,0 +1,38 @@
+on
+	(void)
+read only
+read only
+write only
+write only, append
+filetype.c: regular
+/usr: directory
+/etc: directory
+usage: a.out <pathname>
+read access OK
+open for reading OK
+seek OK
+0000000   a   b   c   d   e   f   g   h   i   j  \0  \0  \0  \0  \0  \0
+0000020  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0  \0
+0000040  \0  \0  \0  \0  \0  \0  \0  \0   A   B   C   D   E   F   G   H
+0000060   I   J
+0000062
+#include	"ourhdr.h"
+
+#define	BUFFSIZE	8192
+
+int
+main(void)
+{
+	int		n;
+	char	buf[BUFFSIZE];
+
+	while ( (n = read(STDIN_FILENO, buf, BUFFSIZE)) > 0)
+		if (write(STDOUT_FILENO, buf, n) != n)
+			err_sys("write error");
+
+	if (n < 0)
+		err_sys("read error");
+
+	return 0;
+}
+	0

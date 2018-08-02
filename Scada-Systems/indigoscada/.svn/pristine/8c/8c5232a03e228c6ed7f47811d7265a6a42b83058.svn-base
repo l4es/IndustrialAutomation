@@ -1,0 +1,40 @@
+        The main files are:
+
+stdClib.c          inserts the various routines into EiC's
+                     symbol table
+
+stdClib2eic.h      prototype for the interface routines
+
+stdlib.c            interface routines.
+
+Information on writing interface routines can be found in
+  EiC/doc/tech_doc/builtin.doc.
+
+Also, all the standard header files in this directory are used to
+prototype the routines called by the interface functions and are
+included into EiC at runtime; for example:
+
+
+        EiC 1> #include <math.h>
+
+The platform directories essentially just hold  system
+header files for each platform.
+
+        Auxillary files:
+
+ctypes.c      EiC's routines needed to support <ctype.h>
+
+strrev.c
+strround.c
+eicfftoa.c
+itoa.c        These files are all used  by the stdio
+              _eicUprintf, _Uprintf  etc.
+
+fopen.c     routines interfaced from stdlib.c, which can
+            also be called from builtin functions
+
+printf.c
+scanf.c      printf support for builtin functions
+	     and the EiC interpreter.
+
+ 

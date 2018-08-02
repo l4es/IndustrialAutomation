@@ -1,0 +1,5 @@
+on
+	1
+Warning: in gnu6.c near line 9: Flow reaches end of non-void function `main'
+Test passed
+	12

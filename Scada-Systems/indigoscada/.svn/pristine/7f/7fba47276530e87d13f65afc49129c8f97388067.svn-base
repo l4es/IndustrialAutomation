@@ -1,0 +1,50 @@
+\setlength{\unitlength}{0.012500in}%
+%
+\begingroup\makeatletter\ifx\SetFigFont\undefined
+% extract first six characters in \fmtname
+\def\x#1#2#3#4#5#6#7\relax{\def\x{#1#2#3#4#5#6}}%
+\expandafter\x\fmtname xxxxxx\relax \def\y{splain}%
+\ifx\x\y   % LaTeX or SliTeX?
+\gdef\SetFigFont#1#2#3{%
+  \ifnum #1<17\tiny\else \ifnum #1<20\small\else
+  \ifnum #1<24\normalsize\else \ifnum #1<29\large\else
+  \ifnum #1<34\Large\else \ifnum #1<41\LARGE\else
+     \huge\fi\fi\fi\fi\fi\fi
+  \csname #3\endcsname}%
+\else
+\gdef\SetFigFont#1#2#3{\begingroup
+  \count@#1\relax \ifnum 25<\count@\count@25\fi
+  \def\x{\endgroup\@setsize\SetFigFont{#2pt}}%
+  \expandafter\x
+    \csname \romannumeral\the\count@ pt\expandafter\endcsname
+    \csname @\romannumeral\the\count@ pt\endcsname
+  \csname #3\endcsname}%
+\fi
+\fi\endgroup
+\begin{picture}(267,221)(40,291)
+\put( 59,490){\makebox(0,0)[lb]{\smash{\SetFigFont{25}{30.0}{rm}.}}}
+\put( 59,483){\makebox(0,0)[lb]{\smash{\SetFigFont{25}{30.0}{rm}.}}}
+\put( 59,476){\makebox(0,0)[lb]{\smash{\SetFigFont{25}{30.0}{rm}.}}}
+\thinlines
+\put(120,395){\framebox(115,65){}}
+\put(130,425){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{rm}level = 1}}}
+\put(130,405){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{rm}nspace = stand\_tab}}}
+\put(130,445){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{rm}id = x}}}
+\put(235,425){\vector( 1, 0){ 35}}
+\put( 40,390){\framebox(45,70){}}
+\put( 85,430){\vector( 1, 0){ 30}}
+\put(275,420){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{rm}NULL}}}
+\put( 59,305){\makebox(0,0)[lb]{\smash{\SetFigFont{25}{30.0}{rm}.}}}
+\put( 59,298){\makebox(0,0)[lb]{\smash{\SetFigFont{25}{30.0}{rm}.}}}
+\put( 59,291){\makebox(0,0)[lb]{\smash{\SetFigFont{25}{30.0}{rm}.}}}
+\put( 40,320){\framebox(45,70){}}
+\put( 85,360){\vector( 1, 0){ 30}}
+\put(235,355){\vector( 1, 0){ 35}}
+\put(120,325){\framebox(115,65){}}
+\put(275,350){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{rm}NULL}}}
+\put(130,355){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{rm}level = 1}}}
+\put(130,335){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{rm}nspace = stand\_tab}}}
+\put(130,375){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{rm}id = y}}}
+\put( 40,500){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{rm}Buckets}}}
+\put(130,500){\makebox(0,0)[lb]{\smash{\SetFigFont{12}{14.4}{rm}Symbol-Table Entries}}}
+\end{picture}

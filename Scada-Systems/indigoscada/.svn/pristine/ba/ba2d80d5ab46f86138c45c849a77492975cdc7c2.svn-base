@@ -1,0 +1,14 @@
+       int a1;
+static int a2;
+extern int a3;
+       int a4;
+static int a5;
+extern int a6;
+       int a7;
+static int a8;
+extern int a9;
+
+
+static int a10;
+static int a11;
+

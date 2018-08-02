@@ -1,0 +1,26 @@
+device = "/dev/tty.usbserial"
+baudrate = 9600
+retries = 3
+timeout = 200
+
+pins = {}
+analogs = {}
+
+name = "ArduinoTest"
+address = "AA"
+
+for n=2,5 do
+  pins[n] = {type = "DI", tagname = "ArduinoPin" .. n, pullup = false }
+end
+
+for n=6,13 do
+  pins[n] = {type = "DO", tagname = "ArduinoPin" .. n, pullup = false }
+end
+
+pins[11].type = "PWM"
+
+for n=0,5 do
+  analogs[n] = { enabled = true, tagname = "ArduinoAI" .. n }
+end
+
+add_node(name, address, pins, analogs)

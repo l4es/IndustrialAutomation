@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestSvr", "TestSvr.vcproj", "{1DEDB04B-C0BB-4D11-A6A7-164BC6A5B899}"
+	ProjectSection(ProjectDependencies) = postProject
+		{492645C1-2BFF-4C83-8C77-6F82D91CC490} = {492645C1-2BFF-4C83-8C77-6F82D91CC490}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MYLIB", "..\mylib\MYLIB.vcproj", "{492645C1-2BFF-4C83-8C77-6F82D91CC490}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1DEDB04B-C0BB-4D11-A6A7-164BC6A5B899}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1DEDB04B-C0BB-4D11-A6A7-164BC6A5B899}.Debug|Win32.Build.0 = Debug|Win32
+		{1DEDB04B-C0BB-4D11-A6A7-164BC6A5B899}.Release|Win32.ActiveCfg = Release|Win32
+		{1DEDB04B-C0BB-4D11-A6A7-164BC6A5B899}.Release|Win32.Build.0 = Release|Win32
+		{492645C1-2BFF-4C83-8C77-6F82D91CC490}.Debug|Win32.ActiveCfg = Debug|Win32
+		{492645C1-2BFF-4C83-8C77-6F82D91CC490}.Debug|Win32.Build.0 = Debug|Win32
+		{492645C1-2BFF-4C83-8C77-6F82D91CC490}.Release|Win32.ActiveCfg = Release|Win32
+		{492645C1-2BFF-4C83-8C77-6F82D91CC490}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

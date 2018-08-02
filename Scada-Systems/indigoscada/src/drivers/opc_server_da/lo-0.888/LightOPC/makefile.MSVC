@@ -1,0 +1,71 @@
+# Light OPC Server development library
+#
+# Copyright (c) 2001  Timofei Bondarenko
+#
+# Makefile for MS Visual C
+#
+#############################################################
+
+#MSDIR="d:\Program Files\Microsoft Visual Studio\vc98"
+#PTHRDIR=../../tools/pthreads
+#PTHRFLAG=-I$(PTHRDIR)/include -DLO_USE_PTHREADS=1
+#PTHRLIB=$(PTHRDIR)/lib/pthreadVC.lib
+
+ULOGINCL = ..\unilog
+ULOGLIB = ..\unilog
+OPCDIR = "d:\Program Files\Common Files\OPC Foundation\Include"
+
+#INCLUDES= -I$(MSDIR)\include
+INCLUDES= -I$(ULOGINCL) -I$(OPCDIR) \
+$(PTHRFLAG)
+LIBDIR=/LIBPATH:$(ULOGLIB)
+#/LIBPATH:$(MSDIR)\lib 
+ULFLAGS=-DUL_PUBLIC=__declspec(dllimport)
+
+# -DUSELOG=-1 will remove any references to unilog.dll
+
+CFLAGS_DEBUG=/O2 /G4 /GF -DUSE_LOG=ll_DEBUG
+CFLAGS= /MD /W3 /TP $(CFLAGS_DEBUG) $(ULFLAGS)
+# /TP forces C++ compilation fo .c files.
+# It's neccessary in order to compile OPC-DA v3.00 headers.
+
+LDFLAGS= /OPT:NOREF /INCREMENTAL:NO /MAP /DLL
+LIBS =unilog.lib advapi32.lib ole32.lib oleaut32.lib user32.lib \
+$(PTHRLIB)
+
+CC=cl -nologo
+LD=link
+
+# SUBSYSTEM is used for sample exe server. select one
+#SUBSYSTEM=/SUBSYSTEM:WINDOWS
+SUBSYSTEM=/SUBSYSTEM:CONSOLE
+
+
+DLL  =lightopc.dll
+IMPLIB =lightopc.lib
+TEST=lopcsamp.exe lopcsamd.dll
+
+ALLTARG = $(DLL) $(IMPLIB) test
+
+############################################################
+# Objects & common rules
+O=obj
+RES=res
+!include objects.mk
+
+test: lopcsamp.exe lopcsamd.dll
+
+.def.lib:
+	lib /MACHINE:i386 /DEF:$<
+
+$(DLL) $(IMPLIB): $(OBJS)
+	$(LD) $(LDFLAGS) /OUT:$*.dll /DEF:$*.def $(OBJS) $(LIBDIR) $(LIBS)
+
+lopcsamd.dll: sample.obj $(IMPLIB)
+	$(LD) $(LDFLAGS) $(LIBDIR) /OUT:$@ /DEF:$*.def $** $(LIBS)
+
+lopcsamp.exe: sample.obj $(IMPLIB)
+	$(LD) $(SUBSYSTEM) $(LIBDIR) /OUT:$@ $** $(LIBS)
+
+
+####################### the end ###########################

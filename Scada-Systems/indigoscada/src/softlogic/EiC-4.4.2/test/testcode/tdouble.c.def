@@ -1,0 +1,58 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+   1:bump     1            67:call                 133:stoval              
+   3:rvaldouble  5 0       69:bump     1           135:stoval              
+   6:stoval                72:bump     1           138:pushint  3          
+   7:rvaldouble  5 0       73:checkar  1 1         139:call                
+  10:stoval                76:pushint  1           142:checkar  3 1        
+  12:call                  78:stoval               144:bump     1          
+  13:pushdouble  0         79:rvaldouble  4 0      145:checkar  1 1        
+  14:stodouble 4 0         80:stoval               146:rvaldouble  4 0     
+  16:bump     1            82:stoval               148:pushint  1          
+  17:checkar  3 1          83:pushint  3           149:call                
+  19:bump     1            85:pushdouble  1        151:rvaldouble  4 0     
+  20:checkar  1 1          86:stodouble 4 0        152:stoval              
+  22:stoval                88:bump     1           154:stoval              
+  23:pushint  1            89:checkar  3 1         155:pushint  3          
+  25:stoval                91:bump     1           157:rvaldouble  5 0     
+  26:rvaldouble  4 0       92:checkar  1 1         158:bump     1          
+  27:stoval                93:rvaldouble  4 0      159:pushdouble  2       
+  29:stoval                95:pushint  1           161:stodouble 4 0       
+  31:call                  97:stoval               163:bump     1          
+  36:bump     1           102:pushint  3           168:rvaldouble  4 0     
+  37:checkar  1 1         103:call                 169:stoval              
+  39:stoval               105:bump     1           171:call                
+  40:pushint  1           106:checkar  3 1         172:stoval              
+  42:stoval               108:bump     1           174:stoval              
+  44:stoval               110:rvaldouble  4 0      176:stoval              
+  46:stoval               112:pushint  1           178:call                
+  48:call                 114:stoval               180:bump     1          
+  49:pushdouble  0.5      115:rvaldouble  4 0      181:checkar  3 1        
+  52:bump     1           118:stoval               184:checkar  1 1        
+  53:checkar  3 1         119:pushint  3           185:rvaldouble  4 0     
+  55:bump     1           121:rvaldouble  5 0      187:pushint  1          
+  56:checkar  1 1         122:stodouble 4 0        188:call                
+  58:stoval               124:bump     1           190:rvaldouble  4 0     
+  59:pushint  1           125:checkar  3 1         191:stoval              
+  61:stoval               127:bump     1           193:stoval              
+  62:rvaldouble  4 0      128:checkar  1 1         194:pushint  3          
+  63:stoval               129:rvaldouble  4 0      195:call                
+  65:stoval               131:pushint  1          
+
+pi = 3.141592653589793100000000000000
+pi = 3.141592653589793100000000000000e+00
+pi = 3.1415926535897931
+sin(0) = 0
+cos(0) = 1
+sin(0.5) = 0.479426
+cos(0.5) = 0.877583
+sin(1) = 0.841471
+cos(1) = 0.540302
+sin(3.141593) = 1.224606e-16
+cos(3.141593) = -1
+sin(1.570796) = 1
+cos(1.570796) = 6.123032e-17
+	29

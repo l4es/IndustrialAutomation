@@ -1,0 +1,35 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'ArchiverService'
+		'ArchiverService.EXE'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}
+
+HKLM
+{
+    NoRemove SYSTEM
+    {
+        NoRemove CurrentControlSet
+        {
+            NoRemove Services
+            {
+                NoRemove Eventlog
+                {
+                    NoRemove Application
+                    {
+                        ForceRemove 'FreeSCADA Archiver'
+                        {
+                            val EventMessageFile = s '%MODULE_RAW%'
+                            val TypesSupported = d 7
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

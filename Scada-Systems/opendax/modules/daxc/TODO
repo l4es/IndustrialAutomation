@@ -1,0 +1,12 @@
+Fix tag_write() function to use the number of items passed in the command to determine
+how many need to be passed.  The problem with this is that the user may pass more than
+can be stored in the tag.  Then the count would have to default to the lower of the two
+numbers and the rest of the items typed in the command to be ignored.
+
+Might also allow for '-' to be used to skip a value.  IOW if a user wanted to change the
+second and fourth item in an array they could use a command like...
+daxc>write TagName[1] 21 - 22
+Actually that looks a lot like math so maybe I need to pick another character but it's
+the same idea.
+
+Much testing needs to be done.

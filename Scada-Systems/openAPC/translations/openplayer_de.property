@@ -1,0 +1,21 @@
+﻿# Keyboard/numpad mapping
+
+kbd1 = ^1234567890ß
+kbd1s = °!"§$%&/()=?
+kbd2 = qwertzuiopü+
+kbd2s = QWERTZUIOPÜ*
+kbd3 = asdfghjklöä#
+kbd3s = ASDFGHJKLÖÄ'
+kbd4 = <yxcvbnm,.-
+kbd4s = >YXCVBNM;:_
+npad = 7894561230,
+
+# Logging
+
+Value greater than limit = Wert größer als Limit
+Value smaller than limit = Wert kleiner als Limit
+Value in limited range = Wert innerhalb limitiertem Bereich
+Value in normal range = Wert in normalem Bereich
+Value set to LOW = Wert auf LOW
+Value set to HIGH = Wert auf HIGH
+Value changed = Wert hat sich geändert

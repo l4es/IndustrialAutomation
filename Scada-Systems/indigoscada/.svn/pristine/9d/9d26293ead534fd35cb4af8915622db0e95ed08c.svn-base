@@ -1,0 +1,47 @@
+/*
+ *                         IndigoSCADA
+ *
+ *   This software and documentation are Copyright 2002 to 2012 Enscada 
+ *   Limited and its licensees. All rights reserved. See file:
+ *
+ *                     $HOME/LICENSE 
+ *
+ *   for full copyright notice and license terms. 
+ *
+ */
+/*
+IDL file to be used with orte-idl.exe compiler inside the MINGW32 shell
+usage: orte-idl.exe iec_item_type.idl 
+Actual length of struct iec_object is 20 bytes
+*/
+
+struct iec_item_type {
+	octet iec_type;
+	octet iec_obj;
+	octet iec_obj_byte2;
+	octet iec_obj_byte3;
+	octet iec_obj_byte4;
+	octet iec_obj_byte5;
+	octet iec_obj_byte6;
+	octet iec_obj_byte7;
+	octet iec_obj_byte8;
+	octet iec_obj_byte9;
+	octet iec_obj_byte10;
+	octet iec_obj_byte11;
+	octet iec_obj_byte12;
+	octet iec_obj_byte13;
+	octet iec_obj_byte14;
+	octet iec_obj_byte15;
+	octet iec_obj_byte16;
+	octet iec_obj_byte17;
+	octet iec_obj_byte18;
+	octet iec_obj_byte19;
+	octet iec_obj_byte20;
+	octet iec_obj_byte21; //spare
+	octet cause; //spontaneous or general interrogation cause
+	unsigned long   msg_id; //ID of the message
+	long ioa_control_center; //unstructured
+	unsigned short casdu; //IEC 104 CASDU where this record is allocated, it is unstructured
+    octet	is_neg; //positive == 0 or negative == 1
+	octet	checksum; //Checksum of the message, must be the last if filled with CRC 8
+};

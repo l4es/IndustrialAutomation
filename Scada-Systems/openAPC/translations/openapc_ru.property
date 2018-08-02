@@ -1,0 +1,1004 @@
+﻿# MainWindow
+
+Compile project = Компилировать проект
+&Find element = &Найти элемент
+Find &next element = Найти &следующий элемент
+Displays the program information = Вывод информации о программе
+Inspect project for possible problems = Проверить проект на наличие возможных проблем
+Start Player = Запустить плеер
+Start Debugger = Запустить отладчик
+HMI Editor = Редактор ЧМИ
+Flow Editor = Редактор блок-схемы
+Element name = Имя элемента
+Enter String to search for = Ввести строку для поиска
+Could not find object! = Объект не найден!
+Data flow = Поток данных
+Synchronise inputs = Синхронизировать входы
+Last element again = Вновь последний элемент
+No valid APCP project file! = Отсутствует допустимый файл проекта APCP!
+Add Control = Добавить элемент управления
+Add Connector = Добавить соединитель
+Draw Connection = Рисовать соединение
+
+# Control Property Dialog
+
+Properties = Свойства
+Name = Имя
+Min/Max = Мин./макс.
+Position = Положение
+Size = Размер
+Digital IN 0 = Цифровой вход (IN 0)
+LOW State = Низкое состояние (LOW)
+HIGH State = Высокое состояние (HIGH)
+Text = Текст
+Foreground Colour = Цвет переднего плана
+Choose the foreground colour = Выберите цвет переднего плана
+Font = Шрифт
+AaBbCc123 = АаБбВв123
+Description = Описание
+
+Logging = Протоколирование
+On value greater than = При значении выше
+On value smaller than = При значении ниже
+On value between = При значении между
+On value set to LOW = При значении, установленном в LOW (низкое состояние)
+On value set to HIGH = При значении, установленном в HIGH (высокое состояние)
+On value changed = При изменении значения
+Event = Событие
+
+User Privileges = Полномочия пользователя
+State of user element = Состояние элемента пользователя
+enabled = включено
+disabled = выключено
+invisible = невидимый 
+ignore = игнорировать
+None of them = Ни один из них
+Set all = Установить все
+Select state privilege priority dependent = Выбрать состояние в зависимости от приоритета полномочий
+Manual Control = Ручное управление
+Modify Parameters = Изменить параметры
+Edit Recipe = Редактировать набор параметров
+Select Recipe = Выбрать набор параметров
+Start Process = Начать процесс
+Stop Process = Остановить процесс
+None of them = Ни один из них
+User Management Panel = Панель управления пользователями
+Select visibility privilege priority dependent = Выбор видимости в зависимости от приоритета полномочий
+Log In User = Войти как пользователь
+Data error: could not store data, the changed values may not survive the next reboot! = Ошибка данных: невозможно сохранить данные, измененные значения могут не сохраниться при следующей перезагрузке!
+
+Change Password = Изменить пароль
+Please enter your old password! = Введите старый пароль!
+Wrong password entered!\nPlease enter your password that is currently used by you! = Введен неверный пароль!\nВведите пароль, который используется вами в настоящее время!
+Please enter the new password twice! = Введите новый пароль дважды!
+
+Images = Изображения
+Predefined Image = Предварительно заданное изображение
+Normal Image = Обычное изображение
+Selected Image = Выбранное изображение
+Disabled Image = Неактивное изображение
+Embed image into project = Вставить изображение в проект
+Embed images into project = Вставить изображения в проект
+Could not find file, image could not be embedded into project! = Не удалось найти файл, изображение не может быть встроено в проект!
+
+Additional / Hatch = Дополнительно/штриховка
+Input / Serial/Date/Time = Ввод/серийный номер/дата/время
+Input / OpenAPC Data Input = Ввод/ввод данных OpenAPC
+Postprocessing / Curve = Постобработка/кривая
+Postprocessing / Sine = Постобработка/синусоида
+Primary / Barcode = Основной/штрихкод
+Primary / Bezier Curve = Основной/кривая Безье
+Primary / Circle = Основной/круг
+Primary / Delay = Основной/задержка
+Primary / Dot = Основной/точка
+Primary / External Trigger = Основной/внешний триггер
+Primary / Custom Output = Основной/пользовательский вывод
+Primary / Single Line = Основной/одиночная линия
+Primary / Motion = Основной/движение
+Primary / Polygon = Основной/многогранник
+Primary / Rectangle = Основной/прямоугольник
+Primary / Spiral = Основной/спираль
+Primary / Star = Основной/звезда
+Primary / Text = Основной/текст
+Primary / Triangle = Основной/треугольник
+Primary / Z-Shifter = Основной/инструмент смещения по оси Z
+Gears = Шестерни
+Draw = Привлечь
+
+Layout = Схема
+Sectors = Секторы
+Number of Sectors = Число секторов
+Number of Ticks = Число делений
+Startangle = Начальный угол
+Endangle = Конечный угол
+Sector = Сектор
+Choose the sectors colour = Выберите цвет секторов
+
+Outer Circle = Внешний круг
+Inner Circle = Внутренний круг
+Knob Border = Граница кнопки
+Knob = Кнопка
+Ticks = Деления
+Colours = Цвета
+Choose the elements colour = Выберите цвет элементов
+
+Digits = Цифры
+Decimal Place Digits = Цифры десятичного разряда
+Configuration = Конфигурация
+
+No Border = Без границы
+Sunken = Утопленный 
+Raised = Выпуклый
+Simple = Простой
+Double = Двойной
+Dotted = Точечный пунктир
+Short Dashes = Пунктирная линия
+Dots and dashes = Штрихпунктирная линия
+Long Dashes = Линия из длинных штрихов
+
+Mutual Exclusion = Взаимное исключение
+Create new Mutex = Создать новый мьютекс
+Please enter a name for the new mutex = Введите имя для нового мьютекса
+Enter mutex name = Введите имя мьютекса
+
+# Project Property Dialog
+
+Visual Size = Видимый размер
+Control Flow Time-Out = Тайм-аут потока управления
+Timer Resolution = Разрешение таймера
+Touchscreen Support = Поддержка сенсорного экрана
+Activate = Активировать
+Keyboard Size Factor = Размерный коэффициент клавиатуры
+Keyboard Font = Шрифт клавиатуры
+
+External applications = Внешние приложения 
+Use local Interlock Server = Использовать локальный сервер взаимной блокировки
+Use remote Interlock Server = Использовать удаленный сервер взаимной блокировки
+Use local, mirrored Interlock Servers = Использовать локальные зеркалируемые серверы взаимной блокировки
+Use remote, redundant Interlock Servers = Использовать удаленные резервные серверы взаимной блокировки
+Interlock Server = Сервер взаимной блокировки
+Map outputs to server = Сопоставить выходы серверу
+Allow modification = Разрешить изменение
+
+# interlock database
+
+Open interlock database watch window = Открыть окно контроля базы данных взаимных блокировок
+Watch Interlock Database = Контролировать базу данных взаимных блокировок
+Map outputs to server = Сопоставить выходы серверу
+Allow modification = Разрешить изменение
+
+# Visual Panel
+
+Static = Статический
+Rectangle = Прямоугольник
+Free Line = Свободная линия
+Frame = Рамка
+Ellipse = Эллипс
+Text Label = Текстовая подпись
+Image = Изображение
+
+Control = Элемент управления
+Simple Button = Обычная кнопка
+Image Button = Кнопка-изображение
+Toggle Button = Переключатель
+Horizontal Slider = Горизонтальный регулятор
+Vertical Slider = Вертикальный регулятор
+Angular Regulator = Поворотный регулятор
+Number Field = Числовое поле
+Floating Number Field = Поле числа с плавающей запятой
+Text Field = Текстовое поле
+Password Field = Поле пароля
+Linear Regulator = Ползунковый регулятор
+Radio Button = Кнопка с зависимой фиксацией
+Checkbox = Поле флажка
+
+Display = Индикация
+Horizontal Gauge = Горизонтальный уровень
+Vertical Gauge = Вертикальный уровень
+Angular Meter = Угловой измеритель
+LC Numeric Display = Числовой ЖК-дисплей
+Linear Meter = Столбчатый индикатор
+
+Container = Контейнер
+Tabbed Pane = Панель с вкладками
+Stacked Pane = Сгруппированная панель
+Additional Pane = Дополнительная панель
+Single Panel = Одиночная панель
+
+Selected Control(s) = Выбранные элементы управления
+Cut = Вырезать
+Insert = Вставить
+Maximize = Развернуть
+Edit = Редактировать
+Delete = Удалить
+Select = Выбрать
+Previous Pane = Предыдущая панель
+Next Pane = Следующая панель
+Move To Top = Переместить наверх
+Move To Bottom = Переместить вниз
+
+# Flow Control Panel
+
+Put HMI Control = Создать элемент управления ЧМИ
+
+Add Element = Добавить элемент
+Add Macro = Добавить макрос
+
+Connectors = Соединители
+Digital Input Connector = Соединитель цифрового входа
+Digital Output Connector = Соединитель цифрового выхода
+Numeric Input Connector = Соединитель числового входа
+Numeric Output Connector = Соединитель числового выхода
+Character Input Connector = Соединитель символьного входа
+Character Output Connector = Соединитель символьного выхода
+Binary Input Connector = Соединитель бинарного входа
+Binary Output Connector = Соединитель бинарного выхода
+
+Data Conversion = Преобразование данных
+Digital to Number = Цифровой в числовой формат
+Digital to Characters = Цифровой в символьный формат
+Digital to CMD-Pair = Цифровой в CMD-пару
+CMD-Pair to Digital = CMD-пара в цифровой
+Number to Digital = Числовой в цифровой
+Number to Bits = Числовой в битовый
+Number to Characters = Числовой в символьный
+Number to CMD-Pair = Числовой в CMD-пару
+CMD-Pair to Number = CMD-пара в числовой
+Characters to Digital = Символьный в цифровой
+Characters to Number = Символьный в числовой формат
+Characters to CMD-Pair = Символьный в CMD-пару
+CMD-Pair to Characters = CMD-пару в символьный
+Mixed to Characters = Смешанный в символьный
+Binary to CMD-Pair = Бинарный в CMD-пару
+CMD-Pair to Binary = CMD-пару в бинарный
+
+Logic Operations = Логические операции
+Digital NOT = Цифровое НЕ
+Digital NOP = Цифровая фиктивная команда (NOP)
+Digital (N)OR = Цифровое (НЕ) ИЛИ
+Digital X(N)OR = Цифровое исключающее (НЕ) ИЛИ
+Digital (N)AND = Цифровое (НЕ) И
+Digital Shift Register = Цифровой сдвиговый регистр
+SR Flip-Flop = SR-триггер
+Toggle Flip-Flop = Счетный триггер
+Numeric (N)OR = Числовое (НЕ) ИЛИ
+Numeric NOT = Числовое НЕ
+Numeric NOP = Числовая фиктивная команда (NOP)
+Numeric X(N)OR = Числовое исключающее (НЕ) ИЛИ
+Numeric (N)AND = Числовое (НЕ) И
+Numeric Shift Register = Числовой сдвиговый регистр
+Character-NOP = Символьная фиктивная команда (NOP)
+Character Shift Register = Символьный сдвиговый регистр
+Binary NOP = Бинарная фиктивная команда (NOP)
+Binary Shift Register = Бинарный сдвиговый регистр
+
+Mathematical = Арифметическое действие
+Numeric Multiplication = Числовое умножение
+Numeric Division = Числовое деление
+Numeric Subtraction = Числовое вычитание
+Numeric Addition = Числовое сложение
+Compare Digital = Цифровое сравнение
+Compare Numbers = Числовое сравнение
+Compare Characters = Символьное сравнение
+Digital Counter = Цифровой счетчик
+Number Counter = Числовой счетчик
+Character Counter = Символьный счетчик
+Binary Counter = Бинарный счетчик
+
+Initial Flow Start = Начало исполнения программы
+Delay = Задержка
+Timer = Таймер
+Time = Время
+Digital Triggered Gate = Цифровой триггерный вентиль
+Numeric Triggered Gate = Числовой триггерный вентиль
+Character Triggered Gate = Символьный триггерный вентиль
+Binary Triggered Gate = Бинарный триггерный вентиль
+Digital Gate = Цифровой вентиль
+Numeric Gate = Числовой вентиль
+Character Gate = Символьный вентиль
+Binary Gate = Бинарный вентиль
+
+Motion = Движение
+Laser = Лазер
+Data = Данные
+
+Log Data Recorder = Устройство записи данных журнала 
+
+Edit Element = Редактировать элемент
+Delete Element = Удалить элемент 
+Delete unused Connections = Удалить неиспользуемые соединения
+Delete Connection = Удалить соединение
+Disconnect Input = Отсоединить вход
+
+Group Elements = Группировать элементы
+Enter Group = Открыть группу
+Leave Group = Выйти из группы
+Save Group = Сохранить группу
+Load Group = Загрузить группу
+
+Extend Working Area = Увеличить рабочую зону
+To Left = Влево
+To Right = Вправо
+To Top = Вверх
+To Bottom = Вниз
+Insert Row = Вставить строку
+Insert Column = Вставить столбец
+
+Command Name = Имя команды
+Input = Вход
+Output = Выход
+digital = цифровой
+characters = символы
+numeric = числовой
+IOs with different data types can't be connected with each other = Входы и выходы с различными типами данных не могут быть соединены друг с другом.
+This control already exists as flow element.\nDo you really want to put it at this new position? = Этот элемент управления уже существует как элемент программы.\nВы действительно хотите перенести его в эту новую позицию?
+There is no end condition/no exit application flow object!\nYou will have no chance to stop the player regularly without that! = Нет никакого условия окончания/объекта программы для выхода из приложения!\nБез этого вы не сможете выйти из устройства воспроизведения корректно!
+Your timer resolution may be too high for your intended target platform. Consider to set the projects timer resolution to 200 msec or more. = Возможно, разрешение вашего таймера слишком высокое для намеченной целевой платформы. Может быть, следует установить разрешение таймера на 200 мс или более.
+Open flow connections found that are not connected with a target!\nGo to this object? = Обнаружены разомкнутые соединения блоков, не соединенные с целевыми блоками!\nПерейти к этому объекту?
+There is an image object placed in the HMI Editor that is currently invisible!\nGo to this object? = Существует объект изображения, помещенный в редактор ЧМИ, который в настоящее время невидим!\nПерейти к этому объекту?
+This mutual exclusion group is unused!\nDelete it from the list of mutual exclusions? = Эта группа взаимного исключения не используется!\nУдалить ее из списка взаимных исключений?
+The project uses a Log Output but does not has any element, that collects logging data! = В проекте используется вывод записей журнала, но в нем нет какого-либо элемента, в котором собираются журнальные данные!
+The project collects logging data but never use them! This may cause a memory overflow on your target system. At least the following elements are affected: = В проекте собираются журнальные данные, но они никогда не используются! Это может вызвать переполнение памяти в вашей целевой системе. Как минимум это повлияет на следующие элементы:
+No problems could be found within that project = В этом проекте не было найдено никаких проблем. 
+Please note: when no events are defined, this element will never send out its value! = Обратите внимание на то, что, когда никакие события не определены, никогда не будет отсылаться значение этого элемента!
+No element selected to perform this operation with! = Не выбрано никакого элемента, с помощью которого должна выполняться эта операция!
+
+Plug-In error: invalid type specified for element,\naborting operation! = Ошибка дополнительного программного модуля: для элемента задан недопустимый тип,\nоперация будет прервана!
+Plug-In error: the default value has to be specified after the type definition,\naborting operation! = Ошибка плагина: значение по умолчанию должно быть задано после определения типа,\nоперация будет прервана!
+Plug-in call failed = Сбой вызова плагина
+Out of memory = Недостаточно памяти
+
+
+# Control Flow Element Dialogues
+
+Definition = Определение
+Data flow definition = Определение потока данных
+Send value at OUT 6 on event = Отправить значение на выходе OUT 6 по событию
+Send value at OUT 7 on event = Отправить значение на выходе OUT 7 по событию
+On rising edge at digital IN 1 = При нарастающем фронте сигнала на цифровом входе IN 1
+On falling edge at digital IN 1 = При ниспадающем фронте сигнала на цифровом входе IN 1
+During value is changing = Во время изменения значения
+When value has changed = После изменения значения
+Text is too short! = Текст слишком короткий!
+Illegal data entered for = Введены некорректные данные для
+Number has to be within range = Число должно находиться в диапазоне
+
+# Device Plugin panel
+
+Device = Устройство
+
+Plugged Devices = Подключенные устройства
+
+Interlock Server Connection = Соединение сервера взаимных блокировок
+
+
+# Debugger window
+
+Start/stop program flow = Запуск/останов выполнения программы
+Single Step = Единичный шаг
+Configure debug parameters = Настройка параметров отладки
+Stop on warning = Останов по предупреждению
+Display control names = Отображать имена элементов управления
+Stopped = Остановлено
+...stopped! = ...остановлено!
+Active Flows = Активные потоки
+Running = В процессе выполнения
+Running... = В процессе выполнения...
+Performing single step = Выполнение единичного шага
+Flow stopped at = Поток остановлен при
+Error message returned from plug-in = Сообщение об ошибке с плагина
+Flow looped to itself = Поток замкнут сам на себя
+Flow run timeout exceeded = Тайм-аут выполнения потока
+Maximum flow element execution time exceeded at = Исчерпан максимальный лимит времени выполнения элемента потока при 
+Incompatible binary datatype = Несовместимый тип бинарных данных
+Unknown IO defined = Определен неизвестный ввод/вывод (IO)
+Focus lost/value changed event at = Потерян фокус/значение изменило событие при 
+Data conversion error at = Ошибка преобразования данных при 
+Exiting application... = Выход из приложения...
+Open watch window = Открыть окно контроля
+
+
+# Debugging settings
+
+Debugging Settings = Настройки отладки
+Stop flow on events = Остановить поток по событиям
+When flow loop was detected = При замыкании потока на себя
+When unknown IO was defined = Когда определен неизвестный ввод/вывод
+When flow run timeout was reached = Когда исчерпан лимит времени выполнения потока
+When a data conversion error occurs = Когда происходит ошибка преобразования данных
+When an error occurs in plug-in = Когда ошибка возникает в плагине
+When incoming binary data are not supported = Когда не поддерживаются поступающие бинарные данные
+
+# Watch window
+Watch connected outputs = Контролировать связанные выходы
+New watch element = Новый элемент контроля
+
+# HMI plug-ins
+
+Border = Рамка
+Bottom to top = Снизу вверх
+Top to bottom = Сверху вниз
+Line Start = Начало линии
+Line End = Конец линии
+Circle = Круг
+Square = Квадрат
+
+# Misc
+
+Project has to be saved before compiling.\nDo you want to save it now? = Перед компиляцией проект должен быть сохранен.\nХотите сохранить его сейчас?
+
+
+# Group
+
+I/O Definition = Определение ввода/вывода
+Group Definitions = Определения групп
+Inputs = Входы
+Type = Тип
+Outputs = Выходы
+Save group as = Сохранить группу как
+Category = Категория
+
+
+# Digital converters
+
+Input Mask = Маска входа
+Binary Conversion = Двоичное преобразование
+Assignment = Присваивание
+Direct Conversion = Прямое преобразование
+
+
+
+# Char converters
+
+Input Character = Вводимый символ 
+Case sensitive = С учетом регистра
+Level = Уровень
+Pulse = Импульс
+
+
+
+# Number converters
+
+Formatted Conversion = Форматированное преобразование
+Input Number = Номер входа
+Output Character = Выводимый символ 
+
+
+
+# Other converters
+
+Convert on clock at IN0 = Конвертировать по тактовому импульсу на входе IN0
+Convert String = Преобразовать строку
+Force Decimal Place to Dot = Отображать десятичный разряд в виде точки
+
+
+
+# Logic Operations
+
+Use Clock = Использовать тактовый импульс
+Invert = Инвертировать
+Allow Loop = Разрешить цикл
+Constant = Константа
+
+# Misc Flow Elements
+
+Log Output = Вывод для протоколирования
+
+
+
+#Plug-In config data
+
+Load Image = Загрузить изображение
+Save Image = Сохранить изображение
+Load Text = Загрузить текст
+Save Text = Сохранить текст
+Default Filename 1 = Имя файла по умолчанию 1
+Default Filename 2 = Имя файла по умолчанию 2
+Default Filename 3 = Имя файла по умолчанию 3
+Default Filename 4 = Имя файла по умолчанию 4
+File Format 1 = Формат файла 1 
+File Format 2 = Формат файла 2
+File Format 3 = Формат файла 3
+File Format 4 = Формат файла 4
+CLK1 - load a single line of current file = CLK1: загрузить одну строку текущего файла
+FILE1 - set new file for loading = FILE1: задать новый файл для загрузки
+DATA1 - loaded data = DATA1: загруженные данные 
+ERR1 - error code when loading failed = ERR1: код ошибки сбоя при загрузке
+
+(De)Compress Data = (Разуплотнение) сжатие данных
+
+PID Controller = PID-контроллер
+Default Ref Value = Контр. значение по умолчанию
+Default P = Значение P по умолчанию 
+Default I = Значение I по умолчанию
+Default D = Значение D по умолчанию
+Minimum Output = Минимальное выходное значение
+Maximum Output = Максимальное выходное значение
+
+SET - actual value (input) = SET: фактическое значение (вход)
+REF - set point (reference value) = REF: задать точку (контрольное значение)
+P - P value of controller = P: значение P контроллера
+I - I value of controller = I: значение I контроллера
+D - D value of controller = D: значение D контроллера
+Output value = Выходное значение
+
+Network Transmitter = Сетевой передатчик
+Network Receiver = Сетевой приемник
+Network Client = Сетевой клиент
+Network Server = Сетевой сервер
+Local IP = Локальный IP-адрес
+Incoming Connections = Входящие соединения
+Username = Имя пользователя
+Password = Пароль
+Mode = Режим
+Resource = Ресурс
+Command/Value - transmit only pairs = Команда/значение: передавать только попарно
+Plain - transmit everything separately = Простой (Plain) режим: все передавать отдельно
+Use mode of transmitter = Режим использования передатчика
+Raw - transmit separately and unformatted = Необработанные данные (Raw): передавать отдельно и в неформатированном виде
+Raw/E5AK checksum - append XOR-checksum = Контрольная сумма Raw/E5AK: добавить контрольную сумму XOR
+IP - host address = IP: IP-адрес узла
+PORT - port number = PORT: номер порта
+RES - URL resource = RES: URL-ресурс
+GET - get the data = GET: получить данные
+DATA - retrieved binary data = DATA: полученные двоичные данные
+TXT - retrieved plain text data = TXT: полученные данные в виде простого текста
+ERR - HTTP error/return code = ERR: HTTP-ошибка/код возврата
+CMD - command value = CMD: значение команды
+DATA - payload data = DATA: полезная нагрузка
+
+Clock = Тактовый импульс
+Every Second = Каждую секунду
+Every Minute = Каждую минуту
+Every Hour = Каждый час
+Every Day = Каждый день
+Second = Секунда
+Minute = Минута
+Hour = Час
+Day = День
+Month = Месяц
+Year = Год
+Unixtime = Время Unix
+OUT0 Clock = Тактовый импульс OUT0 
+OUT1 Clock = Тактовый импульс OUT1
+OUT2 Value = Значение OUT2 
+OUT3 Value = Значение OUT3 
+OUT4 Value = Значение OUT4 
+OUT5 Value = Значение OUT5 
+OUT6 Value = Значение OUT6 
+OUT7 Format = Формат OUT7 
+OFFS - offset to current time = OFFS: смещение к текущему времени
+CLK1 - configurable output clock = CLK1: настраиваемый выходной тактовый импульс
+CLK2 - configurable output clock = CLK2: настраиваемый выходной тактовый импульс
+VAL1 - configurable output time value = VAL1: настраиваемое значение времени вывода
+FMT - formatted date/time string = FMT: форматированная строка даты/времени
+
+Speak = Говорить
+
+Language = Язык
+Voice 1 = Голос 1
+
+Voice 2 = Голос 2 
+Pitch = Высота тона
+Speed = Скорость
+Word Gap = Промежуток между словами
+Gender = Пол
+female = женский
+male = мужской
+
+JoyWarrior Accelerometer = Акселерометр JoyWarrior 
+
+Data Dummy = Фиктивные данные
+
+Text Listbox = Текстовое поле списка
+Alignment = Выравнивание
+Align to left = Выровнять по левому краю
+Center horizontally = По центру горизонтально
+Align to right = Выровнять по правому краю
+
+Analogue Clock = Аналоговые часы
+Hour Hand = Часовая стрелка
+Minute Hand = Минутная стрелка
+Second Hand = Секундная стрелка
+Plain Clock = Обычные часы
+Plain clock w/o Minutes = Обычные часы без минут
+Glow clock w/o Minutes = Светящиеся часы без минут
+
+Dialogue = Диалог
+IN4 Question = Вопрос IN4 
+Button 1 Text = Текст кнопки 1
+Button 2 Text = Текст кнопки 2
+Button 3 Text = Текст кнопки 3
+
+LCDproc Client = Клиент LCDproc 
+Display Parameters = Отображать параметры
+Off = Выкл.
+On = Вкл.
+Blink = Мигание
+Flash = Вспышка
+Backlight = Подсветка
+Vertical Split Position = Позиция вертикального разделения
+Scrolling Speed = Скорость прокрутки
+Text left / Bargraph right = Текст слева/гистограмма справа
+Bargraph left / Text Right = Гистограмма слева/текст справа
+Line 1 = Строка 1
+Line 2 = Строка 2
+Line 3 = Строка 3
+Line 4 = Строка 4
+
+Modbus RTU Master = Ведущее устройство Modbus RTU 
+Modbus Addressable RTU Master = Адресуемое ведущее устройство Modbus RTU 
+Modbus TCP Master = Ведущее устройство Modbus TCP 
+Modbus TCP Slave = Ведомое устройство Modbus TCP 
+Slave Poll Delay = Задержка опроса ведомого устройства 
+Access Parameters = Параметры доступа
+Invert byte order = Поменять порядок байтов на обратный
+Invert address byte order = Поменять порядок байтов адреса на обратный
+Invert data byte order = Поменять порядок байтов данных на обратный
+Log Communication Data = Протоколировать коммуникационные данные
+Log Filename = Протоколировать имя файла
+Read/Write Coils = Чтение/запись регистров флагов
+Read/Write Holding Register = Чтение/запись регистра хранения
+Read Discrete Input = Чтение дискретного входа
+Read Input Register = Чтение входного регистра
+Read IEEE754 Holding Register = Чтение регистра хранения IEEE754 
+Set Discrete Input = Задать значение дискретного входа
+Set Input Register = Задать входной регистр
+IO0 Operation Mode = Режим работы IO0
+IO0 base address offset = Смещение базового адреса IO0
+IO0 slave address = Адрес ведомого устройства IO0
+IO0 r/w length = Длина чтения/записи IO0 
+IO1 Operation Mode = Режим работы IO1 
+IO1 base address offset = Смещение базового адреса IO1 
+IO1 slave address = Адрес ведомого устройства IO1 
+IO1 r/w length = Длина чтения/записи IO1 
+IO2 Operation Mode = Режим работы IO2
+IO2 base address offset = Смещение базового адреса IO2 
+IO2 slave address = Адрес ведомого устройства IO2 
+IO2 r/w length = Длина чтения/записи IO2 
+IO3 Operation Mode = Режим работы IO3
+IO3 base address offset = Смещение базового адреса IO3 
+IO3 slave address = Адрес ведомого устройства IO3 
+IO3 r/w length = Длина чтения/записи IO3 
+IO4 Operation Mode = Режим работы IO4
+IO4 base address offset = Смещение базового адреса IO4 
+IO4 slave address = Адрес ведомого устройства IO4 
+IO4 r/w length = Длина чтения/записи IO4
+IO5 Operation Mode = Режим работы IO5
+IO5 base address offset = Смещение базового адреса IO5 
+IO5 slave address = Адрес ведомого устройства IO5 
+IO5 r/w length = Длина чтения/записи IO5 
+IO6 Operation Mode = Режим работы IO6
+IO6 base address offset = Смещение базового адреса IO6 
+IO6 slave address = Адрес ведомого устройства IO6 
+IO6 r/w length = Длина чтения/записи IO6 
+IO7 Operation Mode = Режим работы IO7
+IO7 base address offset = Смещение базового адреса IO7 
+IO7 slave address = Адрес ведомого устройства IO7 
+IO7 r/w length = Длина чтения/записи IO7 
+0 - output data = 0: выходные данные
+SL - slave address = SL: адрес ведомого устройства
+AD - address offset = AD: смещение адреса
+1 - output data = 1: выходные данные
+0 - input data = 0: входные данные
+1 - input data = 1: входные данные
+
+# measurement amplifier
+
+GSV2 Amplifier = Усилитель GSV2 
+Threshold = Пороговое значение
+THRS - measurement threshold = THRS: пороговое значение измерения
+LIM - measurement limit exceeded = LIM: превышен предел измерения
+VAL - current peak value = VAL: текущее пиковое значение
+
+# Panasonic Minas controllers
+
+Axis 1 Address = Адрес оси 1 
+Axis 2 Address = Адрес оси 2 
+Axis 3 Address = Адрес оси 3
+Axis 4 Address = Адрес оси 4
+Home Timeout = Тайм-аут возврата в исходное положение
+MODE &gt;0 speed, =0 stop, =-1 home, =-2..-60 indexed position = MODE &gt;0 скорость, =0 стоп, =-1 в исходное положение, =-2..-60 индексированное положение
+MODE &gt;0 current speed, =0 has stopped, &lt;0 drive error code = MODE &gt;0 текущая скорость, =0 произошел останов, &lt;0 код ошибки привода
+
+# IWH Robot
+IWH Robot = IWH-робот
+CMD - robot command = CMD: команда робота
+STP - stop robot = STP: остановить робота
+HOM - referencing, move to home position = HOM: базирование, перемещение в исходное положение
+R-position = Позиция R
+T-position = Позиция T
+Z-position = Позиция Z
+State of vacuum switch = Состояние вакуумного переключателя
+State of vacuum sensor = Состояние вакуумного датчика
+Robot is moving = Робот перемещается
+MAP - wafer map, last SCN result = MAP: карта полупроводниковой пластины, последний результат SCN 
+
+# Mail notification
+
+E-Mail Notification = Уведомление по электронной почте
+
+# File dialogue
+
+Filedialogue = Файловый диалог
+
+# database plug-ins
+
+PostgreSQL Access = Доступ к PostgreSQL 
+MySQL Access = Доступ к MySQL 
+Database = База данных
+
+# SAM/CCI plugins
+
+CMD - command to be executed = CMD: команда на исполнение
+X - command parameter = X: параметр команды
+Y - command parameter = Y: параметр команды
+A - command parameter for Z or angle = A: параметр команды для Z или угла
+NAME - command parameter = NAME: параметр команды
+TXT - command parameter = TXT: параметр команды
+EN - command parameter = EN: параметр команды
+OK - command execution result = OK: результат выполнения команды
+ERR - execution error text = ERR: текст ошибки выполнения 
+returned value = возвращаемое значение
+
+#averaging
+
+Averaging = Усреднение
+Number of samples (IN0) = Количество замеров (IN0)
+Number of samples (IN2) = Количество замеров (IN2)
+Number of samples (IN4) = Количество замеров (IN4)
+Number of samples (IN6) = Количество замеров (IN6)
+DATA - Input data to be averaged = DATA: входные данные для усреднения
+# - Number of samples to be used for averaging = #: число замеров, используемых для усреднения
+AVG - Averaged value = AVG: усредненное значение
+
+# AS-i
+
+AS-i Serial Interface = Последовательный интерфейс AS-i
+SET - output bits 0..31 = SET: выходные биты с 0 по 31
+SET - output bits 32..63 = SET: выходные биты с 32 по 63
+SET - output bits 64..95 = SET: выходные биты с 64 по 95
+GET - input bits 0..31 = GET: входные биты с 0 по 31
+GET - input bits 32..63 = GET: входные биты с 32 по 63
+GET - input bits 64..95 = GET: входные биты с 64 по 95
+
+# AVR NetIO
+
+AVR Net-IO Ethernet Interface = Ethernet-интерфейс Net-IO AVR 
+AVR Net-IO Serial Interface = Последовательный интерфейс Net-IO AVR 
+SET - digital output 1 = SET: цифровой выход 1
+SET - digital output 2 = SET: цифровой выход 2
+SET - digital output 3 = SET: цифровой выход 3
+GET - digital input 1 = GET: цифровой вход 1
+GET - digital input 2 = GET: цифровой вход 2
+GET - digital input 3 = GET: цифровой вход 3
+GET - digital input 4 = GET: цифровой вход 4
+GET - analogue input 1 = GET: аналоговый вход 1
+GET - analogue input 2 = GET: аналоговый вход 2
+GET - analogue input 3 = GET: аналоговый вход 3
+GET - analogue input 4 = GET: аналоговый вход 4
+
+# BeamConstruct
+
+IN2 - Dynamic text input 2 = IN2: вход 2 для динамического текста 
+IN3 - Dynamic text input 3 = IN3: вход 3 для динамического текста 
+IN4 - Dynamic text input 4 = IN4: вход 4 для динамического текста 
+CMD - Command input = CMD: ввод команды
+
+# CSV 2 ctrl
+
+CSV to Control = CSV в систему управления
+Default Filename = Имя файла по умолчанию
+X, Y and Parameters = X, Y и параметры
+X, Y, Z and Parameters = X, Y, Z и параметры
+Input Data = Входные данные
+Column Separator = Разделитель столбцов
+Tabulator = Табулятор
+Comma (,) = Запятая (,)
+Semicolon (;) = Точка с запятой (;)
+Colon (:) = Двоеточие (:)
+Space ( ) = Пробел ( )
+2D (flat) = 2D (двухмерный)
+3D (spatial) = 3D (трехмерный)
+Output Data Structure = Структура выходных данных
+
+Off Delay = Задержка выключения
+On Delay = Задержка включения
+Output 7 Value = Значение на выходе 7
+Additional Parameter 1 = Дополнительный параметр 1
+Additional Parameter 2 = Дополнительный параметр 2
+Additional Parameter 3 = Дополнительный параметр 3
+Additional Parameter 4 = Дополнительный параметр 4
+Additional Parameter 5 = Дополнительный параметр 5
+Additional Parameter 6 = Дополнительный параметр 6
+
+CLK - Load and convert the current file = CLK: загрузить и преобразовать текущий файл
+FILE - Set new file for loading = FILE: задать новый файл для загрузки
+CSV - Single CSV line to be processed immediately = CSV: отдельная CSV-строка для немедленной обработки
+CTRL - Loaded control data = CTRL: загруженные данные управления
+ERR - Error code when loading failed = ERR: код ошибки сбоя при загрузке
+ON - Turn the tool on/off = ON: вкл./выкл. инструмента
+PWR - Power value = PWR: значение мощности
+FREQ - Frequency = FREQ: частота
+OFFSPD - Tool off movement speed = OFFSPD: скорость отвода инструмента
+ONSPD - Tool on movement speed = ONSPD: скорость подвода инструмента
+PRM - Additional tool parameter = PRM: дополнительный параметр инструмента
+
+CNConstruct to Control = CNConstruct в систему управления
+BeamConstruct to Control = BeamConstruct в систему управления
+CLK - Convert the current file = CLK: конвертировать текущий файл
+FILE - Load new file = FILE: загрузить новый файл
+
+Random Generator = Генератор случайных импульсов
+Numeric Range = Числовой диапазон
+CLK - generate random digital value = CLK: сгенерировать случайное цифровое значение
+CLK - generate random numeric value = CLK: сгенерировать случайное числовое значение
+RND - random digital value = RND: случайное цифровое значение
+RND - random numeric value = RND: случайное числовое значение
+
+CSV to Number = CSV в числовой формат
+CSV to Characters = CSV в символьный формат
+Out 0 from CSV field = Выход 0 из поля CSV 
+Out 1 from CSV field = Выход 1 из поля CSV 
+Out 2 from CSV field = Выход 2 из поля CSV 
+Out 3 from CSV field = Выход 3 из поля CSV 
+Out 4 from CSV field = Выход 4 из поля CSV 
+Out 5 from CSV field = Выход 5 из поля CSV 
+Out 6 from CSV field = Выход 6 из поля CSV 
+Out 7 from CSV field = Выход 7 из поля CSV 
+CSV - Single CSV line to be decoded = CSV: отдельная CSV-строка для декодирования
+D0 - value out of CSV field = D0: значение из поля CSV 
+D7 - value out of CSV field = D7: значение из поля CSV 
+
+
+# Ctrl 2 Tool
+
+Control to Tool = Управление на инструмент
+
+Output 5 Value = Значение на выходе 5
+Output 6 Value = Значение на выходе 6
+Control Default = Управление по умолчанию
+# HPGL 2 Ctrl
+
+HPGL to Control = HPGL на управление
+HPGL Unit = Единица измерения HPGL 
+Pen 1 (Default) = Перо 1 (по умолчанию)
+Power = Мощность
+Frequency = Частота
+Off speed = Скорость выключения
+On speed = Скорость включения
+Pen 2 = Перо 2
+Pen 3 = Перо 3
+Pen 4 = Перо 4
+Pen 5 = Перо 5
+
+# ctrl data manipulation
+
+Override Control Parameters = Переопределение параметров управления
+Rotate Control = Управление вращением
+Scale/Translate Control = Управление масштабированием/преобразованием
+Speeds = Скорости
+Delays = Задержки
+CTRL - Control data to be converted = CTRL: данные управления для преобразования
+PWR - Power override factor = PWR: коэффициент переопределения мощности
+FREQ - Frequency override factor = FREQ: коэффициент переопределения частоты
+SPD - Speed override factor = SPD: коэффициент переопределения скорости
+DEL - Delay override factor = DEL: коэффициент переопределения задержки
+CTRL - Converted control data = CTRL: преобразованные данные управления
+Scale X = Масштаб X
+Scale Y = Масштаб Y
+Scale Z = Масштаб Z
+Translate X = Перенос X
+Translate Y = Перенос Y
+Translate Z = Перенос Z
+
+SCX - Scale factor X direction = SCX: коэффициент масштабирования в направлении X 
+SCY - Scale factor Y direction = SCY: коэффициент масштабирования в направлении Y 
+SCZ - Scale factor Z direction = SCZ: коэффициент масштабирования в направлении Z 
+TX - Translate in X direction = TX: перенос в направлении X 
+TY - Translate in Y direction = TY: перенос в направлении Y 
+TZ - Translate in Z direction = TZ: перенос в направлении Z 
+Center X = Центр X
+Center Y = Центр Y
+Center Z = Центр Z
+Rotation angle X axis = Угол поворота вокруг оси X 
+Rotation angle Y axis = Угол поворота вокруг оси Y 
+Rotation angle Z axis = Угол поворота вокруг оси Z 
+CX - Rotation center X = CX: центр вращения X
+CY - Rotation center Y = CY: центр вращения Y
+CZ - Rotation center Z = CZ: центр вращения Z
+AX - Rotation angle around X axis = AX: угол поворота вокруг оси X 
+AY - Rotation angle around Y axis = AY: угол поворота вокруг оси Y 
+AZ - Rotation angle around Z axis = AZ: угол поворота вокруг оси Z
+
+# Execute
+
+Execute Program = Выполнить программу
+CLK1 - execute predefined application = CLK1: выполнить предварительно заданное приложение
+FILE1 - set new application and execute it = FILE1: задать новое приложение и выполнить его 
+RET1 - return value of executed application = RET1: возвращаемое значение выполненного приложения
+
+# Http-Client
+
+HTTP Client = HTTP-клиент
+
+# Math 1
+
+Math Calculations 1 = Математические расчеты 1
+
+# Plot2D
+
+2D Plotter = Двумерный плоттер
+
+# Symbol button
+
+Symbol Button = Символьная кнопка
+
+# Edge
+
+Rising/Falling Edge = Возрастающий/ниспадающий фронт
+
+# GPS / WLAN Pos.
+
+OK - position signal valid = OK: корректный сигнал позиционирования
+LAT - Degree of latitude = LAT: широта в градусах
+LON - Degree of longitude = LON: долгота в градусах
+HGT - Height = HGT: высота
+SPD - Speed = SPD: скорость
+TIME - time (UTC) = TIME: время (UTC)
+QUAL - Quality of position result = QUAL: качество результата позиционирования
+
+#flow indicator
+
+Flow Indicator = Индикатор потока
+Start Colour = Начальный цвет
+End Colour = Конечный цвет
+Border Colour = Цвет рамки
+Border Size = Размер рамки
+Flow Speed = Скорость потока
+Flow Direction = Направление потока
+Number of Waves = Количество волн
+Colours = Цвета
+Configuration = Конфигурация
+
+# hardpipes
+Pipes = Трубы
+Horizontal (Steel) = Горизонтальная (сталь)
+Vertical (Steel) = Вертикальная (сталь)
+T-Piece, top (Steel) = Тройник, верхний (сталь)
+T-Piece, right (Steel) = Тройник, справа (сталь)
+T-Piece, bottom (Steel) = Тройник, нижний (сталь)
+T-Piece, left (Steel) = Тройник, слева (сталь)
+Elbow, top-right (Steel) = Колено, верхнее правое (сталь)
+Elbow, right-bottom (Steel) = Колено, правое нижнее (сталь)
+Elbow, bottom-left (Steel) = Колено, нижнее левое (сталь)
+Elbow, left-up (Steel) = Колено, левое верхнее (сталь)
+Horizontal (black) = Горизонтальная (черная)
+Vertical (black) = Вертикальная (черная)
+T-Piece, top (black) = Тройник, верхний (черный)
+T-Piece, right (black) = Тройник, справа (черный)
+T-Piece, bottom (black) = Тройник, нижний (черный)
+T-Piece, left (black) = Тройник, слева (черный)
+Elbow, top-right (black) = Колено, верхнее правое (черное)
+Elbow, right-bottom (black) = Колено, правое нижнее (черное)
+Elbow, bottom-left (black) = Колено, нижнее левое (черное)
+Elbow, left-up (black) = Колено, левое верхнее (черное)
+Pipe Type = Тип трубы
+
+Control to Number = Управление в числовой формат
+
+# Weecoboard 4M digital IO
+
+1 - output 1 = 1: выход 1
+2 - output 2 = 2: выход 2
+RD - red LED = RD: красный светодиод
+GN - green LED = GN: зеленый светодиод
+
+# BeamConstruct plug-in
+
+Disable UNDO/REDO = Выключить UNDO/REDO
+
+# macros
+
+Steppermotor Controller = Контроллер шагового электродвигателя
+

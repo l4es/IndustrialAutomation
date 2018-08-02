@@ -1,0 +1,15 @@
+\setlength{\floatsep}{5pt plus 2pt minus 2pt}
+\setlength{\dblfloatsep}{5pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{5pt plus 2pt minus 2pt}
+\setlength{\dbltextfloatsep}{5pt plus 2pt minus 2pt}
+\renewcommand{\textfraction}{0}
+\renewcommand{\floatpagefraction}{1}
+\renewcommand{\dblfloatpagefraction}{1}
+\renewcommand{\topfraction}{1}
+\renewcommand{\bottomfraction}{1}
+\renewcommand{\dbltopfraction}{1}
+\setcounter{totalnumber}{5}
+\setcounter{topnumber}{5}
+\setcounter{dbltopnumber}{5}
+
+

@@ -1,0 +1,13 @@
+IndigoSCADA list of TO DO on 26-08-2014
+
+- Implement dinamic alarm and event lists, now alarm list is static
+
+- Softlogic: improve Calculated.dll
+
+- Porting to current Linux distributions
+
+- Upgrade the realtime and historical databases to current versions
+
+- Update documentation 
+
+- Translate user interface, contribution needed

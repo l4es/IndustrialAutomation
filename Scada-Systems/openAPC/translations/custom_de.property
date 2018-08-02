@@ -1,0 +1,9 @@
+﻿# Place your own, custom translations for your HMI here!
+#
+# Every text/translation has to be put in an own line, original
+# (English) text and translated text have to be separated by a
+# " = " (space, equal sign, space), the file itself has to be
+# saved in UTF-8 text format
+
+startWarn = Hier den Programm-Start-Text einfügen!
+

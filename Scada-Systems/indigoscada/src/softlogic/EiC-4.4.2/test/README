@@ -1,0 +1,67 @@
+        This directory contains EiC's regression test suite.
+
+Note: this test suite was put together on a Intel-Linux platform, and
+therefore, all tests may not pass on all other platforms. For example,
+the tests in test/eicSripts will most likely need to be modified to
+reflect where eic is installed on your system. 
+
+The test driver routine relies on GNU grep because it uses
+the wholeword switch `-w'.
+
+The test suite comprises of a bunch of EiC code "*.c", auxillary files
+"*.aux" and regression test result files "*.def".
+
+The `test.sh' script orchestrates the regression
+test process. To kick it off enter:
+
+	% test.sh
+
+Now check for failed modules:
+
+	% find . -name "*.diff" -print | xargs more
+
+Also, during the installation of EiC, the script `eictester' should
+have been placed in the same directory as eic. The `eictester' script
+is just a copy of `runtest' in this directory, and is handy for
+generating new test-modules and testing existing ones.
+
+
+To create a test-module:
+
+	% eictester -g -f foo.c
+
+To test a test-module:
+
+	% eictester foo.c
+
+To get more information on eictester:
+
+	% eictester -h
+
+
+Basic scripts in this directory:
+
+	script               discription
+
+	runsent         Runs a sentinel version of EiC
+                        and is used for validating EiC stability.
+
+	runpure         Runs a purified version of EiC
+                        and is used for validating EiC stability.
+			This file is BROKEN
+
+	batch.sh        Used for globally replacing one
+                        string with another in a bunch of
+                        files.
+
+        test.sh         Main driver for EiC regression test
+                        suite
+
+	runtest         The regression test engine. Is
+                        identical to `eictester'.
+
+
+
+
+
+

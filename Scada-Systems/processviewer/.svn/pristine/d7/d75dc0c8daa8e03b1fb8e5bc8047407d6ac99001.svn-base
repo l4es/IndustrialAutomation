@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<project version="1.0">
+ <Forms Color="black">
+   <Form ID="1" FileName="unit1.lfm" Open="True" Left="0" Top="0">
+	 <ControlElement ElementName="Label1">
+	   <ValueDisplay DisplayType="Analog" TagName="TEPm010101">
+	     <Analog DisplayFormat="0.0" />
+	   </ValueDisplay>
+	 </ControlElement>
+   </Form>
+ </Forms>
+</project>

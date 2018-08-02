@@ -1,0 +1,538 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "atlres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "res\\bitmap1.bmp"
+IDB_ICONS               BITMAP                  "res\\bitmap2.bmp"
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "Open...",                     ID_FILE_OPEN
+        MENUITEM "Save...",                     ID_FILE_SAVE
+        MENUITEM "Exit",                        ID_APP_EXIT
+    END
+    POPUP "Help"
+    BEGIN
+        MENUITEM "About...",                    ID_APP_ABOUT
+        MENUITEM "Help",                        ID_HELP
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DB_SETTINGS DIALOGEX 0, 0, 316, 216
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Access",IDC_RADIO_ACCESS,"Button",BS_AUTORADIOBUTTON,17,30,39,10
+    EDITTEXT        IDC_NAME_ACCESS,58,48,72,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PATH_ACCESS,58,66,72,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Create",IDC_CREATE_ACCESS,56,87,50,14
+    CONTROL         "MySQL",IDC_RADIO_MYSQL,"Button",BS_AUTORADIOBUTTON,171,30,37,10
+    EDITTEXT        IDC_NAME_MYSQL,210,48,72,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SERVER_MYSQL,210,66,72,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Create",IDC_CREATE_MYSQL,210,87,50,14
+    PUSHBUTTON      "Enter username and password",IDC_SET_USER,15,132,129,14
+    GROUPBOX        "Login setting for Archiver",IDC_STATIC,7,116,145,42
+    GROUPBOX        "",IDC_STATIC,7,21,145,87
+    GROUPBOX        "",IDC_STATIC,164,21,145,87
+    LTEXT           "File name",IDC_STATIC,15,54,31,8
+    LTEXT           "Name",IDC_STATIC,173,54,19,8
+    LTEXT           "Path",IDC_STATIC,15,72,22,8
+    LTEXT           "Server",IDC_STATIC,173,72,22,8
+    LTEXT           "Database creation",IDC_STATIC,7,7,60,8
+END
+
+IDD_SERVICES DIALOGEX 0, 0, 267, 58
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "FreeSCADA: Archiver",IDC_STATIC,7,7,253,42
+    PUSHBUTTON      "Run",IDC_START_ARCHIVE,65,23,50,14
+    PUSHBUTTON      "Stop",IDC_STOP_ARCHIVE,130,23,50,14
+    PUSHBUTTON      "Restart",IDC_RESTART_ARCHIVE,194,23,57,14
+END
+
+IDD_CHANNELS DIALOGEX 0, 0, 325, 201
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_ARCH_COMPUTER,13,25,78,12,ES_AUTOHSCROLL
+    COMBOBOX        IDC_ARCH_SERVER,110,25,202,59,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Remove",IDC_DEL,207,65,50,14
+    PUSHBUTTON      "Add",IDC_ADD,141,65,50,14
+    CONTROL         "",IDC_ARCHIVE,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,13,95,300,94
+    LTEXT           "Host:",IDC_STATIC,13,17,18,8
+    GROUPBOX        "New channel",IDC_STATIC1,7,7,312,53
+    PUSHBUTTON      "...",IDC_BROWSE_COMP,91,25,14,12
+    LTEXT           "OPC Server:",IDC_STATIC,110,17,69,8
+    GROUPBOX        "Archiving channels",IDC_STATIC2,7,84,312,109
+    LTEXT           "OPC channel (server side):",IDC_STATIC,13,46,97,8
+    COMBOBOX        IDC_CHANNEL,110,42,202,151,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Import",IDC_IMPORT,269,65,50,14
+END
+
+IDD_ENTER_USER_EX DIALOGEX 0, 0, 158, 94
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Account for Archiver"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_USER,77,10,74,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PASS,77,28,74,14,ES_PASSWORD | ES_AUTOHSCROLL
+    EDITTEXT        IDC_REPEAT_PASS,77,46,74,14,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,17,73,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,81,73,50,14
+    LTEXT           "User",IDC_STATIC,7,16,16,8
+    LTEXT           "Password",IDC_STATIC,7,34,32,8
+    LTEXT           "Retype password",IDC_STATIC,7,52,57,8
+END
+
+IDD_ENTER_USER DIALOGEX 0, 0, 158, 74
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Logon"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_ENTER_USER,72,10,79,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ENTER_PASS,72,29,79,14,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,17,53,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,81,53,50,14
+    LTEXT           "User",IDC_STATIC,17,16,16,8
+    LTEXT           "Password",IDC_STATIC,17,35,32,8
+END
+
+IDD_USERS_SETTINGS DIALOGEX 0, 0, 331, 231
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_USERS,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,18,119,206
+    EDITTEXT        IDC_LAST_NAME,193,30,116,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_FIRST_NAME,193,49,116,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MIDDLE_NAME,193,68,116,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Set password",IDC_SET_PASSWORD,144,92,165,14
+    CONTROL         "Change users",IDC_CANEDITUSER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,122,60,10
+    CONTROL         "Read users",IDC_CANVIEWUSER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,132,52,10
+    CONTROL         "Change channels",IDC_CANEDITCHANNELS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,142,71,10
+    CONTROL         "Read data",IDC_CANVIEWDATA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,152,49,10
+    CONTROL         "Read events",IDC_CANVIEWEVENTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,162,76,10
+    CONTROL         "Change data",IDC_CANEDITDATA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,172,78,10
+    CONTROL         "Change events",IDC_CANEDITEVENTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,144,182,80,10
+    PUSHBUTTON      "Add",IDC_ADD_USER,138,205,46,14
+    PUSHBUTTON      "Remove",IDC_DEL_USER,204,205,46,14
+    PUSHBUTTON      "Change",IDC_CHANGE_USER,270,205,46,14
+    PUSHBUTTON      "as user",IDC_USER_PERMISSION,252,162,57,14,BS_FLAT | NOT WS_TABSTOP
+    PUSHBUTTON      "as administrator",IDC_ADMIN_PERMISSION,252,178,57,14,BS_FLAT | NOT WS_TABSTOP
+    LTEXT           "Users:",IDC_STATIC,7,6,22,8
+    GROUPBOX        "User settings",IDC_STATIC5,134,10,190,214
+    LTEXT           "First name:",IDC_STATIC1,144,35,37,8
+    LTEXT           "Second name:",IDC_STATIC2,144,54,49,8
+    LTEXT           "Middle name:",IDC_STATIC3,144,73,43,8
+    GROUPBOX        "Permissions",IDC_STATIC4,138,112,178,88
+    GROUPBOX        "User data",IDC_STATIC7,138,20,178,67
+END
+
+IDD_CHANNEL_SETTINGS DIALOGEX 0, 0, 331, 229
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_CHANNELS,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,8,4,319,114
+    EDITTEXT        IDC_UPDATE_INTERVAL,115,148,46,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_NAME,115,131,206,12,ES_AUTOHSCROLL
+    CONTROL         "Channel changed",IDC_EVENTS_CHANGE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,174,71,10
+    CONTROL         "Value crossed #1",IDC_EVENTS_CROSS_VAL1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,189,71,10
+    EDITTEXT        IDC_EVENTS_CROSS_VAL1_SET,115,186,46,12,ES_AUTOHSCROLL
+    CONTROL         "Value crossed #2",IDC_EVENTS_CROSS_VAL2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,202,92,10
+    EDITTEXT        IDC_EVENTS_CROSS_VAL2_SET,115,201,46,12,ES_AUTOHSCROLL
+    CONTROL         "Below value",IDC_ARCH_ON_LESS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,175,188,54,10
+    EDITTEXT        IDC_ARCH_ON_LESS_SET,270,186,48,12,ES_AUTOHSCROLL
+    CONTROL         "Above value",IDC_ARCH_ON_GREATER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,175,202,90,10
+    EDITTEXT        IDC_ARCH_ON_GREATER_SET,270,201,48,12,ES_AUTOHSCROLL
+    LTEXT           "Channel name:",IDC_STATIC3,13,133,49,8
+    GROUPBOX        "Generate events",IDC_STATIC1,13,160,153,57
+    GROUPBOX        "Conditional archiving",IDC_STATIC2,169,160,153,57
+    GROUPBOX        "Channel settings:",IDC_STATIC4,8,120,319,102
+    LTEXT           "Refresh time (sec)",IDC_STATIC5,13,150,60,8
+    CONTROL         "Equal value",IDC_ARCH_ON_EQUAL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,175,174,53,10
+    EDITTEXT        IDC_ARCH_ON_EQUAL_SET,270,171,48,12,ES_AUTOHSCROLL
+END
+
+IDD_EMPTY DIALOGEX 0, 0, 275, 172
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+IDD_EVENTVIEW DIALOGEX 0, 0, 296, 214
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    EDITTEXT        IDC_EDIT1,12,17,277,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,12,47,277,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,12,76,277,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,12,105,277,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT5,12,135,277,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT6,12,164,277,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT7,12,193,277,14,ES_AUTOHSCROLL
+    LTEXT           "Channel changing",IDC_STATIC1,7,7,282,8
+    LTEXT           "Channel changing",IDC_STATIC2,7,36,282,8
+    LTEXT           "Channel changing",IDC_STATIC3,7,66,282,8
+    LTEXT           "Channel changing",IDC_STATIC4,7,95,282,8
+    LTEXT           "Channel changing",IDC_STATIC5,7,124,282,8
+    LTEXT           "Channel changing",IDC_STATIC6,7,154,282,8
+    LTEXT           "Channel changing",IDC_STATIC7,7,183,282,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DB_SETTINGS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        TOPMARGIN, 7
+        HORZGUIDE, 87
+        HORZGUIDE, 108
+    END
+
+    IDD_SERVICES, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 260
+        VERTGUIDE, 65
+        VERTGUIDE, 115
+        VERTGUIDE, 130
+        VERTGUIDE, 180
+        VERTGUIDE, 194
+        VERTGUIDE, 251
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 51
+        HORZGUIDE, 12
+        HORZGUIDE, 42
+        HORZGUIDE, 54
+    END
+
+    IDD_CHANNELS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 319
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 193
+        HORZGUIDE, 65
+        HORZGUIDE, 84
+    END
+
+    IDD_ENTER_USER_EX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 151
+        VERTGUIDE, 77
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 87
+        HORZGUIDE, 24
+        HORZGUIDE, 42
+        HORZGUIDE, 60
+    END
+
+    IDD_ENTER_USER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 151
+        VERTGUIDE, 72
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 67
+        HORZGUIDE, 24
+        HORZGUIDE, 43
+    END
+
+    IDD_USERS_SETTINGS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 324
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 224
+        HORZGUIDE, 224
+    END
+
+    IDD_CHANNEL_SETTINGS, DIALOG
+    BEGIN
+        LEFTMARGIN, 8
+        RIGHTMARGIN, 327
+        VERTGUIDE, 13
+        VERTGUIDE, 19
+        VERTGUIDE, 115
+        VERTGUIDE, 161
+        VERTGUIDE, 169
+        VERTGUIDE, 175
+        VERTGUIDE, 270
+        VERTGUIDE, 321
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 222
+        HORZGUIDE, 120
+        HORZGUIDE, 131
+        HORZGUIDE, 143
+        HORZGUIDE, 148
+        HORZGUIDE, 160
+        HORZGUIDE, 198
+        HORZGUIDE, 213
+    END
+
+    IDD_EMPTY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 268
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 165
+    END
+
+    IDD_EVENTVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 289
+        VERTGUIDE, 12
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 207
+        HORZGUIDE, 15
+        HORZGUIDE, 17
+        HORZGUIDE, 31
+        HORZGUIDE, 36
+        HORZGUIDE, 61
+        HORZGUIDE, 66
+        HORZGUIDE, 90
+        HORZGUIDE, 95
+        HORZGUIDE, 119
+        HORZGUIDE, 124
+        HORZGUIDE, 149
+        HORZGUIDE, 154
+        HORZGUIDE, 178
+        HORZGUIDE, 183
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\MultyConfigurator.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Show information about the program.\nAbout"
+    ID_APP_EXIT             "Quit\nQuit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
+    ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
+    ID_WINDOW_CASCADE       "Arrange windows so they overlap\nCascade Windows"
+    ID_WINDOW_TILE_HORZ     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_TILE_VERT     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_SCSIZE          "Change the window size"
+    ATL_IDS_SCMOVE          "Change the window position"
+    ATL_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    ATL_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    ATL_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    ATL_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    ATL_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_SCRESTORE       "Restore the window to normal size"
+    ATL_IDS_SCTASKLIST      "Activate Task List"
+    ATL_IDS_MDICHILD        "Activate this window"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_MRU_FILE        "Open this document"
+END
+
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""atlres.h""\r\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""MultyConfigurator.rc2""\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "MultyConfigurator.rc2"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,11 @@
+; Sample InProc server
+; DEF for MinGW32 GNU/ld
+
+LIBRARY         LOPCsamD.dll
+DESCRIPTION     'LightOPC Example Server DLL'
+
+EXPORTS
+    DllGetClassObject     @1 
+    DllCanUnloadNow        @2 
+    DllRegisterServer      @3 
+    DllUnregisterServer    @4 

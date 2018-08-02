@@ -1,0 +1,25 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+   0:pushint  0            17:rvalint  6 0          34:rvalint  6 0        
+   1:stoint   6 0          18:bump     1            35:stoval              
+   4:bump     1            21:jmpTint  3            38:pushint  3          
+   5:rvalint  6 0          22:pushint  0            39:call                
+   6:ixa      4  0         23:stoint   6 0          40:rvalint  6 0        
+   7:bump     1            24:jmpU     44           41:incint   1          
+   9:bump     1            26:bump     1            43:decint   1          
+  10:rvalint  6 0          27:checkar  3 1          44:rvalint  6 0        
+  12:refint                29:bump     1            46:rvalint  4 0        
+  13:rvalint  6 0          30:rvalint  6 0          47:ltint               
+  14:incint   1            31:ixa      4  0         48:jmpTint  25         
+  15:stoint   6 0          32:drefint               49:halt                
+  16:decint   1            33:stoval              
+
+a[0] = 5
+a[1] = 4
+a[2] = 3
+a[3] = 2
+a[4] = 1
+	(void)

@@ -1,0 +1,15 @@
+Package: ControlRoom
+Version: 4.4-3
+Section: embedded
+Priority: optional
+Architecture: amd64
+Essential: no
+Depends: gnome-codec-install,libportaudio2,libwxgtk3.0-0,libwxgtk-media3.0-0,libmysqlclient18,libbz2-1.0,libpq5,libgps20,liblua5.2-0,libstdc++6
+Recommends: 
+Suggests:
+Installed-Size: 6520
+Maintainer: openapc@gmail.com
+Conflicts:
+Replaces:
+Provides: ControlRoom
+Description: The full ControlRoom HMI/process control package including editor, debugger and runtime environment

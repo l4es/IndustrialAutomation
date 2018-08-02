@@ -1,0 +1,36 @@
+Completely separate the modbus protocol stuff from the OpenDAX stuff.
+
+Put the modbus protocol stuff in it's own library.
+
+Complete the function code list
+    01
+    02
+    03
+    04
+    05
+    06
+    08
+    15
+    16
+    23
+
+Finish the serial port configuration
+
+Modbus RTU Slave
+
+Modbus ASCII Master / Slave
+
+Modbus TCP Client / Server
+
+Configuration options for the outdata and indata functions.
+
+Try to get rid of the extern Config, configuration structure.
+
+TEST TEST TEST - Probably should get my hands on some radios and I eventually need
+to get some hardware handshaking kinda stuff going.
+
+Add some kind of diagnostic taging or messaging.
+
+Need to be able to create and send a command dynamically at runtime too.
+
+Finish separating the Modbus protocol stuff into it's own library.

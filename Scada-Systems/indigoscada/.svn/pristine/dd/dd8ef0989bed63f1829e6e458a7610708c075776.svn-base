@@ -1,0 +1,45 @@
+#!/home/edb/bin/eic -f
+
+#include <stdio.h>
+
+printf("\n\t **** Hello from EiC's script mode **** \n\n");
+
+
+// example of control of flow
+
+int i;
+int isqr(int x) { return x*x; }
+
+for(i=0;i<4;i++)
+	printf("%d^2 =  %d\n",i,isqr(i));
+
+switch(i) {
+	case 4: printf(" good\n\n"); break;
+	default: printf(" bad\n\n");
+}
+
+// example of some file stuff;
+// read in some tools
+#include "tools/nxtString.c"
+
+FILE *fp = fopen(_Argv[0],"r");
+char *p;
+while((p=nxtString(fp)))
+	printf("%s ",p);
+printf("\n\n");
+fclose(fp);
+
+
+
+// Further example of using command line args
+
+if(_Argc) {
+	int k=0;
+	printf("Processing command line arguments\n");
+	for(k=0;k<_Argc;k++) {
+		printf("%s\n",_Argv[k]);
+	}
+} else
+        printf("NO command line arguments passed\n");
+
+

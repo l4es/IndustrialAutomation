@@ -1,0 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.org.scadabr.dao;
+
+import com.serotonin.mango.vo.event.ScheduledEventVO;
+
+/**
+ *
+ * @author aploese
+ */
+public interface ScheduledEventDao {
+
+    public Iterable<ScheduledEventVO> getScheduledEvents();
+
+    public void saveScheduledEvent(ScheduledEventVO se);
+    
+}

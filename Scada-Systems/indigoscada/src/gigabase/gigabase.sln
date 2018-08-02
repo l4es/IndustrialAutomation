@@ -1,0 +1,51 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gigabase", "gigabase.vcproj", "{4F736CF3-6756-4B7C-9E19-4E32F350D903}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "subsql", "subsqlprj\subsql.vcproj", "{19C64FEC-C975-40E8-9385-025C5F77B600}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cli", "cli\cli.vcproj", "{EF0211D5-CE40-4E49-A44C-ABDF28DC31E0}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Debug DLL = Debug DLL
+		Release = Release
+		Release DLL = Release DLL
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{4F736CF3-6756-4B7C-9E19-4E32F350D903}.Debug.ActiveCfg = Debug|Win32
+		{4F736CF3-6756-4B7C-9E19-4E32F350D903}.Debug.Build.0 = Debug|Win32
+		{4F736CF3-6756-4B7C-9E19-4E32F350D903}.Debug DLL.ActiveCfg = Debug DLL|Win32
+		{4F736CF3-6756-4B7C-9E19-4E32F350D903}.Debug DLL.Build.0 = Debug DLL|Win32
+		{4F736CF3-6756-4B7C-9E19-4E32F350D903}.Release.ActiveCfg = Release|Win32
+		{4F736CF3-6756-4B7C-9E19-4E32F350D903}.Release.Build.0 = Release|Win32
+		{4F736CF3-6756-4B7C-9E19-4E32F350D903}.Release DLL.ActiveCfg = Release DLL|Win32
+		{4F736CF3-6756-4B7C-9E19-4E32F350D903}.Release DLL.Build.0 = Release DLL|Win32
+		{19C64FEC-C975-40E8-9385-025C5F77B600}.Debug.ActiveCfg = Debug|Win32
+		{19C64FEC-C975-40E8-9385-025C5F77B600}.Debug.Build.0 = Debug|Win32
+		{19C64FEC-C975-40E8-9385-025C5F77B600}.Debug DLL.ActiveCfg = Debug DLL|Win32
+		{19C64FEC-C975-40E8-9385-025C5F77B600}.Debug DLL.Build.0 = Debug DLL|Win32
+		{19C64FEC-C975-40E8-9385-025C5F77B600}.Release.ActiveCfg = Release|Win32
+		{19C64FEC-C975-40E8-9385-025C5F77B600}.Release.Build.0 = Release|Win32
+		{19C64FEC-C975-40E8-9385-025C5F77B600}.Release DLL.ActiveCfg = Release DLL|Win32
+		{19C64FEC-C975-40E8-9385-025C5F77B600}.Release DLL.Build.0 = Release DLL|Win32
+		{EF0211D5-CE40-4E49-A44C-ABDF28DC31E0}.Debug.ActiveCfg = Debug|Win32
+		{EF0211D5-CE40-4E49-A44C-ABDF28DC31E0}.Debug.Build.0 = Debug|Win32
+		{EF0211D5-CE40-4E49-A44C-ABDF28DC31E0}.Debug DLL.ActiveCfg = Debug DLL|Win32
+		{EF0211D5-CE40-4E49-A44C-ABDF28DC31E0}.Debug DLL.Build.0 = Debug DLL|Win32
+		{EF0211D5-CE40-4E49-A44C-ABDF28DC31E0}.Release.ActiveCfg = Release|Win32
+		{EF0211D5-CE40-4E49-A44C-ABDF28DC31E0}.Release.Build.0 = Release|Win32
+		{EF0211D5-CE40-4E49-A44C-ABDF28DC31E0}.Release DLL.ActiveCfg = Release DLL|Win32
+		{EF0211D5-CE40-4E49-A44C-ABDF28DC31E0}.Release DLL.Build.0 = Release DLL|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,5 @@
+on
+	(void)
+Warning: in testgotos.c near line 13: Unreachable code at line 12
+Warning: in testgotos.c near line 40: Unreachable code at line 35
+	0

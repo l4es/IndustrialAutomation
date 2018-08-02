@@ -1,0 +1,47 @@
+#! /bin/sh
+#
+#find . -name include -prune -o -newer EiCwork.tar.gz -type f ! -name "*.o" ! -name "*.a" ! -name "*~" ! -name EiChist.lst -print
+
+
+
+usage() {
+
+	echo " ";
+	echo "                       export ";
+	echo " ";
+	echo " First create the list of files to export. ";
+	echo " Example of find: ";
+	echo "       % find . -mtime -3 -type f  -print > list  ";
+	echo " Finds all the files that have been touched in the last 3 days. ";
+	echo " Note, directories will not be included in the list since type is  ";
+	echo " f for file. ";
+	echo " ";
+	echo " To exclude a directory: ";
+	echo "	% find . -name CVS -prune -o -type f -print > list ";
+	echo "   excludes the contents of any directory called CVS. ";
+	echo " To exclude different files: ";
+	echo "  % find . -name CVS -prune -o -type f ! \( -name \*.o -o -name \*.a \) -print";
+	echo "  ";
+	echo " Once the list has been created then: ";
+	echo "  ";
+	echo "	% export name list ";
+	echo " ";
+	echo " Will produce the file:";
+	echo " ";
+	echo "	           name.tar.gz ";
+	echo " ";
+	exit 1;
+}
+
+if [ $# -ne 2 ]; then
+	usage ;
+fi
+
+echo $1 >> export.dates
+date >> export.dates
+rm -f $1.tar.gz
+tar -cvP  -T $2  -f $1.tar
+gzip $1.tar
+
+
+

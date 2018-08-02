@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Users>
+  <User>
+    <UserName>Оператор 1</UserName>
+    <Password>123</Password>
+    <EMail>tom@contoso.com</EMail>
+    <Roles>Operator</Roles>
+  </User>
+  <User>
+    <UserName>Оператор 2</UserName>
+    <Password>456</Password>
+    <EMail>dick@contoso.com</EMail>
+    <Roles>Operator</Roles>
+  </User>
+  <User>
+    <UserName>Інженер</UserName>
+    <Password>123.456</Password>
+    <EMail>harry@contoso.com</EMail>
+    <Roles>Developer</Roles>
+  </User>
+  <User>
+    <UserName>Гість</UserName>
+    <Password>0</Password>
+    <EMail>harry@contoso.com</EMail>
+    <Roles>Guests</Roles>
+  </User>
+</Users>

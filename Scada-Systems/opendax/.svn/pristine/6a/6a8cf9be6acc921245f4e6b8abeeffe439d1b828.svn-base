@@ -1,0 +1,2 @@
+Phil Birkelbach - First version of most all of the core DAX code and the modbus module
+Chris Underwood - CRC32 code in dax/crc.c and dax/crc.h

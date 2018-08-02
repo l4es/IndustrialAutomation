@@ -1,0 +1,25 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+add -> Func (
+	a: int ,
+	b: int 
+	) returning int 
+   1:pushint  3             9:bump     1            17:rvalint  -1 1       
+   2:stoint   1 1          10:checkar  2 1          18:bump     1          
+   3:rvalint  1 1          11:rvalint  0 1          19:rvalint  -2 1       
+   4:bump     1            12:stoval                20:addint              
+   6:addint                14:stoval                22:rvalint  0 1        
+   7:stoint   0 1          15:pushint  2            23:eicreturn           
+
+   3:pushint  5            11:bump     1            19:pushint  3          
+   4:stoval                12:checkar  3 1          20:call                
+   5:pushint  4            13:pushint  9            21:halt                
+   6:stoval                14:stoval              
+   7:pushint  2            15:rvalint  4 0        
+
+c = 8
+a = 9 (9)
+	(void)

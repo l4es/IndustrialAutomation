@@ -1,0 +1,14 @@
+Add tag retrieving functions
+
+Possibly add multiple threads with different scripts in each
+
+Once the tag change notifications are programmed into the core we need
+a way to call certain scripts with changes in tags.
+
+I should reprogram this so that after the script is loaded we compare all of the
+globals to dax tags that already exist.  Then it can make a list of these tags
+for each script, read them from opendax and populate the _G table with the right
+data, run the script and when it's over write these tags back out to dax.  I'll
+keep the existing routines for reading and writing data in case the script writer
+wants to do some fancy stuff.  We could also have a notification message when
+a tag is added.

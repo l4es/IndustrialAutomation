@@ -1,0 +1,346 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>cgihtml Documentation: Routines</TITLE>
+<LINK HREF="cgihtml-6.html" REL=next>
+<LINK HREF="cgihtml-4.html" REL=previous>
+<LINK HREF="cgihtml.html#toc5" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="cgihtml-6.html">Next</A>
+<A HREF="cgihtml-4.html">Previous</A>
+<A HREF="cgihtml.html#toc5">Contents</A>
+<HR>
+<H2><A NAME="s5">5. Routines</A></H2>
+
+<H2><A NAME="ss5.1">5.1 cgi-lib.h</A>
+</H2>
+
+<H3>Library Variables</H3>
+
+<P>cgi-lib.h defines constants for the standard CGI environment
+variables.  For instance, the value of the environment variable
+QUERY_STRING is stored in the constant <CODE>QUERY_STRING</CODE> in
+cgi-lib.h.  Here is a list of the constants:
+<P>
+<UL>
+<LI>SERVER_SOFTWARE</LI>
+<LI>SERVER_NAME</LI>
+<LI>GATEWAY_INTERFACE</LI>
+<LI>SERVER_PROTOCOL</LI>
+<LI>SERVER_PORT</LI>
+<LI>REQUEST_METHOD</LI>
+<LI>PATH_INFO</LI>
+<LI>PATH_TRANSLATED</LI>
+<LI>SCRIPT_NAME</LI>
+<LI>QUERY_STRING</LI>
+<LI>REMOTE_HOST</LI>
+<LI>REMOTE_ADDR</LI>
+<LI>AUTH_TYPE</LI>
+<LI>REMOTE_USER</LI>
+<LI>REMOTE_IDENT</LI>
+<LI>CONTENT_TYPE</LI>
+<LI>CONTENT_LENGTH</LI>
+<LI>HTTP_USER_AGENT</LI>
+</UL>
+<P>
+<H3>Library functions</H3>
+
+<P>
+<P><B>short accept_image();</B>
+<P><CODE>accept_image()</CODE> determines whether the browser will accept
+pictures.  It does so by checking the HTTP_ACCEPT environment variable
+for an image MIME type.  It returns a 1 if the browser will accept
+graphics, a 0 otherwise.
+<P><B>void unescape_url();</B>
+<P><CODE>unescape_url()</CODE> converts escaped URI values into their
+character form.  <CODE>read_cgi_input()</CODE> calls this function.  You
+will rarely if ever need to access this function directly but it is
+made available in case you do.
+<P><B>int read_cgi_input(llist *entries);</B>
+<P>This routine parses the raw CGI data passed from the browser to the
+server and adds each associated name and value to the linked list
+entries.  It will parse information transmitted using both the GET and
+POST method.  If it receives no information, it will return a 0,
+otherwise it returns the number of entries returned.  If it receives a
+badly encoded string, it will return -1.
+<P>If you run your CGI program that calls <CODE>read_cgi_input()</CODE> from
+the command line, this function will start an interactive mode so you
+can directly input the CGI input string.  Note that this string must
+be properly encoded.
+<P><CODE>read_cgi_input()</CODE> also handles HTTP file upload correctly.
+The file will be uploaded to the directory defined by UPLOADDIR in
+cgi-lib.h (/tmp by default).
+<P><B>char* cgi_val(llist l, char *name);</B>
+<P><CODE>cgi_val()</CODE> searches the linked list for the value of the entry
+named name and returns the value if it finds it.  If it cannot find an
+entry with name name, it returns NULL.
+<P><B>char** cgi_val_multi(llist l, char *name);</B>
+<P>Same as <CODE>cgi_val()</CODE> except will return multiple values with the
+same name to an array of strings.  Will return NULL if it cannot find
+an entry with name name
+<P><B>char* cgi_name(llist l, char *value);</B>
+<P>Same as <CODE>cgi_val()</CODE> except searches for value with specified
+name.
+<P><B>char** cgi_name_multi(llist l, char *value);</B>
+<P>Analogous to <CODE>cgi_multi_val()</CODE>.
+<P><B>int parse_cookies(llist *entries);</B>
+<P>Parses the environment variable <CODE>HTTP_COOKIE</CODE> for cookies.
+Returns the number of cookies parsed, zero if there are none.
+<P><B>void print_cgi_env();</B>
+<P>Pretty prints the environment variables defined in cgi-lib.h.  Prints
+"(null)" if the variables are empty.
+<P><B>void print_entries(llist l);</B>
+<P>This is a generic routine which will iterate through the linked list
+and print each name and associated value in HTML form.  It uses the
+&lt;dl&gt; list format to display the list.
+<P><B>char* escape_input(char *str);</B>
+<P><CODE>escape_input()</CODE> "escapes" shell metacharacters in the string.
+It precedes all non-alphanumeric characters with a backslash.  C
+routines including <CODE>system()</CODE> and <CODE>popen()</CODE> open up a
+Bourne shell process before running.  If you do not escape shell
+metacharacters in the input (prefix metacharacters with a backslash),
+then malicious users may be able to take advantage of your system.
+<P><B>short is_form_empty(llist l);</B>
+<P><CODE>is_form_empty()</CODE> checks to see whether no names or values were
+submitted.  Note that this is different from submitting a blank form.
+<P><B>short is_field_exists(llist l,char *str);</B>
+<P>Checks to see whether a field actually exists.  Equivalent to checking
+whether cgi_val() returns "" or NULL.  If it returns "", the field
+exists but is empty; if it returns NULL, the field does not exist.
+<P><B>short is_field_empty(llist l,char *str);</B>
+<P>Returns 1 (true) if either the field does not exist or the field does
+exist but is empty.
+<P>
+<H2><A NAME="ss5.2">5.2 html-lib.h</A>
+</H2>
+
+<P>
+<P>
+<H3>Library functions</H3>
+
+<P>
+<P><B>void html_header();</B>
+<P><CODE>html_header()</CODE> prints a MIME compliant header which should
+precede the output of any HTML document from a CGI script.  It simply
+prints to STDOUT:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+Content-Type: text/html
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>and a blank line.
+<P><B>void mime_header(char *mime);</B>
+<P>Allows you to print any MIME header.  For example, if you are about to
+send a GIF image to the standard output from your C CGI program,
+precede your program with:
+<P>
+<HR>
+<PRE>
+mime_header("image/gif");
+/* now you can send your GIF file to stdout */
+</PRE>
+<HR>
+<P><CODE>mime_header()</CODE> simply prints <CODE>Content-Type:</CODE> followed
+by your specified MIME header and a blank line.
+<P><B>void nph_header(char *status);</B>
+<P>Sends a standard HTTP header for direct communication with the client
+using no parse header.  status is the status code followed by the
+status message.  For instance, to send a "No Content" header, you
+could use:
+<P>
+<HR>
+<PRE>
+nph_header("204 No Content");
+html_header();
+</PRE>
+<HR>
+<P>which would send:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+HTTP/1.0 204 No Content
+Server: CGI using cgihtml
+Content-Type: text/html
+</PRE>
+</CODE></BLOCKQUOTE>
+<P><CODE>nph_header()</CODE> does not send a blank line after printing the
+headers, so you must follow it with either another header or a blank
+line.  Also, scripts using this function must have "nph-" preceding
+their filenames.
+<P><B>void show_html_page(char *loc);</B>
+<P>Sends a "Location: " header.  loc is the location of the HTML file you
+wish sent to the browser.  For example, if you want to send the root
+index file from the CGI program:
+<P>
+<HR>
+<PRE>
+show_html_page("/index.html");
+</PRE>
+<HR>
+<P><B>void status(char *status);</B>
+<P>Sends an HTTP Status header.  status is a status code followed by a
+status message.  For instance, to send a status code of 302 (temporary
+redirection) followed by a location header:
+<P>
+<HR>
+<PRE>
+status("302 Temporarily Moved");
+show_html_page("http://hcs.harvard.edu/");
+</PRE>
+<HR>
+<P><CODE>status()</CODE> does not print a blank line following the header, so
+you must follow it with either another function which does output a
+blank line or an explicit <CODE>printf("\r\n");</CODE>.
+<P><B>void pragma(char *msg);</B>
+<P>Sends an HTTP Pragma header.  Most commonly used to tell the browser
+not to cache the document, ie.:
+<P>
+<HR>
+<PRE>
+pragma("No-cache");
+html_header();
+</PRE>
+<HR>
+<P>As with <CODE>status()</CODE>, <CODE>pragma()</CODE> does not print a blank
+line folowing the header.
+<P><B>void set_cookie(char *name, char *value, char *expires, char
+*path, char *domain, short secure);</B>
+<P>Sets a cookie using the values given in the parameters.
+<P><B>void html_begin(char *title);</B>
+<P><CODE>html_begin()</CODE> sends somewhat standard HTML tags which should
+generally be at the top of every HTML file.  It will send:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+&lt;html&gt; &lt;head&gt;
+&lt;title&gt;title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+</PRE>
+</CODE></BLOCKQUOTE>
+<P><B>void html_end();</B>
+<P><CODE>html_end()</CODE> is the complement to <CODE>html_begin()</CODE>,
+sending the following HTML:
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+&lt;/body&gt; &lt;/html&gt;
+</PRE>
+</CODE></BLOCKQUOTE>
+<P>Note that neither <CODE>html_begin()</CODE> nor <CODE>html_end()</CODE> are
+necessary for your CGI scripts to output HTML, but they are good
+style, and I encourage use of these routines.
+<P><B>void h1(char *header);</B>
+<P>Surrounds <CODE>header</CODE> with appropriate headline tags.  Defined for
+h1() to h6().
+<P><B>void hidden(char *name, char *value);</B>
+<P>Prints a hidden form field with name <CODE>name</CODE> and value
+<CODE>value</CODE>.
+<P>
+<H2><A NAME="ss5.3">5.3 cgi-llist.h</A>
+</H2>
+
+<P>For most scripts, with the exception of <CODE>list_end()</CODE>, you
+will most likely never have to use any of the link list routines
+available, since cgi-lib.h handles most common linked list
+manipulation almost transparently.  However, you may sometimes want to
+manipulate the information directly or perform special functions on
+each entry, in which case these routines may be useful.
+<P>
+<H3>Library variables</H3>
+
+<P>
+<P>
+<HR>
+<PRE>
+typedef struct {
+  char *name;
+  char *value;
+} entrytype;
+
+typedef struct _node {
+  entrytype entry;
+  struct _node* next;
+} node;
+
+typedef struct {
+  node* head;
+} llist;
+</PRE>
+<HR>
+<P>
+<H3>Library functions</H3>
+
+<P>
+<P><B>void list_create(llist *l);</B>
+<P><CODE>list_create()</CODE> creates and initializes the list, and it should
+be called at the beginning of every CGI script using this library.
+<P><B>node* list_next(node* w);</B>
+<P><CODE>list_next()</CODE> returns the next node on the list.
+<P><B>short on_list(llist *l, node* w);</B>
+<P><CODE>on_list()</CODE> returns a 1 if the node w is on the linked list l;
+otherwise, it returns a 0.
+<P><B>short on_list_debug(llist *l, node* w);</B>
+<P>The previous routine makes the assumption that my linked list routines
+are bug-free, a possibly bad assumption.  If you are using linked list
+routines and <CODE>on_list()</CODE> isn't returning the correct value, try
+using <CODE>on_list_debug()</CODE> which makes no assumptions, is almost
+definitely reliable, but is a little slower than the other routine.
+<P><B>void list_traverse(llist *l, void (*visit)(entrytype item));</B>
+<P><CODE>list_traverse()</CODE> lets you pass a pointer to a function which
+will manipulate each entry on the list.
+<P>To use, you must create a function that will take as its argument a
+variable of type entrytype.  For example, if you wanted to write your
+own <CODE>print_entries()</CODE> function, you could do the following:
+<P>
+<HR>
+<PRE>
+void print_element(entrytype item);
+{
+  printf("%s = %s\n",item.name,item.value);
+}
+
+void print_entries(llist entries);
+{
+  list_traverse(&amp;stuff, print_element);
+}
+</PRE>
+<HR>
+<P><B>node* list_insafter(llist* l, node* w, entrytype item);</B>
+<P><CODE>list_insafter()</CODE> adds the entry item after the node w and
+returns the pointer to the newly created node.  I didn't bother
+writing a function to insert before a node since my CGI functions
+don't need one.
+<P><B>void list_clear(llist* l);</B>
+<P>This routine frees up the memory used by the linked list after you are
+finished with it.  It is imperative that you call this function at the
+end of every program which calls <CODE>read_cgi_input()</CODE>.
+<P>
+<H2><A NAME="ss5.4">5.4 string-lib.h</A>
+</H2>
+
+<H3>Library functions</H3>
+
+<P>
+<P><B>char* newstr(char *str);</B>
+<P><CODE>newstr()</CODE> allocates memory and returns a copy of <CODE>str</CODE>.
+Use this function to correctly allocate memory and copy strings.
+<P><B>char* substr(char *str, int offset, int len);</B>
+<P>Analogous to the Perl <CODE>substr</CODE> function.  Finds the substring
+of <CODE>str</CODE> at an offset of <CODE>offset</CODE> and of length
+<CODE>len</CODE>.  A negative offset will start the substring from the end
+of the string.
+<P><B>char* replace_ltgt(char *str);</B>
+<P>Replaces all instances of &lt; and &gt; in <CODE>str</CODE> with &amp;lt;
+and &amp;gt;.
+<P><B>char* lower_case(char *buffer);</B>
+<P>Converts a string from upper to lower case.
+<P>
+<HR>
+<A HREF="cgihtml-6.html">Next</A>
+<A HREF="cgihtml-4.html">Previous</A>
+<A HREF="cgihtml.html#toc5">Contents</A>
+</BODY>
+</HTML>

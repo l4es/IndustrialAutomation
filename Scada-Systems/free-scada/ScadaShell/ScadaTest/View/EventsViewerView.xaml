@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="ScadaShell.View.EventsViewerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:ScadaShell.ViewModel"
+             xmlns:vw="clr-namespace:ScadaShell.View"
+             mc:Ignorable="d">
+    
+    <TabControl DockPanel.Dock="Bottom" ItemsSource="{Binding Path=EventsSummaries}" SelectedIndex="0">
+    <!--    <TabControl.Resources>
+            <DataTemplate DataType="{x:Type vm:EventsSummaryViewModel}">
+                <ListView ItemsSource="{Binding Path=Events}" >
+                    <ListView.View>
+                        <GridView >
+                            <GridViewColumn Header="Text">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate DataType="{x:Type vm:EventViewModel }">
+                                        <Border Background="{Binding Path=Color}">
+                                            <Label  Content="{Binding Path=Text}"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                                      
+                            <GridViewColumn Header="StartTime" 
+                      DisplayMemberBinding="{Binding Path=StartTime}"/>
+                            <GridViewColumn Header="EndTime" 
+                      DisplayMemberBinding="{Binding Path=EndTime}"/>
+                            <GridViewColumn Header="AckTime" 
+                      DisplayMemberBinding="{Binding Path=AckTime}"/>
+                        </GridView>
+                    </ListView.View>
+
+                </ListView>
+            </DataTemplate>
+        </TabControl.Resources>-->
+        <TabControl.ItemTemplate>
+            <DataTemplate>
+                <Label Content="{Binding Key}"/>
+            </DataTemplate>
+        </TabControl.ItemTemplate>
+        <TabControl.ContentTemplate>
+            <DataTemplate>
+                <ContentPresenter Content="{Binding Value}"/>
+            </DataTemplate>
+        </TabControl.ContentTemplate>
+    </TabControl>
+    
+</UserControl>

@@ -1,0 +1,371 @@
+
+@String{j-BSTJ          = "The Bell System Technical Journal"}
+@String{j-CACM          = "Communications of the Association for Computing
+                           Machinery"}
+@String{j-CBM           = "Computers in Biology and Medicine"}
+@String{j-CGIP          = "Computer Graphics and Image Processing"}
+@String{j-CJ            = "The Computer Journal"}
+@String{j-COMPCON-SPRING89 = "Digest of Papers of {COMPCON} Spring `89"}
+@String{j-COMPLANG      = "Computer Language"}
+@String{j-COMPUTER      = "Computer"}
+@String{j-CS            = "Computing Surveys"}
+@String{j-DDJ           = "Dr. Dobb's Journal"}
+@String{j-GUTENBERG     = "Cahiers GUTenberg"}
+@String{j-IBM-JRD       = "IBM J. Res. Develop."}
+@String{j-IEEE-MICRO    = "IEEE Micro"}
+@String{j-IJSA          = "International Journal of Supercomputer
+                           Applications"}
+@String{j-PROC-SID      = "Proceedings of the Society for Information
+                           Display"}
+@String{j-SA            = "Scientific American"}
+@String{j-SIAM-J-COMP   = "SIAM Journal of Computing"}
+@String{j-SIGGRAPH      = "ACM SIG{\-}GRAPH\emdash Com{\-}puter Graphics"}
+@String{j-SIGPLAN       = "ACM SIG{\-}PLAN Notices"}
+@String{j-SPE           = "Soft{\-}ware\emdash Prac{\-}tice and Experience"}
+@String{j-SR            = "Supercomputing Review"}
+@String{j-SUNEXPERT     = "SunExpert"}
+@String{j-TEXHAX        = "{\TeX{}{\-}hax}"}
+@String{j-TEXNIQUES     = "{\TeX}niques"}
+@String{j-TOGS          = "ACM Transactions on Graphics"}
+@String{j-TUGboat       = "{\TUB{}}"}
+@String{j-USENIX-SCP    = "{USENIX} Summer Conference Proceedings"}
+
+@String{pub-AAK         = "Alfred A. Knopf"}
+@String{pub-AAK:adr     = "New York, NY, USA"}
+@String{pub-ACM         = "ACM Press"}
+@String{pub-ACM:adr     = "New York, NY 10036, USA"}
+@String{pub-ADOBE       = "{Adobe Systems Incorporated}"}
+@String{pub-ADOBE:adr   = "1585 Charleston Road, P.~O. Box 7900, Mountain
+                           View, CA 94039-7900, USA, Tel: (415) 961-4400"}
+@String{pub-AH          = "Adam Hilger Ltd."}
+@String{pub-AH:adr      = "Bristol, UK"}
+@String{pub-AMS         = "American Mathematical Society"}
+@String{pub-AMS:adr     = "Providence, RI, USA"}
+@String{pub-ANL         = "Argonne National Laboratory"}
+@String{pub-ANL:adr     = "Argonne, IL, USA"}
+@String{pub-ANSI        = "American National Standards Institute"}
+@String{pub-ANSI:adr    = "1430 Broadway, New York, NY 10018, USA"}
+@String{pub-AP          = "Academic Press"}
+@String{pub-AP:adr      = "New York, NY, USA"}
+@String{pub-ATT-BELL    = "AT\&T Bell Laboratories"}
+@String{pub-ATT-BELL:adr = "Murray Hill, NJ, USA"}
+@String{pub-AW          = "Ad{\-d}i{\-s}on-Wes{\-l}ey"}
+@String{pub-AW:adr      = "Reading, MA, USA"}
+@String{pub-AWE         = "Ad{\-}di{\-}son-Wes{\-}ley Europe"}
+@String{pub-AWE:adr     = "Amsterdam, The Netherlands"}
+@String{pub-BANTAM      = "Bantam Books"}
+@String{pub-BANTAM:adr  = "New York, NY, USA"}
+@String{pub-BB          = "Berkeley Books"}
+@String{pub-BB:adr      = "New York"}
+@String{pub-BC          = "Brooks\slash Cole"}
+@String{pub-BC:adr      = "Pacific Grove, CA, USA"}
+@String{pub-BENCUM      = "Benjamin/Cummings Pub. Co."}
+@String{pub-BENCUM:adr  = "Redwood City, CA, USA"}
+@String{pub-BH          = "Birkh{\"{a}}user"}
+@String{pub-BH:adr      = "Boston, MA, USA"}
+@String{pub-BN          = "Barnes and Noble"}
+@String{pub-BN:adr      = "New York, NY, USA"}
+@String{pub-BOWK        = "R. R. Bowker Company"}
+@String{pub-BOWK:adr    = "1180 Avenue of the Americas, New York, NY
+                          10036, USA"}
+@String{pub-BRADY       = "Robert J. Brady Co."}
+@String{pub-BRADY:adr   = "Bowie, MD 20715, USA"}
+@String{pub-CBI         = "Contemporary Books, Inc."}
+@String{pub-CBI:adr     = "180 North Michigan Avenue, Chicago, IL 60601,
+                           USA"}
+@String{pub-CBM         = "CBM Books"}
+@String{pub-CBM:adr     = "A Division of Cardinal Business Media Inc.,
+                           101 Witmer Road, Horsham, PA 19044, USA"}
+@String{pub-CHARTWELL   = "Chartwell Books, Inc."}
+@String{pub-CHARTWELL:adr = "110 Enterprise Avenue, Secaucus, NJ 07094, USA"}
+@String{pub-CIAOCO      = "Editions Ciaoco"}
+@String{pub-CIAOCO:adr  = "Artel, Bruxelles, Belgium"}
+@String{pub-CIPS        = "Canadian Information Processing Society"}
+@String{pub-CIPS:adr    = "243 College St, 5th Floor, Toronto, Ontario
+                           M5T~2Y1, Canada"}
+@String{pub-CLSC        = "College of Science Computer"}
+@String{pub-CLSC:adr    = "Department of Physics, University of Utah, Salt
+                           Lake City, UT 84112, USA"}
+@String{pub-COLLIER     = "Collier Books, Macmillan Publishing Company"}
+@String{pub-COLLIER:adr = "New York, NY, USA"}
+@String{pub-COLLMAC     = "Collier Macmillan Canada"}
+@String{pub-COLLMAC:adr = "Toronto, Ontario, Canada"}
+@String{pub-COLUMBIA    = "Columbia University Press"}
+@String{pub-COLUMBIA:adr = "New York, NY, USA"}
+@String{pub-CP          = "Clarendon Press"}
+@String{pub-CP:adr      = "Oxford, UK"}
+@String{pub-CRC         = "CRC Publishers"}
+@String{pub-CRC:adr     = "2000 Corporate Blvd., Boca Raton, FL 33431, USA"}
+@String{pub-CSP         = "Computer Science Press"}
+@String{pub-CSP:adr     = "11 Taft Court, Rockville, MD 20850, USA"}
+@String{pub-CUP         = "Cambridge University Press"}
+@String{pub-CUP:adr     = "Cambridge, UK"}
+@String{pub-CWI         = "Centrum voor Wiskunde en Informatica"}
+@String{pub-CWI:adr     = "P. O. Box 4079, 1009 AB Amsterdam, The
+                           Netherlands"}
+@String{pub-DOV         = "Dover"}
+@String{pub-DOV:adr     = "New York, NY, USA"}
+@String{pub-DP          = "Digital Press"}
+@String{pub-DP:adr      = "12 Crosby Drive, Bedford, MA 01730, USA"}
+@String{pub-EH          = "Ellis Horwood"}
+@String{pub-EH:adr      = "New York, NY, USA"}
+@String{pub-ELS         = "Elsevier"}
+@String{pub-ELS:adr     = "Amsterdam, The Netherlands"}
+@String{pub-FSF         = "{Free} {Software} {Foundation}"}
+@String{pub-FSF:adr     = "675 Mass Ave, Cambridge, MA 02139, USA,
+                           Tel: (617) 876-3296"}
+@String{pub-GP          = "Graphics Press"}
+@String{pub-GP:adr      = "Box 430, Cheshire, CT 06410, USA"}
+@String{pub-HAYDEN      = "Hayden Books"}
+@String{pub-HAYDEN:adr  = "4300 West 62nd Street, Indianapolis, IN
+                           46268, USA"}
+@String{pub-HBJ         = "Harcourt Brace Jovanovich"}
+@String{pub-HBJ:adr     = "Boston, MA, USA"}
+@String{pub-HM          = "Houghton Mifflin"}
+@String{pub-HM:adr      = "Boston, MA, USA"}
+@String{pub-HRW         = "Holt, Reinhart, and Winston"}
+@String{pub-HRW:adr     = "New York, NY, USA"}
+@String{pub-HWS         = "Howard W. Sams"}
+@String{pub-HWS:adr     = "Indianapolis, IN 46268, USA"}
+@String{pub-IBM         = "IBM Corporation"}
+@String{pub-IBM:adr     = "San Jose, CA, USA"}
+@String{pub-IE          = "InterEditions"}
+@String{pub-IE:adr      = "Paris, France"}
+@String{pub-IEEE        = "IEEE Computer Society Press"}
+@String{pub-IEEE:adr    = "1109 Spring Street, Suite 300, Silver
+                           Spring, MD 20910, USA"}
+@String{pub-INTEL       = "Intel Corporation"}
+@String{pub-INTEL:adr   = "Santa Clara, CA, USA"}
+@String{pub-ISO         = "International Organization for Standardization"}
+@String{pub-JH          = "The Johns Hopkins University Press"}
+@String{pub-JH:adr      = "Baltimore, MD, USA"}
+@String{pub-JPL         = "Jet Propulsion Laboratory"}
+@String{pub-JPL:adr     = "Pasadena, CA, USA"}
+@String{pub-JSA         = "Japanese Standards Association"}
+@String{pub-JSA:adr     = "1-24, Akasaka 4 Chome, Minato-ku, Tokyo, 107
+                           Japan"}
+@String{pub-JW          = "John Wiley"}
+@String{pub-JW:adr      = "New York, NY, USA"}
+@String{pub-KLUWER      = "Kluwer Academic Publishers Group"}
+@String{pub-KLUWER:adr  = "Norwell, MA, USA, and Dordrecht, The Netherlands"}
+@String{pub-LB          = "Little, Brown and Company"}
+@String{pub-LB:adr      = "Boston, Toronto, London"}
+@String{pub-MAC         = "Macmillan Publishing Company"}
+@String{pub-MAC:adr     = "New York, NY, USA"}
+@String{pub-MAC-ED      = "Macmillan Education Ltd."}
+@String{pub-MAC-ED:adr  = "Houndmills, Basingstoke, Hampshire RG21
+                           2XS, UK"}
+@String{pub-MEGATEK     = "Megatek Corporation"}
+@String{pub-MEGATEK:adr = "9645 Scranton Rd, San Diego, CA 92121, USA"}
+@String{pub-MH          = "Mc{\-}Graw-Hill"}
+@String{pub-MH:adr      = "New York, NY, USA"}
+@String{pub-MICROSOFT   = "Microsoft Press"}
+@String{pub-MICROSOFT:adr = "Bellevue, WA, USA"}
+@String{pub-MIS         = "MIS Press"}
+@String{pub-MIS:adr     = "P. O. Box 5277, Portland, OR 97208-5277, USA,
+                           Tel: (503) 282-5215"}
+@String{pub-MIT         = "MIT Press"}
+@String{pub-MIT:adr     = "Cambridge, MA, USA"}
+@String{pub-MK          = "Morgan Kaufmann Publishers"}
+@String{pub-MK:adr      = "Los Altos, CA 94022, USA"}
+@String{pub-MK:adrnew   = "2929 Campus Drive, Suite 260, San Mateo,
+                           CA 94403, USA"}
+@String{pub-MORROW      = "William Morrow and Company, Inc."}
+@String{pub-MORROW:adr  = "New York, NY, USA"}
+@String{pub-MOTOROLA    = "Motorola Corporation"}
+@String{pub-MOTOROLA:adr = "Phoenix, AZ, USA"}
+@String{pub-MT          = "M\&T Books"}
+@String{pub-MT:adr      = "M\&T Publishing, Inc., 501 Galveston Drive,
+                           Redwood City, CA 94063, USA"}
+@String{pub-NH          = "North-Hol{\-}land"}
+@String{pub-NH:adr      = "Amsterdam, The Netherlands"}
+@String{pub-OMH         = "Osborne\slash Mc{\-}Graw-Hill"}
+@String{pub-OMH:adr     = "Berkeley, CA, USA"}
+@String{pub-OR          = "O'Reilly \& {Associates, Inc.}"}
+@String{pub-OR:adr      = "981 Chestnut Street, Newton, MA 02164, USA"}
+@String{pub-OUP         = "Oxford University Press"}
+@String{pub-OUP:adr     = "Walton Street, Oxford OX2 6DP, UK"}
+@String{pub-PEACHPIT    = "Peachpit Press, Inc."}
+@String{pub-PEACHPIT:adr = "1085 Keith Avenue, Berkeley, CA 94708, USA"}
+@String{pub-PH          = "Pren{\-}tice-Hall"}
+@String{pub-PH:adr      = "Englewood Cliffs, NJ 07632, USA"}
+@String{pub-PHI         = "Pren{\-}tice-Hall International"}
+@String{pub-PHI:adr     = "Englewood Cliffs, NJ 07632, USA"}
+@String{pub-PITMAN      = "Pitman Publishing Ltd."}
+@String{pub-PITMAN:adr  = "London, UK"}
+@String{pub-PLUMHALL    = "Plum Hall"}
+@String{pub-PLUMHALL:adr = "1 Spruce Ave, Cardiff, NJ 08232, USA"}
+@String{pub-PPB         = "Professional Press Books"}
+@String{pub-PPB:adr     = "101 Witmer Road, Horsham, PA 19044, USA"}
+@String{pub-PTI         = "Personal {\TeX} Inc."}
+@String{pub-PTI:adr     = "12 Madrona Street, Mill Valley, CA 94941, USA"}
+@String{pub-PTRPH       = "P T R Pren{\-}tice-Hall"}
+@String{pub-PTRPH:adr   = "Englewood Cliffs, NJ 07632, USA"}
+@String{pub-PUP         = "Princeton University Press"}
+@String{pub-PUP:adr     = "Princeton, NJ, USA"}
+@String{pub-PW          = "Plume\slash Waite"}
+@String{pub-PW:adr      = "New York, NY, USA"}
+@String{pub-REK         = "Robert E. Krieger Publishing Company"}
+@String{pub-REK:adr     = "Huntington, NY, USA"}
+@String{pub-RESTON      = "Reston Publishing Co. Inc."}
+@String{pub-RESTON:adr  = "Reston, VA, USA"}
+@String{pub-RH          = "Random House"}
+@String{pub-RH:adr      = "New York, NY, USA"}
+@String{pub-SERIF       = "Serif Publishing"}
+@String{pub-SERIF:adr   = "A subsidiary of Xerox Corporation, 701 South
+                           Aviation Boulevard, El Segundo, CA 90245, USA"}
+@String{pub-SF          = "Scott, Foresman and Company"}
+@String{pub-SF:adr      = "Glenview, IL, USA"}
+@String{pub-SIAM        = "Society for Industrial and Applied Mathematics"}
+@String{pub-SIAM:adr    = "Philadelphia, PA, USA"}
+@String{pub-SILICON     = "Silicon Press"}
+@String{pub-SILICON:adr = "25 Beverly Road, Summit, NJ 07901, USA"}
+@String{pub-SS          = "Simon and Schuster"}
+@String{pub-SS:adr      = "New York, NY, USA"}
+@String{pub-STAN-CS     = "Stanford University, Department of Computer
+                           Science"}
+@String{pub-STAN-CS:adr = "Stanford, CA, USA"}
+@String{pub-STAN-CSL    = "Stanford University, Department of Computer
+                           Science"}
+@String{pub-STAN-CSL:adr = "Stanford, CA, USA"}
+@String{pub-SUCSLI      = "Stanford University Center for the Study of
+                           Language and Information"}
+@String{pub-SUCSLI:adr  = "Stanford, CA, USA"}
+@String{pub-SUN         = "Sun Microsystems"}
+@String{pub-SUN:adr     = "2550 Garcia Avenue, Mountain View, CA 94043, USA"}
+@String{pub-SV          = "Spring{\-}er-Ver{\-}lag"}
+@String{pub-SV:adr      = "Berlin, Germany~/ Heidelberg, Germany~/ London,
+                           UK~/ etc."}
+@String{pub-SYBEX       = "Sybex"}
+@String{pub-SYBEX:adr   = "2021 Challenger Driver, Suite 100, Alameda,
+                           CA 94501, USA"}
+@String{pub-TEXPLORATORS = "The {\TeX}plorators Corporation"}
+@String{pub-TEXPLORATORS:adr = "3701 W. Alabama, Suite 450-273,
+                           Houston, TX 77027, USA"}
+@String{pub-TRILITHON   = "Trilithon Press"}
+@String{pub-TRILITHON:adr = "Los Altos, CA, USA"}
+@String{pub-UCP         = "University of California Press"}
+@String{pub-UCP:adr     = "Berkeley, CA, USA"}
+@String{pub-UNIC        = "UNI{$\bullet$}C"}
+@String{pub-UNIC:adr    = "Danmarks EDB-Center for Forskning og Uddannelse,
+                           Copenhagen, Denmark"}
+@String{pub-URW         = "URW Verlag"}
+@String{pub-URW:adr     = "Hamburg, Germany"}
+@String{pub-USGPO       = "United States Government Printing Office"}
+@String{pub-USGPO:adr   = "Washington, DC, USA"}
+@String{pub-USNPS       = "U. S. Naval Postgraduate School"}
+@String{pub-USNPS:adr   = "Monterey, CA 93940, USA"}
+@String{pub-USNWL       = "U. S. Naval Weapons Laboratory"}
+@String{pub-USNWL:adr   = "Dahlgren, VA 22448, USA"}
+@String{pub-UTP         = "University of Texas Press"}
+@String{pub-UTP:adr     = "Austin, TX, USA"}
+@String{pub-VINTAGE     = "Vintage Books"}
+@String{pub-VINTAGE:adr = "New York, NY, USA"}
+@String{pub-VNR         = "Van Nostrand Reinhold"}
+@String{pub-VNR:adr     = "New York, NY, USA"}
+@String{pub-W           = "Wiley"}
+@String{pub-W:adr       = "New York, NY, USA"}
+@String{pub-WAB         = "W. A. {Benjamin, Inc.}"}
+@String{pub-WAB:adr     = "New York, NY, USA"}
+@String{pub-WADSWORTH   = "Wadsworth"}
+@String{pub-WADSWORTH:adr = "Pacific Grove, CA, USA"}
+@String{pub-WEITEK      = "Weitek Corporation"}
+@String{pub-WEITEK:adr  = "1060 E. Arques Ave., Sunnyvale, CA
+                          94086-BRM-9759, USA"}
+@String{pub-WGP         = "Wat{\-}son-Gup{\-}till Publications"}
+@String{pub-WGP:adr     = "1515 Broadway, New York, NY 10036, USA"}
+@String{pub-WHF         = "W. H. {Freeman and Company}"}
+@String{pub-WHF:adr     = "New York, NY, USA"}
+@String{pub-WI          = "Wiley-In{\-}ter{\-}sci{\-}ence"}
+@String{pub-WI:adr      = "New York, NY, USA"}
+@String{pub-WINDCREST   = "Windcrest\slash McGraw-Hill"}
+@String{pub-WINDCREST:adr = "Blue Ridge Summit, PA, USA"}
+@String{pub-WRC         = "W. and R. Chambers Ltd."}
+@String{pub-WRC:adr     = "London, UK"}
+@String{pub-YOURDON     = "Yourdon Press"}
+@String{pub-YOURDON:adr = "Englewood Cliffs, NJ 07632, USA"}
+
+
+
+@book{budd87,
+	author = {T. Budd},
+	title = {A Little Smalltalk},
+        year = {1987},
+     	publisher = pub-AW,
+        address = pub-AW:adr,
+}
+
+
+@book{davie-morrison81,
+  author =       "A. J. T. Davie and R. Morrison",
+  title =        "Recursive Descent Compiling",
+  publisher =    pub-EH,
+  address =      pub-EH:adr,
+  year =         "1981",
+  series =       "Ellis Horwood Series in Computers and their
+                 Applications, Editor: Brian Meek",
+  ISBN =         "0-470-27270-8 (Halstead Press), 0-85312-386-1 (Ellis
+                 Horwood)",
+  LCCN =         "QA76.6 .D373",
+  pages =        "195",
+  bibdate =      "Tue Dec 14 22:47:07 1993",
+}
+
+
+@book{fraser-hanson95,
+	author = {Christopher W. Fraser and David R. Hanson},
+	title = {A retargetable C compiler: design and implemenation},
+        year = {1995},
+	publisher = pub-BENCUM,
+        address = pub-BENCUM:adr,
+        ISBN = {0-8053-1670-1},
+        LCCN = {QA76.73.C15 F75 1995},
+}
+
+@book{kernighan-ritchie88,
+  author =       "Brian W. Kernighan and Dennis M. Ritchie",
+  title =        "The C Programming Language",
+  publisher =    pub-PH,
+  address =      pub-PH:adr,
+  year =         "1988",
+  edition =      "Second",
+  ISBN =         "0-13-110362-8",
+  LCCN =         "QA76.73.C15 K47 1988",
+  pages =        "xii + 272",
+  bibdate =      "Wed Dec 15 10:36:09 1993",
+}
+
+@book{pemberton-daniels82,
+	author = {S. Pemberton and M. Daniels},
+	title = {Pascal Implementation - the P4 Compiler},
+        year = {1982},
+	publisher = {Eillis Horwood},
+        address = {Chichester}
+}
+
+@book{stevens92,
+  author =       "W. Richard Stevens",
+  title =        "Advanced Programming in the UNIX Environment",
+  publisher =    pub-AW,
+  address =      pub-AW:adr,
+  year =         "1992",
+  ISBN =         "0-201-56317-7",
+}
+
+
+@book{zlotnick91,
+  author =       "Fred Zlotnick", 
+  title =        "The POSIX.1 Standard: A Programmer's Guide",
+  publisher =    pub-BENCUM,
+  address =      pub-BENCUM:adr,
+  year =         "1991",
+  ISBN =         "0-8053-9605-5",
+  LCCN =         "QA76.76.063Z57",
+}
+
+
+
+
+
+
+

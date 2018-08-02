@@ -1,0 +1,404 @@
+# -*- makefile -*-
+# Makefile for Microsoft Windows with Microsoft Visual C++ 5.0 or higher compiler
+
+GENERATE_DLL=0
+UNICODE_SUPPORT=0
+SUPPORT_DATA_ENCRYPTION=0
+
+OBJS = class.obj compiler.obj database.obj replicator.obj hashtab.obj file.obj sync.obj \
+	symtab.obj btree.obj cursor.obj query.obj pagepool.obj \
+	wwwapi.obj w32sock.obj blob.obj container.obj rtree.obj exception.obj localcli.obj
+
+CLI_OBJS = cli.obj w32sock.obj repsock.obj
+
+INCS = gigabase.h stdtp.h class.h database.h cursor.h selection.h reference.h wwwapi.h array.h \
+	file.h hashtab.h btree.h sync.h query.h datetime.h pagepool.h blob.h container.h rectangle.h timeseries.h config.h confdefs.h exception.h
+
+
+GB_LIB = gigabase.lib
+CLI_LIB = cli.lib
+
+GB_DLL = gigabase.dll
+CLI_DLL = cli.dll
+
+EXES = subsql.exe cgistub.exe forcerecovery.exe
+
+!IF $(UNICODE_SUPPORT)
+EXAMPLES = testperf.exe testindex.exe testidx2.exe teststd.exe clitest.exe clitest2.exe localclitest.exe testalter.exe testsort.exe testbatch.exe
+!ELSE
+EXAMPLES = guess.exe guess_std.exe guess2.exe testdb.exe testleak.exe testjoin.exe testddl.exe testperf.exe testindex.exe teststd.exe testperf2.exe testsync.exe testiref.exe testtrav.exe testidx.exe testidx2.exe bugdb.exe clidb.exe clitest.exe clitest2.exe localclitest.exe testalter.exe testblob.exe testraw.exe testspat.exe testreplic.exe testsort.exe testbatch.exe
+!ENDIF
+
+CC = cl
+# !!! DEFS macro is deprecated - edit config.h header file instead
+DEFS =
+
+
+!IF $(UNICODE_SUPPORT)
+DEFS = $(DEFS) -DUNICODE
+!ENDIF
+
+!IF $(SUPPORT_DATA_ENCRYPTION)
+DEFS = $(DEFS) -DSUPPORT_DATA_ENCRYPTION
+!ENDIF
+
+CFLAGS = -c -nologo -Zi -W3 -GX -MTd $(DEFS)
+#CFLAGS = -c -nologo -Zi -W3 -GX -MTd -DGIGABASE_DEBUG=DEBUG_TRACE $(DEFS)
+#CFLAGS = -c -Ox -G6 -nologo -Zi -W3 -GX -MT $(DEFS)
+
+#DLLFLAGS = -LD -nologo
+DLLFLAGS = -LDd -Zi -nologo
+
+LD = $(CC)
+LDFLAGS = -MTd -Zi -nologo
+#LDFLAGS = -MT -Zi -nologo
+
+AR = lib
+ARFLAGS =
+
+STDLIBS = advapi32.lib
+
+SOCKLIBS = wsock32.lib
+
+!IF $(SUPPORT_DATA_ENCRYPTION)
+STDLIBS = $(STDLIBS) crypt/cryptgb.lib ole32.lib advapi32.lib
+!ENDIF
+
+
+!IF $(GENERATE_DLL)
+all: $(GB_LIB) $(CLI_LIB) $(GB_DLL) $(CLI_DLL) $(EXES) $(EXAMPLES)
+DEFS = $(DEFS) -DGIGABASE_DLL
+!ELSE
+all: $(GB_LIB) $(CLI_LIB) $(EXES) $(EXAMPLES)
+!ENDIF
+
+class.obj: class.cpp compiler.h compiler.d symtab.h $(INCS)
+	$(CC) $(CFLAGS) class.cpp
+
+compiler.obj: compiler.cpp compiler.h compiler.d symtab.h $(INCS)
+	$(CC) $(CFLAGS) compiler.cpp
+
+sync.obj: sync.cpp sync.h stdtp.h
+	$(CC) $(CFLAGS) sync.cpp
+
+query.obj: query.cpp compiler.h compiler.d symtab.h $(INCS)
+	$(CC) $(CFLAGS) query.cpp
+
+database.obj: database.cpp compiler.h compiler.d symtab.h $(INCS)
+	$(CC) $(CFLAGS) database.cpp
+
+localcli.obj: localcli.cpp compiler.h compiler.d symtab.h localcli.h $(INCS)
+	$(CC) $(CFLAGS) localcli.cpp
+
+replicator.obj: replicator.cpp replicator.h sockio.h $(INCS)
+	$(CC) $(CFLAGS) replicator.cpp
+
+cursor.obj: cursor.cpp compiler.h compiler.d $(INCS)
+	$(CC) $(CFLAGS) cursor.cpp
+
+hashtab.obj: hashtab.cpp $(INCS)
+	$(CC) $(CFLAGS) hashtab.cpp
+
+pagepool.obj: pagepool.cpp $(INCS)
+	$(CC) $(CFLAGS) pagepool.cpp
+
+file.obj: file.cpp $(INCS)
+	$(CC) $(CFLAGS) file.cpp
+
+symtab.obj: symtab.cpp symtab.h $(INCS)
+	$(CC) $(CFLAGS) symtab.cpp
+
+btree.obj: btree.cpp $(INCS)
+	$(CC) $(CFLAGS) btree.cpp
+
+rtree.obj: rtree.cpp $(INCS)
+	$(CC) $(CFLAGS) rtree.cpp
+
+exception.obj: exception.cpp $(INCS)
+	$(CC) $(CFLAGS) exception.cpp
+
+blob.obj: blob.cpp $(INCS)
+	$(CC) $(CFLAGS) blob.cpp
+
+container.obj: container.cpp $(INCS)
+	$(CC) $(CFLAGS) container.cpp
+
+wwwapi.obj: wwwapi.cpp wwwapi.h stdtp.h sync.h sockio.h
+	$(CC) $(CFLAGS) wwwapi.cpp
+
+w32sock.obj: w32sock.cpp w32sock.h sockio.h stdtp.h
+	$(CC) $(CFLAGS) w32sock.cpp
+
+repsock.obj: repsock.cpp repsock.h sockio.h stdtp.h sync.h
+	$(CC) $(CFLAGS) repsock.cpp
+
+cli.obj: cli.cpp cli.h cliproto.h repsock.h sockio.h stdtp.h sync.h
+	$(CC) $(CFLAGS) cli.cpp
+
+
+gigabase.lib: $(OBJS)
+	$(AR) $(ARFLAGS) /OUT:gigabase.lib $(OBJS)
+
+gigabase.dll: $(OBJS)
+	$(CC) $(DLLFLAGS) /Fegigabase.dll $(OBJS) $(STDLIBS) $(SOCKLIBS)
+
+cli.lib: $(CLI_OBJS)
+	$(AR) $(ARFLAGS) /OUT:cli.lib $(CLI_OBJS)
+
+cli.dll: $(CLI_OBJS)
+	$(CC) $(DLLFLAGS) /Fecli.dll $(CLI_OBJS) $(STDLIBS) $(SOCKLIBS)
+
+subsql.obj: subsql.cpp compiler.h server.h compiler.d subsql.h symtab.h $(INCS)
+	$(CC) $(CFLAGS) subsql.cpp
+
+server.obj: server.cpp compiler.h server.h compiler.d subsql.h symtab.h cliproto.h $(INCS)
+	$(CC) $(CFLAGS) server.cpp
+
+subsql.exe: subsql.obj server.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) subsql.obj server.obj $(GB_LIB) $(STDLIBS) $(SOCKLIBS)
+
+clitest.obj: clitest.c cli.h
+	$(CC) $(CFLAGS) clitest.c
+
+clitest.exe: clitest.obj $(CLI_LIB)
+	$(LD) $(LDFLAGS) clitest.obj $(CLI_LIB) $(STDLIBS) $(SOCKLIBS)
+
+clitest2.obj: clitest2.c cli.h
+	$(CC) $(CFLAGS) clitest2.c
+
+clitest2.exe: clitest2.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) /Feclitest2.exe clitest2.obj $(GB_LIB) $(STDLIBS)
+
+testalter.obj: testalter.c cli.h
+	$(CC) $(CFLAGS) testalter.c
+
+testalter.exe: testalter.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) /Fetestalter.exe testalter.obj $(GB_LIB) $(STDLIBS)
+
+
+localclitest.exe: clitest.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) /Felocalclitest.exe clitest.obj $(GB_LIB) $(STDLIBS)
+
+
+testsort.obj: testsort.cpp $(INCS)
+	$(CC) $(CFLAGS) testsort.cpp
+
+testsort.exe: testsort.obj  $(GB_LIB)
+	$(LD) $(LDFLAGS) testsort.obj $(GB_LIB) $(STDLIBS)
+
+bugdb.obj: bugdb.cpp bugdb.h $(INCS)
+	$(CC) $(CFLAGS) bugdb.cpp
+
+bugdb.exe: bugdb.obj  $(GB_LIB)
+	$(LD) $(LDFLAGS) bugdb.obj $(GB_LIB) $(STDLIBS) $(SOCKLIBS)
+
+clidb.obj: clidb.cpp clidb.h $(INCS)
+	$(CC) $(CFLAGS) clidb.cpp
+
+clidb.exe: clidb.obj  $(GB_LIB)
+	$(LD) $(LDFLAGS) clidb.obj $(GB_LIB) $(STDLIBS) $(SOCKLIBS)
+
+
+cgistub.obj: cgistub.cpp stdtp.h sockio.h
+	$(CC) $(CFLAGS) cgistub.cpp
+
+cgistub.exe: cgistub.obj
+	$(LD) $(LDFLAGS) cgistub.obj $(GB_LIB) $(STDLIBS) $(SOCKLIBS)
+
+
+forcerecovery.obj: forcerecovery.cpp database.h
+	$(CC) $(CFLAGS) forcerecovery.cpp 
+
+forcerecovery.exe: forcerecovery.obj
+	$(LD) $(LDFLAGS) forcerecovery.obj
+
+
+guess.obj: guess.cpp $(INCS)
+	$(CC) $(CFLAGS) guess.cpp
+
+guess.exe: guess.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) guess.obj $(GB_LIB) $(STDLIBS)
+
+guess_std.obj: guess_std.cpp $(INCS)
+	$(CC) $(CFLAGS) guess_std.cpp
+
+guess_std.exe: guess_std.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) guess_std.obj $(GB_LIB) $(STDLIBS)
+
+guess2.obj: guess2.cpp $(INCS)
+	$(CC) $(CFLAGS) guess2.cpp
+
+guess2.exe: guess2.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) guess2.obj $(GB_LIB) $(STDLIBS)
+
+testdb.obj: testdb.cpp $(INCS)
+	$(CC) $(CFLAGS) testdb.cpp
+
+testdb.exe: testdb.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testdb.obj $(GB_LIB) $(STDLIBS)
+
+testraw.obj: testraw.cpp $(INCS)
+	$(CC) $(CFLAGS) testraw.cpp
+
+testraw.exe: testraw.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testraw.obj $(GB_LIB) $(STDLIBS)
+
+testleak.obj: testleak.cpp $(INCS)
+	$(CC) $(CFLAGS) testleak.cpp
+
+testleak.exe: testleak.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testleak.obj $(GB_LIB) $(STDLIBS)
+
+testjoin.obj: testjoin.cpp $(INCS)
+	$(CC) $(CFLAGS) testjoin.cpp
+
+testjoin.exe: testjoin.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testjoin.obj $(GB_LIB) $(STDLIBS)
+
+testddl.obj: testddl.cpp $(INCS)
+	$(CC) $(CFLAGS) testddl.cpp
+
+testddl.exe: testddl.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testddl.obj $(GB_LIB) $(STDLIBS)
+
+testblob.obj: testblob.cpp $(INCS)
+	$(CC) $(CFLAGS) testblob.cpp
+
+testblob.exe: testblob.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testblob.obj $(GB_LIB) $(STDLIBS)
+
+testperf.obj: testperf.cpp $(INCS)
+	$(CC) $(CFLAGS) testperf.cpp
+
+testperf.exe: testperf.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testperf.obj $(GB_LIB) $(STDLIBS)
+
+testindex.obj: testindex.cpp $(INCS)
+	$(CC) $(CFLAGS) testindex.cpp
+
+testindex.exe: testindex.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testindex.obj $(GB_LIB) $(STDLIBS)
+
+testbatch.obj: testbatch.cpp $(INCS)
+	$(CC) $(CFLAGS) testbatch.cpp
+
+testbatch.exe: testbatch.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testbatch.obj $(GB_LIB) $(STDLIBS)
+
+testspat.obj: testspat.cpp $(INCS)
+	$(CC) $(CFLAGS) testspat.cpp
+
+testspat.exe: testspat.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testspat.obj $(GB_LIB) $(STDLIBS)
+
+testreplic.obj: testreplic.cpp replicator.h $(INCS)
+	$(CC) $(CFLAGS) testreplic.cpp
+
+testreplic.exe: testreplic.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testreplic.obj $(GB_LIB) $(STDLIBS) $(SOCKLIBS)
+
+teststd.obj: teststd.cpp $(INCS)
+	$(CC) $(CFLAGS) teststd.cpp
+
+teststd.exe: teststd.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) teststd.obj $(GB_LIB) $(STDLIBS)
+
+testinc.obj: testinc.cpp $(INCS)
+	$(CC) $(CFLAGS) testinc.cpp
+
+testinc.exe: testinc.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testinc.obj $(GB_LIB) $(STDLIBS)
+
+testperf2.obj: testperf2.cpp $(INCS)
+	$(CC) $(CFLAGS) testperf2.cpp
+
+testperf2.exe: testperf2.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testperf2.obj $(GB_LIB) $(STDLIBS)
+
+testidx.obj: testidx.cpp $(INCS)
+	$(CC) $(CFLAGS) testidx.cpp
+
+testidx.exe: testidx.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testidx.obj $(GB_LIB) $(STDLIBS)
+
+testidx2.obj: testidx2.cpp $(INCS)
+	$(CC) $(CFLAGS) testidx2.cpp
+
+testidx2.exe: testidx2.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testidx2.obj $(GB_LIB) $(STDLIBS)
+
+testsync.obj: testsync.cpp $(INCS)
+	$(CC) $(CFLAGS) testsync.cpp
+
+testsync.exe: testsync.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testsync.obj $(GB_LIB) $(STDLIBS)
+
+testiref.obj: testiref.cpp $(INCS)
+	$(CC) $(CFLAGS) testiref.cpp
+
+testiref.exe: testiref.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testiref.obj $(GB_LIB) $(STDLIBS)
+
+testtrav.obj: testtrav.cpp $(INCS)
+	$(CC) $(CFLAGS) testtrav.cpp
+
+testtrav.exe: testtrav.obj $(GB_LIB)
+	$(LD) $(LDFLAGS) testtrav.obj $(GB_LIB) $(STDLIBS)
+
+
+
+cleanobj:
+	-del *.odb,*.exp,*.obj,*.pch,*.pdb,*.ilk,*.ncb,*.opt
+	-del *.class,javacli\*~,javacli\*.class,javacli\*.obj,javacli\*.lib,javacli\*.pdb,javacli\*.ilk,javacli\*.exp,javacli\*.jar
+	-del /AH gigabase.suo
+	-del crypt\*.obj,crypt\*.lib,crypt\*.pdb
+	-rd /s/q cli\Debug
+	-rd /s/q SubSQLPrj\Debug
+	-rd /s/q Debug
+	-rd /s/q cli\Release
+	-rd /s/q SubSQLPrj\Release
+	-rd /s/q Release
+	-rd /s/q "cli\Debug DLL"
+	-rd /s/q "SubSQLPrj\Debug DLL"
+	-rd /s/q "Debug DLL"
+	-rd /s/q "cli\Release DLL"
+	-rd /s/q "SubSQLPrj\Release DLL"
+	-rd /s/q "Release DLL"
+
+cleandbs:
+	-del *.dbs
+
+clean: cleanobj cleandbs
+	-del *~,*.lib,*.dll,*.exe
+
+java: javacli.jar CliTest.class TestIndex.class
+
+javacli.jar: javacli\*.java
+	javac -g javacli\*.java
+	jar cvf javacli.jar javacli\*.class
+	javadoc -d javacli -public javacli\*.java
+
+CliTest.class: CliTest.java javacli.jar
+	javac -classpath .;javacli.jar CliTest.java
+
+TestIndex.class: TestIndex.java javacli.jar
+	javac -classpath .;javacli.jar TestIndex.java
+
+csharp: csharpcli.dll CSharpCliTest.exe
+
+csharpcli.dll: csharpcli\*.cs
+	csc /debug /doc:csharpcli\CSharpCLI.xml /t:library /out:csharpcli.dll csharpcli\*.cs
+
+CSharpCliTest.exe: CliTest.cs csharpcli.dll
+	csc /debug /reference:csharpcli.dll /out:CSharpCliTest.exe CliTest.cs
+
+zip: clean
+	cd ..
+	-del gigabase.zip
+	zip -r gigabase.zip gigabase
+
+copyzip: zip
+	copy gigabase.zip d:
+
+doxygen:
+	doxygen doxygen.cfg

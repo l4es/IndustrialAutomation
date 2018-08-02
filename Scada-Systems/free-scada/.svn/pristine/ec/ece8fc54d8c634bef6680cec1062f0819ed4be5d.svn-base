@@ -1,0 +1,81 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:ScadaShell.ViewModel;assembly=ScadaShell"
+    xmlns:vw="clr-namespace:ScadaShell.View;assembly=ScadaShell"
+	xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <DataTemplate DataType="{x:Type vm:SettingsSchemaViewModel}">
+        <DataTemplate.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="../View/ChannelEditView.xaml"/>
+                    <ResourceDictionary Source="../View/ChannelDisplayView.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </DataTemplate.Resources>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80*" />
+                <RowDefinition Height="10*" />
+            </Grid.RowDefinitions>
+            <ContentControl Grid.Row="0" Content="{Binding CurrentParam }" >
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel HorizontalAlignment="Center" Margin="5,5,5,5">
+                            <Label Content="{Binding Description}" Foreground="Black"/>
+                            <ContentPresenter Content="{Binding Value}"  HorizontalAlignment="Left" ContentTemplate="{StaticResource ChannelDisplayView}"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <ContentPresenter Content="{Binding Discrets}"  Height="25" Width="60" ContentTemplate="{StaticResource ChannelDisplayView}"/>
+                                <Button Grid.Column="5" Content="Калібрувати низ" Command="{Binding CalibrateLow}"/>
+                                <Button Grid.Column="6" Content="Калібрувати верх" Command="{Binding CalibrateHigh}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Калібровка низ" Width="200"/>
+                                <ContentPresenter Width="60" Height="25" Content="{Binding DiscretsLow}" ContentTemplate="{StaticResource ChannelEditView}" />
+                                <Label Content="діскр." Width="200" Foreground="Black"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Калібровка верх" Width="200"/>
+                                <ContentPresenter Width="60" Height="25"  Content="{Binding DiscretsHigh}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                                <Label Content="діскр." Width="200" Foreground="Black"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Межа вим. низ" Width="200"/>
+                                <ContentPresenter Width="60" Height="25"  Content="{Binding RangeLow}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Межа вим. верх" Width="200"/>
+                                <ContentPresenter Width="60" Height="25"  Content="{Binding RangeHigh}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Обрив низ" Width="200"/>
+                                <ContentPresenter Width="60" Height="25"  Content="{Binding BreakLow}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Обрив верх" Width="200"/>
+                                <ContentPresenter Width="60" Height="25"  Content="{Binding BreakHigh}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Уставка низ" Width="200"/>
+                                <ContentPresenter Width="60" Height="25"   Content="{Binding SetpointLow}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Уставка верх" Width="200"/>
+                                <ContentPresenter Width="60" Height="25"   Content="{Binding SetpointHigh}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Гістерезіс" Width="200"/>
+                                <ContentPresenter Width="60" Height="25" Content="{Binding Gisteresis}" ContentTemplate="{StaticResource ChannelEditView}"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Попередній" Command="{Binding PrevCommand}"/>
+                <Button Content="Наступний" Command="{Binding NextCommand}"/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

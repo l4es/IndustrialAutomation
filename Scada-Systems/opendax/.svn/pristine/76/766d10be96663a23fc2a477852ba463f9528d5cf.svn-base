@@ -1,0 +1,2 @@
+--This test verifies that events can be successfully added and removed and that when
+--they are removed they no longer function

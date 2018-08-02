@@ -1,0 +1,15 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+   1:bump     1          
+   2:pushint  1          
+   3:refint              
+   4:halt                
+
+WRITE: attempted beyond allowed access area
+Error in ::EiC:: near line 2: 
+EiC illegal storage access, file ::EiC::, line 11
+
+Error: clean up forced

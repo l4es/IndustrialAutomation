@@ -1,0 +1,283 @@
+// MPriborDBAccessor.idl : IDL source for MPriborDBAccessor
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (MPriborDBAccessor.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[v1_enum,uuid("366a398f-5561-469a-aff6-8c589fd4065a")]
+enum enUserPermissions
+{
+	PERM_CANEDITUSERS		= 1<<0,
+	PERM_CANVIEWUSERS		= 1<<1,
+	PERM_CANVIEWDATA		= 1<<2,
+	PERM_CANEDITDATA		= 1<<3,
+	PERM_CANEDITCHANNELS	= 1<<4,
+	PERM_CANEDITEVENTS		= 1<<5,
+	PERM_CANVIEWEVENTS		= 1<<6
+};
+
+[v1_enum,uuid("8880871e-58b3-47c6-a98c-f84a35c27f64")]
+enum enErrorCodes
+{
+	ERR_OK,						//Нет ошибок
+	ERR_CUSTOM,					//"специальная" ошибка
+	ERR_CRITICAL,				//Критическая ошибка
+	ERR_ACCESSDENIED,			//Отказано в доступе
+	ERR_NOT_OPEN,				//БД не открыта
+	ERR_ALREADY_OPEN,			//БД уже открыта
+	ERR_CANT_CREATE_OBJECT,		//Невозможно создать объект
+	ERR_DB_ALLREADY_PRESENT,	//БД уже создана
+	ERR_USER_NOT_FOUND,			//Пользователь не найден
+	ERR_DUBLICATE,				//Дублирование записи
+	ERR_INVALIDARG,				//Неправильное значение аргумента
+	ERR_NOT_FOUND				//Значение не найдено
+};
+
+[v1_enum,uuid("57c67e50-cfff-4daf-bec3-d272bd7cc8d1")]
+enum enChannelDataTypes
+{
+	CDT_BOOLEAN,
+	CDT_DWORD,
+	CDT_FLOAT
+};
+
+[
+    object,
+    uuid(8ac9611d-7490-4f13-8272-6b630db450ce),
+    dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IVariantArray : IUnknown{
+
+	[propget, helpstring("property Count")] HRESULT Count([out, retval] ULONG* pVal);
+	[propget, helpstring("property Item")] HRESULT Item([in] ULONG Index, [out, retval] VARIANT* pVal);
+}
+
+[
+	object,
+	uuid(75F35CB3-E813-4C8F-9DCD-2A8A60F97C1E),
+	dual,
+	nonextensible,
+	helpstring("IDataSet_ Interface"),
+	pointer_default(unique)
+]
+interface IDataSet : IDispatch{
+	[id(1), helpstring("method GetFieldValue")] HRESULT GetFieldValue([in] BSTR FieldName, [out,retval] VARIANT* Value);
+	[id(2), helpstring("method GetFieldValueByIndex")] HRESULT GetFieldValueByIndex([in] ULONG Index, [out,retval] VARIANT* Value);
+	[propget, id(3), helpstring("property IsEOF")] HRESULT IsEOF([out, retval] VARIANT_BOOL* pVal);
+	[id(4), helpstring("method MoveFirst")] HRESULT MoveFirst(void);
+	[id(5), helpstring("method MoveNext")] HRESULT MoveNext(void);
+	[id(6), helpstring("method GetRecordsCount")] HRESULT GetRecordsCount([out,retval] ULONG* Count);
+};
+
+[
+	object,
+	uuid(C35700F3-D78C-4777-ABD0-B1574986F93E),
+	dual,
+	nonextensible,
+	helpstring("IEventTypes Interface"),
+	pointer_default(unique)
+]
+interface IEventTypes : IDispatch{
+	[id(1), helpstring("method AddEventType")] HRESULT AddEventType([in] ULONG ID, [in] BSTR Name, [in] BSTR Description);
+	[id(2), helpstring("method DeleteEventType")] HRESULT DeleteEventType([in] ULONG ID);
+	[propget, id(3), helpstring("property EventTypeName")] HRESULT EventTypeName([in] ULONG ID, [out, retval] BSTR* pVal);
+	[propput, id(3), helpstring("property EventTypeName")] HRESULT EventTypeName([in] ULONG ID, [in] BSTR newVal);
+	[propget, id(4), helpstring("property EventTypeDescription")] HRESULT EventTypeDescription([in] ULONG ID, [out, retval] BSTR* pVal);
+	[propput, id(4), helpstring("property EventTypeDescription")] HRESULT EventTypeDescription([in] ULONG ID, [in] BSTR newVal);
+};
+
+[
+	object,
+	uuid(6d054ce9-306e-438c-bcf0-24bb276b80df),
+	dual,
+	nonextensible,
+	helpstring("IError Interface"),
+	pointer_default(unique)
+]
+interface IError : IDispatch{
+	[propget, id(1), helpstring("property ErrorDescription")] HRESULT ErrorDescription([out, retval] BSTR* pVal);
+	[propget, id(2), helpstring("property ErrorCode")] HRESULT ErrorCode([out, retval] enum enErrorCodes* pVal);
+};
+
+[
+	object,
+	uuid(CC7134DD-F071-48AC-A113-FDAE7DA74365),
+	dual,
+	nonextensible,
+	helpstring("IUsers Interface"),
+	pointer_default(unique)
+]
+interface IUsers : IDispatch{
+	[id(1), helpstring("method SetUserPermissions")] HRESULT SetUserPermissions([in] BSTR Login, [in] DWORD Permissions);
+	[id(2), helpstring("method GetUserPermissions")] HRESULT GetUserPermissions([in] BSTR Login, [out,retval] ULONG* Permissions);
+	[id(3), helpstring("method AddUser")] HRESULT AddUser([in] BSTR FirstName, [in] BSTR MiddleName, [in] BSTR LastName, [in] BSTR Login, [in] BSTR Password, [in] ULONG Permissions);
+	[id(4), helpstring("method DeleteUser")] HRESULT DeleteUser([in] BSTR Login);
+	[id(5), helpstring("method GetUserInfo")] HRESULT GetUserInfo([in] BSTR Login, [out] BSTR* FirstName, [out] BSTR* MiddleName, [out] BSTR* LastName);
+	[id(6), helpstring("method SetUserInfo")] HRESULT SetUserInfo([in] BSTR Login, [in] BSTR FirstName, [in] BSTR MiddleName, [in] BSTR LastName);
+	[id(7), helpstring("method GetUsersList")] HRESULT GetUsersList([out,retval] IDataSet** pVal);
+	[id(8), helpstring("method SetUserPassword")] HRESULT SetUserPassword([in] BSTR Login, [in] BSTR Password);
+};
+
+[
+	object,
+	uuid(358F896F-7FE0-4370-8CCB-5BE6357A782E),
+	dual,
+	nonextensible,
+	helpstring("IChannels Interface"),
+	pointer_default(unique)
+]
+interface IChannels : IDispatch{
+	[id(1), helpstring("method AddChannel")] HRESULT AddChannel([in] BSTR ServerCLSID, [in] BSTR ComputerName, [in] BSTR ChannelName, [in] BSTR Description, [out,retval] ULONG* ID);
+	[id(2), helpstring("method DeleteChannel")] HRESULT DeleteChannel([in] ULONG ID);
+	[propget, id(3), helpstring("property Active")] HRESULT Active([in] ULONG ChannelID, [out, retval] VARIANT_BOOL* pVal);
+	[propput, id(3), helpstring("property Active")] HRESULT Active([in] ULONG ChannelID, [in] VARIANT_BOOL newVal);
+	[id(4), helpstring("method GetChannelsID")] HRESULT GetChannelsID([out,retval] IVariantArray** pVal);
+	[propget, id(5), helpstring("property UpdateInterval")] HRESULT UpdateInterval([in] ULONG ChannelID, [out, retval] ULONG* pVal);
+	[propput, id(5), helpstring("property UpdateInterval")] HRESULT UpdateInterval([in] ULONG ChannelID, [in] ULONG newVal);
+	[id(6), helpstring("method GetChannelsList")] HRESULT GetChannelsList([in] BSTR FilterServer, [in] BSTR FilterComputer, [in] BSTR FilterName, [out,retval] IDataSet** pRecordSet);
+	[propget, id(7), helpstring("property Attribute")] HRESULT Attribute([in] ULONG ChannelID, [in] BSTR AttributeName, [out, retval] VARIANT* pVal);
+	[propput, id(7), helpstring("property Attribute")] HRESULT Attribute([in] ULONG ChannelID, [in] BSTR AttributeName, [in] VARIANT newVal);
+	[id(8), helpstring("method AddData")] HRESULT AddData([in] ULONG ChannelID, [in] VARIANT DateTime, [in] ULONG Quality, [in] VARIANT Data);
+	[id(9), helpstring("method GetChannelData")] HRESULT GetChannelData([in] VARIANT FilterFromDate, [in] VARIANT FilterToDate, [in] VARIANT FilterQuality, [in] enum enChannelDataTypes DataType, [in] ULONG ChannelID, [out,retval] IDataSet** pVal);
+	[id(10), helpstring("method GetChannelInfo")] HRESULT GetChannelInfo([in] ULONG ID, [out] BSTR* ServerCLSID, [out] BSTR* ComputerName, [out] BSTR* ChannelName);
+	[id(11), helpstring("method GetChannelsDataAsString")] HRESULT GetChannelsDataAsString([in] VARIANT IDs, [in] VARIANT FilterFromDate, [in] VARIANT FilterToDate, [out,retval] IDataSet** pVal);
+};
+
+[
+	object,
+	uuid(C4A86E28-F22E-4AD9-82B1-7C1064047DD6),
+	dual,
+	nonextensible,
+	helpstring("IEvents Interface"),
+	pointer_default(unique)
+]
+interface IEvents : IDispatch{
+	[id(1), helpstring("method AddEvent")] HRESULT AddEvent([in] ULONG ChannelID, [in] ULONG EventType, [in] VARIANT Date);
+	[id(2), helpstring("method DeleteEvent")] HRESULT DeleteEvent([in] ULONG ChannelID, [in] ULONG TypeID, [in,optional] VARIANT FilterFromDate, [in,optional] VARIANT FilterToDate);
+	[id(3), helpstring("method DeleteAllEvents")] HRESULT DeleteAllEvents([in] ULONG ChannelID, [in,optional] VARIANT FilterFromDate, [in,optional] VARIANT FilterToDate);
+	[id(4), helpstring("method GetEventsList")] HRESULT GetEventsList([in] ULONG ChannelID, [in] VARIANT FilterTypeID, [in] VARIANT FilterFromDate, [in] VARIANT FilterToDate, [out,retval] IDataSet** pVal);
+};
+
+[
+	object,
+	uuid(2E11B1ED-7E80-4263-8047-5FAF608260D3),
+	dual,
+	nonextensible,
+	helpstring("IMaintainer Interface"),
+	pointer_default(unique)
+]
+interface IMaintainer : IDispatch{
+	[id(1), helpstring("Создать БД")] HRESULT CreateDatabase([in] BSTR User, [in] BSTR Password);
+};
+[
+	object,
+	uuid(F50688EB-1114-4757-9F8D-035E00FB9106),
+	dual,
+	nonextensible,
+	helpstring("IDBConnection Interface"),
+	pointer_default(unique)
+]
+interface IDBConnection : IDispatch{
+	[id(1), helpstring("Открыть соединение с БД")] HRESULT Open([in] BSTR User, [in] BSTR Password);
+	[id(2), helpstring("method GetUsers")] HRESULT GetUsers([out,retval] IUsers** pVal);
+	[id(3), helpstring("method GetChannels")] HRESULT GetChannels([out,retval] IChannels** pVal);
+	[id(4), helpstring("method GetEventTypes")] HRESULT GetEventTypes([out,retval] IEventTypes** pVal);
+	[id(5), helpstring("method GetEvents")] HRESULT GetEvents([out,retval] IEvents** pVal);
+};
+
+[
+	uuid(2B4525FF-0734-4D9C-9FF4-0E3B6D462702),
+	version(1.0),
+	helpstring("FreeSCADA Database Accessor")
+]
+library MPriborDBAccessorLib
+{
+	enum enUserPermissions;
+
+	importlib("stdole2.tlb");
+
+	[
+		uuid(29D47C35-712C-47B5-A619-650577DB607C),
+		helpstring("Users Class"),
+		noncreatable
+	]
+	coclass Users
+	{
+		[default] interface IUsers;
+	};
+	[
+		uuid(93B40B65-F15F-4558-9308-EC50346C07A9),
+		helpstring("Maintainer Class")
+	]
+	coclass Maintainer
+	{
+		[default] interface IMaintainer;
+		interface IError;
+	};
+	[
+		uuid(B5F80EFB-7561-4EA4-94D5-B975118643AC),
+		helpstring("DBConnection Class")
+	]
+	coclass DBConnection
+	{
+		[default] interface IDBConnection;
+	};
+	[
+		uuid(8BA58AB9-BB65-4DE6-9B27-0F09E579DA92),
+		helpstring("Channels Class"),
+		noncreatable
+	]
+	coclass Channels
+	{
+		[default] interface IChannels;
+	};
+	[
+		uuid(E96217AC-3BDF-4604-B6C7-DDAA50B67B8A),
+		helpstring("VariantEnumerator Class"),
+		noncreatable
+	]
+	coclass VariantEnumerator
+	{
+		[default] interface IVariantArray;
+	};
+	[
+		uuid(C23AE0C8-8553-4DF0-AAF8-C53661C4E6FE),
+		helpstring("DataSet Class"),
+		noncreatable
+	]
+	coclass DataSet
+	{
+		[default] interface IDataSet;
+	};
+	[
+		uuid(67298F9E-82F2-41A2-ABC4-242EF4D9DEC2),
+		helpstring("EventTypes Class"),
+		noncreatable
+	]
+	coclass EventTypes
+	{
+		[default] interface IEventTypes;
+	};
+	[
+		uuid(A7787F80-2F88-41F7-93E8-211BE290D404),
+		helpstring("Events Class")
+	]
+	coclass Events
+	{
+		[default] interface IEvents;
+	};
+	[
+		uuid(5CC9F9E8-EE41-4B76-9453-724CF3AC1CBC),
+		helpstring("DataSetEx Class"),
+		noncreatable
+	]
+	coclass DataSetEx
+	{
+		[default] interface IDataSet;
+	};
+};

@@ -1,0 +1,12 @@
+; Sample inproc server 
+; DEF for Visual-C/link
+
+LIBRARY         LOPCsamD.dll
+DESCRIPTION     'LightOPC Example Server DLL'
+
+EXPORTS
+    DllGetClassObject       @1 PRIVATE
+    DllCanUnloadNow         @2 PRIVATE
+    DllRegisterServer       @3 PRIVATE
+    DllUnregisterServer     @4 PRIVATE
+

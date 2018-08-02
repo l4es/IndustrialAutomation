@@ -1,0 +1,147 @@
+#!/bin/sh
+#
+#  usage:
+# 	% makeconfig  config_dir  proj_dir platform  
+#	
+
+# may not be set by /bin/sh
+[ -z "$PWD" ] && PWD="`pwd`"
+
+toupper='
+	OS=`echo $OS | tr a-z A-Z ` 
+'
+
+getOS=' 
+	OS=`uname`;
+	eval "$toupper" ;
+	case $OS in 
+	SUNOS ) OSv=`uname -a | cut -f3 -d" " | cut -f1 -d"."`;
+	    if [ $OSv -gt 4 ] ; then
+		whichOS="_SOLARIS"
+            else
+		whichOS="_SUNOS"
+            fi;;
+        # two lines added by Alf Clement
+        HP*UX ) whichOS="_HPUX";
+                ;;
+        # 2 lines added by Alexey Zakhlestine (indy@mgupp.ru)
+        *DOS ) whichOS="_DJGPP";
+                ;;
+        *) whichOS=_$OS;;
+	esac
+'
+
+eval "$getOS" 
+
+
+usage='
+	echo " "
+	echo "                  makeconfig" ;
+	echo "usage:" ;
+	echo "      % makeconfig [-h] [-C path1]  [-T path2] [-P platform]"  ;
+	echo " ";
+	echo " -h: displays this usage.";
+	echo " -C: sets the path to the configuration file directory.";
+	echo "     By default path1 = $PWD/config";
+	echo " -T: select the TOP directory for the project tree.";
+	echo "     By default path2 = $PWD";
+	echo " -P: selects the the target platform, for example: ";
+	echo "      By default platform =  $whichOS";
+	echo " ";
+	echo " Example: ";
+	echo "    1)   makeconfig -C $HOME/config  -T $HOME/proj1 -P $whichOS";
+	echo "    2)   makeconfig ";
+	echo " "
+	echo " "
+	exit 1;
+'
+
+
+################
+# defaults
+X=0
+PLT=$whichOS
+TOP_DIR=$PWD
+CONFIG_DIR=$PWD/config
+
+while [ $# -gt 0 ] 
+do  
+	case "$1" in 
+	-H | -h) eval "$usage";;
+	-T)  if [ -d $2 ]; then
+		TOP_DIR=$2; 
+	     else
+		echo "Error: illegal directory $2"; exit 1;
+	     fi	
+	     shift;;
+	-C)  if [ -d $2 ]; then
+		CONFIG_DIR=$2; 
+	     else
+		echo "Error: illegal directory $2"; exit 1;
+	     fi	
+	     shift;;
+	-P)  PLT=$2;
+	     shift;;
+	 *)  echo "Error: Unknown switch $1"; exit 1;;	
+	esac
+	shift
+done
+
+
+echo TOP_DIR = $TOP_DIR
+echo CONFIG_DIR = $CONFIG_DIR
+echo platform = $PLT
+
+
+
+if [ ! -f $TOP_DIR/project.params ] ; then
+	echo " ";
+	echo " Error: missing project parameter file:";
+	echo "     $TOP_DIR/project.params ";
+	echo " ";
+	exit 1 ;
+fi
+
+if [ ! -d $CONFIG_DIR/$PLT ] ; then
+	echo " ";
+	echo " Error: missing platform directory:";
+	echo "     $CONFIG_DIR/$PLT ";
+	echo " ";
+	exit 1;
+fi
+
+if [ ! -f $CONFIG_DIR/$PLT/make.params ] ; then
+	echo " ";
+	echo " Error: missing platform file: ";
+	echo "        $CONFIG_DIR/$PLT/make.params ";
+	echo " ";
+	exit 1;
+fi
+
+
+cp -f $CONFIG_DIR/$PLT/make.params  $TOP_DIR 
+cp -f $CONFIG_DIR/make.rules  $TOP_DIR
+cp -f $CONFIG_DIR/NormalNodeTargets  $TOP_DIR 
+chmod  -w $TOP_DIR/make.rules 
+chmod  -w $TOP_DIR/NormalNodeTargets 
+CONFIG_DIR=$TOP_DIR
+
+
+echo "###############################################" > $TOP_DIR/make.proj
+echo "# This is a makeconfig generated file" >> $TOP_DIR/make.proj
+echo "#" >> $TOP_DIR/make.proj 
+
+echo CONFIG_DIR = $CONFIG_DIR >> $TOP_DIR/make.proj
+echo TOP_DIR = '$(CONFIG_DIR)' >> $TOP_DIR/make.proj
+
+echo include '$(CONFIG_DIR)'/make.params  >> $TOP_DIR/make.proj
+if [ -f $TOP_DIR/override.params ] ; then
+	echo include '$(CONFIG_DIR)'/override.params >> $TOP_DIR/make.proj
+fi
+
+echo include '$(CONFIG_DIR)'/project.params >> $TOP_DIR/make.proj
+echo " " >> $TOP_DIR/make.proj
+
+echo "###############################################" >> $TOP_DIR/make.proj	
+
+

@@ -1,0 +1,37 @@
+--This is the configuration file for the OpenDAX Lua interpreter module
+--It is basically a Lua script itself
+
+-- Assign a variable to represent the directory where our scripts are
+--root="/src/opendax/modules/daxlua/"
+root="/Users/phil/opendax/modules/daxlua/"
+
+--init is the script that is run once when the program launches
+initscript = root.."init.lua"
+
+verbosity = 10 --needs to change to the new way
+
+-- Scripts are configured in a table.
+s = {}
+
+s.name = "demo1"  --Unique name for the script
+s.enable = true   --If false the script will not run
+s.filename = root.."demo1.lua"  --The path to the script
+s.rate = 2000      --The periodic rate at which the script will run in mSec
+
+-- Once the table has been configured, pass it to 'add_script()'
+add_script(s)
+
+-- Repeat as needed
+s.name = "demo2"
+s.filename = root.."demo2.lua"
+s.rate = 2200
+add_script(s)
+
+-- This script is not periodic but is triggered by an event.
+s.name = "triggerdemo"
+s.enable = true
+-- The trigger is defined in a table.
+s.trigger = {tag = "LuaTriggerTest", count = 0, type = "CHANGE", valaue = 0}
+s.filename = root.."triggerdemo.lua"
+s.rate = 0
+add_script(s)

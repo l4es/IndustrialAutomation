@@ -1,0 +1,24 @@
+HKCR
+{
+	MPriborDBAccessor.Events.1 = s 'Events Class'
+	{
+		CLSID = s '{A7787F80-2F88-41F7-93E8-211BE290D404}'
+	}
+	MPriborDBAccessor.Events = s 'Events Class'
+	{
+		CLSID = s '{A7787F80-2F88-41F7-93E8-211BE290D404}'
+		CurVer = s 'MPriborDBAccessor.Events.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {A7787F80-2F88-41F7-93E8-211BE290D404} = s 'Events Class'
+		{
+			ProgID = s 'MPriborDBAccessor.Events.1'
+			VersionIndependentProgID = s 'MPriborDBAccessor.Events'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '%APPID%'
+			'TypeLib' = s '{2B4525FF-0734-4D9C-9FF4-0E3B6D462702}'
+		}
+	}
+}

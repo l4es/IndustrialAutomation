@@ -1,0 +1,21 @@
+﻿# Keyboard/numpad mapping
+
+kbd1 = ё1234567890-=
+kbd1s = Ё!"№;%:?*()_+
+kbd2 = йцукенгшщзхъ\
+kbd2s = ЙЦУКЕНГШЩЗХЪ/
+kbd3 = фывапролджэ
+kbd3s = ФЫВАПРОЛДЖЭ
+kbd4 = ячсмитьбю.
+kbd4s = ЯЧСМИТЬБЮ,
+npad = 7894561230,
+
+# Logging
+
+Value greater than limit = Значение превышает предел
+Value smaller than limit = Значение ниже предела
+Value in limited range = Значение в рамках ограниченного диапазона
+Value in normal range = Значение в нормальном диапазоне
+Value set to LOW = Значение установлено на LOW (низкое состояние)
+Value set to HIGH = Значение установлено на HIGH (высокое состояние)
+Value changed = Значение изменено

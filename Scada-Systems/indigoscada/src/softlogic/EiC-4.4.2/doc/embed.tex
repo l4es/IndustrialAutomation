@@ -1,0 +1,97 @@
+To Link against EiC you first need to build the source distribution.
+Then linking to EiC from aother programs is done by linking against
+the EiC libraries (\T{libeic} and \T{libstdClib}) in \T{EiC/lib}. In
+the directory \T{EiC/main/examples} there is an example program called
+\T{embedEiC.c} that links to EiC. Build and run it from the
+\T{EiC/main/examples} directory by entering (assuming EiC has been
+installed in \T{/usr/local/EiC}):
+
+\begin{production}
+\begin{verbatim}
+% gcc embedEiC.c -L/usr/local/EiC/lib -leic -lstdClib -lm  
+% a.out
+\end{verbatim}
+\end{production}	
+ For  communicating commands to EiC from another program there are two
+functions supplied:
+\begin{production}
+\begin{verbatim}
+int EiC_run(int argc, char **argv);
+\end{verbatim}
+\end{production}
+ and
+\begin{production}
+\begin{verbatim}
+void EiC_parseString(char *command, ...);
+\end{verbatim}
+\end{production}
+
+The \T{EiC\_run} function is used to run C source files. The
+\T{EiC\_parseString} function is used to pass C or preprocessor commands
+to EiC via a string, such as:
+\begin{production}
+\begin{verbatim}
+EiC_parseString("#include <stdio.h>");
+EiC_parseString("int a = 10,i;");
+EiC_parseString("for(i=0;i<a;i++)"
+                "	printf(\"%%d\\n\",i);");
+\end{verbatim}
+\end{production}
+At present the main facility for sharing data between EiC and
+other applications is via the address operator \T{@}:
+
+\begin{quote}
+\begin{verbatim}
+int a @ dddd;
+\end{verbatim}
+\end{quote}
+
+The above defines \T{a} to be an integer and is stored at address \T{dddd},
+which must be an integral constant. The constant address \T{dddd} is
+not simply an address conjured up. Its purpose is to enable access to
+data, or even functions, defined in compiled code. 
+
+When applied to function definitions, the limitation at this stage is
+that the function must take void arguments and return void:
+
+\begin{production}
+\begin{verbatim}
+     void foo(void) @ dddd; 
+\end{verbatim}
+\end{production}
+
+The above defines \T{foo} to be a builtin function located at address
+\T{dddd}. For example:
+
+\begin{quote}
+\begin{verbatim}
+int foo[5] = {1,2,3,4,5};
+void fooey(void) {printf("fooey called\n");}
+     ....
+EiC_parseString("int foo[5] @ %ld;", (long)foo);
+EiC_parseString("void fooey(void) @ %ld;", (long)fooey);
+\end{verbatim}
+\end{quote}
+
+Further, \verb+int foo[5] @ 1256;+ defines \T{foo} to be an array of 5
+ints mapped at the specified virtual address and the usual pointer
+safety rules apply; that is, \verb/foo[5];/ will be caught 
+as an illegal operation.
+
+
+Also, you can pass in data to EiC via setting variables and you can
+get EiC to output data to a file. In a future release of EiC, more 
+facilities are expected to be added for sharing data between EiC and its
+embedding system.
+
+With respect to \T{EiC\_run}, to run the file "myfile.c"  and pass it the
+command line arguments "hello" and "world", the following sequence of
+commands would be used.
+
+\begin{production}
+\begin{verbatim}
+char *argv[] = {"myfile.c", "hello", "world"};
+int  argc = sizeof(argv)/sizeof(char*);
+EiC_run(argc, argv);
+\end{verbatim}
+\end{production}

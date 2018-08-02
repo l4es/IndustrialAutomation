@@ -1,0 +1,14 @@
+on
+	(void)
+Warning: in testflow2.c near line 21: Unreachable code at line 18
+Warning: in testflow2.c near line 32: Unreachable code at line 30
+Warning: in testflow2.c near line 42: Unreachable code at line 41
+Warning: in testflow2.c near line 51: Unreachable code at line 50
+Warning: in testflow2.c near line 73: Flow reaches end of non-void function `f6'
+Warning: in testflow2.c near line 85: Flow reaches end of non-void function `f7'
+Warning: in testflow2.c near line 98: Unreachable code at line 92
+Warning: in testflow2.c near line 107: Flow reaches end of non-void function `f10'
+Warning: in testflow2.c near line 127: Flow reaches end of non-void function `f12'
+Warning: in testflow2.c near line 153: Unreachable code at line 145
+Warning: in testflow2.c near line 164: Flow reaches end of non-void function `f15'
+	0

@@ -1,0 +1,322 @@
+	Building LL1 grammars by Hand.
+
+		Edmond J. Breen.
+ 
+
+Notation: nonterminals are represented by single uppercase letters
+while lowercase letters and characters such as '(', }-', '+', ... will
+be used to denote terminal symbols. Also the lowercase word "null" is
+used to denote the empty symbol, "id" is used to denote identifiers
+and "num" is used to denote integer numbers. List of alternatives
+and optional tokens are placed in square brackets [].
+
+THE TRANSLATION OF PRODUCTIONS INTO CODE: 
+
+        S -> aA
+                if(token == a) 
+                    call A;
+                else 
+                    error;
+
+        S -> aA | bB
+        
+                if(token == a) 
+                      call A; 
+                else if(token == b) 
+                       call B;
+                else 
+                      error;
+
+        S -> A[[a,b]A]*
+
+                do 
+                    call A; 
+                while(token == a || token == b);
+
+        S -> [[a,b]A]+
+
+                if(token == a || token == b) 
+                        while(token == a || token == b)
+                                call A;
+                else error;
+
+More difficult productions are when each alternative starts with a
+nonterminal symbol. In such a case, we are forced to choose one
+nonterminal and follow it through to its starting symbol. [Define the
+starting symbol]. If this fails we must then backtrack and try the next
+alternative.  This continues for all alternative productions until
+either success or an error occurs. For example,
+
+        A -> B | C
+        translates into:
+                if(call B fails) then
+                        if(call C fails)  then
+                                error;
+
+However, if a grammar is LL(1), the next token being parsed will be 
+in the selection set of at most one alternative rule of the nonterminal 
+being expanded. This fact can be used to avoid backtracking. 
+For example, assume the following production is from an LL(1) language, 
+thus:
+
+        A -> B | C
+
+        translates into:
+                if(token in start_set(B))
+                        call B; 
+                else if (token in start_set(C))
+                        call C;
+                else
+                        error;
+----------------------------------------------------
+TRANSFORMING NON LL GRAMMARS INTO LL GRAMMARS.
+
+FACTORISATION:
+
+        A -> x | x '[' num ']' | x '(' ')' | y
+
+Here, three productions start with the same start symbol 'x'. Hence
+the above grammar is not LL(1). By factoring together the like
+symbols, as in algebra, we get
+
+        A -> xB | y
+        B -> null | '[' num ']' | '(' ')'
+
+which is now an LL(1) grammar.
+
+SUBSTITUTION:
+
+        A -> B | Cd
+        C -> B | E | null
+
+The above grammar is not LL(1) because the start sets for B and C are
+not disjoint, i.e. their intersection is not emtpy. This is because of
+the production  C -> B. If we substitute C with the productions on the
+right hand side of C, eliminating it from the grammar, we get:
+
+        A -> B | Bd | Ed | d
+
+This production now requires only factorising to transform it into
+LL(1), i.e.
+
+        A -> BX | Ed | d
+        X -> d  | null
+
+INDIRECT FACTORIZATION:
+
+        A -> B | xTyA
+        B -> C | aB | bB | cA
+        C -> E | eC | fB 
+        E- > g | h | xYy
+
+The above grammar is not LL(1) because the start token 'x' in the
+production E is also a start token for productions A and E can be
+reach through B. The steps in the factorization are:
+
+         B -> C | aB | bB | cB
+         C -> E | eC | fB
+         E -> g | h | x E1 
+        E1 -> TyB | Yy
+
+         A -> g | h | eC | fB | aB | bB | cA | xA1
+        A1 -> TyA | xYy
+         B -> C | aB | bB | cA
+         C -> E | eC | fB 
+         E -> g | h | xYy
+
+Resulting in the LL(1) grammar:
+
+         A -> [g , h , e,  f , a, b, c]B | xA1
+        A1 -> TyA | xYy
+         B -> C | aB | bB | cA
+         C -> E | eC | fB 
+         E -> g | h | xYy
+
+
+
+LEFT RECURSION:
+
+A productions is directly left recursive if it has a nonterminal
+symbol Z such that
+
+        Z -> Za
+
+Here the leftmost symbol is the same nonterminal symbol as that
+appearing on the leftside of the production. For top down methods of
+parsing this will cause an infinite loop.  Thus, it must be
+eliminated. Furthermore, no grammar with left recursion can be LL(1).
+
+As an example we look at the following grammar:
+
+
+        GRAMMAR C1
+                S -> TD ';'
+                T -> char | int | float
+                D -> ['*']*E
+                E -> id  
+                     '(' D ')' 
+                      E '[' num ']' 
+                      E '(' ')'
+
+Grammar C1 is not LL(1), since the two last alternative production
+rules from E are left recursive. To elminate left recursion,  first
+collect the like terms and factorise the E production rules; i.e.,
+
+        E -> A  | EX
+        A -> id | '(' D ')'
+        X -> '[' num ']' | '(' ')'
+
+
+Next, by expansion we see for the left recursive case E -> A | EX , is
+equivalent to:
+
+        E -> A | AX | AXX | AXXX | ...
+
+It is possible to derive a sequence of zero or more symbols from a
+right recursive prodution, i.e.
+
+        K -> XK | null
+
+Thus, without loss of meaning the above productions for E can be
+rewritten as:
+
+        E -> AK
+        K -> XK | null
+
+This is the general case for eliminating direct left recursion.  The
+grammar for C1 can now be written in the equivalent LL(1) form as:
+
+        GRAMMAR C2                      START SETS
+                S -> TD ';'                     [char,int,float]
+                T -> char | int | float         [char] | [int] | [float]
+                D -> ['*']* E                   ['*', id, '(']
+                E -> AK                         [id, '(']
+                K -> XK | null                  ['[', '('] | [null]
+                A -> id | '(' D ')'             [id]  | ['(']
+                X -> '[' num ']' | '(' ')'      ['['] | ['(']
+
+
+We see from the start sets, that C2 is an LL(1) grammar, since for each
+production rule associated with a single nonterminal, the alternative
+start sets are disjoint.
+
+INDIRECT LEFT RECURSION:
+
+        A -> B | C
+        C -> E | F
+        E -> Ac | null
+
+First substitute E with its productions:
+
+        A -> B  | C
+        C -> Ac | F | null
+
+Next, substitute C with its productions,
+
+        A -> B | Ac | F | null
+
+factorising:
+
+        A -> X | Ac
+        X -> B | F | null
+
+Via expansion we finally derive,
+
+        A-> XK
+        K-> cK | null
+        X-> B | F | null
+
+Examples:
+
+Transform the following grammar into LL 
+
+	A -> P  |  [P]  D
+	D -> '( ' A ')'  |  [D]  '[' num ']' |  [D]  '('  ')'  
+	P -> '*' P
+
+Answer: First expand line 1
+
+        A -> P |  PD |  D
+
+Then collect like terms (factorise)
+
+         A -> PA1 | D
+        A1 -> null | D
+
+Next expand line 2
+                
+        D -> '( ' A  ')'    | D  '['  num ']' 
+             '[' num ']' |  D '('  ')' |  '('  ')'
+
+Factorising gives:
+
+         D -> '('  D1  |  D D2 |  '[' num ']'
+        D1 -> ')'  |  A  ')'
+        D2 -> '['  num  ']'  |  '('  ')'
+
+Simplifying gives:
+
+         D -> D D2 |  D3
+        D3 -> '( '  D1 | [num]
+
+Next, eliminate the left recursion:
+
+         D -> D3 D 4
+        D4 -> null | D2 D4
+
+The full grammar LL(1) is: 
+
+         A -> PA1 | D
+        A1 -> null | D
+         D -> D3 D 4
+        D4 -> null | D2 D4
+        D3 -> '( '  D1 | '[' num ']'
+        D2 -> '['  num  ']'  |  '('  ')'
+        D1 -> ')'  |  A  ')'
+         P -> '*' P
+
+Next, use substitution to simplify the above grammar
+Answer: first elminate D3, i.e, 
+
+        D -> '(' D1 D4 | '[' num ']' D4
+
+Next elminating D2  
+        
+        D4 -> null | '[' num ']' D4 | '(' ')' D4 
+
+The final grammar is: 
+
+         A -> PA1 | D
+        A1 -> null | D
+         D -> '(' D1 D4 | '[' num ']' D4
+        D4 -> null | '[' num ']' D4 | '(' ')' D4 
+        D1 -> ')'  |  A  ')'
+         P -> '*' P 
+
+  ----------------------------------
+Another example:
+
+Transforming the following grammar into LL(1)
+
+	S -> '(' A ')' | [S] '[' [C] ']' |  [S] '(' [P] ')'
+
+Expanding:
+
+	S-> '(' A ')' | '(' [P] ')'  
+             S '(' [P] ')' | '[' [C] ']' 
+             S '[' [C] ']'
+
+Factorising and eliminating left recursion:
+
+	 S -> S0 S1
+	S0 -> '('  S2  |  '[' [C] ']'
+	S1 -> S3 S1  |  null   
+	S2 -> A ')' |  [P] ')'
+	S3 -> '(' [P] ')' | '[' [C] ']' 
+
+Eliminating S0 and S3 and renumbering
+
+	 S -> '('  S1  S2 |  '[' [C] ']' S2
+	S1 -> A ')' |  [P] ')'
+	S2 -> '(' [P] ')' S2 | '[' [C] ']'  S2  |  null   
+

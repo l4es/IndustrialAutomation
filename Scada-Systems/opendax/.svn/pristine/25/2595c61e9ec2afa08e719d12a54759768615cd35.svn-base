@@ -1,0 +1,282 @@
+\input{format.tex}
+
+\title{OpenDAX Developer's Guide}
+\date{July 15, 2008}
+\author{Phil Birkelbach}
+
+\begin{document}
+\pagenumbering{roman}
+\maketitle
+\begin{flushleft}
+Copyright \textcopyright 2008 - Phil Birkelbach\linebreak
+All Rights Reserved
+
+\end{flushleft}
+
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+
+\input{dev_intro.tex}
+\input{dev_config.tex}
+\input{dev_data.tex}
+
+
+
+\chapter{Handling Events}
+Event Notification is a feature of OpenDAX that allows a module to be notified immediately when a newly written tag meets some criteria.  For instance you may have an I/O module that wants to know the instant that some tag changes so that you can update the hardware outputs with that tag data.
+
+There are 8 types of events that can be assigned to a tag.  Figure \ref{Event Matrix} depicts which event types are allowed for each data type.  Event types are allowed on arrays if they are allowed on the base types.  The event can be defined over a subset of the range of the tag.  Let's say that you have an array of Integers named \textit{MyInts} you only want to know if the 3rd, 4th or 5th values become greater than 12.  You would add an event for \textit{MyInts[2]} with a count of 3, a type of \textit{Greater Than} and the number 12.  Then the server will notify your module when any of those values became greater than 12.
+
+A \textit{Write} event happens anytime the tag is written to weather the data is different or not.  The server does not check the data that is written just that the range of the write overlaps with the range that the event is associated with.
+
+The \textit{Change} event will fire anytime the tag data changes.
+
+The \textit{Write} and \textit{Change} events are the only two events that will work with every type of data.
+
+The \textit{Set} and \textit{Reset} events happen when a Boolean is Set or Reset, respectively.  It will only fire when the bit makes the transition.  In the case of the \textit{Set} event the module will be notified only when the bit makes the transition from 0 to 1.  After that the event will not fire no matter how many times the bit is written to 1.  The \textit{Reset} event is the same way except that it will only fire when the bit transitions from 1 to 0.
+
+If the event corresponds to an array of bits it will only fire once per write operation.  So if a single write operation results in multiple bits being set (or reset) there will be only one event sent to the module.
+
+The \textit{Equal} event fires when a tag's value equals the value stored in the events \verb|data| parameter.
+
+The \textit{Greater Than} and \textit{Less Than} events are just what you would expect.  They fire each time the new tag value is greater than or less than the event's \verb|data| parameter.  
+
+The \textit{Deadband} event fires when the data has changed by the amount given in the \verb|data| parameter.  For instance if the tag's value is 4 and the data value is 2 the event will not fire if the tag value is written as 3 or 5 but it will fire when the tag's value becomes 2 or 6.  To put it mathematically the event fires once the absolute value of the tag's old value minus the tag's new value is greater than or equal to data.
+
+The \textit{Equal}, \textit{Greater Than}, \textit{Less Than} and \textit{Deadband} events all have a \verb|data| parameter associated with them.  This is a single data parameter regardless of how many items within the tag the event is associated with.  For example, if you have an array of DINT's and you would like to know if any one of them were to become greater than 7 you would create a \textit{Greater Than} event with data = 7 for the entire array.  The event will fire once per write cycle so even if more than one item in the array exceeds 7 the module will only be notified once.  If you would like to be notified when some items exceed 7 but others exceed 9 then you will have to create multiple events to handle this.
+
+Also, the \textit{Equal}, \textit{Greater Than} and \textit{Less Than} events will only fire once when they are satisfied.  They must become untrue and then true again before another event will be fired.
+
+The \textit{Deadband} event will reset the "old value" when it fires.  So in the above example when the value is 4 and the deadband data is 2 the event will fire when the value becomes 6 but it won't fire again until the value changes by 2 from that 6.  Now the value must either fall back to 4 or become 8 to get this event again.
+2
+\begin{figure}[h]
+\centering
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+\hline   & Write & Change & Set & Reset & = & $<$ & $>$ & Deadband \\ 
+\hline  BOOL & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ &  &  &  &  \\ 
+\hline  BYTE & $\bullet$ & $\bullet$ &  &  & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ \\ 
+\hline  SINT & $\bullet$ & $\bullet$ &  &  & $\bullet$ & $\bullet$ & $\bullet$ &$\bullet$  \\ 
+\hline  WORD & $\bullet$ & $\bullet$ &  &  & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ \\ 
+\hline  INT & $\bullet$ & $\bullet$ &  &  & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ \\ 
+\hline  UINT & $\bullet$ & $\bullet$ &  &  & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ \\ 
+\hline  DWORD & $\bullet$ & $\bullet$ &  &  & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ \\ 
+\hline  DINT & $\bullet$ & $\bullet$ &  &  & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ \\ 
+\hline  UDINT & $\bullet$ & $\bullet$ &  &  & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ \\ 
+\hline  TIME & $\bullet$ & $\bullet$ &  &  & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ \\ 
+\hline  LWORD & $\bullet$ & $\bullet$ &  &  & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ \\ 
+\hline  LINT & $\bullet$ & $\bullet$ &  &  & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ \\ 
+\hline  ULINT & $\bullet$ & $\bullet$ &  &  & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ \\ 
+\hline  REAL & $\bullet$ & $\bullet$ &  &  &  & $\bullet$ & $\bullet$ & $\bullet$ \\ 
+\hline  LREAL & $\bullet$ & $\bullet$ &  &  &  & $\bullet$ & $\bullet$ & $\bullet$ \\ 
+\hline  Compound & $\bullet$ & $\bullet$ &  &  &  &  &  &  \\ 
+\hline 
+\end{tabular} 
+\caption{\label{Event Matrix}Event Matrix}
+\end{figure}
+
+The functions that we will need are...
+
+\begin{verbatim}
+int dax_event_add(dax_state *ds, Handle *handle, int event_type,
+                  void *data, dax_event_id *id, 
+                  void (*callback)(void *udata), void *udata);
+\end{verbatim}
+\index{dax\_event\_add() function}
+\begin{verbatim}
+int dax_event_del(dax_state *ds, dax_event_id id);
+\end{verbatim}
+\index{dax\_event\_del() function}
+\begin{verbatim}
+int dax_event_select(dax_state *ds, int timeout, dax_event_id *id);
+\end{verbatim}
+\index{dax\_event\_select() function}
+\begin{verbatim}
+int dax_event_poll(dax_state *ds, dax_event_id *id);
+\end{verbatim}
+\index{dax\_event\_poll() function}
+\begin{verbatim}
+int dax_event_get_fd(dax_state *ds);
+\end{verbatim}
+\index{dax\_event\_get\_fd() function}
+\begin{verbatim}
+int dax_event_dispatch(dax_state *ds, dax_event_id *id);
+\end{verbatim}
+\index{dax\_event\_dispatch() function}
+
+\section{Adding Events}
+
+The \eventadd\index{dax\_event\_add() function} function is used to add a new event to the server.  It is a pretty involved function with a lot of arguments but it is actually pretty simple.  The first argument is the \daxstate| that we are very familiar with, the second argument is a pointer to a handle that represents the tag that we would like the event to be associated with.
+
+\begin{verbatim}
+int dax_event_add(dax_state *ds, Handle *handle, int event_type,
+                  void *data, dax_event_id *id, 
+                  void (*callback)(void *udata), void *udata);
+\end{verbatim}
+
+The \texttt{event\_type} argument is one of the following... 
+
+\begin{verbatim}
+EVENT_WRITE
+EVENT_CHANGE
+EVENT_SET
+EVENT_RESET
+EVENT_EQUAL
+EVENT_GREATER
+EVENT_LESS
+EVENT_DEADBAND
+\end{verbatim}
+
+These are defined in \textit{opendax.h} and represent each of the events, and should be obvious which events they represent.  The \verb|void *data| parameter is a void pointer to a data point that matches the datatype of the handle.  It is only needed for \verb|EVENT_EQUAL|, \verb|EVENT_GREATER|, \verb|EVENT_LESS| and \verb|EVENT_DEADBAND|.  It will be ignored for the rest and can be set to NULL.  It is important that the programmer make sure that this pointer points to the correct type of data.  If the data does not match the datatype of the handle there might be trouble.  The library has no way to verify that the programmer has done this correctly.
+
+The next argument, \verb|dax_event_id *id| is a pointer to a \texttt{dax\_event\_id}\index{dax\_event\_id structure} structure.  This structure is defined in \textit{opendax.h} and contains the data that would be necessary to uniquely identify this particular event to the server.  If this argument is set to NULL then nothing will be set here.  If you ever want to modify or delete this event you will have to have this identifier.
+
+The \texttt{callback} argument is the callback function that you would like to have the event dispatching system call when this event is received by your module.  The prototype for the function should be...
+\begin{verbatim}
+void function_name(void *udata)
+\end{verbatim}
+The \texttt{udata} that the event dispatcher will pass is the same pointer you supply as the last argument to \eventadd.  The system doesn't look at the data, doesn't care about the data, will not free the data when the event is deleted or do anything other than simply pass this same pointer to your callback function.  If you have one callback function per event you may not need it but if you have a single callback function that handles multiple events you will need to have the event dispatcher pass some information to that callback function, that it can use to differentiate between the different events.
+
+I suspect it will be very common for the \texttt{udata} parameter to be a pointer to the same handle of the tag that the event is associated with.  The callback function will most likely then go to the server read the data from that handle and do whatever it is that the module does.  
+
+Once you are finished with an event you can delete it with \eventdel.
+
+\begin{verbatim}
+int dax_event_del(dax_state *ds, dax_event_id id);
+\end{verbatim}
+\index{dax\_event\_del() function}
+
+The second argument is simply the \texttt{id} structure that was returned by \eventadd.  The \eventdel function will not free the data pointed to by \texttt{udata} so you must be careful to take care of that detail yourself.
+
+\section{Handling Events}
+
+There are basically three ways to receive and handle events.  The first way is with the \eventwait function.  This function blocks and waits for the event to happen.  The second way is with the \verb|dax_event_poll()|\index{dax\_event\_poll() function} function, that checks for an event and immediately returns whether it deals with the event or not.  The last way to deal with events is to get the file descriptor of the socket that is being used to receive events and handle them yourself.
+
+\begin{verbatim}
+int dax_event_wait(dax_state *ds, int timeout, dax_event_id *id);
+int dax_event_poll(dax_state *ds, dax_event_id *id);
+\end{verbatim}
+\index{dax\_event\_wait() function}
+\index{dax\_event\_poll() function}
+
+
+The \texttt{dax\_event\_wait()} function takes a couple of arguments in addition to the normal \daxstate argument.  The first is \texttt{timeout}.  This is how long you would like to wait for the event before the function returns.  If the function returns a \verb|0| then it dispatched and event.  If it returns \texttt{ERR\_TIMEOUT} then it did not dispatch an event and has timed out.  This gives you the ability to block waiting for events but occasionally exit and handle some other details.  \eventwait will only handle one event and then return.  Even if there are more events in the buffer to deal with.
+
+The last parameter to \eventwait is a pointer to a \texttt{dax\_event\_id} structure.  This will be filled in by \eventwait with the information that identifies this event.
+
+If you passed a pointer to a callback function to the \eventadd function, \verb|dax_event_wait()| will call that function and pass the \texttt{udata} pointer that you passed to \eventadd when you created the event.  
+
+The  function is very similar to \verb|dax_event_wait()| except that it will not wait.  It returns immediately if there is no event to dispatch.  If it dispatches an event it returns 0 and \verb|ERR_NOTFOUND| if there was no event.  Both functions might return another error code if there was some other problem.
+
+\begin{verbatim}
+int dax_event_poll(dax_state *ds, dax_event_id *id);
+\end{verbatim}
+\index{dax\_event\_poll() function}
+
+The final method of dealing with events allows your program to have complete control over the file descriptor.  This is more complex, but it might be necessary if your program needs to deal with other events.  First use \texttt{dax\_event\_get\_fd()}\index{dax\_event\_get\_fd() function} function to retrieve the file descriptor that the library is using to wait on events to come from the server.  You can use other system calls such as \verb|system()| or \verb|poll()| to determine if there is a read pending.  If there is any information to read your module would then call \texttt{int dax\_event\_dispatch(dax\_state *ds, dax\_event\_id *id)}\index{dax\_event\_dispatch() function} function.  This function carries out the same tasks as \texttt{dax\_event\_wait()} and \texttt{dax\_event\_poll()}.  In fact these two functions call \texttt{dax\_event\_dispatch()} from within the library.
+
+It is important that your module does not read any of the bytes out of the socket that the file descriptor represents.  Also, the data is one way so you only need to detect that the socket is ready for reading.
+
+\chapter{Shell Module}
+
+The shell module is a wrapper around normal command line programs were not programmed to be an OpenDAX module.  They would normally be started from the command line.  These programs could be anything from an mp3 player to a database client.  They could be just about any program that can be started from the shell prompt.  They obviously don't have any "normal" OpenDAX functionality.  The shell module would allow the rest of the OpenDAX system to  gain access to the programs functionality by interfacing with the STDIN, STDOUT and STDERR file descriptors.  Strings can be sent from the shell module to these programs so that they can be controlled as though that text was being typed on the command line.  This allows OpenDAX to easily add functionality found in other programs and perhaps not reinvent too many wheels.
+
+None of this has been added yet and as of now it is unclear how exactly go about implementing this module.
+
+\chapter{Lua Modules}
+
+It is possible to write an OpenDAX module entirely in Lua\footnote{This feature is only partially implemented at this point but rudimentary support is included and development is ongoing}.  Included in the OpenDAX distribution is a library for interfacing to the OpenDAX API from Lua.  Since Lua is such an integral part of so much of the OpenDAX system this library was written for convenience, but since Lua is such an elegant language to embed and interface with it was easy to take this library and make a Lua Module\footnote{Not to be confused with an OpenDAX module} out of it. 
+
+\section{Installation}
+
+If you installed OpenDAX according to the instructions in this manual you should have the libdaxlua library file installed where the other libraries are installed.  Normally this would be /usr/local/lib but if you changed your prefix to the autoconf script it would be there instead.
+
+To get the module to work the library needs to exist in the path that LUA will look for libraries to load as modules.  In Lua this is passed as the LUA\_CPATH environment variable.  You can either pass this environment variable to all of your scripts or you can just create a symbolic link in one of the directories that are part of the default 'cpath.'  To find out what the cpath is use this command at the command prompt...
+
+\verb|lua -e "print(package.cpath)"|
+
+On my system it looks like this...
+
+\verb|./?.so;/usr/local/lib/lua/5.1/?.so;/usr/local/lib/lua/5.1/loadall.so|
+
+Each path is separated by a ';' and the ? will be replaced with whatever you use as the argument to \textit{require()}.  So to load the luadax module as 'dax' then the Lua interpreter needs to find the library as one of those filenames.  We want the library to load when we use the command \verb|require("dax")| in our Lua scripts.  Add a symbolic link in \textit{/usr/local/lib/lua/5.1/} named \textit{dax.so} that points to the library, \textit{/usr/local/lib/libdaxlua.so}\footnote{In OSX the library will ed in .dylib but the symbolic link will still need to match the pattern in cpath}.
+
+Now when we use \verb|require("dax")| in our Lua scripts it looks in the directory \textit{/usr/local/lib/lua/5.1/} and finds a link to the library.  It loads the library and off we go.
+
+At some point we'll spend some time with the autoconf scripts and try to automate this process but for now this will have to do.
+
+\section{API Description}
+
+All of the functions of the OpenDAX Lua Module are contained in a \textit{"dax"} table.  The following is a description of the functions contained in this table.
+
+\begin{verbatim}
+dax.init
+\end{verbatim}
+\index{dax.init function}
+
+\begin{verbatim}
+dax.free
+\end{verbatim}
+\index{dax.free function}
+
+\begin{verbatim}
+dax.cdt_create
+\end{verbatim}
+\index{dax.cdt\_create function}
+
+\begin{verbatim}
+dax.tag_add
+\end{verbatim}
+\index{dax.tag\_add function}
+
+\begin{verbatim}
+dax.tag_get
+\end{verbatim}
+\index{dax.tag\_get function}
+
+\begin{verbatim}
+dax.tag_read
+\end{verbatim}
+\index{dax.tag\_write function}
+
+\begin{verbatim}
+dax.event_add
+\end{verbatim}
+\index{dax.event\_add function}
+
+\begin{verbatim}
+dax.event_del
+\end{verbatim}
+\index{dax.event\_del function}
+
+\section{Using the Lua Interface in C Modules}
+
+<<<Needs Writing>>>
+
+\appendix
+
+\input{dev_api.tex}
+
+\chapter{Skeleton Module}
+The Skeleton module is included in the distribution as a starting place for building new modules.  It includes just enough code to function as an OpenDAX module.  The code is well documented and when used with this manual it will, hopefully, make writing a new module for OpenDAX a fairly simple and straight forward process.  The Skeleton module is located in the /modules/skel subdirectory of the distribution.
+
+\section{skel.h}
+\begin{tiny}
+\verbatiminput{../modules/skel/skel.h}
+\end{tiny}
+\section{skel.c}
+\begin{tiny}
+\verbatiminput{../modules/skel/skel.c}
+\end{tiny}
+
+\input{dev_codebase.tex}
+\chapter{opendax.h Listing}
+\begin{tiny}
+\verbatiminput{../opendax.h}
+\end{tiny}
+
+%\chapter{GPL License}
+%\verbatiminput{../COPYING}
+
+\printindex
+\end{document}

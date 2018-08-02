@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>cgihtml Documentation: Introduction</TITLE>
+<LINK HREF="cgihtml-2.html" REL=next>
+
+<LINK HREF="cgihtml.html#toc1" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="cgihtml-2.html">Next</A>
+Previous
+<A HREF="cgihtml.html#toc1">Contents</A>
+<HR>
+<H2><A NAME="s1">1. Introduction</A></H2>
+
+<P>This documentation is also available at
+<A HREF="http://www.eekim.com/software/cgihtml/cgihtml.html">http://www.eekim.com/software/cgihtml/cgihtml.html</A><P>Documentation last updated: March 18, 1998
+<P>
+<H2><A NAME="ss1.1">1.1 Where to Find cgihtml</A>
+</H2>
+
+<P>You can download cgihtml (gzipped, UNIX compressed, or PKZipped)
+from one of the following sites:
+<P>
+<DL>
+<DT><B>eekim.com</B><DD><P>
+<A HREF="ftp://ftp.eekim.com/users/eekim/cgihtml/">ftp://ftp.eekim.com/users/eekim/cgihtml/</A><DT><B>Harvard Computer Society</B><DD><P>
+<A HREF="ftp://hcs.harvard.edu/pub/web/tools/cgihtml/">ftp://hcs.harvard.edu/pub/web/tools/cgihtml/</A><DT><B>Keith Bunge's Iowa State mirror site</B><DD><P>
+<A HREF="ftp://aged.brenton.iastate.edu/">ftp://aged.brenton.iastate.edu/</A></DL>
+<P>Useful information about cgihtml is available at the
+<A HREF="http://www.eekim.com/software/cgihtml/">cgihtml home page</A>,
+located at
+<A HREF="http://www.eekim.com/software/cgihtml/">http://www.eekim.com/software/cgihtml/</A>.
+<P>
+<HR>
+<A HREF="cgihtml-2.html">Next</A>
+Previous
+<A HREF="cgihtml.html#toc1">Contents</A>
+</BODY>
+</HTML>

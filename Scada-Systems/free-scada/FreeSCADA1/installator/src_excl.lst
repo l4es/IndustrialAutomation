@@ -1,0 +1,9 @@
+*\.svn\*
+*\WTL\Tabframework\demo\*
+*\WTL\viksoe\samples\*
+*\ZipArchive\_DOC\*
+*.ncb
+*.suo
+*.aps
+*.exe
+*.user

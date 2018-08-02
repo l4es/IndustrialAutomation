@@ -1,0 +1,23 @@
+
+EiC under Win32
+----------------
+
+EiC has been ported to the WIN32 platform using MSVC++.
+
+Just type `make all' from EiC root directory (E:\scada\src\softlogic\EiC-4.4.2) to build EiC.  No modules are
+used.  Then go to src directory, where you can find the EiC
+executable, Launch eic, and then try to run the following program :
+
+#include <stdio.h>
+printf("Hello world !\n");
+
+To be able to run EiC from any directory you must
+place the eic.exe in your PATH list and define the
+environmental variable HOMEofEiC (assuming that
+you have installed EiC on the C drive):
+
+	set HOMEofEiC=c:\eic
+
+Actually, it is only if EiC is not istalled in c:\eic
+do you have worry about setting HOMEofEiC.
+

@@ -1,0 +1,294 @@
+# -*- makefile -*-
+# Makefile for Generic Unix
+
+srcdir = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+VPATH = @srcdir@
+LIBTOOL = $(srcdir)/libtool
+INSTALL = @INSTALL@
+
+# Coment this for AIX/xlC 5.0
+LIBEXT=la
+OBJEXT=lo
+# Uncoment this for AIX/xlC 5.0
+# LIBEXT=a
+# OBJEXT=o
+
+# Place where to copy Gigabase header files
+includedir = @includedir@/gigabase
+
+# Place where to copy Gigabase library
+libdir = @libdir@
+
+# Place where to copy Gigabase subsql utility
+bindir = @bindir@
+
+VERSION = 2
+
+OBJS = class.${OBJEXT} compiler.${OBJEXT} database.${OBJEXT} replicator.${OBJEXT} hashtab.${OBJEXT} \
+	file.${OBJEXT} symtab.${OBJEXT} btree.${OBJEXT} rtree.${OBJEXT} cursor.${OBJEXT} \
+	query.${OBJEXT} pagepool.${OBJEXT} wwwapi.${OBJEXT} unisock.${OBJEXT} \
+	blob.${OBJEXT} container.${OBJEXT} exception.${OBJEXT} localcli.${OBJEXT} sync.${OBJEXT}
+
+CLI_OBJS = cli.${OBJEXT} unisock.${OBJEXT} repsock.${OBJEXT}
+
+INCS = gigabase.h stdtp.h class.h database.h cursor.h selection.h reference.h wwwapi.h array.h \
+	file.h hashtab.h btree.h sync.h query.h datetime.h pagepool.h blob.h container.h rectangle.h timeseries.h config.h confdefs.h exception.h
+
+CLI_INCS = cli.h
+
+SUFF=@SUFF@
+
+GB_LIB = libgigabase$(SUFF).${LIBEXT}
+CLI_LIB = libcli$(SUFF).${LIBEXT}
+EXES = subsql
+
+EXAMPLES = guess testdb testjoin testddl testperf testspat testperf2 testsync testiref testtrav testidx testidx2 clitest testblob testleak
+WEB_EXAMPLES = cgistub bugdb clidb
+
+CXX = @CXX@
+CC = @CC@
+DEFS = @DEFS@
+CXXFLAGS = @CXXFLAGS@ $(DEFS)
+CFLAGS = @CFLAGS@ $(DEFS)
+LD = $(CXX)
+LDFLAGS = @LDFLAGS@ @TDEFS@ @LIBS@
+AR = ar
+RANLIB = @RANLIB@
+
+SOCKLIBS = @SOCKLIBS@
+# On some systems, linking with libgigabase shared library may fail
+# without socket libs even if they are not called from the program.
+SLHACK = $(SOCKLIBS)
+
+all: $(GB_LIB) $(CLI_LIB) $(EXES) $(EXAMPLES)
+
+www: $(GB_LIB) $(WEB_EXAMPLES)
+
+# for AIX xlC_r compiler, you may need to use `xlC_r -qmkshrobj' instead of libtool
+
+$(GB_LIB): $(OBJS)
+# Coment this for AIX/xlC 5.0
+	$(LIBTOOL) --mode=link $(CXX) -o $@ $(OBJS) -rpath $(libdir) -version-info $(VERSION)
+# Uncoment this for AIX/xlC 5.0
+#	mkdir .libs
+#	xlC_r -qmkshrobj=-10 -o .libs/gigabase.so $(OBJS)
+#	ar rv .libs/libgigabase_r.a .libs/gigabase.so
+#	ar rv .libs/libgigabase_s_r.a $(OBJS)
+#	ln -sf .libs/libgigabase_r.a
+
+$(CLI_LIB): $(CLI_OBJS)
+# Coment this for AIX/xlC 5.0
+	$(LIBTOOL) --mode=link $(CXX) -o $@ $(CLI_OBJS) -rpath $(libdir) -version-info $(VERSION)
+# Uncoment this for AIX/xlC 5.0
+#	xlC_r -qmkshrobj=-10 -o .libs/cli.so $(CLI_OBJS)
+#	ar rv .libs/libcli_r.a .libs/cli.so
+#	ar rv .libs/libcli_s_r.a $(CLI_OBJS)
+#	ln -sf .libs/libcli_r.a
+
+clitest: clitest.o $(CLI_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o clitest clitest.o $(CLI_LIB) $(SOCKLIBS)
+
+subsql: subsql.o @server_o@ $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o subsql subsql.o @server_o@ $(GB_LIB) $(SOCKLIBS)
+
+bugdb: bugdb.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o bugdb bugdb.o $(GB_LIB) $(SOCKLIBS)
+
+clidb: clidb.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o clidb clidb.o $(GB_LIB) $(SOCKLIBS)
+
+cgistub: cgistub.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o cgistub cgistub.o $(GB_LIB) $(SOCKLIBS)
+
+guess: guess.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o guess guess.o $(GB_LIB) $(SLHACK)
+
+testdb: testdb.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o testdb testdb.o $(GB_LIB) $(SLHACK)
+
+testblob: testblob.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o testblob testblob.o $(GB_LIB) $(SLHACK)
+
+testjoin: testjoin.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o testjoin testjoin.o $(GB_LIB) $(SLHACK)
+
+testddl: testddl.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o testddl testddl.o $(GB_LIB) $(SLHACK)
+
+testperf: testperf.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o testperf testperf.o $(GB_LIB) $(SLHACK)
+
+testspat: testspat.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o testspat testspat.o $(GB_LIB) $(SLHACK)
+
+testperf2: testperf2.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o testperf2 testperf2.o $(GB_LIB) $(SLHACK)
+
+testidx: testidx.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o testidx testidx.o $(GB_LIB) $(SLHACK)
+
+testidx2: testidx2.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o testidx2 testidx2.o $(GB_LIB) $(SLHACK)
+
+testsync: testsync.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o testsync testsync.o $(GB_LIB) $(SLHACK)
+
+testiref: testiref.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o testiref testiref.o $(GB_LIB) $(SLHACK)
+
+testtrav: testtrav.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o testtrav testtrav.o $(GB_LIB) $(SLHACK)
+
+testleak: testleak.o $(GB_LIB)
+	$(LIBTOOL) --mode=link $(LD) $(LDFLAGS) -o testleak testleak.o $(GB_LIB) $(SLHACK)
+
+install: subsql $(GB_LIB) $(CLI_LIB)
+	mkdir -p $(includedir)
+	cp $(INCS) $(CLI_INCS) $(includedir)
+	mkdir -p $(libdir)
+	$(LIBTOOL) --mode=install $(INSTALL) $(GB_LIB) $(CLI_LIB) $(libdir)
+	mkdir -p $(bindir)
+	if test -x .libs/subsql ; then \
+		cp .libs/subsql $(bindir); \
+	else \
+		cp subsql $(bindir); \
+	fi
+#	strip $(bindir)/subsql
+
+clean:
+	rm -f *.o *.lo core *~
+	rm -f *.dbs
+	rm -f *.a *.la *.so *.so.* $(EXAMPLES) $(WEB_EXAMPLES) $(EXES)
+	rm -rf .libs SunWS_cache autom4te.cache
+
+distclean: clean
+	rm -f Makefile config.cache config.log config.status libtool
+	rm -rf .libs .deps SunWS_cache autom4te.cache
+
+maintainer-clean: distclean
+	rm -f configure aclocal.m4
+
+.SUFFIXES: .lo .cpp
+
+.cpp.lo:
+	$(LIBTOOL) --mode=compile $(CXX) -c $(CXXFLAGS) $<
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $<
+
+# dependencies:
+
+blob.lo: blob.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h
+btree.lo: btree.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h btree.h
+rtree.lo: rtree.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h rtree.h
+exception.lo: gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h exception.h
+class.lo: class.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h compiler.h compiler.d symtab.h
+cli.lo: cli.cpp stdtp.h config.h confdefs.h repsock.h sockio.h sync.h cli.h cliproto.h
+sync.lo: sync.cpp sync.h stdtp.h config.h confdefs.h
+compiler.lo: compiler.cpp database.h class.h stdtp.h config.h confdefs.h sync.h reference.h \
+ file.h pagepool.h array.h query.h cursor.h compiler.h compiler.d \
+ symtab.h
+container.lo: container.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h \
+ sync.h reference.h file.h pagepool.h array.h query.h cursor.h \
+ datetime.h blob.h container.h compiler.h compiler.d btree.h symtab.h
+cursor.lo: cursor.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h compiler.h compiler.d btree.h
+database.lo: database.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h compiler.h compiler.d hashtab.h btree.h symtab.h
+localcli.lo: localcli.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h compiler.h compiler.d hashtab.h btree.h symtab.h localcli.h
+replicator.lo: replicator.cpp replicator.h sockio.h gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ file.h pagepool.h
+file.lo: file.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h
+hashtab.lo: hashtab.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h hashtab.h
+pagepool.lo: pagepool.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h
+query.lo: query.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h symtab.h compiler.h compiler.d
+symtab.lo: symtab.cpp stdtp.h config.h confdefs.h sync.h symtab.h
+unisock.lo: unisock.cpp unisock.h sockio.h stdtp.h config.h confdefs.h
+repsock.lo: repsock.cpp repsock.h sockio.h stdtp.h config.h confdefs.h sync.h
+w32sock.lo: w32sock.cpp stdtp.h config.h confdefs.h w32sock.h sockio.h
+wwwapi.lo: wwwapi.cpp wwwapi.h stdtp.h config.h confdefs.h sync.h sockio.h database.h \
+ class.h reference.h file.h pagepool.h
+bugdb.o: bugdb.cpp bugdb.h gigabase.h database.h class.h stdtp.h config.h confdefs.h \
+ sync.h reference.h file.h pagepool.h array.h query.h cursor.h \
+ datetime.h blob.h container.h wwwapi.h sockio.h
+cgistub.o: cgistub.cpp stdtp.h config.h confdefs.h sockio.h
+clidb.o: clidb.cpp clidb.h gigabase.h database.h class.h stdtp.h config.h confdefs.h \
+ sync.h reference.h file.h pagepool.h array.h query.h cursor.h \
+ datetime.h blob.h container.h wwwapi.h sockio.h
+guess.o: guess.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h
+server.o: server.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h compiler.h compiler.d subsql.h symtab.h hashtab.h \
+ btree.h cli.h cliproto.h server.h sockio.h
+subsql.o: subsql.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h compiler.h compiler.d subsql.h symtab.h hashtab.h \
+ btree.h server.h sockio.h
+testdb.o: testdb.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h
+testblob.o: testblob.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h
+testddl.o: testddl.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h
+testidx.o: testidx.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h
+testidx2.o: testidx2.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h
+testiref.o: testiref.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h
+testjoin.o: testjoin.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h
+testperf.o: testperf.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h
+testspat.o: testspat.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h
+testperf2.o: testperf2.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h \
+ sync.h reference.h file.h pagepool.h array.h query.h cursor.h \
+ datetime.h blob.h container.h
+testsync.o: testsync.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h
+testtrav.o: testtrav.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h set.h
+testleak.o: testleak.cpp gigabase.h database.h class.h stdtp.h config.h confdefs.h sync.h \
+ reference.h file.h pagepool.h array.h query.h cursor.h datetime.h \
+ blob.h container.h set.h

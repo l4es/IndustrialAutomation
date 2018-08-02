@@ -1,0 +1,9 @@
+1.0
+
+- added missing code for build progress
+- fixed connection problem
+
+
+0.9
+
+- intial version

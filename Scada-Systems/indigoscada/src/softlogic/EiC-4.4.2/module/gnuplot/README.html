@@ -1,0 +1,59 @@
+<html>
+<title> EiC's gnuplot API </title>
+<body>
+<center> EiC's gnuplot API </center><br>
+
+This is a brief discription of EiC's gnuplot API.<br>
+There is a demo program in this directory which can be easily compiled:
+<pre>
+       gcc -o demo demo.c     
+</pre>
+or run via EiC:
+<pre>
+       eic demo.c   
+</pre>
+
+
+The basic method for EiC's gnuplot API works like this:
+<ol>
+
+<li> create a plot object:
+  <pre>
+     #include "gnuplot/gplot.h"
+     ... 
+     plot_t *p = openPlot("name of plot");
+  </pre>
+ 
+<li> Send the plot some information:
+  <pre>
+     int a = 1;
+     send2plot(p,"plot [x=%d:%d] cos(x)",-a,a);
+  </pre>
+ 
+<li> There are also many predefined interface functions;
+for example: 
+  <pre>
+     int i; float A[100];
+     for(i=0;i<100;++i) A[i] = i/3.0;
+     plotData(A,100,p,plotFloats);  
+  </pre>
+ 
+ 
+<li> when finished close the plot:
+  <pre>
+     closePlot(p);
+  </pre>
+ 
+</ol>
+
+Other links:
+<ul> 
+<li> <a href="http://www.usf.uni-osnabrueck.de/~breiter/tools/gnuplot/index.en.html"> Scientific Plotting </a>
+<li> <a href="http://www.eso.org/~ndevilla/gnuplot/"> Another gnuplot C API </a> 
+</ul>
+
+                  
+
+</body>
+</htm>
+

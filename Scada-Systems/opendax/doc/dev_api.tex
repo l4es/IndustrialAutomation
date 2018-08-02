@@ -1,0 +1,96 @@
+\chapter{Library API Reference}
+\section{General}
+\begin{verbatim}
+dax_state
+\end{verbatim}
+\index{dax\_state object}
+
+\begin{verbatim}
+dax_state *dax_init(char *name)
+\end{verbatim}
+\index{dax\_init() function}
+
+\begin{verbatim}
+int dax_free(dax_state *ds)
+\end{verbatim}
+\index{dax\_init() function}
+
+\section{Configuration}
+
+\begin{verbatim}
+dax_init_config(dax_state *ds, char *name)
+\end{verbatim}
+\index{dax\_init\_config() function}
+
+\begin{verbatim}
+int dax_add_attribute(dax_state *ds, char *name, char *longopt,
+                        char shortopt, int flags, char *defvalue)
+\end{verbatim}
+\index{dax\_add\_attribute() function}
+
+\begin{verbatim}
+int dax_configure(dax_state *ds, int argc, char **argv, int flags)
+\end{verbatim}
+\index{dax\_configure() function}
+
+\begin{verbatim}
+int dax_attr_callback(dax_state *ds, char *name,
+                      int (*attr_callback)(char *name, char *value))
+\end{verbatim}
+\index{dax\_attr\_callback() function}
+
+\begin{verbatim}
+int dax_set_luafunction(dax_state *ds, int (*f)(void *L), char *name)
+\end{verbatim}
+\index{dax\_set\_luafunction() function}
+
+\begin{verbatim}
+char *dax_get_attr(dax_state *ds, char *name)
+\end{verbatim}
+\index{dax\_get\_attr() function}
+
+\begin{verbatim}
+int dax_set_attr(dax_state *ds, char *name, char *value)
+\end{verbatim}
+\index{dax\_set\_attr() function}
+
+\begin{verbatim}
+int dax_free_config(dax_state *ds)
+\end{verbatim}
+\index{dax\_free\_config() function}
+
+\section{Data Handling}
+
+
+\section{Event Handling}
+\begin{verbatim}
+int dax_event_add(dax_state *ds, Handle *handle, int event_type,
+                  void *data, dax_event_id *id, 
+                  void (*callback)(void *udata), void *udata);
+\end{verbatim}
+\index{dax\_event\_add() function}
+
+\begin{verbatim}
+int dax_event_del(dax_state *ds, dax_event_id id);
+\end{verbatim}
+\index{dax\_event\_del() function}
+
+\begin{verbatim}
+int dax_event_select(dax_state *ds, int timeout, dax_event_id *id);
+\end{verbatim}
+\index{dax\_event\_select() function}
+
+\begin{verbatim}
+int dax_event_poll(dax_state *ds, dax_event_id *id);
+\end{verbatim}
+\index{dax\_event\_poll() function}
+
+\begin{verbatim}
+int dax_event_get_fd(dax_state *ds);
+\end{verbatim}
+\index{dax\_event\_get\_fd() function}
+
+\begin{verbatim}
+int dax_event_dispatch(dax_state *ds, dax_event_id *id);
+\end{verbatim}
+\index{dax\_event\_dispatch() function}

@@ -1,0 +1,35 @@
+off
+	(void)
+   0:halt                
+
+	(void)
+main -> Func (
+	void 
+	) returning int 
+   0:checkar  1 0          25:stoval                50:stoval              
+   2:bump     1            27:call                  52:stoval              
+   4:pushuint  1           29:bump     1            54:call                
+   7:stoval                32:stoval                57:checkar  2 1        
+   9:call                  34:stoval                59:stoval              
+  11:bump     1            36:call                  61:stoval              
+  13:pushuint  4           38:bump     1            63:call                
+  16:stoval                41:stoval                66:checkar  2 1        
+  18:call                  43:stoval                68:stoval              
+  20:bump     1            45:call                  70:stoval              
+  22:pushuint  8           47:bump     1            72:call                
+  23:stoval                48:checkar  2 1          73:pushint  0          
+
+   1:bump     1          
+   2:pushint  0          
+   3:eiccall             
+   4:halt                
+
+sizeof (char)   = 1
+sizeof (int)    = 4
+sizeof (double) = 8
+sizeof !7       = 4
+sizeof (4+5*3)  = 4
+sizeof t        = 4
+sizeof "hello"  = 6
+sizeof (0 == 1) = 4
+	(void)

@@ -1,0 +1,232 @@
+void f(void)\
+{\
+    /* test for alignment; not errors should generate */\
+    char c[3];\
+    short s[3];\
+    int  i[3];\
+    long l[3];\
+    float f[3];\
+    double d[3];\
+\
+    c[0];c[1];c[2];\
+    s[0];s[1];s[2];\
+    i[0];i[1];i[2];\
+    l[0];l[1];l[2];\
+    f[0];f[1];f[2];\
+    d[0];d[1];d[2];\
+}
+
+void f1(void)\
+{\
+    char c[3];\
+    short s[3];\
+    int  i[3];\
+    long l[3];\
+    float f[3];\
+    double d[3];\
+\
+    c[0];c[1];c[2];c[3];\
+    s[0];s[1];s[2];\
+    i[0];i[1];i[2];\
+    l[0];l[1];l[2];\
+    f[0];f[1];f[2];\
+    d[0];d[1];d[2];\
+}
+
+void f2(void)\
+{\
+    char c[3];\
+    short s[3];\
+    int  i[3];\
+    long l[3];\
+    float f[3];\
+    double d[3];\
+\
+    c[0];c[1];c[2];\
+    s[0];s[1];s[2];s[3];\
+    i[0];i[1];i[2];\
+    l[0];l[1];l[2];\
+    f[0];f[1];f[2];\
+    d[0];d[1];d[2];\
+}
+
+void f3(void)\
+{\
+    char c[3];\
+    short s[3];\
+    int  i[3];\
+    long l[3];\
+    float f[3];\
+    double d[3];\
+\
+    c[0];c[1];c[2];\
+    s[0];s[1];s[2];\
+    i[0];i[1];i[2];i[3];\
+    l[0];l[1];l[2];\
+    f[0];f[1];f[2];\
+    d[0];d[1];d[2];\
+}
+
+void f4(void)\
+{\
+    char c[3];\
+    short s[3];\
+    int  i[3];\
+    long l[3];\
+    float f[3];\
+    double d[3];\
+\
+    c[0];c[1];c[2];\
+    s[0];s[1];s[2];\
+    i[0];i[1];i[2];\
+    l[0];l[1];l[2];l[3];\
+    f[0];f[1];f[2];\
+    d[0];d[1];d[2];\
+}
+void f5(void)\
+{\
+    char c[3];\
+    short s[3];\
+    int  i[3];\
+    long l[3];\
+    float f[3];\
+    double d[3];\
+\
+    c[0];c[1];c[2];\
+    s[0];s[1];s[2];\
+    i[0];i[1];i[2];\
+    l[0];l[1];l[2];\
+    f[0];f[1];f[2];f[3];\
+    d[0];d[1];d[2];\
+}
+void f6(void)\
+{\
+    char c[3];\
+    short s[3];\
+    int  i[3];\
+    long l[3];\
+    float f[3];\
+    double d[3];\
+\
+    c[0];c[1];c[2];\
+    s[0];s[1];s[2];\
+    i[0];i[1];i[2];\
+    l[0];l[1];l[2];\
+    f[0];f[1];f[2];\
+    d[0];d[1];d[2];d[3];\
+}
+
+void f7(void)\
+{\
+    char c[3];\
+    short s[3];\
+    int  i[3];\
+    long l[3];\
+    float f[3];\
+    double d[3];\
+\
+    c[0];c[1];c[2];c[-1];\
+    s[0];s[1];s[2];\
+    i[0];i[1];i[2];\
+    l[0];l[1];l[2];\
+    f[0];f[1];f[2];\
+    d[0];d[1];d[2];\
+}
+void f8(void)\
+{\
+    char c[3];\
+    short s[3];\
+    int  i[3];\
+    long l[3];\
+    float f[3];\
+    double d[3];\
+\
+    c[0];c[1];c[2];\
+    s[0];s[1];s[2];s[-1];\
+    i[0];i[1];i[2];\
+    l[0];l[1];l[2];\
+    f[0];f[1];f[2];\
+    d[0];d[1];d[2];\
+}
+void f9(void)\
+{\
+    char c[3];\
+    short s[3];\
+    int  i[3];\
+    long l[3];\
+    float f[3];\
+    double d[3];\
+\
+    c[0];c[1];c[2];\
+    s[0];s[1];s[2];\
+    i[0];i[1];i[2];i[-1];\
+    l[0];l[1];l[2];\
+    f[0];f[1];f[2];\
+    d[0];d[1];d[2];\
+}
+void f10(void)\
+{\
+    char c[3];\
+    short s[3];\
+    int  i[3];\
+    long l[3];\
+    float f[3];\
+    double d[3];\
+\
+    c[0];c[1];c[2];\
+    s[0];s[1];s[2];\
+    i[0];i[1];i[2];\
+    l[0];l[1];l[2];l[-1];\
+    f[0];f[1];f[2];\
+    d[0];d[1];d[2];\
+}
+void f11(void)\
+{\
+    char c[3];\
+    short s[3];\
+    int  i[3];\
+    long l[3];\
+    float f[3];\
+    double d[3];\
+\
+    c[0];c[1];c[2];\
+    s[0];s[1];s[2];\
+    i[0];i[1];i[2];\
+    l[0];l[1];l[2];\
+    f[0];f[1];f[2];f[-1];\
+    d[0];d[1];d[2];\
+}
+void f12(void)\
+{\
+    char c[3];\
+    short s[3];\
+    int  i[3];\
+    long l[3];\
+    float f[3];\
+    double d[3];\
+\
+    c[0];c[1];c[2];\
+    s[0];s[1];s[2];\
+    i[0];i[1];i[2];\
+    l[0];l[1];l[2];\
+    f[0];f[1];f[2];\
+    d[0];d[1];d[2];d[-1];\
+}
+
+
+f();   // must all pass
+f1();  // must fail     EiC fails to detect this error
+f2();  // must fail     EiC fails to detect this error
+f3();  // must fail
+f4();  // must fail
+f5();  // must fail
+f6();  // must fail
+f7();  // must fail
+f8();  // must fail
+f9();  // must fail
+f10();  // must fail
+f11();  // must fail
+f12();  // must fail
+
+:exit
+

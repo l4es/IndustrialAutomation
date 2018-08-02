@@ -1,0 +1,33 @@
+----------------------------------------------------
+When modifying stack instructions check:
+	MachSet.h
+	emitter.c
+	interpre.c
+	parser.c 
+	cdecl.c:
+	typesets.c:   
+
+-----------------------------------------------------
+Fri Jan 26 11:17:49 EST 1996
+ADDED SHORT CIRCUIT EVALUATION TO EIC  /* EJB */
+
+Instructions removed:
+	jmpf	   replaced by jmpFint
+	jmpt       replaced by jmpTint
+
+Instructions Tagged for removal:
+	landuint           replaced by landint
+	landulong          replaced by landlong
+
+Instructions added:
+	jmpFint             jmpTint
+	jmpFlng             jmpTlng
+	jmpFdbl             jmpTdbl
+	jmpTptr		    jmpTptr
+
+	
+
+
+
+
+

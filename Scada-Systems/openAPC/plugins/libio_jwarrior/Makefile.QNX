@@ -1,0 +1,7 @@
+CUSTLIBRARIES= 
+
+CUSTINCLUDES=
+	
+CUSTOBJECTS=
+
+include ../qnx.mk

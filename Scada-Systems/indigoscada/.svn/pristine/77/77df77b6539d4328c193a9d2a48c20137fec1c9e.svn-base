@@ -1,0 +1,19 @@
+        PLATFORM = _DJGPP
+                CC = gcc
+        STD_CFLAGS = -O2 -fsigned-char -Wall 
+     INCLUDE_FLAGS = -I-
+ 
+                AR = ar
+           ARFLAGS = -rv
+                RM = rm -f
+           INSTALL = mv
+                MV = mv 
+              COPY = cp
+              MAKE = make
+           MKDIR = mkdir
+        MKDIRFLAGS = -p
+            RANLIB = ranlib
+         RUNLIBCMD = $(RANLIB) $@
+        
+ 
+ 

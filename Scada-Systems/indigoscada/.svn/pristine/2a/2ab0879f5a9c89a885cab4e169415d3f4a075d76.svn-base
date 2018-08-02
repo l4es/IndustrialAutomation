@@ -1,0 +1,30 @@
+	 PLATFORM = 
+               CC = gcc
+       STD_CFLAGS = -ansi  -g
+               AR = ar
+          ARFLAGS = -rv
+               RM = rm -f
+          INSTALL = mv
+               MV = mv 
+             COPY = cp
+             MAKE = make
+	    MKDIR = mkdir
+       MKDIRFLAGS = -p
+           RANLIB = ranlib
+        RUNLIBCMD = $(RANLIB) $@
+	DUMMY_STR = This file is a dummy target. Please don't remove.
+     DUMMY_TARGET = echo "$(DUMMY_STR)" > $@ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

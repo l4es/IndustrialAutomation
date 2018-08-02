@@ -1,0 +1,8 @@
+static int p = 7;
+static float q = 44;
+
+
+int getp3() { return p;}
+void setp3(int x) { p = x;}
+float getq3() {return q;}
+

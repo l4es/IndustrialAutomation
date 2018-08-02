@@ -1,0 +1,76 @@
+object FormMotor: TFormMotor
+  Left = 200
+  Height = 172
+  Top = 200
+  Width = 304
+  BorderIcons = [biSystemMenu]
+  Caption = 'Motor'
+  ClientHeight = 172
+  ClientWidth = 304
+  Position = poDefaultPosOnly
+  LCLVersion = '0.9.28.2'
+  object labMotorName: TLabel
+    Left = 0
+    Height = 22
+    Top = 12
+    Width = 304
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'MotorName'
+    Font.Height = -16
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object labMotorInfo: TLabel
+    Left = 0
+    Height = 38
+    Top = 40
+    Width = 304
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'MotorInfo'
+    Font.Height = -13
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+    WordWrap = True
+  end
+  object labMotorState: TLabel
+    Left = 109
+    Height = 22
+    Top = 76
+    Width = 87
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'MotorState'
+    Font.Height = -16
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object btnStart: TButton
+    Left = 20
+    Height = 42
+    Top = 116
+    Width = 120
+    Caption = 'Start'
+    Font.Height = -16
+    Font.Style = [fsBold]
+    OnClick = btnStartClick
+    ParentFont = False
+    TabOrder = 0
+  end
+  object btnStop: TButton
+    Left = 164
+    Height = 42
+    Top = 116
+    Width = 120
+    Caption = 'Stop'
+    Font.Height = -16
+    Font.Style = [fsBold]
+    OnClick = btnStopClick
+    ParentFont = False
+    TabOrder = 1
+  end
+end

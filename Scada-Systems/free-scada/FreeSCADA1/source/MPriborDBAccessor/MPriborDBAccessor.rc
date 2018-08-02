@@ -1,0 +1,88 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_MPRIBORDBACCESSOR   REGISTRY                "MPriborDBAccessor.rgs"
+IDR_USERS               REGISTRY                "Users.rgs"
+IDR_MAINTAINER          REGISTRY                "Maintainer.rgs"
+IDR_DBCONNECTION        REGISTRY                "DBConnection.rgs"
+IDR_CHANNELS            REGISTRY                "Channel.rgs"
+IDR_VARIANTENUMERATOR   REGISTRY                "VariantEnumerator.rgs"
+IDR_DATASET             REGISTRY                "DataSet.rgs"
+IDR_EVENTTYPES          REGISTRY                "EventTypes.rgs"
+IDR_EVENTS              REGISTRY                "Events.rgs"
+IDR_DATASETEX           REGISTRY                "DataSetEx.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// SQL_QUERY
+//
+
+IDR_SQL_CREATE_DB_ACCESS SQL_QUERY               "sql\\CreateDB_access.sql"
+IDR_SQL_CREATE_DB_MYSQL SQL_QUERY               "sql\\CreateDB_mysql.sql"
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "1 TYPELIB ""MPriborDBAccessor.tlb""\r\n"
+    "#include ""MPriborDBAccessor.rc2""\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 TYPELIB "MPriborDBAccessor.tlb"
+#include "MPriborDBAccessor.rc2"
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

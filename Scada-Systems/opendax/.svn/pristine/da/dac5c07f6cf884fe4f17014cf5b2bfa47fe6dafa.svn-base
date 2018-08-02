@@ -1,0 +1,13 @@
+opendax gets all locked up when a module fails to start
+
+_status tag can be written to by modules.  This should be read only.
+
+Allow 'nice' levels to be set for modules
+
+Much more testing needs to be done.
+
+There is a bug in the event handling logic when multiple modules of the
+same name are running.  Somewhere I'm using the name of the module to 
+identify it and the name is not forced to be unique.
+
+Also need to remove events when modules are gone.

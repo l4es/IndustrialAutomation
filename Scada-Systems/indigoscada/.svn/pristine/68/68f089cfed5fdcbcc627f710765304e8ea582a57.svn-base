@@ -1,0 +1,5 @@
+on
+	(void)
+Assert should fail on line 10
+In testAassert.c, line 10: v == 0 -- assert failed
+	0

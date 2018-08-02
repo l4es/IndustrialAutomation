@@ -1,0 +1,32 @@
+float (*fval)[5];
+:show fval
+struct stag {int x; double da[5];} st;
+:show st
+struct { float v; struct stag st;} sr;
+:show sr
+int sqr(int x);
+:show sqr
+int sqr(int x) { return x * x;}
+:show sqr
+:show printf
+printf("hello\n");
+#include <stdio.h>
+:show printf
+printf("hello\n");
+#include ../doc/regline.c
+:show regline
+:rm fval
+:show fval
+int *p1, *p2, a, b,c;
+:variables int *
+int f(char * s) { return 1;}
+int foo(const char * str);
+:variables  int (char * x)
+struct stag {int x,y;};
+enum etag {RED,GREE, BLUE};
+:variables tags
+:help
+:-I./tests
+:-R ./tests
+:-L
+:history

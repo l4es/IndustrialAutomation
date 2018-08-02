@@ -1,0 +1,26 @@
+/* XPM */
+static const char *keygold_xpm[] = {
+/* width height num_colors chars_per_pixel */
+"    32    15        4            1",
+/* colors */
+". c #000000",
+"# c #7f7f7f",
+"a c #ffff00",
+"b c None",
+/* pixels */
+"bbbbb.....bbbbbbbbbbbbbbbbbbbbbb",
+"bbb..#a#a#..bbbbbbbbbbbbbbbbbbbb",
+"bb.a#a#a#a#a.bbbbbbbbbbbbbbbbbbb",
+"b.a#a#a#a#a#a.bb..bbbbbbbbbbbbbb",
+"b.#a#a#a#a#a#.b.a.bbbbbbbbbbbbbb",
+".#a...a#a#a#a#..a..............b",
+".a.###.a#a#a#a#a#aaaaaaaaaaaaaa.",
+".#.bbb.#a#a#a#a#a#a#a#a#a#a#a#a.",
+".a.bbb.a#a#a#a#a#a#a#a#a#a#a#a.b",
+".#a...a#a#a#a#................bb",
+"b.#a#a#a#a#a#.b.#..####...##.bbb",
+"b.a#a#a#a#a#a.bb..b....bbb..bbbb",
+"bb.a#a#a#a#a.bbbbbbbbbbbbbbbbbbb",
+"bb#..#a#a#..#bbbbbbbbbbbbbbbbbbb",
+"bbbbb.....bbbbbbbbbbbbbbbbbbbbbb"
+};

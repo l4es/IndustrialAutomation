@@ -1,0 +1,138 @@
+on
+	(void)
+	(void)
+	(void)
+	(void)
+	<testqsort.c>
+	(void)
+110  86  22 100  85  74  25 109  95 116 
+ 22  25  74  85  86  95 100 109 110 116 
+ 22 = 22
+ 116 = 116
+ 95 = 95
+	0
+	(void)
+	(void)
+	<testreturn.c>
+Warning: in testreturn.c near line 13: Possible dangling pointer
+Warning: in testreturn.c near line 20: Possible dangling pointer
+	(void)
+This file should generate 2 dangling pointer warnings
+	0
+	(void)
+	(void)
+	<testscanf.c>
+	(void)
+Okay 1
+Okay 1
+count = [3]  quant = [2] units = [quarts] item = [oil]
+count = [2]  quant = [-12.8] units = [degrees] item = []
+count = [0]  quant = [-12.8] units = [] item = []
+count = [3]  quant = [10] units = [LBS] item = [dirt]
+count = [3]  quant = [100] units = [ergs] item = [energy]
+	0
+	(void)
+	(void)
+	<testscop.c>
+	(void)
+	0
+	(void)
+	(void)
+	<testsign.c>
+	(void)
+	--- EiC test signed values ---
+char c; short s; int i; long l;  float f; double d;
+
+c = -6 s = 0 i = 5 l = -100 f = 2.600000 d = 0.900000 :->
+c = -6 s = 0 i = 5 l = -100 f = 2.6 d = 0.9
+
+-c  = 6 :-> -c = 6
+~s  = -1 :-> ~s = -1
+f * c = -15.599999  :-> f * c = -15.6
+f / d = 2.888889  :-> f / d = 2.88889
+l / f = -38.461540  :-> l / f = -38.4615
+i << 2 = 20 :-> i << 2 = 20
+	--- EiC test unsigned values ---
+unsigned char uc; short unsigned us; unsigned ui; unsigned long ul;
+
+uc = 0 us = 0  ui = 0  ul = 0:->
+uc = 0 us = 0  ui = 0 ul = 0
+
+	0
+	(void)
+	(void)
+	<testsizeof.c>
+	(void)
+	0
+	(void)
+	(void)
+	<teststatic.c>
+	(void)
+	0
+	(void)
+	(void)
+	(void)
+	<teststdio.c>
+	(void)
+	0
+	(void)
+	(void)
+	<teststmt.c>
+	(void)
+	(void)
+	(void)
+	<teststring.c>
+	(void)
+	0
+	(void)
+	(void)
+	<teststru.c>
+	(void)
+	0
+	(void)
+	(void)
+	<teststru2.c>
+	(void)
+	0
+	(void)
+	(void)
+	<testtime.c>
+	(void)
+	0
+	(void)
+	(void)
+	<testtrace.c>
+	(void)
+	0
+	(void)
+	(void)
+	<testtypedef.c>
+	(void)
+	0
+	(void)
+	(void)
+	(void)
+	<testtypes.c>
+	(void)
+	0
+	(void)
+	(void)
+	<testtypes2.c>
+	(void)
+	0
+	(void)
+	(void)
+	<testva.c>
+	(void)
+125 :-> 125
+error 13 hello 13.333 :-> error 13 hello 13.333
+error 13 hello 13.333 
+6 34 -4 
+-5 6 98 23 4 
+	0
+	(void)
+	(void)
+	(void)
+	(void)
+	(void)
+	0

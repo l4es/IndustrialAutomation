@@ -1,0 +1,7 @@
+on
+	1
+Error in gnu21.c near line 24: syntax error associated near '&&'
+Error in gnu21.c near line 24: Expected  ; 
+Error in gnu21.c near line 30: Misplaced return statement
+Error in gnu21.c near line 31: Expected  ; 
+Error: clean up forced

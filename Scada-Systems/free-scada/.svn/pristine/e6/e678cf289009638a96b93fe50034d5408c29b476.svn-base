@@ -1,0 +1,6 @@
+from parts import *
+import os
+
+part ('libxml2', 'libxml2.scons')
+
+build()

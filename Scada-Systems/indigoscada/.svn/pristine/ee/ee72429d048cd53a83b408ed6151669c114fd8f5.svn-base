@@ -1,0 +1,113 @@
+# Process this file with autoconf to produce a configure script.
+AC_PREREQ(2.52)
+AC_INIT(gigabase.h)
+AC_CANONICAL_SYSTEM
+AC_AIX
+GB_VERSION=`./mkversion`
+AM_INIT_AUTOMAKE(gigabase, $GB_VERSION)
+
+AC_ARG_ENABLE(pthreads, [
+  --disable-pthreads  use this for single-threaded libs],
+[case "$enableval" in
+  yes) AC_DEFINE(_REENTRANT) server_o="server.o" SUFF="_r" ;;
+dnl AC_DEFINE(_THREAD_SAFE)
+  no) AC_DEFINE(NO_PTHREADS) server_o="" SUFF="" ;;
+  *) "error: unrecognized option for --enable-pthreads: $enableval" 1>&2 ; exit 1 ;;
+esac], [AC_DEFINE(_REENTRANT) server_o="server.o" SUFF="_r"])
+AC_SUBST(SUFF)
+AC_SUBST(server_o)
+
+AC_ARG_ENABLE(debug, [[  --enable-debug=(none|check|trace)  [trace] enable debugging]],
+[case "$enableval" in
+  none|no) AC_DEFINE(DEBUG,DEBUG_NONE) ;;
+  check) AC_DEFINE(DEBUG,DEBUG_CHECK) ;;
+  trace|yes) AC_DEFINE(DEBUG,DEBUG_TRACE) ;;
+  *) "error: unrecognized option for --enable-debug: $enableval" 1>&2 ; exit 1 ;;
+esac])
+
+AC_ARG_ENABLE(queue-manager, [[  --disable-queque-manager  [enabled by default] spawn 8 threads for handling HTTP requests]],
+[case "$enableval" in
+  yes) AC_DEFINE(USE_QUEUE_MANAGER) ;;
+  no) ;;
+  *) "error: unrecognized option for --enable-queue-manager: $enableval" 1>&2 ; exit 1 ;;
+esac], AC_DEFINE(USE_QUEUE_MANAGER))
+
+AC_ARG_ENABLE(exception-on-error, [  --enable-exception-on-error  throw exception on error],
+AC_DEFINE(THROW_EXCEPTION_ON_ERROR))
+
+# Checks for programs.
+AC_PROG_CXX
+AC_PROG_CXXCPP
+AC_PROG_LN_S
+
+AC_PROG_LIBTOOL
+
+#AC_PATH_PROG(MKLIB, makeC++SharedLib$SUFF, [#makeC++SharedLib$SUFF], [$PATH:/usr/ibmcxx/bin])
+
+# Check working member template
+AC_MSG_CHECKING(for MEMBER_TEMPLATES)
+AC_TRY_COMPILE([
+struct X {
+template<class T>
+T foo(T x) { return x; }
+};
+],[
+X x;
+],[AC_MSG_RESULT(yes)],[AC_DEFINE(NO_MEMBER_TEMPLATES) AC_MSG_RESULT(no)])
+
+
+
+# Checks for libraries.
+LIBS=""
+AC_SEARCH_LIBS(connect, socket)
+AC_SEARCH_LIBS(gethostbyname, nsl)
+SOCKLIBS="$LIBS"
+LIBS=""
+AC_SUBST(SOCKLIBS)
+dnl FIXME AC_CHECK_LIB(m, main)
+
+# Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS(limits.h unistd.h)
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_CHECK_SIZEOF(long)
+AC_TYPE_SIZE_T
+AC_STRUCT_TM
+
+# Checks for library functions.
+AC_FUNC_MALLOC
+AC_FUNC_MKTIME
+dnl AC_TYPE_SIGNAL
+AC_FUNC_STRFTIME
+
+AC_CACHE_CHECK(for compiler option for pthreads, ac_cv_pthreads,
+[SAVE_CXXFLAGS="$CXXFLAGS"
+SAVE_CFLAGS="$CFLAGS"
+for i in "" -pthread -pthreads -mthreads -mt; do
+CXXFLAGS="$SAVE_CXXFLAGS $i"
+CFLAGS="$SAVE_CFLAGS $i"
+AC_LANG_CPLUSPLUS
+ac_cv_pthreads="not found"
+AC_TRY_LINK([#include <unistd.h>
+#include <pthread.h>], [pthread_t t; pthread_detach(t);],
+  ac_cv_pthreads="$i")
+if test "$ac_cv_pthreads" != "not found"; then
+  if test "$ac_cv_pthreads" = ""; then ac_cv_pthreads="none required"; fi
+  break;
+fi
+done
+CXXFLAGS="$SAVE_CXXFLAGS"
+CFLAGS="$SAVE_CFLAGS"])
+
+case "$ac_cv_pthreads" in
+  "not found"|"none required") TDEFS="" ;;
+  *) TDEFS="$ac_cv_pthreads" ;;
+esac
+AC_SUBST(TDEFS)
+CFLAGS="$CFLAGS $TDEFS"
+CXXFLAGS="$CXXFLAGS $TDEFS"
+
+AC_CHECK_FUNCS(localtime_r)
+
+AC_OUTPUT(Makefile)

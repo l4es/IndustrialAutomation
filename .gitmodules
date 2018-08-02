@@ -637,3 +637,12 @@
 [submodule "Scada-Systems/szarp"]
 	path = Scada-Systems/szarp
 	url = https://github.com/Newterm/szarp.git
+[submodule "Scada-Systems/OpenMUC/jrxtx"]
+	path = Scada-Systems/OpenMUC/jrxtx
+	url = https://github.com/openmuc/jrxtx.git
+[submodule "Scada-Systems/OpenMUC/openiec61850"]
+	path = Scada-Systems/OpenMUC/openiec61850
+	url = https://github.com/openmuc/openiec61850.git
+[submodule "Scada-Systems/OpenMUC/jasn1"]
+	path = Scada-Systems/OpenMUC/jasn1
+	url = https://github.com/openmuc/jasn1.git

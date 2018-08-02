@@ -1,0 +1,153 @@
+# Microsoft Developer Studio Generated Dependency File, included by mod_RSsim.mak
+
+.\ABComms.cpp : \
+	".\ABCommsProcessor.h"\
+	".\message.h"\
+	
+
+.\ABCommsProcessor.cpp : \
+	".\ABCommsProcessor.h"\
+	".\message.h"\
+	
+
+.\About.cpp : \
+	".\About.h"\
+	".\CreditStatic.h"\
+	".\EasterDlg.h"\
+	".\StarWarsCtrl.h"\
+	
+
+.\AnimationSettings.cpp : \
+	".\AnimationSettings.h"\
+	
+
+.\CreditStatic.cpp : \
+	".\CreditStatic.h"\
+	
+
+.\EasterDlg.cpp : \
+	".\EasterDlg.h"\
+	".\StarWarsCtrl.h"\
+	
+
+.\EditMemoryDlg.cpp : \
+	".\EditMemoryDlg.h"\
+	
+
+.\FaultsDlg.cpp : \
+	".\FaultsDlg.h"\
+	
+
+.\JoySCCEmulation.cpp : \
+	".\JoySCCEmulation.h"\
+	
+
+.\MemoryEditorList.cpp : \
+	".\EditMemoryDlg.h"\
+	
+
+.\message.cpp : \
+	".\ABCommsProcessor.h"\
+	".\message.h"\
+	
+
+.\MOD232CommsProcessor.cpp : \
+	".\ABCommsProcessor.h"\
+	
+
+.\mod_RSsimDlg.cpp : \
+	".\ABCommsProcessor.h"\
+	".\About.h"\
+	".\AnimationSettings.h"\
+	".\CreditStatic.h"\
+	".\FaultsDlg.h"\
+	".\JoySCCEmulation.h"\
+	".\plantsim.h"\
+	".\ServerSettings232Dlg.h"\
+	".\ServerSettingsEthDlg.h"\
+	".\TrainingSimDlg.h"\
+	
+
+.\PLCApplication.cpp : \
+	".\ABCommsProcessor.h"\
+	".\message.h"\
+	
+
+.\serverRS232array.cpp : \
+	".\ABCommsProcessor.h"\
+	
+
+.\ServerSettings232Dlg.cpp : \
+	".\ServerSettings232Dlg.h"\
+	
+
+.\ServerSettingsEthDlg.cpp : \
+	".\ServerSettingsEthDlg.h"\
+	
+
+.\simport.cpp : \
+	".\ABCommsProcessor.h"\
+	
+
+.\StarWarsCtrl.cpp : \
+	".\StarWarsCtrl.h"\
+	
+
+.\StdAfx.cpp : \
+	"..\..\..\..\h\driverlib.h"\
+	"..\..\..\..\h\protdrv.h"\
+	".\ActiveScriptHost.h"\
+	".\AdvEmulationDlg.h"\
+	".\ColorPickerCB.h"\
+	".\CommsLamp.h"\
+	".\DDKSocket.h"\
+	".\DDKSrvSocket.h"\
+	".\MemoryEditorList.h"\
+	".\MemWriteLock.h"\
+	".\MicroTick.h"\
+	".\MOD232CommsProcessor.h"\
+	".\mod_RSsim.h"\
+	".\mod_RSsimDlg.h"\
+	".\MODEthCommsProcessor.h"\
+	".\MyHostProxy.h"\
+	".\RS232Noise.h"\
+	".\RS232Port.h"\
+	".\serverRS232array.h"\
+	".\ServerSocketArray.h"\
+	".\simport.h"\
+	".\Splash.h"\
+	".\StdAfx.h"\
+	".\Tools.h"\
+	".\util.h"\
+	"v:\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	
+
+.\TrainingSimDlg.cpp : \
+	".\plantsim.h"\
+	".\TrainingSimDlg.h"\
+	
+
+.\mod_RSsim.rc : \
+	".\help\images\advmbus.gif"\
+	".\help\images\anim.gif"\
+	".\help\images\joyshot.gif"\
+	".\help\images\juice.gif"\
+	".\help\images\portA.gif"\
+	".\help\images\shot1.gif"\
+	".\help\images\shot2.gif"\
+	".\help\images\toolbar.gif"\
+	".\help\index.htm"\
+	".\res\bitmap1.bmp"\
+	".\res\bmp00001.bmp"\
+	".\res\bmp00002.bmp"\
+	".\res\bmp00003.bmp"\
+	".\res\creditbm.bmp"\
+	".\res\cursor1.cur"\
+	".\res\drag.bmp"\
+	".\res\ico00001.ico"\
+	".\res\ico00002.ico"\
+	".\res\idr_main.ico"\
+	".\res\MOD_RSsim.rc2"\
+	".\res\mod_RSsimul.ico"\
+	".\res\toolbar1.bmp"\
+	

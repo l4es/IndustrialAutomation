@@ -1,0 +1,1578 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>The Code Project - A set of ADO Classes - Database</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Reply-to" CONTENT="mailto:webmaster@codeproject.com">
+<meta NAME="Description" CONTENT="Free source code and tutorials for Windows developers.">
+<meta NAME="keywords" Content="Free source code, Database, Visual C++, MFC, Windows, Ado">
+<meta NAME="Copyright" CONTENT="Article content copyright Carlos Antollini, 2001, everthing else Copyright © CodeProject, 2002, All Rights Reserved.">
+
+<link rel="stylesheet" type=text/css href="/styles/global.css">
+
+</head>
+<body text=black bgColor="#00FFFF" aLink=red link=blue vLink=purple topmargin=3 leftmargin=3>
+
+
+<!-- Article Starts -->
+
+
+<UL class=download>
+
+<UL>
+  <LI><B><A
+  href="#Overview">Overview</A></B>
+
+  <LI><B>&nbsp;&nbsp;&nbsp;<A
+  href="#TheAdoClasses1">The CADODatabase Class</A></B>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#CADODatabase">CADODatabase</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#OpenDatabase">Open</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#Execute">Execute</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetActiveConnection">GetActiveConnection</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetRecordCount">GetRecordCount</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#BeginTrans">BeginTransaction</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#CommitTrans">CommitTransaction</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#RollbackTrans">RollbackTransaction</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#IsOpenDatabase">IsOpen</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#CloseDatabase">Close</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#SetConnStr">SetConnectionString</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetConnStr">GetConnectionString</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetLastErrorDB">GetLastError</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetLastErrorStringDB">GetLastErrorString</A>
+  <LI><B>&nbsp;&nbsp;&nbsp;<A href="#TheAdoClasses2">The CADORecordset Class</A></B>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#CADORecordset">CADORecordset</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#OpenRecordset">Open</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#ExecuteRecordset">Execute</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetQuery">GetQuery</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#SetQuery">SetQuery</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#RecordBinding">RecordBinding</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetRecordCount">GetRecordCount</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#IsOpenRecordset">IsOpen</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#CloseRecordset">Close</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetFieldCount">GetFieldCount</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetFieldValue">GetFieldValue</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#IsFieldNull">IsFieldNull</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#IsFieldEmpty">IsFieldEmpty</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#IsEof">IsEof</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#IsBof">IsBof</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#Move">Move</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#AbsolutePage">AbsolutePage</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetPageCount">GetPageCount</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#PageSize">PageSize</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#AbsolutePosition">AbsolutePosition</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetFieldInfo">GetFieldInfo</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetChunk">GetChunk</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#AppendChunk">AppendChunk</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetString">GetString</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetLastErrorRS">GetLastError</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetLastErrorStringRS">GetLastErrorString</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#AddNew">AddNew</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#Edit">Edit</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#Delete">Delete</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#Update">Update</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#CancelUpdate">CancelUpdate</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#SetFieldValue">SetFieldValue</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#Find">Find</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#FindFirst">FindFirst</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#FindNext">FindNext</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetBookmark">GetBookmark</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#SetBookmark">SetBookmark</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#SetFilter">SetFilter</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#SetSort">SetSort</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetRecordset">GetRecordset</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetRecordsetActiveConnection">GetActiveConnection</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#Clone">Clone</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#SaveAsXML">SaveAsXML</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#OpenXML">OpenXML</A>
+  <LI><B>&nbsp;&nbsp;&nbsp;<A href="#TheAdoClasses3">The CADOParameter Class</A></B>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#CADOParameter">CADOParameter</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#SetParameterValue">SetValue</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetParameterValue">GetValue</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#SetParemeterName">SetName</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetParameterName">GetName</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetParameterType">GetType</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetParameter">GetParemeter</A>
+  <LI><B>&nbsp;&nbsp;&nbsp;<A href="#TheAdoClasses4">The CADOCommand Class</A></B>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#CADOCommand">CADOCommand</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#AddParameter">AddParameter</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#SetCommandText">SetText</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetCommandText">GetText</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#SetCommandType">SetType</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetCommandType">GetType</A>
+  <LI>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A href="#GetCommand">GetCommand</A>
+  <LI><B><A href="#CommonQuestions">Common Questions</A></B> </LI></UL>
+<P>
+
+<H2><B><A name=Overview>Overview</A></B></H2>
+<P>I created these classes to make it easy to work with ado. For this I
+created the <CODE>CADODatabse </CODE>class and the <CODE>CADORecordset</CODE>
+class</P>
+<H3><B><A name=TheAdoClasses1>The CADODatabase Class</A></B></H3>
+<P>The <CODE>CADODatabase</CODE> class has a set of functions that corresponds
+to the <CODE>_ConnectionPtr</CODE></P>
+
+<P><A name=CADODatabase><B>
+CADODatabase::CADODatabase
+</B></A></P>
+<P>Creates a <CODE>CADODatabase</CODE> object.</P>
+<PRE>
+CADODatabase();
+</PRE>
+
+
+<P><A name=OpenDatabase><B>CADODatabase::Open</B></A></P>
+<P>The <CODE>Open</CODE> function Opens a connection to a Database.</P><PRE>BOOL Open(LPCTSTR lpstrConnection = _T(&quot;&quot;));</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR lpstrConnection</CODE>The connection string.</P>
+</blockquote>
+<P><A href="#TheSample01">See
+sample</A></P>
+<P><B>Note:</B> the class has the function <CODE>SetConnectionString</CODE>. You
+can insert the connecction string through this function. In this case you can do
+the following.</P><PRE><B><span class='cpp-comment'>//Sample with Connection string for SQL Server</B></span>
+
+CADODatabase pAdoDb;
+CString strConnection = _T(&quot;&quot;);
+
+strConnection = _T(&quot;Provider=MSDASQL;PersistSecurityInfo=False;Trusted_Connection=Yes
+            Data Source=Access Sql Server;catalog=sampledb&quot;);
+pAdoDb.SetConnectionString(strConnection);
+
+<span class='cpp-keyword'>if</span>(pAdoDb.Open())
+  DoSomething();
+.
+.
+.
+
+<B><span class='cpp-comment'>//Sample with Connection String for Access database</B></span>
+
+CADODatabase pAdoDb;
+CString strConnection = _T(&quot;&quot;);
+
+strConnection = _T(&quot;Provider=Microsoft.Jet.OLEDB.<span class='cpp-literal'>4.0</span>;Data Source=C:\\VCProjects\\ADO\\Test\\dbTest.mdb&quot;);
+pAdoDb.SetConnectionString(strConnection);
+
+<span class='cpp-keyword'>if</span>(pAdoDb.Open())
+  DoSomething();
+.
+.
+.
+</PRE>
+<P><A name=Execute><B>
+CADODatabase::Execute
+</B></A></P>
+<P>The <CODE>Execute</CODE> function executes a sql statement in the open database.</P>
+<PRE>
+BOOL Execute(LPCTSTR lpstrExec)
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR lpstrExec</CODE> A string pointer containinig the sql statement to execute.</P>
+</blockquote>
+<PRE>
+CADODatabase pAdoDb;
+CString strConnection = _T(&quot;&quot;);
+
+strConnection = _T(&quot;Provider=MSDASQL;PersistSecurityInfo=False;Trusted_Connection=Yes
+            Data Source=Access Sql Server;catalog=sampledb&quot;);
+
+<span class='cpp-keyword'>if</span>(pAdoDb.Open(strConnection))
+ pAdoDb.Execute(&quot;Delete From tblClients Where Cheker = <span class='cpp-literal'>3</span>&quot;);
+</PRE>
+<P><B>Return Value</B></P>
+<P>The function returns <CODE>TRUE</CODE> if was
+succesfully.</P>
+
+<P><A name=GetActiveConnection><B>
+CADODatabase::GetActiveConnection
+</B></A></P>
+<P>The <CODE>GetActiveConnection</CODE> returns the active connection.</P>
+<PRE>
+_ConnectionPtr GetActiveConnection();
+</PRE>
+
+<P><A name=GetRecordCount><B>
+CADODatabase::GetRecordCount
+</B></A></P>
+<P><CODE>GetRecordCount</CODE> returns the number of records affected in a
+query.</P>
+<PRE>
+DWORD GetRecordCount(_RecordsetPtr m_pRs);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>_RecorsetPtr m_Prs</CODE> The recordset.</P>
+
+</blockquote>
+
+<P><A name=BeginTrans><B>
+CADODatabase::BeginTransaction
+</B></A></P>
+<P>Call this function to initiate a transaction. After you call
+<CODE>BeginTransaction</CODE>, updates you make to your data take effect when
+you commit the transaction.</P>
+<PRE>
+<span class='cpp-keyword'>long</span> BeginTransaction();
+</PRE>
+
+<P><A name=CommitTrans><B>
+CADODatabase::CommitTransaction
+</B></A></P>
+<P>Call <CODE>CommitTransaction</CODE> function to commit a transaction for
+example save a group of edits and updates to one or more databases.</P>
+<PRE>
+<span class='cpp-keyword'>long</span> CommitTransaction();
+</PRE>
+
+<P><A name=RollbackTrans><B>
+CADODatabase::RollbackTransaction
+</B></A></P>
+<P>Call <CODE>RollbackTransaction</CODE> function to end the current transaction
+and restore all databases to their condition before the transaction was begun.
+</P>
+<PRE>
+<span class='cpp-keyword'>long</span> RollbackTransaction();
+</PRE>
+
+<P><A name=IsOpenDatabase><B>
+CADODatabase::IsOpen
+</B></A></P>
+<P>The <CODE>IsOpen</CODE> funtion returns the status of the connection with the
+database.</P>
+<PRE>
+BOOL IsOpen();
+</PRE>
+<P><B>Return Value</B></P>
+<P>The function returns <CODE>TRUE</CODE> if the
+connection to database is open.</P>
+
+<P><A name=CloseDatabase><B>
+CADODatabase::Close
+</B></A></P>
+<P>The </B>Close</B> function close the connection to the database.</P>
+<PRE>
+<span class='cpp-keyword'>void</span> Close();
+</PRE>
+
+<P><A name=SetConnStr><B>
+CADODatabase::SetConnectionString
+</B></A></P>
+<P>With the <CODE>SetConnectionString</CODE> You can insert the connection
+string.</P>
+<PRE>
+<span class='cpp-keyword'>void</span> SetConnectionString(LPCTSTR lpstrConnection);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR lpstrConnection</CODE> A connection string used for opening the
+database.</P>
+</blockquote>
+<P><A href="#Open1">see
+CADODatabase::Open()</A></P>
+
+<P><A name=GetConnStr><B>
+CADODatabase::GetConnectionString
+</B></A></P>
+<P>The <CODE>GetConnectionString</CODE> function returns the connection string
+used for make a connection with a database.</P>
+<PRE>
+CString GetConnectionString();
+</PRE>
+
+<P><A name=GetLastErrorDB><B>
+CADODatabase::GetLastError
+</B></A></P>
+<P>The <CODE>GetLastError</CODE> function returns the last error code.</P><PRE>DWORD GetLastError();
+</PRE>
+
+<P><A name=GetLastErrorStringDB><B>
+CADODatabase::GetLastErrorString
+</B></A></P>
+<P>The <CODE>GetLastErrorString</CODE> function returns the last error
+string.</P>
+<PRE>
+CString GetLastErrorString();
+</PRE>
+
+<H2><A name=TheAdoClasses2><B>The CADORecordset Class</B></A></H2>
+<P>The <CODE>CADORecordset</CODE> class has a set of functions that corresponds
+to the _RecordsetPtr.</P>
+
+<P><A name=CADORecordset><B>
+CADORecordset::CADORecordset
+</B></A></P>
+<P>Creates a <CODE>CADORecordset</CODE> object.</P>
+<PRE>
+CADODatabase();
+CADORecordset(CADODatabase* pAdoDatabase);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>CADODatabase* pAdoDatabase</CODE> A <CODE>CADODatabase</CODE> object pointer.</P>
+
+</blockquote>
+
+<P><A name=OpenRecordset><B>
+CADORecordset::Open
+</B></A></P>
+<P>The <CODE>Open</CODE> function opens a recordset</P>
+<PRE>
+BOOL Open(_ConnectionPtr mpdb, LPCTSTR lpstrExec = _T(&quot;&quot;), <span class='cpp-keyword'>int</span> nOption = CADORecordset::openUnknown);
+BOOL Open(LPCTSTR lpstrExec = _T(&quot;&quot;), <span class='cpp-keyword'>int</span> nOption = CADORecordset::openUnknown);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>_ConnectionPtr mpdb</CODE> A connection pointer.</P>
+<P><CODE>LPCTSTR lpstrExec</CODE> A string pointer containinig an <B>SQL select</B> statement.</P>
+<P><CODE><span class='cpp-keyword'>int</span> nOption</CODE> An integer that
+defines the access mode. The values are as follows:</P>
+<P><CODE>CADORecordset::openUnknown</CODE></P>
+<P><CODE>CADORecordset::openQuery</CODE></P>
+<P><CODE>CADORecordset::openTable</CODE></P>
+<P><CODE>CADORecordset::openStoredProc</CODE></P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.</P>
+<P><A href="#TheSample01">See
+sample</A></P>
+
+
+<P><A name=ExecuteRecordset><B>
+CADORecordset::Execute
+</B></A></P>
+<P>The <CODE>Execute</CODE> function opens a recordset</P>
+<PRE>
+BOOL Execute(CADOCommand* pCommand);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>CADOCommand* pCommand</CODE> A CADOCommand pointer.</P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.</P>
+<P><A href="#TheSample02">See
+sample</A></P>
+
+
+<P><A name=GetQuery><B>CADORecordset::GetQuery;</B></A></P>
+<P><CODE>GetQuery</CODE> returns the string containing the <B>SQL Select</B>
+statement.</P><PRE>CString GetQuery();</PRE>
+
+<P><A name=SetQuery><B>
+CADORecordset::SetQuery
+</B></A></P>
+<PRE>
+<span class='cpp-keyword'>void</span> SetQuery(LPCSTR strQuery);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR strQuery</CODE> A string pointer containinig an <B>SQL
+Select</B> statement.</P>
+
+</blockquote>
+
+<P><A name=RecordBinding><B>
+CADORecordset::RecordBinding
+</B></A></P>
+<PRE>BOOL RecordBinding(CADORecordBinding pAdoRecordBinding);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>CADORecordBinding pAdoRecordBinding</CODE></P>
+</blockquote>
+<P><A name=GetRecordCount><B>CADORecordset::GetRecordCount</B></A></P>
+<P><CODE>GetRecordCount</CODE> returns the number of records accessed in the
+recordset</P><PRE>DWORD GetRecordCount();</PRE>
+<P><A href="#TheSample01">See
+sample</A></P>
+
+<P><A name=IsOpenRecordset><B>
+CADORecordset::IsOpen
+</B></A></P>
+<P><CODE>IsOpen</CODE> determines if the recordset is open.</P>
+<PRE>
+BOOL IsOpen();
+</PRE>
+<P><B>Return Value</B></P>
+<P>This member function returns <CODE>TRUE</CODE>
+if the recordset has not been closed.</P>
+
+<P><A name=CloseRecordset><B>
+CADORecordset::Close
+</B></A></P>
+<P>The <CODE>Close</CODE> function closes the recordset.</P>
+<PRE>
+<span class='cpp-keyword'>void</span> Close();
+</PRE>
+<P><A href="#TheSample01">See
+sample</A></P>
+
+<P><A name=GetFieldCount><B>
+CADORecordset::GetFieldCount
+</B></A></P>
+<P>The <B>GetFieldCount</B> function returns the number of fields in the
+recordset.</P>
+<PRE>
+<span class='cpp-keyword'>long</span> GetFieldCount();
+</PRE>
+
+<P><A name=GetFieldValue><B>
+CADORecordset::GetFieldValue
+</B></A></P>
+<P>The <CODE>GetFieldValue</CODE> function returns a value that contains the value of a field.</P>
+<PRE>
+BOOL GetFieldValue(LPCTSTR lpFieldName, <span class='cpp-keyword'>int</span> nValue);
+BOOL GetFieldValue(<span class='cpp-keyword'>int</span> nIndex, <span class='cpp-keyword'>int</span> nValue);
+BOOL GetFieldValue(LPCTSTR lpFieldName, <span class='cpp-keyword'>long</span> lValue);
+BOOL GetFieldValue(<span class='cpp-keyword'>int</span> nIndex, <span class='cpp-keyword'>long</span> lValue);
+BOOL GetFieldValue(LPCTSTR lpFieldName, <span class='cpp-keyword'>unsigned</span> <span class='cpp-keyword'>long</span> ulValue);
+BOOL GetFieldValue(<span class='cpp-keyword'>int</span> nIndex, <span class='cpp-keyword'>unsigned</span> <span class='cpp-keyword'>long</span> ulValue);
+BOOL GetFieldValue(LPCTSTR lpFieldName, <span class='cpp-keyword'>double</span> dbValue);
+BOOL GetFieldValue(<span class='cpp-keyword'>int</span> nIndex, <span class='cpp-keyword'>double</span> dbValue);
+BOOL GetFieldValue(LPCTSTR lpFieldName, CString strValue, CString strDateFormat = _T(&quot;&quot;));
+BOOL GetFieldValue(<span class='cpp-keyword'>int</span> nIndex, CString strValue, CString strDateFormat = _T(&quot;&quot;));
+BOOL GetFieldValue(LPCTSTR lpFieldName, COleDateTime time);
+BOOL GetFieldValue(<span class='cpp-keyword'>int</span> nIndex, COleDateTime time);
+BOOL GetFieldValue(LPCTSTR lpFieldName, <span class='cpp-keyword'>bool</span> bValue);
+BOOL GetFieldValue(<span class='cpp-keyword'>int</span> nIndex, <span class='cpp-keyword'>bool</span> bValue);
+BOOL GetFieldValue(LPCTSTR lpFieldName, COleCurrency cyValue);
+BOOL GetFieldValue(<span class='cpp-keyword'>int</span> nIndex, COleCurrency cyValue);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR lpFieldName</CODE> A pointer to a string that contains the name
+of a field.</P>
+<P><CODE><span class='cpp-keyword'>int</span> nIndex</CODE> A zero-based index of
+the field in the recordset’s Fields collection, for lookup by index.</P>
+<P><CODE><span class='cpp-keyword'>double</span> dbValue</CODE> A reference to a
+object that will store the value of a field.</P>
+<P><CODE><span class='cpp-keyword'>long</span> lValue</CODE> A reference to a
+object that will store the value of a field.</P>
+<P><CODE><span class='cpp-keyword'>unsigned</span> <span class='cpp-keyword'>long</span> ulValue</CODE> A reference to a
+object that will store the value of a field.</P>
+<P><CODE><span class='cpp-keyword'>int</span> nValue</CODE> A reference to a
+object that will store the value of a field.</P>
+<P><CODE>CString strValue</CODE> A reference to a object that will store the
+value of a field.</P>
+<P><CODE>CString strDateFormat</CODE> A formatting time string similar to the
+<CODE>strftime</CODE> formatting string. The more common are:</P>
+<UL>
+  <LI><B>%a</B>&nbsp;&nbsp; Abbreviated weekday name
+  <LI><B>%A</B>&nbsp;&nbsp; Full weekday name
+  <LI><B>%b</B>&nbsp;&nbsp; Abbreviated month name
+  <LI><B>%B</B>&nbsp;&nbsp; Full month name
+  <LI><B>%c</B>&nbsp;&nbsp; Date and time representation appropriate for locale
+  <LI><B>%d</B>&nbsp;&nbsp; Day of month as decimal number (01 - 31)
+  <LI><B>%H</B>&nbsp;&nbsp; Hour in 24-hour format (00 - 23)
+  <LI><B>%I</B>&nbsp;&nbsp; Hour in 12-hour format (01 - 12)
+  <LI><B>%j</B>&nbsp;&nbsp; Day of year as decimal number (001 - 366)
+  <LI><B>%m</B>&nbsp;&nbsp; Month as decimal number (01 - 12)
+  <LI><B>%M</B>&nbsp;&nbsp; Minute as decimal number (00 - 59)
+  <LI><B>%p</B>&nbsp;&nbsp; Current locale’s A.M./P.M. indicator for 12-hour clock
+  <LI><B>%S</B>&nbsp;&nbsp; Second as decimal number (00 - 59)
+  <LI><B>%U</B>&nbsp;&nbsp; Week of year as decimal number, with Sunday as first day of week (00 - 53)
+  <LI><B>%w</B>&nbsp;&nbsp; Weekday as decimal number (0 - 6; Sunday is 0)
+  <LI><B>%W</B>&nbsp;&nbsp; Week of year as decimal number, with Monday as first day of week (00 - 53)
+  <LI><B>%x</B>&nbsp;&nbsp; Date representation for current locale
+  <LI><B>%X</B>&nbsp;&nbsp; Time representation for current locale
+  <LI><B>%y</B>&nbsp;&nbsp; Year without century, as decimal number (00 - 99)
+  <LI><B>%Y</B>&nbsp;&nbsp; Year with century, as decimal number </LI></UL>
+<P><CODE>COleDateTime time</CODE> A reference to a object that will store the
+value of a field.</P>
+<P><CODE><span class='cpp-keyword'>bool</span> bValue</CODE> A reference to a object that will store the
+value of a field.</P>
+<P><CODE>COleCurrency cyValue</CODE> A reference to a object that will store the
+value of a field.</P>
+
+</blockquote>
+
+<P><A href="#TheSample01">See
+sample</A></P>
+
+<P><A name=IsFieldNull><B>
+CADORecordset::IsFieldNull
+</B></A></P>
+<P>The <CODE>IsFieldNull</CODE> function determines if the field data is
+null.</P>
+<PRE>
+BOOL IsFieldNull(LPCTSTR lpFieldName);
+BOOL IsFieldNull(<span class='cpp-keyword'>int</span> nIndex);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR lpFieldName</CODE> A pointer to a string that contains the name
+of a field.</P>
+<P><CODE><span class='cpp-keyword'>int</span> nIndex</CODE> A zero-based index of
+the field in the recordset’s Fields collection, for lookup by index.</P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>This function returns <CODE>TRUE</CODE> if the field data is Null.</P>
+
+<P><A name=IsFieldEmpty><B>
+CADORecordset::IsFieldEmpty
+</B></A> </P>
+<P>The <CODE>IsFieldEmpty</CODE> function determines if the field data is
+Empty.</P>
+<PRE>
+BOOL IsFieldEmpty(LPCTSTR lpFieldName);
+BOOL IsFieldEmpty(<span class='cpp-keyword'>int</span> nIndex);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR lpFieldName</CODE> A pointer to a string that contains the name
+of a field.</P>
+<P><CODE><span class='cpp-keyword'>int</span> nIndex</CODE> A zero-based index of
+the field in the recordset’s Fields collection, for lookup by index.</P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>This function returns <CODE>TRUE</CODE> if the
+field data is Empty.</P>
+
+<P><A name=IsEof><B>
+CADORecordset::IsEof
+</B></A></P>
+<PRE>BOOL IsEof();</PRE>
+<P><B>Return Value</B></P>
+<P>This function returns <CODE>TRUE</CODE> if the
+current position contains no records.</P>
+<P><A href="#TheSample01">See
+sample</A></P>
+<P><A name=IsBof><B>
+CADORecordset::IsBof
+</B></A></P>
+<PRE>BOOL IsBof();</PRE>
+<P><B>Return Value</B></P>
+<P>This function returns <CODE>TRUE</CODE> if the
+current position is the bottom of the recordset.</P>
+<P><A name=Move><B>
+CADORecordset::MoveFirst<BR>
+CADORecordset::MoveNext<BR>
+CADORecordset::MovePrevious<BR>
+CADORecordset::MoveLast
+</A></B></A></P>
+<P>This functions make the First/Next/Previous/or Last record of the recordset
+the current record.</P><PRE><span class='cpp-keyword'>void</span> MoveFirst();
+<span class='cpp-keyword'>void</span> MoveNext();
+<span class='cpp-keyword'>void</span> MovePrevious();
+<span class='cpp-keyword'>void</span> MoveLast();
+</PRE>
+<P><A href="#TheSample01">See
+sample</A></P>
+<P><A name=AbsolutePage><B>
+CADORecordset::GetAbsolutePage<BR>
+CADORecordset::SetAbsolutePage
+</B></A></P>
+<P>Indicates on which page the current record resides.</P><PRE><span class='cpp-keyword'>long</span> GetAbsolutePage();
+<span class='cpp-keyword'>void</span> SetAbsolutePage(<span class='cpp-keyword'>int</span> nPage);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE><span class='cpp-keyword'>int</span> nPage</CODE> The number of the page starting from 1.</P>
+</blockquote>
+<P><A href="#Sample5">See sample</A></P>
+
+<P><A name=GetPageCount><B>
+CADORecordset::GetPageCount
+</B></A></P>
+<P><CODE>GetPageCount</CODE> returns the number of pages in the recordset.</P><PRE><span class='cpp-keyword'>long</span> GetPageCount();</PRE>
+<P><A href="#Sample5">See sample</A></P>
+
+<P><A name=PageSize><B>
+CADORecordset::GetPageSize<BR>
+CADORecordset::SetPageSize
+</B></A></P>
+<P>Indicates the number of records per page.</P><PRE><span class='cpp-keyword'>long</span> GetPageSize();
+<span class='cpp-keyword'>void</span> SetPageSize(<span class='cpp-keyword'>int</span> nSize);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE><span class='cpp-keyword'>int</span> nSize</CODE> Set the number of records per page.</P>
+</blockquote>
+<P><B>For example</B></P>
+<PRE><A name=Sample5>
+CADORecordset pRs(&amp;pDb);
+
+<span class='cpp-keyword'>if</span>(pRs.Open(&quot;MyBigTable&quot;, CADORecordset::openTable))
+{
+	pRs.SetPageSize(<span class='cpp-literal'>5</span>);
+	<span class='cpp-keyword'>for</span>(<span class='cpp-keyword'>register</span> <span class='cpp-keyword'>int</span> nPageIndex = <span class='cpp-literal'>1</span>; nPageIndex &lt;= pRs.GetPageCount(); nPageIndex++)
+	{
+		pRs.SetAbsolutePage(nPageIndex);
+		<span class='cpp-keyword'>for</span>(<span class='cpp-keyword'>register</span> <span class='cpp-keyword'>int</span> nRecNumber = <span class='cpp-literal'>0</span>; nRecNumber &lt; pRs.GetPageSize(); nRecNumber++)
+		{
+			<span class='cpp-keyword'>long</span> lVal;
+			pRs.GetFieldValue(&lt;&gt;&quot;ID&quot;, lVal);
+			pRs.MoveNext();
+
+			<span class='cpp-keyword'>if</span>(pRs.IsEof())
+				<span class='cpp-keyword'>break</span>;
+		}
+	}
+	pRs.Close();
+}
+</PRE>
+
+
+<P></a><A name=AbsolutePosition><B>
+CADORecordset::GetAbsolutePosition<BR>
+CADORecordset::SetAbsolutePosition
+</B></A></P>
+<P>Indicates the position of the record in the recordset.</P><PRE><span class='cpp-keyword'>long</span> GetAbsolutePosition();
+<span class='cpp-keyword'>void</span> SetAbsolutePosition(<span class='cpp-keyword'>int</span> nPosition);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE><span class='cpp-keyword'>int</span> nPosition</CODE> Move to the
+position in the recordset.</P>
+<P>GetAbsolutePosition() can returns the position of the record or one of the
+following values:</P>
+<P><CODE>CADORecordset::positionUnknown</CODE></P>
+<P><CODE>CADORecordset::positionBOF</CODE></P>
+<P><CODE>CADORecordset::positionEOF</CODE></P>
+
+</blockquote>
+
+<P><A name=GetFieldInfo><B>
+CADORecordset::GetFieldInfo
+</B></A></P>
+<P><CODE>GetFieldInfo</CODE> returns the attributes of a field.</P>
+<PRE>
+BOOL GetFieldInfo(LPCTSTR lpFieldName, CAdoFieldInfo* fldInfo);
+BOOL GetFieldInfo(<span class='cpp-keyword'>int</span> nIndex, CAdoFieldInfo* fldInfo);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR lpFieldName</CODE> A pointer to a string that contains the name
+of a field.</P>
+<P><CODE><span class='cpp-keyword'>int</span> nIndex</CODE> A zero-based index of
+the field in the recordset's Fields collection, for lookup by index.</P>
+<P><CODE>CAdoFieldInfo* fldInfo</CODE> A struct that returns the field
+attributes.</P><PRE><span class='cpp-keyword'>struct</span> CADOFieldInfo
+{
+	<span class='cpp-keyword'>char</span> m_strName[<span class='cpp-literal'>30</span>];
+	<span class='cpp-keyword'>short</span> m_nType;
+	<span class='cpp-keyword'>long</span> m_lSize;
+	<span class='cpp-keyword'>long</span> m_lDefinedSize;
+	<span class='cpp-keyword'>long</span> m_lAttributes;
+	<span class='cpp-keyword'>short</span> m_nOrdinalPosition;
+	BOOL m_bRequired;
+	BOOL m_bAllowZeroLength;
+	<span class='cpp-keyword'>long</span> m_lCollatingOrder;
+};
+</PRE>
+<P>The element <CODE>m_nType</CODE> of the class <CODE>CADOFieldInfo</CODE> can
+be one of the following values</P>
+<A name=GetFieldInfoType>
+<P><CODE>CADORecordset::typeEmpty</CODE></P>
+<P><CODE>CADORecordset::typeTinyInt</CODE></P>
+<P><CODE>CADORecordset::typeSmallInt</CODE></P>
+<P><CODE>CADORecordset::typeInteger</CODE></P>
+<P><CODE>CADORecordset::typeBigInt</CODE></P>
+<P><CODE>CADORecordset::typeUnsignedTinyInt</CODE></P>
+<P><CODE>CADORecordset::typeUnsignedSmallInt</CODE></P>
+<P><CODE>CADORecordset::typeUnsignedInt</CODE></P>
+<P><CODE>CADORecordset::typeUnsignedBigInt</CODE></P>
+<P><CODE>CADORecordset::typeSingle</CODE></P>
+<P><CODE>CADORecordset::typeDouble</CODE></P>
+<P><CODE>CADORecordset::typeCurrency</CODE></P>
+<P><CODE>CADORecordset::typeDecimal</CODE></P>
+<P><CODE>CADORecordset::typeNumeric</CODE></P>
+<P><CODE>CADORecordset::typeBoolean</CODE></P>
+<P><CODE>CADORecordset::typeError</CODE></P>
+<P><CODE>CADORecordset::typeUserDefined</CODE></P>
+<P><CODE>CADORecordset::typeVariant</CODE></P>
+<P><CODE>CADORecordset::typeIDispatch</CODE></P>
+<P><CODE>CADORecordset::typeIUnknown</CODE></P>
+<P><CODE>CADORecordset::typeGUID</CODE></P>
+<P><CODE>CADORecordset::typeDate</CODE></P>
+<P><CODE>CADORecordset::typeDBDate</CODE></P>
+<P><CODE>CADORecordset::typeDBTime</CODE></P>
+<P><CODE>CADORecordset::typeDBTimeStamp</CODE></P>
+<P><CODE>CADORecordset::typeBSTR</CODE></P>
+<P><CODE>CADORecordset::typeChar</CODE></P>
+<P><CODE>CADORecordset::typeVarChar</CODE></P>
+<P><CODE>CADORecordset::typeLongVarChar</CODE></P>
+<P><CODE>CADORecordset::typeWChar</CODE></P>
+<P><CODE>CADORecordset::typeVarWChar</CODE></P>
+<P><CODE>CADORecordset::typeLongVarWChar</CODE></P>
+<P><CODE>CADORecordset::typeBinary</CODE></P>
+<P><CODE>CADORecordset::typeVarBinary</CODE></P>
+<P><CODE>CADORecordset::typeLongVarBinary</CODE></P>
+<P><CODE>CADORecordset::typeChapter</CODE></P>
+<P><CODE>CADORecordset::typeFileTime</CODE></P>
+<P><CODE>CADORecordset::typePropVariant</CODE></P>
+<P><CODE>CADORecordset::typeVarNumeric</CODE></P>
+<P><CODE>CADORecordset::typeArray</CODE></P>
+  </blockquote>
+</A>
+<P><B>For example</B></P><PRE><A name=Sample3>
+CADORecordset prs(&amp;m_pDb);
+<span class='cpp-keyword'>if</span>(prs.Open(&quot;Clients&quot;, CADORecordset::openTable))
+{
+	CADOFieldInfo pInfo;
+
+	prs.GetFieldInfo(&quot;Description&quot;, &amp;pInfo);
+
+	<span class='cpp-keyword'>if</span>(pInfo.m_nType == CADORecordset::typeVarChar)
+		AfxMessageBox(&quot;The type Description Field Is VarChar&quot;);
+}
+
+
+<span class='cpp-keyword'>if</span>(prs.Open(&quot;TestTable&quot;, CADORecordset::openTable))
+{
+    CADOFieldInfo* fInfo = <span class='cpp-keyword'>new</span> CADOFieldInfo;
+
+    prs.GetFieldInfo(<span class='cpp-literal'>0</span>, fInfo);
+    CString strFieldName = fInfo-&gt;m_strName;
+    prs.Close();
+}
+
+</PRE>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.
+
+<P></A><A name=GetChunk><B>
+CADORecordset::GetChunk
+</B></A></P>
+<P>This function returns all, or a portion, of the contents of a large text or
+binary data Field object.</P><PRE>BOOL GetChunk(LPCTSTR lpFieldName, CString&amp; strValue);
+BOOL GetChunk(<span class='cpp-keyword'>int</span> nIndex, CString&amp; strValue);
+BOOL GetChunk(LPCTSTR lpFieldName, LPVOID pData);
+BOOL GetChunk(<span class='cpp-keyword'>int</span> nIndex, LPVOID pData);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR lpFieldName</CODE> A pointer to a string that contains the name
+of a field.</P>
+<P><CODE><span class='cpp-keyword'>int</span> nIndex</CODE> A zero-based index of
+the field in the recordset's Fields collection, for lookup by index.</P>
+<P><CODE>CString&amp; strValue</CODE> A string pointer that contains the data
+that returns from the object.</P>
+<P><CODE>LPVOID pData</CODE> A pointer that contains the data that returns from
+the object.</P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.
+
+<P><A href="#Sample4">See
+sample</A></P>
+<P><A name=AppendChunk><B>
+CADORecordset::AppendChunk
+</B></A></P>
+<P>This function appends data to a large text or binary data Field.</P><PRE>BOOL AppendChunk(LPCTSTR lpFieldName, LPVOID lpData, UINT nBytes);
+BOOL AppendChunk(<span class='cpp-keyword'>int</span> nIndex, LPVOID lpData, UINT nBytes);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR lpFieldName</CODE> A pointer to a string that contains the name
+of a field.</P>
+<P><CODE><span class='cpp-keyword'>int</span> nIndex</CODE> A zero-based index of
+the field in the recordset's Fields collection, for lookup by index.</P>
+<P><CODE>LPVOID lpData</CODE> A pointer that contains the data to append to the
+object.</P>
+<P><CODE>UINT nBytes</CODE> A UINT that indicates the size of the data to be
+inserted.</P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.
+
+<P><B>For example</B></P><PRE><A name=Sample4>
+<B><span class='cpp-comment'>//Sample of AppendChunck</B></span>
+prs.AddNew();
+prs.SetFieldValue(&quot;ID&quot;, <span class='cpp-literal'>5</span>);
+prs.SetFieldValue(&quot;Description&quot;, &quot;Client <span class='cpp-literal'>05</span>&quot;);
+prs.SetFieldValue(&quot;Checker&quot;, <span class='cpp-literal'>1</span>);
+prs.AppendChunk(&quot;Document&quot;, &quot;This Document is the story of Bob and his Friends...&quot;, <span class='cpp-literal'>37</span>);
+prs.Update();
+
+<B><span class='cpp-comment'>//Sample of GetChunck</B></span>
+<span class='cpp-keyword'>char</span> data[<span class='cpp-literal'>1024</span>];
+prs.GetChunk(&quot;Document&quot;, (LPVOID)&amp;data);
+
+</PRE>
+<P></A><A name=GetString><B>
+CADORecordset::GetString
+</B></A></P>
+<P>This function returns a recordset as a string.</P>
+<PRE>
+CString GetString(LPCTSTR lpCols, LPCTSTR lpRows, LPCTSTR lpNull, <span class='cpp-keyword'>long</span> numRows = <span class='cpp-literal'>0</span>);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR lpCols</CODE> A columns delimiter.</P>
+<P><CODE>LPCTSTR lpRows</CODE> A rows delimiter.</P>
+<P><CODE>LPCTSTR lpNull</CODE> A expression that represents a null value.</P>
+<P><CODE><span class='cpp-keyword'>long</span> numRows</CODE> The number of rows
+affected.</P>
+</blockquote>
+<P><A name=GetLastErrorRS><B>
+CADORecordset::GetLastError
+</B></A></P>
+<P>The <CODE>GetLastError</CODE> function returns the last error code.</P><PRE>DWORD GetLastError();
+</PRE>
+<P><A name=GetLastErrorStringRS><B>
+CADORecordset::GetLastErrorString
+</B></A></P>
+<P>The <CODE>GetLastErrorString</CODE> function returns the last error string.</P><PRE>CString GetLastErrorString();
+</PRE><A name=AddNew><B>CADORecordset::AddNew </B></A>
+<P>The <CODE>AddNew</CODE> function adds a record in the open recordset.</P>
+<PRE>
+BOOL AddNew();
+</PRE>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.
+
+<P><A href="#Sample1">See
+sample</A></P>
+<P><A name=Edit><B>
+CADORecordset::Edit
+</B></A></P>
+<P>The <CODE>Edit</CODE> function allow changes to the current record in the
+open recordset.</P>
+<PRE>
+<span class='cpp-keyword'>void</span> Edit();
+</PRE>
+<P><A name=Delete><B>
+CADORecordset::Delete
+</B></A></P>
+<P>The <CODE>Delete</CODE> function deletes the current record in the open
+recordset.</P><PRE>BOOL Delete();
+</PRE>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.
+
+<P><A name=Update><B>
+CADORecordset::Update
+</B></A></P>
+<P>The <CODE>Update</CODE> function updates the pending updates in the current
+record.</P>
+<PRE>
+BOOL Update();
+</PRE>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.
+<P><A href="#Sample1">See
+sample</A></P>
+
+<P><A name=CancelUpdate><B>
+CADORecordset::CancelUpdate
+</B></A></P>
+<P>The <CODE>CancelUpdate</CODE> function cancels any pending update in the open
+recordset.</P>
+<PRE>
+<span class='cpp-keyword'>void</span> CancelUpdate();
+</PRE>
+
+<P><A name=SetFieldValue><B>
+CADORecordset::SetFieldValue
+</B></A></P>
+<P>The <CODE>SetFieldValue</CODE> function sets the value of a field.</P>
+<PRE>
+BOOL SetFieldValue(<span class='cpp-keyword'>int</span> nIndex, <span class='cpp-keyword'>int</span> nValue);
+BOOL SetFieldValue(LPCTSTR lpFieldName, <span class='cpp-keyword'>int</span> nValue);
+BOOL SetFieldValue(<span class='cpp-keyword'>int</span> nIndex, <span class='cpp-keyword'>long</span> lValue);
+BOOL SetFieldValue(LPCTSTR lpFieldName, <span class='cpp-keyword'>long</span> lValue);
+BOOL SetFieldValue(<span class='cpp-keyword'>int</span> nIndex, <span class='cpp-keyword'>unsigned</span> <span class='cpp-keyword'>long</span> ulValue);
+BOOL SetFieldValue(LPCTSTR lpFieldName, <span class='cpp-keyword'>unsigned</span> <span class='cpp-keyword'>long</span> ulValue);
+BOOL SetFieldValue(<span class='cpp-keyword'>int</span> nIndex, <span class='cpp-keyword'>double</span> dblValue);
+BOOL SetFieldValue(LPCTSTR lpFieldName, <span class='cpp-keyword'>double</span> dblValue);
+BOOL SetFieldValue(<span class='cpp-keyword'>int</span> nIndex, CString strValue);
+BOOL SetFieldValue(LPCTSTR lpFieldName, CString strValue);
+BOOL SetFieldValue(<span class='cpp-keyword'>int</span> nIndex, COleDateTime time);
+BOOL SetFieldValue(LPCTSTR lpFieldName, COleDateTime time);
+BOOL SetFieldValue(<span class='cpp-keyword'>int</span> nIndex, <span class='cpp-keyword'>bool</span> bValue);
+BOOL SetFieldValue(LPCTSTR lpFieldName, <span class='cpp-keyword'>bool</span> bValue);
+BOOL SetFieldValue(<span class='cpp-keyword'>int</span> nIndex, COleCurrency cyValue);
+BOOL SetFieldValue(LPCTSTR lpFieldName, COleCurrency cyValue);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR lpFieldName</CODE> A pointer to a string that contains the name
+of a field.</P>
+<P><CODE><span class='cpp-keyword'>int</span> nIndex</CODE> A zero-based index of
+the field in the recordset’s Fields collection, for lookup by index.</P>
+<P><CODE><span class='cpp-keyword'>int</span> nValue</CODE> A pointer to a object
+containing the value of the field.</P>
+<P><CODE><span class='cpp-keyword'>long</span> lValue</CODE> A pointer to a object
+containing the value of the field.</P>
+<P><CODE><span class='cpp-keyword'>unsigned</span> <span class='cpp-keyword'>long</span> lValue</CODE> A pointer to a object
+containing the value of the field.</P>
+<P><CODE><span class='cpp-keyword'>double</span> dbValue</CODE> A pointer to a
+object containing the value of the field.</P>
+<P><CODE>CString strValue</CODE> A pointer to a object containing the value of
+the field.</P>
+<P><CODE>COleDateTime time</CODE> A pointer to a object containing the value of
+the field.</P>
+<P><CODE><span class='cpp-keyword'>bool</span> bValue</CODE> A pointer to a object containing the value of
+the field.</P>
+<P><CODE>COleCurrency cyValue</CODE> A pointer to a object containing the value of
+the field.</P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.
+
+<P><A href="#Sample1">See
+sample</A></P>
+<P><B>For example</B></P><PRE><A name=Sample1>
+CADORecordset prs(&amp;m_pAdoDb);
+prs.Open(&quot;Test&quot;, openTable);
+
+prs.AddNew();
+prs.SetFieldValue(<span class='cpp-literal'>0</span>, &quot;dataU&quot;);
+prs.SetFieldValue(<span class='cpp-literal'>1</span>, &quot;data01&quot;);
+prs.SetFieldValue(<span class='cpp-literal'>2</span>, (<span class='cpp-keyword'>long</span>)<span class='cpp-literal'>51000</span>);
+COleDateTime time = COleDateTime(<span class='cpp-literal'>2001</span>,<span class='cpp-literal'>6</span>,<span class='cpp-literal'>15</span>, <span class='cpp-literal'>10</span>, <span class='cpp-literal'>8</span>, <span class='cpp-literal'>30</span>);
+prs.SetFieldValue(<span class='cpp-literal'>3</span>, time);
+prs.Update();
+</PRE>
+
+<P></A><A name=Find>
+<B>CADORecordset::Find
+</B></A></P>
+<P>The <CODE>Find</CODE> function locates a string from the current position in
+the open recordset using a operator of comparison.</P>
+<PRE>
+BOOL Find(LPCTSTR lpFind, <span class='cpp-keyword'>int</span> nSearchDirection = CADORecordset::searchForward);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR lpFind</CODE> A string expression used to locate the
+record.</P>
+<P><CODE><span class='cpp-keyword'>int</span> nSearchDirection</CODE> A value that
+indicate the type of operation. The possible values are: </P>
+<P><CODE>CADORecordset::searchForward</CODE> Find the
+next location</P>
+<P><CODE>CADORecordset::searchBackward</CODE> Find the
+previous location</P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.
+
+<P><B>For example</B></P><PRE><A name=Sample2>
+<span class='cpp-keyword'>if</span>(prs.Find(&quot;Field0 LIKE <span class='cpp-string'>'dataU%'</span>&quot;))
+{
+  prs.Delete();
+  <span class='cpp-keyword'>while</span>(prs.FindNext())
+    prs.Delete();
+}
+</PRE>
+
+<P></A><A name=FindFirst><B>CADORecordset::FindFirst </B></A></P>
+<P>The <CODE>FindFirst</CODE> function locates a string from the begin in the
+open recordset using a operator of comparison.</P><PRE>BOOL FindFirst(LPCTSTR lpFind);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR lpFind</CODE> A string expression used to locate the
+record.</P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.
+
+<P><A name=FindNext><B>
+CADORecordset::FindNext
+</B></A></P>
+<P>The <CODE>FindNext</CODE> function locates a string from the last position in
+the open recordset using the operator of comparison used in
+<CODE>FindFirst</CODE> or <B><CODE>Find</CODE></B> functions.</P>
+<PRE>
+BOOL FindNext();
+</PRE>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.
+
+<P><A href="#Sample2">See
+sample</A></P>
+<P><A name=GetBookmark><B>
+CADORecordset::GetBookmark
+</B></A></P>
+<P>The <CODE>GetBookmark</CODE> function saves the position of the current
+record.</P><PRE>BOOL GetBookmark();
+</PRE>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.
+
+<P><A name=SetBookmark><B>
+CADORecordset::SetBookmark
+</B></A></P>
+<P>The <CODE>SetBookmark</CODE> function returns to the position saved at any
+time.</P>
+<PRE><span class='cpp-keyword'>void</span> SetBookmark();
+</PRE>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was
+successfully.</P>
+
+<P><A name=SetFilter><B>
+CADORecordset::SetFilter
+</B></A></P>
+<P>The <CODE>SetFilter</CODE> Indicates a filter for data in a open <CODE>Recordset</CODE>.</P>
+<PRE>
+BOOL SetFilter(LPCTSTR strFilter);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR strFilter</CODE> a string compose by one or more individual
+clauses concatenated with <B>AND</B> or <B>OR</B> operators.</P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.</P>
+<P><B>For example</B></P><PRE>CADORecordset m_pRs;
+
+m_pRs = CADORecordset(&amp;m_pDb);
+
+<span class='cpp-keyword'>if</span>(m_pRs.Open(&quot;tblTest&quot;, CADORecordset::openTable))
+{
+	CString strFilter = _T(&quot;LastName = <span class='cpp-string'>'Smith'</span> And Age &gt; <span class='cpp-literal'>30</span>&quot;);
+	m_pRs.SetFilter(strFilter);
+	.
+	.
+	m_pRs.Close();
+}
+</PRE>
+
+<P><A name=SetSort><B>
+CADORecordset::SetSort
+</B></A></P>
+<P>The <CODE>SetSort</CODE> function sets the sort order for records in a CADORecordset object.</P>
+<PRE>
+BOOL SetSort(LPCTSTR lpstrCriteria);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR lpstrCriteria</CODE> A String that contains the <b>ORDER BY</b> clause of an SQL statement </P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.</P>
+
+
+<P><A name=GetRecordset><B>
+CADORecordset::GetRecordset
+</B></A></P>
+<P>The <CODE>GetRecordset</CODE> function returns a pointer to an open
+recordset.</P>
+<PRE>
+_RecordsetPtr GetRecordset();
+</PRE>
+
+<P><A name=GetActiveConnection><B>
+CADORecordset::GetActiveConnection
+</B></A></P>
+<P>The <CODE>GetActiveConnection</CODE> returns the active connection.</P>
+<PRE>
+_ConnectionPtr GetActiveConnection();
+</PRE>
+
+<P><A name=Clone><B>
+CADORecordset::Clone
+</B></A></P>
+<P>The <CODE>Clone</CODE> function Creates a duplicate <CODE>CADORecordset</CODE> object from an existing <CODE>CADORecordset</CODE>
+object.</P>
+<PRE>
+BOOL Clone(CADORecordset pAdoRecordset);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>CADORecordset pAdoRecordset</CODE> is an existing
+<CODE>CADORecordset</CODE> Object.</P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was
+successfully.</P>
+<P><B>For example</B></P><PRE>CADORecordset m_pRs; <span class='cpp-comment'>//Original Recordset</span>
+CADORecordset RS;   <span class='cpp-comment'>//Duplicate Recordset</span>
+
+m_pRs = CADORecordset(&amp;m_pDb);
+
+<span class='cpp-keyword'>if</span>(m_pRs.Open(&quot;tblTest&quot;, CADORecordset::openTable)) <span class='cpp-comment'>//Open the Original </span>
+Recordset
+{
+	m_pRs.Clone(RS); <span class='cpp-comment'>//Create the clone of the original Recordset</span>
+
+	<span class='cpp-keyword'>long</span> lClonRecs = RS.GetRecordCount();
+	<span class='cpp-keyword'>long</span> lOrigRecs = m_pRs.GetRecordCount();
+	.
+	.
+	RS.Close();
+	m_pRs.Close();
+}
+</PRE>
+
+<P><A name=SaveAsXML>
+CADORecordset::SaveAsXML
+</A></P>
+<P>The <CODE>SaveAsXML</CODE> function Save the open recordset in a file with XML Format.</P>
+<PRE>
+BOOL SaveAsXML(LPCTSTR lpstrXMLFile);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR strXMLFile</CODE> a string that indicate the complete path name
+of the file where the Recordset to be saved.</P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was
+successfully.</P>
+
+<P><A name=OpenXML><B>
+CADORecordset::OpenXML
+</B></A></P>
+<P>The <CODE>OpenXML</CODE> function Open a XML File Format in a recordset.</P>
+<PRE>
+BOOL OpenXML(LPCTSTR lpstrXMLFile);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>LPCTSTR strXMLFile</CODE> a string that indicate the complete path name
+of the XML file to be opened.</P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was
+successfully.</P>
+<P><B>For example</B></P><PRE>CADORecordset pRs;
+
+<span class='cpp-keyword'>if</span>(prs.OpenXML(&quot;C:\\My.XML&quot;))
+{
+	CString strClient = _T(&quot;&quot;);
+	<span class='cpp-keyword'>double</span> dblVal = <span class='cpp-literal'>0</span>;
+	<span class='cpp-keyword'>long</span> lrecs = prs.GetRecordCount();
+
+	<span class='cpp-keyword'>if</span>(!prs.IsEof())
+		prs.MoveFirst();
+
+	prs.GetFieldValue(&quot;Budget&quot;, dblVal);
+	prs.GetFieldValue(&quot;ClientName&quot;, strClient);
+
+	prs.Close();
+}
+
+</PRE>
+<H2>Sample 01:</H2><PRE><A name=TheSample01></A>
+CADODatabase pAdoDb;
+CString strConnection = &quot;&quot;;
+
+strConnection = _T(&quot;Provider=MSDASQL;PersistSecurityInfo=False;Trusted_Connection=Yes
+Data Source=Access Sql Server;catalog=sampledb&quot;);
+
+<span class='cpp-keyword'>if</span>(pAdoDb.Open((LPCTSTR)strConnection))
+{
+	CString strQry = _T(&quot;&quot;);
+	<span class='cpp-keyword'>int</span> numRecords;
+
+	strQry.Format(_T(&quot;sp_StoreClientFields_ps <span class='cpp-string'>'%s'</span>, %d&quot;), (LPCTSTR)strParam1, nParam2);
+
+	CADORecordset pRs(&amp;pAdoDb);
+
+	<span class='cpp-keyword'>if</span>(!pRs.Open((LPCTSTR)strQry))
+		<span class='cpp-keyword'>return</span> FALSE;
+
+	numRecords = pRs.GetRecordCount();
+	<span class='cpp-keyword'>while</span>(!pRs.IsEof())
+	{
+	  CString strVal = _T(&quot;&quot;);
+	  <span class='cpp-keyword'>int</span> nVal = <span class='cpp-literal'>0</span>;
+	  <span class='cpp-comment'>//Get Numeric Field Value</span>
+	  pRs.GetFieldValue(&quot;NumField1&quot;, nVal)
+
+	  <span class='cpp-comment'>//Get String Field Data</span>
+	  pRs.GetFieldValue(&quot;StrField..&quot;, strVal)
+		DoSomething(nVal, strVal);
+
+		pRs.MoveNext();
+	}
+	pRs.Close();
+}
+<span class='cpp-keyword'>else</span>
+  <span class='cpp-keyword'>return</span> FALSE;
+</PRE>
+
+<H2><A name=TheAdoClasses3><B>The CADOParameter Class</B></A></H2>
+<P>The <CODE>CADOParameter</CODE> class has a set of functions that corresponds to the _ParameterPtr.</P>
+
+<P><A name=CADOParameter><B>
+CADOParameter::CADOParameter
+</B></A></P>
+<P>Creates a <CODE>CADOParameter</CODE> object.</P>
+<PRE>
+CADOParameter(<span class='cpp-keyword'>int</span> nType, <span class='cpp-keyword'>long</span> lSize = <span class='cpp-literal'>0</span>, <span class='cpp-keyword'>int</span> nDirection = paramInput, CString strName = _T(&quot;&quot;));
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE><span class='cpp-keyword'>int</span> nType</CODE> A <CODE><span class='cpp-keyword'>int</span></CODE> value that specifies the data type of the <CODE>CADOParameter</CODE> object. Can be one of the values specified in <A href="#GetFieldInfoType">CADORecordset::GetFieldInfo</A></P>
+<CODE></P><span class='cpp-keyword'>long</span> lSize = <span class='cpp-literal'>0</span></CODE> A optional <CODE><span class='cpp-keyword'>long</span></CODE> value that specifies the maximum length for the parameter value in Bytes or characters.
+<CODE></P><span class='cpp-keyword'>int</span> nDirection = paramInput</CODE> A optional <CODE><span class='cpp-keyword'>int</span></CODE> value that specifies the direction of the <CODE>CADOParameter</CODE> object.
+Can be one of following values:
+<P><CODE>CADOParameter::paramUnknown</CODE> Indicates that the parameter direction is unknown.</P>
+<P><CODE>CADOParameter::paramInput</CODE> Default. Indicates that the parameter represents an input parameter.</P>
+<P><CODE>CADOParameter::paramOutput</CODE> Indicates that the parameter represents an output parameter. </P>
+<P><CODE>CADOParameter::paramInputOutput</CODE> Indicates that the parameter represents both an input and output parameter.</P>
+<P><CODE>CADOParameter::paramReturnValue</CODE> Indicates that the parameter represents a return value.</P>
+<CODE></P>CString strName = _T(<span class='cpp-string'>""</span>)</CODE> A optional <code>string</code> that specifies the name of the <CODE>CADOParameter</CODE> object.
+</blockquote>
+<P><A href="#TheSample02">See sample</A></P>
+
+<P><A name=SetParameterValue><B>
+CADOParameter::SetValue
+</B></A></P>
+<P>The <CODE>SetValue</CODE> function sets the value for the <CODE>CADOParameter</CODE> object.</P>
+<PRE>
+BOOL SetValue(<span class='cpp-keyword'>int</span> nValue);
+BOOL SetValue(<span class='cpp-keyword'>long</span> lValue);
+BOOL SetValue(<span class='cpp-keyword'>double</span> dbValue);
+BOOL SetValue(CString strValue);
+BOOL SetValue(COleDateTime time);
+BOOL SetValue(_variant_t vtValue);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE><span class='cpp-keyword'>int</span> nValue</CODE> A int value containing the parameter value.</P>
+<P><CODE><span class='cpp-keyword'>long</span> lValue</CODE> A long value containing the parameter value.</P>
+<P><CODE><span class='cpp-keyword'>double</span> dbValue</CODE> A double value containing the parameter value.</P>
+<P><CODE>CString strValue</CODE> A string value containing the parameter value.</P>
+<P><CODE>COleDateTime time</CODE> A time value containing the parameter value.</P>
+<P><CODE>_variant_t vtValue</CODE> A variant value containing the parameter value.</P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.</P>
+<P><A href="#TheSample02">See sample</A></P>
+
+
+<P><A name=GetParameterValue><B>
+CADOParameter::GetValue
+</B></A></P>
+<P>The <CODE>GetValue</CODE> function returns the value of the <CODE>CADOParameter</CODE> object.</P>
+<PRE>
+BOOL GetValue(<span class='cpp-keyword'>int</span>&amp; nValue);
+BOOL GetValue(<span class='cpp-keyword'>long</span>&amp; lValue);
+BOOL GetValue(<span class='cpp-keyword'>double</span>&amp; dbValue);
+BOOL GetValue(CString&amp; strValue, CString strDateFormat = _T(&quot;&quot;));
+BOOL GetValue(COleDateTime&amp; time);
+BOOL GetValue(_variant_t&amp; vtValue);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE><span class='cpp-keyword'>int</span>& nValue</CODE> A reference to a int that will store the value of the parameter.</P>
+<P><CODE><span class='cpp-keyword'>long</span>& lValue</CODE> A reference to a  long that will store the value of the parameter.</P>
+<P><CODE><span class='cpp-keyword'>double</span>& dbValue</CODE> A reference to a double that will store the value of the parameter.</P>
+<P><CODE>CString& strValue</CODE> A reference to a strings that will store the value of the parameter.</P>
+<P><CODE>CString strDateFormat = _T(<span class='cpp-string'>""</span>)</CODE> A formatting time string similar to the <code>strftime</code> formatting string.</P>
+<P><CODE>COleDateTime& time</CODE> A reference to a time object that will store the value of the parameter.</P>
+<P><CODE>_variant_t& vtValue</CODE> A reference to a variant object that will store the value of the parameter.</P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.</P>
+<P><A href="#TheSample02">See sample</A></P>
+
+<P><A name=SetParameterName><B>
+CADOParameter::SetName
+</B></A></P>
+<P>The <CODE>SetName</CODE> function sets the name of the <CODE>CADOParameter</CODE> object </P>
+<PRE>
+CString SetName(CString strName);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>CString strName</CODE> A string specifing the parameter name.</P>
+
+</blockquote>
+
+<P><A name=GetParameterName><B>
+CADOParameter::GetName
+</B></A></P>
+<P>The <CODE>GetName</CODE> function returns the <CODE>CADOParameter</CODE> object.</P>
+<PRE>
+CString GetName();
+</PRE>
+
+<P><A name=GetParameterType><B>
+CADOParameter::GetType
+</B></A></P>
+<P>The <CODE>GetType</CODE> function returns the type of the <CODE>CADOParameter</CODE> object.</P>
+<PRE>
+</pre>
+<P>int GetType();
+</PRE>
+
+
+<P><A name=GetParameter><B>
+CADOParameter::GetParameter
+</B></A></P>
+<P>The <CODE>GetParameter</CODE> function returns a pointer to a <CODE>_Parameter</CODE> object</P>
+<PRE>
+_ParameterPtr GetParameter();
+</PRE>
+
+
+<H2><A name=TheAdoClasses4><B>The CADOCommand Class</B></A></H2>
+<P>The <CODE>CADOCommand</CODE> class has a set of functions that corresponds to the _CommandPtr.</P>
+
+<P><A name=CADOCommand><B>
+CADOCommand::CADOCommand
+</B></A></P>
+<P>Creates a <CODE>CADOCommand</CODE> object.</P>
+<PRE>
+CADOCommand(CADODatabase* pAdoDatabase, CString strCommandText = _T(&quot;&quot;), <span class='cpp-keyword'>int</span> nCommandType = typeCmdStoredProc);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>CADODatabase* pAdoDatabase</CODE> A <CODE>CADODatabase</CODE> object pointer.</P>
+<P><CODE>CString strCommandText = _T(<span class='cpp-string'>""</span>)</CODE> A optional string that indicates the text of the <CODE>CADOCcommand</CODE> object.</CODE></P>
+<P><CODE><span class='cpp-keyword'>int</span> nCommandType = typeCmdStoredProc</CODE> A optional int value that indicates the type of the <CODE>CADOCommand</CODE> object. Can be one of the following values:</P>
+<P><CODE>CADOCommand::typeCmdText</CODE> Evaluates CommandText as a textual definition of a command or stored procedure call.</P>
+<P><CODE>CADOCommand::typeCmdTable</CODE> Evaluates CommandText as a table name whose columns are all returned by an internally generated SQL query.</P>
+<P><CODE>CADOCommand::typeCmdTableDirect</CODE> Evaluates CommandText as a table name whose columns are all returned.</P>
+<P><CODE>CADOCommand::typeCmdStoredProc</CODE> Default. Evaluates CommandText as a stored procedure name.</P>
+<P><CODE>CADOCommand::typeCmdUnknown</CODE> Indicates that the type of command in the CommandText property is not known.</P>
+<P><CODE>CADOCommand::typeCmdFile</CODE> Evaluates CommandText as the file name of a persistently stored Recordset. Used with Recordset.Open or Requery only.</P>
+</blockquote>
+<P><A href="#TheSample02">See sample</A></P>
+
+<P><A name=AddParameter><B>
+CADOCommand::AddParameter
+</B></A></P>
+<P>The <CODE>AddParameter</CODE> function </P>
+<PRE>
+BOOL AddParameter(CADOParameter* pAdoParameter);
+BOOL AddParameter(CString strName, <span class='cpp-keyword'>int</span> nType, <span class='cpp-keyword'>int</span> nDirection, <span class='cpp-keyword'>long</span> lSize, <span class='cpp-keyword'>int</span> nValue);
+BOOL AddParameter(CString strName, <span class='cpp-keyword'>int</span> nType, <span class='cpp-keyword'>int</span> nDirection, <span class='cpp-keyword'>long</span> lSize, <span class='cpp-keyword'>long</span> lValue);
+BOOL AddParameter(CString strName, <span class='cpp-keyword'>int</span> nType, <span class='cpp-keyword'>int</span> nDirection, <span class='cpp-keyword'>long</span> lSize, <span class='cpp-keyword'>double</span> dblValue);
+BOOL AddParameter(CString strName, <span class='cpp-keyword'>int</span> nType, <span class='cpp-keyword'>int</span> nDirection, <span class='cpp-keyword'>long</span> lSize, CString strValue);
+BOOL AddParameter(CString strName, <span class='cpp-keyword'>int</span> nType, <span class='cpp-keyword'>int</span> nDirection, <span class='cpp-keyword'>long</span> lSize, COleDateTime time);
+BOOL AddParameter(CString strName, <span class='cpp-keyword'>int</span> nType, <span class='cpp-keyword'>int</span> nDirection, <span class='cpp-keyword'>long</span> lSize, _variant_t vtValue);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>CADOParameter* pAdoParameter</CODE> A pointer to a <CODE>CADOParameter</CODE> object</P>
+<P><CODE>CString strName</CODE> a string that specifies the name of the parameter.</P>
+<P><CODE><span class='cpp-keyword'>int</span> nType</CODE> A <CODE><span class='cpp-keyword'>int</span></CODE> value that specifies the data type of the <CODE>CADOParameter</CODE> object. Can be one of the values specified in <A href="#GetFieldInfoType">CADORecordset::GetFieldInfo</A></P>
+<P><CODE><span class='cpp-keyword'>int</span> nDirection</CODE> A <CODE><span class='cpp-keyword'>int</span></CODE> value that specifies the direction of the <CODE>CADOParameter</CODE> object. Can be one of the values specified in <A hRef="#CADOParameter">CADOParameter::CADOParameter</A></P>
+<P><CODE><span class='cpp-keyword'>long</span> lSize</CODE> A <CODE><span class='cpp-keyword'>long</span></CODE> value that specifies the maximum length for the parameter value in Bytes or characters.</P>
+<P><CODE><span class='cpp-keyword'>int</span> nValue</CODE> A int value containing the parameter value.</P>
+<P><CODE><span class='cpp-keyword'>long</span> lValue</CODE> A long value containing the parameter value.</P>
+<P><CODE><span class='cpp-keyword'>double</span> dblValue</CODE> A double value containing the parameter value.</P>
+<P><CODE>CString strValue</CODE> A string value containing the parameter value.</P>
+<P><CODE>COleDateTime time</CODE> A time value containing the parameter value.</P>
+<P><CODE>_variant_t vtValue</CODE>  A variant value containing the parameter value.</P>
+</blockquote>
+<P><B>Return Value</B></P>
+<P>Returns <CODE>TRUE</CODE> if was successfully.</P>
+<P><A href="#TheSample02">See sample</A></P>
+
+<P><A name=SetCommandText><B>
+CADOCommand::SetText
+</B></A></P>
+<P>The <CODE>SetText</CODE> function sets the command text of the <CODE>CADOCommand</CODE> object.</P>
+<PRE>
+<span class='cpp-keyword'>void</span> SetText(CString strCommandText);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE>CString strCommandText</CODE> A string that indicates the command text.</CODE></P>
+
+</blockquote>
+
+<P><A name=GetCommandText><B>
+CADOCommand::GetText
+</B></A></P>
+<P>The <CODE>GetText</CODE> function returns the command text of the <CODE>CADOCommand</CODE> object.</P>
+<PRE>
+CString GetText();
+</PRE>
+
+<P><A name=SetCommandType><B>
+CADOCommand::SetType
+</B></A></P>
+<P>The <CODE>SetType</CODE> function sets the type of the <CODE>CADOCommand</CODE> object.
+<PRE>
+<span class='cpp-keyword'>void</span> SetType(<span class='cpp-keyword'>int</span> nCommandType);
+</PRE>
+<P><B>Parameters</B></P>
+<blockquote>
+<P><CODE><span class='cpp-keyword'>int</span> nCommandType</CODE> A int value that indicates the type of command.</P>
+
+
+</blockquote>
+
+
+<P><A name=GetCommandType><B>
+CADOCommand::GetType
+</B></A></P>
+<P>The <CODE>GetType</CODE> function returns the type of the <CODE>CADOCommand</CODE> object.</P>
+<PRE>
+<span class='cpp-keyword'>int</span> GetType();
+</PRE>
+
+<P><A name=GetCommand><B>
+CADOCommand::GetCommand
+</B></A></P>
+<P>The <CODE>GetCommand</CODE> function returns a <CODE>Command</CODE> pointer</P>
+<PRE>
+_CommandPtr GetCommand();
+</PRE>
+
+<H2>Sample 02:</H2>
+<A name=TheSample02></A>
+<PRE>
+
+<B><span class='cpp-comment'>//SQL SCRIPT...</B></span>
+Create Procedure sp_OutputTest
+@IN1 <span class='cpp-keyword'>int</span>,
+@OutInt <span class='cpp-keyword'>int</span> Output,
+@OutChar varchar(<span class='cpp-literal'>20</span>) Output
+As
+	SELECT
+		@OutChar = <span class='cpp-string'>'Hello World'</span>
+	SELECT
+		@OutInt = <span class='cpp-literal'>10</span> * @IN1
+
+	<span class='cpp-keyword'>return</span> (<span class='cpp-literal'>90</span>)
+GO
+
+
+<B><span class='cpp-comment'>//Visual C++ Code...</B></span>
+CADORecordset prs(&amp;pDb);
+
+CADOParameter pParamRetVal(CADORecordset::typeInteger, <span class='cpp-keyword'>sizeof</span>(<span class='cpp-keyword'>int</span>), CADOParameter::paramReturnValue);
+CADOParameter pParamIn(CADORecordset::typeInteger, <span class='cpp-keyword'>sizeof</span>(<span class='cpp-keyword'>int</span>));
+CADOParameter pParamOutInt(CADORecordset::typeInteger, <span class='cpp-keyword'>sizeof</span>(<span class='cpp-keyword'>int</span>), CADOParameter::paramOutput);
+CADOParameter pParamOutChar(CADORecordset::typeChar, <span class='cpp-keyword'>sizeof</span>(<span class='cpp-keyword'>char</span>) * <span class='cpp-literal'>20</span>, CADOParameter::paramOutput);
+
+pParamIn.SetValue(<span class='cpp-literal'>2</span>);
+
+CADOCommand pCmd(&amp;pDb, &quot;sp_OutputTest&quot;);
+
+pCmd.AddParameter(&amp;pParamRetVal);
+pCmd.AddParameter(&amp;pParamIn);
+pCmd.AddParameter(&amp;pParamOutInt);
+pCmd.AddParameter(&amp;pParamOutChar);
+
+CADORecordset pRs(&amp;pDb);
+
+<span class='cpp-keyword'>if</span>(pRs.Execute(&amp;pCmd))
+{
+	<span class='cpp-keyword'>int</span> nVal = <span class='cpp-literal'>0</span>;
+	<span class='cpp-keyword'>int</span> nRetVal = <span class='cpp-literal'>0</span>;
+	CString str = _T(&quot;&quot;);
+
+	pParamRetVal.GetValue(nRetVal);
+	pParamOutInt.GetValue(nVal);
+	pParamOutChar.GetValue(str);
+}
+</PRE>
+
+
+<H2><A name=CommonQuestions>Common Questions:</A></H2>
+<H2>How Bind the MS Data Grid Control to CADORecordset:</H2>
+<P><B>First:</B> You need to add the MS Data Grid Control to your
+Application.<BR><B>Second:</B> Apply the
+<CODE>CADORecordset::GetRecordset</CODE> function to the
+<CODE>SetRefDataSource</CODE> Function of the data Control class.</P><PRE><span class='cpp-keyword'>if</span>(m_pRs.Open(&quot;tblTest&quot;, CADORecordset::openTable))
+{
+	<B><span class='cpp-comment'>//m_datagridctrl is the CDataGrid Class...</B></span>
+	m_datagridctrl.SetCaption(&quot;Clients&quot;);
+	m_datagridctrl.SetRefDataSource(NULL);
+	m_datagridctrl.SetRefDataSource((LPUNKNOWN)m_pRs.GetRecordset());
+	m_datagridctrl.Refresh();
+}
+</PRE>
+<P>For reference how add a data control to your project, please see <A
+href="../useritems/msdatagrid.asp">this Article</A> by <b>Rashid
+Thadha</b></P>
+<H2>How do I resort a Recordset?</H2>
+<P>The Answer is Easy. You have several functions and properties that are part
+of _RecordsetPtr.<BR>Using <CODE>CADORecordset::GetRecordset()</CODE> you get a
+pointer to <CODE>_RecordsetPtr</CODE>, You can use it for set<BR>the
+<CODE>Sort</CODE> Property.</P>
+<P><B>Note:</B> You don't need to use <CODE>_RecordsetPtr::Refresh()</CODE></P><PRE><span class='cpp-keyword'>if</span>(m_pRs.Open(&quot;tblTest&quot;, CADORecordset::openTable))
+{
+	m_pRs.GetRecordset()-&gt;PutSort(&quot;Field01 DESC&quot;);
+}
+</PRE>
+
+<P>Now: you have the function <A href="#SetSort">CADORecordset::SetSort();</A></P>
+
+<H2>fatal error C1010: unexpected end of file while looking for precompiled header directive</H2>
+<P>For solve this common problem You need to use <B>automatic use of precompliled headers</B>.
+Select project/settings (or ALT+F7) then, in the <B>Project Settings</B> Dialog, select the <B>C/C++</B> tab,
+then select the <B>Precompiled Headers</B> item in the combo box, and select the <B>Automatic use of precompliled headers</B> option.</P>
+
+<H2>How do you get the return codes from your stored procedures in SQL Server?</H2>
+<P>You must to use the <B>CADOParameter</B> Class. <code>CADOParameter::paramReturnValue</code> gets the value that is returned by the Stored. <BR	>Always must be an Integer and must be in the First Place in the list of Parameters. If you are not using parameters of input or output, you only need to use this parameter....</P>
+<P><A href="#TheSample02">See sample</A></P>
+
+<P><B>Carlos A. Antollini.</B></P>
+<H2>Updates</H2>
+<P>25 Apr 2001&nbsp;&nbsp;&nbsp; Version 1.0 Released.</P>
+<P>20 May 2001&nbsp;&nbsp;&nbsp; Version 1.1</P>
+<UL>
+  <LI>Added the following functions:</LI></UL>
+<UL>AbsolutePage, GetPageCount, PageSize, AbsolutePosition, GetFieldInfo,
+  GetChunk, GetString</UL>
+<P>29-Jun-2001&nbsp;&nbsp;&nbsp; Version 1.2</P>
+<UL>
+  <LI>Added the following functions:</LI></UL>
+<UL>AddNew, Edit, Delete, Update, CancelUpdate, SetFieldValue, Find,
+  FindFirst, FindNext, SetBookmark, GetBookmark</UL>
+<P>29-Sept-2001&nbsp;&nbsp;&nbsp; Version 1.25</P>
+<UL>
+  <LI>Added support for SQL Server 2000</LI></UL>
+<UL>
+  <LI>Correct bug reported by Robert Pittenger for empty fields</LI></UL>
+<P>10-Oct-2001&nbsp;&nbsp;&nbsp; Version 1.30</P>
+<UL>
+  <LI>Correct bug reported by Giles Forster and Rainer Mangold in SetFieldValue
+  Pittenger for empty fields</LI></UL>
+<UL>
+  <LI>Added the data Type enum</LI></UL>
+<P>05-Nov-2001&nbsp;&nbsp;&nbsp; Version 1.37</P>
+<UL>
+  <LI>Update for add capacity to Bind the Data Grid to CADORecodset</LI>
+</UL>
+<UL>
+  <LI>Added functions GetLastErrorString and Change the Data Type returned by GetLastError</LI>
+</UL>
+<UL>
+  <LI>Added functions Clone and SetFilter (Petitioned by Marcel Stoica)</LI>
+</UL>
+<P>15-Jan-2002&nbsp;&nbsp;&nbsp; Version 1.40</P>
+<UL>
+  <LI>Added the GetChunk and AppendChunk new functions writed by Giles Forster</LI>
+</UL>
+<P>15-Feb-2002&nbsp;&nbsp;&nbsp; Version 1.45</P>
+<UL>
+  <LI>Corrected Bug reported by J. C. Martinez Galán in Decimal Fields</LI>
+</UL>
+<UL>
+  <LI>Added <B>XML</B> support</LI>
+</UL>
+<P>04-Apr-2002&nbsp;&nbsp;&nbsp; Version 2.00</P>
+<UL>
+  <LI>Added <B>CADOParameter</B> and <B>CADOCommand</B> classes</LI>
+</UL>
+<P>14-May-2002&nbsp;&nbsp;&nbsp; Version 2.01</P>
+<UL>
+  <LI>Added COleCurrency and bool in CADORecordset::GetFieldValue and CADORecordset::SetFieldValue</LI>
+</UL>
+
+
+<H2>Special thanks </H2>
+<P>These classes received many suggestions from the users. Thank to All for your colaboration.</P>
+<P>Rainer Mangold<BR>
+Christian Graus<BR>
+Mike Osbahr<BR>
+Francis BONTHOUX<BR>
+Spiros Prantalos<BR>
+Robert Pittenger<BR>
+Giles Forster<BR>
+Rob Sandhu<BR>
+Marcel Stoica<BR>
+Daniel Berman </P>
+
+
+<!-- Article Ends -->
+
+
+</body>
+</html>

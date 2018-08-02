@@ -1,0 +1,53 @@
+// mod_rssim.odl : type library source for mod_rssim.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (mod_rssim.tlb).
+
+[ uuid(4E917CC5-A38B-4ae4-9241-C1B0A7FF317D), version(1.0) ]
+library mod_rssim
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+	//  Primary dispatch interface for CMyHostProxy
+	
+	[ uuid(8570A0E2-963E-4673-8404-0D5D685B5B23) ]
+	dispinterface IMyHostProxy
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CMyHostProxy)
+			//}}AFX_ODL_PROP
+			
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CMyHostProxy)
+			[id(1)] short GetRegisterValue(long registertype, long registernumber);
+			[id(2)] void EnableStation(short stationid);
+			[id(3)] void DisableStation(short stationid);
+			[id(4)] void DisplayAbout();
+			[id(5)] long GetLastRunTime();
+			[id(6)] void SetRegisterValue(long registertype, long registernumber, long registervalue);
+			[id(7)] long StationEnabled(short stationid);
+			[id(8)] void ClearRegisters();
+			[id(9)] long TransmitRegisters(short sourceStation, short destinationStation, long file_areaNumber, long startRegister, long numRegisters);
+			[id(10)] void AddDebugString(BSTR text);
+			[id(11)] long TransacationBusy();
+			//}}AFX_ODL_METHOD
+
+	};
+
+	//  Class information for CMyHostProxy
+
+	[ uuid(BC4F4528-805B-4F08-9B17-78BE23DF531D) ]
+	coclass MyHostProxy
+	{
+		[default] dispinterface IMyHostProxy;
+	};
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

@@ -1,0 +1,15 @@
+# Microsoft Developer Studio Generated Dependency File, included by MYLIB.mak
+
+.\mylib.rc : \
+	".\myhandcu.cur"\
+	
+
+.\StdAfx.cpp : \
+	".\ado.h"\
+	".\ColorStatic.h"\
+	".\dregkey.h"\
+	".\StatLink.h"\
+	".\StdAfx.h"\
+	"c:\program files\common files\system\ado\msado15.dll"\
+	"v:\program files\microsoft visual studio\vc98\include\basetsd.h"\
+	

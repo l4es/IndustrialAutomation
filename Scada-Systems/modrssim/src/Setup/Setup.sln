@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup.vdproj", "{096C06BC-CA04-44DF-B4B3-95AEA5CBC396}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mod_RSsim", "..\mod_RSsim\mod_RSsim.vcproj", "{7690E3EF-B981-43F5-A13D-A7C70A56C000}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{096C06BC-CA04-44DF-B4B3-95AEA5CBC396}.Debug|Win32.ActiveCfg = Debug
+		{096C06BC-CA04-44DF-B4B3-95AEA5CBC396}.Debug|Win32.Build.0 = Debug
+		{096C06BC-CA04-44DF-B4B3-95AEA5CBC396}.Release|Win32.ActiveCfg = Release
+		{096C06BC-CA04-44DF-B4B3-95AEA5CBC396}.Release|Win32.Build.0 = Release
+		{7690E3EF-B981-43F5-A13D-A7C70A56C000}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7690E3EF-B981-43F5-A13D-A7C70A56C000}.Debug|Win32.Build.0 = Debug|Win32
+		{7690E3EF-B981-43F5-A13D-A7C70A56C000}.Release|Win32.ActiveCfg = Release|Win32
+		{7690E3EF-B981-43F5-A13D-A7C70A56C000}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

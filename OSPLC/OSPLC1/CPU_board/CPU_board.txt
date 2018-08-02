@@ -1,0 +1,69 @@
+Field=Value,String,Value,100|Field=Comment,String,Comment,100|Field=Description,String,Description,193|Field=Designator,String,Designator,100|Field=Footprint,String,Footprint,100|Field=LibRef,String,LibRef,100|Field=Quantity,String,Quantity,100|ReportField=ProjectFileName,CPU_board.PrjPCB|ReportField=ProjectFullPath,C:\circuits\Atmel_PLC\CPU_board\CPU_board.PrjPCB|ReportField=Title,Bill of Materials For Project [CPU_board.PrjPCB]|ReportField=TotalQuantity,68|ReportField=ReportTime,10:16:54 AM|ReportField=ReportDate,2007/08/23|ReportField=ReportDateTime,2007/08/23 10:16:54 AM|ReportField=OutputName,Bill of Materials|ReportField=OutputType,BOM_PartType|ReportField=GeneratorName,ReportComponents|ReportField=GeneratorDescription,Component Reports|ReportField=VariantName,None|ReportField=DataSourceFileName,CPU_board.PrjPCB|ReportField=DataSourceFullPath,C:\circuits\Atmel_PLC\CPU_board\CPU_board.PrjPCB
+RL|0805|0805 footprint resistor|R11|0805|RES_0805|1
+RH|0805|0805 footprint resistor|R7|0805|RES_0805|1
+120R|1206|1206 footprint resistor|R13|1206|RES_1206|1
+100n|0603|0603 footprint non-polorised capacitor|C4|0603|CAP_0603|1
+100n|0603|0603 footprint non-polorised capacitor|C8|0603|CAP_0603|1
+100n|0603|0603 footprint non-polorised capacitor|C6|0603|CAP_0603|1
+100n|0603|0603 footprint non-polorised capacitor|C7|0603|CAP_0603|1
+100n|0603|0603 footprint non-polorised capacitor|C9|0603|CAP_0603|1
+100n|0603|0603 footprint non-polorised capacitor|C3|0603|CAP_0603|1
+100n|0603|0603 footprint non-polorised capacitor|C10|0603|CAP_0603|1
+100n|0603|0603 footprint non-polorised capacitor|C1|0603|CAP_0603|1
+100n|0603|0603 footprint non-polorised capacitor|C11|0603|CAP_0603|1
+100n|0603|0603 footprint non-polorised capacitor|C12|0603|CAP_0603|1
+100n|0603|0603 footprint non-polorised capacitor|C14|0603|CAP_0603|1
+100n|0603|0603 footprint non-polorised capacitor|C15|0603|CAP_0603|1
+100n|0603|0603 footprint non-polorised capacitor|C16|0603|CAP_0603|1
+100n|0603|0603 footprint non-polorised capacitor|C17|0603|CAP_0603|1
+100n|0805|0805 footprint non-polarised capacitor|C20|0805|CAP_0805|1
+100n|0805|0805 footprint non-polarised capacitor|C21|0805|CAP_0805|1
+100n|0805|0805 footprint non-polarised capacitor|C22|0805|CAP_0805|1
+100n|0805|0805 footprint non-polarised capacitor|C23|0805|CAP_0805|1
+100n|0805|0805 footprint non-polarised capacitor|C24|0805|CAP_0805|1
+100n|0805|0805 footprint non-polarised capacitor|C25|0805|CAP_0805|1
+100n|0603|0603 footprint non-polorised capacitor|C30|0603|CAP_0603|1
+47k|0805|0805 footprint resistor|R3|0805|RES_0805|1
+47k|0805|0805 footprint resistor|R4|0805|RES_0805|1
+47k|0805|0805 footprint resistor|R5|0805|RES_0805|1
+47k|0805|0805 footprint resistor|R6|0805|RES_0805|1
+10pF|0805|0805 footprint non-polarised capacitor|C18|0805|CAP_0805|1
+10pF|0805|0805 footprint non-polarised capacitor|C19|0805|CAP_0805|1
+10n|0603|0603 footprint non-polorised capacitor|C5|0603|CAP_0603|1
+10k|0805|0805 footprint resistor|R2|0805|RES_0805|1
+10k|0805|0805 footprint resistor|R14|0805|RES_0805|1
+10k|0805|0805 footprint resistor|R16|0805|RES_0805|1
+10k|0805|0805 footprint resistor|R18|0805|RES_0805|1
+10k|0805|0805 footprint resistor|R19|0805|RES_0805|1
+10k|0805|0805 footprint resistor|R23|0805|RES_0805|1
+4.7uF|1206 X7R|1206 footprint non-polorised capacitor|C26|1206|CAP_1206|1
+4k7|0805|0805 footprint resistor|R8|0805|RES_0805|1
+4k7|0805|0805 footprint resistor|R22|0805|RES_0805|1
+3k9|0805|0805 footprint resistor|R15|0805|RES_0805|1
+3k9|0805|0805 footprint resistor|R17|0805|RES_0805|1
+3k9|0805|0805 footprint resistor|R20|0805|RES_0805|1
+3k9|0805|0805 footprint resistor|R21|0805|RES_0805|1
+2.2uF|Tant_A|Tantalum Capacitor, A Package|C28|CAP_TANT_A|CAP_TANT_A|1
+2.2uF|1206 X7R|1206 footprint non-polorised capacitor|C27|1206|CAP_1206|1
+2.2uF|Tant_A|Tantalum Capacitor, A Package|C29|CAP_TANT_A|CAP_TANT_A|1
+2k2|0805|0805 footprint resistor|R9|0805|RES_0805|1
+2k2|0805|0805 footprint resistor|R10|0805|RES_0805|1
+2k2|0805|0805 footprint resistor|R12|0805|RES_0805|1
+1n|0603|0603 footprint non-polorised capacitor|C2|0603|CAP_0603|1
+1n|0603|0603 footprint non-polorised capacitor|C13|0603|CAP_0603|1
+1k5|0805|0805 footprint resistor|R1|0805|RES_0805|1
+|3V Battery|3 Volt Lithium Button Battery|BAT1|BATTERY_22MM|BATTERY_22MM|1
+|DB9M|DB 9 Male connector|J1|DB9M|DB9M|1
+|IDC10M|10 pin IDC male connector, vertical, box|JP1|IDC_10M_BOX|IDC_10M|1
+|JUMPER2|2 Pin Jumper, 2.54mm|JP2|JUMPER2_254|JUMPER2|1
+|IDC40M|40 pin IDC male connector, vertical, box|JP3|IDC_40M_BOX|IDC_40M|1
+|BC817-40|NPN General Purpose Amplifier|Q1|SO-G3/Y1|BC817-40|1
+|TEST POINT|TEST POINT|TP1|TEST_POINT|TEST_POINT|1
+|AT91SAM7S256|Atmel ARM7 microcontroller, 256k Flash|U1|LQFP64-10-05|AT91SAM7S256|1
+|24LC64-I/SN|Microchip 64k bit I2C bus serial EEPROM|U2|SO-G8/Z7.4|24LC64-I/SN|1
+|M41T00|ST Serial Access Timekeeper|U3|SO-G8/X.6|M41T00|1
+|MAX3232CWE|3.0V TO 5.5V, Low-Power, up to 1Mbps, True RS-232 Transceiver Using Four 0.1µF External Capacitor|U4|SO-G16/G6.9|MAX3232CWE|1
+|ST3485EC|ST 3.3v RS-485/RS-422 Transceiver|U5|SO-G8/Z7.4|ST3485EC|1
+|LM2902D|Quad Low-Power Operational Amplifier|U6|SO-G14/Y2.2|LM2902D|1
+|18.432MHz|SMT crystal|X1|CRYSTAL_SMT|CRYSTAL_SMT|1
+|32.768kHz|Tuning Fork Crystal|X2|XTAL_TF|CRYSTAL_TF|1

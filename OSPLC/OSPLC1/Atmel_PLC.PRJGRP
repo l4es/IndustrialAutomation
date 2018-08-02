@@ -1,0 +1,8 @@
+[ProjectGroup]
+Version=1.0
+[Project1]
+ProjectPath=CPU_board\CPU_board.PrjPCB
+[Project2]
+ProjectPath=IO_board\IO_board.PrjPCB
+[Project3]
+ProjectPath=Status_board\Status_board.PrjPCB

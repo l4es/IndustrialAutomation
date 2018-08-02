@@ -1,0 +1,10 @@
+[ProjectGroup]
+Version=1.0
+[Project1]
+ProjectPath=CPU_board\OSPLC2_2_CPU.PrjPCB
+[Project2]
+ProjectPath=IO_board\OSPLC2_2_IO.PrjPCB
+[Project3]
+ProjectPath=Status_board\OSPLC2_2_STATUS.PrjPCB
+[Project4]
+ProjectPath=..\..\Library_Design\ARM_projects.LibPkg

@@ -1,0 +1,22 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Project [CPU_board.PrjPCB]
+   Generated File[CPU_Board.GTL]
+   Generated File[CPU_Board.GBL]
+   Generated File[CPU_Board.GTO]
+   Generated File[CPU_Board.GTP]
+   Generated File[CPU_Board.GBP]
+   Generated File[CPU_Board.GTS]
+   Generated File[CPU_Board.GBS]
+   Generated File[CPU_Board.GKO]
+   Generated File[CPU_Board.GM1]
+   Generated File[CPU_Board.GPT]
+   Generated File[CPU_Board.GPB]
+   Generated File[CPU_Board.RUL]
+   Generated File[CPU_Board.REP]
+
+
+Files Generated   : 13
+Documents Printed : 0
+
+Finished Output Generation At 10:39:05 AM On 2013/04/18

@@ -1,0 +1,13 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [OSPLC2_2_STATUS.PrjPCB]
+   Generated File[OSPLC2_2_STATUS.TXT]
+   Generated File[OSPLC2_2_STATUS.DRL]
+   Generated File[OSPLC2_2_STATUS.LDP]
+   Generated File[OSPLC2_2_STATUS.DRR]
+
+
+Files Generated   : 4
+Documents Printed : 0
+
+Finished Output Generation At 02:05:09 PM On 2013/04/22

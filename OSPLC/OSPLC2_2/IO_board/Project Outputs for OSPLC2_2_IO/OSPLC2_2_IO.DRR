@@ -1,0 +1,27 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: OSPLC2_2_IO.PcbDoc   2013/04/22  01:58:53 PM
+---------------------------------------------------------------------------
+
+
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII File : NCDrillOutput.TXT
+EIA File   : NCDrillOutput.DRL
+
+Tool         Hole Size          Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        0.3mm (11.811mil)        44               463.02 mm (18.23 Inch)
+T2        0.5mm (19.685mil)        142              1109.14 mm (43.67 Inch)
+T3        0.6mm (23.622mil)        1                44.34 mm (1.75 Inch)
+T4        0.8mm (31.496mil)        5                46.07 mm (1.81 Inch)
+T5        0.9mm (35.433mil)        165              671.55 mm (26.44 Inch)
+T6        1mm (39.37mil)           11               448.12 mm (17.64 Inch)
+T7        1.1mm (43.307mil)        3                114.40 mm (4.50 Inch)
+T8        1.3mm (51.181mil)        45               412.42 mm (16.24 Inch)
+T9        1.5mm (59.055mil)        4                39.95 mm (1.57 Inch)
+T10       4mm (157.48mil)          1                126.93 mm (5.00 Inch)
+T11       3.25mm (127.953mil)      2         NPTH   148.24 mm (5.84 Inch)
+---------------------------------------------------------------------------
+Totals                             423              3624.18 mm (142.68 Inch)
+
+Total Processing Time : 12:00:06 AM

@@ -1,0 +1,23 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: CPU_Board.PcbDoc   2013/04/18  10:36:53 AM
+---------------------------------------------------------------------------
+
+
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII File : NCDrillOutput.TXT
+EIA File   : NCDrillOutput.DRL
+
+Tool         Hole Size          Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        0.3mm (11.811mil)        68               341.01 mm (13.43 Inch)
+T2        0.6mm (23.622mil)        20               287.85 mm (11.33 Inch)
+T3        0.9mm (35.433mil)        4                85.33 mm (3.36 Inch)
+T4        1mm (39.37mil)           54               241.32 mm (9.50 Inch)
+T5        1.09mm (42.913mil)       9                41.23 mm (1.62 Inch)
+T6        3.26mm (128.346mil)      2                37.85 mm (1.49 Inch)
+T7        1.2mm (47.244mil)        2         NPTH   55.46 mm (2.18 Inch)
+---------------------------------------------------------------------------
+Totals                             159              1090.05 mm (42.92 Inch)
+
+Total Processing Time : 12:00:09 AM

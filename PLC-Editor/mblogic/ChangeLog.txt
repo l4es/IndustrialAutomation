@@ -1,0 +1,244 @@
+MBLogic All Change Log:
+
+
+2011-04-16: Release 31.
+
+	This is a bug fix release for MBLogic to fix minor ARM CPU support issues.
+
+	The following package versions are included:
+
+	MBLogic - Release 27. (Note: Bug fix release).
+	HMIServer - Release 22.
+	MBTools - Release 20.
+	MBLibs - Release 09.
+	HMIBuilder - Release 06.
+
+	See the release notes for each package for details of any changes.
+
+
+
+2011-03-24: Release 30.
+
+	This is a bug fix release for HMIBuilder. 
+
+	The following package versions are included:
+
+	MBLogic - Release 25.
+	HMIServer - Release 22.
+	MBTools - Release 20.
+	MBLibs - Release 09.
+	HMIBuilder - Release 06. (Note: Bug fix release).
+
+	See the release notes for each package for details of any changes.
+
+
+2011-03-21: Release 29.
+
+	This is a bug fix release for HMIBuilder. 
+
+	The following package versions are included:
+
+	MBLogic - Release 25.
+	HMIServer - Release 22.
+	MBTools - Release 20.
+	MBLibs - Release 09.
+	HMIBuilder - Release 05. (Note: Bug fix release).
+
+	See the release notes for each package for details of any changes.
+
+
+2011-03-19: Release 29.
+
+	The following package versions are included:
+
+	MBLogic - Release 25.
+	HMIServer - Release 22.
+	MBTools - Release 20.
+	MBLibs - Release 09.
+	HMIBuilder - Release 05. (Note: Bug fix release).
+
+	See the release notes for each package for details of any changes.
+
+
+2011-03-18: Release 28.
+
+	The following package versions are included:
+
+	MBLogic - Release 25.
+	HMIServer - Release 22.
+	MBTools - Release 20.
+	MBLibs - Release 09.
+	HMIBuilder - Release 04. (Note: This is an all new package).
+
+	See the release notes for each package for details of any changes.
+
+
+2011-01-27: Release 27.
+
+	The following package versions are included:
+
+	MBLogic - Release 24.
+	HMIServer - Release 21.
+	MBTools - Release 20.
+	MBLibs - Release 09.
+	HMIBuilder - Release 03.
+
+	See the release notes for each package for details of any changes.
+	
+
+2011-01-07:	Release 26.
+
+	The following package versions are included:
+
+	MBLogic - Release 23.
+	HMIServer - Release 21.
+	MBTools - Release 20.
+	MBLibs - Release 09.
+	HMIBuilder - Release 03.
+
+	See the release notes for each package for details of any changes.
+
+
+
+2010-12-03:	Release 25.
+
+	The following package versions are included:
+	
+	MBLogic - Release 22.
+	HMIServer - Release 21.
+	MBTools - Release 19.
+	MBLibs - Release 08.
+	HMIBuilder - Release 03.
+
+	See the release notes for each package for details of any changes.
+
+
+2010-11-20:	Release 24.
+
+	The following package versions are included:
+	
+	MBLogic - Release 22.
+	HMIServer - Release 20.
+	MBTools - Release 19.
+	MBLibs - Release 08.
+	HMIBuilder - Release 03.
+
+	See the release notes for each package for details of any changes.
+
+
+
+
+2010-09-16:	Release 23.
+
+	The following package versions are included:
+	
+	MBLogic - Release 21.
+	HMIServer - Release 20.
+	MBTools - Release 19.
+	MBLibs - Release 08.
+	HMIBuilder - Release 03.
+
+	See the release notes for each package for details of any changes.
+
+
+2010-07-24:	Release 22.
+
+	The following package versions are included:
+	
+	MBLogic - Release 20.
+	HMIServer - Release 20.
+	MBTools - Release 19.
+	MBLibs - Release 08.
+
+	See the release notes for each package for details of any changes.
+
+
+2010-07-05:	Release 21.
+
+	The following package versions are included:
+	
+	MBLogic - Release 19.
+	HMIServer - Release 19.
+	MBTools - Release 18.
+	MBLibs - Release 08.
+
+	See the release notes for each package for details of any changes.
+
+
+
+2010-07-02:	Release 20.
+
+	The following package versions are included:
+	
+	MBLogic - Release 19.
+	HMIServer - Release 18.
+	MBTools - Release 18.
+	MBLibs - Release 07.
+
+	See the release notes for each package for details of any changes.
+
+
+2010-05-21:	Release 19.
+
+	The following package versions are included:
+	
+	MBLogic - Release 18.
+	HMIServer - Release 18.
+	MBTools - Release 18.
+	MBLibs - Release 07.
+
+	See the release notes for each package for details of any changes.
+
+2010-03-13:	Release 18.
+
+
+	The following package versions are included:
+	
+	MBLogic - Release 18.
+	MBTools - Release 17.
+	MBLibs - Release 06.
+
+	See the release notes for each package for details of any changes.
+
+
+
+2010-02-10:	Release 17.
+
+
+	The following package versions are included:
+	
+	MBLogic - Release 17.
+	MBTools - Release 17.
+	MBLibs - Release 06.
+
+	See the release notes for each package for details of any changes.
+
+
+
+2010-01-17:	Release 16.
+
+
+	The following package versions are included:
+	
+	MBLogic - Release 16.
+	MBTools - Release 16.
+	MBLibs - Release 06.
+
+	See the release notes for each package for details of any changes.
+
+
+
+2009-12-16:	Release 15.
+
+	This version is the initial release. The release number starts at 15
+	to match with the current releases of MBLogic and MBTools.
+
+	The following package versions are included:
+	
+	MBLogic - Release 15.
+	MBTools - Release 15.
+	MBLibs - Release 06.
+
+	See the release notes for each package for details of any changes.
+
+

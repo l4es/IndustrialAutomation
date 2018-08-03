@@ -1,0 +1,2 @@
+void CopySizesInfosFromModuleParams( void );
+

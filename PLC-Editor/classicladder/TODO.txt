@@ -1,0 +1,114 @@
+CLASSIC LADDER PROJECT
+Copyright (C) 2001-2018 Marc Le Douarain
+marc . le - douarain /AT\ laposte \DOT/ net
+http://www.sourceforge.net/projects/classicladder
+http://sites.google.com/site/classicladder
+---------------------
+FUTURE / TODO LIST...
+---------------------
+
+- Application compilation on GTK+ version 3 to continue by removing many warnings with some old functions used. But keep GTK+ version 2 compatibility for now!!!
+=> 'gdk_pixbuf_new_from_inline' deprecated... ‘gtk_hbox_new', ‘gtk_vbox_new', 'gtk_table', ...
+  
+- Also use gtk_entry_set_width_chars() on some entries in config window for smaller widths.
+
+- On 'quit', hide immediately all windows opened, without waiting pause added (to wait end of threads)
+
+- Add new analog physical local inputs/outputs sub-tabs in the config ("Analog Physical Inputs %IW"/"Analog Physical Outputs %QW").
+  to be used for analogRead(pin) & analogWrite(pin,value) functions of WiringPi library with RaspberryPi
+  
+- Tests with 'valgrind' to be done...
+
+- Perhaps to have new targets in Makefile, to directly allow "make embedded_plc_x86", "make embedded_plc_arietta", "make_embedded_raspi" to avoid manual
+  editing of Makefile before compilation for an embedded target. possible use of "undefine VAR"
+  (In Makefile, rename "-Dxxxxxx_GPIO_ACCESS" in "-DTARGET_xxxxxx" ???, or add -DTARGET_EMBEDDED_xxxxxx)
+
+- In sequential edit, display in status bar next action that should be done for and/or links...
+  Complex case of multi steps activated/desactivated simultaneously (click on steps -or- steps AND only more LEFT/RIGHT, then transition but not reverse else
+  bads things arriving... to see!)
+  
+- A new window variables browser, used for help, listing all them with first/last index xxx, and to select one directly.
+
+- Switch all monitor task creations to use common functions...
+
+- Network config window, adding 'ip dynamic' checkbox
+  + "raspbian" config format possible in read/write... (only parts modifications on file read (downloaded in tmp), no integral rewrite from datas in memory)
+
+- Fixing library broken when compiled for that...
+
+- Registers: add a time/date for each value stored, that can be viewed later for content of each value.
+
+- Easy possibilities in eval block to be able to copy some bits list in a word and extract a bit of a word...
+  New functions %Wx:=CONV_TO_WORD(First%By,QuantityZ) Parameters constants or vars. and also %Bx:=CONV_TO_BIT(%Wy,NumBitZ)
+  -Or- new character after first %B with bits quantity %Bx\z that return a word...??? (can also be indexed!!! %Bx[y]\z
+  -Or- directly in contacts (extract a bit of a word) / coils (set a bit of a word) but how to store this new n° bit parameter ???
+- New shift/rotate functions on an integer variable, instead of doing "/2" or "*2" for now...
+
+- To do a .deb package (for Debian/Ubuntu).
+- Do an easy Windows installer (NSIS ? opencandy.com with ads?) Seems too difficult for some users to manually extract an archive (in fact 2!) in a directory... :-(
+
+- Review all variables names to be in conformity with IEC61131, especially %Bxxx => %Mxxx ; %Wxxx => %MWxxx
+
+- After set "config network" done, target should call script target "rc.inet1" ? (actually reboot PLC (x86) target to do manually required)
+
+- SMS received commands could optionnally be read (to set a var, get PLC status informations)
+- SMS read, can be used to confirm SMS alarm really received.
+- Have log history of the SMS alarms sended (and received?).
+
+- Error %Sxx(?) if failed to open serial modbus port + all %S10-%S19 slaves ?
+
+- Modbus master not really ending after loading project without modbus
+  (close current opened serial port before in a CloseHardware() function before loading another project).
+- Modbus master can (define?) use the 16550 realtime driver on Xenomai (do new file serial_rt_xeno + functions SerialOpen_rt, Serial_Send_rt, ...).
+
+- Modbus slave (called server in IP) could also run in serial if a serial port string parametred for it in config_gtk (with RTS possible).
+- In Modbus slave/server can have offsets to get directly access to %I and %IW variables (for example if address > 20000...?!)
+
+- New systems vars time sunset/rise (integers) and perhaps directly boolean 'day' when we are between both (usefull to set light the night!)
+  (optional define, without FPU instructions usage for SX CPU...)
+
+( - Add second serial slave monitor thread )
+
+( - For modbus RS485 half-duplex (choice between rx/tx on the line), can use a x86 gpio with outb instead of RTS signal
+  (usefull with simple 3 wires serial port without RTS signal on it...)
+  => replace in Gtk Config "Use RTS signal to send oNo oYes" per "Drive signal to xmit datas oNo oUseSerialRTS ox86OutPort" )
+
+- Persistance of vars possible (to select which before in a list), current values saved on rising edged of a %Sxx var?!
+  at end of the store a magic value to verify for load that file integrity is ok before reading it...
+- Have "default value" + "save context value" of vars lists. At start, each variables in the first list start with its default value.
+
+- Passwords. for monitor access? future SMS commands? differents access levels?
+
+- Optimize CPU usage: no periodic refresh if not running (in edit, send "update signal" redraw when something done)
+- Vertical display optimization (nbr blocks no more fixed) depending of the elements present on the rung (recent NbrLinesUsed in StrRung)
+  (but during edit, always displaying current edit with nbr of lines maxi).
+- 'Undo' available during edit...
+
+- Log of integer variables (with a periodic time and mini delta value) + graphical display (with a gtk component like gtkdatabox? or GtkPlot of gtkextra?)
+
+- Adding inputs mask filter value in ms unit (for all local physical inputs) in config input window.
+
+- For remote alarms, add "UDP client text string" or others things (after existing SMS & emails) ?
+
+- Svg/Png export, should call draw functions with a new option DRAW_FOR_EXPORT (used when expr not drawed entirely on bottom instead of right margin!)
+- to add a button to display a readme file about the currently loaded ladder file. Then someone could
+  write a description of a ladder program in a text editor and name it 'my_program.clp.txt' and the
+  button would load it (Chris Morley suggestion). perhaps not really no more necessary since comment field added in project?
+- For the library, defining 4 functions pointers (callbacks) for I/O access instead of some duplicated code?
+- Modbus/UDP mode support for the server & distributed I/O.
+- Perhaps bug in project split if empty file (or line?) ?
+- Search/replace function on a variable, cross-referencing, ... things like that...?
+- Contextual popup menu when clicking on an element (Heli idea) to search and also spy directly...
+- Modifs EMC 2010_08_20 on many things to look at...
+  -> VarFloatArray
+- Float variables support (%F, %IF, %QF) + in the evaluator...
+- Do not allow to set/reset state of (by clicking on) input/bits "used"... not easy to know.
+- Extend the new monitor slave protocol to allow for "hot" rung/sequential modify?
+- To have a new script/text language available for a section (lua? basic?)
+ (perhaps review ladder blocks that should also "live" outside this langage? idea: tags those not found on ladder,
+  and exec thems!?)
+
+- Your ideas ( well in fact this list is already long! ;-) ), languages translations, improvements, bugs reports or fixes (?!?!), etc...
+  Do not hesitate to send me an email ! ;-)
+
+

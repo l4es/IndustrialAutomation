@@ -1,0 +1,1 @@
+indent calc.c >/tmp/calc_indented.c -st -ts2 -ut -bli0 -npsl -hnl

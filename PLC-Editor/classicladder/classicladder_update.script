@@ -1,0 +1,14 @@
+#!/bin/sh
+echo "***************************"
+echo "CLASSICLADDER UPDATE SCRIPT"
+echo "***************************"
+cd /usr/local/classicladder
+echo "*** mount root rw ***"
+rw
+tar zxvf /tmp/classicladder_embedded_soft.tar.gz
+echo "*** end extract ***"
+sync
+###cd /
+# echo "*** mount root ro ***"
+# seems to failed...??? ro
+./classicladder_update_next.script

@@ -1,0 +1,108 @@
+#!/bin/sh
+#
+# ClassicLadder real-time launch script.
+# By Marc Le Douarain, 18 july 2003.
+# The first argument is the projet directory to load.
+# With the second argument you can pass the sizes config file to the script...
+
+PROJECT_TO_LOAD=$1
+CONFIG_FILE_SIZES=$2
+
+# Default value (if not loading any config file)
+COMEDI_TO_OPEN_MASK=0
+
+# If rthal or adeos markers found, then run the rtai module.
+if /sbin/ksyms -a | grep -E '(rthal|adeos)' >${nullfile} 2>${nullfile} ; then
+ echo "#################################################"
+ echo "#  ClassicLadder -realtime- with RTAI support   #"
+ echo "#################################################"
+ echo "First we remove any existing rtai-modules"
+ rmmod classicladder_rtai_module
+ rmmod rtai_shm
+ rmmod rtai_sched
+ rmmod rtai
+
+ # Use a config file ?
+ if [ "$CONFIG_FILE_SIZES" != "" ]; then
+   # load the size parameters from config file
+   echo "Loading the size parameters from config file..."
+   . $CONFIG_FILE_SIZES
+ fi
+ 
+ echo "Now start the real-time task module (calc of the rungs)"
+ modprobe rtai_shm
+ modprobe rtai_sched
+ # insmod the real time module with some sizes parameters
+ if [ "$CONFIG_FILE_SIZES" != "" ]; then
+   insmod classicladder_rtai_module.o nbr_rungs=$NBR_RUNGS \
+     nbr_bits=$NBR_BITS nbr_words=$NBR_WORDS nbr_timers=$NBR_TIMERS \
+     nbr_monostables=$NBR_MONOSTABLES nbr_phys_inputs=$NBR_PHYS_INPUTS \
+     nbr_phys_outputs=$NBR_PHYS_OUTPUTS nbr_arithm_expr=$NBR_ARITHM_EXPR \
+     nbr_sections=$NBR_SECTIONS comedi_to_open_mask=0
+     # No comedi support in the rtai version..
+ else
+   insmod classicladder_rtai_module.o
+ fi
+ echo "Now start the Linux application (not real-time)"
+ ./classicladder_rtl_support $PROJECT_TO_LOAD
+ echo "Now let's remove the real-time module"
+ rmmod classicladder_rtai_module
+ rmmod rtai_shm
+ rmmod rtai_sched
+ rmmod rtai
+ # exit now before we attempt to run the RTLinux code.
+ exit 0
+fi
+
+# Else run RTLinux
+echo "#################################################"
+echo "# ClassicLadder -realtime- with RTLinux support #"
+echo "#################################################"
+echo "First we remove any existing rtl-modules"
+#echo "Type <return> to continue"
+#read junk
+rmmod classicladder_rtl_module
+rmmod mbuff
+
+# Use a config file ?
+if [ "$CONFIG_FILE_SIZES" != "" ]; then
+# load the size parameters from config file
+echo "Loading the size parameters from config file..."
+. $CONFIG_FILE_SIZES
+fi
+
+# Insmod the RTLinux modules only if not using Comedi devices
+# (In this last case, all modules should be already insmoded
+#  and comedi_config setup before here)
+if [ "$COMEDI_TO_OPEN_MASK" = "0" ]; then
+ ( cd /usr/rtlinux/; scripts/rmrtl )
+ echo "Now insert the fifo and scheduler"
+ #echo "Type <return> to continue"
+ #read junk
+ ( cd /usr/rtlinux/; scripts/insrtl )
+fi
+
+insmod /usr/rtlinux/modules/mbuff.o
+# In case of some trouble later ! ;-)
+sync
+
+echo "Now start the real-time task module (calc of the rungs+hardware access)"
+#echo "Type <return> to continue"
+#read junk
+# insmod the real time module with some sizes parameters
+if [ "$CONFIG_FILE_SIZES" != "" ]; then
+ insmod classicladder_rtl_module.o nbr_rungs=$NBR_RUNGS \
+ nbr_bits=$NBR_BITS nbr_words=$NBR_WORDS nbr_timers=$NBR_TIMERS \
+ nbr_monostables=$NBR_MONOSTABLES nbr_phys_inputs=$NBR_PHYS_INPUTS \
+ nbr_phys_outputs=$NBR_PHYS_OUTPUTS nbr_arithm_expr=$NBR_ARITHM_EXPR \
+ nbr_sections=$NBR_SECTIONS comedi_to_open_mask=$COMEDI_TO_OPEN_MASK
+else
+ # without sizes parameters...
+ insmod classicladder_rtl_module.o
+fi
+
+echo "Now start the Linux application (not real-time)"
+./classicladder_rtl_support $PROJECT_TO_LOAD
+echo "Now let's remove the real-time module"
+rmmod classicladder_rtl_module
+rmmod mbuff

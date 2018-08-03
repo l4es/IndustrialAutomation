@@ -1,0 +1,64 @@
+#
+# ClassicLadder Real-Time module - Makefile
+#
+# By Marc Le Douarain - 17 August 2003
+#
+
+
+include /usr/rtlinux/rtl.mk
+
+MODULE_FOR_RTL = module_rtlinux.o classicladder.o calc.o vars_access.o arithm_eval.o hardware.o manager.o arrays.o
+
+#CFLAGS += -DRTLINUX_SUPPORT
+CFLAGS += -DRT_SUPPORT -DMAKE_IO_ACCESS
+
+ifdef SEQUENTIAL_SUPPORT
+MODULE_FOR_RTL += calc_sequential.o
+CFLAGS += -DSEQUENTIAL_SUPPORT
+endif
+ifdef DYNAMIC_PLCSIZE
+CFLAGS += -DDYNAMIC_PLCSIZE
+endif
+ifdef COMEDI_SUPPORT
+CFLAGS += -DCOMEDI_SUPPORT -I/usr/rtlinux/drivers/comedi/include
+endif
+
+
+all: $(MODULE_FOR_RTL)
+	$(LD) -r -o classicladder_rtl_module.o $(MODULE_FOR_RTL)
+
+
+test: all
+	@echo "Now, you must type ./run_rt to launch classicladder/real-time !"
+
+
+test2: all
+	@echo "#################################################"
+	@echo "# ClassicLadder -realtime- with RTLinux support #"
+	@echo "#################################################"
+	@echo "First we remove any existing rtl-modules"
+	@echo "You may see error warnings from \"make\" - ignore them"
+	@echo "Type <return> to continue"
+	@read junk
+	-rmmod classicladder_rtl_module
+	-rmmod mbuff
+	(cd /usr/rtlinux/; scripts/rmrtl)
+	@echo "Now insert the fifo and scheduler"
+	@echo "Type <return> to continue"
+	@read junk
+	(cd /usr/rtlinux/; scripts/insrtl)
+	@echo "Now start the real-time task module (calc of the rungs)"
+	@echo "Type <return> to continue"
+	@read junk
+	@sync
+	@sync
+	@insmod /usr/rtlinux/modules/mbuff.o
+	@insmod classicladder_rtl_module.o
+	@echo "Now start the Linux application (not real-time)"
+	./classicladder_rtl_support
+	@echo "Now let's remove the real-time module"
+	@rmmod classicladder_rtl_module
+	@rmmod mbuff
+
+
+#include $(RTL_DIR)/Rules.make

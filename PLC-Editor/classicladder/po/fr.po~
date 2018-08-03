@@ -1,0 +1,2464 @@
+# French translations for ClassicLadder package
+# Traductions françaises du paquet ClassicLadder.
+# Copyright (C) 2017 THE ClassicLadder'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the ClassicLadder package.
+# mavati <marc...@laposte.net>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ClassicLadder VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-26 09:50+0200\n"
+"PO-Revision-Date: 2017-06-13 20:31+0200\n"
+"Last-Translator: mavati <marc...@laposte.net>\n"
+"Language-Team: French <traduc@traduc.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: classicladder.c:312
+msgid "Stopped program - press run button to continue."
+msgstr "Programme arrêté - sélectionner 'marche' pour continuer."
+
+#: classicladder.c:325
+msgid "Started program - press stop to pause."
+msgstr "Programme démarré - sélectionner 'arrêt' pour mettre en pause."
+
+#: classicladder.c:353
+msgid "Freezed program - select run or run one cycle to continue."
+msgstr ""
+"Programme gelé - sélectionner 'marche' ou 'marche un cycle' pour continuer."
+
+#: classicladder.c:363
+msgid "Started program for one cycle..."
+msgstr "Programme démarré pour un seul cycle..."
+
+#: classicladder.c:427
+msgid "Reset logic data - Now running."
+msgstr "Réinitialisé données - Maintenant en marche."
+
+#: classicladder.c:427
+msgid "Reset logic data done."
+msgstr "Réinitialisation données effectuée."
+
+#: classicladder.c:741
+msgid "Project loaded and running"
+msgstr "Projet chargé et en marche"
+
+#: classicladder.c:741 classicladder_gtk.c:692
+msgid "Project failed to load..."
+msgstr "Echec chargement projet..."
+
+#: edit.c:164 edit.c:256 edit_sequential.c:136 symbols_gtk.c:200
+msgid "Variable"
+msgstr "Variable"
+
+#: edit.c:167
+msgid "JumpToLabel"
+msgstr "SautEtiquette"
+
+#: edit.c:171 edit.c:262
+msgid "Sub-Routine"
+msgstr "Sous-Routine"
+
+#: edit.c:177 edit.c:203
+msgid "TimerNbr"
+msgstr "NumTempo"
+
+#: edit.c:179 edit.c:188 edit.c:205 edit.c:267 edit.c:271 edit.c:280
+#: editproperties_gtk.c:78 editproperties_gtk.c:148
+msgid "Base"
+msgstr "Base"
+
+#: edit.c:181 edit.c:190 edit.c:198 edit.c:207 edit.c:267 edit.c:271
+#: edit.c:276 edit.c:280
+msgid "Preset"
+msgstr "Présélection"
+
+#: edit.c:186
+msgid "MonostNbr"
+msgstr "NumMonost"
+
+#: edit.c:196
+msgid "CounterNbr"
+msgstr "NumCompteur"
+
+#: edit.c:210 editproperties_gtk.c:89 editproperties_gtk.c:155
+msgid "TimerMode"
+msgstr "ModeTempo"
+
+#: edit.c:215
+msgid "RegisterNbr"
+msgstr "NumRegistre"
+
+#: edit.c:217 editproperties_gtk.c:100 editproperties_gtk.c:162
+msgid "RegisterMode"
+msgstr "ModeRegistre"
+
+#: edit.c:222 edit.c:290
+msgid "Expression"
+msgstr "Expression"
+
+#: edit.c:259
+msgid "Label"
+msgstr "Etiquette"
+
+#: edit.c:280 edit.c:284
+msgid "Mode"
+msgstr "Mode"
+
+#: edit.c:385
+msgid "Incompatible type of variable (must be an integer!)"
+msgstr "Type de variable incompatible (doit être un entier!)"
+
+#: edit.c:425
+msgid "Expression too long"
+msgstr "Expression trop longue"
+
+#: edit.c:506
+msgid "Incompatible type of variable for index (must be an integer!)"
+msgstr "Type de variable incompatible pour l'index (doit être un entier!)"
+
+#: edit.c:512
+msgid "Parser error for indexed variable !"
+msgstr "Erreur analyse pour variable indexée !"
+
+#: edit.c:518
+msgid "You must select a boolean variable !"
+msgstr "Vous devez sélectionner une variable booléenne !"
+
+#: edit.c:527
+msgid "You must select a read/write variable for a coil!"
+msgstr ""
+"Vous devez sélectionner une variable en lecture/écriture pour une bobine !"
+
+#: edit.c:543 edit_sequential.c:180 symbols_gtk.c:135 spy_vars_gtk.c:664
+#: search.c:441
+msgid "Unknown variable..."
+msgstr "Variable inconnue..."
+
+#: edit.c:1303
+msgid "No more free function block of this type available..."
+msgstr "Plus de bloc fonction de ce type disponible..."
+
+#: edit.c:1315
+msgid "No more free arithmetic expression for this type available..."
+msgstr "Plus d'expression arithmetic pour ce type disponible..."
+
+#: edit.c:1507
+msgid "You clicked outside of the current rung actually selected..."
+msgstr "Vous avez cliquer en-dehors du réseau actuellement sélectionné..."
+
+#: edit_sequential.c:116 edit_sequential.c:158
+msgid "True"
+msgstr "Vrai"
+
+#: edit_sequential.c:117
+msgid "False"
+msgstr "Faux"
+
+#: edit_sequential.c:127
+msgid "Step Nbr"
+msgstr "N° Etape"
+
+#: edit_sequential.c:129 menu_and_toolbar_gtk.c:154
+msgid "Init. Step"
+msgstr "Etape Init."
+
+#: edit_sequential.c:138
+msgid "StepsToReset"
+msgstr "Activ.Etapes"
+
+#: edit_sequential.c:140
+msgid "StepsToSet"
+msgstr "Désactiv.Etapes"
+
+#: edit_sequential.c:142
+msgid "OrTransisStart"
+msgstr "DébutTransi'Ou'"
+
+#: edit_sequential.c:144
+msgid "OrTransisEnd"
+msgstr "FinTransi'Ou'"
+
+#: edit_sequential.c:148 symbols_gtk.c:200 menu_and_toolbar_gtk.c:162
+#: edit_gtk.c:138
+msgid "Comment"
+msgstr "Commentaire"
+
+#: edit_sequential.c:575
+msgid ""
+"There is already a step to desactivate for this transition (clicked on top "
+"part)..."
+msgstr ""
+"Il y a déjà une étape à désactiver pour cette transition (cliqué sur partie "
+"haute)..."
+
+#: edit_sequential.c:582
+msgid ""
+"There is already a step to activate for this transition (clicked on bottom "
+"part)..."
+msgstr ""
+"Il y a déjà une étape à activer pour cette transition (cliqué sur partie "
+"basse)..."
+
+#: edit_sequential.c:597
+msgid "Not selected first and last transitions to be joined !!??"
+msgstr "Pas sélectionné première et dernière transitions à joindre !!??"
+
+#: edit_sequential.c:614
+msgid "Unknown element type for Ele1"
+msgstr "Type élément inconnu pour Ele1"
+
+#: edit_sequential.c:628
+msgid "First and last steps selected are not on the same line !!??"
+msgstr ""
+"Première et dernière étapes sélectionnées ne sont pas sur la même ligne !!?"
+
+#: edit_sequential.c:645
+msgid "First and last transitions selected are not on the same line !!??"
+msgstr ""
+"Première et dernière transitions sélectionnées ne sont pas sur la même "
+"ligne !!?"
+
+#: edit_sequential.c:652
+msgid "Unknown element type for Ele2"
+msgstr "Type élément inconnu pour Ele2"
+
+#: edit_sequential.c:701 edit_sequential.c:746
+msgid "Error in selection or not possible..."
+msgstr "Erreur en sélection ou pas possible..."
+
+#: edit_sequential.c:816
+msgid "Not found at least 2 transitions linked..."
+msgstr "Pas trouvé au moins 2 transitions jointes..."
+
+#: edit_sequential.c:940
+msgid "Sequential memory full for steps"
+msgstr "Mémoire séquentiel remplie pour étapes"
+
+#: edit_sequential.c:945 edit_sequential.c:985
+msgid "There is already an element!"
+msgstr "Il y a déjà un élement!"
+
+#: edit_sequential.c:952
+msgid "A step can't be placed on even lines"
+msgstr "Une étape ne peut pas être placée sur les lignes impaires"
+
+#: edit_sequential.c:980
+msgid "Sequential memory full for transition"
+msgstr "Mémoire séquentiel remplie pour transitions"
+
+#: edit_sequential.c:992
+msgid "A transition can't be placed on odd lines"
+msgstr "Une transition ne peut pas être placée sur les lignes paires"
+
+#: edit_sequential.c:1006
+msgid "Now select the transition."
+msgstr "Maintenant sélectionner la transition."
+
+#: edit_sequential.c:1008
+msgid "Now select the step that will be desactivate by this transition."
+msgstr "Maintenant sélectionner l'étape qui désactivera cette transition."
+
+#: edit_sequential.c:1008
+msgid "Now select the step that will be activate by this transition."
+msgstr "Maintenant sélectionner l'étape qui sera activée par cette transition."
+
+#: edit_sequential.c:1010
+msgid "You haven't selected a step or a transition to link!!!"
+msgstr "Vous n'avez pas sélectionné une étape our une transition à joindre!!!"
+
+#: edit_sequential.c:1020
+msgid "You haven't selected a transition and then the step to link!!!"
+msgstr ""
+"Vous n'avez pas sélectionné une transition puis après une étape à joindre!!!"
+
+#: edit_sequential.c:1055
+msgid "Sequential memory full for comments"
+msgstr "Mémoire séquentiel remplie pour commentaires"
+
+#: edit_sequential.c:1060
+msgid "There is already an element on 4 horizontal blocks required!"
+msgstr "Il y a déjà un élement sur les 4 cases horizontales nécessaires!"
+
+#: edit_sequential.c:1065
+msgid "Not enough room on the right here..."
+msgstr "Pas suffisamment de place sur la droite ici..."
+
+#: editproperties_gtk.c:277 manager_gtk.c:535
+msgid "Properties"
+msgstr "Propriétés"
+
+#: editproperties_gtk.c:335 spy_vars_gtk.c:1092
+msgid "Apply"
+msgstr "Appliquer"
+
+#: manager_gtk.c:92 manager_gtk.c:505
+msgid "Main"
+msgstr "Principal"
+
+#: manager_gtk.c:106 manager_gtk.c:495
+msgid "Sequential"
+msgstr "Séquentiel"
+
+#: manager_gtk.c:106 manager_gtk.c:493
+msgid "Ladder"
+msgstr "Contact"
+
+#: manager_gtk.c:181
+msgid "This section name already exists or is incorrect !!!"
+msgstr "Le nom de cette section existe déjà ou est incorrect !!!"
+
+#: manager_gtk.c:210
+msgid "This sub-routine number for calls is already defined !!!"
+msgstr "Ce numéro de sous-routine est déjà défini !!!"
+
+#: manager_gtk.c:218
+msgid "Failed to add a new section. Full?"
+msgstr "Echec lors de l'ajout d'une nouvelle section. Complet?"
+
+#: manager_gtk.c:234 manager_gtk.c:258 manager_gtk.c:315 manager_gtk.c:342
+#: manager_gtk.c:367 config_gtk.c:1669 spy_vars_gtk.c:1038 edit_gtk.c:379
+#: edit_gtk.c:394 edit_gtk.c:409 classicladder_gtk.c:866
+#: classicladder_gtk.c:878
+msgid "Not possible when connected to a remote target..."
+msgstr "Impossible quand connecté à une cible distante"
+
+#: manager_gtk.c:238 manager_gtk.c:319 manager_gtk.c:346 manager_gtk.c:371
+msgid "Not possible when program running..."
+msgstr "Impossible sur un programme en marche..."
+
+#: manager_gtk.c:249
+msgid "Add a new section..."
+msgstr "Ajouter une nouvelle section..."
+
+#: manager_gtk.c:286
+msgid "Modify current section"
+msgstr "Modifier la section en-cours"
+
+#: manager_gtk.c:328 menu_and_toolbar_gtk.c:55 classicladder_gtk.c:868
+msgid "New"
+msgstr "Nouveau"
+
+#: manager_gtk.c:328
+msgid "Do you really want to delete the section ?"
+msgstr "Souhaitez-vous vraiment effacer cette section ?"
+
+#: manager_gtk.c:332
+msgid "You can not delete the last section..."
+msgstr "Vous ne pouvez pas supprimer la dernière section..."
+
+#: manager_gtk.c:358
+msgid "This section is already executed the first !"
+msgstr "Cette section est déjà exécutée en premier !"
+
+#: manager_gtk.c:383
+msgid "This section is already executed the latest !"
+msgstr "Cette section est déjà exécutée en dernier !"
+
+#: manager_gtk.c:472 manager_gtk.c:557
+msgid "Language"
+msgstr "Langage"
+
+#: manager_gtk.c:473
+msgid "Main/Sub-Routine"
+msgstr "Principal/Sous-Routine"
+
+#: manager_gtk.c:474 config_gtk.c:1487
+msgid "Name"
+msgstr "Nom"
+
+#: manager_gtk.c:517 print_gtk.c:319 menu_and_toolbar_gtk.c:577 edit_gtk.c:742
+#: classicladder_gtk.c:688 classicladder_gtk.c:722 classicladder_gtk.c:1073
+#: classicladder_gtk.c:1095 classicladder_gtk.c:1618 log_events_gtk.c:293
+msgid "Ok"
+msgstr "Ok"
+
+#: manager_gtk.c:531
+msgid "Add section"
+msgstr "Ajouter section"
+
+#: manager_gtk.c:531
+msgid "Add New Section"
+msgstr "Ajouter nouvelle section"
+
+#: manager_gtk.c:532
+msgid "Delete section"
+msgstr "Supprimer section"
+
+#: manager_gtk.c:532
+msgid "Delete Section"
+msgstr "Supprimer section"
+
+#: manager_gtk.c:533
+msgid "Move up"
+msgstr "Vers haut"
+
+#: manager_gtk.c:533
+msgid "Priority order Move up"
+msgstr "Ordre priorité Vers haut"
+
+#: manager_gtk.c:534
+msgid "Move down"
+msgstr "Vers bas"
+
+#: manager_gtk.c:534
+msgid "Priority order Move down"
+msgstr "Ordre priorité Vers bas"
+
+#: manager_gtk.c:535
+msgid "Section Properties"
+msgstr "Propriétés section"
+
+#: manager_gtk.c:557
+msgid "Nbr"
+msgstr "Nbr"
+
+#: manager_gtk.c:557
+msgid "Section Name"
+msgstr "Nom section"
+
+#: manager_gtk.c:557 config_gtk.c:361 config_gtk.c:1487
+msgid "Type"
+msgstr "Type"
+
+#: manager_gtk.c:557
+msgid "debug"
+msgstr "debug"
+
+#: manager_gtk.c:562 menu_and_toolbar_gtk.c:106
+msgid "Sections Manager"
+msgstr "Gestionnaire Sections"
+
+#: config_gtk.c:50 config_gtk.c:635 config_gtk.c:1488
+msgid "None"
+msgstr "Aucun"
+
+#: config_gtk.c:50
+msgid "DirectPortAccess"
+msgstr "AccèsPortDirect"
+
+#: config_gtk.c:50
+msgid "DirectPortConfig"
+msgstr "ConfigPortDirect"
+
+#: config_gtk.c:50
+msgid "Raspberry_GPIO"
+msgstr "Raspberry_GPIO"
+
+#: config_gtk.c:50
+msgid "Atmel_SAM_GPIO"
+msgstr "Atmel_SAM_GPIO"
+
+#: config_gtk.c:67
+msgid "ReadInputs (to %I)"
+msgstr "Lect.Entrées (vers %I)"
+
+#: config_gtk.c:67
+msgid "WriteCoils (from %Q)"
+msgstr "Ecrit.Bobines (depuis %Q)"
+
+#: config_gtk.c:67
+msgid "ReadInputRegs (to %IW)"
+msgstr "Lect.MotsEntrées (vers %IW)"
+
+#: config_gtk.c:67
+msgid "WriteHoldRegs (from %QW)"
+msgstr "Ecrit.MotsSorties (depuis %QW)"
+
+#: config_gtk.c:67
+msgid "ReadCoils (to %Q)"
+msgstr "Lect.Bobines (vers %Q)"
+
+#: config_gtk.c:67
+msgid "ReadHoldRegs (to %QW)"
+msgstr "Lect.MotsSorties (vers %QW)"
+
+#: config_gtk.c:67
+msgid "ReadStatus (to %IW)"
+msgstr "Lect.Status (vers %IW)"
+
+#: config_gtk.c:67
+msgid "Diagnostic (from %IW/to %QW - 1stEle=sub-code used)"
+msgstr "Diagnostic (depuis%IW/vers %QW) - PremierEle=sous-code utilisé"
+
+#: config_gtk.c:128
+#, c-format
+msgid "Periodic Refresh Rate 'inputs scan' (milliseconds)"
+msgstr "Période scrutation tâche 'entrées' (milli-secondes)"
+
+#: config_gtk.c:132
+#, c-format
+msgid "Periodic Refresh Rate 'logic' (milliseconds)"
+msgstr "Période scrutation tâche 'logique' (milli-secondes)"
+
+#: config_gtk.c:137
+msgid "Nbr.rungs"
+msgstr "Nbr. réseaux"
+
+#: config_gtk.c:137 config_gtk.c:187
+msgid "used"
+msgstr "utilisé"
+
+#: config_gtk.c:137 config_gtk.c:141 config_gtk.c:145 config_gtk.c:149
+#: config_gtk.c:153 config_gtk.c:157 config_gtk.c:161 config_gtk.c:166
+#: config_gtk.c:170 config_gtk.c:174 config_gtk.c:178 config_gtk.c:182
+#: config_gtk.c:187 config_gtk.c:191 config_gtk.c:196 config_gtk.c:200
+msgid "current alloc"
+msgstr "actuell.alloué"
+
+#: config_gtk.c:137 config_gtk.c:149 config_gtk.c:153 config_gtk.c:157
+#: config_gtk.c:161 config_gtk.c:182 config_gtk.c:187 config_gtk.c:196
+#: config_gtk.c:200
+msgid "size"
+msgstr "taille"
+
+#: config_gtk.c:137 config_gtk.c:149 config_gtk.c:153 config_gtk.c:157
+#: config_gtk.c:161 config_gtk.c:182 config_gtk.c:187 config_gtk.c:196
+#: config_gtk.c:200
+msgid "bytes"
+msgstr "octets"
+
+#: config_gtk.c:141
+msgid "Nbr.Bits"
+msgstr "Nbr.Bits"
+
+#: config_gtk.c:145
+msgid "Nbr.Words"
+msgstr "Nbr.Mots"
+
+#: config_gtk.c:149
+msgid "Nbr.Counters"
+msgstr "Nbr.Compteurs"
+
+#: config_gtk.c:153
+msgid "Nbr.Timers IEC"
+msgstr "Nbr.Tempo IEC"
+
+#: config_gtk.c:157
+msgid "Nbr.Registers"
+msgstr "Nbr.Registres"
+
+#: config_gtk.c:161
+msgid "Register list size"
+msgstr "Taille liste registre"
+
+#: config_gtk.c:166
+msgid "Nbr.Phys.Inputs"
+msgstr "Nbr.Entrées Phys."
+
+#: config_gtk.c:170
+msgid "Nbr.Phys.Outputs"
+msgstr "Nbr.Sorties Phys."
+
+#: config_gtk.c:174
+msgid "Nbr.Phys.Words.Inputs"
+msgstr "Nbr.Mots Entrée"
+
+#: config_gtk.c:178
+msgid "Nbr.Phys.Words.Outputs"
+msgstr "Nbr.Mots Sortie"
+
+#: config_gtk.c:182
+msgid "Nbr.Arithm.Expr."
+msgstr "Nbr.Expr.Arithm"
+
+#: config_gtk.c:187
+msgid "Nbr.Sections"
+msgstr "Nbr.Sections"
+
+#: config_gtk.c:191
+msgid "Nbr.Symbols"
+msgstr "Nbr.Symboles"
+
+#: config_gtk.c:196
+msgid "Nbr.Timers"
+msgstr "Nbr.Tempo"
+
+#: config_gtk.c:200
+msgid "Nbr.Monostables"
+msgstr "Nbr.Monostables"
+
+#: config_gtk.c:205
+#, c-format
+msgid "Current file project"
+msgstr "Fichier projet courant"
+
+#: config_gtk.c:209
+#, c-format
+msgid "Default startup project"
+msgstr "Projet démarrage par-défaut"
+
+#: config_gtk.c:220
+msgid ""
+"Use real physical & serial modbus inputs/outputs only on the embedded target "
+"(not for GTK simul interface)"
+msgstr ""
+"Utilisation réelle entrées/sorties physique et modbus série seulement sur la "
+"cible distante (pas pour l'interface simulateur GTK)"
+
+#: config_gtk.c:267
+msgid "Use as default project"
+msgstr "Utilisation comme projet par-défaut"
+
+#: config_gtk.c:274
+msgid "No default project"
+msgstr "Aucun projet de démarrage"
+
+#: config_gtk.c:361
+msgid "First %"
+msgstr "Premier %"
+
+#: config_gtk.c:361
+msgid "PortAdr(0x)/SubDev"
+msgstr "AdrPort(0x)/SousDev"
+
+#: config_gtk.c:361
+msgid "1stChannel/GPIO"
+msgstr "1erCanal/GPIO"
+
+#: config_gtk.c:361
+msgid "NbrChannels/GPIOs"
+msgstr "NbrCanaux/GPIO"
+
+#: config_gtk.c:361 config_gtk.c:688
+msgid "Logic"
+msgstr "Logique"
+
+#: config_gtk.c:361
+msgid "ConfigData"
+msgstr "DonnéesConfig"
+
+#: config_gtk.c:406
+msgid "1st %I mapped"
+msgstr "1er %I affecté"
+
+#: config_gtk.c:406
+msgid "1st %Q mapped"
+msgstr "1er %Q affecté"
+
+#: config_gtk.c:463 config_gtk.c:764
+msgid "Inverted"
+msgstr "Inversé"
+
+#: config_gtk.c:652
+msgid "not defined"
+msgstr "non défini"
+
+#: config_gtk.c:688 config_gtk.c:873
+msgid "Slave No"
+msgstr "Esclave No"
+
+#: config_gtk.c:688
+msgid "Request Type"
+msgstr "Type requête"
+
+#: config_gtk.c:688
+msgid "1st Modbus Ele."
+msgstr "1er ele. Modbus"
+
+#: config_gtk.c:688
+msgid "Nbr of Ele"
+msgstr "Nbr d'ele"
+
+#: config_gtk.c:688
+msgid "1st I/Q/IW/QW mapped"
+msgstr "1er I/Q/IW/QW affecté"
+
+#: config_gtk.c:863
+msgid "Overflow error for I,Q,B,IQ,WQ or W mapping detected..."
+msgstr "Erreur de débordement détectée pour affectations I,Q,B,IQ,WQ or W"
+
+#: config_gtk.c:873
+msgid "Slave Address"
+msgstr "Adresse Esclave"
+
+#: config_gtk.c:873
+msgid "TCP/UDP mode"
+msgstr "mode TCP/UDP"
+
+#: config_gtk.c:873
+msgid "Module Informations"
+msgstr "Informations module"
+
+#: config_gtk.c:922
+msgid "UDP instead of TCP"
+msgstr "UDP au lieu de TCP"
+
+#: config_gtk.c:958
+msgid "SerialAdr -or- AdrIP -or- AdrIP:Port"
+msgstr "AdrSérie -ou- AdrIP -ou- AdrIP:Port"
+
+#: config_gtk.c:1060
+#, c-format
+msgid "Modbus master Serial port (blank = IP mode)"
+msgstr "Port série modbus maître (vide = mode IP)"
+
+#: config_gtk.c:1064
+#, c-format
+msgid "Serial baud rate"
+msgstr "Vitesse Série"
+
+#: config_gtk.c:1068
+#, c-format
+msgid "Serial nbr. data bits"
+msgstr "Nbr. bits données Série"
+
+#: config_gtk.c:1072
+#, c-format
+msgid "Serial parity"
+msgstr "Parité Série"
+
+#: config_gtk.c:1076
+#, c-format
+msgid "Serial nbr. stops bits"
+msgstr "Nbr. bits stop Série"
+
+#: config_gtk.c:1080
+#, c-format
+msgid "After transmit pause - milliseconds"
+msgstr "Pause après transmission (milli-secondes)"
+
+#: config_gtk.c:1084
+#, c-format
+msgid "After receive pause - milliseconds"
+msgstr "Pause après réception (milli-secondes)"
+
+#: config_gtk.c:1088
+#, c-format
+msgid "Request Timeout length - milliseconds"
+msgstr "Timeout longueur requête (milli-secondes)"
+
+#: config_gtk.c:1092
+#, c-format
+msgid "Use RTS signal to send"
+msgstr "Utilisation signal RTS pour émettre"
+
+#: config_gtk.c:1096
+#, c-format
+msgid "Modbus element offset"
+msgstr "Décalage élément Modbus"
+
+#: config_gtk.c:1100
+#, c-format
+msgid "Debug level"
+msgstr "Niveau debug"
+
+#: config_gtk.c:1101
+msgid "QUIET"
+msgstr "SILENCIEUX"
+
+#: config_gtk.c:1101
+msgid "LEVEL"
+msgstr "NIVEAU"
+
+#: config_gtk.c:1101
+msgid "VERBOSE"
+msgstr "VERBEUX"
+
+#: config_gtk.c:1104
+#, c-format
+msgid "Read inputs map to"
+msgstr "Lecture entrées affectées à"
+
+#: config_gtk.c:1108
+#, c-format
+msgid "Read coils map to"
+msgstr "Lecture bobines affectées à"
+
+#: config_gtk.c:1112
+#, c-format
+msgid "Write coils map from"
+msgstr "Ecriture bobines affectées à"
+
+#: config_gtk.c:1116
+#, c-format
+msgid "Read input registers map to"
+msgstr "Lecture mots entrées affectés à"
+
+#: config_gtk.c:1120
+#, c-format
+msgid "Read hold registers map to"
+msgstr "Lecture mots sorties affectés à"
+
+#: config_gtk.c:1124
+#, c-format
+msgid "Write hold registers map from"
+msgstr "Ecriture mots sorties affectés à"
+
+#: config_gtk.c:1214
+msgid "1st %Bxxxx"
+msgstr "1er %Bxxxx"
+
+#: config_gtk.c:1214
+msgid "Nbr Of %B"
+msgstr "Nbr de %B"
+
+#: config_gtk.c:1214 log_events_gtk.c:324
+msgid "Symbol"
+msgstr "Symbole"
+
+#: config_gtk.c:1214
+msgid "Text event"
+msgstr "Texte événement"
+
+#: config_gtk.c:1214
+msgid "Level(>0=Def)"
+msgstr "Niveau (>0=Def)"
+
+#: config_gtk.c:1214
+msgid "Forward Remote Alarms Slots"
+msgstr "Casiers Suivi alarmes distantes"
+
+#: config_gtk.c:1377
+msgid "Overflow error for first/nbrs detected..."
+msgstr "Erreur de dépassement détectée pour permier/nombres"
+
+#: config_gtk.c:1393
+msgid "Modem on slave monitor"
+msgstr "Modem sur moniteur esclave"
+
+#: config_gtk.c:1393
+msgid "AT init sequence"
+msgstr "Séquence AT init"
+
+#: config_gtk.c:1393
+msgid "AT config sequence"
+msgstr "Séquence AT config"
+
+#: config_gtk.c:1393
+msgid "AT call sequence"
+msgstr "Séquence AT appel"
+
+#: config_gtk.c:1393
+msgid "Optional PIN Code"
+msgstr "Code PIN optionnel"
+
+#: config_gtk.c:1402
+msgid "Automatically adjust summer/winter time."
+msgstr "Ajustement automatique heure été/hiver"
+
+#: config_gtk.c:1414
+msgid "Use"
+msgstr "Utilise"
+
+#: config_gtk.c:1443
+msgid "--- Monitor Master modem AT sequences ---"
+msgstr "--- Modem Moniteur maître séquences AT ---"
+
+#: config_gtk.c:1486
+msgid "Global remote alarms enable"
+msgstr "Activation globale alarmes distantes"
+
+#: config_gtk.c:1486
+msgid "Slot Alarms"
+msgstr "Casier alarmes"
+
+#: config_gtk.c:1486
+msgid "Remote Slot '0': "
+msgstr "Casier distant '0'"
+
+#: config_gtk.c:1486
+msgid "Remote Slot '1': "
+msgstr "Casier distant '1'"
+
+#: config_gtk.c:1486
+msgid "Remote Slot '2': "
+msgstr "Casier distant '2'"
+
+#: config_gtk.c:1486
+msgid "Remote Slot '3': "
+msgstr "Casier distant '3'"
+
+#: config_gtk.c:1486
+msgid "Remote Slot '4': "
+msgstr "Casier distant '4'"
+
+#: config_gtk.c:1486
+msgid "Remote Slot '5': "
+msgstr "Casier distant '5'"
+
+#: config_gtk.c:1486
+msgid "Remote Slot '6': "
+msgstr "Casier distant '6'"
+
+#: config_gtk.c:1486
+msgid "Remote Slot '7': "
+msgstr "Casier distant '7'"
+
+#: config_gtk.c:1486
+msgid "Center SMS Server"
+msgstr "Centre serveur SMS"
+
+#: config_gtk.c:1486
+msgid "Smtp Server For Emails"
+msgstr "Serveur Smtp pour courriels"
+
+#: config_gtk.c:1486
+msgid "Smtp Server User Name"
+msgstr "Nom connection serveur Smtp"
+
+#: config_gtk.c:1486
+msgid "Smtp Server Password"
+msgstr "Mot de passe serveur Smtp"
+
+#: config_gtk.c:1486
+msgid "Email Sender Address"
+msgstr "Adresse expéditeur courriel"
+
+#: config_gtk.c:1487
+msgid "Telephone (SMS)"
+msgstr "Téléphone (SMS)"
+
+#: config_gtk.c:1487 config_gtk.c:1488
+msgid "Email"
+msgstr "Courriel"
+
+#: config_gtk.c:1488
+msgid "SMS"
+msgstr "SMS"
+
+#: config_gtk.c:1682
+msgid "Period/Sizes/Info"
+msgstr "Période/Taille/Info"
+
+#: config_gtk.c:1685
+msgid "Events Config"
+msgstr "Config. événements"
+
+#: config_gtk.c:1689
+msgid "Physical Inputs %I"
+msgstr "Entrées physiques %I"
+
+#: config_gtk.c:1691
+msgid "Physical Outputs %Q"
+msgstr "Sorties physiques %Q"
+
+#: config_gtk.c:1692
+msgid "Physical Inputs/Outputs"
+msgstr "Entrées/Sorties physiques"
+
+#: config_gtk.c:1695
+msgid "Modbus communication"
+msgstr "Communication Modbus"
+
+#: config_gtk.c:1697
+msgid "Modbus slaves"
+msgstr "Esclaves Modbus"
+
+#: config_gtk.c:1699
+msgid "Modbus I/O"
+msgstr "Entrées/Sorties Modbus"
+
+#: config_gtk.c:1702
+msgid "Remote Alarms"
+msgstr "Alarmes distantes"
+
+#: config_gtk.c:1704
+msgid "Misc/Modem"
+msgstr "Divers/Modem"
+
+#: vars_names.c:624
+msgid "Unknown variable (number value out of bound)"
+msgstr "Variable inconnue (ou numéro hors plage)"
+
+#: symbols_gtk.c:116
+#, c-format
+msgid "A variable name always start with '%' character !"
+msgstr "Un nom de variable commence toujours par le caractère '%' !"
+
+#: symbols_gtk.c:200
+msgid "Symbol name"
+msgstr "Nom symbolique"
+
+#: symbols_gtk.c:203
+msgid "Symbols names"
+msgstr "Noms symboles"
+
+#: spy_vars_gtk.c:134
+msgid "Set to 1"
+msgstr "Forçage à 1"
+
+#: spy_vars_gtk.c:135
+msgid "Set to 0"
+msgstr "Forçage à 0"
+
+#: spy_vars_gtk.c:136
+msgid "UnSet"
+msgstr "Déforçage"
+
+#: spy_vars_gtk.c:157
+msgid "Set/UnSet variable"
+msgstr "Forçage/déforçage variable"
+
+#: spy_vars_gtk.c:389 spy_vars_gtk.c:392
+msgid "Spy bools vars"
+msgstr "Espions vars booléennes"
+
+#: spy_vars_gtk.c:400 classicladder_gtk.c:1428
+msgid "Display symbols"
+msgstr "Voir symboles"
+
+#: spy_vars_gtk.c:423
+msgid "Offset for vars displayed below (press return to apply)"
+msgstr ""
+"Décalage pour variables affichées ci-dessous (appuyer sur Entrée pour "
+"valider)"
+
+#: spy_vars_gtk.c:443
+msgid "Set/Unset output"
+msgstr "Forçage/déforçage sortie"
+
+#: spy_vars_gtk.c:443
+msgid "Set/Unset input"
+msgstr "Forçage/déforçage entrée"
+
+#: spy_vars_gtk.c:728
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: spy_vars_gtk.c:728
+msgid "Monday"
+msgstr "Lundi"
+
+#: spy_vars_gtk.c:728
+msgid "Tuesday"
+msgstr "Mardi"
+
+#: spy_vars_gtk.c:728
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: spy_vars_gtk.c:728
+msgid "Thursday"
+msgstr "Jeudi"
+
+#: spy_vars_gtk.c:728
+msgid "Friday"
+msgstr "Vendredi"
+
+#: spy_vars_gtk.c:728
+msgid "Saturday"
+msgstr "Samedi"
+
+#: spy_vars_gtk.c:819 spy_vars_gtk.c:820
+msgid "Dec +/-"
+msgstr "Déc +/-"
+
+#: spy_vars_gtk.c:821
+msgid "Dec +"
+msgstr "Déc +"
+
+#: spy_vars_gtk.c:822
+msgid "Hex"
+msgstr "Hex"
+
+#: spy_vars_gtk.c:823
+msgid "Bin"
+msgstr "Bin"
+
+#: spy_vars_gtk.c:853 spy_vars_gtk.c:854
+msgid "Modify Value :"
+msgstr "Modification variable :"
+
+#: spy_vars_gtk.c:938
+msgid "Not connected"
+msgstr "Pas connecté"
+
+#: spy_vars_gtk.c:959
+msgid "Used"
+msgstr "Utilisé"
+
+#: spy_vars_gtk.c:960
+msgid "Free"
+msgstr "Libre"
+
+#: spy_vars_gtk.c:961
+msgid "Size"
+msgstr "Taille"
+
+#: spy_vars_gtk.c:1005
+msgid "ClassicLadder Soft.Version"
+msgstr "Version Logiciel ClassicLadder"
+
+#: spy_vars_gtk.c:1005
+msgid "Kernel Version"
+msgstr "Version Noyau"
+
+#: spy_vars_gtk.c:1005
+msgid "Xenomai version"
+msgstr "Version Xenomai"
+
+#: spy_vars_gtk.c:1005
+msgid "Linux Distribution"
+msgstr "Distribution Linux"
+
+#: spy_vars_gtk.c:1005
+msgid "Disk statistics"
+msgstr "Statistiques Disque"
+
+#: spy_vars_gtk.c:1066
+msgid "Project Name"
+msgstr "Nom Projet"
+
+#: spy_vars_gtk.c:1066
+msgid "Project Site"
+msgstr "Site Projet"
+
+#: spy_vars_gtk.c:1066
+msgid "Author"
+msgstr "Auteur"
+
+#: spy_vars_gtk.c:1066
+msgid "Company"
+msgstr "Société"
+
+#: spy_vars_gtk.c:1066
+msgid "Param.Version"
+msgstr "Version Param."
+
+#: spy_vars_gtk.c:1066
+msgid "Creation Date"
+msgstr "Date Création"
+
+#: spy_vars_gtk.c:1066
+msgid "Modify Date"
+msgstr "Date Modification"
+
+#: spy_vars_gtk.c:1104 spy_vars_gtk.c:1107
+msgid "Spy free vars"
+msgstr "Espions vars libres"
+
+#: spy_vars_gtk.c:1111
+msgid "Vars & Time"
+msgstr "Vars & Horloge"
+
+#: spy_vars_gtk.c:1114
+msgid "Project properties"
+msgstr "Propriétés Projet"
+
+#: spy_vars_gtk.c:1117
+msgid "Target infos"
+msgstr "Infos Cible"
+
+#: print_gtk.c:162
+msgid "Symbols list"
+msgstr "Liste symboles"
+
+#: print_gtk.c:162 print_gtk.c:208
+msgid "Page"
+msgstr "Page"
+
+#: print_gtk.c:208
+msgid "Section"
+msgstr "Section"
+
+#: print_gtk.c:274
+msgid "Print section"
+msgstr "Impression section"
+
+#: print_gtk.c:278
+msgid "Print only current section"
+msgstr "Imprimer seulement section en cours"
+
+#: print_gtk.c:279
+msgid "Print all the sections"
+msgstr "Imprimer toutes les sections"
+
+#: print_gtk.c:282
+msgid "Print symbols list"
+msgstr "Imprimer liste symboles"
+
+#: print_gtk.c:303
+msgid "ClassicLadder Options"
+msgstr "Options ClassicLadder"
+
+#: print_gtk.c:319 menu_and_toolbar_gtk.c:64
+msgid "Print"
+msgstr "Imprimer"
+
+#: print_gtk.c:319
+msgid "Failed to print..."
+msgstr "Echec impression..."
+
+#: menu_and_toolbar_gtk.c:54 classicladder_gtk.c:1326
+msgid "File"
+msgstr "Fichier"
+
+#: menu_and_toolbar_gtk.c:55
+msgid "Create a new project"
+msgstr "Création d'un nouveau projet"
+
+#: menu_and_toolbar_gtk.c:56
+msgid "Load"
+msgstr "Ouvrir"
+
+#: menu_and_toolbar_gtk.c:56
+msgid "Load an existing project"
+msgstr "Ouvrir un projet existant"
+
+#: menu_and_toolbar_gtk.c:57 menu_and_toolbar_gtk.c:149
+msgid "Save"
+msgstr "Enregistrer"
+
+#: menu_and_toolbar_gtk.c:57
+msgid "Save current project"
+msgstr "Enregistrer projet courant"
+
+#: menu_and_toolbar_gtk.c:58
+msgid "Save As..."
+msgstr "Enregistrer sous..."
+
+#: menu_and_toolbar_gtk.c:58
+msgid "Save project to another file"
+msgstr "Enregistrer projet vers un autre fichier"
+
+#: menu_and_toolbar_gtk.c:59
+msgid "Export to"
+msgstr "Export vers"
+
+#: menu_and_toolbar_gtk.c:62
+msgid "Clipboard"
+msgstr "Presse-papier"
+
+#: menu_and_toolbar_gtk.c:63
+msgid "Preview"
+msgstr "Prévisualisation"
+
+#: menu_and_toolbar_gtk.c:64
+msgid "Print current section"
+msgstr "Imprimer section en cours"
+
+#: menu_and_toolbar_gtk.c:65
+msgid "Quit"
+msgstr "Quitter"
+
+#: menu_and_toolbar_gtk.c:67
+msgid "View"
+msgstr "Voir"
+
+#: menu_and_toolbar_gtk.c:69
+msgid "Register block content"
+msgstr "Contenu bloc registre"
+
+#: menu_and_toolbar_gtk.c:69
+msgid "View register block content"
+msgstr "Voir contenu bloc registre"
+
+#: menu_and_toolbar_gtk.c:70
+msgid "Frames log windows"
+msgstr "Fenêtres suivi trames "
+
+#: menu_and_toolbar_gtk.c:71
+msgid "Linux SysLog debug"
+msgstr "Linux SysLog debug"
+
+#: menu_and_toolbar_gtk.c:71
+msgid "View Linux SysLog debug"
+msgstr "Voir Linux SysLog debug"
+
+#: menu_and_toolbar_gtk.c:73
+msgid "Search"
+msgstr "Recherche"
+
+#: menu_and_toolbar_gtk.c:74
+msgid "Find"
+msgstr "Rechercher"
+
+#: menu_and_toolbar_gtk.c:74
+msgid "Find First"
+msgstr "Rechercher premier"
+
+#: menu_and_toolbar_gtk.c:75
+msgid "Find Next"
+msgstr "Rechercher suivant"
+
+#: menu_and_toolbar_gtk.c:76
+msgid "Find Previous"
+msgstr "Rechercher précédent"
+
+#: menu_and_toolbar_gtk.c:76
+msgid "Find Down"
+msgstr "Recerche vers le bas"
+
+#: menu_and_toolbar_gtk.c:77
+msgid "Go to First Rung"
+msgstr "Aller au premier réseau"
+
+#: menu_and_toolbar_gtk.c:78
+msgid "Go to Last Rung"
+msgstr "Aller au dernier réseau"
+
+#: menu_and_toolbar_gtk.c:79
+msgid "Go to Previous Section"
+msgstr "Aller à la section précédente"
+
+#: menu_and_toolbar_gtk.c:80
+msgid "Go to Next Section"
+msgstr "Aller à la section suivante"
+
+#: menu_and_toolbar_gtk.c:82
+msgid "PLC"
+msgstr "Automate"
+
+#: menu_and_toolbar_gtk.c:86 menu_and_toolbar_gtk.c:462
+#: menu_and_toolbar_gtk.c:469
+msgid "Run logic"
+msgstr "Logique en Marche"
+
+#: menu_and_toolbar_gtk.c:86
+msgid "Start/stop logic"
+msgstr "Marche/Arrêt logique"
+
+#: menu_and_toolbar_gtk.c:87
+msgid "Run logic only one cycle"
+msgstr "Logique en Marche pour un seul cycle"
+
+#: menu_and_toolbar_gtk.c:87
+msgid "Run logic one cycle/freeze logic"
+msgstr "Marche logique un cycle / gel logique"
+
+#: menu_and_toolbar_gtk.c:88
+msgid "Reset logic"
+msgstr "Réinitialiser logique"
+
+#: menu_and_toolbar_gtk.c:89
+msgid "Configuration"
+msgstr "Configuration"
+
+#: menu_and_toolbar_gtk.c:89
+msgid "Configuration (sizes, i/o, ...)"
+msgstr "Configuration (tailles, entrées/sorties, ...)"
+
+#: menu_and_toolbar_gtk.c:91
+msgid "Set Target Clock Time"
+msgstr "Mise à l'heure cible"
+
+#: menu_and_toolbar_gtk.c:91
+msgid "Set Clock Time of the Target with PC Time"
+msgstr "Mise à l'heure de la cible avec l'heure du PC"
+
+#: menu_and_toolbar_gtk.c:92
+msgid "Reboot/Halt Target"
+msgstr "Redémarrage/Arrêt cible"
+
+#: menu_and_toolbar_gtk.c:93
+msgid "Reboot Target"
+msgstr "Redémarrage cible"
+
+#: menu_and_toolbar_gtk.c:93
+msgid "Ask to reboot the target"
+msgstr "Demande à la cible de redémarrer"
+
+#: menu_and_toolbar_gtk.c:94
+msgid "Halt Target"
+msgstr "Arrêt cible"
+
+#: menu_and_toolbar_gtk.c:94
+msgid "Ask to halt the target"
+msgstr "Demande à la cible de s'arrêter"
+
+#: menu_and_toolbar_gtk.c:95
+msgid "Target network config"
+msgstr "Config réseau cible"
+
+#: menu_and_toolbar_gtk.c:95
+msgid "See and modify target IP network parameters"
+msgstr "Voir et modifier config réseau IP cible"
+
+#: menu_and_toolbar_gtk.c:96
+msgid "Target monitor serial config"
+msgstr "Config série moniteur cible"
+
+#: menu_and_toolbar_gtk.c:96
+msgid "See and modify target monitor serial config"
+msgstr "Voir et modifier config série moniteur cible"
+
+#: menu_and_toolbar_gtk.c:97
+msgid "File Transfer"
+msgstr "Transfert fichier"
+
+#: menu_and_toolbar_gtk.c:98
+msgid "Send current project to Target"
+msgstr "Envoyer projet en cours vers la cible"
+
+#: menu_and_toolbar_gtk.c:99
+msgid "Receive project of Target"
+msgstr "Recevoir projet de la cible"
+
+#: menu_and_toolbar_gtk.c:100
+msgid "Send update soft archive to Target"
+msgstr "Envoyer mise-à-jour archive logiciel vers la cible"
+
+#: menu_and_toolbar_gtk.c:103
+msgid "Help"
+msgstr "Aide"
+
+#: menu_and_toolbar_gtk.c:104
+msgid "About"
+msgstr "A-propos"
+
+#: menu_and_toolbar_gtk.c:106
+msgid "Open Sections Manager Window"
+msgstr "Ouvir fenêtre gestionnaire sections"
+
+#: menu_and_toolbar_gtk.c:108
+msgid "Add rung (alt-a)"
+msgstr "Ajouter réseau (alt-a)"
+
+#: menu_and_toolbar_gtk.c:108
+msgid "Add rung"
+msgstr "Ajouter réseau"
+
+#: menu_and_toolbar_gtk.c:109
+msgid "Insert rung (alt-i)"
+msgstr "Insérer réseau (alt-i)"
+
+#: menu_and_toolbar_gtk.c:109
+msgid "Insert rung"
+msgstr "Insérer réseau"
+
+#: menu_and_toolbar_gtk.c:110
+msgid "Delete rung (alt-x)"
+msgstr "Effacer réseau (alt-x)"
+
+#: menu_and_toolbar_gtk.c:110
+msgid "Delete rung"
+msgstr "Effacer réseau"
+
+#: menu_and_toolbar_gtk.c:111
+msgid "Modify (alt-m)"
+msgstr "Modifier (alt-m)"
+
+#: menu_and_toolbar_gtk.c:111 edit_gtk.c:737
+msgid "Modify"
+msgstr "Modifier"
+
+#: menu_and_toolbar_gtk.c:113
+msgid "Pointer (alt-p)"
+msgstr "Pointeur (alt-p)"
+
+#: menu_and_toolbar_gtk.c:113
+msgid "Pointer"
+msgstr "Pointeur"
+
+#: menu_and_toolbar_gtk.c:114
+msgid "Eraser (alt-x)"
+msgstr "Effaceur (alt-x)"
+
+#: menu_and_toolbar_gtk.c:114
+msgid "Erase"
+msgstr "Effaceur"
+
+#: menu_and_toolbar_gtk.c:115
+msgid "Draw H line (alt-h)"
+msgstr "Trace ligne H (alt-h)"
+
+#: menu_and_toolbar_gtk.c:115
+msgid "Draw H line"
+msgstr "Trace ligne H"
+
+#: menu_and_toolbar_gtk.c:116
+msgid "Draw H line to end (alt-l)"
+msgstr "Trace ligne H jusqu'à la fin (alt-l)"
+
+#: menu_and_toolbar_gtk.c:116
+msgid "Draw H line to end"
+msgstr "Trace ligne H jusqu'à la fin"
+
+#: menu_and_toolbar_gtk.c:117
+msgid "Connect V line (alt-v)"
+msgstr "Connecte ligne V (alt-v)"
+
+#: menu_and_toolbar_gtk.c:117
+msgid "Connect V line"
+msgstr "Connecte ligne V"
+
+#: menu_and_toolbar_gtk.c:119 search.c:45
+msgid "Contacts"
+msgstr "Contacts"
+
+#: menu_and_toolbar_gtk.c:120
+msgid "Open contact (alt-i)"
+msgstr "Contact ouvert (alt-i)"
+
+#: menu_and_toolbar_gtk.c:120
+msgid "Open contact"
+msgstr "Contact ouvert"
+
+#: menu_and_toolbar_gtk.c:121
+msgid "Closed contact"
+msgstr "Contact fermé"
+
+#: menu_and_toolbar_gtk.c:122
+msgid "Rising edge"
+msgstr "Front montant"
+
+#: menu_and_toolbar_gtk.c:123
+msgid "Falling edge"
+msgstr "Front descendant"
+
+#: menu_and_toolbar_gtk.c:125 search.c:45
+msgid "Coils"
+msgstr "Bobines"
+
+#: menu_and_toolbar_gtk.c:126
+msgid "Coil (alt-o)"
+msgstr "Bobine (alt-o)"
+
+#: menu_and_toolbar_gtk.c:126
+msgid "Coil"
+msgstr "Bobine"
+
+#: menu_and_toolbar_gtk.c:127
+msgid "Inverted coil"
+msgstr "Bobine inversée"
+
+#: menu_and_toolbar_gtk.c:128
+msgid "Set"
+msgstr "Mise à 1"
+
+#: menu_and_toolbar_gtk.c:129
+msgid "Reset"
+msgstr "Mise à 0"
+
+#: menu_and_toolbar_gtk.c:130
+msgid "Jump"
+msgstr "Saut"
+
+#: menu_and_toolbar_gtk.c:131
+msgid "Call"
+msgstr "Appel"
+
+#: menu_and_toolbar_gtk.c:133
+msgid "Boxes"
+msgstr "Boîtes"
+
+#: menu_and_toolbar_gtk.c:134
+msgid "IEC timer"
+msgstr "Tempo IEC"
+
+#: menu_and_toolbar_gtk.c:135
+msgid "Counter"
+msgstr "Compteur"
+
+#: menu_and_toolbar_gtk.c:137
+msgid "Old timer"
+msgstr "Ancienne tempo"
+
+#: menu_and_toolbar_gtk.c:138
+msgid "Old mono"
+msgstr "Ancien monostable"
+
+#: menu_and_toolbar_gtk.c:140 search.c:45
+msgid "Compare"
+msgstr "Comparaison"
+
+#: menu_and_toolbar_gtk.c:141 search.c:45
+msgid "Operate"
+msgstr "Affectation"
+
+#: menu_and_toolbar_gtk.c:143
+msgid "Actions"
+msgstr "Actions"
+
+#: menu_and_toolbar_gtk.c:144
+msgid "Element invert"
+msgstr "Inverser élément"
+
+#: menu_and_toolbar_gtk.c:145
+msgid "Block Select"
+msgstr "Sélection bloc"
+
+#: menu_and_toolbar_gtk.c:145
+msgid "Select"
+msgstr "Sélection"
+
+#: menu_and_toolbar_gtk.c:146
+msgid "Block Copy"
+msgstr "Copie bloc"
+
+#: menu_and_toolbar_gtk.c:146
+msgid "Copy"
+msgstr "Copie"
+
+#: menu_and_toolbar_gtk.c:147
+msgid "Block Move"
+msgstr "Déplacement bloc"
+
+#: menu_and_toolbar_gtk.c:147
+msgid "Move"
+msgstr "Déplacement"
+
+#: menu_and_toolbar_gtk.c:149
+msgid "Save (alt-Return)"
+msgstr "Sauvegarde (alt-Entrée)"
+
+#: menu_and_toolbar_gtk.c:150
+msgid "Cancel (alt-c)"
+msgstr "Annulation (alt-c)"
+
+#: menu_and_toolbar_gtk.c:150 edit_gtk.c:746
+msgid "Cancel"
+msgstr "Annulation"
+
+#: menu_and_toolbar_gtk.c:153 edit_gtk.c:133
+msgid "Step"
+msgstr "Etape"
+
+#: menu_and_toolbar_gtk.c:155 edit_gtk.c:134
+msgid "Transition"
+msgstr "Transition"
+
+#: menu_and_toolbar_gtk.c:156
+msgid "Step And Transition"
+msgstr "Etape et Transition"
+
+#: menu_and_toolbar_gtk.c:157
+msgid "Transitions Or Start"
+msgstr "Début transitions en 'Ou'"
+
+#: menu_and_toolbar_gtk.c:158
+msgid "Transitions Or End"
+msgstr "Fin transisitions en 'Ou'"
+
+#: menu_and_toolbar_gtk.c:159
+msgid "Steps And Start"
+msgstr "Début activation étapes multiples"
+
+#: menu_and_toolbar_gtk.c:160
+msgid "Steps And End"
+msgstr "Fin activation étapes multiples"
+
+#: menu_and_toolbar_gtk.c:161 edit_gtk.c:137
+msgid "Link"
+msgstr "Lien"
+
+#: menu_and_toolbar_gtk.c:166
+msgid "Sections window"
+msgstr "Fenêtre sections"
+
+#: menu_and_toolbar_gtk.c:166
+msgid "View sections manager window"
+msgstr "Voir fenêtre gestionnaire sections"
+
+#: menu_and_toolbar_gtk.c:167
+msgid "Editor window"
+msgstr "Fenêtre édition"
+
+#: menu_and_toolbar_gtk.c:167
+msgid "View editor window"
+msgstr "Voir fenêtre édition"
+
+#: menu_and_toolbar_gtk.c:168
+msgid "Symbols window"
+msgstr "Fenêtre symboles"
+
+#: menu_and_toolbar_gtk.c:168
+msgid "View symbols window"
+msgstr "Voir fenêtre symboles"
+
+#: menu_and_toolbar_gtk.c:169
+msgid "Bools vars window"
+msgstr "Fenêtres vars bools"
+
+#: menu_and_toolbar_gtk.c:170
+msgid "Free vars window"
+msgstr "Fenêtre vars libres"
+
+#: menu_and_toolbar_gtk.c:172
+msgid "Events log window"
+msgstr "Fenêtre journal événements"
+
+#: menu_and_toolbar_gtk.c:174
+msgid "Monitor master frames with target"
+msgstr "Trames moniteur maître avec cible"
+
+#: menu_and_toolbar_gtk.c:175
+msgid "Modbus master frames"
+msgstr "Trames Modbus maître"
+
+#: menu_and_toolbar_gtk.c:176
+msgid "Target monitor slave (IP) frames"
+msgstr "Trames moniteur esclave cible (IP)"
+
+#: menu_and_toolbar_gtk.c:177
+msgid "Target monitor slave (Serial) frames"
+msgstr "Trames moniteur esclave cible (série)"
+
+#: menu_and_toolbar_gtk.c:178
+msgid "Modbus slave frames"
+msgstr "Trames Modbus eslave"
+
+#: menu_and_toolbar_gtk.c:462 menu_and_toolbar_gtk.c:469
+msgid "Stop logic"
+msgstr "Arrêt logique"
+
+#: menu_and_toolbar_gtk.c:464
+msgid "Freeze logic"
+msgstr "Gel logique"
+
+#: menu_and_toolbar_gtk.c:464
+msgid "Run logic one cycle"
+msgstr "Logique en Marche un cycle"
+
+#: menu_and_toolbar_gtk.c:468
+msgid "Stop"
+msgstr "Arrêt"
+
+#: menu_and_toolbar_gtk.c:468
+msgid "Run"
+msgstr "Marche"
+
+#: menu_and_toolbar_gtk.c:477
+msgid "Disconnect"
+msgstr "Déconnecter"
+
+#: menu_and_toolbar_gtk.c:477
+msgid "Connect"
+msgstr "Connecter"
+
+#: menu_and_toolbar_gtk.c:486 menu_and_toolbar_gtk.c:496
+#: menu_and_toolbar_gtk.c:503 network_config_window_gtk.c:57
+#: monitor_serial_config_window_gtk.c:57
+msgid "You are not currently connected to a remote target..."
+msgstr "Actuellement, vous n'êtes pas connecté à une cible distante..."
+
+#: menu_and_toolbar_gtk.c:529
+msgid "Please select the update soft archive to send"
+msgstr "Sélectionner l'archive mise-à-jour logicielle à envoyer"
+
+#: menu_and_toolbar_gtk.c:548
+msgid "Register content"
+msgstr "Contenu registre"
+
+#: menu_and_toolbar_gtk.c:548
+msgid "Select register number to view"
+msgstr "Sélectionner numéro de registre à visualiser"
+
+#: menu_and_toolbar_gtk.c:577
+msgid "Register selection error"
+msgstr "Erreur sélection registre"
+
+#: menu_and_toolbar_gtk.c:577
+msgid "This register is not defined..."
+msgstr "Ce registre n'est pas défini..."
+
+#: monitor_windows_gtk.c:97
+msgid ""
+"Already in communication with the remote target (monitor or file transfer)..."
+msgstr ""
+"Déjà en communication avec une cible distante (moniteur ou transfert de "
+"fichier...)"
+
+#: monitor_windows_gtk.c:101
+msgid "Target to connect"
+msgstr "Cible à laquelle se connecter"
+
+#: monitor_windows_gtk.c:101
+msgid "File transfer"
+msgstr "Transfert de fichier"
+
+#: monitor_windows_gtk.c:114
+msgid "IP network"
+msgstr "Réseau IP"
+
+#: monitor_windows_gtk.c:118
+msgid "Serial link"
+msgstr "Liaison série"
+
+#: monitor_windows_gtk.c:122
+msgid "Modem"
+msgstr "Modem"
+
+#: monitor_windows_gtk.c:130
+msgid "IP address or hostname"
+msgstr "Adresse IP ou nom d'hôte"
+
+#: monitor_windows_gtk.c:141
+msgid "Serial port"
+msgstr "Port série"
+
+#: monitor_windows_gtk.c:148
+msgid "Speed"
+msgstr "Vitesse"
+
+#: monitor_windows_gtk.c:160
+msgid "Telephone number"
+msgstr "Numéro téléphone"
+
+#: monitor_windows_gtk.c:169
+msgid "Reply timeout (ms)"
+msgstr "Timeout réponse (ms)"
+
+#: monitor_windows_gtk.c:322
+msgid "Asked to read frames log buffer file of the target..."
+msgstr "Demande de lecture du fichier de suivi des trames de la cible..."
+
+#: monitor_windows_gtk.c:407
+msgid "Modbus master frames (buffered)"
+msgstr "Trame Modbus maître (en tampon) "
+
+#: monitor_windows_gtk.c:408
+msgid "Target monitor slave (IP) frames (buffered)"
+msgstr "Trames moniteur esclave (IP) cible (en tampon)"
+
+#: monitor_windows_gtk.c:409
+msgid "Target monitor slave (Serial) frames (buffered)"
+msgstr "Trames moniteur esclave (série) cible (en tampon)"
+
+#: monitor_windows_gtk.c:410
+msgid "Modbus slave/server (IP) frames (buffered)"
+msgstr "Trame Modbus esclave/serveur (IP) (en tampon)"
+
+#: monitor_windows_gtk.c:411
+msgid "Monitor master frames with target (live)"
+msgstr "Trame moniteur maître avec cible (en direct)"
+
+#: monitor_windows_gtk.c:439 log_events_gtk.c:365
+msgid "Refresh"
+msgstr "Rafraîchir"
+
+#: monitor_windows_gtk.c:445
+msgid "Scroll"
+msgstr "Défilement"
+
+#: monitor_windows_gtk.c:449
+msgid "CleanUp"
+msgstr "Effacement"
+
+#: monitor_windows_gtk.c:462
+msgid "Copy to clipboard"
+msgstr "Copie vers Presse-Papier"
+
+#: monitor_windows_gtk.c:480
+msgid "Stats for modbus slave:"
+msgstr "Stats pour esclave modbus:"
+
+#: monitor_windows_gtk.c:648
+msgid "Failed to load frames log file."
+msgstr "Echec lecture fichier suivi trames"
+
+#: search.c:45
+msgid "All except blocks"
+msgstr "Tous excepté blocs"
+
+#: search.c:45
+msgid "Transitions"
+msgstr "Transitions"
+
+#: search.c:45
+msgid "Blocks"
+msgstr "Blocs"
+
+#: search.c:400
+msgid "### NOT FOUND ###"
+msgstr "### PAS TROUVE ###"
+
+#: network_config_window_gtk.c:47
+msgid "IP Ad."
+msgstr "Adr. IP"
+
+#: network_config_window_gtk.c:47
+msgid "Mask"
+msgstr "Masque"
+
+#: network_config_window_gtk.c:47
+msgid "Route"
+msgstr "Route"
+
+#: network_config_window_gtk.c:47
+msgid "Server DNS 1"
+msgstr "Serveur DNS 1"
+
+#: network_config_window_gtk.c:47
+msgid "Server DNS 2"
+msgstr "Serveur DNS 2"
+
+#: network_config_window_gtk.c:47
+msgid "HostName"
+msgstr "Nom d'hôte"
+
+#: network_config_window_gtk.c:62
+msgid "Network config"
+msgstr "Config réseau"
+
+#: network_config_window_gtk.c:80 monitor_serial_config_window_gtk.c:79
+msgid "reading..."
+msgstr "lecture..."
+
+#: monitor_serial_config_window_gtk.c:47
+msgid "Serial port (blank=not used)"
+msgstr "Port série (vide=pas utilisé)"
+
+#: monitor_serial_config_window_gtk.c:47
+msgid "Serial Speed"
+msgstr "Vitesse série"
+
+#: monitor_serial_config_window_gtk.c:62
+msgid "Serial monitor config"
+msgstr "Config moniteur série"
+
+#: edit_gtk.c:98 edit_gtk.c:132
+msgid ""
+"Current Object\n"
+"Selector"
+msgstr ""
+"Sélection\n"
+"Objet en-cours"
+
+#: edit_gtk.c:98 edit_gtk.c:132
+msgid "Eraser"
+msgstr "Effaceur"
+
+#: edit_gtk.c:98
+msgid ""
+"Invert logic\n"
+"of object"
+msgstr ""
+"Inversion logique\n"
+"de l'objet"
+
+#: edit_gtk.c:99
+msgid ""
+"Select a rung part\n"
+"(drag and release)"
+msgstr ""
+"Sélection d'une partie de réseau\n"
+"(glissé et relâché)"
+
+#: edit_gtk.c:99
+msgid ""
+"Copy rung part\n"
+"selected"
+msgstr ""
+"Copie d'une partie\n"
+"de réseau sélectionné"
+
+#: edit_gtk.c:99
+msgid ""
+"Move rung part\n"
+"selected"
+msgstr ""
+"Déplacement d'une partie\n"
+"de réseau sélectionné"
+
+#: edit_gtk.c:100
+msgid "N.O. Input"
+msgstr "Contact N.O."
+
+#: edit_gtk.c:100
+msgid "N.C. Input"
+msgstr "Contact N.C."
+
+#: edit_gtk.c:100
+msgid ""
+"Rising Edge\n"
+" Input"
+msgstr ""
+"Front montant\n"
+"contact"
+
+#: edit_gtk.c:100
+msgid ""
+"Falling Edge\n"
+" Input"
+msgstr ""
+"Front descendant\n"
+"contact"
+
+#: edit_gtk.c:101
+msgid ""
+"Horizontal\n"
+"Connection"
+msgstr ""
+"Connection\n"
+"horizontale"
+
+#: edit_gtk.c:101
+msgid ""
+"Vertical\n"
+"Connection"
+msgstr ""
+"Connection\n"
+"verticale"
+
+#: edit_gtk.c:101
+msgid ""
+"Long Horizontal\n"
+"Connection"
+msgstr ""
+"Connection\n"
+"ligne horizontale"
+
+#: edit_gtk.c:102
+msgid "Timer IEC Block"
+msgstr "Bloc tempo IEC"
+
+#: edit_gtk.c:102
+msgid "Counter Block"
+msgstr "Bloc compteur"
+
+#: edit_gtk.c:102
+msgid "Register Block"
+msgstr "Bloc registre"
+
+#: edit_gtk.c:102
+msgid ""
+"Variable\n"
+"Comparison"
+msgstr ""
+"Comparaison\n"
+"variable"
+
+#: edit_gtk.c:104
+msgid "Old Timer Block"
+msgstr "Ancien bloc tempo"
+
+#: edit_gtk.c:104
+msgid "Old Monostable Block"
+msgstr "Ancien bloc monostable"
+
+#: edit_gtk.c:106
+msgid "N.O. Output"
+msgstr "Bobine N.O."
+
+#: edit_gtk.c:106
+msgid "N.C. Output"
+msgstr "Bobine N.C."
+
+#: edit_gtk.c:106
+msgid "Set Output"
+msgstr "Mise à 1 bobine"
+
+#: edit_gtk.c:106
+msgid "Reset Output"
+msgstr "Mise à 0 bobine"
+
+#: edit_gtk.c:107
+msgid "Jump Coil"
+msgstr "Bobine saut"
+
+#: edit_gtk.c:107
+msgid "Call Coil"
+msgstr "Bobine Appel"
+
+#: edit_gtk.c:107
+msgid ""
+"Variable\n"
+"Assignment"
+msgstr ""
+"Affectation\n"
+"variable"
+
+#: edit_gtk.c:133
+msgid "Init Step (activated at start)"
+msgstr "Etape initiale (activée au départ)"
+
+#: edit_gtk.c:134
+msgid "Step and Transition (shortcut)"
+msgstr "Etape et transition (raccourci)"
+
+#: edit_gtk.c:135
+msgid "Transitions start switch (or)"
+msgstr "Début transitions en 'Ou'"
+
+#: edit_gtk.c:135
+msgid "Transitions end switch (or)"
+msgstr "Fin transitions en 'Ou'"
+
+#: edit_gtk.c:136
+msgid "Activate many steps (start)"
+msgstr "Début activation étapes multiples"
+
+#: edit_gtk.c:136
+msgid "Desactivate many steps (end)"
+msgstr "Fin activation étapes multiples"
+
+#: edit_gtk.c:320
+msgid "Current rung in edit mode..."
+msgstr "Réseau en-cours en mode édition..."
+
+#: edit_gtk.c:320
+msgid "Edit mode..."
+msgstr "Mode édition..."
+
+#: edit_gtk.c:387
+msgid "Failed to add a new rung. Full?"
+msgstr "Echec ajout nouveau réseau. Complet?"
+
+#: edit_gtk.c:402
+msgid "Failed to insert a new rung. Full?"
+msgstr "Echec insertion nouveau réseau. Complet?"
+
+#: edit_gtk.c:413 edit_gtk.c:732
+msgid "Delete"
+msgstr "Effacer"
+
+#: edit_gtk.c:413
+msgid "Do you really want to delete the current rung ?"
+msgstr "Souhaitez-vous vraiment effacer le réseau en-cours ?"
+
+#: edit_gtk.c:420
+msgid "Actually, not possible on a connected remote target..."
+msgstr "Actuellement, impossible quand connecté sur une cible distante..."
+
+#: edit_gtk.c:716
+msgid "Editor"
+msgstr "Editeur"
+
+#: edit_gtk.c:722
+msgid "Add"
+msgstr "Ajout"
+
+#: edit_gtk.c:727
+msgid "Insert"
+msgstr "Insertion"
+
+#: classicladder_gtk.c:688
+msgid "Load Error"
+msgstr "Erreur chargement"
+
+#: classicladder_gtk.c:688
+msgid "Failed to load the project file..."
+msgstr "Echec chargement du fichier projet..."
+
+#: classicladder_gtk.c:692
+msgid "Project loaded (stopped)."
+msgstr "Projet chargé (arrêté)."
+
+#: classicladder_gtk.c:722 log_events_gtk.c:293
+msgid "Save Error"
+msgstr "Erreur enregistrement"
+
+#: classicladder_gtk.c:722
+msgid "Failed to save the project file..."
+msgstr "Echec enregistrement fichier projet..."
+
+#: classicladder_gtk.c:734 classicladder_gtk.c:893 classicladder_gtk.c:1211
+#: classicladder_gtk.c:1213 classicladder_gtk.c:1215
+msgid "Warning!"
+msgstr "Attention!"
+
+#: classicladder_gtk.c:734
+msgid ""
+"You are curently under edit.\n"
+"You should apply current modifications before...\n"
+"Do you really want to save now ?\n"
+msgstr ""
+"Vous êtes actuellement en modification.\n"
+"Vous devriez d'abord valider vos modifications en-cours...\n"
+"Enregistrer maintenant quand même ?\n"
+
+#: classicladder_gtk.c:802
+msgid "ClassicLadder softs archives"
+msgstr "ClassicLadder archives logicielles"
+
+#: classicladder_gtk.c:810
+msgid "Old directories projects"
+msgstr "Anciens répertoires projets"
+
+#: classicladder_gtk.c:814
+msgid "ClassicLadder projects"
+msgstr "ClassicLadder projets"
+
+#: classicladder_gtk.c:868
+msgid "Do you really want to clear all datas ?"
+msgstr "Souhaitez-vous effacer toutes les données ?"
+
+#: classicladder_gtk.c:872
+msgid "Please select the project to load"
+msgstr "Sélectionner le projet à charger"
+
+#: classicladder_gtk.c:880 log_events_gtk.c:314
+msgid "Sure?"
+msgstr "Sûr?"
+
+#: classicladder_gtk.c:880
+msgid ""
+"Do you really want to load another project ?\n"
+"If not saved, all modifications on the current project will be lost  \n"
+msgstr ""
+"Voulez-vous charger un autre projet?\n"
+"Si pas enregistré, toutes les modifications sur le projet en-cours seront "
+"perdues\n"
+
+#: classicladder_gtk.c:887
+msgid "Please select the project to save"
+msgstr "Sélectionner le projet à enregistrer"
+
+#: classicladder_gtk.c:893
+msgid ""
+"Resetting a running program\n"
+"can cause unexpected behavior\n"
+" Do you really want to reset?"
+msgstr ""
+"Réinitialiser un programme en marche\n"
+"peut provoquer des comportements étranges\n"
+"Continuer vraiment?"
+
+#: classicladder_gtk.c:925
+msgid ""
+"Released under the terms of the\n"
+"GNU Lesser General Public License v3\n"
+"\n"
+"Written by Marc Le Douarain\n"
+"and including contributions made by Chris Morley, Heli Tejedor, Dave Gamble "
+"(cJSON), Bernard Chardonneau (base64 transfer) and others\n"
+"\n"
+"Latest software version available at:\n"
+msgstr ""
+"Diffusé sous les termes de la licence\n"
+"GNU Lesser General Public License v3\n"
+"\n"
+"Ecrit par Marc Le Douarain\n"
+"et incluant des contributions faites par Chris Morley, Heli Tejedor, Dave "
+"Gamble (cJSON), Bernard Chardonneau (base64 transfer) et d'autres personnes\n"
+"\n"
+"Dernière version logicielle disponible à:\n"
+
+#: classicladder_gtk.c:943
+msgid "About ClassicLadder"
+msgstr "A-propos de ClassicLadder"
+
+#: classicladder_gtk.c:1000
+msgid "Save SVG File"
+msgstr "Enregistrer fichier SVG"
+
+#: classicladder_gtk.c:1000
+msgid "Save PNG File"
+msgstr "Enregistrer fichier PNG"
+
+#: classicladder_gtk.c:1073
+msgid "Error"
+msgstr "Erreur"
+
+#: classicladder_gtk.c:1090
+msgid "Yes"
+msgstr "Oui"
+
+#: classicladder_gtk.c:1091
+msgid "No"
+msgstr "Non"
+
+#: classicladder_gtk.c:1211
+msgid ""
+"If not saved, all modifications will be lost.\n"
+"Do you really want to quit ?\n"
+msgstr ""
+"Si pas enregistré, toutes les modifications seront perdues.\n"
+"Quitter vraiment ?\n"
+
+#: classicladder_gtk.c:1213
+msgid ""
+"You are curently under edit.\n"
+"Do you really want to quit ?\n"
+msgstr ""
+"Vous êtes actuellement en édition\n"
+"Quitter vraiment ?\n"
+
+#: classicladder_gtk.c:1215
+msgid ""
+"You are curently connected to a target.\n"
+"Do you really want to quit ?\n"
+msgstr ""
+"Vous êtes actuellement connecté à une cible.\n"
+"Quitter vraiment ?\n"
+
+#: classicladder_gtk.c:1257
+msgid "Search..."
+msgstr "Recherche..."
+
+#: classicladder_gtk.c:1257
+msgid "Not available during edit..."
+msgstr "Pas disponible durant édition..."
+
+#: classicladder_gtk.c:1288
+msgid "Variable to search or block number"
+msgstr "Variable à recherche ou numéro de bloc"
+
+#: classicladder_gtk.c:1387 classicladder_gtk.c:1774
+msgid "ClassicLadder Section Display"
+msgstr "Affichage Section ClassicLadder"
+
+#: classicladder_gtk.c:1416
+msgid "Label of the current selected rung"
+msgstr "Libellé du réseau en-cours de sélection"
+
+#: classicladder_gtk.c:1425
+msgid "Comment of the current selected ladder rung or sequential page"
+msgstr "Commentaire du réseau en-cours de sélection ou page séquentiel"
+
+#: classicladder_gtk.c:1584
+msgid "DEFAULTS"
+msgstr "DEFAUTS"
+
+#: classicladder_gtk.c:1586
+msgid "DEFAULT"
+msgstr "DEFAUT"
+
+#: classicladder_gtk.c:1605
+msgid "No default."
+msgstr "Aucun défaut."
+
+#: classicladder_gtk.c:1618
+msgid "An error occured!"
+msgstr "Une erreur est apparue!"
+
+#: classicladder_gtk.c:1651
+msgid "us"
+msgstr "us"
+
+#: classicladder_gtk.c:1651
+msgid "max"
+msgstr "max"
+
+#: classicladder_gtk.c:1658
+msgid "missed"
+msgstr "raté(s)"
+
+#: classicladder_gtk.c:1777
+msgid "No project"
+msgstr "Aucun projet"
+
+#: classicladder_gtk.c:1781 classicladder_gtk.c:1796
+msgid "CONNECTED"
+msgstr "CONNECTE"
+
+#: monitor_threads.c:502
+msgid "Failed to open this serial port..."
+msgstr "Echec d'ouverture du port série..."
+
+#: monitor_threads.c:511
+msgid "Failed to init and configure modem..."
+msgstr "Echec pour intialiser et configurer le modem..."
+
+#: monitor_threads.c:519
+msgid "Failed to call telephone number..."
+msgstr "Echec pour appeler le numéro de téléphone..."
+
+#: monitor_threads.c:620
+msgid "Too much timeouts errors with remote target..."
+msgstr "Trop d'erreurs de non-réponse avec la cible distante..."
+
+#: monitor_threads.c:673
+msgid "Target disconnected."
+msgstr "Cible déconnectée."
+
+#: monitor_threads.c:706
+msgid "Target connected"
+msgstr "Cible connectée"
+
+#: monitor_protocol.c:988
+msgid ""
+"Mismatch detected between local parameters and target parameters...\n"
+"Perhaps you should disconnect!"
+msgstr ""
+"Incohérence détectée entre les paramètres locaux et ceux de la cible...\n"
+"Peut-être feriez vous mieux de vous déconnecter !"
+
+#: monitor_protocol.c:1274
+msgid "Failed to send network config on target!"
+msgstr "Echec de l'envoi de la config réseau vers la cible"
+
+#: monitor_protocol.c:1276 monitor_protocol.c:1381
+msgid "Info target"
+msgstr "Info cible"
+
+#: monitor_protocol.c:1276
+msgid "Network config successfully send to target."
+msgstr "Envoi réussi de la config réseau vers la cible"
+
+#: monitor_protocol.c:1379
+msgid "Failed to send monitor serial config on target!"
+msgstr "Echec d'envoi de la configuration moniteur série vers la cible!"
+
+#: monitor_protocol.c:1381
+msgid "Monitor serial config successfully send to target."
+msgstr "Envoie réussi de la configuration moniteur série vers la cible!"
+
+#: monitor_transfer.c:175
+msgid "Loaded project transfered from target."
+msgstr "Le projet transféré depuis la cible est chargé."
+
+#: monitor_transfer.c:175
+msgid "Failed to load project transfered from target..."
+msgstr "Echec chargement du projet transféré depuis cible..."
+
+#: monitor_transfer.c:554
+msgid "Transfer send completed!"
+msgstr "Transfert émission complet!"
+
+#: monitor_transfer.c:602
+msgid "Too much transfer errors in response with remote target..."
+msgstr "Trop d'erreurs de transferts avec la cible distante..."
+
+#: log_events_gtk.c:99
+msgid "Asked to read log events file of the target..."
+msgstr "Demande de lecture du fichier journal des événements de la cible..."
+
+#: log_events_gtk.c:128
+msgid "***not finished***"
+msgstr "***pas terminé***"
+
+#: log_events_gtk.c:193
+msgid "No file to load..."
+msgstr "Aucun fichier à charger..."
+
+#: log_events_gtk.c:269
+msgid "Save CSV File"
+msgstr "Enregistrer fichier CSV"
+
+#: log_events_gtk.c:293
+msgid "Failed to save the csv log file..."
+msgstr "Echec enregistrement fichier journal CSV..."
+
+#: log_events_gtk.c:314
+msgid "Do you really want to delete all events in the log?"
+msgstr "Souhaitez-vous vraiment effacer tous les événements du journal ?"
+
+#: log_events_gtk.c:324
+msgid "Id"
+msgstr "N°"
+
+#: log_events_gtk.c:324
+msgid "Start Time"
+msgstr "Heure début"
+
+#: log_events_gtk.c:324
+msgid "End Time"
+msgstr "Heure fin"
+
+#: log_events_gtk.c:324
+msgid "Value"
+msgstr "Valeur"
+
+#: log_events_gtk.c:324
+msgid "Description"
+msgstr "Description"
+
+#: log_events_gtk.c:324
+msgid "Level"
+msgstr "Niveau"
+
+#: log_events_gtk.c:327
+msgid "Events Log"
+msgstr "Journal événements"
+
+#: log_events_gtk.c:368
+msgid "Export log to csv"
+msgstr "Export suivi en csv"
+
+#: log_events_gtk.c:371
+msgid "Clear All"
+msgstr "Tout effacer"
+
+#: log_events_gtk.c:374
+msgid "Display only active events"
+msgstr "Voir seulement ceux en-cours"
+
+#~ msgid "Not possible on a connected remote target..."
+#~ msgstr "Impossible quand connecté sur une cible distante..."

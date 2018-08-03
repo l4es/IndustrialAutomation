@@ -1,0 +1,61 @@
+#
+# ClassicLadder Real-Time module - Makefile
+#
+# By Marc Le Douarain - 17 August 2003
+# and modified by Paul Corner for RTAI - 9 Sept 2003
+#
+
+include /usr/src/rtai/.buildvars
+
+MODULE_FOR_RTAI = module_rtai.o classicladder.o calc.o vars_access.o arithm_eval.o hardware.o manager.o arrays.o
+
+CFLAGS += -I/usr/src/rtai/include -DRT_SUPPORT -DRTAI -DMAKE_IO_ACCESS
+
+ifdef SEQUENTIAL_SUPPORT
+MODULE_FOR_RTAI += calc_sequential.o
+CFLAGS += -DSEQUENTIAL_SUPPORT
+endif
+ifdef DYNAMIC_PLCSIZE
+CFLAGS += -DDYNAMIC_PLCSIZE
+endif
+ifdef COMEDI_SUPPORT
+# No comedi support under RTAI yet.
+# CFLAGS += -DCOMEDI_SUPPORT -I/usr/foo/drivers/comedi/include
+endif
+
+
+all: $(MODULE_FOR_RTAI)
+	$(LD) -r -o classicladder_rtai_module.o $(MODULE_FOR_RTAI)
+
+test: all
+	@echo "Now, you must type ./run_rt to launch classicladder/real-time !"
+
+test2: all
+	@echo "#################################################"
+	@echo "#  ClassicLadder -realtime- with RTAI support   #"
+	@echo "#################################################"
+	@echo "First we remove any existing rtai-modules"
+	@echo "You may see error warnings from \"make\" - ignore them"
+	@echo "Type <return> to continue"
+	@read junk
+	-rmmod classicladder_rtai_module
+	@echo "Now insert the fifo and scheduler"
+	@echo "Type <return> to continue"
+	@read junk
+	modprobe rtai_shm
+	modprobe rtai_sched
+	@echo "Now start the real-time task module (calc of the rungs)"
+	@echo "Type <return> to continue"
+	@read junk
+	@sync
+	@sync
+	@. configplc
+	@insmod classicladder_rtai_module.o 
+	@echo "Now start the Linux application (not real-time)"
+	@read junk
+	./classicladder_rtl_support
+	@echo "Now let's remove the real-time module"
+	@rmmod classicladder_rtai_module
+	rmmod rtai_shm
+	rmmod rtai_sched
+	rmmod rtai

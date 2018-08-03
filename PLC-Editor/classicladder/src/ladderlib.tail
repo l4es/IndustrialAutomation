@@ -1,0 +1,14 @@
+// Lib interface
+
+#ifdef DYNAMIC_PLCSIZE
+extern int ladder_init(char *fname, plc_sizeinfo_s *sinfo);
+#else
+extern int ladder_init(char *fname);
+#endif
+
+extern void writeplc_input (int NumVar, int Value);
+extern void writeplc_output (int NumVar, int Value);
+extern int readplc_input (int NumVar);	
+extern int readplc_output (int NumVar);	
+
+#endif

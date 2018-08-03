@@ -1,0 +1,8 @@
+#!/bin/sh
+echo "********************************"
+echo "CLASSICLADDER UPDATE NEXT SCRIPT"
+echo "*******************************"
+killall classicladder
+echo "*** will reboot... ***"
+sleep 2
+reboot

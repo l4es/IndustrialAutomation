@@ -1,0 +1,14 @@
+#!/bin/sh
+cd /usr/local/classicladder
+pidof classiclauncher
+if [ $? != 0 ]; then
+	./classiclauncher
+else
+	echo "ClassicLauncher already running. not launched!"
+fi
+pidof classicladder
+if [ $? != 0 ]; then
+	./classicladder
+else
+	echo "ClassicLadder already running. not launched!"
+fi

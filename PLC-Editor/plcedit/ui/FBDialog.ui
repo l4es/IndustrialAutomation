@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FBDialog</class>
+ <widget class="QDialog" name="FBDialog">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>300</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>300</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>300</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Insert Function Block</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../../../../../:/images/icon.png</normaloff>../../../../../../:/images/icon.png</iconset>
+  </property>
+  <property name="accessibleName">
+   <string/>
+  </property>
+  <widget class="QWidget" name="horizontalLayout">
+   <property name="geometry">
+    <rect>
+     <x>123</x>
+     <y>365</y>
+     <width>171</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="FBD_HBoxLayout_okcancel">
+    <item>
+     <widget class="QPushButton" name="FBD_okButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Ok</string>
+      </property>
+      <property name="default">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="FBD_cancelButton">
+      <property name="text">
+       <string>Cancel</string>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="default">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QCheckBox" name="FBD_checkBox_insertdatatypes">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>303</y>
+     <width>281</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>281</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>281</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>Insert with datat types as comment</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="FBD_checkBox_insertIOComments">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>330</y>
+     <width>281</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>281</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>281</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>Insert with I/O comments</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="FBD_checkBox_insertcallmodel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>276</y>
+     <width>281</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>281</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>281</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>Insert with call model</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="FBD_listWidget_FBs">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>9</y>
+     <width>278</width>
+     <height>241</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>278</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>278</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="alternatingRowColors">
+    <bool>true</bool>
+   </property>
+   <property name="sortingEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>253</y>
+     <width>281</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="FBD_HBoxLayout_numberOf">
+    <property name="spacing">
+     <number>2</number>
+    </property>
+    <item>
+     <spacer name="FBD_Spacer_FBofFBs">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>18</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QLabel" name="FBD_label_currentFBofFBs">
+      <property name="minimumSize">
+       <size>
+        <width>25</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>150</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>FBD_cancelButton</tabstop>
+  <tabstop>FBD_okButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>FBD_cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FBDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>338</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>166</x>
+     <y>179</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>FBD_okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FBDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>142</x>
+     <y>360</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>138</x>
+     <y>189</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

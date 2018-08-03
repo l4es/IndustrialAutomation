@@ -1,0 +1,1035 @@
+<html>
+<head>
+<title>PLCEdit help</title>
+</head>
+<body>
+
+<p><font face="Arial">
+
+<!-- .................................................... -->
+<!-- .................................................... -->
+<h1 id="h1_content" align="left"><font color="#b22222">PLCEdit Help</font></h1>
+<p>
+<table border="0" width="50%">
+  <colgroup>
+    <col width="30%">
+    <col width="70%">
+  </colgroup>
+<tr>
+	<td align="left"  valign="center">
+		version <br>
+		author <br>
+		copyright 	
+	</td>	
+	<td align="left" valign="center">
+		: 223r122 <br>
+		: M. Rehfeldt <br>
+		: (c) 2005-2015 
+	</td>
+</tr>
+</table>
+</p>
+
+
+<p><br></p>
+<p><br></p>
+
+
+<!-- .................................................... -->
+<!-- .................................................... -->
+<p>
+<table border="0" width="85%">
+  <colgroup>
+    <col width="50%">
+    <col width="50%">
+  </colgroup>
+<tr>
+	<td align="left"  valign="center">
+		<p align="left">
+		<h1 id="h1_content" align="left">Content</h1><br>
+
+		&nbsp;<a href="#h1_about"><b>About PLCEdit</b></a><br> 	
+		&nbsp;<a href="#h1_quickguide"><b>Quick Guide</b></a><br> 	
+		&nbsp;<a href="#h1_mainwindow"><b>The Main Window</b></a><br> 
+		&nbsp;&nbsp;&nbsp; <a href="#h2_menufile">Menu File</a><br> 
+		&nbsp;&nbsp;&nbsp; <a href="#h2_menuedit">Menu Edit</a><br> 
+		&nbsp;&nbsp;&nbsp; <a href="#h2_menuview">Menu View</a><br> 
+		&nbsp;&nbsp;&nbsp; <a href="#h2_menutools">Menu Tools</a><br> 
+		&nbsp;&nbsp;&nbsp; <a href="#h2_menuhelp">Menu Help</a><br>
+			
+		&nbsp;<a href="#h1_preferencesdialog"><b>The Preferences Dialog</b></a><br> 
+		&nbsp;&nbsp;&nbsp; <a href="#h2_prefpageinterface">Interface</a><br> 
+		&nbsp;&nbsp;&nbsp; <a href="#h2_prefpageeditor">Editor</a><br> 
+		&nbsp;&nbsp;&nbsp; <a href="#h2_prefpagesessions">Sessions</a><br> 
+		&nbsp;&nbsp;&nbsp; <a href="#h2_prefpagesave">Save</a><br> 
+		&nbsp;&nbsp;&nbsp; <a href="#h2_prefpageprint">Print</a><br>
+		&nbsp;&nbsp;&nbsp; <a href="#h2_prefpageadvanced">Advanced</a><br>
+
+		&nbsp;<a href="#h1_sessionmanager"><b>The Session manager</b></a><br> 
+		
+		&nbsp;<a href="#h1_findreplace"><b>The Find and Replace Dialog</b></a><br> 
+		
+		&nbsp;<a href="#h1_pouinfodialog"><b>The POU Info Dialog</b></a><br>
+
+		&nbsp;<a href="#h1_fileview"><b>The File View Dialog</b></a><br> 
+		
+		&nbsp;<a href="#h1_batchconverter"><b>The Batch Converter</b></a><br>
+		
+		&nbsp;<a href="#h1_insertFB"><b>The Function block dialog</b></a><br>
+
+		&nbsp;<a href="#h1_compatibility"><b>Compatibility</b></a><br>
+
+		&nbsp;<a href="#h1_FBCallConversion"><b>Conversion of function blocks</b></a><br>
+
+		&nbsp;<a href="#h1_keyboardshortcuts"><b>Keyboard Shortcuts</b></a><br> 
+		</p>
+	</td>
+	
+	<td align="left" valign="center">
+		<p align="left">
+		<a href="http://plcedit.org" target="_blank"><img src="PLCE_winlinuxmac.png" alt="PLCEdit on win32/linux/mac os x" /></a>
+		</p>	
+	</td>
+</tr>
+</table>
+</p>
+
+<p><br></p>
+<p><br></p>
+
+
+<!-- .................................................... -->
+<!-- .................................................... -->
+<hr>
+<p align="left">
+<h1 id="h1_about" align="left">About PLCEdit</h1>
+<br>
+PLCEdit is a powerful notepad to edit PLC source code. According to the IEC 61131-3 standard the available programming languages are IL (Instruction List) and ST (Structured Text). PLCEdit supports the following POU sources: program, function block, function and global variable list.<br>
+<br>
+The program files and the function blocks are named as POU files. Program organisation units (POU) are language elements of a PLC program and contain the program code. PLCEdit supports clean POUs, Moeller SucoSoft files, CoDeSys V2.3 export based files, Siemens Instruction List and Structured Control Language (SCL) sources and KW-Software IL and ST sources.<br>
+To compile the source code or sending it to a PLC, the actual development environment of one of the distributors above is still needed.
+</p>
+
+<p><br></p>
+<p><br></p>
+
+
+<!-- .................................................... -->
+<!-- .................................................... -->
+<hr>
+<p align="left">
+<h1 id="h1_quickguide" align="left">Quick Guide</h1>
+<h3 align="left">POU handling: new, open, save, edit</h3>
+PLCEdit contains a File menu, a Edit menu, a View menu, a Tools menu and a Help menu.<br>
+To create a new POU use the main menu File and its sub menu New which provides different kinds of POUs, according to the IE C61131-3 standard. A syntax highlighter colors correct written commands on both input windows.<br>
+File opening by drag&drop is also provided. PLCEdit detecs the correct POU type and will collect all data for later usage. The POU type can be changed from the sub menu alter POU type.<br>
+The menu items save and save as will open a platform specific file save dialog, which allows to select the location and the extension.<br>
+The Edit menu has the same functions like in other notepads. Notice: Only the find function works through both input windows. The other menu items can only be used fo the current selected input window.<br>
+<br>
+<h3 align="left">Switch the programming language: IL, ST</h3>
+The programming language can be changed from INSTRUCTION LIST (IL) to STRUCTURED TEXT (ST) by using the sub menu programming language in the main menu Tools. The source code will not translated into the new language.<br>
+<br>
+<h3 align="left">Batch converter: convert files with manufacturer specific flags</h3>
+The batch converter can be called by the menu batch converter in the main menu file. It copies all opened files to a selected path with including manufacturer specific headers and other needed flags. The file extension/manufacturer specification can be selected by a rollbox. It is also possible to copy all opened POUs to a shared folder by selection "only copy". The path can be selected from a platform specific path dialog on the button "...".<br>
+<br>
+<h3 align="left">Session manager: save lists of POU paths</h3>
+The session manager is a simple function to create a file with a paths list of the opened POUs. This file can be used to restore all included files into PLCEdit. It is useful for folder based file version management or project handling.<br>
+To get a paths list of the current files in PLCEdit use the sub menu save session from the menu Sessions or press Ctrl+Alt+F11.<br>
+To restore a session open the session manager from the menus sessions or with Ctrl+F11 and select a file from the list at the dialog. If a POU from the paths list cannot be found the session error list will be shown to tell you the expected path as a hint were to find the file.<br>
+<br>
+<br>
+<i>For more information read this help document or visit the website <a href="http://PLCEdit.org" target="_blank">PCEdit.org</a> and have a look at the <a href="http://plcedit.org/documentation/faq/faq.html" target="_blank">FAQ</a>.</i><br>
+</p>
+
+<p><br></p>
+<p><br></p>
+
+
+<!-- .................................................... -->
+<!-- .................................................... -->
+<hr>
+<p align="left">
+<h1 id="h1_mainwindow" align="left">The Main Window</h1>
+<br>
+The main window comes with a main menu, toolbars and a statusbar on the bottom. The statusbar shows the current page number of all pages, the POU type, the POU programming language and the cursor position at the declaration section and the instruction section.<br>
+If a new file was created or opened the tab control element will be shown. All pages will be arranged in tabs. The file list on the left main window side assists the user to find a file and bring to it to the front. The tabs are movable. This feature can be used to arrange the tabs according to user requirements.<br>
+<br>
+<img src="PLCEdit_mainwindow_win.png" width="640" height="480" alt="Main window on Win32"/>
+<br>
+<h2 id="h2_menufile" align="left">Menu File</h2>
+<h3 align="left">New</h3>
+Program, Functionblock, Function files and global variable lists will be created with the sub menu items of the menu New. The POU will be created as a new tab. A click on Function opens a dialog for the function type selection.<br>
+The declarations window and the instructions window will contain header comments with information about the program. Words in capitals are used as place holder and can be replaced by own names. The variables window contains the typical declarations frames.<br>
+
+<h3 align="left">Open</h3>
+The menu item Open uses the platform specific dialog for opening POU-compatible files. It supports Moeller Sucosoft POU files, CoDeSys V2.3 export based files, Siemens Instruction List and Structured Control Language (SCL) sources and KW-Soft export files (.IL, .ST). The file will be shown in a new page. PLCEdit offers drag&drop to open files easily. If three or more files will be opened at the same time, a progressbar will be shown. PLCEdit does also support files which contains more than one POU (eg. CoDeSys export files).<br>
+
+<h3 align="left">POU Info</h3>
+With the dialog POU Info it is possible to set specific facts of a POU file like Project, Name, Developer, Date etc. and an insertion of a file comment in the Sucosoft KM header and at the top of the code section. The dialog shows the prototype of the POU, too. Only Moeller Sucosoft files  and undefined files (new created and unsaved files) can use the POU Info dialog.<br>
+
+<h3 align="left">Alter POU type</h3>
+The active page can be changed from any to a Program, Functionblock or Function. False Function Types selections can be fixed easily by using this sub menu item.<br>
+
+<h3 align="left">Sessions</h3>
+The menu Sessions contains the sub menus Manage Sessions and Save Session. All actual pages can be saved as a Session. It is also possible to load another Session. The Sessionsmanager shows all Sessions in the installation path PLCEdit\Sessions.<br>
+A Session file contains only links to the original files. If an original file cannot be found, the opening is not possible and a failure information will appear. Untitled/new created pages can not become a part of a Session file. After saving the new file it can be grabbed from the Session function.<br>
+
+<h3 align="left">Recent files</h3>
+The menu Recent files opens a sub menu, which contains a number of closed POUs. Even if a POU will be closed, a link to the file will be prepend to the sub menu. If the application is terminated, the links of opened files and the list of recent files will be stored to the preferences file. The recent file list is a ring buffer with a miximum size of 100 files.<br>
+
+<h3 align="left">Save</h3>
+The menu item Saves will save the actual file. If a new file has been created the platform specific save dialog appears instead.<br>
+
+<h3 align="left">Save As</h3>
+With Save As the file can be stored with a new name. The platform specific save dialog appears which suggests a POU extension and a file name regarding the default POU extension and the page name.<br>
+The selected file extension implements the compatibility to a PLC system. It supports Moeller Sucosoft POU files, CoDeSys V2.3 export based files, Siemens Instruction List and Structured Control Language (SCL) sources and KW-Soft export files (.IL, .ST).<br>
+
+<h3 align="left">Batch converting</h3>
+The menu opens a special dialog to convert and save all opened files with the supported extensions (text, POE, EXP, AWL, SCL, IL, ST). If the current files in PLCEdit should only be saved to a shared folder use the box item 'only copy'. The shared folder can be selected on the path dialog. The batch converter only insterts or take tags to make the files compliant. Funtion block calls or other platform or programming language specific code lines will be left untouched.<br>
+
+<h3 align="left">Print</h3>
+Print shows the platform specific print dialog for printing the current file. See the preferences dialog to manage the content of the prints.<br>
+
+<h3 align="left">Export as PDF</h3>
+Export as PDF saves the current file as PDF document.<br>
+
+<h3 align="left">Close page</h3>
+Close current file/page.<br>
+
+<h3 align="left">Close all pages</h3>
+Close all files/pages.<br>
+
+<h3 align="left">Quit</h3>
+Quit the program.<br>
+
+<br><br>
+
+<h2 id="h2_menuedit" align="left">Menu Edit</h2>
+<h3 align="left">Undo</h3>
+This menu item revokes the last typing.<br>
+
+<h3 align="left">Redo</h3>
+The menu Redo repeats the last undo.<br>
+
+<h3 align="left">Cut</h3>
+The selected chars will be cut out off the text.<br>
+
+<h3 align="left">Copy</h3>
+The selected text will be copied by using the clipboard.<br>
+
+<h3 align="left">Past</h3>
+Text from the clipboard will be inserted in the inputwindow at the actual cursor position.<br>
+
+<h3 align="left">Select All</h3>
+Selects the whole text in the actual inputwindow.<br>
+
+<h3 align="left">Find</h3>
+This menu opens a dialog with an input file for a search item and a replace item. If the replace filed is empty the function will only try to find the search word.<br>
+
+<br><br>
+
+<h2 id="h2_menuview" align="left">Menu View</h2>
+<h3 align="left">Window horizontal split mode</h3>
+The input windows will be splitted horizontal.<br>
+
+<h3 align="left">Window vertical split mode</h3>
+The inputwindows will be positioned vertically.<br>
+
+<h3 align="left">Show Declarations</h3>
+The declarations inputwindow can be shown and hidden.<br>
+
+<h3 align="left">Show File list</h3>
+To get more space for the inputwindows the file liste on the right application side can be switched off.<br>
+
+<h3 align="left">Minimize</h3>
+The minimize command minimizes the window to the Windows® TaskBar or the Mac OS X Dock.<br>
+
+<h3 align="left">Zoom</h3>
+Zoom will maximize the application window.<br>
+
+<h3 align="left">Change Input window</h3>
+The cursor can be moved to the oppsite inputwindow by using this command.<br>
+
+<h3 align="left">Show File content</h3>
+The menu opens a dialog to show the complete file content (same as if the menu save would be used) depending on the selected file extension.<br>
+
+<br><br>
+
+<h2 id="h2_menutools" align="left">Menu Tools</h2>
+<h3 align="left">Programming language</h3>
+The programming language can be change from IL to ST for the current file by using the sub menu items. Already opened files will be left untouched. New files will come with the selected programming language at the preferences dialog.<br>
+
+<h3 align="left">Insert Function block</h3>
+The menu item opens the function block insert dialog, which shows all opened function blocks.<br>
+
+<h3 align="left">Preferences</h3>
+Selecting the menu item Prefrences will open the preferences dialog to setup the application, eg. interface and save handlings.<br>
+This menu item is shown on the menu PLCEdit on Mac OS X.<br>
+
+<br><br>
+
+<h2 id="h2_menuhelp" align="left">Menu Help</h2>
+<h3 align="left">Help</h3>
+The menu item opens the PLCEdit help browser.<br>
+
+<h3 align="left">Send bug report</h3>
+The standard e-mail program will be opened with a prepared new e-mail to send a bug report to the PLCEdit developers.<br>
+
+<h3 align="left">Check for updates</h3>
+A search for program updates will be performed.<br>
+
+<h3 align="left">About</h3>
+The about PLCEdit dialog will appear.<br>
+This menu item is shown at the applications menu on Mac OS X.<br>
+</p>
+
+
+<p><br></p>
+<p><br></p>
+
+
+<!-- .................................................... -->
+<!-- .................................................... -->
+<hr>
+<p align="left">
+<h1 id="h1_preferencesdialog" align="left">The Preferences Dialog</h1>
+The preferences dialog can be used to setup the application. The dialog contains three function buttons.<br>
+Default will reset the application to the standard settings. Ok will set all inputs and close the dialog. Cancel will close the dialog without any changes. Apply will set all changes without closing the dialog.<br>
+<br>
+<h2 id="h2_prefpageinterface" align="left">Page Interface</h2>
+<br>
+<img src="PLCEdit_prefpageinterface_win.png" width="640" height="480" alt="Preferences page interface on Win32"/><br><br>
+<h3 align="left">Main Tools</h3>
+The main tools option switches the main toolbox in the main window ON and OFF.<br>
+
+<h3 align="left">Commands</h3>
+The commands option switches the programming language commands toolbars ON and OFF.<br>
+
+<h3 align="left">File list</h3>
+The file list on the left main window side can be shown and hidden with the option.<br>
+
+<h3 align="left">Split mode</h3>
+The arragement of the inputwindows can be defined with this option.<br>
+
+<h3 align="left">Tab orientation</h3>
+The orientation of the page tabs can be changed by selection a direction from the rollbox.<br>
+
+<h3 align="left">Language</h3>
+The language rollbox shows all installed languages. The interface language will be cahnged by using the buttons Ok or Apply.<br>
+
+<br><br>
+
+<h2 id="h2_prefpageeditor" align="left">Page Editor</h2>
+<br>
+<img src="PLCEdit_prefpageeditor_win.png" width="640" height="480" alt="Preferences page editor on Win32"/><br><br>
+<h3 align="left">Programming language</h3>
+The IEC 61131-3 programming language can be selected with this option and will be used for the current an all new created pages.<br>
+
+<h3 align="left">Use prog. language detection for .txt and .exp</h3>
+The checkbox activates the programming language detection for plain POUs and CoDeSys sources. Moeller POU sources have its own programming language tag in its header and the language detection of Siemens and KW-Software sources depends on the file extension.<br>
+
+<h3 align="left">Syntax highlighter</h3>
+The syntax highlighting function can be switched ON and OFF with the checkbox.<br>
+
+<h3 align="left">Font</h3>
+The rollbox shows the available system fonts, which can be used by PLCEdit.<br>
+
+<h3 align="left">Font size</h3>
+The Fontsize can be defined between 6 and 20.<br>
+
+<h3 align="left">Tab width</h3>
+Some IDEs uses special tab width values to arange the source code. PLCEdit support tab width values from 2 blanks to 99 blanks.<br>
+
+<h3 align="left">Highlight current line</h3>
+Sometimes it could be useful to highlight the current cursor position. PLCEdit comes with such a function, which can be switched with a checkbox and set by a color picker. Using to lighten or to dark colors will switch off the current line highlighting function.<br>
+
+<br><br>
+
+<h2 id="h2_prefpagesessions" align="left">Page Sessions</h2>
+<br>
+<img src="PLCEdit_prefpagesessions_win.png" width="640" height="480" alt="Preferences page sessions on Win32"/><br><br>
+<h3 align="left">Session autosave</h3>
+All links to the current pages will be saved in a session file automatically at the end of program.<br>
+
+<h3 align="left">Autosave as project</h3>
+All current pages will be saved in a session folder and with a special session file automatically at the end of program.<br>
+
+<h3 align="left">Sessions path</h3>
+This option can be used to cahnge the path were session files will be stored. Be carefully with this option to prevent loosing data.  To reset the path to its default value clear the path input or use the button Default at the preferences dialog or.<br>
+
+<h3 align="left">Start with session manager</h3>
+PLCEdit starts up with the session manager in front.<br>
+
+<h3 align="left">Session autoload</h3>
+PLCEdit loads the automatically created session file at start up.<br>
+
+<h3 align="left">Session error list</h3>
+PLCEdit shows the session manger error list if files from the sessions cannot be found and loaded.<br>
+
+<br><br>
+
+<h2 id="h2_prefpagesave" align="left">Page Save</h2>
+<br>
+<img src="PLCEdit_prefpagesave_win.png" width="640" height="480" alt="Preferences page save on Win32"/><br><br>
+<h3 align="left">Notification for unsaved files</h3>
+Shows a notification for unsaved files if one or all pages gets closed.<br>
+
+<h3 align="left">Save with prototype</h3>
+The save routine will store a prototype file (.PTT) in addition to the POU.<br>
+
+<h3 align="left">Auto save</h3>
+Selecting the autosave option will activate the save routine for all files enforced by the timer value Autosave interval.<br>
+
+<h3 align="left">Interval</h3>
+The interval for the autosave timer can be selected between 1 minute and 999 minutes.<br>
+
+<h3 align="left">Use the following path a standard</h3>
+This option enforces the open and save dialogs to use the path in the inputfield. A path can be selected by using the '...' button.<br>
+
+<h3 align="left">Default POU extension</h3>
+The rollbox can be used to set the default extension for new POUs. This preset allows to switch ON some POU specific options by creating a new POU and is used for the save file dialog. It is also helpful if function block call models should be created and transfered by the clipboard.<br>
+
+<h3 align="left">Conversion of function block call model</h3>
+This rollbox contains options accroding to the conversion of function block calls. This options are used by the file save routines. The batch converter has a similar rollbox but is not affected by this settings.<br>
+
+
+<br><br>
+
+<h2 id="h2_prefpageprint" align="left">Page Print</h2>
+<br>
+<img src="PLCEdit_prefpageprint_win.png" width="640" height="480" alt="Preferences page print on Win32"/><br><br>
+<h3 align="left">Declarations</h3>
+The checkbox tells the print dialog and PDF export function to print the declarations section.<br>
+
+<h3 align="left">Instructions</h3>
+The checkbox tells the print dialog and PDF export function to print the instructions section.<br>
+
+<h3 align="left">Prototype</h3>
+The checkbox tells the print dialog and PDF export function to print the prototype.<br>
+
+<h3 align="left">POU Info</h3>
+The checkbox tells the print dialog and PDF export function to print the POU info data.<br>
+
+<h3 align="left">Print area indicator</h3>
+The print area indicator ca be used to show the printable width of a paper. The pixel width is set to 8 pixels per char. The standard setting 80 corresponds to a A4 paper in portrait mode. A value of 0 will hide the indicator.<br>
+
+<br><br>
+
+<h2 id="h2_prefpageadvanced" align="left">Page Advanced</h2>
+<br>
+<img src="PLCEdit_prefpageadvanced_win.png" width="640" height="480" alt="Preferences page advanced on Win32"/><br><br>
+<h3 align="left">Sort function block call model list</h3>
+The checkbox enables sorting of the entries in the function block insert dialog. Sorting could may create confusion, if two or more blocks have the same name.<br>
+
+<h3 align="left">Use simple IEC call model</h3>
+The checkbox forces the function block insert routine to use the simple IEC call model. If the item is unchecked, the call model will depend on the current POU type.<br>
+
+<h3 align="left">Sucosoft compatibility</h3>
+The Sucosoft POU compatibility flag can be set for version 4.x or version 5.x<br>
+
+<h3 align="left">Recent files history</h3>
+The spinbox can be used to set the size of the rinbuffer for the recent files history. The maximum size is limted to 256 files. The pushbutton Clear can be used to clear the history of recent files at the File menu, the list and in the preferences file. The clear routine will also be called, if the default setting are activated.<br>
+
+<h3 align="left">Check for updates during program start</h3>
+The checkbox forces an update search during the program start.<br>
+
+</p>
+
+
+
+<p><br></p>
+<p><br></p>
+
+
+<!-- .................................................... -->
+<!-- .................................................... -->
+<hr>
+<p align="left">
+<h1 id="h1_sessionmanager" align="left">The Session manager</h1>
+The session manager shows all sessions in the PLCEdit Sessions folder. The buttons load and delete are self explaining. Sessions can be created by using the menu save session at the file menu or by using the button save at the session manager. Only already stored pages will be collected by the session save routine. The auto close checkbox can be used to enforce closing the dialog if the selected session was loaded. The error list will be shown if a path in the session file is broken. The list shows the name and the expected location.<br>
+Sessions contains paths to POU files on the current PC - regarding this the sessions are not necessarily portable. Some sessions settings can be defined at the preferences dialog (eg. save autosession as project, start with session manager).<br>
+<br>
+<img src="PLCEdit_sessionmanager_win.png" width="640" height="480" alt="Session manager on Win32"/><br><br></p>
+
+
+<p><br></p>
+<p><br></p>
+
+
+<!-- .................................................... -->
+<!-- .................................................... -->
+<hr>
+<p align="left">
+<h1 id="h1_findreplace" align="left">The Find and Replace Dialog</h1>
+The find and replace dialog can be used to find search items if the replace inputfield is leaved empty. If the replace field is filled all find items will be replaced. The checkboxes 'Case sensitive' and 'Match whole word' can be used to isolate the find item.<br>
+The routine can be switched forward and backwards. The replace all option works from the current cursor position up to the end of the current input window.<br>
+If the find item cannot be found, a message appears at the dialog to inform the user that the routine has switched to the opposite input window and waits for another hit on the buttons.<br>
+<br>
+<img src="PLCEdit_findreplace_win.png" width="640" height="480" alt="Find and Replace dialog on Win32"/><br><br>
+</p>
+
+
+<p><br></p>
+<p><br></p>
+
+
+<!-- .................................................... -->
+<!-- .................................................... -->
+<hr>
+<p align="left">
+<h1 id="h1_pouinfodialog" align="left">The POU Info Dialog</h1>
+The POU info dialog can be used by Sucosoft POE files to include some specifications about the developer and other informations. The dialog shows also the POU prototype.<br>
+<br>
+<img src="PLCEdit_pouinfodialog_mac.png" width="640" height="480" alt="POU info dialog on Mac OS 10.5"/><br><br>
+<h2 align="left">POU Info</h2>
+The POU info site contains inputfields for some file details.<br>
+Next a editfield can be used for longer texts. The check box at the bottom tells PLCEdit to include the editfield text into the instruction section as a comment.<br>
+
+<br><br>
+
+<h2 align="left">POU Prototype</h2>
+The prototype shows all Input, Output and InOut variables.<br>
+</p>
+
+
+<p><br></p>
+<p><br></p>
+
+
+<!-- .................................................... -->
+<!-- .................................................... -->
+<hr>
+<p align="left">
+<h1 id="h1_fileview" align="left">The File View Dialog</h1>
+The file view dialog can be used to check the whole file content regarding the selected file type. It is a useful function for developers, who have problems with the compatibility of some files, because it shows the content of a possible outputfile.<br>
+<br>
+<img src="PLCEdit_fileview_win.png" width="640" height="480" alt="File View dialog on Win32"/><br><br>
+</p>
+
+
+
+<p><br></p>
+<p><br></p>
+
+
+<!-- .................................................... -->
+<!-- .................................................... -->
+<hr>
+<p align="left">
+<h1 id="h1_batchconverter" align="left">The Batch converter</h1>
+The batch converter is a simple file copy function which left the instructions and declarations untouched. The converter adds or removes IDE (Sucosoft, STEP 7, CoDeSys, MULTIPROG, MELSOFT, etc.) specific parts to make the files compatible.<br>
+The converter also supports the conversion of function block calls. Therefore it is needed that the input and output section can be detected reliably.<br>
+The dialog shows a rollbox to select the file extension/compatibility and an inputfield for the storage path. The path can be seleced by the '...' button. A progressbar shows the batch processing.<br>
+<br>
+<img src="PLCEdit_batchconverter_mac.png" width="640" height="480" alt="Batch converter on Mac OS 10.5"/><br><br>
+</p>
+
+
+<p><br></p>
+<p><br></p>
+
+
+<!-- .................................................... -->
+<!-- .................................................... -->
+<hr>
+<p align="left">
+<h1 id="h1_insertFB" align="left">The Function block dialog</h1>
+The function block dialog shows all opened function blocks. The selected function block can be inserted with its call model and the data types of its inputs and outputs. The function blocks will be inserted with a call model format according to the current page. The data types and existing comments for the input and outputs can be included in addition to the call model.<br>
+The preferences page Advanced contains some additional parameters for the function block dialog (eg. It is possible to enforce a simple IEC call model).<br>
+<br>
+<img src="PLCEdit_insertFB_linux.png" width="640" height="480" alt="Batch converter on Ubuntu"/><br><br>
+</p>
+
+
+<p><br></p>
+<p><br></p>
+
+
+<!-- .................................................... -->
+<!-- .................................................... -->
+<hr>
+<p align="left">
+<h1 id="h1_compatibility" align="left">Compatibility</h1>
+<h3 align="left">POU source compatibility</h3>
+PLCEdit is compatible to export files of several integrated PLC development environments. The compatibility is basic and in some cases maybe not fully complete, but most files are read correctly.<br>
+A special attention is needed regarding the conversion of POU content. PLCEdit comes with a batch converter to export POU files into an IDE compatible format, but without translating the code accroding to a language change. Next a special converter tries to incease the compatibiliy during the file save procedure by transforming function block calls into te selected compatibility (batch converter and setup at prefernces dialog).<br>
+The following table gives an overview about the depth of compatibility.<br>
+<br>
+
+<table border="1" width="95%">
+  <colgroup>
+    <col width="35%">
+    <col width="10%">
+    <col width="10%">
+    <col width="15%">
+    <col width="30%">
+  </colgroup>
+  
+<tr>
+	<td align="center"  valign="center">
+		<b>supported IDE</b>
+	</td>	
+	<td align="center" valign="center">
+    <b>source files
+	</td>
+	<td align="center" valign="center">
+    <b>open / save</b>
+	</td>
+	<td align="center" valign="center">
+    <b>FB call conversion</b>
+	</td>
+	<td align="center" valign="center">
+    <b>details</b>
+	</td>
+</tr>
+
+<tr>
+	<td align="left"  valign="center">
+		plain POU<br>(eg. kirchner SOFT logi.CAD; infoteam OpenPCS)
+	</td>	
+	<td align="center" valign="center">
+    *.txt 
+	</td>
+	<td align="center" valign="center">
+    yes / yes 
+	</td>
+	<td align="center" valign="center">
+    yes*
+	</td>
+	<td align="center" valign="center">
+    OpenPCS .POE and .ST files are handled as plain POUs with extension .txt
+	</td>
+</tr>
+
+<tr>
+	<td align="left"  valign="center">
+		CoDeSys v2.3 (3S)
+	</td>	
+	<td align="center" valign="center">
+    *.EXP 
+	</td>
+	<td align="center" valign="center">
+    yes / yes 
+	</td>
+	<td align="center" valign="center">
+    yes
+	</td>
+	<td align="center" valign="center">
+    VISU stored; TYPE can be opened
+	</td>
+</tr>
+
+<tr>
+	<td align="left"  valign="center">
+		MELSOFT (Mitsubishi)
+	</td>	
+	<td align="center" valign="center">
+    *.asc 
+	</td>
+	<td align="center" valign="center">
+    yes / yes 
+	</td>
+	<td align="center" valign="center">
+    yes*
+	</td>
+	<td align="center" valign="center">
+    configuration data stored
+	</td>
+</tr>
+
+<tr>
+	<td align="left"  valign="center">
+		MULTIPROG (KW-Software)
+	</td>	
+	<td align="center" valign="center">
+    *.IL, *.ST 
+	</td>
+	<td align="center" valign="center">
+    yes / yes 
+	</td>
+	<td align="center" valign="center">
+    no
+	</td>
+	<td align="center" valign="center">
+    worksheet data stored
+	</td>
+</tr>
+
+<tr>
+	<td align="left"  valign="center">
+		STEP 7 (Siemens)
+	</td>	
+	<td align="center" valign="center">
+    *.awl, *.scl 
+	</td>
+	<td align="center" valign="center">
+    yes / yes 
+	</td>
+	<td align="center" valign="center">
+    yes*
+	</td>
+	<td align="center" valign="center">
+    DB data stored
+	</td>
+</tr>
+
+<tr>
+	<td align="left"  valign="center">
+		Sucosoft S40 (Moeller)
+	</td>	
+	<td align="center" valign="center">
+    *.poe 
+	</td>
+	<td align="center" valign="center">
+    &nbsp;&nbsp;yes / yes**
+	</td>
+	<td align="center" valign="center">
+    yes
+	</td>
+	<td align="center" valign="center">
+    POU info dialog for header data
+	</td>
+</tr>
+
+</table>
+
+<br>
+(*) A function block call can converted if it consists of a standard call model within which the input and output section can be reliably detected.<br>
+(**) Sucosoft POE files contains a wrong checksum section in the file header. In this case the Sucosoft S40 Navigator marked the files as defective but they can be still handled by the Sucosoft.<br>
+</p>
+
+
+<p><br></p>
+<p><br></p>
+
+
+<!-- .................................................... -->
+<!-- .................................................... -->
+<hr>
+<p align="left">
+<h1 id="h1_FBCallConversion" align="left">Conversion of function block calls</h1>
+A special converter tries to transform function block calls into the selected compatibility (can be selected in batch converter and at the prefernces dialog).<br>
+In some cases it is not possible to convert function block calls because some call models contains no delimiter for the input and output section or doesn't know any difference between the assigment of inputs and outputs. In this case a special platform independent delimiter can be used to work around this. Insert '(*outputs*)' in an own row between the input and output section of a function block call. PLCEdit can use this delimiter during the transformation of such function block calls.<br>
+Splitted function block calls or rudimentary IEC calls are very problematic. Notice: PLCEdit is not able to convert all function block calls and some transformation outputs can corrupt a lot of code lines - so please check the output!<br>
+
+
+
+</p>
+
+
+<p><br></p>
+<p><br></p>
+
+<!-- .................................................... -->
+<!-- .................................................... -->
+<hr>
+<p align="left">
+<h1 id="h1_keyboardshortcuts" align="left">Keyboard shortcuts</h1>
+PLCEdit provides some keyboard shortcuts to makes the user input handling more easier.<br>
+The shortcuts are based on well known platform specific shortcuts on Windows, Linux and Mac OS X.
+<p>
+<table border="1" width="75%">
+  <colgroup>
+    <col width="20%">
+    <col width="70%">
+  </colgroup>
+<tr>
+	<td align="left"  valign="center">
+	<h3 align="left"><b>Shortcut</b></h3>
+	</td>
+	<td align="left" valign="center">
+	<h3 align="left"><b>Description</b></h3>
+	</td>
+</tr>
+
+<!-- .................................................... -->
+<tr>
+	<td align="left"  valign="center" colspan="2">
+	<b>Menu File</b>
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+Alt+P
+	</td>
+	<td align="left" valign="center">
+	Create new PROGRAM POU
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+Alt+B
+	</td>
+	<td align="left" valign="center">
+	Create new FUNCTION_BLOCK POU
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+Alt+F
+	</td>
+	<td align="left" valign="center">
+	Create new FUNCTION POU
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+Alt+L
+	</td>
+	<td align="left" valign="center">
+	Create new GLOBAL_VARIABLE_LIST POU
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+Alt+T
+	</td>
+	<td align="left" valign="center">
+	Create new TYPE definition
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+O
+	</td>
+	<td align="left" valign="center">
+	Open a POU
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+I
+	</td>
+	<td align="left" valign="center">
+	Open the POU info dialog
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+F11
+	</td>
+	<td align="left" valign="center">
+	Open the session manager
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+Alt+F11
+	</td>
+	<td align="left" valign="center">
+	Save current file paths as links into a session file
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+S
+	</td>
+	<td align="left" valign="center">
+	Save the current POU
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+Alt+S
+	</td>
+	<td align="left" valign="center">
+	Save the current POU with new name
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+D
+	</td>
+	<td align="left" valign="center">
+	Open the batch converter
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+P
+	</td>
+	<td align="left" valign="center">
+	Print current POU
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+W
+	</td>
+	<td align="left" valign="center">
+	Close current POU
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+Alt+W
+	</td>
+	<td align="left" valign="center">
+	Close all POUs
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+Q
+	</td>
+	<td align="left" valign="center">
+	Quit PLCEdit, On Mac OS X this shortcut is moved to the application menu "PLCEdit"
+	</td>
+</tr>
+
+<!-- .................................................... -->
+<tr>
+	<td align="left"  valign="center" colspan="2">
+	<b>Menu Edit</b>
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+Z
+	</td>
+	<td align="left" valign="center">
+	Undo last change
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+Y
+	</td>
+	<td align="left" valign="center">
+	restore last undo
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+X
+	</td>
+	<td align="left" valign="center">
+	Cut selected text
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+C
+	</td>
+	<td align="left" valign="center">
+	Copy selected text
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+V
+	</td>
+	<td align="left" valign="center">
+	Insert text from clipboard
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+A
+	</td>
+	<td align="left" valign="center">
+	Select all text at the current inputwindow
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+F
+	</td>
+	<td align="left" valign="center">
+	Find and/or replace the selected text
+	</td>
+</tr>
+
+<!-- .................................................... -->
+<tr>
+	<td align="left"  valign="center" colspan="2">
+	<b>Menu View</b>
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Alt+BACKSPACE
+	</td>
+	<td align="left" valign="center">
+	Hide declarations inputwindow
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+M
+	</td>
+	<td align="left" valign="center">
+	Minimize application window
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	F4
+	</td>
+	<td align="left" valign="center">
+	Show file list on the left application window side
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Alt+TAB
+	</td>
+	<td align="left" valign="center">
+	change cursorposition to opposite inputwindow
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	F7
+	</td>
+	<td align="left" valign="center">
+	Open file view dialog
+	</td>
+</tr>
+
+<!-- .................................................... -->
+<tr>
+	<td align="left"  valign="center" colspan="2">
+	<b>Menu Tools</b>
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctr+F12 (Windows + Linux)<br>
+	Ctrl+, (Mac OS X)
+	</td>
+	<td align="left" valign="center">
+	Show preferences dialog<br>
+	On Mac OS X this shortcut is moved to the application menu "PLCEdit"
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	Ctrl+B
+	</td>
+	<td align="left" valign="center">
+	Open function block dialog
+	</td>
+</tr>
+
+<!-- .................................................... -->
+<tr>
+	<td align="left"  valign="center" colspan="2">
+	<b>Menu Help</b>
+	</td>
+</tr>
+<tr>
+	<td align="left"  valign="center">
+	F1
+	</td>
+	<td align="left" valign="center">
+	Show application help
+	</td>
+</tr>
+
+</table>
+</p>
+
+</font></p>
+</body>
+</html>

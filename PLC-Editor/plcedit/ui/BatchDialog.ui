@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BatchDialog</class>
+ <widget class="QDialog" name="BatchDialog">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>361</width>
+    <height>242</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>361</width>
+    <height>242</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>361</width>
+    <height>242</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Batch Dialog</string>
+  </property>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>184</x>
+     <y>203</y>
+     <width>171</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="BD_HBoxLayout_okcancel">
+    <property name="spacing">
+     <number>6</number>
+    </property>
+    <item>
+     <widget class="QPushButton" name="BD_pushButton_ok">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Ok</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="BD_pushButton_close">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Close</string>
+      </property>
+      <property name="default">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>139</y>
+     <width>341</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="BD_verticalLayout_conversion">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QLabel" name="BD_label_callmodelconversion">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Conversion of function block call model:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="BD_comboBox_callmodelconversion">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>339</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>339</width>
+        <height>25</height>
+       </size>
+      </property>
+      <item>
+       <property name="text">
+        <string>do nothing</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>all into selected compatibility call model</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>outputs into simple IEC call model</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>all into simple IEC call model</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>8</x>
+     <y>79</y>
+     <width>341</width>
+     <height>43</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="BD_verticalLayout_compatibility">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QLabel" name="BD_label_compatibility">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Compatibility:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QComboBox" name="BD_comboBox_compatibility">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>339</width>
+        <height>25</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>339</width>
+        <height>25</height>
+       </size>
+      </property>
+      <item>
+       <property name="text">
+        <string>only copy</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>plain POU (.txt)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CoDeSys (.EXP)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>MELSOFT (.asc)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>MULTIPROG (.IL / .ST - keep language) </string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>OpenPCS (.POE / .ST - keep language)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>STEP 7 (.awl / .scl - keep language)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Sucosoft S40 (.poe)</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>340</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="BD_verticalLayout_path">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QLabel" name="BD_label_path">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Result path:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QLineEdit" name="BD_lineEdit_path">
+        <property name="minimumSize">
+         <size>
+          <width>311</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>311</width>
+          <height>25</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="BD_pushButton_path">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>BD_lineEdit_path</tabstop>
+  <tabstop>BD_pushButton_path</tabstop>
+  <tabstop>BD_comboBox_compatibility</tabstop>
+  <tabstop>BD_comboBox_callmodelconversion</tabstop>
+  <tabstop>BD_pushButton_ok</tabstop>
+  <tabstop>BD_pushButton_close</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>BD_pushButton_close</sender>
+   <signal>clicked()</signal>
+   <receiver>BatchDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>294</x>
+     <y>116</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>173</x>
+     <y>66</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>BD_pushButton_ok</sender>
+   <signal>clicked()</signal>
+   <receiver>BatchDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>220</x>
+     <y>116</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>173</x>
+     <y>66</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

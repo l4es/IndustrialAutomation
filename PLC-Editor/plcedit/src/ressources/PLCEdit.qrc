@@ -1,0 +1,43 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>images/icon.png</file>
+        <file>images/delPageButton_16x16.png</file>
+        <file>images/delPageButtonMac_16x16.png</file>
+        <file>images/newFB_22x22.png</file>
+        <file>images/newFc_22x22.png</file>
+        <file>images/newPRG_22x22.png</file>
+        <file>images/newVARList_22x22.png</file>
+        <file>images/newTYPE_22x22.png</file>
+        <file>images/FcFileAdd_16x16.png</file>
+        <file>images/CVtypedef_16x16.png</file>
+        <file>images/openFolder_22x22.png</file>
+        <file>images/save_22x22.png</file>
+        <file>images/save_as_22x22.png</file>
+        <file>images/batch_processing_22x22.png</file>
+        <file>images/printer_22x22.png</file>
+        <file>images/pdf_print_22x22.png</file>
+        <file>images/printer_22x22.png</file>
+        <file>images/undo_22x22.png</file>
+        <file>images/redo_22x22.png</file>
+        <file>images/find_replace_22x22.png</file>
+        <file>images/FBCAL_22x22.png</file>
+        <file>images/JMP_22x22.png</file>
+        <file>images/LD_22x22.png</file>
+        <file>images/ST_22x22.png</file>
+        <file>images/AND_22x22.png</file>
+        <file>images/SAWL_Assign_22x22.png</file>
+        <file>images/NW_22x22.png</file>
+        <file>images/OR_22x22.png</file>
+        <file>images/SPA_22x22.png</file>
+        <file>images/Assign_22x22.png</file>
+        <file>images/Case_24x24.png</file>
+        <file>images/ForToDo_22x22.png</file>
+        <file>images/IfThenElse_24x24.png</file>
+        <file>images/RepeatUntil_22x22.png</file>
+        <file>images/WhileDo_22x22.png</file>
+        <file>images/back_22x22.png</file>  
+        <file>images/forward_22x22.png</file> 
+        <file>images/home_22x22.png</file>  
+        <file>images/internet_24x24.png</file>       
+    </qresource>
+</RCC>

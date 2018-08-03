@@ -1,0 +1,279 @@
+Curses interface
+PLC-EMU's interface consists of 5 monitoring windows, and a Ladder editor.
+You can switch between windows with the left/right arrows.
+Up/down arrows scroll windows.
+
+F4 starts/stops PLC task.
+F7 loads a program and initialization file
+F8 saves current PLC state as initial state, and current LD task to a file
+that can later be used as a program file.
+F9 displays this help.
+F10 quits.
+Tab gets quickly to editor window.
+
+Inputs/Outputs window
+Here you can see the current state of I/O.
+When an I/O is green, it is set to 1.(although you can also read the value "1")
+When it is red, it means it has been forced.
+
+F1 forces current input/output to 1.
+F2 forces to 0.
+F3 unforces.
+F5 edits comments for single I/Os.
+
+Memory window
+Here you can see the value of internal memory registers.
+Green means that the counter is receiving a pulse.
+Red means that a counter has been disabled, and only its pulse is used 
+as a boolean variable.
+
+F1 sends a positive pulse to the counter
+F2 stops pulse
+F5 edits comments, value and up/down counting
+F6 enables/disables counting
+
+Timers window
+Timers state is displayed here, in the form:
+T[index] X [scale] 	[value]/[preset].
+Green means the timer is counting.
+Red means the timer has reached its preset value, and its output is positive.
+F1 starts timer
+F2 stops it
+F5 edits comments, value, preset, scale i.e. how many cycles are needed to 
+increase value by 1, and whether it is in TON/TOFF mode.
+
+Blinkers window
+
+Here the current state of blinkers is displayed, in the form
+S[index] X[scale].
+Green means that blinkers'output is 1.
+F5 you can edit comments and scale value
+
+Program editor
+
+When the PLC is in STOP mode, you can edit your PLC task in a plain text editor.
+Tabs, Copy/paste, select etc. are not supported-sorry.
+Ctrl-X saves and returns to monitoring windows. 
+If you have an error in your ladder diagram, it will not be executed and an 
+error message will be displayed. 
+In RUN mode, F5 toggles the language interpreter from Ladder to Instruction List and vice versa.
+
+Program Structure
+
+The program file consists of two sections: init section, and PLC task section,
+separated by the keywords "LD" or "IL".
+
+Initialization
+In the init section, you can write the initialization state of the plc, in the 
+format <VARIABLE>	<INDEX>		<VALUE> separated by tabs.
+
+Supported variables are:
+
+Text variables 
+Up to 16 character comments.
+
+I:	comment associated with input[index]
+Q:	comment associated with output[index]
+M:	comment associated with memory register[index]
+T:	comment associated with timer register[index]
+S:	comment associated with timer register[index]
+
+Integer variables
+Non negative numbers.
+
+MEMORY:	initial value of register[index]	
+TIME:	number of time cycles timer[index] takes to increase its value by 1.
+PRESET:	preset value of timer[index]
+BLINK:	number of time cycles blinker[index] takes to change state.
+
+Unique value variables: 
+Boolean variables which, if they are not set, are presumed to work with their 
+default values. So it only makes sense to initialize them in their non-default 
+states. 
+
+COUNT:	setting this to DOWN means register[index] works as an downcounter.
+COUNTER:setting this to OFF means register[index] is just a boolean variable.
+DELAY:	setting this to ON means timer[index] is a T-ON counter. default is T-OFF
+
+LD task
+Everything after the keyword "LD", is supposed to be in Ladder diagram format.
+The version of LD PLC-EMU supports, consists of the following operators and 
+operands, in a diagram of maximum 1024 characters wide, and random lines long.
+
+Operators
+These are the accepted symbols that can exist along with the operands.
+
+'-' propagates a boolean state horizontally, from left to right. 
+Thus, it works as a logical "AND". 
+
+'+' changes line and can join states of up to 3 different lines, 
+like a logical "OR" .
+
+'|' propagates a state vertically, both ways between aligned "+" nodes.
+
+'!' negates the state of the following operand like a logical "NOT"
+
+'(' open contact. this propagates a state directly to an output. the following operand must be an output.
+
+')' negate contact. this propagates the opposite of a state to an output. the following operand must be an output.
+
+'[' set coil. if this is ON, thestate of an output is set. the following operand must be an output.
+
+']' reset coil. if this is ON, thestate of an output is reset. the following operand must be an output.
+
+';' end of line. anything after that is considered "comments".
+
+Blank characters interrupt lines, so be careful.
+
+Input operands 
+These can appear anywhere in a line before a '(', followed by a valid 
+non negative index. Valid values of indexes are dependant on the operand and
+the configuration. This means, that if you have 16 timers and 64 inputs, you
+can write t14 and i62, but not t45 or i567.
+In every cycle, their values are polled and propagated to the diagram. 
+Accepted symbols (case sensitive) are:
+
+'i' digital input state
+
+'q' digital output state
+
+'r' rising edge of digital input
+
+'f' falling edge of digital input
+
+'m' pulse state of counter
+
+'t' output of timer
+
+'b' output of blinker
+
+'c' true, if serial input byte equals following index
+
+Output operands
+These symbols must follow operator '(' and be followed by a valid index.
+Each output operand should appear only once.
+
+'Q' digital output
+
+'M' pulse of counter
+
+'T' timer 
+
+'W' write following number to serial output.
+
+Example of a valid Program file:
+
+I	1	My button
+I	3	My other button
+Q	1	My led
+Q	2	My other led
+M	1	My bool variable
+M	4	My up-counter
+T	1 	My on-timer
+S	3	My blinker
+MEMORY	4	654	
+COUNT	4	DOWN	
+COUNTER	1	OFF	
+TIME	1	500	
+PRESET	1	20	
+DELAY	1	ON
+BLINK	3	40	
+
+LD
+  
+ r1---------!m1----------(Q0    ;rising input 1 and not pulse of counter 1 contacts 
+                                ;output 1
+ t1---+
+ b3---+---i2-----+             	;timer 1 or blinker 3 or falling edge of input
+      |		 |		;3 and input 2
+      |          |              ;sets pulse of counter 4. 
+ f3---+          +--------[M4
+ 
+ c255------------+--------(T1   ;command 255 starts timer 1 and sets output 2
+                 +--------[Q1
+ b1-----------+-----------]T1   ;blinker 1 stops timer 1, 
+	      |	                ;resets pulse of counter 4 and output 1
+	      |                 ;and writes byte 99 to serial output
+              +-----------]Q1       
+              +-----------]M4
+              +-----------(W99
+
+
+IL task
+
+Alternatively, you can use the keyword "IL" (or F5 in the editor window) 
+to define a IEC61131-3 compatible Instruction List program. 
+Currently, subroutines are not implemented.
+
+Just like standard Instruction List, all instructions store their result to an
+internal Accumulator register, while "ST" stores the Accumulator's value to its operand.
+
+A line of an IL program, shall follow the format:
+
+[label:]<operator>[<modifier>[%<operand><byte>[/<bit>]]|<label>][;comment]
+
+Supported Operators are:
+
+	) 	close parenthesis (pop instruction from stack)
+	S 	set output
+	R 	reset output
+	    
+	AND 
+	OR
+	XOR
+
+	LD 	load 
+	ST 	store
+
+	ADD	
+	SUB	subtract
+	MUL	multiply
+	DIV	divide
+	GT	>
+	GE	>=
+	NE	<>
+	EQ	==
+	LE	<=
+	LT	<
+	JMP	jump to label
+
+Modifier symbols recognized are:
+	(	open parenthesis (push instruction to stack)
+	!	negate
+	?	conditional
+	
+Operands are the same as in LD, with the difference that it is assumed that 
+they are Words (unsigned Integers), unless noted otherwise with the symbol '/'.
+
+As defined in the IEC standard, each instruction supports its own set of data types
+and modifiers, according to the following scheme:
+
+Instruction 	Modifiers 	Data Types
+	) 	N/A		N/A
+	S 	N/A		BOOL
+	R 	N/A		BOOL
+	    
+	AND 	!,(		BOOL/WORD
+	OR	!,(		BOOL/WORD
+	XOR	!,(		BOOL/WORD
+
+	LD 	!		BOOL/WORD
+	ST 	!		BOOL/WORD
+
+	ADD	(		BOOL/WORD
+	SUB	(		BOOL/WORD
+	MUL	(		BOOL/WORD
+	DIV	(		BOOL/WORD
+	GT	(		BOOL/WORD
+	GE	(		BOOL/WORD
+	NE	(		BOOL/WORD
+	EQ	(		BOOL/WORD
+	LE	(		BOOL/WORD
+	LT	(		BOOL/WORD
+	JMP	?		CHARACTER STRING
+
+
+
+You can write a text file with the initialization and task program externally
+and then load it into PLC-EMU, or use the curses interface to edit and save it.
+

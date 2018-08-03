@@ -1,0 +1,33 @@
+I	0	my_button	
+I	1	my_other_button	
+I	2	another_button	
+I	3	one_more_button	
+Q	0	my_led	
+Q	1	my_other_led	
+Q	5	ping	
+M	0	my_upcounter	
+MEMORY	0	64	
+T	1	my_timer	
+TIME	1	10	
+PRESET	1	10	
+B	1	my_blinker	
+BLINK	1	100	
+
+LD
+
+ i1----+
+ i2----+---------(Q5
+ i3----+
+
+
+             +---------------]Q1;
+             |
+ i0----------+---------------]M0 ;input 1 starts timer 1
+            
+ i1---+------------------[M0       
+      |
+      +-----------------[Q0       
+           +---------------[Q1 ;and contacts output 0
+ i2--------+--+-----]M0 ;rising edge of input 1 resets counter 0
+              |
+              +-----]Q0

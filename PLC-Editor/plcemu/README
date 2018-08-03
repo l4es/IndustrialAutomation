@@ -1,0 +1,517 @@
+PLC-EMU is a Programmable Logic Controller EMUlator for automation applications on linux with digital/analog IO cards, with C functions, Ladder Diagrams,or IEC61131-compliant Instruction List/Structured Text. It is a cheap and open alternative to PLCs. 
+[[project_screenshots]]
+[[project_admins]]
+
+[TOC]
+
+#1. OVERVIEW
+
+PLC-EMU stands for Programmable Logic Controller EMUlator. This means PLC-EMU is a tool for emulating PLCs on a Linux box, using I/O cards. This way you can build a cheap alternative to PLC's, for use with automation applications. 
+
+It consists of a text-based Ladder Diagram / Instruction List parser, a minimal C API and an optional ncurses-based interface for online control.
+
+
+#2. DEPENDENCIES/RECOMMENDATIONS
+
+First of all, you need to install one or more PCI/ISA digital I/O card 
+(analog I/O not supported- yet.)
+PLC-EMU works in two modes: through comedi, and in user space.
+
+Additionally, File Simulation mode is supported in case no hardware is available.
+
+In Comedi mode, all you need to do is install and set up the apropriate Comedi driver for your card, and copy the setup values to PLC-EMU's config file.
+Consult www.comedi.org for a list of compatible cards, and instructions on comedi.
+
+In user-space mode, you need to know the base IO address space of your cards, 
+and which area of it the card uses for reading (read offset) and writing (write 
+offset). For pci cards, run 
+
+> lspci -vvv 
+
+to find out the base address. The rest should be found in the cards' manual.
+
+In File Simulation mode, PLC-emu can be configured to read input bytes from 
+an ASCII text file and send outputs to another text file.
+
+
+#3. CAPABILITIES
+
+As you are expected to know if you are still reading this, PLC's are real time 
+controllers whose function is to periodically read inputs, run several real time 
+tasks, and control outputs, in a steady time period, which in commercial PLC's 
+varies usually from 2 to 10 milliseconds. PLC's are the standard platform for 
+automation applications, and can they can be programmed in one or more 
+of the 4 programming languages as defined by IEC116131-3: 
+Instruction List, Ladder Diagram, Function
+Block Diagram, or Structured Text.
+
+PLC-EMU emulates this function: In a configurable time cycle, it will read the 
+inputs from your card, run a task as programmed by the user, and send the 
+appropriate outputs back to the card. In the platform which has been tested,
+PLC-EMU would run correctly with a time cycle of 2 milliseconds, losing up to 
+1 millisecond in the worst case, which is compensatable in a preemptive kernel.  
+
+Apart from inputs and outputs, PLC-EMU also holds an internal "address space"
+of a user-defined number of memory variables which you may use in your programs 
+as up/down counters, or boolean variables.
+
+It also supports Timer and Blinking Timer registers, whose number and function 
+can as well be configured by the user.
+
+Last, PLC-EMU supports serial communication. In the time cycle it will read
+a byte from a named pipe, and might write up to one byte to another pipe.
+This way you can control it externally, and link it with other applications.
+
+
+#4. INSTALLATION 
+
+Download the tarball from www.sourceforge.net/projects/plcemu
+
+Unzip the source files in a directory and run in superuser mode
+
+>./configure;
+>make;
+>make install 
+
+This should create an executable named "plcemu", a text file named "plc.config",
+and two named pipes, namely "plcpipe" and "plcresponse".
+
+If you dont have the comedi libraries, run configure with the option:
+
+>/.configure --enable-uspace
+
+Note that you dont need this if you have 
+the comedi libraries, but you havent set up comedi for some reason.
+
+If you don't have actual hardware, run configure with the option
+
+>/.configure --enable-sim 
+
+for text simulation mode.
+
+If you want to work with a stdout (printf) based user interface, you can configure with the option
+
+>/.configure --disable-ui 
+#5. CONFIGURATION
+
+Edit a plc.config file, which holds tab-separated configuration variables and 
+their values. All variables must be set, otherwise it will not run.
+
+An example plc.config as included with the distribution:
+
+    STEP 		10		;time cycle in milliseconds
+    PIPE 		plcpipe 	;UNIX path of named pipe polled for commands
+    RESPONSE 	plcresponse 	;>>  named pipe for response
+    SIGENABLE 	36 		;POSIX enable signal to lock/unlock the interface
+    PAGELEN	64 		;max screen length in characters.
+    PAGEWIDTH 	160		;>> width
+    NT 		16 		;number of timers
+    NS 		16		;number of blinking timers
+    NM 		32 		;number of internal variables
+
+    ;hardware
+    HW 		Adlink_PCI-1756	;just a text tag that appears in a footer
+    BOOL_DI 	4 		;number of bytes of digital inputs
+    DQ 		4 		;number of bytes of digital outputs
+
+    ;user space interface:
+    BASE 		50176		;hardware address base
+    WR_OFFS		4		;write offset
+    RD_OFFS		0		;read offset
+
+    ;COMEDI interface:
+    COMEDI_FILE 	0		;device and subdevice nodes of comedi driver
+    COMEDI_SUBDEV_I 0
+    COMEDI_SUBDEV_Q 1
+
+    ;SIMULATION IO
+    SIM_INPUT   simin
+    SIM_OUTPUT  simout
+
+#6. PROGRAMMING
+
+At the moment, two ways of programming are supported. You can edit a text file 
+in your favorite text editor and then load it into PLC-EMU (see below) or 
+use the online editor.
+That file should contain initialization variables and a task in LD or IL.
+
+Alternatively, you can still edit your project.c and project.h files in C and 
+recompile. 
+
+##Program Structure
+
+The program file consists of two sections: init section, and LD task section,
+separated by the keyword "LD".
+
+###Initialization
+In the init section, you can write the initialization state of the plc, in the 
+format <VARIABLE>	<INDEX>		<VALUE> separated by tabs.
+
+Supported variables are:
+
+Text variables 
+Up to 16 character comments.
+
+    I:	comment associated with input[index]
+    Q:	comment associated with output[index]
+    M:	comment associated with memory register[index]
+    T:	comment associated with timer register[index]
+    S:	comment associated with timer register[index]
+
+Integer variables
+Non negative numbers.
+
+    MEMORY:	initial value of register[index]	
+    TIME:	number of time cycles timer[index] takes to increase its value by 1.
+    PRESET:	preset value of timer[index]
+    BLINK:	number of time cycles blinker[index] takes to change state.
+
+Unique value variables: 
+Boolean variables which, if they are not set, are presumed to work with their 
+default values. So it only makes sense to initialize them in their non-default 
+states. 
+
+    COUNT:	setting this to DOWN means register[index] works as an downcounter.
+    COUNTER:setting this to OFF means register[index] is just a boolean variable.
+    DELAY:	setting this to ON means timer[index] is a T-ON counter. default is T-OFF
+
+###Ladder Diagram
+Everything after the keyword "LD", is supposed to be in Ladder diagram format.
+The version of LD PLC-EMU supports, consists of the following operators and 
+operands, in a diagram of maximum 1024 characters wide, and random lines long.
+
+Operators
+These are the accepted symbols that can exist along with the operands.
+
+'-' propagates a boolean state horizontally, from left to right. 
+Thus, it works as a logical "AND". 
+
+'+' changes line and can join states of up to 3 different lines, 
+like a logical "OR" .
+
+'|' propagates a state vertically, both ways between aligned "+" nodes.
+
+'!' negates the state of the following operand like a logical "NOT"
+
+'(' open contact. this propagates a state directly to an output. the following operand must be an output.
+
+')' negate contact. this propagates the opposite of a state to an output. the following operand must be an output.
+
+'[' set coil. if this is ON, thestate of an output is set. the following operand must be an output.
+
+']' reset coil. if this is ON, thestate of an output is reset. the following operand must be an output.
+
+';' end of line. anything after that is considered "comments".
+
+Blank characters interrupt lines, so be careful.
+
+Input operands 
+These can appear anywhere in a line before a '(', followed by a valid 
+non negative index. Valid values of indexes are dependant on the operand and
+the configuration. This means, that if you have 16 timers and 64 inputs, you
+can write t14 and i62, but not t45 or i567.
+In every cycle, their values are polled and propagated to the diagram. 
+Accepted symbols (case sensitive) are:
+
+'i' digital input state
+
+'q' digital output state
+
+'r' rising edge of digital input
+
+'f' falling edge of digital input
+
+'m' pulse state of counter
+
+'t' output of timer
+
+'b' output of blinker
+
+'c' true, if serial input byte equals following index
+
+Output operands
+These symbols must follow operator '(' and be followed by a valid index.
+Each output operand should appear only once.
+
+'Q' digital output
+
+'M' pulse of counter
+
+'T' timer 
+
+'W' write following number to serial output.
+
+### LD Example : Triple Majority Circuit
+I	0	A	
+I	1	B	
+I	2	C		
+Q	0	RESULT
+
+MEMORY	0	64	
+	
+TIME	1	10	
+PRESET	1	10		
+BLINK	1	100	
+
+LD
+
+; triple majority circuit
+; https://en.wikipedia.org/wiki/Triple_modular_redundancy
+
+ i0---i1----+---------(Q0
+ i2---i0----+
+ i1---i2----+
+
+
+
+###Instruction List
+
+Alternatively, you can use the keyword "IL" (or F5 in the editor window) to define a IEC61131-3 compatible Instruction List program. Currently, subroutines are not implemented. Just like standard Instruction List, all instructions store their result to an internal Accumulator register, while "ST" stores the Accumulator's value to its operand. A line of an IL program, shall follow the format:
+
+    [label:]<operator>[<modifier>[%<operand\><byte>[</bit>]]|<label>][;comment]
+Supported Operators are:
+    ) close parenthesis (pop instruction from stack)
+    S set output
+    R reset output
+    AND
+    OR
+    XOR
+    LD load
+    ST store
+    ADD
+    SUB	subtract
+    MUL	multiply
+    DIV	divide
+    GT	>
+    GE	>=
+    NE	<>
+    EQ	==
+    LE	<=
+    LT	<
+    JMP	jump to label
+Modifier symbols recognized are:
+    (	open parenthesis (push instruction to stack)
+    !	negate
+    ?	conditional
+Operands are the same as in LD, with the difference that it is assumed that they are Words (unsigned Integers), unless noted otherwise with the symbol '/'. As defined in the IEC standard, each instruction supports its own set of data types and modifiers, according to the following scheme:
+
+Instruction |Modifiers      |Data Types
+----------- | ------------- | -----------
+)           |N/A            |N/A
+S 	    |N/A	    |BOOL
+R 	    |N/A	    |BOOL
+AND 	    |!,(	    |BOOL/WORD
+OR	    |!,(	    |BOOL/WORD
+XOR	    |!,(	    |BOOL/WORD
+LD 	    |!		    |BOOL/WORD
+ST 	    |!		    |BOOL/WORD
+ADD	    |(		    |BOOL/WORD
+SUB	    |(		    |BOOL/WORD
+MUL	    |(		    |BOOL/WORD
+DIV	    |(		    |BOOL/WORD
+GT	    |(		    |BOOL/WORD
+GE	    |(		    |BOOL/WORD
+NE	    |(		    |BOOL/WORD
+EQ	    |(		    |BOOL/WORD
+LE	    |(		    |BOOL/WORD
+LT	    |(		    |BOOL/WORD
+JMP	    |?		    |CHARACTER STRING
+
+### IL Example : GCD
+
+ I	0	A	
+I	8	B	
+M   0   RESULT
+M   1   TEMP
+Q	0	OUTPUT
+
+MEMORY	0	64	
+	
+TIME	1	10	
+PRESET	1	10		
+BLINK	1	100	
+
+IL
+
+   ; greatest common divisor
+   ; https://en.wikipedia.org/wiki/Euclidean_algorithm
+
+    LD %i0
+    ST %m0
+    EQ %m3
+    JMP?end
+    
+    LD %i1
+    ST %m1
+    EQ %m3
+    JMP?end
+    
+    while:LD %m0    ; A
+    EQ %m1          ; A == B
+    JMP?endwhile    ; while(A != B)
+        LD %m0
+        LT %m1      ; A < B
+        JMP?reverse
+        LD %m0
+        SUB %m1     ; A - B
+        ST %m0      ; A = A - B
+    JMP while
+    reverse:LD %m1  ; B
+        SUB %m0     ; B - A
+        ST %m1      ; B = B - A
+    JMP while
+    endwhile:LD %m0 ; 
+    ST %q0 ; output gcd 
+    end: LD %m3;
+    
+    
+
+You can write a text file with the initialization and LD program externally
+and then load it into PLC-EMU, or use the curses interface to edit and save it.
+
+##C "API"
+
+The alternative to LD programming, is doing it in C.
+PLC-EMU comes with a file project.c, which includes a C function, defined as  
+
+int project_task(struct PLC_regs * p){}
+
+This function is called once every PLC cycle, and you can edit it as you wish.
+Similarly, there is project_init(), which is executed once, in the beginning.
+You may edit the bodies of these functions, and then recompile PLC-EMU.
+
+The argument *p, is the main struct that represents the PLC.
+
+As you can see in plclib.h, PLC-EMU provides several functions that can operate 
+on this struct, which can be used in your code.
+
+Namely:
+
+~~~~~~~~~
+int re(struct PLC_regs * p,int type,int idx)
+//return rising edge of operand 
+int fe(struct PLC_regs * p,int type,int idx)
+//return falling edge of operand
+int set(struct PLC_regs * p, int type, int idx)
+//set operand
+int reset(struct PLC_regs * p, int type, int idx)
+//reset operand
+int contact(struct PLC_regs * p, int type, int idx,BYTE val)
+//contacts an output with a value
+int resolve(struct PLC_regs * p, int type, int idx)
+//return an operand value
+int down_timer(struct PLC_regs * p, int idx)
+//reset timer
+~~~~~~~~~
+
+The argument "type" is the type of operand we are operating on, 
+and can be one of the following values:
+
+~~~~~~~~~~~~
+\#define BOOL_DI 0 	//digital input
+\#define DQ 1	//digital output
+\#define COUNTER 2	//pulse of counter
+\#define TIMER 	3 	//output of timer
+\#define BLINKER 4	//output of blinker
+~~~~~~~~~~~~~
+
+While the argument "idx" is the index of the given operand.
+For example, 
+
+~~~~~~~~~~~~~~~~~
+contact(&p, TIMER, 4, TRUE);
+~~~~~~~~~~~~~~~~~`
+
+will start timer 4.
+
+You can also use pretty much anything defined in plcemu.h and plclib.h,
+as long as you understand how the thing works... read carefully and have fun.
+
+You may define your own structs, functions, etc. in project.h.
+
+
+#7. INTERFACE
+
+Executing plcemu from the command line
+
+    Usage: plcemu [-i program file] [-c config file] [-d] 
+    Options:
+    -i loads initially a text file with initialization values and LD program, in the format described in section 6.
+    -c uses a configuration file like the one described in section 5, other than plc.config
+    -d runs PLC-EMU as daemon, meaning with no curses interface.
+
+Curses interface
+PLC-EMU's interface consists of 5 monitoring windows, and a Ladder editor.
+You can switch between windows with the left/right arrows.
+Up/down arrows scroll windows.
+
+F4 starts/stops PLC task.
+F7 loads a program and initialization file
+F8 saves current PLC state as initial state, and current LD task to a file that can later be used as a program file.
+F9 displays this help. 
+F10 quits.
+
+Inputs/Outputs window
+Here you can see the current state of I/O.
+When an I/O is green, it is set to 1.(although you can also read the value "1")
+When it is red, it means it has been forced.
+
+F1 forces current input/output to 1.
+F2 forces to 0.
+F3 unforces.
+F5 edits comments for single I/Os.
+
+Memory window
+Here you can see the value of internal memory registers.
+Green means that the counter is receiving a pulse.
+Red means that a counter has been disabled, and only its pulse is used 
+as a boolean variable.
+
+F1 sends a positive pulse to the counter
+F2 stops pulse
+F5 edits comments, value and up/down counting
+F6 enables/disables counting
+
+Timers window
+Timers state is displayed here, in the form:
+
+    T[index] X [scale] 	[value]/[preset].
+
+Green means the timer is counting.
+Red means the timer has reached its preset value, and its output is positive.
+F1 starts timer
+F2 stops it
+F5 edits comments, value, preset, scale i.e. how many cycles are needed to 
+increase value by 1, and whether it is in TON/TOFF mode.
+
+Blinkers window
+
+Here the current state of blinkers is displayed, in the form
+
+    S[index] X[scale].
+
+Green means that blinkers'output is 1.
+F5 you can edit comments and scale value
+
+Ladder editor
+
+When the PLC is in STOP mode, you can edit your LD task in a plain text editor.
+Tabs, Copy/paste, select etc. are not supported-sorry.
+Ctrl-X saves and returns to monitoring windows. 
+If you have an error in your ladder diagram, it will not be executed and an 
+error message will be displayed. 
+
+#8. ISSUES
+
+PLC-EMU does not support analog i/o yet, nor USB devices
+LD needs more functionality
+The C API needs to be expanded with more functions
+Instruction List, Function blocks and Structured text language should be supprorted
+sometime in the future, as well as an open IEC116131-3 compatible XML editor for these
+
+Please send feedback, questions, suggestions, requests, help(?) to:
+Antonis Kalamaras (kalamara AT users.sourceforge.net)
+Thanks to Sotiris Kontogiannis for his ncurses text editor and libraries
+
+
+

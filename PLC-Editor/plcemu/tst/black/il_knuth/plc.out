@@ -1,0 +1,5134 @@
+Looking for configuration from tst/black/il_knuth/plc.config ...
+Found value for STEP: 100 ...
+Found value for PIPE: plcpipe ...
+Found value for RESPONSE: plcresponse ...
+Found value for SIGENABLE: 36 ...
+Found value for PAGELEN: 24 ...
+Found value for PAGEWIDTH: 80 ...
+Found value for NT: 16 ...
+Found value for NS: 16 ...
+Found value for NR: 6 ...
+Found value for HW: STDI/O ...
+
+Found value for DI: 4 ...
+Found value for DQ: 4 ...
+Found value for AI: 1 ...
+Found value for AQ: 1 ...
+Found value for BASE: 50176 ...
+Found value for WR_OFFS: 4 ...
+Found value for RD_OFFS: 0 ...
+Found value for COMEDI_FILE: 0 ...
+Found value for COMEDI_SUBDEV_I: 0 ...
+Found value for COMEDI_SUBDEV_Q: 1 ...
+Found value for SIM_INPUT: sim.in ...
+Found value for SIM_OUTPUT: sim.out ...
+Variable N : Memory Register 0 
+Variable MEAN : Memory Register 1 
+Variable M2 : Memory Register 2 
+Variable DELTA : Memory Register 3 
+Variable ONE : Memory Register 4 
+Variable INPUT : Analog Input 0 
+Range min 0.0 : Analog Input 0 
+Range max 24.0 : Analog Input 0 
+Variable OUTPUT : Analog Output 0 
+Range min 0.0 : Analog Output 0 
+Range max 100.0 : Analog Output 0 
+Initial float value 1.0 : Register 0 
+Initial float value 1.0 : Register 4 
+Timer 1 : Set 10 
+Timer 1 : Preset 10 
+Blinker 1 : Set 100 
+Successfully loaded 57 lines of IL code from tst/black/il_knuth/plc.init
+0.LD mf0/8
+1.ADD mf4/8
+2.ST MF0/8
+3.LD if0/8
+4.SUB mf1/8
+5.ST MF3/8
+6.LD mf1/8
+7.ADD(mf3/8
+8.DIV mf0/8
+9.)
+10.ST MF1/8
+11.LD mf2/8
+12.ADD(mf3/8
+13.MUL(if0/8
+14.SUB mf1/8
+15.)
+16.)
+17.ST MF2/8
+18.LD mf2/8
+19.DIV(mf0/8
+20.SUB mf4/8
+21.)
+22.ST QF0/8
+Inputs: 00000000000000000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x0 
+
+Analog Input 0 : 0.000000 
+
+Analog Output 0 (raw): 0 
+
+Analog Output 0 : 0.000000 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 1.000000 
+
+Memory Register 1 (real): 0.000000 
+
+Memory Register 2 (real): 0.000000 
+
+Memory Register 3 (real): 0.000000 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:16
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x222222222222211 
+
+Analog Input 0 : 0.200000 
+
+Analog Output 0 (raw): d1b71758e2197 
+
+Analog Output 0 : 0.020000 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 2.000000 
+
+Memory Register 1 (real): 0.100000 
+
+Memory Register 2 (real): 0.020000 
+
+Memory Register 3 (real): 0.200000 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:16
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x1322222222222211 
+
+Analog Input 0 : 1.793750 
+
+Analog Output 0 (raw): 2794008bcf64e60 
+
+Analog Output 0 : 0.966263 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 3.000000 
+
+Memory Register 1 (real): 0.664583 
+
+Memory Register 2 (real): 1.932526 
+
+Memory Register 3 (real): 1.693750 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:16
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x2422222222222211 
+
+Analog Input 0 : 3.387500 
+
+Analog Output 0 (raw): 664ebedfa43fec0 
+
+Analog Output 0 : 2.497744 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 4.000000 
+
+Memory Register 1 (real): 1.345312 
+
+Memory Register 2 (real): 7.493232 
+
+Memory Register 3 (real): 2.722917 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:17
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x3522222222222211 
+
+Analog Input 0 : 4.981250 
+
+Analog Output 0 (raw): b9077ee4e26d500 
+
+Analog Output 0 : 4.517316 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 5.000000 
+
+Memory Register 1 (real): 2.072500 
+
+Memory Register 2 (real): 18.069266 
+
+Memory Register 3 (real): 3.635938 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:17
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x4622222222222211 
+
+Analog Input 0 : 6.575000 
+
+Analog Output 0 (raw): 11e6ac4e18d95e00 
+
+Analog Output 0 : 6.992604 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 6.000000 
+
+Memory Register 1 (real): 2.822917 
+
+Memory Register 2 (real): 34.963021 
+
+Memory Register 3 (real): 4.502500 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:17
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x4622222222222211 
+
+Analog Input 0 : 6.575000 
+
+Analog Output 0 (raw): 1410edcd539df100 
+
+Analog Output 0 : 7.838331 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 7.000000 
+
+Memory Register 1 (real): 3.358929 
+
+Memory Register 2 (real): 47.029989 
+
+Memory Register 3 (real): 3.752083 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:17
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x222222222222211 
+
+Analog Input 0 : 0.200000 
+
+Analog Output 0 (raw): 14648c33422e0000 
+
+Analog Output 0 : 7.965924 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 8.000000 
+
+Memory Register 1 (real): 2.964063 
+
+Memory Register 2 (real): 55.761465 
+
+Memory Register 3 (real): -3.158929 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:17
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x1322222222222211 
+
+Analog Input 0 : 1.793750 
+
+Analog Output 0 (raw): 123bb6743c41ba00 
+
+Analog Output 0 : 7.122364 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 9.000000 
+
+Memory Register 1 (real): 2.834028 
+
+Memory Register 2 (real): 56.978915 
+
+Memory Register 3 (real): -1.170313 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:17
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x2422222222222211 
+
+Analog Input 0 : 3.387500 
+
+Analog Output 0 (raw): 1049275951f28400 
+
+Analog Output 0 : 6.361624 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 10.000000 
+
+Memory Register 1 (real): 2.889375 
+
+Memory Register 2 (real): 57.254613 
+
+Memory Register 3 (real): 0.553472 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:17
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x3522222222222211 
+
+Analog Input 0 : 4.981250 
+
+Analog Output 0 (raw): facf2ee16dcf700 
+
+Analog Output 0 : 6.123274 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 11.000000 
+
+Memory Register 1 (real): 3.079545 
+
+Memory Register 2 (real): 61.232741 
+
+Memory Register 3 (real): 2.091875 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:17
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x4622222222222211 
+
+Analog Input 0 : 6.575000 
+
+Analog Output 0 (raw): 10db6983f408e500 
+
+Analog Output 0 : 6.584796 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 12.000000 
+
+Memory Register 1 (real): 3.370833 
+
+Memory Register 2 (real): 72.432760 
+
+Memory Register 3 (real): 3.495455 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:17
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x4622222222222211 
+
+Analog Input 0 : 6.575000 
+
+Analog Output 0 (raw): 11795c99e2319a00 
+
+Analog Output 0 : 6.825808 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 13.000000 
+
+Memory Register 1 (real): 3.617308 
+
+Memory Register 2 (real): 81.909700 
+
+Memory Register 3 (real): 3.204167 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:17
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x222222222222211 
+
+Analog Input 0 : 0.200000 
+
+Analog Output 0 (raw): 1243eba3144df300 
+
+Analog Output 0 : 7.134888 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 14.000000 
+
+Memory Register 1 (real): 3.373214 
+
+Memory Register 2 (real): 92.753549 
+
+Memory Register 3 (real): -3.417308 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:18
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x1322222222222211 
+
+Analog Input 0 : 1.793750 
+
+Analog Output 0 (raw): 1162ebebfaf5c200 
+
+Analog Output 0 : 6.791567 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 15.000000 
+
+Memory Register 1 (real): 3.267917 
+
+Memory Register 2 (real): 95.081943 
+
+Memory Register 3 (real): -1.579464 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:18
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x2422222222222211 
+
+Analog Input 0 : 3.387500 
+
+Analog Output 0 (raw): 103ac779a6b50c00 
+
+Analog Output 0 : 6.339690 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 16.000000 
+
+Memory Register 1 (real): 3.275391 
+
+Memory Register 2 (real): 95.095349 
+
+Memory Register 3 (real): 0.119583 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:18
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x3522222222222211 
+
+Analog Input 0 : 4.981250 
+
+Analog Output 0 (raw): fa74938d688b700 
+
+Analog Output 0 : 6.114633 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 17.000000 
+
+Memory Register 1 (real): 3.375735 
+
+Memory Register 2 (real): 97.834131 
+
+Memory Register 3 (real): 1.705859 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:18
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x4622222222222211 
+
+Analog Input 0 : 6.575000 
+
+Analog Output 0 (raw): 10303811d7218c00 
+
+Analog Output 0 : 6.323576 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 18.000000 
+
+Memory Register 1 (real): 3.553472 
+
+Memory Register 2 (real): 107.500799 
+
+Memory Register 3 (real): 3.199265 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:18
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x4622222222222211 
+
+Analog Input 0 : 6.575000 
+
+Analog Output 0 (raw): 1084e3bcd35a8800 
+
+Analog Output 0 : 6.452773 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 19.000000 
+
+Memory Register 1 (real): 3.712500 
+
+Memory Register 2 (real): 116.149922 
+
+Memory Register 3 (real): 3.021528 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:18
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x222222222222211 
+
+Analog Input 0 : 0.200000 
+
+Analog Output 0 (raw): 113a98c6c7f1f800 
+
+Analog Output 0 : 6.730037 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 20.000000 
+
+Memory Register 1 (real): 3.536875 
+
+Memory Register 2 (real): 127.870695 
+
+Memory Register 3 (real): -3.512500 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:18
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x1322222222222211 
+
+Analog Input 0 : 1.793750 
+
+Analog Output 0 (raw): 10bce40cb7942f00 
+
+Analog Output 0 : 6.538225 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 21.000000 
+
+Memory Register 1 (real): 3.453869 
+
+Memory Register 2 (real): 130.764490 
+
+Memory Register 3 (real): -1.743125 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:18
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x2422222222222211 
+
+Analog Input 0 : 3.387500 
+
+Analog Output 0 (raw): ff0fac81641b900 
+
+Analog Output 0 : 6.227081 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 22.000000 
+
+Memory Register 1 (real): 3.450852 
+
+Memory Register 2 (real): 130.768695 
+
+Memory Register 3 (real): -0.066369 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:18
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x3522222222222211 
+
+Analog Input 0 : 4.981250 
+
+Analog Output 0 (raw): f7a3774cea6f180 
+
+Analog Output 0 : 6.045863 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 23.000000 
+
+Memory Register 1 (real): 3.517391 
+
+Memory Register 2 (real): 133.008981 
+
+Memory Register 3 (real): 1.530398 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:18
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x4622222222222211 
+
+Analog Input 0 : 6.575000 
+
+Analog Output 0 (raw): fcd3c4e61cb2280 
+
+Analog Output 0 : 6.172540 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 24.000000 
+
+Memory Register 1 (real): 3.644792 
+
+Memory Register 2 (real): 141.968411 
+
+Memory Register 3 (real): 3.057609 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:19
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x4622222222222211 
+
+Analog Input 0 : 6.575000 
+
+Analog Output 0 (raw): 1005c39bcba30200 
+
+Analog Output 0 : 6.258795 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 25.000000 
+
+Memory Register 1 (real): 3.762000 
+
+Memory Register 2 (real): 150.211088 
+
+Memory Register 3 (real): 2.930208 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:19
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x222222222222211 
+
+Analog Input 0 : 0.200000 
+
+Analog Output 0 (raw): 10a1815a07b35300 
+
+Analog Output 0 : 6.496438 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 26.000000 
+
+Memory Register 1 (real): 3.625000 
+
+Memory Register 2 (real): 162.410938 
+
+Memory Register 3 (real): -3.562000 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:19
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x1322222222222211 
+
+Analog Input 0 : 1.793750 
+
+Analog Output 0 (raw): 104f2713e49d2f00 
+
+Analog Output 0 : 6.370777 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 27.000000 
+
+Memory Register 1 (real): 3.557176 
+
+Memory Register 2 (real): 165.640211 
+
+Memory Register 3 (real): -1.831250 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:19
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x2422222222222211 
+
+Analog Input 0 : 3.387500 
+
+Analog Output 0 (raw): fb530f350be4300 
+
+Analog Output 0 : 6.135851 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 28.000000 
+
+Memory Register 1 (real): 3.551116 
+
+Memory Register 2 (real): 165.667973 
+
+Memory Register 3 (real): -0.169676 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:19
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x3522222222222211 
+
+Analog Input 0 : 4.981250 
+
+Analog Output 0 (raw): f53cc3db7ec2980 
+
+Analog Output 0 : 5.987240 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 29.000000 
+
+Memory Register 1 (real): 3.600431 
+
+Memory Register 2 (real): 167.642729 
+
+Memory Register 3 (real): 1.430134 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:19
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x4622222222222211 
+
+Analog Input 0 : 6.575000 
+
+Analog Output 0 (raw): f8dc884bc9ca300 
+
+Analog Output 0 : 6.075719 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 30.000000 
+
+Memory Register 1 (real): 3.699583 
+
+Memory Register 2 (real): 176.195854 
+
+Memory Register 3 (real): 2.974569 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:19
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x4622222222222211 
+
+Analog Input 0 : 6.575000 
+
+Analog Output 0 (raw): fb7d934f8749880 
+
+Analog Output 0 : 6.139905 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 31.000000 
+
+Memory Register 1 (real): 3.792339 
+
+Memory Register 2 (real): 184.197165 
+
+Memory Register 3 (real): 2.875417 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:19
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x222222222222211 
+
+Analog Input 0 : 0.200000 
+
+Analog Output 0 (raw): 103e56d5cfaacf00 
+
+Analog Output 0 : 6.345122 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 32.000000 
+
+Memory Register 1 (real): 3.680078 
+
+Memory Register 2 (real): 196.698784 
+
+Memory Register 3 (real): -3.592339 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:19
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x1322222222222211 
+
+Analog Input 0 : 1.793750 
+
+Analog Output 0 (raw): 10030e33103f5b00 
+
+Analog Output 0 : 6.254662 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 33.000000 
+
+Memory Register 1 (real): 3.622917 
+
+Memory Register 2 (real): 200.149193 
+
+Memory Register 3 (real): -1.886328 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:19
+ 
+Inputs: 11111111010001000000000000000000 
+
+Outputs: 00000000000000000000000000000000 
+
+Analog Input 0 (raw): 0x2422222222222211 
+
+Analog Input 0 : 3.387500 
+
+Analog Output 0 (raw): f87e8f092bcd180 
+
+Analog Output 0 : 6.066757 
+
+Memory Register 0 (u): 0 
+
+Memory Register 1 (u): 0 
+
+Memory Register 2 (u): 0 
+
+Memory Register 3 (u): 0 
+
+Memory Register 0 (real): 34.000000 
+
+Memory Register 1 (real): 3.615993 
+
+Memory Register 2 (real): 200.202984 
+
+Memory Register 3 (real): -0.235417 
+
+Memory Register 4 (real): 1.000000 
+
+Memory Register 5 (real): 0.000000 
+
+
+
+; Knuth's online variance:
+
+;    n = 1
+
+;    mean = 5.0
+
+;    m2 = 0.0
+
+;    delta = 0.0
+
+
+
+;    read x :
+
+;        n += 1
+
+;        delta = x - mean
+
+;        mean += delta/n
+
+;        m2 += delta*(x - mean)
+
+
+
+;    if n < 2:
+
+;        return float('nan')
+
+;    else:
+
+;        return m2 / (n - 1)
+
+
+
+;    %M0 = 1; n
+
+;    %M1 = 5.0; mean
+
+;    %M2 = 0; m2
+
+;    %M3 = 0; delta
+
+;    %M4 = 1; const;
+
+;    %I0 = 7.5; x: real input %I0
+
+
+
+;   %Q0 = 0; y: real outpput %Q0
+
+
+
+
+
+    LD %MF0  ; n = n+1
+
+    ADD %MF4 ;
+
+    ST %MF0  ;
+
+
+
+    LD %IF0  ; read x
+
+    SUB %MF1 ;
+
+    ST %MF3  ; delta = x - mean
+
+
+
+    LD %MF1  ; Acc = mean
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD mean
+
+    DIV %MF0 ; Acc = delta/n,            Stack = ADD mean
+
+    )        ; Acc = mean + ( delta/n )
+
+    ST %MF1  ; mean = mean + ( delta/n )
+
+
+
+    LD %MF2  ; Acc = m2
+
+    ADD(%MF3 ; Acc = delta,              Stack = ADD m2
+
+    MUL(%IF0 ; Acc = x,                  Stack = MUL delta, ADD m2
+
+    SUB %MF1 ; Acc = x - mean,           Stack = MUL delta, ADD m2
+
+    )        ; Acc = delta * (x - mean), Stack = ADD m2
+
+    )        ; Acc = m2 + (delta * (x - mean))
+
+    ST %MF2  ; m2 = m2 + (delta * (x - mean))
+
+
+
+    LD %MF2  ; Acc = m2
+
+    DIV(%MF0 ; Acc = n,                  Stack = DIV m2
+
+    SUB %MF4   ; Acc = n-1,                Stack = DIV m2
+
+    )          ; Acc = m2 / n-1,
+
+    ST %QF0  ; y = m2 / (n - 1)
+
+      
+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.60       18:52:20
+ 
+program interrupted
+Total loops: 33
+Average loop time: 99424.515152 us
+Standard deviation: +-97.077006 us

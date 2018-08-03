@@ -1,0 +1,17 @@
+autoscan: warning: missing AC_CHECK_HEADERS([sys/time.h]) wanted by: 
+	src/plcemu.c:5
+autoscan: warning: missing AC_HEADER_STDBOOL wanted by: 
+	src/vm/parser-ld.c:188
+autoscan: warning: missing AC_PROG_CXX wanted by: 
+	ltmain.sh:960
+	ltmain.sh:1380
+	ltmain.sh:1383
+	ltmain.sh:1388
+	ltmain.sh:1388
+	ltmain.sh:1398
+	ltmain.sh:1402
+	ltmain.sh:1405
+	ltmain.sh:1405
+	ltmain.sh:2442
+autoscan: warning: missing AC_PROG_RANLIB wanted by: 
+	ltmain.sh:2455

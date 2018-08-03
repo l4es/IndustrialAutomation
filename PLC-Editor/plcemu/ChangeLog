@@ -1,0 +1,18 @@
+1.5.1
+
+  * Proper logging messages and error handling
+  
+  * Decouple execution from programming and parsing 
+    * Syntax tree generation from LD
+    * IL Code generation from LD
+    * Compile on load, execute in loop
+    * Independent instruction code executor (vm)
+  
+  * Systematic integration test (blackbox)
+  * Unit test framework (whitebox)
+  * conditional JMP support
+  * graceful handling of kill signals
+  * timeout in microcode execution for infinite loop prevention
+  * preallocated stack for stack overflow prevention
+  * various bugfixes
+ 

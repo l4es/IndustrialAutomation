@@ -1,0 +1,90 @@
+Looking for configuration from tst/black/il_gcd/plc.config ...
+Found value for STEP: 10 ...
+Found value for PIPE: plcpipe ...
+Found value for RESPONSE: plcresponse ...
+Found value for SIGENABLE: 36 ...
+Found value for PAGELEN: 24 ...
+Found value for PAGEWIDTH: 80 ...
+Found value for NT: 16 ...
+Found value for NS: 16 ...
+Found value for NM: 32 ...
+Found value for HW: STDI/O ...
+Found value for DI: 4 ...
+Found value for DQ: 4 ...
+Found value for BASE: 50176 ...
+Found value for WR_OFFS: 4 ...
+Found value for RD_OFFS: 0 ...
+Found value for COMEDI_FILE: 0 ...
+Found value for COMEDI_SUBDEV_I: 0 ...
+Found value for COMEDI_SUBDEV_Q: 1 ...
+Found value for SIM_INPUT: sim.in ...
+Found value for SIM_OUTPUT: sim.out ...
+Successfully loaded 35 lines of IL code from tst/black/il_gcd/plc.init
+0.LD i0/8
+1.ST M0/8
+2.EQ m3/8
+3.JMP?24
+4.LD i1/8
+5.ST M1/8
+6.EQ m3/8
+7.JMP?24
+8.while:LD m0/8
+9.EQ m1/8
+10.JMP?22
+11.LD m0/8
+12.LT m1/8
+13.JMP?18
+14.LD m0/8
+15.SUB m1/8
+16.ST M0/8
+17.JMP 8
+18.reverse:LD m1/8
+19.SUB m0/8
+20.ST M1/8
+21.JMP 8
+22.endwhile:LD m0/8
+23.ST Q0/8
+24.end:LD m3/8
+Inputs: 00000000000000000000000000000000 
+Outputs: 00000000000000000000000000000000 
+
+   ; greatest common divisor
+   ; https://en.wikipedia.org/wiki/Euclidean_algorithm
+
+    LD %i0
+    ST %m0
+    EQ %m3
+    JMP?end
+    
+    LD %i1
+    ST %m1
+    EQ %m3
+    JMP?end
+    
+    while:LD %m0    ; A
+    EQ %m1          ; A == B
+    JMP?endwhile    ; while(A != B)
+        LD %m0
+        LT %m1      ; A < B
+        JMP?reverse
+        LD %m0
+        SUB %m1     ; A - B
+        ST %m0      ; A = A - B
+    JMP while
+    reverse:LD %m1  ; B
+        SUB %m0     ; B - A
+        ST %m1      ; B = B - A
+    JMP while
+    endwhile:LD %m0 ; 
+    ST %q0 ; output gcd 
+    end: LD %m3;
+    
+    
+      
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.51       16:53:28
+ 
+Inputs: 11111111010001000000000000000000 
+Outputs: 10001000000000000000000000000000 
+

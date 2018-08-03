@@ -1,0 +1,59 @@
+1.6 
+Analog I/O
+
+  Word hardware data acquisition
+  
+  Word data presentation
+
+#  Word memory variables and configuration
+
+#  Word and Float data types and operations
+
+
+2.0 
+
+ML configuration (YML)
+    Multiple rungs
+        -> multithreaded execution (?)
+    rung structure and parse tree generation from YML schema
+    replace property file with YML
+    replace presentation logic with YML
+
+    getopt 
+UI
+    -Javascript?
+    -Qt?
+    -GTK?
+        programming interface
+        monitoring interface template
+        UI I/O with .yml format
+        asynchronous ui update (pthread)
+    
+.deb package    
+    
+2.1
+
+Structured Text language
+    yacc / lex based parsing
+
+2.2 
+
+Function Block Diagrams wtih YML
+Custom Function Block API
+Rung logic configuration with Sequential Function Chart => YML
+
+-------
+
+CI
+
+USB DAQ support
+SPI bus support
+
+var args library
+
+Networking
+- Remote UI
+- remote sensors
+- peer nodes
+
+

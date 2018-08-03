@@ -1,0 +1,21 @@
+I	0	A	
+I	1	B	
+I	2	C		
+Q	0	RESULT
+
+MEMORY	0	64	
+	
+TIME	1	10	
+PRESET	1	10		
+BLINK	1	100	
+
+LD
+
+; triple majority circuit
+; https://en.wikipedia.org/wiki/Triple_modular_redundancy
+
+ i0---i1----+---------(Q0
+ i2---i0----+
+ i1---i2----+
+
+

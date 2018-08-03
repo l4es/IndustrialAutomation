@@ -1,0 +1,86 @@
+Looking for configuration from tst/black/ld_random_file/plc.config ...
+Found value for STEP: 10 ...
+Found value for PIPE: plcpipe ...
+Found value for RESPONSE: plcresponse ...
+Found value for SIGENABLE: 36 ...
+Found value for PAGELEN: 24 ...
+Found value for PAGEWIDTH: 80 ...
+Found value for NT: 16 ...
+Found value for NS: 16 ...
+Found value for NM: 32 ...
+Found value for HW: STDI/O ...
+Found value for DI: 4 ...
+Found value for DQ: 4 ...
+Found value for BASE: 50176 ...
+Found value for WR_OFFS: 4 ...
+Found value for RD_OFFS: 0 ...
+Found value for COMEDI_FILE: 0 ...
+Found value for COMEDI_SUBDEV_I: 0 ...
+Found value for COMEDI_SUBDEV_Q: 1 ...
+Found value for SIM_INPUT: sim.in ...
+Found value for SIM_OUTPUT: sim.out ...
+Successfully loaded 17 lines of LD code from tst/black/ld_random_file/plc.init
+0.LD i0/3
+1.OR(i0/2
+2.OR(i0/1
+3.)
+4.)
+5.ST Q0/5
+6.LD i0/0
+7.R?Q0/1
+8.LD i0/0
+9.R?M0/0
+10.LD i0/1
+11.S?M0/0
+12.LD i0/1
+13.S?Q0/0
+14.LD i0/2
+15.S?Q0/1
+16.LD i0/2
+17.R?M0/0
+18.LD i0/2
+19.R?Q0/0
+Inputs: 00000000000000000000000000000000 
+Outputs: 00000000000000000000000000000000 
+
+ i1----+
+ i2----+---------(Q5
+ i3----+
+
+
+             +---------------]Q1;
+             |
+ i0----------+---------------]M0 ;input 1 starts timer 1
+            
+ i1---+------------------[M0       
+      |
+      +-----------------[Q0       
+           +---------------[Q1 ;and contacts output 0
+ i2--------+--+-----]M0 ;rising edge of input 1 resets counter 0
+              |
+              +-----]Q0
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.51       16:37:05
+ 
+Inputs: 00111100100011000011110010001100 
+Outputs: 01000100000000000000000000000000 
+
+ i1----+
+ i2----+---------(Q5
+ i3----+
+
+
+             +---------------]Q1;
+             |
+ i0----------+---------------]M0 ;input 1 starts timer 1
+            
+ i1---+------------------[M0       
+      |
+      +-----------------[Q0       
+           +---------------[Q1 ;and contacts output 0
+ i2--------+--+-----]M0 ;rising edge of input 1 resets counter 0
+              |
+              +-----]Q0
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.51       16:37:05
+ 

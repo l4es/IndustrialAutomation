@@ -1,0 +1,251 @@
+#!/usr/bin/perl
+#
+#
+$Version = "1.0 2014.09.23";
+$Help = <<EOF
+Produces analysis and report  of coverage tests using gcc compiler
+and gcov analyzer. Outputs an report.htm file which contains links
+to line by line source file analyses.
+
+Usage:
+coverage [options] files
+
+Options:
+-e List only unexecuted lines 
+-b Blocks shown  status in source code
+-h Print this text
+-r List also untested lines in to report
+-v Version 
+-ofile Report is produced to file instead of report.htm
+-u Output all line-by-line analyses to  stdout
+
+
+if files is given as .da all files that have 
+coverage dumps are analyzed;
+
+Use gcc compiler with parameters below
+-fprofile-arcs -ftest-coverage test.c
+and gcc linker with parameters below
+-lgcc_p 
+
+works and tested with
+ gcc version 3.2 (Mandrake Linux 9.0 3.2-1mdk)
+ gcov (GCC) 3.2 (Mandrake Linux 9.0 3.2-1mdk)
+ perl, v5.8.0 built for i386-linux-thread-multi
+
+EOF
+;
+#easy save
+sub Save()
+{
+  local($file,$text)=@_;
+  if(open(F,">$file")){
+    print F $text;
+    close(F);
+  }else{
+    die "Cannot save '$file'\n";
+  }
+}
+
+#scan the file given as input and paint
+#non executed lines with read
+#add also line numbers
+sub Scan()
+{
+   $redlines="";
+   $redcount=0;
+   $greencount=0;
+   $lstlines="";
+   ($fn)=@_;
+   $lstlines .="<br><h2>Line by line analysis of $fn.c </h2>\n";
+
+   $fn .= ".c.gcov";
+   if(open(F,"$fn")){
+      $lines=0;
+     $lstlines .="<pre>";
+      while(<F>){
+         chop;
+         s/>/&gt;/g;s/</&lt;/g;
+	 if(/source lines/){
+           $percent = $_;
+         }
+         if(/###/){
+            $lines++;
+            $redcount++;
+            $red= sprintf("%3u:<font color=red>$_</font>\n",$lines);
+            $redlines .=$red;
+            $lstlines .=$red;
+         }else{
+            if($_ >0) {
+              $greencount++;
+            }
+            if(/^bra/ || /^call/){
+               if($opt_showall){
+                  $lstlines .= "$_\n";
+               }
+            }else{
+               $lines++;
+               if(!$opt_nonexec){
+                  $lstlines .= sprintf("%3u:$_\n",$lines);
+               }
+            }
+         }
+      }
+      close(F);
+      $lstlines .="</pre><hr width=50%>";
+   }else{
+      die "Cannot open $fn\n";
+   }
+   $lstlines;
+}
+
+#Choose color
+sub Color
+{
+   local($r,$t) = @_;
+
+   if($r>=80){$col="green";}
+   elsif($r>=50){$col="blue";}
+   else{$col="red";}
+   "<font color=$col>$t</font>";
+}
+#format summary
+#and return with formatted text
+sub Show()
+{
+   local($fn)=@_;
+   local $output="";
+   $fname ="$fn.sum";
+   $percent=0;
+   if(open(F,"$fname")){
+      $output .= "<h3>Summary by functions</h3>\n";
+      $output .= "<pre>";
+      while(<F>){
+         chop;
+         if(/^Creating/){
+#          $_="";
+         }
+         if(/Lines executed:/){
+		 #$output .= "<hr width=50%></pre><h2>Total Coverages in $fn.c</h2><pre>";
+            $percent = 0+ substr $_, 15, ;
+         }
+         if(/source lines executed in function/){
+
+            $fname=$';
+            $output .= "<h3>$fname</h3>";
+         }
+         $r = 0+$_;
+         if(! /\%/){$col="black";}
+         elsif($r>=80){$col="green";}
+         elsif($r>=50){$col="blue";}
+         else{$col="red";}
+         if(/ function /){
+           s/function /function <b>'/;
+           $_.="'</b>";
+         }
+         $output .= "<font color=$col>$_</font>\n";
+      }
+      $output .= "</pre><hr width=50%>";
+      close(F)
+   }else{
+      die "Cannot open $fn\n";
+   }
+   $output;
+}
+
+sub Process()
+{
+   local($file) =@_;
+
+
+   print "Clearing files\n";
+   `rm -f $file.sum $file.c.gcov`;
+
+   print "Running coverages for '$file.c'\n";
+
+   $lfile=($opt_ulist eq "")?"<a href=$file.htm>$file.c</a>":"$file.c";
+
+   $report .= "<h2>Coverage analysis of $lfile</h2>\n";
+   `gcov -f -b $file.c >$file.sum`;
+   $res= "<html><head><title>$file</title></head><body>\n";
+   $res .="<h1>Coverage Report of <i>$file</i> at $now / $who</h1>\n";
+   
+   $rep=&Show($file);
+   $report .= $rep;
+   if(! $opt_nosumma){
+     $res .= $rep;
+   }
+
+   $res .="<h3>Line by line Analysis of $file</h3>\n";
+   $res = &Scan($file);
+   $execount = 0+$greencount+$redcount;
+   $report .= "<pre>Total source lines in $file.c is $lines\n";
+   $report .= "of which $execount were executable\n";
+   $report .= "of which $redcount were never executed\n";
+   if($opt_redline){
+     $report .="<h3>unexecuted lines</h3>$redlines<hr width=50%>";
+   }
+   $report .= "<pre><hr>";
+
+   $res .="<hr><font color=green size=1>This report is produced by <i>coverage</i> &copy;Martti Lumme 2002</font>";
+   $res .="</body></html>\n";
+   if($opt_ulist ne ""){
+     print $res;
+   }else{
+     &Save("$file.htm",$res);
+   }
+}
+
+
+#  MAIN
+   $opt_showall = "";
+   $summary = "";
+   $opt_redline = "";
+   $report = "";
+   $opt_reportn = "report.htm";
+   $total_lines=0;
+   $total_percent=0;
+   $total_red=0;
+   $opt_ulist="";
+   
+# process options and files
+   foreach (@ARGV){
+      if(/^-/){
+         if(/^-h/){print $Help;exit;}
+         if(/^-v/){print "$Version\n";exit;}
+         if(/^-b/){$opt_showall= !/b0/;}
+         if(/^-e/){$opt_nonexec= !/e0/;}
+         if(/^-r/){$opt_redline= !/r0/;}
+         if(/^-u/){$opt_ulist  = !/u0/;}
+         if(/^-o/){$opt_reportn= substr($_,2,100);}
+      }else{
+         if(/.gcda$/){
+          ($_,$x)=split(".gcda");
+         }
+         $fn = $_;
+         &Process($fn);
+         $total_lines += $execount;
+	 $total_red += $redcount;
+         $total_percent += $execount * $percent;
+      }
+   }
+
+#print out report.htm file
+   $who = `whoami`;
+   chop($who);
+   
+   @tm = localtime(time());
+   $now = sprintf("%04u-%02u-%02u %02u:%02u:%02u",
+      1900+$tm[5],1+$tm[4],$tm[3],$tm[2],$tm[1],$tm[0]);
+
+   $res  = "<html><head><title>Coverage analysis</title>";
+   $res .= "<head><body><h1>Coverage Analysis</h1>";
+   $total_percent = ($total_lines)?$total_percent / $total_lines:0;
+
+   $left = ($total_red>0)?"$total_red lines never executed. ":"";
+   $res .= &Color($total_percent,
+     sprintf("<h2>Total %u lines analyzed. %s Coverage is %3.2f%%</h2>\n",
+	      $total_lines,$left,$total_percent));
+   $res .="Author:  $who<br>Daytime:  $now<hr>";
+   $res .= "$report<br><font size=1 color=#f0f0f0>Pothitos Alexandros 2014</font></body></html>";;
+   &Save($opt_reportn,$res);

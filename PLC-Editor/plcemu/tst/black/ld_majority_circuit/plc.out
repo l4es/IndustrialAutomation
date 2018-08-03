@@ -1,0 +1,100 @@
+Looking for configuration from tst/black/ld_majority_circuit/plc.config ...
+Found value for STEP: 10 ...
+Found value for PIPE: plcpipe ...
+Found value for RESPONSE: plcresponse ...
+Found value for SIGENABLE: 36 ...
+Found value for PAGELEN: 24 ...
+Found value for PAGEWIDTH: 80 ...
+Found value for NT: 16 ...
+Found value for NS: 16 ...
+Found value for NM: 32 ...
+Found value for HW: STDI/O ...
+Found value for DI: 4 ...
+Found value for DQ: 4 ...
+Found value for BASE: 50176 ...
+Found value for WR_OFFS: 4 ...
+Found value for RD_OFFS: 0 ...
+Found value for COMEDI_FILE: 0 ...
+Found value for COMEDI_SUBDEV_I: 0 ...
+Found value for COMEDI_SUBDEV_Q: 1 ...
+Found value for SIM_INPUT: sim.in ...
+Found value for SIM_OUTPUT: sim.out ...
+Successfully loaded 9 lines of LD code from tst/black/ld_majority_circuit/plc.init
+0.LD i0/2
+1.AND(i0/1
+2.OR(i0/0
+3.AND(i0/2
+4.OR(i0/1
+5.AND(i0/0
+6.)
+7.)
+8.ST Q0/0
+Inputs: 00000000000000000000000000000000 
+Outputs: 00000000000000000000000000000000 
+
+; triple majority circuit
+; https://en.wikipedia.org/wiki/Triple_modular_redundancy
+
+ i0---i1----+---------(Q0
+ i2---i0----+
+ i1---i2----+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.51       16:44:38
+ 
+Inputs: 11110000000000000000000000000000 
+Outputs: 10000000000000000000000000000000 
+
+; triple majority circuit
+; https://en.wikipedia.org/wiki/Triple_modular_redundancy
+
+ i0---i1----+---------(Q0
+ i2---i0----+
+ i1---i2----+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.51       16:44:38
+ 
+Inputs: 11100000000000000000000000000000 
+Outputs: 10000000000000000000000000000000 
+
+; triple majority circuit
+; https://en.wikipedia.org/wiki/Triple_modular_redundancy
+
+ i0---i1----+---------(Q0
+ i2---i0----+
+ i1---i2----+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.51       16:44:38
+ 
+Inputs: 11000000000000000000000000000000 
+Outputs: 10000000000000000000000000000000 
+
+; triple majority circuit
+; https://en.wikipedia.org/wiki/Triple_modular_redundancy
+
+ i0---i1----+---------(Q0
+ i2---i0----+
+ i1---i2----+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.51       16:44:38
+ 
+Inputs: 10000000000000000000000000000000 
+Outputs: 00000000000000000000000000000000 
+
+; triple majority circuit
+; https://en.wikipedia.org/wiki/Triple_modular_redundancy
+
+ i0---i1----+---------(Q0
+ i2---i0----+
+ i1---i2----+
+
+
+Hardware:STDI/O  RUNNING
+ PLC-EMUlator v1.51       16:44:38

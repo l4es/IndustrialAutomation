@@ -1,0 +1,11 @@
+#pragma code_page(1252)
+STRINGTABLE DISCARDABLE
+{
+
+  1 "Sans titre"
+  2 "OK pour remplacer %s"
+  3 "Erreur à l'envoi du courrier"
+    
+}
+
+

@@ -646,3 +646,9 @@
 [submodule "Scada-Systems/OpenMUC/jasn1"]
 	path = Scada-Systems/OpenMUC/jasn1
 	url = https://github.com/openmuc/jasn1.git
+[submodule "Protocols/G-Code/webgcode"]
+	path = Protocols/G-Code/webgcode
+	url = https://github.com/nraynaud/webgcode.git
+[submodule "Protocols/G-Code/PyCNC"]
+	path = Protocols/G-Code/PyCNC
+	url = https://github.com/Nikolay-Kha/PyCNC.git

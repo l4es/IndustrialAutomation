@@ -31,9 +31,6 @@
 [submodule "GE-PLC"]
 	path = GE-PLC
 	url = https://github.com/mota37/GE-PLC.git
-[submodule "openXHC"]
-	path = openXHC
-	url = https://github.com/mrgsts/openxhc.git
 [submodule "Protocols/bacnet-stack"]
 	path = Protocols/BACNet/bacnet-stack
 	url = https://github.com/stargieg/bacnet-stack.git

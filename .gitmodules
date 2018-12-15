@@ -649,3 +649,21 @@
 [submodule "Protocols/G-Code/PyCNC"]
 	path = Protocols/G-Code/PyCNC
 	url = https://github.com/Nikolay-Kha/PyCNC.git
+[submodule "3D-Printer/Printrun"]
+	path = 3D-Printer/Printrun
+	url = https://github.com/kliment/Printrun
+[submodule "3D-Printer/franklin"]
+	path = 3D-Printer/franklin
+	url = https://github.com/mtu-most/franklin
+[submodule "3D-Scanner/Ciclop/thot"]
+	path = 3D-Scanner/Ciclop/thot
+	url = https://github.com/fdev31/thot
+[submodule "3D-Scanner/3D-SCANNER-IITB"]
+	path = 3D-Scanner/3D-SCANNER-IITB
+	url = https://github.com/animeshsrivastava24/3D-SCANNER-IITB
+[submodule "3D-Scanner/SFM-Scanner"]
+	path = 3D-Scanner/SFM-Scanner
+	url = https://github.com/tyhenry/3DScanner
+[submodule "3D-Printer/hackathon-slicer"]
+	path = 3D-Printer/hackathon-slicer
+	url = https://github.com/Formlabs/hackathon-slicer

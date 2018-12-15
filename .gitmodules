@@ -667,3 +667,33 @@
 [submodule "3D-Printer/hackathon-slicer"]
 	path = 3D-Printer/hackathon-slicer
 	url = https://github.com/Formlabs/hackathon-slicer
+[submodule "LDmicro"]
+	path = LDmicro
+	url = https://github.com/LDmicro/LDmicro
+[submodule "SimPyLC"]
+	path = SimPyLC
+	url = https://github.com/QQuick/SimPyLC
+[submodule "PyCNC"]
+	path = PyCNC
+	url = https://github.com/Nikolay-Kha/PyCNC
+[submodule "SiviCNCDriver"]
+	path = SiviCNCDriver
+	url = https://github.com/Klafyvel/SiviCNCDriver
+[submodule "cncgcodecontroller"]
+	path = cncgcodecontroller
+	url = https://github.com/pknoe3lh/cncgcodecontroller
+[submodule "ARM-CNC"]
+	path = ARM-CNC
+	url = https://github.com/sonicyang/ARM-CNC
+[submodule "Enhanced-CNC-Controller"]
+	path = Enhanced-CNC-Controller
+	url = https://github.com/anarchih/Enhanced-CNC-Controller
+[submodule "plcthesis"]
+	path = plcthesis
+	url = https://github.com/vortex-5/plcthesis
+[submodule "plcopeneditor"]
+	path = plcopeneditor
+	url = https://github.com/gjbroom/plcopeneditor
+[submodule "oscada"]
+	path = oscada
+	url = https://github.com/alimon/oscada
